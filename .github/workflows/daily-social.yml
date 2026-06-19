@@ -1,0 +1,40 @@
+name: Daily social post
+
+# Posts a short "today / this week in anime" blurb to Bluesky, Mastodon,
+# and Twitter/X. Runs on GitHub's servers — no dependency on your PC.
+# Each platform only posts if its secrets are set, so you can add them
+# one at a time.
+on:
+  schedule:
+    # 08:05 UTC daily (just after the Discord job). GitHub cron is UTC only.
+    - cron: "5 8 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Compose & log the posts without sending"
+        type: boolean
+        default: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Post to social
+        env:
+          DRY_RUN: ${{ github.event.inputs.dry_run == 'true' && '1' || '' }}
+          # Bluesky
+          BSKY_HANDLE:       ${{ secrets.BSKY_HANDLE }}
+          BSKY_APP_PASSWORD: ${{ secrets.BSKY_APP_PASSWORD }}
+          # Mastodon
+          MASTODON_BASE:  ${{ secrets.MASTODON_BASE }}
+          MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
+          # Twitter / X
+          X_API_KEY:      ${{ secrets.X_API_KEY }}
+          X_API_SECRET:   ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
+        run: node bot/post-social.mjs

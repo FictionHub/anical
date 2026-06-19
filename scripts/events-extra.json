@@ -1,0 +1,35 @@
+[
+  {
+    "id": "x-tgs-2026",
+    "title": "Tokyo Game Show 2026",
+    "start": "2026-09-17",
+    "end": "2026-09-21",
+    "type": "Industry",
+    "location": "Makuhari Messe, Chiba, Japan",
+    "url": "https://tgs.cesa.or.jp/",
+    "approx": false,
+    "desc": "Japan's biggest games expo (30th anniversary — a record 5 days). A frequent venue for anime-adaptation and anime tie-in reveals. Officially confirmed Sept 17–21, 2026."
+  },
+  {
+    "id": "x-animejapan-2027",
+    "title": "AnimeJapan 2027",
+    "start": "2027-03-27",
+    "end": "2027-03-28",
+    "type": "Convention",
+    "location": "Intex Osaka, Osaka, Japan",
+    "url": "https://www.anime-japan.jp/en/",
+    "approx": false,
+    "desc": "One of the world's largest anime events — studios announce new series, seasons, trailers and release dates. Moves from Tokyo to Intex Osaka for 2027 (Tokyo Big Sight renovations)."
+  },
+  {
+    "id": "x-jumpfesta-2027",
+    "title": "Jump Festa 2027",
+    "start": "2026-12-19",
+    "end": "2026-12-20",
+    "type": "Convention",
+    "location": "Makuhari Messe, Chiba, Japan",
+    "url": "https://www.jumpfesta.com/",
+    "approx": true,
+    "desc": "Shueisha's huge annual Shonen Jump event (held each December for the next year) — a major source of Jump anime adaptation announcements. Exact 2027 dates are not yet officially confirmed; shown here for its usual mid/late-December slot — verify on the official site."
+  }
+]

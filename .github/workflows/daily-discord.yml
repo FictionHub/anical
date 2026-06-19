@@ -1,0 +1,30 @@
+name: Daily Discord update
+
+# Posts the AniCal schedule / premieres / finales / news into Discord.
+# Runs on GitHub's servers, so it does NOT depend on your PC being on.
+on:
+  schedule:
+    # 08:00 UTC daily. GitHub cron is UTC only — adjust the hour for your
+    # timezone if you care about the exact post time (embeds show each
+    # viewer's local time regardless). Scheduled runs can be delayed a
+    # few minutes during peak load.
+    - cron: "0 8 * * *"
+  workflow_dispatch: {}   # lets you trigger it manually from the Actions tab
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Post updates to Discord
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          GUILD_ID: ${{ secrets.GUILD_ID }}
+          # Optional overrides:
+          # DAYS: "7"
+          # LOOKAHEAD: "30"
+          # PING: "1"
+        run: node bot/post-updates.mjs

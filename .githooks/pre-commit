@@ -1,0 +1,6 @@
+#!/bin/sh
+# Auto-stamp the app build number (2.1.<commit-count>) into site/index.html,
+# then stage it so the version always rides along with the commit it ships in.
+# A stamp failure never blocks the commit.
+node scripts/stamp-version.mjs && git add site/index.html
+exit 0

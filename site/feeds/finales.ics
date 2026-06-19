@@ -1,0 +1,506 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//AniCal//anicalendar.netlify.app//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:AniCal — Season Finales
+X-WR-TIMEZONE:UTC
+NAME:AniCal — Season Finales
+REFRESH-INTERVAL;VALUE=DURATION:PT12H
+X-PUBLISHED-TTL:PT12H
+BEGIN:VEVENT
+UID:anical-147105-f13@anicalendar.netlify.app
+DTSTAMP:20260622T140000Z
+DTSTART:20260622T140000Z
+DTEND:20260622T143000Z
+SUMMARY:Witch Hat Atelier — Finale (Ep 13)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/witch-hat-atelier-147105/
+URL:https://anicalendar.netlify.app/anime/witch-hat-atelier-147105/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-189046-f19@anicalendar.netlify.app
+DTSTAMP:20260930T130000Z
+DTSTART:20260930T130000Z
+DTEND:20260930T133000Z
+SUMMARY:Re:ZERO -Starting Life in Another World- Season 4 — Finale (Ep 19)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/rezero-starting-life-in-another-world-season-4-189046/
+URL:https://anicalendar.netlify.app/anime/rezero-starting-life-in-another-world-season-4-189046/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-195600-f24@anicalendar.netlify.app
+DTSTAMP:20260912T143000Z
+DTSTART:20260912T143000Z
+DTEND:20260912T150000Z
+SUMMARY:Daemons of the Shadow Realm — Finale (Ep 24)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/daemons-of-the-shadow-realm-195600/
+URL:https://anicalendar.netlify.app/anime/daemons-of-the-shadow-realm-195600/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-180745-f16@anicalendar.netlify.app
+DTSTAMP:20260624T123000Z
+DTSTART:20260624T123000Z
+DTEND:20260624T130000Z
+SUMMARY:Classroom of the Elite 4th Season: Second Year\, First Semester — Finale (Ep 16)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/classroom-of-the-elite-4th-season-second-year-first-semester-180745/
+URL:https://anicalendar.netlify.app/anime/classroom-of-the-elite-4th-season-second-year-first-semester-180745/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-182300-f12@anicalendar.netlify.app
+DTSTAMP:20260628T073000Z
+DTSTART:20260628T073000Z
+DTEND:20260628T080000Z
+SUMMARY:Wistoria: Wand and Sword Season 2 — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/wistoria-wand-and-sword-season-2-182300/
+URL:https://anicalendar.netlify.app/anime/wistoria-wand-and-sword-season-2-182300/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-169580-f12@anicalendar.netlify.app
+DTSTAMP:20260623T143000Z
+DTSTART:20260623T143000Z
+DTEND:20260623T150000Z
+SUMMARY:I Made Friends with the Second Prettiest Girl in My Class — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/i-made-friends-with-the-second-prettiest-girl-in-my-class-169580/
+URL:https://anicalendar.netlify.app/anime/i-made-friends-with-the-second-prettiest-girl-in-my-class-169580/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-199547-f13@anicalendar.netlify.app
+DTSTAMP:20260630T140000Z
+DTSTART:20260630T140000Z
+DTEND:20260630T143000Z
+SUMMARY:MARRIAGETOXIN — Finale (Ep 13)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/marriagetoxin-199547/
+URL:https://anicalendar.netlify.app/anime/marriagetoxin-199547/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-170019-f12@anicalendar.netlify.app
+DTSTAMP:20260619T133000Z
+DTSTART:20260619T133000Z
+DTEND:20260619T140000Z
+SUMMARY:The Angel Next Door Spoils Me Rotten2 — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-angel-next-door-spoils-me-rotten2-170019/
+URL:https://anicalendar.netlify.app/anime/the-angel-next-door-spoils-me-rotten2-170019/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-199221-f13@anicalendar.netlify.app
+DTSTAMP:20260625T130000Z
+DTSTART:20260625T130000Z
+DTEND:20260625T133000Z
+SUMMARY:Dr. STONE SCIENCE FUTURE Cour 3 — Finale (Ep 13)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/dr-stone-science-future-cour-3-199221/
+URL:https://anicalendar.netlify.app/anime/dr-stone-science-future-cour-3-199221/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-199588-f12@anicalendar.netlify.app
+DTSTAMP:20260624T144500Z
+DTSTART:20260624T144500Z
+DTEND:20260624T151500Z
+SUMMARY:Gals Can't Be Kind to Otaku!? — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/gals-cant-be-kind-to-otaku-199588/
+URL:https://anicalendar.netlify.app/anime/gals-cant-be-kind-to-otaku-199588/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-182483-f12@anicalendar.netlify.app
+DTSTAMP:20260625T123000Z
+DTSTART:20260625T123000Z
+DTEND:20260625T130000Z
+SUMMARY:The Warrior Princess and the Barbaric King — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-warrior-princess-and-the-barbaric-king-182483/
+URL:https://anicalendar.netlify.app/anime/the-warrior-princess-and-the-barbaric-king-182483/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-206914-f12@anicalendar.netlify.app
+DTSTAMP:20260621T120000Z
+DTSTART:20260621T120000Z
+DTEND:20260621T123000Z
+SUMMARY:NIPPON SANGOKU: The Three Nations of the Crimson Sun — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/nippon-sangoku-the-three-nations-of-the-crimson-sun-206914/
+URL:https://anicalendar.netlify.app/anime/nippon-sangoku-the-three-nations-of-the-crimson-sun-206914/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-194393-f12@anicalendar.netlify.app
+DTSTAMP:20260630T140000Z
+DTSTART:20260630T140000Z
+DTEND:20260630T143000Z
+SUMMARY:I Want to End this Love Game — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/i-want-to-end-this-love-game-194393/
+URL:https://anicalendar.netlify.app/anime/i-want-to-end-this-love-game-194393/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-197824-f12@anicalendar.netlify.app
+DTSTAMP:20260622T133000Z
+DTSTART:20260622T133000Z
+DTEND:20260622T140000Z
+SUMMARY:Farming Life in Another World 2 — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/farming-life-in-another-world-2-197824/
+URL:https://anicalendar.netlify.app/anime/farming-life-in-another-world-2-197824/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-194317-f12@anicalendar.netlify.app
+DTSTAMP:20260617T143000Z
+DTSTART:20260617T143000Z
+DTEND:20260617T150000Z
+SUMMARY:The Beginning After the End Season 2 — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-beginning-after-the-end-season-2-194317/
+URL:https://anicalendar.netlify.app/anime/the-beginning-after-the-end-season-2-194317/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-190704-f12@anicalendar.netlify.app
+DTSTAMP:20260620T160000Z
+DTSTART:20260620T160000Z
+DTEND:20260620T163000Z
+SUMMARY:Mistress Kanan is Devilishly Easy — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/mistress-kanan-is-devilishly-easy-190704/
+URL:https://anicalendar.netlify.app/anime/mistress-kanan-is-devilishly-easy-190704/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-190143-f14@anicalendar.netlify.app
+DTSTAMP:20260627T150000Z
+DTSTART:20260627T150000Z
+DTEND:20260627T153000Z
+SUMMARY:Agents of the Four Seasons: Dance of Spring — Finale (Ep 14)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/agents-of-the-four-seasons-dance-of-spring-190143/
+URL:https://anicalendar.netlify.app/anime/agents-of-the-four-seasons-dance-of-spring-190143/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-202102-f13@anicalendar.netlify.app
+DTSTAMP:20260627T153000Z
+DTSTART:20260627T153000Z
+DTEND:20260627T160000Z
+SUMMARY:NEEDY GIRL OVERDOSE — Finale (Ep 13)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/needy-girl-overdose-202102/
+URL:https://anicalendar.netlify.app/anime/needy-girl-overdose-202102/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-196935-f12@anicalendar.netlify.app
+DTSTAMP:20260620T143000Z
+DTSTART:20260620T143000Z
+DTEND:20260620T150000Z
+SUMMARY:Akane-banashi — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/akane-banashi-196935/
+URL:https://anicalendar.netlify.app/anime/akane-banashi-196935/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-198113-f12@anicalendar.netlify.app
+DTSTAMP:20260627T140000Z
+DTSTART:20260627T140000Z
+DTEND:20260627T143000Z
+SUMMARY:KILL BLUE — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/kill-blue-198113/
+URL:https://anicalendar.netlify.app/anime/kill-blue-198113/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-184492-f24@anicalendar.netlify.app
+DTSTAMP:20260912T092600Z
+DTSTART:20260912T092600Z
+DTEND:20260912T095600Z
+SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Finale (Ep 24)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
+URL:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-200769-f12@anicalendar.netlify.app
+DTSTAMP:20260613T143000Z
+DTSTART:20260613T143000Z
+DTEND:20260613T150000Z
+SUMMARY:The strongest job is apparently not a hero or a sage\, but an appraiser (provisional)! — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-strongest-job-is-apparently-not-a-hero-or-a-sage-but-an--200769/
+URL:https://anicalendar.netlify.app/anime/the-strongest-job-is-apparently-not-a-hero-or-a-sage-but-an--200769/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-179950-f13@anicalendar.netlify.app
+DTSTAMP:20260625T153000Z
+DTSTART:20260625T153000Z
+DTEND:20260625T160000Z
+SUMMARY:Petals of Reincarnation — Finale (Ep 13)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/petals-of-reincarnation-179950/
+URL:https://anicalendar.netlify.app/anime/petals-of-reincarnation-179950/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-189987-f12@anicalendar.netlify.app
+DTSTAMP:20260622T142400Z
+DTSTART:20260622T142400Z
+DTEND:20260622T145400Z
+SUMMARY:The Klutzy Class Monitor and the Girl with the Short Skirt — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-klutzy-class-monitor-and-the-girl-with-the-short-skirt-189987/
+URL:https://anicalendar.netlify.app/anime/the-klutzy-class-monitor-and-the-girl-with-the-short-skirt-189987/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-187869-f12@anicalendar.netlify.app
+DTSTAMP:20260626T150000Z
+DTSTART:20260626T150000Z
+DTEND:20260626T153000Z
+SUMMARY:Botan Kamiina Fully Blossoms When Drunk — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/botan-kamiina-fully-blossoms-when-drunk-187869/
+URL:https://anicalendar.netlify.app/anime/botan-kamiina-fully-blossoms-when-drunk-187869/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-180228-f13@anicalendar.netlify.app
+DTSTAMP:20260617T153000Z
+DTSTART:20260617T153000Z
+DTEND:20260617T160000Z
+SUMMARY:Go For It\, Nakamura-kun!! — Finale (Ep 13)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/go-for-it-nakamura-kun-180228/
+URL:https://anicalendar.netlify.app/anime/go-for-it-nakamura-kun-180228/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-192808-f12@anicalendar.netlify.app
+DTSTAMP:20260619T130000Z
+DTSTART:20260619T130000Z
+DTEND:20260619T133000Z
+SUMMARY:An Observation Log of My Fiancée Who Calls Herself a Villainess — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/an-observation-log-of-my-fiancee-who-calls-herself-a-villain-192808/
+URL:https://anicalendar.netlify.app/anime/an-observation-log-of-my-fiancee-who-calls-herself-a-villain-192808/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-185211-f12@anicalendar.netlify.app
+DTSTAMP:20260627T123000Z
+DTSTART:20260627T123000Z
+DTEND:20260627T130000Z
+SUMMARY:Yowayowa Sensei — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/yowayowa-sensei-185211/
+URL:https://anicalendar.netlify.app/anime/yowayowa-sensei-185211/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-195333-f12@anicalendar.netlify.app
+DTSTAMP:20260618T162800Z
+DTSTART:20260618T162800Z
+DTEND:20260618T165800Z
+SUMMARY:Haibara's Teenage New Game+ — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/haibaras-teenage-new-game-195333/
+URL:https://anicalendar.netlify.app/anime/haibaras-teenage-new-game-195333/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-195268-f12@anicalendar.netlify.app
+DTSTAMP:20260623T130000Z
+DTSTART:20260623T130000Z
+DTEND:20260623T133000Z
+SUMMARY:The Most Heretical Last Boss Queen: From Villainess to Savior Season 2 — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-most-heretical-last-boss-queen-from-villainess-to-savior-195268/
+URL:https://anicalendar.netlify.app/anime/the-most-heretical-last-boss-queen-from-villainess-to-savior-195268/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-199029-f12@anicalendar.netlify.app
+DTSTAMP:20260624T130000Z
+DTSTART:20260624T130000Z
+DTEND:20260624T133000Z
+SUMMARY:Rent-a-Girlfriend Season 5 — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/rent-a-girlfriend-season-5-199029/
+URL:https://anicalendar.netlify.app/anime/rent-a-girlfriend-season-5-199029/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-201817-f12@anicalendar.netlify.app
+DTSTAMP:20260617T150000Z
+DTSTART:20260617T150000Z
+DTEND:20260617T153000Z
+SUMMARY:Always a Catch! — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/always-a-catch-201817/
+URL:https://anicalendar.netlify.app/anime/always-a-catch-201817/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-187989-f24@anicalendar.netlify.app
+DTSTAMP:20260627T155600Z
+DTSTART:20260627T155600Z
+DTEND:20260627T162600Z
+SUMMARY:Scum of the Brave — Finale (Ep 24)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/scum-of-the-brave-187989/
+URL:https://anicalendar.netlify.app/anime/scum-of-the-brave-187989/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-206951-f12@anicalendar.netlify.app
+DTSTAMP:20260623T165900Z
+DTSTART:20260623T165900Z
+DTEND:20260623T172900Z
+SUMMARY:My Ribdiculous Reincarnation — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/my-ribdiculous-reincarnation-206951/
+URL:https://anicalendar.netlify.app/anime/my-ribdiculous-reincarnation-206951/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-202381-f12@anicalendar.netlify.app
+DTSTAMP:20260618T165800Z
+DTSTART:20260618T165800Z
+DTEND:20260618T172800Z
+SUMMARY:Killed again\, Mr. Detective. — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/killed-again-mr-detective-202381/
+URL:https://anicalendar.netlify.app/anime/killed-again-mr-detective-202381/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-196029-f12@anicalendar.netlify.app
+DTSTAMP:20260620T163000Z
+DTSTART:20260620T163000Z
+DTEND:20260620T170000Z
+SUMMARY:Kusunoki's Garden of Gods — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/kusunokis-garden-of-gods-196029/
+URL:https://anicalendar.netlify.app/anime/kusunokis-garden-of-gods-196029/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-186744-f13@anicalendar.netlify.app
+DTSTAMP:20260630T143000Z
+DTSTART:20260630T143000Z
+DTEND:20260630T150000Z
+SUMMARY:Even a Replica Can Fall in Love — Finale (Ep 13)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/even-a-replica-can-fall-in-love-186744/
+URL:https://anicalendar.netlify.app/anime/even-a-replica-can-fall-in-love-186744/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-198939-f12@anicalendar.netlify.app
+DTSTAMP:20260624T130000Z
+DTSTART:20260624T130000Z
+DTEND:20260624T133000Z
+SUMMARY:Reborn as a Vending Machine\, I Now Wander the Dungeon Season 3 — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/reborn-as-a-vending-machine-i-now-wander-the-dungeon-season--198939/
+URL:https://anicalendar.netlify.app/anime/reborn-as-a-vending-machine-i-now-wander-the-dungeon-season--198939/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-196144-f13@anicalendar.netlify.app
+DTSTAMP:20260626T143000Z
+DTSTART:20260626T143000Z
+DTEND:20260626T150000Z
+SUMMARY:SNOWBALL EARTH — Finale (Ep 13)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/snowball-earth-196144/
+URL:https://anicalendar.netlify.app/anime/snowball-earth-196144/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-177501-f12@anicalendar.netlify.app
+DTSTAMP:20260625T164500Z
+DTSTART:20260625T164500Z
+DTEND:20260625T171500Z
+SUMMARY:A Hundred Scenes of AWAJIMA — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/a-hundred-scenes-of-awajima-177501/
+URL:https://anicalendar.netlify.app/anime/a-hundred-scenes-of-awajima-177501/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-204319-f12@anicalendar.netlify.app
+DTSTAMP:20260621T160500Z
+DTSTART:20260621T160500Z
+DTEND:20260621T163500Z
+SUMMARY:Do You Like Big Girls? — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/do-you-like-big-girls-204319/
+URL:https://anicalendar.netlify.app/anime/do-you-like-big-girls-204319/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-197868-f12@anicalendar.netlify.app
+DTSTAMP:20260614T130000Z
+DTSTART:20260614T130000Z
+DTEND:20260614T133000Z
+SUMMARY:The Food Diary of Miss Maid — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-food-diary-of-miss-maid-197868/
+URL:https://anicalendar.netlify.app/anime/the-food-diary-of-miss-maid-197868/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-206166-f12@anicalendar.netlify.app
+DTSTAMP:20260621T161000Z
+DTSTART:20260621T161000Z
+DTEND:20260621T164000Z
+SUMMARY:Ingoku Danchi:Deviant's Apartment Complex — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/ingoku-danchideviants-apartment-complex-206166/
+URL:https://anicalendar.netlify.app/anime/ingoku-danchideviants-apartment-complex-206166/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-181284-f12@anicalendar.netlify.app
+DTSTAMP:20260618T152600Z
+DTSTART:20260618T152600Z
+DTEND:20260618T155600Z
+SUMMARY:Kirio Fan Club — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/kirio-fan-club-181284/
+URL:https://anicalendar.netlify.app/anime/kirio-fan-club-181284/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-158036-f13@anicalendar.netlify.app
+DTSTAMP:20260630T150000Z
+DTSTART:20260630T150000Z
+DTEND:20260630T153000Z
+SUMMARY:Eren the Southpaw — Finale (Ep 13)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/eren-the-southpaw-158036/
+URL:https://anicalendar.netlify.app/anime/eren-the-southpaw-158036/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-195734-f11@anicalendar.netlify.app
+DTSTAMP:20260620T170000Z
+DTSTART:20260620T170000Z
+DTEND:20260620T173000Z
+SUMMARY:Ichijyoma Mankitsu Gurashi! — Finale (Ep 11)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/ichijyoma-mankitsu-gurashi-195734/
+URL:https://anicalendar.netlify.app/anime/ichijyoma-mankitsu-gurashi-195734/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-197715-f12@anicalendar.netlify.app
+DTSTAMP:20260916T150000Z
+DTSTART:20260916T150000Z
+DTEND:20260916T153000Z
+SUMMARY:The Villager of Level 999 — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-villager-of-level-999-197715/
+URL:https://anicalendar.netlify.app/anime/the-villager-of-level-999-197715/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-178749-f12@anicalendar.netlify.app
+DTSTAMP:20260621T133000Z
+DTSTART:20260621T133000Z
+DTEND:20260621T140000Z
+SUMMARY:Magical Sisters LuluttoLilly — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/magical-sisters-luluttolilly-178749/
+URL:https://anicalendar.netlify.app/anime/magical-sisters-luluttolilly-178749/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-202508-f24@anicalendar.netlify.app
+DTSTAMP:20260918T143000Z
+DTSTART:20260918T143000Z
+DTEND:20260918T150000Z
+SUMMARY:The Drops of God — Finale (Ep 24)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-drops-of-god-202508/
+URL:https://anicalendar.netlify.app/anime/the-drops-of-god-202508/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-177508-f12@anicalendar.netlify.app
+DTSTAMP:20260625T133000Z
+DTSTART:20260625T133000Z
+DTEND:20260625T140000Z
+SUMMARY:Kujima: Why Sing\, When You Can Warble? — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/kujima-why-sing-when-you-can-warble-177508/
+URL:https://anicalendar.netlify.app/anime/kujima-why-sing-when-you-can-warble-177508/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-201090-f12@anicalendar.netlify.app
+DTSTAMP:20260621T153000Z
+DTSTART:20260621T153000Z
+DTEND:20260621T160000Z
+SUMMARY:GHOST CONCERT : missing Songs — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/ghost-concert-missing-songs-201090/
+URL:https://anicalendar.netlify.app/anime/ghost-concert-missing-songs-201090/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-185875-f12@anicalendar.netlify.app
+DTSTAMP:20260919T160000Z
+DTSTART:20260919T160000Z
+DTEND:20260919T163000Z
+SUMMARY:Magical Girl Lyrical Nanoha EXCEEDS Gun Blaze Vengeance — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
+URL:https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-203880-f13@anicalendar.netlify.app
+DTSTAMP:20260924T123000Z
+DTSTART:20260924T123000Z
+DTEND:20260924T130000Z
+SUMMARY:Reiwa no Dara-san — Finale (Ep 13)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/reiwa-no-dara-san-203880/
+URL:https://anicalendar.netlify.app/anime/reiwa-no-dara-san-203880/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-205772-f24@anicalendar.netlify.app
+DTSTAMP:20260923T145600Z
+DTSTART:20260923T145600Z
+DTEND:20260923T152600Z
+SUMMARY:Candy Caries — Finale (Ep 24)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/candy-caries-205772/
+URL:https://anicalendar.netlify.app/anime/candy-caries-205772/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-212652-f3@anicalendar.netlify.app
+DTSTAMP:20260820T150000Z
+DTSTART:20260820T150000Z
+DTEND:20260820T153000Z
+SUMMARY:Kidou Keisatsu Patlabor EZY File 2 — Finale (Ep 3)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/kidou-keisatsu-patlabor-ezy-file-2-212652/
+URL:https://anicalendar.netlify.app/anime/kidou-keisatsu-patlabor-ezy-file-2-212652/
+END:VEVENT
+END:VCALENDAR

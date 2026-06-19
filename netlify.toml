@@ -1,0 +1,37 @@
+# The website lives in /site and is served as PURE STATIC files — there is no
+# build step, so deploys don't consume Netlify build credits.
+#
+# The SEO landing pages (/today/, /<season>-<year>/) and sitemap.xml are
+# generated and committed by GitHub Actions (.github/workflows/refresh-pages.yml,
+# which runs scripts/build-seo.mjs on GitHub's free minutes). Netlify just
+# uploads whatever is in /site.
+[build]
+  publish = "site"
+
+[functions]
+  directory = "netlify/functions"
+
+# Friendly aliases for the Web Push API used by site/index.html.
+[[redirects]]
+  from = "/api/push/subscribe"
+  to = "/.netlify/functions/push-subscribe"
+  status = 200
+
+[[redirects]]
+  from = "/api/push/unsubscribe"
+  to = "/.netlify/functions/push-unsubscribe"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Subscribable calendar feeds must be served as text/calendar (nosniff is on,
+# so the Content-Type has to be correct for calendar apps to accept them).
+[[headers]]
+  for = "/feeds/*"
+  [headers.values]
+    Content-Type = "text/calendar; charset=utf-8"
+    Cache-Control = "public, max-age=3600"

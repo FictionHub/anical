@@ -1,0 +1,2718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="google-site-verification" content="Xy8DlJTMVqZurXBsQmqBrfTbcmc4OhxqgOIAUgurw2Q" />
+<title>AniCal — Anime Release Calendar</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="alternate" type="application/rss+xml" title="AniCal — Premieres &amp; Finales" href="/feed.xml" />
+<meta name="description" content="A live anime release calendar: upcoming episodes, new-season premieres, season finales, and Anime News Network headlines — refreshed on every visit. Follow shows for episode alerts. Free, no signup." />
+<meta name="keywords" content="anime calendar, anime release schedule, upcoming anime, anime episode schedule, new anime season, anime premieres, anime finales, when does anime air, anime airing dates, seasonal anime" />
+<meta name="author" content="AniCal" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0d1117" />
+<link rel="canonical" href="https://anicalendar.netlify.app/" />
+
+<!-- Performance: warm up connections to the data + image origins -->
+<link rel="preconnect" href="https://graphql.anilist.co" crossorigin />
+<link rel="preconnect" href="https://s4.anilist.co" crossorigin />
+<link rel="dns-prefetch" href="https://s4.anilist.co" />
+<link rel="dns-prefetch" href="https://api.rss2json.com" />
+<link rel="dns-prefetch" href="https://geocoding-api.open-meteo.com" />
+
+<!-- PWA / installable -->
+<link rel="manifest" href="/manifest.webmanifest" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="AniCal" />
+<link rel="apple-touch-icon" href="/og-image.png" />
+
+<!-- Open Graph (Facebook, Discord, etc.) -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="AniCal" />
+<meta property="og:url" content="https://anicalendar.netlify.app/" />
+<meta property="og:title" content="AniCal — Anime Release Calendar" />
+<meta property="og:description" content="Live upcoming anime episodes, new-season premieres, season finales, and the latest Anime News Network headlines, in a calendar. Month / Week / Agenda views, filters, and episode alerts." />
+<meta property="og:image" content="https://anicalendar.netlify.app/og-image.png" />
+<meta property="og:image:width" content="1024" />
+<meta property="og:image:height" content="1024" />
+<meta property="og:image:alt" content="AniCal — anime release calendar" />
+<meta property="og:locale" content="en_US" />
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="AniCal — Anime Release Calendar" />
+<meta name="twitter:description" content="Live upcoming anime episodes, premieres, finales, and ANN headlines, in a calendar. Free, no signup." />
+<meta name="twitter:image" content="https://anicalendar.netlify.app/og-image.png" />
+<meta name="twitter:image:alt" content="AniCal — anime release calendar" />
+
+<!-- Structured data: helps Google understand & show the site -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://anicalendar.netlify.app/#website",
+      "url": "https://anicalendar.netlify.app/",
+      "name": "AniCal",
+      "description": "A live anime release calendar with upcoming episodes, premieres, finales, and anime news.",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "WebApplication",
+      "name": "AniCal — Anime Release Calendar",
+      "url": "https://anicalendar.netlify.app/",
+      "applicationCategory": "EntertainmentApplication",
+      "operatingSystem": "Web browser",
+      "browserRequirements": "Requires JavaScript",
+      "description": "A live anime release calendar: upcoming episodes, new-season premieres, season finales, and Anime News Network headlines. Month, Week, and Agenda views with filters, countdowns, and opt-in episode alerts.",
+      "image": "https://anicalendar.netlify.app/og-image.png",
+      "isAccessibleForFree": true,
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": [
+        "Upcoming anime episode schedule",
+        "New-season premieres",
+        "Season finales",
+        "Anime News Network headlines",
+        "Month / Week / Agenda calendar views",
+        "Per-show episode notifications",
+        "Live episode countdowns",
+        "Automatic local-timezone conversion",
+        "Add episodes to Google Calendar or .ics (Apple/Outlook)",
+        "Installable progressive web app (works offline)"
+      ]
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Is AniCal free?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. AniCal is completely free, with no signup and no ads." } },
+    { "@type": "Question", "name": "Where does the anime data come from?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Airing schedules, premieres and finales come from AniList, and headlines come from Anime News Network. The data is refreshed every time you open the calendar." } },
+    { "@type": "Question", "name": "What timezone are the air times shown in?",
+      "acceptedAnswer": { "@type": "Answer", "text": "All air times are converted to your device's local timezone automatically, with live countdowns to each episode." } },
+    { "@type": "Question", "name": "Can I get notified when an episode airs?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Follow a show with the bell icon to get browser alerts before each episode. On browsers that support scheduled notifications, alerts can fire even when AniCal is closed." } },
+    { "@type": "Question", "name": "Can I add anime to my own calendar?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. You can add individual episodes to Google Calendar or download an .ics file, or subscribe to a live feed of premieres, finales, or all episodes that updates automatically." } },
+    { "@type": "Question", "name": "Can I install AniCal or use it offline?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. AniCal is a progressive web app you can install on your phone or desktop, and it opens offline using your last loaded schedule." } }
+  ]
+}
+</script>
+<style>
+  :root{
+    --bg:#0d1117; --bg2:#161b22; --bg3:#1c2230; --line:#2a3140;
+    --txt:#e6edf3; --muted:#8b97a7; --accent:#8b5cf6; --accent2:#22d3ee;
+    --premiere:#f59e0b; --today:#7c3aed; --good:#22c55e; --now:#ff4d6d; --finale:#ef4444;
+    --radius:12px; --shadow:0 8px 30px rgba(0,0,0,.45);
+  }
+  /* light theme */
+  body.theme-light{
+    --bg:#f5f7fb; --bg2:#ffffff; --bg3:#eef1f6; --line:#d9deea; --txt:#1b2330; --muted:#5c6675;
+    --shadow:0 8px 30px rgba(30,40,70,.10);
+    background:radial-gradient(1200px 600px at 80% -10%,#ece8ff 0,transparent 60%),
+               radial-gradient(900px 500px at -10% 110%,#dff2f7 0,transparent 55%),
+               var(--bg);
+  }
+  /* compact density */
+  body.dense .grid{grid-auto-rows:minmax(94px,auto)}
+  body.dense .cell{padding:4px 5px}
+  body.dense .ev{padding:2px 4px;margin-bottom:3px}
+  body.dense .ev .t{font-size:11px}
+  body.dense .ev img{width:16px;height:21px}
+  body.dense .card .body{padding:7px 9px}
+  body.dense .prow{padding:6px 5px}
+  body.dense .arow{padding:6px 14px}
+  /* settings modal */
+  .set-row{display:flex;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap}
+  .set-label{width:84px;color:var(--muted);font-size:13px;font-weight:600}
+  .seg2{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden}
+  .seg2 button{border:none;border-radius:0;background:transparent}
+  .seg2 button:hover{transform:none}
+  .seg2 button.on{background:linear-gradient(135deg,var(--accent),#6d28d9);color:#fff}
+  .swatches{display:flex;gap:9px;flex-wrap:wrap}
+  .swatch{width:30px;height:30px;border-radius:50%;border:2px solid transparent;cursor:pointer;padding:0}
+  .swatch:hover{transform:translateY(-1px)}
+  .swatch.sel{box-shadow:0 0 0 2px var(--bg2),0 0 0 4px var(--txt)}
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  /* accessibility */
+  @media (prefers-reduced-motion: reduce){ *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important} }
+  :focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+  .skip-link{position:absolute;left:-9999px;top:0;background:var(--accent);color:#fff;padding:9px 15px;border-radius:0 0 9px 0;z-index:100;font-weight:700}
+  .skip-link:focus{left:0}
+  body{
+    background:radial-gradient(1200px 600px at 80% -10%,#1b1235 0,transparent 60%),
+               radial-gradient(900px 500px at -10% 110%,#08323a 0,transparent 55%),
+               var(--bg);
+    color:var(--txt);
+    font:15px/1.45 "Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent2);text-decoration:none}
+  header{
+    display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    padding:14px 22px;border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg,rgba(139,92,246,.12),transparent);
+    position:sticky;top:0;z-index:20;backdrop-filter:blur(8px);
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:.3px}
+  .brand .dot{width:12px;height:12px;border-radius:50%;
+    background:conic-gradient(from 0deg,var(--accent),var(--accent2),var(--premiere),var(--accent));
+    box-shadow:0 0 14px var(--accent)}
+  .spacer{flex:1}
+  .nav{display:flex;align-items:center;gap:6px}
+  button{
+    background:var(--bg3);color:var(--txt);border:1px solid var(--line);
+    padding:8px 12px;border-radius:9px;cursor:pointer;font-size:14px;font-weight:600;
+    transition:.15s;display:inline-flex;align-items:center;gap:7px
+  }
+  button:hover{border-color:var(--accent);background:#222b3d;transform:translateY(-1px)}
+  button.primary{background:linear-gradient(135deg,var(--accent),#6d28d9);border-color:transparent}
+  .discord-btn{display:inline-flex;align-items:center;gap:7px;background:#5865F2;color:#fff;border:1px solid transparent;
+    padding:8px 12px;border-radius:9px;font-size:14px;font-weight:600;text-decoration:none;transition:.15s;cursor:pointer}
+  .discord-btn:hover{background:#4752c4;transform:translateY(-1px)}
+  .discord-btn svg{height:15px;width:auto;fill:currentColor}
+  button.icon{padding:8px 11px}
+  button:disabled{opacity:.5;cursor:not-allowed}
+  select{background:var(--bg3);color:var(--txt);border:1px solid var(--line);border-radius:9px;padding:7px 9px;font-size:13px;font-weight:600;cursor:pointer}
+  /* search */
+  .search-wrap{position:relative}
+  #fSearch{background:var(--bg3);color:var(--txt);border:1px solid var(--line);border-radius:9px;padding:7px 11px;font-size:13px;font-weight:600;min-width:190px;width:200px}
+  #fSearch:focus{outline:none;border-color:var(--accent);background:#222b3d}
+  #fSearch::placeholder{color:var(--muted);font-weight:500}
+  .search-results{position:absolute;top:calc(100% + 5px);left:0;min-width:280px;max-width:340px;background:var(--bg2);border:1px solid var(--line);border-radius:11px;box-shadow:var(--shadow);max-height:360px;overflow:auto;z-index:40;display:none}
+  .search-results.on{display:block}
+  .sr-row{display:flex;gap:9px;padding:8px 10px;cursor:pointer;align-items:center;border-bottom:1px solid var(--line)}
+  .sr-row:last-child{border-bottom:none}
+  .sr-row:hover,.sr-row.active{background:var(--bg3)}
+  .sr-row img{width:34px;height:46px;object-fit:cover;border-radius:5px;flex:none;background:#000}
+  .sr-row .srt{font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .sr-row .srm{font-size:11px;color:var(--muted);margin-top:2px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+  .sr-empty{padding:13px;color:var(--muted);font-size:12.5px;text-align:center}
+  #monthTitle{font-size:18px;font-weight:700;min-width:170px;text-align:center}
+  .status{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:8px;min-height:18px}
+  .spin{width:13px;height:13px;border:2px solid var(--line);border-top-color:var(--accent2);
+    border-radius:50%;animation:s .7s linear infinite;display:none}
+  .loading .spin{display:inline-block}
+  @keyframes s{to{transform:rotate(360deg)}}
+
+  /* toolbar: view switch + filters */
+  .toolbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:12px 22px;border-bottom:1px solid var(--line);background:rgba(28,34,48,.4)}
+  .seg{display:inline-flex;background:var(--bg3);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .seg button{border:none;border-radius:0;background:transparent;padding:8px 16px}
+  .seg button:hover{transform:none;background:#222b3d}
+  .seg button.active{background:linear-gradient(135deg,var(--accent),#6d28d9);color:#fff}
+  .filters{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .filters label{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);cursor:pointer}
+  .filters input[type=checkbox]{accent-color:var(--accent);width:15px;height:15px}
+  .legend{display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-size:12px;color:var(--muted)}
+  .legend .k{display:inline-flex;align-items:center;gap:6px}
+  .sw{width:11px;height:11px;border-radius:3px;display:inline-block}
+
+  main{display:grid;grid-template-columns:1fr 330px;gap:18px;padding:18px 22px;max-width:1500px;margin:0 auto}
+  @media(max-width:1080px){main{grid-template-columns:minmax(0,1fr)}}
+  /* what's new since last visit */
+  .whatsnew{display:flex;align-items:center;gap:10px;background:linear-gradient(90deg,rgba(139,92,246,.16),var(--bg2));border:1px solid var(--line);border-radius:12px;padding:8px 12px;margin-bottom:12px;box-shadow:var(--shadow)}
+  .wn-label{font-size:13px;font-weight:700;white-space:nowrap}
+  .wn-list{display:flex;gap:6px;overflow-x:auto;flex:1;-webkit-overflow-scrolling:touch}
+  .wn-cover{width:30px;height:40px;object-fit:cover;border-radius:4px;flex:none;cursor:pointer;background:#000;transition:.12s}
+  .wn-cover:hover{transform:translateY(-2px);outline:2px solid var(--accent)}
+  .wn-x{flex:none;padding:4px 8px;background:transparent;border:none;color:var(--muted);font-size:15px}
+  .wn-x:hover{background:transparent;color:var(--txt);transform:none}
+  /* quick genre chips */
+  .chips{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}
+  .chips:empty{display:none}
+  .chip{font-size:12.5px;font-weight:600;padding:5px 11px;border-radius:20px;background:var(--bg3);border:1px solid var(--line);color:var(--muted);cursor:pointer;transition:.12s;white-space:nowrap}
+  .chip:hover{border-color:var(--accent);color:var(--txt)}
+  .chip.on{background:linear-gradient(135deg,var(--accent),#6d28d9);border-color:transparent;color:#fff}
+  /* character / voice cast rail */
+  .cast{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch}
+  .cast-c{flex:none;width:84px;text-align:center;color:var(--txt)}
+  .cast-c:hover{text-decoration:none}
+  .cast-c img{width:56px;height:56px;border-radius:50%;object-fit:cover;background:#000}
+  .cast-c .cn{font-size:11px;font-weight:600;margin-top:4px;line-height:1.2}
+  .cast-c .va{font-size:10px;color:var(--muted);margin-top:2px}
+
+  /* calendar shell */
+  .cal{background:var(--bg2);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+  .dow{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));background:var(--bg3);border-bottom:1px solid var(--line)}
+  .dow div{padding:9px 10px;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+  .grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));grid-auto-rows:minmax(118px,auto)}
+  .grid.week{grid-auto-rows:minmax(64vh,64vh)}
+  .cell{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:6px 7px;position:relative;overflow:hidden;cursor:default;min-width:0}
+  .grid.week .cell{overflow:auto}
+  .cell:nth-child(7n){border-right:none}
+  .cell.out{background:repeating-linear-gradient(135deg,transparent,transparent 8px,rgba(255,255,255,.012) 8px,rgba(255,255,255,.012) 16px);opacity:.5}
+  .cell.today{background:linear-gradient(180deg,rgba(124,58,237,.18),transparent)}
+  .cell .num{font-size:12.5px;font-weight:700;color:var(--muted);margin-bottom:4px;display:flex;justify-content:space-between;align-items:center}
+  .cell.today .num{color:#fff}
+  .cell.today .num .badge{background:var(--today);color:#fff;border-radius:6px;padding:1px 7px;font-size:10.5px;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(124,58,237,.5)}50%{box-shadow:0 0 0 5px rgba(124,58,237,0)}}
+  .nowline{display:flex;align-items:center;gap:6px;color:var(--now);font-size:11px;font-weight:700;margin:2px 0 6px;border-top:2px solid var(--now);padding-top:4px}
+  .ev{display:flex;align-items:center;gap:6px;background:var(--bg3);border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:7px;padding:3px 5px;margin-bottom:4px;cursor:pointer;transition:.12s}
+  .ev:hover{transform:translateX(2px);border-color:var(--accent)}
+  .ev.prem{border-left-color:var(--premiere);background:linear-gradient(90deg,rgba(245,158,11,.16),var(--bg3))}
+  .ev img{width:20px;height:26px;object-fit:cover;border-radius:3px;flex:none;background:#000}
+  .ev .t{font-size:11.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1}
+  .ev .epn{font-size:10px;color:var(--muted);flex:none}
+  .ev.prem .epn{color:var(--premiere);font-weight:700}
+  .ev.fin{border-left-color:var(--finale);background:linear-gradient(90deg,rgba(239,68,68,.16),var(--bg3))}
+  .ev.fin .epn{color:var(--finale);font-weight:700}
+  .more{font-size:11px;color:var(--accent2);font-weight:700;cursor:pointer;padding:2px}
+  .more:hover{text-decoration:underline}
+
+  /* agenda */
+  .agenda{padding:6px 0}
+  .aday{padding:11px 18px 5px;font-size:13px;font-weight:800;color:var(--accent2);text-transform:uppercase;letter-spacing:.5px;position:sticky;top:0;background:var(--bg2);z-index:1}
+  .aday.istoday{color:#fff}
+  .adiv{display:flex;align-items:center;gap:8px;color:var(--now);font-weight:800;font-size:12px;padding:8px 18px}
+  .adiv:before,.adiv:after{content:"";flex:1;height:2px;background:var(--now);opacity:.5}
+  .arow{display:flex;align-items:center;gap:11px;padding:9px 18px;cursor:pointer;transition:.12s;border-left:3px solid transparent}
+  .arow:hover{background:var(--bg3)}
+  .arow.prem{border-left-color:var(--premiere)}
+  .arow.fin{border-left-color:var(--finale)}
+  .arow.past{opacity:.5}
+  .arow img{width:40px;height:54px;object-fit:cover;border-radius:6px;flex:none;background:#000}
+  .arow .atime{font-size:12px;color:var(--muted);width:62px;flex:none;font-variant-numeric:tabular-nums}
+  .arow .ainfo{flex:1;min-width:0}
+  .arow .at{font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .arow .ameta{display:flex;gap:7px;align-items:center;margin-top:3px;flex-wrap:wrap}
+
+  /* sidebar */
+  .side{display:flex;flex-direction:column;gap:16px}
+  .card{background:var(--bg2);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+  .card h3{margin:0;padding:13px 16px;font-size:14px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px;background:var(--bg3)}
+  .card .body{padding:10px 12px;max-height:430px;overflow:auto}
+  .prow{display:flex;gap:10px;padding:8px 6px;border-radius:9px;cursor:pointer;transition:.12s}
+  .prow:hover{background:var(--bg3)}
+  .prow img{width:44px;height:60px;object-fit:cover;border-radius:6px;flex:none;background:#000}
+  .prow .info{min-width:0;flex:1}
+  .prow .pt{font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .prow .meta{font-size:11.5px;color:var(--muted);margin-top:2px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .pill{font-size:10px;padding:1px 7px;border-radius:20px;background:var(--bg3);border:1px solid var(--line);color:var(--muted)}
+  .pill.prem{background:rgba(245,158,11,.15);border-color:var(--premiere);color:var(--premiere)}
+  .pill.score{color:var(--good)}
+  .pill.cd{background:rgba(34,211,238,.12);border-color:var(--accent2);color:var(--accent2)}
+  .pill.fin{background:rgba(239,68,68,.15);border-color:var(--finale);color:#fca5a5}
+  .empty{color:var(--muted);font-size:13px;padding:14px;text-align:center}
+
+  /* bell toggle */
+  .bell{cursor:pointer;font-size:14px;line-height:1;filter:grayscale(1) opacity(.6);user-select:none}
+  .bell.on{filter:none}
+  /* watchlist star + highlight */
+  .star{cursor:pointer;font-size:15px;line-height:1;color:var(--muted);user-select:none;transition:.12s}
+  .star.on{color:var(--premiere)}
+  .star:hover{transform:scale(1.15)}
+  .mark{cursor:pointer;user-select:none;display:inline-flex;width:18px;height:18px;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:5px;font-size:11px;color:var(--muted);flex:none}
+  .mark.on{background:var(--good);border-color:var(--good);color:#04210f}
+  .ev.mine{box-shadow:inset 0 0 0 1.5px var(--premiere)}
+  .arow.mine{background:linear-gradient(90deg,rgba(245,158,11,.08),transparent)}
+  .prow.mine .pt:after,.arow.mine .at:after{content:" ★";color:var(--premiere)}
+  .bellbtn{font-size:13px}
+  .bellbtn.on{background:linear-gradient(135deg,var(--premiere),#d97706);border-color:transparent;color:#1a1205}
+  .evremind.on{background:linear-gradient(135deg,var(--premiere),#d97706);border-color:transparent;color:#1a1205}
+
+  /* modal */
+  .overlay{position:fixed;inset:0;background:rgba(2,6,15,.7);backdrop-filter:blur(4px);display:none;
+    align-items:center;justify-content:center;z-index:50;padding:20px}
+  .overlay.on{display:flex}
+  .modal{background:var(--bg2);border:1px solid var(--line);border-radius:16px;max-width:560px;width:100%;
+    max-height:85vh;overflow:auto;box-shadow:var(--shadow)}
+  .modal .mh{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg2)}
+  .modal .mh h2{margin:0;font-size:17px}
+  .modal .mb{padding:14px 18px}
+  .x{background:transparent;border:none;font-size:20px;color:var(--muted);padding:4px 8px}
+  .x:hover{color:#fff;background:transparent;transform:none}
+  .footer{text-align:center;color:var(--muted);font-size:12px;padding:18px;max-width:1500px;margin:0 auto}
+  .verline{text-align:center;color:var(--muted);font-size:11px;opacity:.55;padding:0 0 18px;font-variant-numeric:tabular-nums}
+  .faq{max-width:760px;margin:18px auto 0;padding:0 22px}
+  .faq h2{font-size:18px;margin:6px 0 12px}
+  .faq details{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:11px 14px;margin-bottom:8px}
+  .faq summary{cursor:pointer;font-weight:600;list-style:none}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary:before{content:"＋";color:var(--accent2);font-weight:700;margin-right:8px}
+  .faq details[open] summary:before{content:"−"}
+  .faq details p{color:var(--muted);margin:9px 0 2px;font-size:13.5px;line-height:1.5}
+  .seo-nav{text-align:center;padding:8px 18px 0;font-size:13px;display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
+  .seo-nav a{color:var(--accent2);font-weight:600}
+  .seo-nav .sep{color:var(--muted)}
+  .embed-code{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:8px;color:var(--txt);font:12.5px/1.5 ui-monospace,Consolas,monospace;padding:10px;resize:vertical;min-height:74px}
+  .embed-opts{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:10px 0}
+  .embed-opts label{font-size:13px;color:var(--muted);display:inline-flex;gap:6px;align-items:center}
+  /* add-to-calendar + live countdown */
+  .calbtns{display:inline-flex;gap:6px;flex-wrap:wrap;align-items:center}
+  .calbtn{font-size:12px;padding:5px 9px;border-radius:8px}
+  .cd-live{font-variant-numeric:tabular-nums}
+  .nextair{display:flex;align-items:center;gap:7px;flex-wrap:wrap;background:var(--bg3);border:1px solid var(--line);border-radius:10px;padding:8px 11px;margin-top:12px;font-size:13px}
+  .nextair .na-when{font-weight:700}
+  .tznote{color:var(--muted);font-size:11.5px;font-weight:400}
+  /* where to watch */
+  .watch-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .watch-label{font-size:12px;color:var(--muted);font-weight:600}
+  .stream-chip{display:inline-flex;align-items:center;font-size:12.5px;font-weight:600;padding:5px 10px;border:1px solid var(--line);border-radius:20px;color:var(--txt);background:var(--bg3);transition:.12s}
+  .stream-chip:hover{filter:brightness(1.18);transform:translateY(-1px)}
+  /* inline trailer (click-to-play facade) */
+  .trailer{position:relative;margin-top:14px;border-radius:12px;overflow:hidden;cursor:pointer;aspect-ratio:16/9;background:#000;border:1px solid var(--line)}
+  .trailer img{width:100%;height:100%;object-fit:cover;display:block;opacity:.85;transition:.18s}
+  .trailer:hover img{opacity:1;transform:scale(1.03)}
+  .trailer .tplay{position:absolute;inset:0;margin:auto;width:62px;height:62px;display:flex;align-items:center;justify-content:center;background:rgba(139,92,246,.92);border-radius:50%;font-size:23px;color:#fff;box-shadow:0 6px 24px rgba(0,0,0,.5);padding-left:4px}
+  .trailer .tlabel{position:absolute;left:12px;bottom:10px;background:rgba(0,0,0,.62);padding:3px 9px;border-radius:7px;font-size:12px;font-weight:700}
+  .trailer.playing{cursor:default}
+  .trailer iframe{width:100%;height:100%;display:block;border:0}
+  kbd{display:inline-block;min-width:22px;text-align:center;background:var(--bg3);border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:2px 7px;font:600 12px ui-monospace,Consolas,monospace;color:var(--txt)}
+  .kb-grid{display:grid;grid-template-columns:auto 1fr;gap:9px 16px;align-items:center}
+  /* related anime */
+  .rel-row{display:flex;gap:8px;flex-wrap:wrap}
+  .rel-chip{display:flex;align-items:center;gap:8px;text-align:left;padding:5px 11px 5px 5px;max-width:230px}
+  .rel-chip img{width:30px;height:40px;object-fit:cover;border-radius:4px;flex:none;background:#000}
+  .rel-chip span.rc{display:flex;flex-direction:column;min-width:0}
+  .rel-kind{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+  .rel-title{font-size:12.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:170px}
+  /* franchise timeline */
+  .ftl{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch}
+  .ftl-item{flex:none;width:100px;text-align:left;padding:6px;border:1px solid var(--line);border-radius:9px;background:var(--bg3);cursor:pointer}
+  .ftl-item:hover{border-color:var(--accent)}
+  .ftl-item.cur{border-color:var(--premiere);background:rgba(245,158,11,.08);cursor:default}
+  .ftl-item img{width:100%;height:52px;object-fit:cover;border-radius:5px;background:#000;display:block}
+  .ftl-y{display:block;font-size:10px;color:var(--muted);margin-top:4px}
+  .ftl-t{display:block;font-size:11px;font-weight:600;line-height:1.2;max-height:28px;overflow:hidden}
+
+  /* dashboard */
+  .dashboard{max-width:1500px;margin:0 auto;padding:18px 22px}
+  .dash-tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px;margin-bottom:22px}
+  .dash-tile{background:var(--bg2);border:1px solid var(--line);border-radius:var(--radius);padding:18px 14px;text-align:center;box-shadow:var(--shadow);transition:.15s}
+  .dash-tile:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .dash-tile .dt-val{font-size:30px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .dash-tile .dt-label{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-top:6px;font-weight:600}
+  .dash-charts{display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:18px}
+  .dash-chart{background:var(--bg2);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;overflow:hidden}
+  .dash-chart h3{margin:0 0 14px;font-size:15px;display:flex;align-items:center;gap:8px}
+  .dash-chart canvas{width:100%!important;max-height:320px}
+  .dash-loading{text-align:center;padding:60px;color:var(--muted);font-size:16px}
+  @media(max-width:520px){.dash-charts{grid-template-columns:1fr}.dash-tiles{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}}
+  body.dash-mode .filters,body.dash-mode .legend{display:none}
+
+  /* events */
+  .events{max-width:900px;margin:0 auto;padding:18px 22px}
+  .ev-head h2{margin:0 0 5px;font-size:22px}
+  .ev-sub{color:var(--muted);font-size:13.5px;max-width:700px;line-height:1.5}
+  .ev-bar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:16px 0 10px}
+  #evFilter,#evLoc{background:var(--bg3);color:var(--txt);border:1px solid var(--line);border-radius:9px;padding:8px 12px;font-size:13.5px;font-weight:600;min-width:200px;flex:1;max-width:340px}
+  #evFilter:focus,#evLoc:focus{outline:none;border-color:var(--accent);background:#222b3d}
+  #evFilter::placeholder,#evLoc::placeholder{color:var(--muted);font-weight:500}
+  .ev-loading{text-align:center;padding:50px;color:var(--muted);font-size:15px}
+  .ev-now{display:flex;align-items:center;gap:10px;color:var(--now);font-weight:800;font-size:12px;letter-spacing:.5px;padding:12px 2px}
+  .ev-now:before,.ev-now:after{content:"";flex:1;height:2px;background:var(--now);opacity:.5}
+  .ev-card{display:flex;gap:14px;align-items:flex-start;background:var(--bg2);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:12px 15px;margin-bottom:10px;cursor:pointer;transition:.12s;box-shadow:var(--shadow)}
+  .ev-card:hover{transform:translateX(2px);border-color:var(--accent)}
+  .ev-card.past{opacity:.5}
+  .ev-date{flex:none;width:78px;text-align:center}
+  .ev-date .ev-d{font-size:24px;font-weight:800;line-height:1}
+  .ev-date .ev-mo{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-top:3px}
+  .ev-info{flex:1;min-width:0}
+  .ev-title{font-size:15.5px;font-weight:700}
+  .ev-meta{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-top:6px}
+  .ev-loc{font-size:12.5px;color:var(--muted);margin-top:5px}
+  .ev-badge{font-size:10.5px;padding:1px 8px;border-radius:20px;border:1px solid var(--line);color:var(--muted);font-weight:600;white-space:nowrap}
+  .ev-approx{font-size:11px;color:var(--muted)}
+  body.events-mode .filters,body.events-mode .legend{display:none}
+  @media(max-width:520px){.ev-date{width:62px}.ev-date .ev-d{font-size:20px}}
+
+  /* ============ mobile / phone optimizations ============ */
+  @media(max-width:640px){
+    /* header: tighter, no big status line, controls flow naturally */
+    header{padding:9px 12px;gap:8px}
+    .spacer{display:none}
+    .brand{font-size:17px}
+    .nav{gap:4px;order:2;width:100%}
+    #monthTitle{min-width:0;flex:1;text-align:left;font-size:15px}
+    .status{display:none}
+    header button,.discord-btn,button.primary{padding:8px 11px;font-size:13px}
+    #leadSel{font-size:12px;padding:7px 8px}
+    /* toolbar: scrollable view switch, full-width search, compact filters, no legend */
+    .toolbar{padding:9px 12px;gap:9px}
+    .seg{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .seg button{padding:9px 14px;white-space:nowrap;flex:0 0 auto}
+    .filters{gap:8px;width:100%}
+    .search-wrap{width:100%}
+    #fSearch{width:100%;min-width:0}
+    .search-results{max-width:none;width:100%}
+    .filters select{flex:1 1 44%;min-width:0}
+    .legend{display:none}
+    main{padding:12px;gap:14px}
+    /* month/week: shrink-to-fit cells, drop tiny covers, smaller type */
+    .grid{grid-auto-rows:minmax(82px,auto)}
+    .grid.week{grid-auto-rows:minmax(70vh,70vh)}
+    .cell{padding:3px}
+    .cell .num{font-size:10.5px;margin-bottom:3px}
+    .cell.today .num .badge{padding:1px 5px;font-size:9px}
+    .grid .ev{padding:2px 3px;gap:3px;margin-bottom:3px}
+    .grid .ev img{display:none}
+    .grid .ev .t{font-size:10px}
+    .grid .ev .epn{font-size:8.5px}
+    .nowline{font-size:9.5px}
+    /* detail/day dialogs as a bottom sheet */
+    .overlay{padding:0;align-items:flex-end}
+    .modal{max-width:100%;width:100%;max-height:92vh;border-radius:16px 16px 0 0}
+    .trailer{margin-top:12px}
+    /* events + dashboard breathing room */
+    .events,.dashboard{padding:14px 12px}
+    .ev-card{padding:11px 12px;gap:11px}
+    .dash-tiles{gap:10px}
+  }
+  @media(max-width:400px){
+    .seg button{padding:8px 11px}
+    .brand .dot{width:10px;height:10px}
+  }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<header>
+  <div class="brand"><span class="dot"></span> AniCal</div>
+  <div class="nav">
+    <button class="icon" id="prev" title="Previous">‹</button>
+    <button class="icon" id="today" title="Jump to today">Today</button>
+    <button class="icon" id="next" title="Next">›</button>
+    <div id="monthTitle">—</div>
+  </div>
+  <div class="spacer"></div>
+  <div class="status"><span class="spin"></span><span id="statusText">Starting…</span></div>
+  <select id="leadSel" title="How long before air time to alert">
+    <option value="5">5 min before</option>
+    <option value="10" selected>10 min before</option>
+    <option value="15">15 min before</option>
+    <option value="30">30 min before</option>
+  </select>
+  <button id="notifyBtn" title="Enable desktop alerts for shows you follow">🔔 Enable alerts</button>
+  <button class="icon" id="settingsBtn" title="Appearance settings">⚙</button>
+  <button id="installBtn" style="display:none" title="Install AniCal as an app">⤓ Install</button>
+  <a class="discord-btn" href="https://discord.gg/YxphmhYga7" target="_blank" rel="noopener" title="Join the AniCal Discord">
+    <svg viewBox="0 0 127.14 96.36" aria-hidden="true"><path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/></svg>
+    Discord
+  </a>
+  <button class="primary" id="refresh" title="Pull latest data">↻ Refresh</button>
+</header>
+
+<div class="toolbar">
+  <div class="seg" id="viewSeg">
+    <button data-view="month">Month</button>
+    <button data-view="week">Week</button>
+    <button data-view="agenda">Agenda</button>
+    <button data-view="dashboard">📊 Dashboard</button>
+    <button data-view="events">🎟️ Events</button>
+  </div>
+  <button id="surpriseBtn" title="Open a random highly-rated show">🎲 Surprise me</button>
+  <div class="filters">
+    <div class="search-wrap">
+      <input type="search" id="fSearch" placeholder="🔍 Search any anime…" autocomplete="off" spellcheck="false" />
+      <div class="search-results" id="searchResults"></div>
+    </div>
+    <select id="fFormat">
+      <option value="">All formats</option>
+      <option value="TV">TV</option>
+      <option value="TV_SHORT">TV Short</option>
+      <option value="MOVIE">Movie</option>
+      <option value="ONA">ONA</option>
+      <option value="OVA">OVA</option>
+      <option value="SPECIAL">Special</option>
+    </select>
+    <select id="fGenre"><option value="">All genres</option></select>
+    <select id="fStream" title="Filter by streaming platform"><option value="">All platforms</option></select>
+    <select id="fTag" title="Filter by AniList tag"><option value="">All tags</option></select>
+    <select id="fTitleLang" title="Show titles in…">
+      <option value="english">Aa English</option>
+      <option value="romaji">Aa Rōmaji</option>
+      <option value="native">あ Native</option>
+    </select>
+    <select id="fScore">
+      <option value="0">Any score</option>
+      <option value="60">★ 60+</option>
+      <option value="70">★ 70+</option>
+      <option value="80">★ 80+</option>
+      <option value="90">★ 90+</option>
+    </select>
+    <label title="Show only the shows in your list"><input type="checkbox" id="fMine"> ⭐ My list</label>
+    <label><input type="checkbox" id="fPrem"> Premieres only</label>
+    <label title="Hide adult / hentai titles"><input type="checkbox" id="fNSFW"> 🔞 Hide NSFW</label>
+  </div>
+  <div class="spacer"></div>
+  <div class="legend">
+    <span class="k"><span class="sw" style="background:var(--accent)"></span>Episode</span>
+    <span class="k"><span class="sw" style="background:var(--premiere)"></span>Premiere (Ep 1)</span>
+    <span class="k"><span class="sw" style="background:var(--finale)"></span>Finale (last ep)</span>
+    <span class="k"><span class="sw" style="background:var(--now)"></span>Now</span>
+  </div>
+</div>
+
+<main id="main" tabindex="-1">
+  <section>
+    <div class="whatsnew" id="whatsNew" style="display:none"></div>
+    <div class="chips" id="genreChips"></div>
+    <div class="cal" id="calWrap"></div>
+  </section>
+
+  <aside class="side">
+    <div class="card" id="cwCard" style="display:none">
+      <h3>▶️ Continue Watching</h3>
+      <div class="body" id="continueWatching"></div>
+    </div>
+    <div class="card">
+      <h3>🔥 Trending Now</h3>
+      <div class="body" id="trending"><div class="empty">Loading…</div></div>
+    </div>
+    <div class="card" id="rvCard" style="display:none">
+      <h3>🕘 Recently Viewed</h3>
+      <div class="body" id="recentRail"></div>
+    </div>
+    <div class="card" id="otdCard" style="display:none">
+      <h3>📅 On This Day</h3>
+      <div class="body" id="onThisDay"></div>
+    </div>
+    <div class="card">
+      <h3>🌸 New Season Premieres</h3>
+      <div class="body" id="premieres"><div class="empty">Loading…</div></div>
+    </div>
+    <div class="card">
+      <h3>📣 Announcements &amp; Upcoming</h3>
+      <div class="body" id="announce"><div class="empty">Loading…</div></div>
+    </div>
+    <div class="card">
+      <h3>📰 Anime News <span style="font-weight:400;color:var(--muted);font-size:11px">· Anime News Network</span></h3>
+      <div class="body" id="news"><div class="empty">Loading…</div></div>
+    </div>
+  </aside>
+</main>
+
+<div class="dashboard" id="dashboardWrap" style="display:none"></div>
+<div class="events" id="eventsWrap" style="display:none"></div>
+
+<!-- Static links: a crawlable entry point to the generated SEO pages, and the embed widget. -->
+<nav class="seo-nav" id="seoNav">
+  <a href="/today/">📅 Anime airing today</a>
+  <span class="sep">·</span>
+  <a href="#" id="subscribeLink">🔔 Subscribe (calendar feed)</a>
+  <span class="sep">·</span>
+  <a href="#" id="embedLink">⧉ Embed this calendar</a>
+</nav>
+
+<section class="faq" id="faq">
+  <h2>Frequently asked questions</h2>
+  <details><summary>Is AniCal free?</summary><p>Yes. AniCal is completely free, with no signup and no ads.</p></details>
+  <details><summary>Where does the anime data come from?</summary><p>Airing schedules, premieres and finales come from AniList, and headlines come from Anime News Network. The data is refreshed every time you open the calendar.</p></details>
+  <details><summary>What timezone are the air times shown in?</summary><p>All air times are converted to your device's local timezone automatically, with live countdowns to each episode.</p></details>
+  <details><summary>Can I get notified when an episode airs?</summary><p>Yes. Follow a show with the bell icon to get browser alerts before each episode. On browsers that support scheduled notifications, alerts can fire even when AniCal is closed.</p></details>
+  <details><summary>Can I add anime to my own calendar?</summary><p>Yes. You can add individual episodes to Google Calendar or download an .ics file, or subscribe to a live feed of premieres, finales, or all episodes that updates automatically.</p></details>
+  <details><summary>Can I install AniCal or use it offline?</summary><p>Yes. AniCal is a progressive web app you can install on your phone or desktop, and it opens offline using your last loaded schedule.</p></details>
+</section>
+
+<div class="footer" id="footer"></div>
+<div class="verline" id="verline"></div>
+
+<div class="overlay" id="overlay">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="mh"><h2 id="modalTitle"></h2><button class="x" id="modalClose" aria-label="Close dialog">✕</button></div>
+    <div class="mb" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+"use strict";
+/* ============================================================
+   AniCal — pulls live anime release data on every launch/refresh.
+   Primary source : AniList public GraphQL API (airing schedules).
+   News           : Anime News Network RSS via rss2json (CORS).
+   Features       : Month / Week / Agenda views, filters,
+                    countdowns, a live "Now" marker, and opt-in
+                    desktop notifications per followed show.
+   ============================================================ */
+
+// Build number auto-stamped from the git commit count by scripts/stamp-version.mjs
+// (run via the .githooks/pre-commit hook). Do not edit by hand — it changes every commit.
+const APP_VERSION = "2.1.68";
+
+const API = "https://graphql.anilist.co";
+// Public VAPID key for Web Push (server-driven alerts that work even when
+// AniCal is closed). Generated with scripts/generate-vapid-keys.mjs — not secret.
+const VAPID_PUBLIC_KEY = "BG_oPd3dWly-EeNDo5mgU4wyWZAyuIk5uYJuzGAd2RsKAfL3pJsm6QaNJw1CRZ0kQPod_B5JaJVr6NMtT6ja48s";
+const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const DOW = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+const FMT_LABEL = {TV:"TV", TV_SHORT:"TV Short", MOVIE:"Movie", ONA:"ONA", OVA:"OVA", SPECIAL:"Special", MUSIC:"Music"};
+
+const state = {
+  anchor: new Date(),
+  viewMode: localStorage.getItem("anical.view") || ((window.matchMedia && window.matchMedia("(max-width:640px)").matches) ? "agenda" : "month"),
+  seasonCache: new Map(),
+  media: [],
+  filters: {format:"", genre:"", minScore:0, premieresOnly:false},
+  search: "",                    // live title search (not persisted)
+  searchResults: new Map(),      // id -> media object from the last search (local + global)
+  hideNSFW: localStorage.getItem("anical.hideNSFW")!=="0",   // hide adult/hentai by default; persisted
+  titleLang: localStorage.getItem("anical.titleLang")||"english",   // english | romaji | native
+  theme: localStorage.getItem("anical.theme")||"dark",              // dark | light
+  accent: localStorage.getItem("anical.accent")||"#8b5cf6|#22d3ee", // "<accent>|<accent2>"
+  density: localStorage.getItem("anical.density")||"normal",        // normal | dense
+  eventsData: null,              // cached events.json (real-life events view)
+  eventsItems: null,             // parsed+sorted events (with ts)
+  eventsFilter: "",              // events view text filter (not persisted)
+  eventsMap: false,              // events list/map toggle (not persisted)
+  userLoc: (()=>{ try{ return JSON.parse(localStorage.getItem("anical.userLoc")||"null"); }catch(e){ return null; } })(),
+  eventsRadius: +(localStorage.getItem("anical.eventsRadius")||0),   // km; 0 = any
+  notify: new Set(),
+  notifyEvents: new Set(),       // followed real-life events (reminders)
+  hidden: new Set(),             // "not interested" shows, hidden everywhere
+  watch: new Set(),              // ⭐ "My list" — followed shows
+  recent: [],                    // recently viewed show ids (most-recent first)
+  progress: {},                  // mediaId -> highest watched episode number
+  notifyLead: 10,
+  scheduled: new Map(),         // "id-ep" -> timeout id
+};
+try{ Object.assign(state.filters, JSON.parse(localStorage.getItem("anical.filters")||"{}")); }catch(e){}
+try{ state.notify = new Set(JSON.parse(localStorage.getItem("anical.notify")||"[]")); }catch(e){}
+try{ state.notifyEvents = new Set(JSON.parse(localStorage.getItem("anical.notifyEvents")||"[]")); }catch(e){}
+try{ state.hidden = new Set(JSON.parse(localStorage.getItem("anical.hidden")||"[]")); }catch(e){}
+try{ state.watch = new Set(JSON.parse(localStorage.getItem("anical.watch")||"[]")); }catch(e){}
+try{ state.recent = JSON.parse(localStorage.getItem("anical.recent")||"[]"); }catch(e){}
+try{ state.progress = JSON.parse(localStorage.getItem("anical.progress")||"{}")||{}; }catch(e){}
+state.notifyLead = +(localStorage.getItem("anical.lead")||10);
+applyAppearance();   // theme / accent / density before first paint
+
+const $ = id => document.getElementById(id);
+const title = md => {
+  const t=(md&&md.title)||{};
+  if(state.titleLang==="romaji") return t.romaji||t.english||t.native||"Untitled";
+  if(state.titleLang==="native") return t.native||t.romaji||t.english||"Untitled";
+  return t.english||t.romaji||t.native||"Untitled";
+};
+const fmtTime = ts => new Date(ts*1000).toLocaleTimeString([], {hour:"numeric", minute:"2-digit"});
+const dayKeyTs = ts => { const d=new Date(ts*1000); return d.getFullYear()+"-"+d.getMonth()+"-"+d.getDate(); };
+const keyOf = d => d.getFullYear()+"-"+d.getMonth()+"-"+d.getDate();
+function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+function decodeEntities(s){ const t=document.createElement("textarea"); t.innerHTML=String(s==null?"":s); return t.value; }
+// A confirmed season finale: the show has a known total episode count (>1) and this is it.
+function isFinale(md, ep){ return !!md.episodes && md.episodes>1 && ep===md.episodes; }
+// NSFW = AniList's isAdult flag (authoritative) or the Hentai genre.
+function isAdultMedia(md){ return !!(md && (md.isAdult || (md.genres||[]).includes("Hentai"))); }
+function nsfwHidden(md){ return state.hideNSFW && isAdultMedia(md); }
+function isHidden(id){ return state.hidden.has(String(id)); }
+function toggleHidden(id){
+  id=String(id);
+  if(state.hidden.has(id)) state.hidden.delete(id); else state.hidden.add(id);
+  localStorage.setItem("anical.hidden", JSON.stringify([...state.hidden]));
+}
+/* ⭐ watchlist ("My list") */
+function isWatched(id){ return state.watch.has(String(id)); }
+function starSpan(id){ const on=isWatched(id); return `<span class="star ${on?'on':''}" data-watch="${esc(String(id))}" title="Add to My List">${on?'★':'☆'}</span>`; }
+function setStar(el,on){ el.classList.toggle("on",on); if(el.tagName==="BUTTON") el.textContent=on?"★ In My List":"☆ Add to My List"; else el.textContent=on?"★":"☆"; }
+function toggleWatch(id){
+  id=String(id);
+  if(state.watch.has(id)) state.watch.delete(id); else state.watch.add(id);
+  localStorage.setItem("anical.watch", JSON.stringify([...state.watch]));
+  document.querySelectorAll('[data-watch="'+CSS.escape(id)+'"]').forEach(el=>setStar(el, state.watch.has(id)));
+  renderView();   // reflects "My list" filter + highlight
+}
+/* episode progress ("mark watched" + Continue Watching) */
+function getProgress(id){ return state.progress[String(id)]||0; }
+function setProgress(id,ep){ id=String(id); ep=Math.max(0,ep|0); if(ep) state.progress[id]=ep; else delete state.progress[id]; localStorage.setItem("anical.progress", JSON.stringify(state.progress)); }
+function maxAiredEp(md){ const now=Date.now()/1000; let m=0; for(const n of (md.airingSchedule&&md.airingSchedule.nodes)||[]) if(n.airingAt<=now && n.episode>m) m=n.episode; return m; }
+/* recently viewed */
+function pushRecent(md){
+  const id=String(md.id);
+  state.recent=(state.recent||[]).filter(r=>r&&String(r.id)!==id);
+  state.recent.unshift({id, t:title(md), img:(md.coverImage&&md.coverImage.medium)||""});
+  if(state.recent.length>24) state.recent.length=24;
+  localStorage.setItem("anical.recent", JSON.stringify(state.recent));
+}
+
+/* ---------- seasons ---------- */
+function seasonOf(m){ return m<=2?"WINTER":m<=5?"SPRING":m<=8?"SUMMER":"FALL"; }
+function prevSeason(season,year){
+  const o=["WINTER","SPRING","SUMMER","FALL"], i=o.indexOf(season);
+  return i===0?{season:"FALL",year:year-1}:{season:o[i-1],year};
+}
+function seasonsForRange(start,end){
+  const map=new Map();
+  let d=new Date(start.getFullYear(),start.getMonth(),1);
+  const last=new Date(end.getFullYear(),end.getMonth(),1);
+  while(d<=last){ const s=seasonOf(d.getMonth()); map.set(s+"-"+d.getFullYear(),{season:s,year:d.getFullYear()}); d.setMonth(d.getMonth()+1); }
+  const first=[...map.values()][0];
+  const p=prevSeason(first.season,first.year); map.set(p.season+"-"+p.year,p);
+  return [...map.values()];
+}
+
+const QUERY = `
+query ($season: MediaSeason, $seasonYear: Int, $page: Int) {
+  Page(page: $page, perPage: 50) {
+    pageInfo { hasNextPage }
+    media(season: $season, seasonYear: $seasonYear, type: ANIME, sort: POPULARITY_DESC) {
+      id title { romaji english native } format episodes genres status popularity trending averageScore source isAdult tags { name rank isMediaSpoiler isAdult }
+      description(asHtml: false) siteUrl trailer { id site }
+      externalLinks { site url type color icon }
+      coverImage { medium large color }
+      startDate { year month day }
+      studios(isMain: true) { nodes { name } }
+      relations { edges { relationType(version: 2) node { id type format title { romaji english native } coverImage { medium } startDate { year } } } }
+      airingSchedule { nodes { airingAt episode } }
+    }
+  }
+}`;
+
+// Global title search — covers ALL of AniList, not just the loaded seasons.
+const SEARCH_QUERY = `
+query ($search: String) {
+  Page(page: 1, perPage: 12) {
+    media(type: ANIME, search: $search, sort: [SEARCH_MATCH, POPULARITY_DESC]) {
+      id title { romaji english native } format episodes genres status popularity trending averageScore source isAdult tags { name rank isMediaSpoiler isAdult }
+      description(asHtml: false) siteUrl trailer { id site }
+      externalLinks { site url type color icon }
+      coverImage { medium large color }
+      startDate { year month day }
+      studios(isMain: true) { nodes { name } }
+      relations { edges { relationType(version: 2) node { id type format title { romaji english native } coverImage { medium } startDate { year } } } }
+      airingSchedule { nodes { airingAt episode } }
+    }
+  }
+}`;
+
+// Fetch one title by AniList id — used by ?show=<id> deep links for shows
+// that aren't in the currently loaded seasons.
+const ID_QUERY = `
+query ($id: Int) {
+  Media(id: $id, type: ANIME) {
+    id title { romaji english native } format episodes genres status popularity trending averageScore source isAdult tags { name rank isMediaSpoiler isAdult }
+    description(asHtml: false) siteUrl trailer { id site }
+    externalLinks { site url type color icon }
+    coverImage { medium large color }
+    startDate { year month day }
+    studios(isMain: true) { nodes { name } }
+    relations { edges { relationType(version: 2) node { id type format title { romaji english native } coverImage { medium } startDate { year } } } }
+    airingSchedule { nodes { airingAt episode } }
+  }
+}`;
+async function fetchMediaById(id){
+  const res=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},
+    body:JSON.stringify({query:ID_QUERY,variables:{id:+id}})});
+  if(!res.ok) throw new Error("AniList HTTP "+res.status);
+  const j=await res.json(); if(j.errors) throw new Error(j.errors[0].message);
+  return j.data.Media;
+}
+
+// Import a user's PUBLIC AniList anime list (no auth/key needed). Watching/Planning/
+// Paused/Rewatching go into the ⭐ list; episode progress is applied from every entry
+// so "Continue watching" and the mark-watched ticks reflect where you left off.
+const LIST_QUERY=`
+query ($name: String) {
+  MediaListCollection(userName: $name, type: ANIME) {
+    lists { entries { status progress media { id } } }
+  }
+}`;
+const WATCH_STATUSES=new Set(["CURRENT","PLANNING","PAUSED","REPEATING"]);
+async function importAniList(name){
+  name=String(name||"").trim();
+  if(!name) throw new Error("Enter your AniList username.");
+  const res=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},
+    body:JSON.stringify({query:LIST_QUERY,variables:{name}})});
+  const j=await res.json();
+  if(j.errors) throw new Error(j.errors[0].message==="User not found"||/not found/i.test(j.errors[0].message)
+    ? `No public AniList user "${name}" (check the spelling; the list must be public).` : j.errors[0].message);
+  const lists=(j.data&&j.data.MediaListCollection&&j.data.MediaListCollection.lists)||[];
+  let added=0, progressed=0;
+  for(const l of lists) for(const e of l.entries||[]){
+    const id=e.media&&e.media.id; if(!id) continue;
+    if(WATCH_STATUSES.has(e.status) && !state.watch.has(String(id))){ state.watch.add(String(id)); added++; }
+    if(e.progress>0){ state.progress[String(id)]=Math.max(state.progress[String(id)]||0, e.progress); progressed++; }
+  }
+  localStorage.setItem("anical.watch", JSON.stringify([...state.watch]));
+  localStorage.setItem("anical.progress", JSON.stringify(state.progress));
+  document.querySelectorAll("[data-watch]").forEach(el=>setStar(el, state.watch.has(el.dataset.watch)));
+  renderView();
+  return { added, progressed, total: lists.reduce((n,l)=>n+(l.entries?l.entries.length:0),0) };
+}
+
+// Extra detail-modal data (recommendations, cast) — fetched lazily per show so the
+// bulk season query stays light. Cached per id.
+const EXTRAS_QUERY=`
+query ($id: Int) {
+  Media(id: $id, type: ANIME) {
+    characters(sort: [ROLE, RELEVANCE], perPage: 12) { edges { role node { id name { full } image { medium } } voiceActors(language: JAPANESE, sort: RELEVANCE) { id name { full } } } }
+    recommendations(sort: RATING_DESC, perPage: 10) { nodes { mediaRecommendation { id title { romaji english native } coverImage { medium } format averageScore isAdult } } }
+    studios(isMain: true) { nodes { id name } }
+  }
+}`;
+const STUDIO_QUERY=`
+query ($id: Int) {
+  Studio(id: $id) {
+    name
+    media(sort: POPULARITY_DESC, perPage: 13, isMain: true) { nodes { id title { romaji english native } coverImage { medium } format averageScore isAdult } }
+  }
+}`;
+function castHTML(chars){
+  const edges=(chars&&chars.edges)||[];
+  if(!edges.length) return "";
+  const cards=edges.slice(0,12).map(ed=>{
+    const c=ed.node, va=ed.voiceActors&&ed.voiceActors[0];
+    const cimg=c.image&&c.image.medium?`<img src="${esc(c.image.medium)}" alt="" loading="lazy">`:"";
+    return `<a class="cast-c" href="https://anilist.co/character/${c.id}" target="_blank" rel="noopener">${cimg}<div class="cn">${esc(c.name.full)}</div>${va?`<div class="va">${esc(va.name.full)}</div>`:""}</a>`;
+  }).join("");
+  return `<h4 style="margin:16px 0 6px">Characters &amp; voice cast</h4><div class="cast">${cards}</div>`;
+}
+// "On this day" — anime that premiered on today's month+day in past years.
+const OTD_QUERY=`
+query ($d: String) {
+  Page(perPage: 25) { media(type: ANIME, startDate_like: $d, sort: POPULARITY_DESC) {
+    id title { romaji english native } coverImage { medium } startDate { year month day } isAdult format } }
+}`;
+let otdDone=false;
+async function loadOnThisDay(){
+  const card=$("otdCard"); if(!card) return;
+  const now=new Date(), mm=String(now.getMonth()+1).padStart(2,"0"), dd=String(now.getDate()).padStart(2,"0");
+  let media;
+  try{
+    const res=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify({query:OTD_QUERY,variables:{d:"%"+mm+dd}})});
+    const j=await res.json(); if(j.errors) throw 0; media=j.data.Page.media;
+  }catch(e){ card.style.display="none"; return; }
+  const curY=now.getFullYear();
+  const items=(media||[]).filter(m=>m.startDate&&m.startDate.year&&m.startDate.year<curY&&m.startDate.month===now.getMonth()+1&&m.startDate.day===now.getDate()&&!(state.hideNSFW&&m.isAdult)&&!isHidden(m.id)).slice(0,8);
+  if(!items.length){ card.style.display="none"; return; }
+  card.style.display="";
+  $("onThisDay").innerHTML=items.map(m=>{ const yrs=curY-m.startDate.year; return `<div class="prow" data-otd="${m.id}">
+    <img src="${esc((m.coverImage&&m.coverImage.medium)||"")}" alt="" loading="lazy">
+    <div class="info"><div class="pt">${esc(title(m))}</div><div class="meta" style="margin-top:3px">Premiered ${m.startDate.year} · ${yrs} yr${yrs===1?"":"s"} ago</div></div></div>`; }).join("");
+  $("onThisDay").querySelectorAll("[data-otd]").forEach(el=>el.onclick=()=>openShowById(el.dataset.otd));
+}
+const extrasCache=new Map();
+async function fetchModalExtras(id){
+  id=String(id);
+  if(extrasCache.has(id)) return extrasCache.get(id);
+  const res=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},
+    body:JSON.stringify({query:EXTRAS_QUERY,variables:{id:+id}})});
+  if(!res.ok) throw new Error("AniList HTTP "+res.status);
+  const j=await res.json(); if(j.errors) throw new Error(j.errors[0].message);
+  extrasCache.set(id, j.data.Media); return j.data.Media;
+}
+function recCoversHTML(nodes){
+  const items=(nodes||[]).map(n=>n&&n.mediaRecommendation).filter(m=>m&&m.id&&!(state.hideNSFW&&m.isAdult)&&!isHidden(m.id));
+  if(!items.length) return "";
+  return `<h4 style="margin:16px 0 6px">You might also like</h4><div class="wn-list">`+
+    items.slice(0,10).map(m=>`<img class="wn-cover" data-rec="${m.id}" src="${esc((m.coverImage&&m.coverImage.medium)||"")}" alt="${esc(title(m))}" title="${esc(title(m))}" loading="lazy">`).join("")+`</div>`;
+}
+const studioCache=new Map();
+async function fetchStudioMedia(studioId){
+  if(studioCache.has(studioId)) return studioCache.get(studioId);
+  const res=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},
+    body:JSON.stringify({query:STUDIO_QUERY,variables:{id:+studioId}})});
+  if(!res.ok) throw new Error("AniList HTTP "+res.status);
+  const j=await res.json(); if(j.errors) throw new Error(j.errors[0].message);
+  studioCache.set(studioId, j.data.Studio); return j.data.Studio;
+}
+function studioCoversHTML(studio, excludeId){
+  const items=(studio&&studio.media&&studio.media.nodes||[]).filter(m=>m&&m.id && String(m.id)!==String(excludeId) && !(state.hideNSFW&&m.isAdult) && !isHidden(m.id));
+  if(!items.length) return "";
+  return `<h4 style="margin:16px 0 6px">More from ${esc(studio.name)}</h4><div class="wn-list">`+
+    items.slice(0,10).map(m=>`<img class="wn-cover" data-rec="${m.id}" src="${esc((m.coverImage&&m.coverImage.medium)||"")}" alt="${esc(title(m))}" title="${esc(title(m))}" loading="lazy">`).join("")+`</div>`;
+}
+async function loadModalExtras(id){
+  let data; try{ data=await fetchModalExtras(id); }catch(e){ return; }
+  if(String(state._modalId)!==String(id) || !$("overlay").classList.contains("on")) return;
+  const cast=$("castSlot"); if(cast&&data&&data.characters) cast.innerHTML=castHTML(data.characters);
+  const slot=$("recsSlot"); if(slot&&data&&data.recommendations) slot.innerHTML=recCoversHTML(data.recommendations.nodes);
+  const studioNode=data&&data.studios&&data.studios.nodes&&data.studios.nodes[0];
+  const studioSlot=$("studioSlot");
+  if(studioSlot&&studioNode){
+    try{
+      const studio=await fetchStudioMedia(studioNode.id);
+      if(String(state._modalId)===String(id) && $("overlay").classList.contains("on")) studioSlot.innerHTML=studioCoversHTML(studio,id);
+    }catch(e){}
+  }
+}
+async function fetchSeason(season,year){
+  const key=season+"-"+year;
+  if(state.seasonCache.has(key)) return state.seasonCache.get(key);
+  // 3 pages (150) fully covers a normal season; bounded so a month view (≤3
+  // seasons) stays well under AniList's ~30 requests/min and never gets locked out.
+  let all=[],page=1,more=true,aborted=false;
+  while(more && page<=3){
+    let res, tries=0;
+    for(;;){
+      res=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},
+        body:JSON.stringify({query:QUERY,variables:{season,seasonYear:year,page}})});
+      if(res.status===429 && tries<2){ const wait=Math.min((+(res.headers.get("retry-after"))||3),8); tries++; await new Promise(r=>setTimeout(r,wait*1000)); continue; }
+      break;
+    }
+    if(res.status===429){ aborted=true; break; }   // still limited — return what we have instead of hanging/throwing
+    if(!res.ok) throw new Error("AniList HTTP "+res.status);
+    const json=await res.json();
+    if(json.errors) throw new Error(json.errors[0].message);
+    all=all.concat(json.data.Page.media); more=json.data.Page.pageInfo.hasNextPage; page++;
+  }
+  if(!aborted) state.seasonCache.set(key,all);   // don't cache a rate-limited partial; let a later view retry
+  return all;
+}
+async function loadDataForRange(start,end){
+  const seasons=seasonsForRange(start,end);
+  const results=await Promise.allSettled(seasons.map(s=>fetchSeason(s.season,s.year)));
+  let media=[],ok=false;
+  for(const r of results){ if(r.status==="fulfilled"){ media=media.concat(r.value); ok=true; } }
+  if(!ok) throw new Error("All season fetches failed");
+  const seen=new Set(),out=[];
+  for(const md of media){ if(!seen.has(md.id)){ seen.add(md.id); out.push(md); } }
+  return out;
+}
+
+/* ---------- "what's new since your last visit" ---------- */
+// Captured at startup (before we overwrite it) so we can diff against the last session.
+const PREV_SEEN=(()=>{ const raw=localStorage.getItem("anical.seenIds"); if(!raw) return null; try{ return new Set(JSON.parse(raw)); }catch(e){ return null; } })();
+const LAST_VISIT=+(localStorage.getItem("anical.lastVisit")||0);
+let whatsNewDone=false;
+function renderWhatsNew(){
+  if(whatsNewDone) return; whatsNewDone=true;
+  const cur=state.media.map(m=>String(m.id));
+  localStorage.setItem("anical.seenIds", JSON.stringify(cur));
+  localStorage.setItem("anical.lastVisit", String(Date.now()));
+  const box=$("whatsNew"); if(!box) return;
+  if(!PREV_SEEN) return;   // first visit — just set the baseline, no banner
+  const fresh=state.media.filter(m=>!PREV_SEEN.has(String(m.id)) && !nsfwHidden(m) && !isHidden(m.id))
+    .sort((a,b)=>(b.popularity||0)-(a.popularity||0));
+  if(!fresh.length){ box.style.display="none"; return; }
+  const since=LAST_VISIT?(" since "+new Date(LAST_VISIT).toLocaleDateString([], {month:"short",day:"numeric"})):"";
+  box.innerHTML=`<span class="wn-label">✨ ${fresh.length} new${since}</span>`+
+    `<div class="wn-list">`+fresh.slice(0,14).map(md=>`<img class="wn-cover" data-wn="${md.id}" src="${md.coverImage&&md.coverImage.medium?esc(md.coverImage.medium):""}" alt="${esc(title(md))}" title="${esc(title(md))}" loading="lazy">`).join("")+`</div>`+
+    `<button class="wn-x" id="wnDismiss" title="Dismiss">✕</button>`;
+  box.style.display="";
+  box.querySelectorAll("[data-wn]").forEach(el=>{ el.onclick=()=>{ const md=state.media.find(x=>String(x.id)===el.dataset.wn); if(md) openDetail(md,(nextAir(md)||{}).episode||1); }; });
+  $("wnDismiss").onclick=()=>{ box.style.display="none"; };
+}
+
+/* ---------- instant-load cache (stale-while-revalidate) ---------- */
+const CACHE_KEY="anical.cache.v1";
+function persistMedia(){
+  try{
+    localStorage.setItem(CACHE_KEY, JSON.stringify({ts:Date.now(), view:state.viewMode, anchor:state.anchor.getTime(), media:state.media}));
+  }catch(e){
+    // quota — store a slim copy (drop the heavy description/relations; only needed in the modal, which refetches)
+    try{
+      const slim=state.media.map(m=>{ const c={...m}; c.description=""; delete c.relations; delete c.recommendations; return c; });
+      localStorage.setItem(CACHE_KEY, JSON.stringify({ts:Date.now(), view:state.viewMode, anchor:state.anchor.getTime(), media:slim}));
+    }catch(_){ /* still too big — skip caching */ }
+  }
+}
+function readCache(maxAgeMs){
+  try{
+    const raw=localStorage.getItem(CACHE_KEY); if(!raw) return null;
+    const o=JSON.parse(raw);
+    if(!o||!Array.isArray(o.media)||!o.media.length) return null;
+    if(maxAgeMs && Date.now()-o.ts>maxAgeMs) return null;
+    return o;
+  }catch(e){ return null; }
+}
+
+/* ---------- range + events ---------- */
+function visibleRange(){
+  const a=state.anchor;
+  if(state.viewMode==="dashboard"){
+    // the full 3-month season the anchor falls in
+    const sm={WINTER:0,SPRING:3,SUMMER:6,FALL:9}[seasonOf(a.getMonth())];
+    const start=new Date(a.getFullYear(),sm,1);
+    const end=new Date(a.getFullYear(),sm+3,0);   // last day of the 3rd month
+    return {start,end};
+  }
+  if(state.viewMode==="month"){
+    const first=new Date(a.getFullYear(),a.getMonth(),1);
+    const start=new Date(first); start.setDate(1-first.getDay());
+    const end=new Date(start); end.setDate(start.getDate()+41);
+    return {start,end};
+  }
+  if(state.viewMode==="week"){
+    const start=new Date(a); start.setDate(a.getDate()-a.getDay()); start.setHours(0,0,0,0);
+    const end=new Date(start); end.setDate(start.getDate()+6);
+    return {start,end};
+  }
+  const start=new Date(a); start.setHours(0,0,0,0);
+  const end=new Date(start); end.setDate(start.getDate()+13);
+  return {start,end};
+}
+function matchTitle(md,q){
+  if(!q) return true;
+  const t=((md.title.english||"")+" "+(md.title.romaji||"")).toLowerCase();
+  return t.includes(q);
+}
+function passFilter(e){
+  const f=state.filters, md=e.media;
+  if(nsfwHidden(md)) return false;
+  if(isHidden(md.id)) return false;
+  if(f.mine && !isWatched(md.id)) return false;
+  if(f.stream && !((md.externalLinks||[]).some(l=>l&&l.type==="STREAMING"&&l.site===f.stream))) return false;
+  if(state.search && !matchTitle(md,state.search)) return false;
+  if(f.premieresOnly && e.episode!==1) return false;
+  if(f.format && md.format!==f.format) return false;
+  if(f.genre && !((md.genres||[]).includes(f.genre))) return false;
+  if(f.tag && !((md.tags||[]).some(t=>t&&t.name===f.tag&&!t.isMediaSpoiler&&(t.rank||0)>=MIN_TAG_RANK))) return false;
+  if(f.minScore && (md.averageScore||0)<f.minScore) return false;
+  return true;
+}
+function rangeEvents(){
+  const {start,end}=visibleRange();
+  const s=start.getTime();
+  const e=new Date(end.getFullYear(),end.getMonth(),end.getDate(),23,59,59,999).getTime();
+  const out=[];
+  for(const md of state.media){
+    for(const n of (md.airingSchedule&&md.airingSchedule.nodes)||[]){
+      const t=n.airingAt*1000;
+      if(t>=s && t<=e){ const ev={media:md,episode:n.episode,ts:n.airingAt}; if(passFilter(ev)) out.push(ev); }
+    }
+  }
+  return out;
+}
+function mapByDay(evs){
+  const m=new Map();
+  for(const e of evs){ const k=dayKeyTs(e.ts); if(!m.has(k)) m.set(k,[]); m.get(k).push(e); }
+  for(const arr of m.values()) arr.sort((a,b)=>(b.media.popularity||0)-(a.media.popularity||0));
+  return m;
+}
+
+/* ---------- countdown (live) ---------- */
+function countdown(ts){
+  let s=Math.floor(ts-Date.now()/1000);
+  if(s<=0) return "aired";
+  const d=Math.floor(s/86400); s-=d*86400;
+  const h=Math.floor(s/3600); s-=h*3600;
+  const m=Math.floor(s/60); s-=m*60;
+  if(d>0) return `${d}d ${h}h`;
+  if(h>0) return `${h}h ${m}m`;
+  if(m>0) return `${m}m ${s}s`;
+  return `${s}s`;
+}
+// A countdown that ticks: tickCountdowns() refreshes every element once a second.
+function cdLive(ts){ return `<span class="cd-live" data-air="${ts}">${countdown(ts)}</span>`; }
+function tickCountdowns(){
+  const els=document.querySelectorAll(".cd-live");
+  if(!els.length) return;
+  for(const el of els){ const ts=+el.dataset.air; if(ts){ const t=countdown(ts); if(el.textContent!==t) el.textContent=t; } }
+}
+
+/* ---------- local timezone + add-to-calendar ---------- */
+function tzShort(){
+  try{ const p=new Intl.DateTimeFormat([], {timeZoneName:"short"}).formatToParts(new Date()).find(x=>x.type==="timeZoneName"); return p?p.value:""; }
+  catch(e){ return ""; }
+}
+const TZ_SHORT=tzShort();
+const pad2=n=>String(n).padStart(2,"0");
+function icsStamp(d){ return d.getUTCFullYear()+pad2(d.getUTCMonth()+1)+pad2(d.getUTCDate())+"T"+pad2(d.getUTCHours())+pad2(d.getUTCMinutes())+pad2(d.getUTCSeconds())+"Z"; }
+function icsDate(d){ return d.getUTCFullYear()+pad2(d.getUTCMonth()+1)+pad2(d.getUTCDate()); }
+function icsEsc(s){ return String(s==null?"":s).replace(/\\/g,"\\\\").replace(/\n/g,"\\n").replace(/[,;]/g,m=>"\\"+m); }
+function slugFile(s){ return String(s||"event").toLowerCase().replace(/[^\w]+/g,"-").replace(/^-+|-+$/g,"").slice(0,50)||"event"; }
+function buildICS(cd){
+  const L=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//AniCal//anicalendar.netlify.app//EN","CALSCALE:GREGORIAN","METHOD:PUBLISH","BEGIN:VEVENT","UID:"+cd.uid,"DTSTAMP:"+icsStamp(new Date())];
+  if(cd.allDay){ L.push("DTSTART;VALUE=DATE:"+icsDate(cd.start)); L.push("DTEND;VALUE=DATE:"+icsDate(cd.end)); }
+  else { L.push("DTSTART:"+icsStamp(cd.start)); L.push("DTEND:"+icsStamp(cd.end)); }
+  L.push("SUMMARY:"+icsEsc(cd.title));
+  if(cd.desc) L.push("DESCRIPTION:"+icsEsc(cd.desc));
+  if(cd.location) L.push("LOCATION:"+icsEsc(cd.location));
+  if(cd.url) L.push("URL:"+icsEsc(cd.url));
+  L.push("END:VEVENT","END:VCALENDAR");
+  return L.join("\r\n");
+}
+function gcalUrl(cd){
+  const dates=cd.allDay ? icsDate(cd.start)+"/"+icsDate(cd.end) : icsStamp(cd.start)+"/"+icsStamp(cd.end);
+  const p=new URLSearchParams({action:"TEMPLATE",text:cd.title,dates,details:cd.desc||"",location:cd.location||""});
+  return "https://calendar.google.com/calendar/render?"+p.toString();
+}
+function downloadFile(name,text,mime){
+  const blob=new Blob([text],{type:mime||"text/plain"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a"); a.href=url; a.download=name; document.body.appendChild(a); a.click();
+  setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); },0);
+}
+function findMediaById(id){ id=String(id); return state.media.find(x=>String(x.id)===id) || (state.searchResults&&state.searchResults.get(id)) || null; }
+// Build calendar payloads
+function episodeCalData(md,ep,ts){
+  const start=new Date(ts*1000), end=new Date(ts*1000+30*60000);
+  return { uid:`anical-${md.id}-${ep}@anicalendar.netlify.app`, title:`${title(md)} — Episode ${ep}`,
+    desc:`Episode ${ep} of ${title(md)} airs.${md.siteUrl?" "+md.siteUrl:""}`, location:"", url:md.siteUrl||"", start, end, allDay:false };
+}
+function eventCalData(e){
+  const start=new Date((e.start||"")+"T00:00:00Z");
+  const end=new Date(new Date(((e.end||e.start)||"")+"T00:00:00Z").getTime()+86400000); // all-day DTEND is exclusive
+  return { uid:`anical-ev-${e.id}@anicalendar.netlify.app`, title:e.title||"Anime event",
+    desc:(e.desc||"")+(e.url?` ${e.url}`:""), location:e.location||"", url:e.url||"", start, end, allDay:true };
+}
+// Two-button "add to calendar" control. opts is stashed as JSON on the wrapper.
+function calButtonsHTML(opts){
+  return `<span class="calbtns" data-cal='${esc(JSON.stringify(opts))}'>
+    <button class="calbtn" data-go="gcal" title="Add to Google Calendar">📅 Google</button>
+    <button class="calbtn" data-go="ics" title="Download .ics for Apple Calendar / Outlook">⬇ .ics</button>
+  </span>`;
+}
+function calDataFromOpts(o){
+  if(!o) return null;
+  if(o.k==="evt"){ const e=state.eventsIndex&&state.eventsIndex.get(String(o.eid)); return e?eventCalData(e):null; }
+  const md=findMediaById(o.mid); return md?episodeCalData(md,o.ep,o.ts):null;
+}
+function relTime(d){
+  const s=(Date.now()-d.getTime())/1000;
+  if(s<3600) return Math.max(1,Math.round(s/60))+"m ago";
+  if(s<86400) return Math.round(s/3600)+"h ago";
+  if(s<604800) return Math.round(s/86400)+"d ago";
+  return d.toLocaleDateString([], {month:"short",day:"numeric"});
+}
+
+/* ---------- bells ---------- */
+function isFollowed(id){ return state.notify.has(String(id)); }
+function bellSpan(id){ const on=isFollowed(id); return `<span class="bell ${on?'on':''}" data-bell="${id}" title="Toggle episode alerts">${on?'🔔':'🔕'}</span>`; }
+function setBellEl(el,on){
+  el.classList.toggle("on",on);
+  if(el.classList.contains("bellbtn")) el.textContent = on?"🔔 Alerts on":"🔕 Notify me";
+  else el.textContent = on?"🔔":"🔕";
+}
+function toggleNotify(id){
+  id=String(id);
+  if(state.notify.has(id)){ state.notify.delete(id); cancelScheduledFor(id); cancelTriggeredFor(id); }
+  else{
+    state.notify.add(id);
+    if("Notification" in window && Notification.permission==="default"){
+      Notification.requestPermission().then(()=>{ updateNotifyBtn(); scheduleNotifications(); });
+    }
+  }
+  localStorage.setItem("anical.notify", JSON.stringify([...state.notify]));
+  scheduleNotifications();
+  syncPushSubscription();
+  document.querySelectorAll('[data-bell="'+CSS.escape(id)+'"]').forEach(el=>setBellEl(el, state.notify.has(id)));
+}
+
+/* ---------- notifications ---------- */
+function updateNotifyBtn(){
+  const b=$("notifyBtn");
+  if(!("Notification" in window)){ b.textContent="🔕 Unsupported"; b.disabled=true; return; }
+  const p=Notification.permission;
+  b.textContent = p==="granted" ? "🔔 Alerts on" : p==="denied" ? "🔕 Blocked" : "🔔 Enable alerts";
+  b.style.borderColor = p==="granted" ? "var(--premiere)" : "";
+}
+function clearAllScheduled(){ for(const id of state.scheduled.values()) clearTimeout(id); state.scheduled.clear(); }
+function cancelScheduledFor(mid){
+  for(const [k,id] of [...state.scheduled]){ if(k.startsWith(mid+"-")){ clearTimeout(id); state.scheduled.delete(k); } }
+}
+// swReg is set once the service worker is ready (see boot). When the browser
+// supports Notification Triggers we schedule alerts that fire even with the app
+// CLOSED; otherwise we fall back to in-page timers that only run while it's open.
+let swReg=null;
+const triggersSupported = ("Notification" in window) && ("showTrigger" in Notification.prototype) && ("TimestampTrigger" in window);
+function noteOptionsFor(md,n){
+  return {
+    body:"Episode "+n.episode+" airs at "+fmtTime(n.airingAt),
+    icon: (md.coverImage&&md.coverImage.medium)||"/og-image.png",
+    badge:"/favicon.svg",
+    tag:"anical-"+md.id+"-"+n.episode,
+    data:{ url: location.origin+location.pathname+"?show="+md.id }
+  };
+}
+function showNote(titleText,opts){
+  try{
+    if(swReg&&swReg.showNotification) return swReg.showNotification(titleText,opts);
+    const note=new Notification(titleText,opts);
+    note.onclick=()=>{ window.focus(); const u=opts&&opts.data&&opts.data.url; if(u) window.open(u,"_blank","noopener"); };
+    return note;
+  }catch(e){ console.error("notify failed",e); }
+}
+function fireNotification(md,n){ showNote(title(md)+" — Episode "+n.episode, noteOptionsFor(md,n)); }
+async function cancelTriggeredFor(mid){
+  if(!swReg||!swReg.getNotifications) return;
+  try{ const list=await swReg.getNotifications({includeTriggered:true}); for(const nt of list) if(nt.tag&&nt.tag.indexOf("anical-"+mid+"-")===0) nt.close(); }catch(e){}
+}
+async function clearAllTriggered(){
+  if(!swReg||!swReg.getNotifications) return;
+  try{ const list=await swReg.getNotifications({includeTriggered:true}); for(const nt of list) if(nt.tag&&nt.tag.indexOf("anical-")===0) nt.close(); }catch(e){}
+}
+/* ---------- server-driven push (works even with AniCal closed/uninstalled) ---------- */
+function urlBase64ToUint8Array(base64){
+  const pad="=".repeat((4-base64.length%4)%4);
+  const b64=(base64+pad).replace(/-/g,"+").replace(/_/g,"/");
+  const raw=atob(b64), out=new Uint8Array(raw.length);
+  for(let i=0;i<raw.length;i++) out[i]=raw.charCodeAt(i);
+  return out;
+}
+// Keeps the server's record of "what to push, and when" in sync with this
+// browser's followed shows + lead time. Subscribes on first opt-in, updates
+// on every change, and unsubscribes once nothing is followed.
+async function syncPushSubscription(){
+  if(!swReg || !("pushManager" in swReg) || !("Notification" in window)) return;
+  if(Notification.permission!=="granted") return;
+  try{
+    let sub=await swReg.pushManager.getSubscription();
+    if(!state.notify.size){
+      if(sub){ await fetch("/api/push/unsubscribe",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({endpoint:sub.endpoint})}).catch(()=>{}); await sub.unsubscribe().catch(()=>{}); }
+      return;
+    }
+    if(!sub) sub=await swReg.pushManager.subscribe({userVisibleOnly:true, applicationServerKey:urlBase64ToUint8Array(VAPID_PUBLIC_KEY)});
+    await fetch("/api/push/subscribe",{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({subscription:sub.toJSON(), mediaIds:[...state.notify], lead:state.notifyLead})});
+  }catch(e){ console.error("push subscription sync failed",e); }
+}
+async function scheduleNotifications(){
+  if(!("Notification" in window) || Notification.permission!=="granted") return;
+  const now=Date.now();
+  if(triggersSupported && swReg){
+    // Schedule with a timestamp trigger → fires even when AniCal is closed.
+    // Re-issuing with the same tag just updates an existing scheduled alert.
+    for(const md of state.media){
+      if(!isFollowed(md.id)) continue;
+      for(const n of (md.airingSchedule&&md.airingSchedule.nodes)||[]){
+        const fireAt=n.airingAt*1000-state.notifyLead*60000;
+        if(fireAt<=now) continue;                       // moment already passed
+        if(fireAt-now>30*24*3600*1000) continue;        // >30d out; roll in later
+        const o=noteOptionsFor(md,n); o.showTrigger=new TimestampTrigger(fireAt);
+        try{ await swReg.showNotification(title(md)+" — Episode "+n.episode, o); }catch(e){}
+      }
+    }
+    return;
+  }
+  // Fallback: in-page timers (only while the tab stays open).
+  for(const md of state.media){
+    if(!isFollowed(md.id)) continue;
+    for(const n of (md.airingSchedule&&md.airingSchedule.nodes)||[]){
+      const air=n.airingAt*1000;
+      if(air<=now) continue;
+      const fireAt=air-state.notifyLead*60000, delay=fireAt-now;
+      if(delay>24*3600*1000) continue;
+      const key=md.id+"-"+n.episode;
+      if(state.scheduled.has(key)) continue;
+      if(delay<=0){ fireNotification(md,n); state.scheduled.set(key,0); }
+      else state.scheduled.set(key, setTimeout(()=>{ fireNotification(md,n); state.scheduled.delete(key); }, delay));
+    }
+  }
+}
+
+/* ---------- render: views ---------- */
+function dayCell(date, evs, opts){
+  const m=state.anchor.getMonth();
+  const out = opts.dimOut && date.getMonth()!==m;
+  const isToday = keyOf(date)===keyOf(new Date());
+  const cell=document.createElement("div");
+  cell.className="cell"+(out?" out":"")+(isToday?" today":"");
+  const num=document.createElement("div"); num.className="num";
+  const label = opts.weekday ? DOW[date.getDay()]+" "+date.getDate() : date.getDate();
+  num.innerHTML="<span>"+label+"</span>"+(isToday?"<span class='badge'>TODAY</span>":"");
+  cell.appendChild(num);
+  if(isToday && opts.nowline){
+    const nl=document.createElement("div"); nl.className="nowline";
+    nl.innerHTML="● now "+new Date().toLocaleTimeString([], {hour:"numeric",minute:"2-digit"});
+    cell.appendChild(nl);
+  }
+  const show = opts.max ? evs.slice(0,opts.max) : evs;
+  for(const e of show) cell.appendChild(eventEl(e));
+  if(opts.max && evs.length>show.length){
+    const more=document.createElement("div"); more.className="more";
+    more.textContent="+"+(evs.length-show.length)+" more";
+    more.onclick=()=>openDay(date,evs);
+    cell.appendChild(more);
+  }
+  if(evs.length){ cell.style.cursor="pointer";
+    cell.onclick=(ev)=>{ if(ev.target.closest(".ev")||ev.target.closest(".more"))return; openDay(date,evs); }; }
+  return cell;
+}
+function eventEl(e){
+  const md=e.media, prem=e.episode===1, fin=isFinale(md,e.episode);
+  const el=document.createElement("div");
+  el.className="ev"+(prem?" prem":fin?" fin":"")+(isWatched(md.id)?" mine":"");
+  if(md.coverImage&&md.coverImage.color&&!prem&&!fin) el.style.borderLeftColor=md.coverImage.color;
+  el.innerHTML=(md.coverImage&&md.coverImage.medium?`<img src="${md.coverImage.medium}" alt="" loading="lazy">`:"")+
+    `<span class="t">${esc(title(md))}</span><span class="epn">${prem?"★EP1":fin?"🏁FIN":"E"+e.episode}</span>`;
+  el.title=title(md)+" · Ep "+e.episode+(fin?" (Season finale)":"")+" · "+fmtTime(e.ts);
+  el.onclick=(ev)=>{ ev.stopPropagation(); openDetail(md,e.episode); };
+  return el;
+}
+function dowHeader(){
+  const h=document.createElement("div"); h.className="dow";
+  for(const d of DOW){ const c=document.createElement("div"); c.textContent=d; h.appendChild(c); }
+  return h;
+}
+function renderMonth(wrap){
+  const {start}=visibleRange();
+  const map=mapByDay(rangeEvents());
+  wrap.appendChild(dowHeader());
+  const grid=document.createElement("div"); grid.className="grid";
+  for(let i=0;i<42;i++){
+    const d=new Date(start.getFullYear(),start.getMonth(),start.getDate()+i);
+    grid.appendChild(dayCell(d, map.get(keyOf(d))||[], {dimOut:true, max:0}));
+  }
+  wrap.appendChild(grid);
+}
+function renderWeek(wrap){
+  const {start}=visibleRange();
+  const map=mapByDay(rangeEvents());
+  wrap.appendChild(dowHeader());
+  const grid=document.createElement("div"); grid.className="grid week";
+  let todayCell=null;
+  for(let i=0;i<7;i++){
+    const d=new Date(start.getFullYear(),start.getMonth(),start.getDate()+i);
+    const c=dayCell(d, map.get(keyOf(d))||[], {dimOut:false, max:0, nowline:true});
+    if(keyOf(d)===keyOf(new Date())) todayCell=c;
+    grid.appendChild(c);
+  }
+  wrap.appendChild(grid);
+  if(todayCell) requestAnimationFrame(()=>todayCell.scrollIntoView({block:"nearest",inline:"nearest"}));
+}
+function renderAgenda(wrap){
+  const evs=rangeEvents().sort((a,b)=>a.ts-b.ts);
+  const cont=document.createElement("div"); cont.className="agenda";
+  if(!evs.length){ cont.innerHTML="<div class='empty'>No releases match your filters in this range.</div>"; wrap.appendChild(cont); return; }
+  const now=Date.now()/1000;
+  let lastDay=null, nowDiv=null, nowInserted=false;
+  for(const e of evs){
+    if(!nowInserted && e.ts>now){ const dv=document.createElement("div"); dv.className="adiv"; dv.textContent="NOW"; cont.appendChild(dv); nowDiv=dv; nowInserted=true; }
+    const dk=dayKeyTs(e.ts);
+    if(dk!==lastDay){
+      const d=new Date(e.ts*1000);
+      const isToday=keyOf(d)===keyOf(new Date());
+      const h=document.createElement("div"); h.className="aday"+(isToday?" istoday":"");
+      h.textContent=d.toLocaleDateString([], {weekday:"long",month:"long",day:"numeric"})+(isToday?"  ·  TODAY":"");
+      cont.appendChild(h); lastDay=dk;
+    }
+    cont.appendChild(agendaRow(e,now));
+  }
+  if(!nowInserted){ const dv=document.createElement("div"); dv.className="adiv"; dv.textContent="NOW (all below already aired)"; cont.appendChild(dv); nowDiv=dv; }
+  wrap.appendChild(cont);
+  if(nowDiv) requestAnimationFrame(()=>nowDiv.scrollIntoView({block:"center"}));
+}
+function agendaRow(e,now){
+  const md=e.media, prem=e.episode===1, fin=isFinale(md,e.episode), past=e.ts<=now;
+  const row=document.createElement("div");
+  row.className="arow"+(prem?" prem":fin?" fin":"")+(past?" past":"")+(isWatched(md.id)?" mine":"");
+  row.innerHTML=
+    `<span class="atime">${fmtTime(e.ts)}</span>`+
+    (md.coverImage&&md.coverImage.medium?`<img src="${md.coverImage.medium}" alt="" loading="lazy">`:"")+
+    `<div class="ainfo"><div class="at">${esc(title(md))}</div>
+      <div class="ameta">
+        ${prem?'<span class="pill prem">PREMIERE</span>':`<span class="pill">Ep ${e.episode}</span>`}
+        ${fin?'<span class="pill fin">🏁 FINALE</span>':''}
+        <span class="pill">${FMT_LABEL[md.format]||md.format||"?"}</span>
+        ${md.averageScore?`<span class="pill score">★ ${md.averageScore}</span>`:""}
+        ${past?"":`<span class="pill cd">in ${cdLive(e.ts)}</span>`}
+        ${starSpan(md.id)}${bellSpan(md.id)}
+      </div></div>`;
+  row.onclick=(ev)=>{ if(ev.target.closest("[data-bell]")||ev.target.closest("[data-watch]"))return; openDetail(md,e.episode); };
+  return row;
+}
+function renderView(){
+  if(state.viewMode==="dashboard"){ hideEvents(); renderDashboard(); return; }
+  if(state.viewMode==="events"){ hideDashboard(); renderEvents(); return; }
+  hideDashboard(); hideEvents();
+  const wrap=$("calWrap"); wrap.innerHTML="";
+  wrap.classList.toggle("cal", true);
+  if(state.viewMode==="week") renderWeek(wrap);
+  else if(state.viewMode==="agenda") renderAgenda(wrap);
+  else renderMonth(wrap);
+  renderSidebars();
+  scheduleNotifications();
+}
+
+/* ---------- sidebars ---------- */
+function renderSidebars(){
+  const {start,end}=visibleRange();
+  const s=start.getTime(), e=new Date(end.getFullYear(),end.getMonth(),end.getDate(),23,59,59).getTime();
+  // premieres within visible range
+  const prem=[];
+  for(const md of state.media){
+    if(nsfwHidden(md)||isHidden(md.id)) continue;
+    const ep1=((md.airingSchedule&&md.airingSchedule.nodes)||[]).find(n=>n.episode===1);
+    if(ep1){ const t=ep1.airingAt*1000; if(t>=s&&t<=e) prem.push({md,ts:ep1.airingAt}); }
+  }
+  prem.sort((a,b)=>a.ts-b.ts);
+  $("premieres").innerHTML = prem.length
+    ? prem.map(p=>prow(p.md,"Premieres "+new Date(p.ts*1000).toLocaleDateString([], {month:"short",day:"numeric"}),true)).join("")
+    : "<div class='empty'>No new premieres in this range.</div>";
+
+  const now=Date.now()/1000;
+  const up=state.media.filter(md=>md.status==="NOT_YET_RELEASED" && !nsfwHidden(md) && !isHidden(md.id)).map(md=>{
+    const n=(md.airingSchedule&&md.airingSchedule.nodes)||[];
+    const next=n.map(x=>x.airingAt).filter(t=>t>now).sort((a,b)=>a-b)[0] || sdTs(md.startDate);
+    return {md,ts:next};
+  }).sort((a,b)=>(a.ts||9e15)-(b.ts||9e15)).slice(0,14);
+  $("announce").innerHTML = up.length
+    ? up.map(u=>prow(u.md, u.ts?("Starts "+new Date(u.ts*1000).toLocaleDateString([], {month:"short",day:"numeric",year:"numeric"})):"TBA")).join("")
+    : "<div class='empty'>No upcoming announcements in the fetched seasons.</div>";
+
+  // continue watching — shows you've started that have a newer aired episode
+  const cw=state.media.filter(md=>!nsfwHidden(md)&&!isHidden(md.id)).map(md=>({md,p:getProgress(md.id),aired:maxAiredEp(md)}))
+    .filter(x=>x.p>0 && x.aired>x.p).sort((a,b)=>(b.md.popularity||0)-(a.md.popularity||0)).slice(0,10);
+  const cwCard=$("cwCard");
+  if(cwCard){
+    if(cw.length){ cwCard.style.display=""; $("continueWatching").innerHTML=cw.map(x=>prow(x.md,"▶ Next: Episode "+(x.p+1))).join(""); }
+    else cwCard.style.display="none";
+  }
+
+  // trending now — by AniList's trending score (SFW + not hidden)
+  const trend=state.media.filter(md=>!nsfwHidden(md)&&!isHidden(md.id)&&(md.trending||0)>0)
+    .sort((a,b)=>(b.trending||0)-(a.trending||0)).slice(0,8);
+  $("trending").innerHTML = trend.length
+    ? trend.map(md=>{ const na=nextAir(md); return prow(md, na?("Next: "+new Date(na.airingAt*1000).toLocaleDateString([], {month:"short",day:"numeric"})):"🔥 Trending now"); }).join("")
+    : "<div class='empty'>No trending data right now.</div>";
+
+  // recently viewed rail
+  const rv=(state.recent||[]).filter(r=>r&&!isHidden(r.id));
+  const rvCard=$("rvCard");
+  if(rvCard){
+    if(rv.length){ rvCard.style.display=""; $("recentRail").innerHTML=`<div class="wn-list">`+rv.slice(0,18).map(r=>`<img class="wn-cover" data-rv="${esc(String(r.id))}" src="${esc(r.img||"")}" alt="${esc(r.t||"")}" title="${esc(r.t||"")}" loading="lazy">`).join("")+`</div>`; }
+    else rvCard.style.display="none";
+  }
+
+  document.querySelectorAll(".prow[data-mid]").forEach(el=>{
+    el.onclick=(ev)=>{ if(ev.target.closest("[data-bell]")||ev.target.closest("[data-watch]"))return; const md=state.media.find(x=>x.id==el.dataset.mid); if(md) openDetail(md,1); };
+  });
+  document.querySelectorAll("#recentRail [data-rv]").forEach(el=>{ el.onclick=()=>openShowById(el.dataset.rv); });
+}
+function sdTs(sd){ return sd&&sd.year?Math.floor(new Date(sd.year,(sd.month||1)-1,sd.day||1).getTime()/1000):null; }
+function prow(md,sub,prem){
+  const score=md.averageScore?`<span class="pill score">★ ${md.averageScore}</span>`:"";
+  return `<div class="prow${isWatched(md.id)?" mine":""}" data-mid="${md.id}">
+    <img src="${md.coverImage&&md.coverImage.medium?md.coverImage.medium:""}" alt="" loading="lazy">
+    <div class="info">
+      <div class="pt">${esc(title(md))}</div>
+      <div class="meta">${prem?'<span class="pill prem">EP1</span>':''}<span class="pill">${FMT_LABEL[md.format]||md.format||"?"}</span>${score}${starSpan(md.id)}${bellSpan(md.id)}</div>
+      <div class="meta" style="margin-top:3px">${esc(sub)}</div>
+    </div></div>`;
+}
+
+/* ---------- news ---------- */
+const ANN_FEED="https://www.animenewsnetwork.com/news/rss.xml?ann-edition=us";
+async function fetchNews(){
+  const url="https://api.rss2json.com/v1/api.json?rss_url="+encodeURIComponent(ANN_FEED);
+  const res=await fetch(url,{headers:{"Accept":"application/json"}});
+  if(!res.ok) throw new Error("news HTTP "+res.status);
+  const json=await res.json();
+  if(json.status!=="ok"||!Array.isArray(json.items)) throw new Error("news feed error");
+  return json.items;
+}
+async function loadNews(){
+  const box=$("news"); box.innerHTML="<div class='empty'>Loading latest news…</div>";
+  try{
+    let items=await fetchNews();
+    const anime=items.filter(i=>(i.categories||[]).some(c=>/anime/i.test(c)));
+    if(anime.length>=5) items=anime;
+    box.innerHTML=items.slice(0,18).map(i=>{
+      const d=new Date(i.pubDate.replace(" ","T")+"Z");
+      const cat=(i.categories&&i.categories[0])?i.categories[0]:"News";
+      return `<a class="prow" href="${esc(i.link)}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">
+        <div class="info"><div class="pt" style="white-space:normal;line-height:1.3">${esc(decodeEntities(i.title))}</div>
+        <div class="meta" style="margin-top:4px"><span class="pill">${esc(cat)}</span><span>${isNaN(d)?"":relTime(d)}</span></div></div></a>`;
+    }).join("");
+  }catch(err){
+    console.error("news:",err);
+    box.innerHTML="<div class='empty'>Couldn't load live news right now.<br><a href='https://www.animenewsnetwork.com/news/' target='_blank' rel='noopener'>Open Anime News Network →</a></div>";
+  }
+}
+
+/* ---------- modals ---------- */
+// Inline trailer: a lightweight thumbnail "facade" that swaps to an iframe on click
+// (keeps the modal fast and avoids loading YouTube until the user actually plays).
+function trailerEmbedHTML(md){
+  const tr=md.trailer; if(!tr||!tr.id) return "";
+  let src;
+  if(tr.site==="youtube") src=`https://www.youtube-nocookie.com/embed/${encodeURIComponent(tr.id)}`;
+  else if(tr.site==="dailymotion") src=`https://www.dailymotion.com/embed/video/${encodeURIComponent(tr.id)}`;
+  else return "";
+  const thumb = tr.site==="youtube" ? `https://i.ytimg.com/vi/${encodeURIComponent(tr.id)}/hqdefault.jpg`
+              : (md.bannerImage || (md.coverImage&&md.coverImage.large) || "");
+  return `<div class="trailer" data-embed="${esc(src)}" title="Play trailer">
+    ${thumb?`<img src="${esc(thumb)}" alt="${esc(title(md))} trailer" loading="lazy">`:""}
+    <span class="tplay">▶</span><span class="tlabel">▶ Play trailer</span>
+  </div>`;
+}
+// Related anime (sequels/prequels/side stories) — click jumps to that title.
+const REL_LABEL={PREQUEL:"Prequel",SEQUEL:"Sequel",PARENT:"Parent story",SIDE_STORY:"Side story",SPIN_OFF:"Spin-off",ALTERNATIVE:"Alternative",SUMMARY:"Summary",OTHER:"Related"};
+const REL_ORDER={PREQUEL:0,SEQUEL:1,PARENT:2,SIDE_STORY:3,SPIN_OFF:4,ALTERNATIVE:5,SUMMARY:6,OTHER:7};
+function relationsHTML(md){
+  const edges=((md.relations&&md.relations.edges)||[]).filter(e=>e&&e.node&&e.node.type==="ANIME"&&REL_LABEL[e.relationType]);
+  if(!edges.length) return "";
+  // chronological "franchise timeline": this show + its direct relations, by year
+  const seen=new Set([String(md.id)]);
+  const entries=[{id:String(md.id), t:title(md), img:(md.coverImage&&md.coverImage.medium)||"", y:(md.startDate&&md.startDate.year)||null, cur:true}];
+  for(const e of edges){ const n=e.node; if(seen.has(String(n.id))) continue; seen.add(String(n.id));
+    entries.push({id:String(n.id), t:title(n), img:(n.coverImage&&n.coverImage.medium)||"", y:(n.startDate&&n.startDate.year)||null, cur:false}); }
+  entries.sort((a,b)=>(a.y||9999)-(b.y||9999));
+  const items=entries.map(en=>`<button class="ftl-item ${en.cur?'cur':''}" ${en.cur?'':`data-rel="${en.id}"`} title="${esc(en.t)}">
+    <img src="${esc(en.img)}" alt="" loading="lazy"><span class="ftl-y">${en.y||"TBA"}${en.cur?" · this":""}</span><span class="ftl-t">${esc(en.t)}</span></button>`).join("");
+  return `<h4 style="margin:16px 0 6px">Franchise timeline</h4><div class="ftl">${items}</div>`;
+}
+// Streaming "where to watch" links (AniList externalLinks, type STREAMING).
+function streamChipsHTML(md){
+  const links=(md.externalLinks||[]).filter(l=>l&&l.type==="STREAMING"&&l.url);
+  if(!links.length) return "";
+  const seen=new Set();
+  const chips=links.filter(l=>{ const k=(l.site||l.url).toLowerCase(); if(seen.has(k))return false; seen.add(k); return true; }).map(l=>{
+    const col=l.color||"#22d3ee";
+    const icon=l.icon?`<img src="${esc(l.icon)}" alt="" width="14" height="14" style="border-radius:3px;margin-right:6px" loading="lazy">`:"";
+    return `<a class="stream-chip" href="${esc(l.url)}" target="_blank" rel="noopener" style="border-color:${esc(col)}">${icon}${esc(l.site||"Watch")}</a>`;
+  }).join("");
+  return `<div class="watch-row"><span class="watch-label">📺 Where to watch</span>${chips}</div>`;
+}
+function openDetail(md,episode){
+  pushRecent(md);
+  state._modalId=md.id;
+  $("modalTitle").textContent=title(md);
+  const genres=(md.genres||[]).slice(0,5).map(g=>`<span class="pill">${esc(g)}</span>`).join(" ");
+  const studio=(md.studios&&md.studios.nodes&&md.studios.nodes[0])?md.studios.nodes[0].name:"";
+  const desc=(md.description||"").replace(/<[^>]+>/g," ").trim();
+  const cover=md.coverImage?(md.coverImage.large||md.coverImage.medium):"";
+  const on=isFollowed(md.id);
+  const na=nextAir(md);
+  const nextBlock = na
+    ? `<div class="nextair">🕒 <span>Next episode</span>
+        <span class="na-when">Ep ${na.episode} · ${new Date(na.airingAt*1000).toLocaleString([], {weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})}</span>
+        <span class="tznote">${TZ_SHORT?"("+esc(TZ_SHORT)+" · your time)":"(your local time)"}</span>
+        <span class="pill cd">in ${cdLive(na.airingAt)}</span>
+        ${calButtonsHTML({k:"ep",mid:md.id,ep:na.episode,ts:na.airingAt})}</div>`
+    : "";
+  $("modalBody").innerHTML=`
+    <div style="display:flex;gap:14px">
+      ${cover?`<img src="${cover}" style="width:120px;border-radius:10px;flex:none" alt="">`:""}
+      <div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px">
+          <span class="pill">${FMT_LABEL[md.format]||md.format||"?"}</span>
+          ${md.episodes?`<span class="pill">${md.episodes} eps</span>`:""}
+          ${md.averageScore?`<span class="pill score">★ ${md.averageScore}</span>`:""}
+          <span class="pill">${(md.status||"").replace(/_/g," ").toLowerCase()}</span>
+        </div>
+        ${studio?`<div style="color:var(--muted);font-size:13px;margin-bottom:6px">Studio: ${esc(studio)}</div>`:""}
+        <div style="margin-bottom:10px">${genres}</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+          <button data-watch="${md.id}">${isWatched(md.id)?"★ In My List":"☆ Add to My List"}</button>
+          <button class="bellbtn ${on?'on':''}" data-bell="${md.id}">${on?"🔔 Alerts on":"🔕 Notify me"}</button>
+          <button data-share="${md.id}" title="Copy a shareable link to this show">🔗 Share</button>
+          <button data-hide="${md.id}" title="Hide this show everywhere">${isHidden(md.id)?"✓ Unhide":"🚫 Not interested"}</button>
+          <a href="${md.siteUrl||"#"}" target="_blank" rel="noopener">AniList →</a>
+        </div>
+      </div>
+    </div>
+    ${nextBlock}
+    ${streamChipsHTML(md)}
+    ${trailerEmbedHTML(md)}
+    ${desc?`<p style="color:var(--muted);font-size:13.5px;margin-top:14px;max-height:200px;overflow:auto">${esc(desc)}</p>`:""}
+    ${renderScheduleList(md)}
+    ${relationsHTML(md)}
+    <div id="castSlot"></div>
+    <div id="recsSlot"></div>
+    <div id="studioSlot"></div>`;
+  $("overlay").classList.add("on");
+  loadModalExtras(md.id);
+}
+function renderScheduleList(md){
+  const nodes=(md.airingSchedule&&md.airingSchedule.nodes)||[];
+  if(!nodes.length) return "";
+  const now=Date.now()/1000, prog=getProgress(md.id);
+  const rows=nodes.slice().sort((a,b)=>a.airingAt-b.airingAt).map(n=>{
+    const up=n.airingAt>now, watched=!up && n.episode<=prog;
+    const mark = up ? `<span style="width:18px;flex:none"></span>`
+      : `<span class="mark ${watched?'on':''}" data-mark="${md.id}|${n.episode}" title="${watched?'Watched — click to unmark':'Mark watched (this & earlier)'}">${watched?'✓':''}</span>`;
+    return `<div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid var(--line);${up?"":(watched?"":"opacity:.6")}">
+      ${mark}
+      <span style="flex:1">Episode ${n.episode}${isFinale(md,n.episode)?' <span class="pill fin">🏁 FINALE</span>':""}${up?` <span class="pill cd">in ${cdLive(n.airingAt)}</span>`:""}</span>
+      <span style="color:${up?"var(--accent2)":"var(--muted)"}">${new Date(n.airingAt*1000).toLocaleString([], {month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})}</span>
+    </div>`;
+  }).join("");
+  const watchedN=prog>0?`<span class="tznote"> · ${Math.min(prog,maxAiredEp(md))} watched</span>`:"";
+  return `<h4 style="margin:16px 0 6px">Airing schedule <span class="tznote">${TZ_SHORT?"· times in "+esc(TZ_SHORT)+" (your time)":"· your local time"}</span>${watchedN}</h4><div style="max-height:200px;overflow:auto">${rows}</div>`;
+}
+function openDay(d,evs){
+  $("modalTitle").textContent=d.toLocaleDateString([], {weekday:"long",month:"long",day:"numeric",year:"numeric"});
+  const now=Date.now()/1000;
+  $("modalBody").innerHTML=evs.slice().sort((a,b)=>a.ts-b.ts).map(e=>{
+    const md=e.media,prem=e.episode===1,fin=isFinale(md,e.episode),up=e.ts>now;
+    return `<div class="prow" data-mid2="${md.id}">
+      <img src="${md.coverImage&&md.coverImage.medium?md.coverImage.medium:""}" alt="">
+      <div class="info"><div class="pt">${esc(title(md))}</div>
+        <div class="meta">${prem?'<span class="pill prem">PREMIERE</span>':''}${fin?'<span class="pill fin">🏁 FINALE</span>':''}<span class="pill">Ep ${e.episode}</span><span class="pill">${fmtTime(e.ts)}</span>${md.averageScore?`<span class="pill score">★ ${md.averageScore}</span>`:""}${up?`<span class="pill cd">in ${cdLive(e.ts)}</span>`:""}${bellSpan(md.id)}</div>
+      </div></div>`;
+  }).join("");
+  $("modalBody").querySelectorAll("[data-mid2]").forEach(el=>{
+    el.onclick=(ev)=>{ if(ev.target.closest("[data-bell]"))return; const e=evs.find(x=>x.media.id==el.dataset.mid2); if(e) openDetail(e.media,e.episode); };
+  });
+  $("overlay").classList.add("on");
+}
+function closeModal(){ $("overlay").classList.remove("on"); }
+
+/* ---------- embed widget snippet ---------- */
+function embedSnippet(days){
+  const src=location.origin+"/embed/?days="+days;
+  return `<iframe src="${src}" title="AniCal — anime airing schedule" width="360" height="520" style="border:1px solid #2a3140;border-radius:12px;max-width:100%" loading="lazy"></iframe>`;
+}
+function openEmbed(){
+  $("modalTitle").textContent="Embed AniCal on your site";
+  $("modalBody").innerHTML=`
+    <p style="color:var(--muted);margin-top:0">Drop this live "what's airing" widget into any page or blog. It updates itself — no maintenance.</p>
+    <div class="embed-opts">
+      <label>Days ahead:
+        <select id="embDays">
+          <option value="1">1</option><option value="3">3</option>
+          <option value="7" selected>7</option><option value="14">14</option>
+        </select>
+      </label>
+      <button id="embCopy">📋 Copy code</button>
+    </div>
+    <textarea class="embed-code" id="embCode" readonly></textarea>
+    <h4 style="margin:16px 0 6px">Live preview</h4>
+    <div id="embPreview"></div>`;
+  const sync=()=>{
+    const days=$("embDays").value;
+    $("embCode").value=embedSnippet(days);
+    $("embPreview").innerHTML=embedSnippet(days);
+  };
+  $("embDays").onchange=sync;
+  $("embCopy").onclick=()=>{ $("embCode").select(); try{ document.execCommand("copy"); }catch(e){} navigator.clipboard&&navigator.clipboard.writeText($("embCode").value).catch(()=>{}); $("embCopy").textContent="✓ Copied"; setTimeout(()=>$("embCopy").textContent="📋 Copy code",1500); };
+  sync();
+  $("overlay").classList.add("on");
+}
+
+/* ---------- appearance (theme / accent / density) ---------- */
+const ACCENTS=[["Purple","#8b5cf6","#22d3ee"],["Blue","#3b82f6","#22d3ee"],["Emerald","#10b981","#34d399"],["Rose","#f43f5e","#fb7185"],["Amber","#f59e0b","#fbbf24"],["Cyan","#06b6d4","#67e8f9"]];
+function effectiveTheme(){
+  if(state.theme==="auto") return (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) ? "light" : "dark";
+  return state.theme;
+}
+function applyAppearance(){
+  const eff=effectiveTheme();
+  document.body.classList.toggle("theme-light", eff==="light");
+  document.body.classList.toggle("dense", state.density==="dense");
+  const parts=(state.accent||"#8b5cf6|#22d3ee").split("|");
+  document.documentElement.style.setProperty("--accent", parts[0]);
+  document.documentElement.style.setProperty("--accent2", parts[1]||"#22d3ee");
+  const m=document.querySelector('meta[name=theme-color]'); if(m) m.setAttribute("content", eff==="light"?"#f5f7fb":"#0d1117");
+}
+// keep "Auto" in sync with the OS theme while it's selected
+if(window.matchMedia){ try{ window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{ if(state.theme==="auto") applyAppearance(); }); }catch(e){} }
+function openSettings(){
+  $("modalTitle").textContent="⚙ Appearance";
+  const sw=ACCENTS.map(([name,a,b])=>`<button class="swatch${state.accent===a+"|"+b?" sel":""}" data-accent="${a}|${b}" title="${name}" style="background:linear-gradient(135deg,${a},${b})"></button>`).join("");
+  $("modalBody").innerHTML=`
+    <div class="set-row"><div class="set-label">Theme</div>
+      <div class="seg2"><button data-theme="dark" class="${state.theme==="dark"?"on":""}">🌙 Dark</button><button data-theme="light" class="${state.theme==="light"?"on":""}">☀️ Light</button><button data-theme="auto" class="${state.theme==="auto"?"on":""}">🌗 Auto</button></div></div>
+    <div class="set-row"><div class="set-label">Accent</div><div class="swatches">${sw}</div></div>
+    <div class="set-row"><div class="set-label">Density</div>
+      <div class="seg2"><button data-density="normal" class="${state.density!=="dense"?"on":""}">Comfortable</button><button data-density="dense" class="${state.density==="dense"?"on":""}">Compact</button></div></div>
+    <div class="set-row"><div class="set-label">Hidden</div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span style="color:var(--muted);font-size:13px">${state.hidden.size} hidden show${state.hidden.size===1?"":"s"}</span>${state.hidden.size?`<button id="setUnhide">Unhide all</button>`:""}</div></div>
+    <div class="set-row"><div class="set-label">AniList</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+        <input id="aniUser" placeholder="AniList username" autocomplete="off" spellcheck="false" style="flex:1;min-width:150px;padding:7px 10px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--fg)">
+        <button id="aniImport">⬇ Import my list</button>
+        <span id="aniStatus" style="color:var(--muted);font-size:12px;flex-basis:100%"></span>
+      </div></div>
+    <div class="set-row"><div class="set-label">Backup</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button id="setExport">⬇ Export file</button><button id="setImport">⬆ Import file</button>
+        <button id="setCopyCode">📋 Copy sync code</button><button id="setPasteCode">📥 Paste code</button>
+      </div></div>
+    <p style="color:var(--muted);font-size:12px;margin-bottom:0">Your views, watch-bells, hidden shows and reminders are saved on this device. Use Export or a sync code to copy them to another device. Import pulls your public AniList list into ⭐ My List with watch progress.</p>`;
+  if($("setUnhide")) $("setUnhide").onclick=()=>{ state.hidden.clear(); localStorage.removeItem("anical.hidden"); renderView(); openSettings(); };
+  if($("aniImport")){
+    const run=async()=>{
+      const u=$("aniUser").value, st=$("aniStatus"), btn=$("aniImport");
+      st.style.color="var(--muted)"; st.textContent="Importing…"; btn.disabled=true;
+      try{ const r=await importAniList(u);
+        st.style.color="var(--ok,#3fb950)";
+        st.textContent=`Imported: +${r.added} to ⭐ My List, ${r.progressed} with progress (of ${r.total} entries).`;
+      }catch(e){ st.style.color="var(--bad,#f85149)"; st.textContent=e.message||"Import failed."; }
+      finally{ btn.disabled=false; }
+    };
+    $("aniImport").onclick=run;
+    $("aniUser").onkeydown=ev=>{ if(ev.key==="Enter") run(); };
+    const last=localStorage.getItem("anical.aniUser"); if(last) $("aniUser").value=last;
+    $("aniUser").onchange=()=>localStorage.setItem("anical.aniUser",$("aniUser").value.trim());
+  }
+  if($("setExport")) $("setExport").onclick=exportSettings;
+  if($("setImport")) $("setImport").onclick=pickImport;
+  if($("setCopyCode")) $("setCopyCode").onclick=copySyncCode;
+  if($("setPasteCode")) $("setPasteCode").onclick=pasteSyncCode;
+  $("overlay").classList.add("on");
+}
+/* ---- settings backup / sync (export, import, share-code) ---- */
+const NO_BACKUP=new Set(["anical.cache.v1","anical.seenIds","anical.lastVisit"]);   // derived/per-device caches, not worth syncing
+function collectSettings(){ const d={}; for(let i=0;i<localStorage.length;i++){ const k=localStorage.key(i); if(k&&k.indexOf("anical.")===0&&!NO_BACKUP.has(k)) d[k]=localStorage.getItem(k); } return d; }
+function applySettings(data){ let n=0; for(const k in data){ if(k.indexOf("anical.")===0){ try{ localStorage.setItem(k,data[k]); n++; }catch(_){} } } return n; }
+function exportSettings(){ downloadFile("anical-settings.json", JSON.stringify({type:"anical-settings",version:1,exported:new Date().toISOString(),data:collectSettings()},null,2), "application/json"); }
+function importSettingsText(text){
+  let o; try{ o=JSON.parse(text); }catch(e){ alert("That doesn't look like valid AniCal settings."); return; }
+  const data=(o&&o.data&&typeof o.data==="object")?o.data:((o&&typeof o==="object")?o:null);
+  if(!data){ alert("That doesn't look like valid AniCal settings."); return; }
+  const n=applySettings(data); alert("Imported "+n+" setting"+(n===1?"":"s")+". Reloading…"); location.reload();
+}
+function pickImport(){ const inp=document.createElement("input"); inp.type="file"; inp.accept="application/json,.json"; inp.onchange=()=>{ const f=inp.files&&inp.files[0]; if(!f) return; const r=new FileReader(); r.onload=()=>importSettingsText(String(r.result)); r.readAsText(f); }; inp.click(); }
+function copySyncCode(){
+  let code=""; try{ code=btoa(unescape(encodeURIComponent(JSON.stringify(collectSettings())))); }catch(e){ return; }
+  const b=$("setCopyCode"), done=()=>{ if(b){ b.textContent="✓ Copied"; setTimeout(()=>{ if(b.isConnected) b.textContent="📋 Copy sync code"; },1500); } };
+  if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(code).then(done).catch(()=>window.prompt("Copy your sync code:",code)); else window.prompt("Copy your sync code:",code);
+}
+function pasteSyncCode(){ const t=window.prompt("Paste your AniCal sync code:"); if(!t) return; let json; try{ json=decodeURIComponent(escape(atob(t.trim()))); }catch(e){ alert("That sync code is invalid."); return; } importSettingsText(json); }
+
+/* ---------- subscribable calendar feeds ---------- */
+function subRow(name,label,desc){
+  const https=location.origin+"/feeds/"+name+".ics";
+  const webcal=https.replace(/^https?:/,"webcal:");
+  const gcal="https://calendar.google.com/calendar/u/0/r?cid="+encodeURIComponent(https);
+  return `<div style="border:1px solid var(--line);border-radius:11px;padding:12px;margin-bottom:10px">
+    <div style="font-weight:700">${esc(label)}</div>
+    <div style="color:var(--muted);font-size:12.5px;margin:3px 0 9px">${esc(desc)}</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+      <a class="discord-btn" style="background:var(--accent)" href="${esc(webcal)}">＋ Apple / Outlook</a>
+      <a class="discord-btn" style="background:#4285F4" href="${esc(gcal)}" target="_blank" rel="noopener">＋ Google Calendar</a>
+      <button data-copyfeed="${esc(https)}">📋 Copy URL</button>
+    </div></div>`;
+}
+function myShowsIcs(){
+  const now=Date.now()/1000, ev=[];
+  for(const md of state.media){
+    if(!isWatched(md.id)) continue;
+    for(const n of (md.airingSchedule&&md.airingSchedule.nodes)||[]){
+      if(n.airingAt < now-7*86400) continue;   // keep a little history + everything upcoming
+      const start=new Date(n.airingAt*1000), end=new Date(n.airingAt*1000+30*60000);
+      ev.push(["BEGIN:VEVENT","UID:anical-"+md.id+"-"+n.episode+"@anicalendar.netlify.app","DTSTAMP:"+icsStamp(start),"DTSTART:"+icsStamp(start),"DTEND:"+icsStamp(end),"SUMMARY:"+icsEsc(title(md)+" — Episode "+n.episode), md.siteUrl?"URL:"+icsEsc(md.siteUrl):null,"END:VEVENT"].filter(Boolean).join("\r\n"));
+    }
+  }
+  return ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//AniCal//anicalendar.netlify.app//EN","CALSCALE:GREGORIAN","METHOD:PUBLISH","X-WR-CALNAME:AniCal — My Shows",...ev,"END:VCALENDAR"].join("\r\n")+"\r\n";
+}
+function downloadMyShows(){
+  if(!state.watch.size){ alert("Star some shows (⭐ Add to My List) first, then download your calendar."); return; }
+  downloadFile("anical-my-shows.ics", myShowsIcs(), "text/calendar");
+}
+function openSubscribe(){
+  $("modalTitle").textContent="🔔 Subscribe to a calendar feed";
+  $("modalBody").innerHTML=`<p style="color:var(--muted);margin-top:0">Add a live AniCal feed to your own calendar app. It auto-refreshes (about twice a day), so new air dates appear on their own — no re-downloading.</p>`+
+    `<div style="border:1px solid var(--premiere);border-radius:11px;padding:12px;margin-bottom:10px;background:rgba(245,158,11,.06)">
+      <div style="font-weight:700">⭐ My shows (${state.watch.size})</div>
+      <div style="color:var(--muted);font-size:12.5px;margin:3px 0 9px">Upcoming episodes of the shows in your list. Generated on this device — re-download after adding shows.</div>
+      <button id="dlMine">⬇ Download .ics</button>
+    </div>`+
+    subRow("premieres","🌸 Premieres","Every new-season premiere (episode 1).")+
+    subRow("finales","🏁 Season finales","The last episode of finishing shows.")+
+    subRow("all","📺 All episodes","Every episode airing over the next ~6 weeks.")+
+    `<p style="color:var(--muted);font-size:12px;margin-bottom:0">Times are in UTC; calendar apps convert to your local time automatically. On Google, the “＋ Apple/Outlook” webcal link also works.</p>`;
+  if($("dlMine")) $("dlMine").onclick=downloadMyShows;
+  $("overlay").classList.add("on");
+}
+
+/* ---------- dashboard ---------- */
+let chartJsReady=false;
+const dashCharts=[];
+const SOURCE_LABEL={ORIGINAL:"Original",MANGA:"Manga",LIGHT_NOVEL:"Light Novel",VISUAL_NOVEL:"Visual Novel",VIDEO_GAME:"Video Game",OTHER:"Other",NOVEL:"Novel",DOUJINSHI:"Doujinshi",ANIME:"Anime",WEB_NOVEL:"Web Novel",LIVE_ACTION:"Live Action",GAME:"Game",COMIC:"Comic",MULTIMEDIA_PROJECT:"Multimedia",PICTURE_BOOK:"Picture Book"};
+const CHART_COLORS=["#8b5cf6","#22d3ee","#f59e0b","#22c55e","#ef4444","#ec4899","#3b82f6","#a855f7","#14b8a6","#f97316","#6366f1","#84cc16"];
+
+function loadChartJs(){
+  if(chartJsReady) return Promise.resolve();
+  return new Promise((res,rej)=>{
+    const s=document.createElement("script");
+    s.src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js";
+    s.onload=()=>{
+      chartJsReady=true;
+      Chart.defaults.color="#8b97a7";
+      Chart.defaults.borderColor="#2a3140";
+      Chart.defaults.font.family="'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif";
+      res();
+    };
+    s.onerror=()=>rej(new Error("Failed to load Chart.js"));
+    document.head.appendChild(s);
+  });
+}
+function destroyDashCharts(){ for(const c of dashCharts) c.destroy(); dashCharts.length=0; }
+
+function computeDashStats(){
+  // ONE consistent scope for every number on the dashboard: the 3-month
+  // season the anchor falls in. visibleRange() returns that range in
+  // dashboard mode. Each media object carries its FULL airingSchedule, so we
+  // can count episodes across the whole season even though the data was
+  // fetched per-season. We only count shows that ACTUALLY air in the window,
+  // which also drops dedup/carryover noise from neighbouring seasons.
+  const {start,end}=visibleRange();
+  const s=start.getTime(), e=new Date(end.getFullYear(),end.getMonth(),end.getDate(),23,59,59,999).getTime();
+
+  // episode airings that fall inside the season window
+  const events=[];
+  for(const md of state.media){
+    if(nsfwHidden(md)||isHidden(md.id)) continue;
+    for(const n of (md.airingSchedule&&md.airingSchedule.nodes)||[]){
+      const t=n.airingAt*1000;
+      if(t>=s&&t<=e) events.push({media:md,episode:n.episode,ts:n.airingAt});
+    }
+  }
+
+  // distinct shows that air at least once this season
+  const showMap=new Map();
+  for(const ev of events) if(!showMap.has(ev.media.id)) showMap.set(ev.media.id, ev.media);
+  const shows=[...showMap.values()];
+
+  // premieres / finales counted as DISTINCT shows (one ep1 / one finale each)
+  const premiereIds=new Set(), finaleIds=new Set();
+  for(const ev of events){
+    if(ev.episode===1) premiereIds.add(ev.media.id);
+    if(isFinale(ev.media,ev.episode)) finaleIds.add(ev.media.id);
+  }
+  const premieres=premiereIds.size, finales=finaleIds.size;
+
+  // genre / format / source / studio — over the shows airing this season
+  const genreCounts={}, formatCounts={}, sourceCounts={}, studioCounts={};
+  for(const md of shows){
+    for(const g of md.genres||[]) genreCounts[g]=(genreCounts[g]||0)+1;
+    const fk=FMT_LABEL[md.format]||md.format||"Other"; formatCounts[fk]=(formatCounts[fk]||0)+1;
+    const src=md.source?(SOURCE_LABEL[md.source]||md.source):"Unknown"; sourceCounts[src]=(sourceCounts[src]||0)+1;
+    const st=md.studios&&md.studios.nodes&&md.studios.nodes[0]; if(st) studioCounts[st.name]=(studioCounts[st.name]||0)+1;
+  }
+
+  // score distribution — over the shows airing this season
+  const scoreBuckets={"<20":0,"20s":0,"30s":0,"40s":0,"50s":0,"60s":0,"70s":0,"80s":0,"90+":0};
+  for(const md of shows){
+    const v=md.averageScore; if(!v) continue;
+    if(v>=90) scoreBuckets["90+"]++;
+    else if(v>=80) scoreBuckets["80s"]++;
+    else if(v>=70) scoreBuckets["70s"]++;
+    else if(v>=60) scoreBuckets["60s"]++;
+    else if(v>=50) scoreBuckets["50s"]++;
+    else if(v>=40) scoreBuckets["40s"]++;
+    else if(v>=30) scoreBuckets["30s"]++;
+    else if(v>=20) scoreBuckets["20s"]++;
+    else scoreBuckets["<20"]++;
+  }
+
+  const dowCounts={Sun:0,Mon:0,Tue:0,Wed:0,Thu:0,Fri:0,Sat:0};
+  for(const ev of events) dowCounts[DOW[new Date(ev.ts*1000).getDay()]]++;
+
+  const scored=shows.filter(md=>md.averageScore);
+  const avgScore=scored.length?Math.round(scored.reduce((a,md)=>a+md.averageScore,0)/scored.length):0;
+  const topShows=shows.slice().sort((a,b)=>(b.popularity||0)-(a.popularity||0)).slice(0,10);
+  const topGenre=Object.entries(genreCounts).sort((a,b)=>b[1]-a[1])[0];
+
+  return {events,shows,genreCounts,premieres,finales,formatCounts,sourceCounts,scoreBuckets,studioCounts,dowCounts,avgScore,topShows,totalShows:shows.length,totalEpisodes:events.length,topGenre:topGenre?topGenre[0]:"—"};
+}
+
+async function renderDashboard(){
+  const dash=$("dashboardWrap");
+  dash.style.display="";
+  document.querySelector("main").style.display="none";
+  document.body.classList.add("dash-mode");
+  dash.innerHTML='<div class="dash-loading"><span class="spin" style="display:inline-block;margin-right:8px"></span> Loading dashboard…</div>';
+
+  try{ await loadChartJs(); }catch(e){
+    dash.innerHTML='<div class="dash-loading">⚠ Failed to load charting library. Check your connection and try again.</div>';
+    return;
+  }
+  destroyDashCharts();
+  const st=computeDashStats();
+
+  dash.innerHTML=`
+    <div class="dash-tiles">
+      <div class="dash-tile"><div class="dt-val">${st.totalShows}</div><div class="dt-label">Shows Airing</div></div>
+      <div class="dash-tile"><div class="dt-val">${st.totalEpisodes}</div><div class="dt-label">Episodes This Season</div></div>
+      <div class="dash-tile"><div class="dt-val">${st.premieres}</div><div class="dt-label">Premiering</div></div>
+      <div class="dash-tile"><div class="dt-val">${st.finales}</div><div class="dt-label">Ending (Finale)</div></div>
+      <div class="dash-tile"><div class="dt-val">${st.avgScore||"—"}</div><div class="dt-label">Avg Score</div></div>
+      <div class="dash-tile"><div class="dt-val">${esc(st.topGenre)}</div><div class="dt-label">Top Genre</div></div>
+    </div>
+    <div class="dash-charts">
+      <div class="dash-chart"><h3>🎭 Anime by Genre</h3><canvas id="chGenre"></canvas></div>
+      <div class="dash-chart"><h3>📅 Starting vs Ending</h3><canvas id="chStartEnd"></canvas></div>
+      <div class="dash-chart"><h3>📺 Format Distribution</h3><canvas id="chFormat"></canvas></div>
+      <div class="dash-chart"><h3>📖 Source Material</h3><canvas id="chSource"></canvas></div>
+      <div class="dash-chart"><h3>⭐ Score Distribution</h3><canvas id="chScore"></canvas></div>
+      <div class="dash-chart"><h3>🏢 Top Studios</h3><canvas id="chStudio"></canvas></div>
+      <div class="dash-chart"><h3>📆 Episodes by Day of Week</h3><canvas id="chDow"></canvas></div>
+      <div class="dash-chart"><h3>🔥 Top 10 Most Popular</h3><canvas id="chTop"></canvas></div>
+    </div>`;
+
+  /* --- create charts --- */
+  const C=CHART_COLORS;
+  const light=effectiveTheme()==="light";
+  Chart.defaults.color = light ? "#5c6675" : "#8b97a7";
+  Chart.defaults.borderColor = light ? "#d9deea" : "#2a3140";
+  const GRID = light ? "rgba(0,0,0,.09)" : GRID;
+
+  // Genre (horizontal bar)
+  const ge=Object.entries(st.genreCounts).sort((a,b)=>b[1]-a[1]).slice(0,15);
+  dashCharts.push(new Chart($("chGenre"),{type:"bar",
+    data:{labels:ge.map(e=>e[0]),datasets:[{label:"Shows",data:ge.map(e=>e[1]),backgroundColor:C.slice(0,ge.length),borderRadius:6}]},
+    options:{indexAxis:"y",responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{color:GRID},ticks:{precision:0}},y:{grid:{display:false}}}}
+  }));
+
+  // Starting vs Ending (show counts — a show can both start & end in one cour,
+  // so these aren't mutually exclusive; a bar chart shows each honestly)
+  dashCharts.push(new Chart($("chStartEnd"),{type:"bar",
+    data:{labels:["Premiering","Ending (Finale)"],datasets:[{label:"Shows",data:[st.premieres,st.finales],backgroundColor:["#f59e0b","#ef4444"],borderRadius:6}]},
+    options:{responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{grid:{color:GRID},ticks:{precision:0}}}}
+  }));
+
+  // Format (doughnut)
+  const fe=Object.entries(st.formatCounts).sort((a,b)=>b[1]-a[1]);
+  dashCharts.push(new Chart($("chFormat"),{type:"doughnut",
+    data:{labels:fe.map(e=>e[0]),datasets:[{data:fe.map(e=>e[1]),backgroundColor:C.slice(0,fe.length),borderWidth:0}]},
+    options:{responsive:true,plugins:{legend:{position:"bottom"}}}
+  }));
+
+  // Source material (doughnut)
+  const se=Object.entries(st.sourceCounts).sort((a,b)=>b[1]-a[1]);
+  dashCharts.push(new Chart($("chSource"),{type:"doughnut",
+    data:{labels:se.map(e=>e[0]),datasets:[{data:se.map(e=>e[1]),backgroundColor:C.slice(0,se.length),borderWidth:0}]},
+    options:{responsive:true,plugins:{legend:{position:"bottom"}}}
+  }));
+
+  // Score distribution (bar)
+  const sk=Object.keys(st.scoreBuckets), sd=Object.values(st.scoreBuckets);
+  dashCharts.push(new Chart($("chScore"),{type:"bar",
+    data:{labels:sk,datasets:[{label:"Shows",data:sd,backgroundColor:sk.map((_,i)=>`hsl(${260+i*12},70%,55%)`),borderRadius:6}]},
+    options:{responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{color:GRID}},y:{grid:{color:GRID},ticks:{precision:0}}}}
+  }));
+
+  // Top studios (horizontal bar)
+  const sue=Object.entries(st.studioCounts).sort((a,b)=>b[1]-a[1]).slice(0,12);
+  dashCharts.push(new Chart($("chStudio"),{type:"bar",
+    data:{labels:sue.map(e=>e[0]),datasets:[{label:"Shows",data:sue.map(e=>e[1]),backgroundColor:"#22d3ee",borderRadius:6}]},
+    options:{indexAxis:"y",responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{color:GRID},ticks:{precision:0}},y:{grid:{display:false}}}}
+  }));
+
+  // Episodes by day of week (bar)
+  dashCharts.push(new Chart($("chDow"),{type:"bar",
+    data:{labels:Object.keys(st.dowCounts),datasets:[{label:"Episodes",data:Object.values(st.dowCounts),backgroundColor:C.slice(0,7),borderRadius:6}]},
+    options:{responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{color:GRID}},y:{grid:{color:GRID},ticks:{precision:0}}}}
+  }));
+
+  // Top 10 most popular (horizontal bar)
+  dashCharts.push(new Chart($("chTop"),{type:"bar",
+    data:{labels:st.topShows.map(md=>title(md).length>28?title(md).slice(0,26)+"…":title(md)),datasets:[{label:"Popularity",data:st.topShows.map(md=>md.popularity),backgroundColor:"#a855f7",borderRadius:6}]},
+    options:{indexAxis:"y",responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{color:GRID}},y:{grid:{display:false}}}}
+  }));
+}
+function hideDashboard(){
+  document.querySelector("main").style.display="";
+  $("dashboardWrap").style.display="none";
+  document.body.classList.remove("dash-mode");
+  destroyDashCharts();
+}
+
+/* ---------- events (real-life conventions / showcases where anime news breaks) ---------- */
+const EV_COLOR = { "Convention":"#8b5cf6", "Online Showcase":"#22d3ee", "Awards":"#f59e0b", "Doujin":"#ec4899", "Industry":"#22c55e", "Broadcast":"#14b8a6" };
+const evColor = t => EV_COLOR[t] || "#8b5cf6";
+function evRangeLabel(e){
+  const s=new Date(e.ts*1000);
+  if(e.end && e.end!==e.start){ const en=new Date(e.tsEnd*1000);
+    return s.toLocaleDateString([], {month:"short",day:"numeric"})+" – "+en.toLocaleDateString([], {month:"short",day:"numeric",year:"numeric"}); }
+  return s.toLocaleDateString([], {weekday:"short",month:"long",day:"numeric",year:"numeric"});
+}
+async function loadEventsData(){
+  if(state.eventsData) return state.eventsData;
+  const res=await fetch("events.json",{headers:{"Accept":"application/json"}});
+  if(!res.ok) throw new Error("events HTTP "+res.status);
+  const data=await res.json();
+  state.eventsData=Array.isArray(data)?data:[];
+  return state.eventsData;
+}
+function haversineKm(lat1,lon1,lat2,lon2){
+  const R=6371, toR=x=>x*Math.PI/180;
+  const dLa=toR(lat2-lat1), dLo=toR(lon2-lon1);
+  const s=Math.sin(dLa/2)**2 + Math.cos(toR(lat1))*Math.cos(toR(lat2))*Math.sin(dLo/2)**2;
+  return 2*R*Math.asin(Math.sqrt(s));
+}
+const kmLabel = km => km<10 ? `~${km.toFixed(0)} km` : km<1000 ? `~${Math.round(km/5)*5} km` : `~${Math.round(km/100)*100} km`;
+function setUserLoc(loc){
+  state.userLoc=loc;
+  if(loc) localStorage.setItem("anical.userLoc",JSON.stringify(loc)); else localStorage.removeItem("anical.userLoc");
+  fillEventsList();
+}
+async function geocodeUser(q){
+  q=(q||"").trim();
+  if(!q){ setUserLoc(null); return; }
+  const note=$("evLocNote"); if(note) note.textContent="Locating…";
+  try{
+    const city=q.split(",")[0].trim();
+    const r=await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1&language=en&format=json`,{headers:{Accept:"application/json"}});
+    const m=((await r.json()).results||[])[0];
+    if(!m){ if(note) note.textContent=`Couldn't find “${q}”. Try a bigger nearby city.`; return; }
+    setUserLoc({ lat:m.latitude, lon:m.longitude, label:[m.name,m.admin1,m.country].filter(Boolean).join(", ") });
+  }catch(e){ if(note) note.textContent="Location lookup failed — check your connection."; }
+}
+function useMyLocation(){
+  const note=$("evLocNote");
+  if(!navigator.geolocation){ if(note) note.textContent="Geolocation isn't available in this browser."; return; }
+  if(note) note.textContent="Locating…";
+  navigator.geolocation.getCurrentPosition(
+    p=>{ const li=$("evLoc"); if(li) li.value=""; setUserLoc({ lat:p.coords.latitude, lon:p.coords.longitude, label:"📍 Your location" }); },
+    ()=>{ if(note) note.textContent="Couldn't get your location (permission denied?). Type a city instead."; },
+    { timeout:8000, maximumAge:600000 }
+  );
+}
+async function renderEvents(){
+  const wrap=$("eventsWrap");
+  wrap.style.display=""; document.querySelector("main").style.display="none"; document.body.classList.add("events-mode");
+  wrap.innerHTML='<div class="ev-loading"><span class="spin" style="display:inline-block;margin-right:8px"></span> Loading events…</div>';
+  let data;
+  try{ data=await loadEventsData(); }
+  catch(e){ wrap.innerHTML='<div class="ev-loading">⚠ Couldn’t load events right now.</div>'; return; }
+
+  // parse + sort once, cache for filtering
+  state.eventsItems=data.map(e=>({ ...e,
+    ts: Math.floor(Date.parse((e.start||"")+"T12:00:00")/1000),
+    tsEnd: Math.floor(Date.parse(((e.end||e.start)||"")+"T23:59:59")/1000)
+  })).filter(e=>!isNaN(e.ts)).sort((a,b)=>a.ts-b.ts);
+  state.eventsIndex=new Map(state.eventsItems.map((e,i)=>[String(e.id||i),e]));
+
+  const rad=state.eventsRadius||0;
+  const submitUrl="https://github.com/KraysThePoet/anical/issues/new?labels=event&title="+encodeURIComponent("New event: ")+"&body="+encodeURIComponent("Event name:\nDate(s) (e.g. Sep 17–21, 2026):\nVenue:\nCity, Country:\nOfficial website:\nSource link (where you saw it):\n");
+  wrap.innerHTML=`<div class="ev-head"><h2>🎟️ Anime Events</h2>
+    <div class="ev-sub">Anime conventions &amp; expos <strong>worldwide</strong> — where studios reveal new shows, trailers, casts and release dates. Auto-updated daily from <a href="https://animecons.com/events/" target="_blank" rel="noopener">AnimeCons.com</a>. Set your location to find cons near you. Tap an event for details &amp; its official page.</div></div>
+    <div class="ev-bar">
+      <input type="search" id="evFilter" placeholder="🔍 Filter by name or place…" autocomplete="off" spellcheck="false" value="${esc(state.eventsFilter||"")}" />
+      <div class="seg" id="evViewSeg" style="margin-left:auto">
+        <button data-evview="list" class="${state.eventsMap?"":"active"}">📋 List</button>
+        <button data-evview="map" class="${state.eventsMap?"active":""}">🗺️ Map</button>
+      </div>
+    </div>
+    <div class="ev-bar">
+      <input type="search" id="evLoc" placeholder="📍 Your city / country…" autocomplete="off" spellcheck="false" value="${esc(state.userLoc&&!/^📍/.test(state.userLoc.label)?state.userLoc.label:"")}" />
+      <button id="evGeo" title="Use my device location">📍 Use my location</button>
+      <select id="evRadius" title="Only show events within this distance">
+        <option value="0">Any distance</option>
+        <option value="250">Within 250 km</option>
+        <option value="500">Within 500 km</option>
+        <option value="1000">Within 1000 km</option>
+        <option value="3000">Within 3000 km</option>
+      </select>
+    </div>
+    <div class="ev-bar" style="margin-top:0">
+      <span class="ev-approx" id="evCount"></span>
+      <span class="ev-approx" id="evLocNote"></span>
+      <a class="ev-badge" style="margin-left:auto;text-decoration:none" href="${submitUrl}" target="_blank" rel="noopener" title="Suggest a convention we're missing (opens GitHub)">➕ Submit an event</a>
+    </div>
+    <div id="evList"></div>
+    <div id="evMap" style="display:none;height:460px;border-radius:12px;overflow:hidden;border:1px solid var(--line)"></div>`;
+  evMapObj=null;   // container was rebuilt; force re-init
+  document.querySelectorAll("#evViewSeg button").forEach(b=>b.onclick=()=>setEventsView(b.dataset.evview));
+  const inp=$("evFilter");
+  inp.oninput=()=>{ state.eventsFilter=inp.value; fillEventsList(); };
+  $("evLoc").onchange=()=>geocodeUser($("evLoc").value);
+  $("evGeo").onclick=useMyLocation;
+  const rsel=$("evRadius"); rsel.value=String(rad);
+  rsel.onchange=()=>{ state.eventsRadius=+rsel.value; localStorage.setItem("anical.eventsRadius",String(state.eventsRadius)); fillEventsList(); };
+  fillEventsList();
+  setEventsView(state.eventsMap?"map":"list");
+}
+function fillEventsList(){
+  const box=$("evList"); if(!box) return;
+  const now=Date.now()/1000;
+  const loc=state.userLoc, radius=state.eventsRadius||0;
+  const q=(state.eventsFilter||"").trim().toLowerCase();
+
+  let show=(state.eventsItems||[]).filter(e=> !q || ((e.title||"")+" "+(e.location||"")).toLowerCase().includes(q));
+  if(loc){
+    for(const e of show) e._km = (e.lat!=null&&e.lon!=null) ? haversineKm(loc.lat,loc.lon,e.lat,e.lon) : null;
+    if(radius>0) show=show.filter(e=> e._km!=null && e._km<=radius);
+  }
+
+  const cnt=$("evCount"); if(cnt) cnt.textContent=`${show.length} event${show.length===1?"":"s"}`;
+  const note=$("evLocNote");
+  if(note) note.textContent = loc ? `· near ${loc.label}${radius>0?` (within ${radius} km)`:""}` : "";
+
+  if(!show.length){
+    box.innerHTML=`<div class="ev-loading">${loc&&radius>0?`No events within ${radius} km of ${esc(loc.label)}. Try a larger distance.`:`No events match “${esc(q)}”.`}</div>`; return;
+  }
+  let html="", lastMonth=null;
+  for(const e of show){
+    const d=new Date(e.ts*1000), mk=d.getFullYear()+"-"+d.getMonth();
+    if(mk!==lastMonth){ html+=`<div class="ev-now" style="color:var(--accent2)"><span style="flex:none">${d.toLocaleDateString([], {month:"long",year:"numeric"})}</span></div>`; lastMonth=mk; }
+    const col=evColor(e.type), isPast=e.tsEnd<now;
+    const cd = e.ts>now ? `<span class="ev-badge" style="border-color:var(--accent2);color:var(--accent2)">in ${cdLive(e.ts)}</span>`
+             : (isPast ? `<span class="ev-badge">past</span>` : `<span class="ev-badge" style="border-color:var(--now);color:var(--now)">now</span>`);
+    const dist = (loc && e._km!=null) ? `<span class="ev-badge" style="border-color:var(--good);color:var(--good)">${kmLabel(e._km)}</span>` : "";
+    html+=`<div class="ev-card${isPast?" past":""}" data-eid="${esc(String(e.id||""))}" style="border-left-color:${col}">
+      <div class="ev-date"><div class="ev-d">${d.getDate()}</div><div class="ev-mo">${d.toLocaleDateString([], {month:"short"})}</div></div>
+      <div class="ev-info">
+        <div class="ev-title">${esc(e.title||"Untitled event")}${e.approx?' <span class="ev-approx" title="Approximate date">≈</span>':''}</div>
+        <div class="ev-meta">
+          <span class="ev-badge" style="border-color:${col};color:${col}">${esc(e.type||"Event")}</span>
+          <span class="ev-badge">${esc(evRangeLabel(e))}</span>
+          ${cd}${dist}${eventBellSpan(e.id)}
+        </div>
+        ${e.location?`<div class="ev-loc">📍 ${esc(e.location)}</div>`:""}
+      </div></div>`;
+  }
+  box.innerHTML=html;
+  box.querySelectorAll("[data-eid]").forEach(el=>{ el.onclick=(ev)=>{ if(ev.target.closest("[data-evbell]"))return; const e=state.eventsIndex.get(el.dataset.eid); if(e) openEventDetail(e); }; });
+  scheduleEventNotifications();
+  if(state.eventsMap) renderEventsMap();
+}
+function hideEvents(){ const w=$("eventsWrap"); if(w) w.style.display="none"; document.body.classList.remove("events-mode"); }
+
+/* ---------- events map (Leaflet, lazy-loaded) ---------- */
+let leafletReady=false, evMapObj=null, evMarkers=null;
+function loadLeaflet(){
+  if(leafletReady) return Promise.resolve();
+  return new Promise((res,rej)=>{
+    const css=document.createElement("link"); css.rel="stylesheet"; css.href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"; document.head.appendChild(css);
+    const s=document.createElement("script"); s.src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"; s.onload=()=>{ leafletReady=true; res(); }; s.onerror=()=>rej(new Error("Leaflet failed")); document.head.appendChild(s);
+  });
+}
+function setEventsView(mode){
+  state.eventsMap = mode==="map";
+  document.querySelectorAll("#evViewSeg button").forEach(b=>b.classList.toggle("active", b.dataset.evview===mode));
+  const list=$("evList"), map=$("evMap");
+  if(list) list.style.display = state.eventsMap?"none":"";
+  if(map) map.style.display = state.eventsMap?"":"none";
+  if(state.eventsMap) renderEventsMap();
+}
+async function renderEventsMap(){
+  const wrap=$("evMap"); if(!wrap) return;
+  try{ await loadLeaflet(); }catch(e){ wrap.innerHTML='<div class="ev-loading">⚠ Couldn’t load the map.</div>'; return; }
+  const loc=state.userLoc, radius=state.eventsRadius||0, q=(state.eventsFilter||"").trim().toLowerCase();
+  let show=(state.eventsItems||[]).filter(e=> !q || ((e.title||"")+" "+(e.location||"")).toLowerCase().includes(q));
+  if(loc){ for(const e of show) e._km=(e.lat!=null&&e.lon!=null)?haversineKm(loc.lat,loc.lon,e.lat,e.lon):null; if(radius>0) show=show.filter(e=>e._km!=null&&e._km<=radius); }
+  const pts=show.filter(e=>e.lat!=null&&e.lon!=null);
+  if(!evMapObj){
+    evMapObj=L.map(wrap,{scrollWheelZoom:false});
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",{attribution:"&copy; OpenStreetMap &copy; CARTO",maxZoom:19}).addTo(evMapObj);
+  }
+  if(evMarkers) evMarkers.remove();
+  evMarkers=L.layerGroup().addTo(evMapObj);
+  const latlngs=[];
+  for(const e of pts){
+    const m=L.marker([e.lat,e.lon]).addTo(evMarkers);
+    m.bindPopup(`<strong>${esc(e.title||"Event")}</strong><br>${esc(e.location||"")}<br><a href="#" data-eid="${esc(String(e.id||""))}">Details →</a>`);
+    latlngs.push([e.lat,e.lon]);
+  }
+  if(loc){ L.circleMarker([loc.lat,loc.lon],{radius:7,color:"#22d3ee",fillColor:"#22d3ee",fillOpacity:.85,weight:2}).addTo(evMarkers).bindPopup("📍 You"); latlngs.push([loc.lat,loc.lon]); }
+  if(latlngs.length) evMapObj.fitBounds(latlngs,{padding:[30,30],maxZoom:6}); else evMapObj.setView([20,0],1);
+  setTimeout(()=>evMapObj.invalidateSize(),60);
+  evMapObj.off("popupopen"); evMapObj.on("popupopen",ev=>{ const a=ev.popup.getElement().querySelector("[data-eid]"); if(a) a.onclick=(e2)=>{ e2.preventDefault(); const it=state.eventsIndex.get(a.dataset.eid); if(it) openEventDetail(it); }; });
+}
+
+/* ---------- event reminders ---------- */
+function isEventFollowed(id){ return state.notifyEvents.has(String(id)); }
+function eventBellSpan(id){ const on=isEventFollowed(id); return `<span class="bell ${on?'on':''}" data-evbell="${esc(String(id))}" title="Remind me about this event">${on?'🔔':'🔕'}</span>`; }
+function setEvBell(el,on){ el.classList.toggle("on",on); if(el.tagName==="BUTTON") el.textContent=on?"🔔 Reminder on":"🔕 Remind me"; else el.textContent=on?"🔔":"🔕"; }
+async function cancelTriggeredEvent(id){
+  if(!swReg||!swReg.getNotifications) return;
+  try{ const list=await swReg.getNotifications({includeTriggered:true}); for(const nt of list) if(nt.tag==="anical-ev-"+id) nt.close(); }catch(e){}
+}
+function toggleEventNotify(id){
+  id=String(id);
+  if(state.notifyEvents.has(id)){ state.notifyEvents.delete(id); cancelTriggeredEvent(id); }
+  else{
+    state.notifyEvents.add(id);
+    if("Notification" in window && Notification.permission==="default") Notification.requestPermission().then(()=>{ updateNotifyBtn(); scheduleEventNotifications(); });
+  }
+  localStorage.setItem("anical.notifyEvents", JSON.stringify([...state.notifyEvents]));
+  scheduleEventNotifications();
+  document.querySelectorAll('[data-evbell="'+CSS.escape(id)+'"]').forEach(el=>setEvBell(el,state.notifyEvents.has(id)));
+}
+async function scheduleEventNotifications(){
+  if(!("Notification" in window) || Notification.permission!=="granted" || !state.eventsItems) return;
+  const now=Date.now();
+  for(const e of state.eventsItems){
+    if(!isEventFollowed(e.id)) continue;
+    const fireAt=(e.ts*1000)-24*3600*1000;     // ~1 day before it starts
+    const tag="anical-ev-"+e.id, url=location.origin+location.pathname+"?view=events";
+    if(triggersSupported && swReg){
+      if(fireAt<=now || fireAt-now>60*24*3600*1000) continue;
+      try{ await swReg.showNotification("🎟️ "+(e.title||"Anime event"), { body:"Starts "+evRangeLabel(e), icon:"/og-image.png", badge:"/favicon.svg", tag, data:{url}, showTrigger:new TimestampTrigger(fireAt) }); }catch(_){}
+    }else{
+      const delay=fireAt-now, key="ev-"+e.id;
+      if(delay<=0 || delay>24*3600*1000 || state.scheduled.has(key)) continue;
+      state.scheduled.set(key, setTimeout(()=>{ showNote("🎟️ "+(e.title||"Anime event"), {body:"Starts "+evRangeLabel(e), icon:"/og-image.png", tag, data:{url}}); state.scheduled.delete(key); }, delay));
+    }
+  }
+}
+function openEventDetail(e){
+  $("modalTitle").textContent=e.title||"Event";
+  const col=evColor(e.type), upcoming=e.ts*1000>Date.now();
+  $("modalBody").innerHTML=`
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px">
+      <span class="ev-badge" style="border-color:${col};color:${col}">${esc(e.type||"Event")}</span>
+      <span class="ev-badge">${esc(evRangeLabel(e))}${e.approx?" ≈":""}</span>
+      ${upcoming?`<span class="ev-badge" style="border-color:var(--accent2);color:var(--accent2)">in ${cdLive(e.ts)}</span>`:""}
+    </div>
+    ${e.location?`<div style="color:var(--muted);margin-bottom:10px">📍 ${esc(e.location)}</div>`:""}
+    ${e.desc?`<p style="font-size:14px;line-height:1.55;margin:0 0 12px">${esc(e.desc)}</p>`:""}
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:4px">
+      <button class="evremind ${isEventFollowed(e.id)?'on':''}" data-evbell="${esc(String(e.id||""))}">${isEventFollowed(e.id)?"🔔 Reminder on":"🔕 Remind me"}</button>
+      ${e.url?`<a href="${esc(e.url)}" target="_blank" rel="noopener">Official site →</a>`:""}
+      ${calButtonsHTML({k:"evt",eid:String(e.id||"")})}
+    </div>
+    ${e.approx?`<div style="margin-top:14px;color:var(--muted);font-size:12px">≈ This date is approximate — confirm on the official site before making plans.</div>`:""}`;
+  $("overlay").classList.add("on");
+}
+
+/* ---------- main load ---------- */
+function rangeTitle(){
+  if(state.viewMode==="events") return "Anime Events";
+  if(state.viewMode==="dashboard"){
+    const a=state.anchor, sn=seasonOf(a.getMonth());
+    return sn.charAt(0)+sn.slice(1).toLowerCase()+" "+a.getFullYear()+" · Dashboard";
+  }
+  if(state.viewMode==="month") return MONTHS[state.anchor.getMonth()]+" "+state.anchor.getFullYear();
+  const {start,end}=visibleRange();
+  return start.toLocaleDateString([], {month:"short",day:"numeric"})+" – "+end.toLocaleDateString([], {month:"short",day:"numeric",year:"numeric"});
+}
+async function load(){
+  $("monthTitle").textContent=rangeTitle();
+  if(state.viewMode==="events"){   // events view needs no AniList data
+    renderView();
+    setStatus(false,"Real-life anime events & showcases");
+    return;
+  }
+  loadNews();
+  setStatus(true,"Pulling latest releases from AniList…");
+  try{
+    const {start,end}=visibleRange();
+    state.media=await loadDataForRange(start,end);
+    buildGenreOptions();
+    buildStreamOptions();
+    buildTagOptions();
+    renderGenreChips();
+    renderView();
+    renderWhatsNew();
+    if(!otdDone){ otdDone=true; loadOnThisDay(); }
+    const total=rangeEvents().length;
+    setStatus(false,`Live · ${state.media.length} titles · ${total} episodes shown · updated ${new Date().toLocaleTimeString([], {hour:"numeric",minute:"2-digit"})}`);
+    persistMedia();   // cache for an instant paint on the next launch
+    $("footer").innerHTML=`Data: <a href="https://anilist.co" target="_blank" rel="noopener">AniList</a> + <a href="https://www.animenewsnetwork.com" target="_blank" rel="noopener">Anime News Network</a> · refreshed on every launch. Times in your local timezone. Desktop alerts fire only while AniCal is open.`;
+  }catch(err){
+    console.error(err);
+    useFallback();
+    setStatus(false,"⚠ Live fetch failed — showing offline sample data. Click Refresh to retry.");
+    $("footer").textContent="Network/API unavailable. Showing a small embedded sample so the app still works offline.";
+  }
+}
+function setStatus(loading,text){ document.body.classList.toggle("loading",loading); $("statusText").textContent=text; }
+
+function buildGenreOptions(){
+  const set=new Set();
+  for(const md of state.media) for(const g of md.genres||[]) set.add(g);
+  const sel=$("fGenre"), cur=state.filters.genre;
+  sel.innerHTML='<option value="">All genres</option>'+[...set].sort().map(g=>`<option value="${esc(g)}">${esc(g)}</option>`).join("");
+  sel.value=cur;
+}
+function renderGenreChips(){
+  const box=$("genreChips"); if(!box) return;
+  const counts={};
+  for(const md of state.media){ if(nsfwHidden(md)||isHidden(md.id))continue; for(const g of md.genres||[]) counts[g]=(counts[g]||0)+1; }
+  const top=Object.entries(counts).sort((a,b)=>b[1]-a[1]).slice(0,12).map(e=>e[0]);
+  const cur=state.filters.genre;
+  box.innerHTML=top.map(g=>`<span class="chip ${cur===g?'on':''}" data-chip="${esc(g)}">${esc(g)}</span>`).join("");
+}
+function buildStreamOptions(){
+  const counts={};
+  for(const md of state.media){ if(nsfwHidden(md)||isHidden(md.id))continue; const seen=new Set();
+    for(const l of md.externalLinks||[]) if(l&&l.type==="STREAMING"&&l.site&&!seen.has(l.site)){ seen.add(l.site); counts[l.site]=(counts[l.site]||0)+1; } }
+  const sites=Object.entries(counts).filter(([,c])=>c>=2).sort((a,b)=>b[1]-a[1]).slice(0,15).map(e=>e[0]);
+  const sel=$("fStream"), cur=state.filters.stream||"";
+  sel.innerHTML='<option value="">All platforms</option>'+sites.map(s=>`<option value="${esc(s)}">${esc(s)}</option>`).join("");
+  sel.value=cur;
+}
+// AniList "tags" are finer than genres (e.g. Time Travel, Female Protagonist).
+// Offer the most common meaningful ones; skip spoiler tags and weak (<rank) associations.
+const MIN_TAG_RANK=50;
+function buildTagOptions(){
+  const counts={};
+  for(const md of state.media){ if(nsfwHidden(md)||isHidden(md.id))continue;
+    for(const t of md.tags||[]){ if(!t||t.isMediaSpoiler||(t.rank||0)<MIN_TAG_RANK) continue;
+      if(t.isAdult && state.hideNSFW) continue; counts[t.name]=(counts[t.name]||0)+1; } }
+  const tags=Object.entries(counts).filter(([,c])=>c>=2).sort((a,b)=>b[1]-a[1]).slice(0,30).map(e=>e[0]).sort();
+  const sel=$("fTag"), cur=state.filters.tag||"";
+  sel.innerHTML='<option value="">All tags</option>'+tags.map(t=>`<option value="${esc(t)}">${esc(t)}</option>`).join("");
+  sel.value=cur;
+}
+
+/* ---------- offline fallback ---------- */
+function useFallback(){
+  const v=state.anchor, y=v.getFullYear(), m=v.getMonth();
+  const mk=(name,day,ep,score,fmt)=>({id:name,title:{romaji:name,english:name},format:fmt,episodes:12,genres:["Action"],
+    status:"RELEASING",popularity:1,averageScore:score,siteUrl:"https://anilist.co",description:"Offline sample entry.",
+    coverImage:{medium:"",large:"",color:"#8b5cf6"},startDate:{year:y,month:m+1,day},trailer:null,
+    studios:{nodes:[]},airingSchedule:{nodes:[{airingAt:Math.floor(new Date(y,m,day,18,0).getTime()/1000),episode:ep}]}});
+  state.media=[mk("Sample: A New Season Begins",3,1,82,"TV"),mk("Sample: Returning Hit S2",4,1,88,"TV"),
+    mk("Sample: Ongoing Adventure",10,5,75,"TV"),mk("Sample: Weekend Movie",14,1,79,"MOVIE"),mk("Sample: Late-night ONA",21,3,71,"ONA")];
+  buildGenreOptions(); renderView();
+}
+
+/* ---------- navigation ---------- */
+function step(dir){
+  if(state.viewMode==="events") return;   // events list shows everything; no date paging
+  const a=state.anchor;
+  if(state.viewMode==="dashboard") state.anchor=new Date(a.getFullYear(),a.getMonth()+3*dir,1);
+  else if(state.viewMode==="month") state.anchor=new Date(a.getFullYear(),a.getMonth()+dir,1);
+  else if(state.viewMode==="week") state.anchor=new Date(a.getFullYear(),a.getMonth(),a.getDate()+7*dir);
+  else state.anchor=new Date(a.getFullYear(),a.getMonth(),a.getDate()+14*dir);
+  load();
+}
+function setView(mode){
+  state.viewMode=mode; localStorage.setItem("anical.view",mode);
+  document.querySelectorAll("#viewSeg button").forEach(b=>b.classList.toggle("active",b.dataset.view===mode));
+  load();
+}
+
+/* ---------- wire up ---------- */
+$("verline").textContent="AniCal v"+APP_VERSION;
+$("prev").onclick=()=>step(-1);
+$("next").onclick=()=>step(1);
+$("today").onclick=()=>{ state.anchor=new Date(); load(); };
+$("refresh").onclick=()=>{ state.seasonCache.clear(); state.eventsData=null; load(); };
+$("modalClose").onclick=closeModal;
+$("overlay").onclick=e=>{ if(e.target===$("overlay")) closeModal(); };
+/* a11y: focus management + Tab trap for the dialog */
+(function(){
+  const ov=$("overlay"); let lastFocused=null;
+  const focusables=()=>[...ov.querySelectorAll("button,a[href],input,select,textarea,[tabindex]:not([tabindex='-1'])")].filter(el=>el.offsetParent!==null);
+  new MutationObserver(()=>{
+    if(ov.classList.contains("on")){
+      if(document.activeElement && !ov.contains(document.activeElement)) lastFocused=document.activeElement;
+      const f=focusables(); if(f.length) f[0].focus();
+    } else if(lastFocused){ try{ lastFocused.focus(); }catch(e){} lastFocused=null; }
+  }).observe(ov,{attributes:true,attributeFilter:["class"]});
+  ov.addEventListener("keydown",e=>{
+    if(e.key!=="Tab"||!ov.classList.contains("on")) return;
+    const f=focusables(); if(!f.length) return;
+    const first=f[0], last=f[f.length-1];
+    if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
+    else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
+  });
+})();
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeModal(); });
+document.querySelectorAll("#viewSeg button").forEach(b=>b.onclick=()=>setView(b.dataset.view));
+$("embedLink").onclick=e=>{ e.preventDefault(); openEmbed(); };
+$("subscribeLink").onclick=e=>{ e.preventDefault(); openSubscribe(); };
+$("settingsBtn").onclick=()=>openSettings();
+function surpriseMe(){
+  let pool=state.media.filter(md=>!nsfwHidden(md)&&!isHidden(md.id)&&(md.averageScore||0)>=70);
+  if(!pool.length) pool=state.media.filter(md=>!nsfwHidden(md)&&!isHidden(md.id));
+  if(!pool.length) return;
+  const pick=pool[Math.floor(Math.random()*pool.length)];
+  openDetail(pick,(nextAir(pick)||{}).episode||1);
+}
+$("surpriseBtn").onclick=surpriseMe;
+// quick genre chips: toggle the genre filter
+document.addEventListener("click",e=>{
+  const c=e.target.closest("[data-chip]"); if(!c) return;
+  const g=c.dataset.chip;
+  state.filters.genre = (state.filters.genre===g) ? "" : g;
+  const sel=$("fGenre"); if(sel) sel.value=state.filters.genre;
+  localStorage.setItem("anical.filters",JSON.stringify(state.filters));
+  renderView(); renderGenreChips();
+  setStatus(false,`Live · ${state.media.length} titles · ${rangeEvents().length} episodes shown`);
+});
+// appearance settings (delegated; controls live inside the settings modal)
+document.addEventListener("click",e=>{
+  const th=e.target.closest("[data-theme]"), de=e.target.closest("[data-density]"), ac=e.target.closest("[data-accent]");
+  if(!th&&!de&&!ac) return;
+  if(th){ state.theme=th.dataset.theme; localStorage.setItem("anical.theme",state.theme); }
+  if(de){ state.density=de.dataset.density; localStorage.setItem("anical.density",state.density); }
+  if(ac){ state.accent=ac.dataset.accent; localStorage.setItem("anical.accent",state.accent); }
+  applyAppearance(); openSettings();   // re-render modal so the active states update
+});
+// copy a feed URL
+document.addEventListener("click",e=>{
+  const c=e.target.closest("[data-copyfeed]"); if(!c) return;
+  e.preventDefault(); const u=c.dataset.copyfeed;
+  const done=()=>{ c.textContent="✓ Copied"; setTimeout(()=>{ if(c.isConnected) c.textContent="📋 Copy URL"; },1500); };
+  if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(u).then(done).catch(()=>window.prompt("Copy this URL:",u));
+  else window.prompt("Copy this URL:",u);
+});
+
+/* ---------- keyboard shortcuts ---------- */
+function openShortcutsHelp(){
+  $("modalTitle").textContent="⌨️ Keyboard shortcuts";
+  const rows=[["/","Focus the search box"],["T","Jump to today"],["← / →","Previous / next period"],
+    ["M","Month view"],["W","Week view"],["A","Agenda view"],["D","Dashboard"],["E","Events"],
+    ["Esc","Close dialog · clear search"],["?","Show this help"]];
+  $("modalBody").innerHTML=`<div class="kb-grid">`+
+    rows.map(([k,v])=>`<kbd>${esc(k)}</kbd><span>${esc(v)}</span>`).join("")+`</div>`;
+  $("overlay").classList.add("on");
+}
+document.addEventListener("keydown",e=>{
+  if(e.ctrlKey||e.metaKey||e.altKey) return;
+  const tag=(e.target&&e.target.tagName||"").toLowerCase();
+  if(tag==="input"||tag==="textarea"||tag==="select"||(e.target&&e.target.isContentEditable)) return;
+  if($("overlay").classList.contains("on")) return;   // a dialog is open; let its own Esc handle it
+  switch(e.key){
+    case "/": e.preventDefault(); $("fSearch").focus(); break;
+    case "t": case "T": $("today").click(); break;
+    case "ArrowLeft": step(-1); break;
+    case "ArrowRight": step(1); break;
+    case "m": case "M": setView("month"); break;
+    case "w": case "W": setView("week"); break;
+    case "a": case "A": setView("agenda"); break;
+    case "d": case "D": setView("dashboard"); break;
+    case "e": case "E": setView("events"); break;
+    case "?": e.preventDefault(); openShortcutsHelp(); break;
+  }
+});
+
+// bell delegation (covers modal, sidebar, agenda)
+document.addEventListener("click",e=>{ const b=e.target.closest("[data-bell]"); if(b){ e.preventDefault(); e.stopPropagation(); toggleNotify(b.dataset.bell); } });
+// event-reminder bell delegation (event cards + event modal)
+document.addEventListener("click",e=>{ const b=e.target.closest("[data-evbell]"); if(b){ e.preventDefault(); e.stopPropagation(); toggleEventNotify(b.dataset.evbell); } });
+// watchlist star delegation (modal + agenda + sidebars)
+document.addEventListener("click",e=>{ const w=e.target.closest("[data-watch]"); if(w){ e.preventDefault(); e.stopPropagation(); toggleWatch(w.dataset.watch); } });
+// mark-watched delegation (detail-modal schedule). Click an episode = watched up to here; click again = unwatch from here.
+document.addEventListener("click",e=>{
+  const m=e.target.closest("[data-mark]"); if(!m) return; e.preventDefault(); e.stopPropagation();
+  const parts=m.dataset.mark.split("|"), id=parts[0], ep=+parts[1], cur=getProgress(id);
+  setProgress(id, ep<=cur ? ep-1 : ep);
+  const md=findMediaById(id); if(md) openDetail(md, maxAiredEp(md)||1);   // refresh marks
+  renderSidebars();                                                       // refresh Continue Watching
+});
+
+// hide / "not interested": toggle and refresh
+document.addEventListener("click",e=>{
+  const h=e.target.closest("[data-hide]"); if(!h) return;
+  e.preventDefault(); e.stopPropagation();
+  toggleHidden(h.dataset.hide); closeModal(); renderView();
+});
+
+// share: copy a deep link (?show=<id>) to the clipboard
+document.addEventListener("click",e=>{
+  const s=e.target.closest("[data-share]"); if(!s) return;
+  e.preventDefault(); e.stopPropagation();
+  const link=location.origin+location.pathname+"?show="+encodeURIComponent(s.dataset.share);
+  const done=()=>{ const o=s.textContent; s.textContent="✓ Link copied"; setTimeout(()=>{ if(s.isConnected) s.textContent=o; },1600); };
+  if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(link).then(done).catch(()=>window.prompt("Copy this link:",link));
+  else window.prompt("Copy this link:",link);
+});
+
+// related-anime navigation: open the clicked relation in the detail modal
+document.addEventListener("click",e=>{
+  const r=e.target.closest("[data-rel]"); if(!r) return;
+  e.preventDefault(); e.stopPropagation();
+  openShowById(r.dataset.rel);
+});
+// recommendation thumbnails open that show
+document.addEventListener("click",e=>{ const r=e.target.closest("[data-rec]"); if(r){ e.preventDefault(); e.stopPropagation(); openShowById(r.dataset.rec); } });
+
+// inline trailer: swap the facade for the real player on click
+document.addEventListener("click",e=>{
+  const t=e.target.closest(".trailer[data-embed]"); if(!t) return;
+  const src=t.dataset.embed; const sep=src.includes("?")?"&":"?";
+  t.classList.add("playing"); t.removeAttribute("data-embed");
+  t.innerHTML=`<iframe src="${esc(src)}${sep}autoplay=1&rel=0" title="Trailer" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+});
+
+// add-to-calendar delegation (Google Calendar link / .ics download)
+document.addEventListener("click",e=>{
+  const btn=e.target.closest(".calbtn"); if(!btn) return;
+  const host=btn.closest("[data-cal]"); if(!host) return;
+  e.preventDefault(); e.stopPropagation();
+  let opts; try{ opts=JSON.parse(host.dataset.cal); }catch(_){ return; }
+  const cd=calDataFromOpts(opts); if(!cd) return;
+  if(btn.dataset.go==="gcal") window.open(gcalUrl(cd),"_blank","noopener");
+  else downloadFile(slugFile(cd.title)+".ics", buildICS(cd), "text/calendar");
+});
+
+// filters
+function onFilter(){
+  state.filters.format=$("fFormat").value;
+  state.filters.genre=$("fGenre").value;
+  state.filters.stream=$("fStream").value;
+  state.filters.tag=$("fTag").value;
+  state.filters.minScore=+$("fScore").value;
+  state.filters.premieresOnly=$("fPrem").checked;
+  state.filters.mine=$("fMine").checked;
+  localStorage.setItem("anical.filters",JSON.stringify(state.filters));
+  renderView();
+  renderGenreChips();
+  setStatus(false,`Live · ${state.media.length} titles · ${rangeEvents().length} episodes shown`);
+}
+["fFormat","fGenre","fStream","fTag","fScore"].forEach(id=>$(id).onchange=onFilter);
+$("fPrem").onchange=onFilter;
+$("fMine").onchange=onFilter;
+$("fTitleLang").onchange=()=>{
+  state.titleLang=$("fTitleLang").value;
+  localStorage.setItem("anical.titleLang",state.titleLang);
+  renderView();   // re-renders calendar + sidebars (+ dashboard if active) with new titles
+};
+$("fNSFW").onchange=()=>{
+  state.hideNSFW=$("fNSFW").checked;
+  localStorage.setItem("anical.hideNSFW", state.hideNSFW?"1":"0");
+  renderView();   // re-applies everywhere (calendar, sidebars, dashboard); search refreshes on next keystroke
+  setStatus(false,`Live · ${state.media.length} titles · ${rangeEvents().length} episodes shown`);
+};
+
+/* search — queries ALL of AniList (not just loaded seasons). Typing shows
+   instant local matches, then replaces them with global results; picking one
+   jumps the calendar to that show's next episode and opens its details.      */
+function nextAir(md){
+  const now=Date.now()/1000;
+  return ((md.airingSchedule&&md.airingSchedule.nodes)||[]).filter(n=>n.airingAt>now).sort((a,b)=>a.airingAt-b.airingAt)[0]||null;
+}
+function hideSearchResults(){ $("searchResults").classList.remove("on"); }
+function localMatches(q){
+  const seen=new Set(), out=[];
+  for(const md of state.media){ if(seen.has(md.id))continue; if(nsfwHidden(md)||isHidden(md.id))continue; if(matchTitle(md,q)){ seen.add(md.id); out.push(md); } }
+  out.sort((a,b)=>(b.popularity||0)-(a.popularity||0));
+  return out;
+}
+async function searchAniList(q){
+  const res=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},
+    body:JSON.stringify({query:SEARCH_QUERY,variables:{search:q}})});
+  if(!res.ok) throw new Error("AniList HTTP "+res.status);
+  const j=await res.json(); if(j.errors) throw new Error(j.errors[0].message);
+  return j.data.Page.media;
+}
+function searchRowHTML(md){
+  const na=nextAir(md);
+  const sub=na ? `Next: ${new Date(na.airingAt*1000).toLocaleDateString([], {month:"short",day:"numeric",year:"numeric"})} · Ep ${na.episode}`
+               : (md.startDate&&md.startDate.year ? `${md.startDate.year}` : "")+((md.status?" · "+md.status.replace(/_/g," ").toLowerCase():"")||"—");
+  const sc=md.averageScore?`<span class="pill score">★ ${md.averageScore}</span>`:"";
+  return `<div class="sr-row" data-sid="${md.id}">
+    <img src="${md.coverImage&&md.coverImage.medium?esc(md.coverImage.medium):""}" alt="" loading="lazy">
+    <div style="min-width:0"><div class="srt">${esc(title(md))}</div>
+      <div class="srm"><span class="pill">${esc(FMT_LABEL[md.format]||md.format||"?")}</span>${sc}<span>${esc(sub)}</span></div>
+    </div></div>`;
+}
+function showSearchRows(list){
+  const box=$("searchResults");
+  if(!list.length){ box.innerHTML=`<div class="sr-empty">No anime found for “${esc(state.search)}”.</div>`; box.classList.add("on"); return; }
+  state.searchResults=new Map(list.map(md=>[String(md.id),md]));
+  box.innerHTML=list.slice(0,10).map(searchRowHTML).join("");
+  box.classList.add("on");
+  box.querySelectorAll("[data-sid]").forEach(el=>{ el.onclick=()=>selectSearchResult(el.dataset.sid); });
+}
+function pickTargetTs(md){
+  const nodes=((md.airingSchedule&&md.airingSchedule.nodes)||[]).map(n=>n.airingAt).sort((a,b)=>a-b);
+  const now=Date.now()/1000;
+  const up=nodes.find(t=>t>now);
+  if(up) return up;
+  if(nodes.length) return nodes[nodes.length-1];   // last aired
+  return sdTs(md.startDate);                        // may be null
+}
+function selectSearchResult(id){
+  id=String(id);
+  const md=(state.searchResults&&state.searchResults.get(id))||state.media.find(x=>String(x.id)===id);
+  if(!md) return;
+  if(!state.media.some(x=>String(x.id)===id)) state.media.push(md);   // make it renderable now
+  $("fSearch").value=""; state.search=""; hideSearchResults();        // unfilter so the month shows context
+  const target=pickTargetTs(md);
+  if(target){
+    state.anchor=new Date(target*1000);
+    if(state.viewMode==="week"||state.viewMode==="dashboard"){          // pick a view that will actually show it
+      state.viewMode="month"; localStorage.setItem("anical.view","month");
+      document.querySelectorAll("#viewSeg button").forEach(b=>b.classList.toggle("active",b.dataset.view==="month"));
+    }
+  }
+  openDetail(md,(nextAir(md)||{}).episode||1);   // instant payoff (full schedule)
+  load();                                        // refresh calendar around the new date
+}
+let searchSeq=0, searchTimer=null;
+function onSearch(){
+  const raw=$("fSearch").value.trim();
+  state.search=raw.toLowerCase();
+  renderView();   // live-filter the loaded calendar by what's typed
+  setStatus(false,`Live · ${state.media.length} titles · ${rangeEvents().length} episodes shown`);
+  const box=$("searchResults");
+  if(!raw){ hideSearchResults(); box.innerHTML=""; state.searchResults=new Map(); clearTimeout(searchTimer); return; }
+  // 1) instant local matches
+  const loc=localMatches(state.search);
+  if(loc.length) showSearchRows(loc);
+  else { box.innerHTML='<div class="sr-empty">Searching AniList…</div>'; box.classList.add("on"); }
+  // 2) debounced global search across all of AniList
+  clearTimeout(searchTimer);
+  const myq=raw, seq=++searchSeq;
+  searchTimer=setTimeout(async()=>{
+    try{
+      const results=await searchAniList(myq);
+      if(seq!==searchSeq || state.search!==myq.toLowerCase()) return;   // stale / changed
+      const map=new Map(results.filter(md=>!nsfwHidden(md)&&!isHidden(md.id)).map(md=>[String(md.id),md]));
+      for(const md of loc) if(!map.has(String(md.id))) map.set(String(md.id),md);   // keep extra local hits
+      showSearchRows([...map.values()]);
+    }catch(err){
+      if(seq!==searchSeq) return;
+      if(!loc.length){ const b=$("searchResults"); b.innerHTML='<div class="sr-empty">Search is unavailable right now — check your connection.</div>'; b.classList.add("on"); }
+    }
+  },280);
+}
+$("fSearch").oninput=onSearch;
+$("fSearch").onfocus=()=>{ if(state.search) onSearch(); };
+$("fSearch").onkeydown=e=>{
+  if(e.key==="Escape"){ e.stopPropagation(); $("fSearch").value=""; state.search=""; clearTimeout(searchTimer); renderView(); hideSearchResults();
+    setStatus(false,`Live · ${state.media.length} titles · ${rangeEvents().length} episodes shown`); }
+  else if(e.key==="Enter"){ const first=$("searchResults").querySelector("[data-sid]"); if(first) first.click(); }
+};
+document.addEventListener("click",e=>{ if(!e.target.closest(".search-wrap")) hideSearchResults(); });
+
+// notifications
+$("notifyBtn").onclick=()=>{
+  if(!("Notification" in window)) return;
+  if(Notification.permission==="default") Notification.requestPermission().then(()=>{ updateNotifyBtn(); scheduleNotifications(); syncPushSubscription(); });
+  else updateNotifyBtn();
+};
+$("leadSel").onchange=()=>{ state.notifyLead=+$("leadSel").value; localStorage.setItem("anical.lead",state.notifyLead); clearAllScheduled(); clearAllTriggered().then(scheduleNotifications); syncPushSubscription(); };
+
+// restore UI state
+$("fFormat").value=state.filters.format;
+$("fScore").value=String(state.filters.minScore);
+$("fPrem").checked=!!state.filters.premieresOnly;
+$("fMine").checked=!!state.filters.mine;
+$("fNSFW").checked=state.hideNSFW;
+$("fTitleLang").value=state.titleLang;
+$("leadSel").value=String(state.notifyLead);
+document.querySelectorAll("#viewSeg button").forEach(b=>b.classList.toggle("active",b.dataset.view===state.viewMode));
+updateNotifyBtn();
+
+// live tick: refresh countdowns / agenda + roll notifications forward
+setInterval(()=>{ if(state.viewMode==="agenda" && !$("overlay").classList.contains("on")){ const w=$("calWrap"); w.innerHTML=""; renderAgenda(w); } scheduleNotifications(); }, 60000);
+// 1-second tick so every visible countdown ("in 3h 12m 04s") actually moves
+setInterval(tickCountdowns, 1000);
+
+// PWA: install prompt + service worker
+let deferredPrompt=null;
+window.addEventListener("beforeinstallprompt",e=>{ e.preventDefault(); deferredPrompt=e; const b=$("installBtn"); if(b) b.style.display=""; });
+{ const ib=$("installBtn"); if(ib) ib.onclick=async()=>{ if(!deferredPrompt) return; deferredPrompt.prompt(); try{ await deferredPrompt.userChoice; }catch(_){ } deferredPrompt=null; ib.style.display="none"; }; }
+window.addEventListener("appinstalled",()=>{ const b=$("installBtn"); if(b) b.style.display="none"; });
+if("serviceWorker" in navigator){
+  window.addEventListener("load",()=>{
+    navigator.serviceWorker.register("/sw.js").catch(()=>{});
+    navigator.serviceWorker.ready.then(reg=>{ swReg=reg; scheduleNotifications(); scheduleEventNotifications(); syncPushSubscription(); }).catch(()=>{});  // enables closed-app alerts where supported
+  });
+}
+
+/* ---------- analytics (Cloudflare Web Analytics — privacy-friendly, no cookies, nothing to host) ----------
+   Paste your token from dash.cloudflare.com → Web Analytics into CF_TOKEN to enable.
+   Stays completely off (no beacon loaded) until a token is set. */
+const CF_TOKEN="";
+if(CF_TOKEN){ const s=document.createElement("script"); s.defer=true; s.src="https://static.cloudflareinsights.com/beacon.min.js"; s.setAttribute("data-cf-beacon", JSON.stringify({token:CF_TOKEN})); document.head.appendChild(s); }
+
+// deep links: ?view=<mode>, ?date=YYYY-MM-DD, ?show=<anilist id>
+const _params=new URLSearchParams(location.search);
+{ const qv=_params.get("view");
+  if(qv && ["month","week","agenda","dashboard","events"].includes(qv)){
+    state.viewMode=qv;
+    document.querySelectorAll("#viewSeg button").forEach(b=>b.classList.toggle("active",b.dataset.view===qv));
+  }
+  const qd=_params.get("date");
+  if(qd && /^\d{4}-\d{2}-\d{2}$/.test(qd)){ const d=new Date(qd+"T12:00:00"); if(!isNaN(d)) state.anchor=d; }
+}
+async function openShowById(id){
+  let md=findMediaById(id);
+  if(!md){ try{ md=await fetchMediaById(id); }catch(e){ console.warn("?show fetch failed",e); } if(md && !state.media.some(x=>String(x.id)===String(md.id))) state.media.push(md); }
+  if(md) openDetail(md,(nextAir(md)||{}).episode||1);
+}
+
+// initial pull (on every launch), then honor ?show=
+(async function boot(){
+  // instant paint from the last cached schedule (then load() refreshes in the background)
+  if(["month","week","agenda"].includes(state.viewMode)){
+    const cached=readCache(3*24*3600*1000);
+    if(cached){ const ca=new Date(cached.anchor);
+      if(ca.getFullYear()===state.anchor.getFullYear() && ca.getMonth()===state.anchor.getMonth() && !_params.get("show")){
+        state.media=cached.media; try{ buildGenreOptions(); }catch(e){} renderView(); setStatus(true,"Showing your last schedule — refreshing…");
+      }
+    }
+  }
+  await load();
+  const qs=_params.get("show");
+  if(qs) openShowById(qs);
+})();
+</script>
+</body>
+</html>

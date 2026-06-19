@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AniCal — Anime Airing Schedule (Embed)</title>
+<!-- Widget meant for <iframe> embedding on other sites; not a search landing page. -->
+<meta name="robots" content="noindex, follow" />
+<meta name="description" content="Embeddable live anime airing schedule widget by AniCal." />
+<style>
+  :root{--bg:#0d1117;--bg2:#161b22;--bg3:#1c2230;--line:#2a3140;--txt:#e6edf3;--muted:#8b97a7;--accent:#8b5cf6;--accent2:#22d3ee;--prem:#f59e0b;--fin:#ef4444}
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{background:var(--bg);color:var(--txt);font:13px/1.45 "Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;display:flex;flex-direction:column}
+  a{color:var(--accent2);text-decoration:none}
+  .hd{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,rgba(139,92,246,.14),transparent);flex:none}
+  .hd .dot{width:11px;height:11px;border-radius:50%;background:conic-gradient(from 0deg,var(--accent),var(--accent2),var(--prem),var(--accent));box-shadow:0 0 10px var(--accent)}
+  .hd .nm{font-weight:800;font-size:14px}
+  .hd .sub{color:var(--muted);font-size:11px;margin-left:auto}
+  .list{flex:1;overflow:auto;padding:4px 0}
+  .day{padding:7px 12px 3px;font-size:11px;font-weight:800;color:var(--accent2);text-transform:uppercase;letter-spacing:.5px;position:sticky;top:0;background:var(--bg)}
+  .row{display:flex;align-items:center;gap:9px;padding:6px 12px;border-left:3px solid transparent}
+  .row.prem{border-left-color:var(--prem)}
+  .row.fin{border-left-color:var(--fin)}
+  .row img{width:30px;height:42px;object-fit:cover;border-radius:4px;flex:none;background:#000}
+  .row .t{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0}
+  .row .meta{font-size:10.5px;color:var(--muted);flex:none;text-align:right}
+  .pill{font-size:9.5px;padding:0 6px;border-radius:20px;border:1px solid var(--line);color:var(--muted)}
+  .pill.prem{background:rgba(245,158,11,.16);border-color:var(--prem);color:var(--prem)}
+  .pill.fin{background:rgba(239,68,68,.16);border-color:var(--fin);color:#fca5a5}
+  .ft{flex:none;padding:7px 12px;border-top:1px solid var(--line);font-size:11px;color:var(--muted);text-align:center;background:var(--bg2)}
+  .ft a{font-weight:700}
+  .msg{padding:22px 14px;text-align:center;color:var(--muted)}
+  .spin{width:14px;height:14px;border:2px solid var(--line);border-top-color:var(--accent2);border-radius:50%;animation:s .7s linear infinite;display:inline-block;vertical-align:middle}
+  @keyframes s{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div class="hd"><span class="dot"></span><span class="nm">AniCal</span><span class="sub" id="sub">Loading…</span></div>
+<div class="list" id="list"><div class="msg"><span class="spin"></span> Loading anime schedule…</div></div>
+<div class="ft">📅 <a href="https://anicalendar.netlify.app/" target="_blank" rel="noopener">Full anime calendar on AniCal →</a></div>
+<script>
+"use strict";
+const API="https://graphql.anilist.co";
+const params=new URLSearchParams(location.search);
+const DAYS=Math.min(31,Math.max(1,+(params.get("days")||7)));
+const LIMIT=Math.min(60,Math.max(1,+(params.get("limit")||25)));
+const $=id=>document.getElementById(id);
+const title=md=>md.title.english||md.title.romaji||"Untitled";
+const isFinale=(md,ep)=>!!md.episodes&&md.episodes>1&&ep===md.episodes;
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+const ORDER=["WINTER","SPRING","SUMMER","FALL"];
+const seasonOf=m=>m<=2?"WINTER":m<=5?"SPRING":m<=8?"SUMMER":"FALL";
+function shift(s,y,d){let i=ORDER.indexOf(s)+d;y+=Math.floor(i/4);i=((i%4)+4)%4;return{season:ORDER[i],year:y};}
+
+const QUERY=`query($season:MediaSeason,$seasonYear:Int){Page(page:1,perPage:50){media(season:$season,seasonYear:$seasonYear,type:ANIME,sort:POPULARITY_DESC){id title{romaji english} format episodes coverImage{medium} airingSchedule{nodes{airingAt episode}}}}}`;
+async function fetchSeason(season,year){
+  const r=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({query:QUERY,variables:{season,seasonYear:year}})});
+  if(!r.ok) throw new Error("HTTP "+r.status);
+  const j=await r.json(); if(j.errors) throw new Error(j.errors[0].message);
+  return j.data.Page.media;
+}
+
+(async()=>{
+  try{
+    const now=new Date(), cs=seasonOf(now.getMonth()), cy=now.getFullYear();
+    const prev=shift(cs,cy,-1);
+    const sets=await Promise.allSettled([fetchSeason(cs,cy),fetchSeason(prev.season,prev.year)]);
+    const seen=new Set(),media=[];
+    for(const r of sets) if(r.status==="fulfilled") for(const md of r.value) if(!seen.has(md.id)){seen.add(md.id);media.push(md);}
+    const t0=Date.now()/1000, t1=t0+DAYS*86400;
+    let events=[];
+    for(const md of media) for(const n of (md.airingSchedule&&md.airingSchedule.nodes)||[])
+      if(n.airingAt>=t0&&n.airingAt<=t1) events.push({md,ep:n.episode,ts:n.airingAt});
+    events.sort((a,b)=>a.ts-b.ts);
+    events=events.slice(0,LIMIT);
+
+    if(!events.length){ $("list").innerHTML='<div class="msg">No episodes scheduled in the next '+DAYS+' day(s).</div>'; $("sub").textContent="Next "+DAYS+"d"; return; }
+    $("sub").textContent=events.length+" episodes · next "+DAYS+"d";
+
+    const dayKey=ts=>new Date(ts*1000).toLocaleDateString([], {weekday:"short",month:"short",day:"numeric"});
+    const fmtTime=ts=>new Date(ts*1000).toLocaleTimeString([], {hour:"numeric",minute:"2-digit"});
+    let html="", lastDay=null;
+    for(const e of events){
+      const dk=dayKey(e.ts);
+      if(dk!==lastDay){ html+='<div class="day">'+esc(dk)+'</div>'; lastDay=dk; }
+      const prem=e.ep===1, fin=isFinale(e.md,e.ep);
+      const tag=prem?'<span class="pill prem">EP1</span>':fin?'<span class="pill fin">FIN</span>':'<span class="pill">E'+e.ep+'</span>';
+      html+='<div class="row'+(prem?' prem':fin?' fin':'')+'">'+
+        (e.md.coverImage&&e.md.coverImage.medium?'<img src="'+esc(e.md.coverImage.medium)+'" alt="" loading="lazy">':'')+
+        '<span class="t">'+esc(title(e.md))+'</span>'+
+        '<span class="meta">'+tag+'<br>'+esc(fmtTime(e.ts))+'</span></div>';
+    }
+    $("list").innerHTML=html;
+  }catch(err){
+    $("list").innerHTML='<div class="msg">Couldn\'t load the schedule.<br><a href="https://anicalendar.netlify.app/" target="_blank" rel="noopener">Open AniCal →</a></div>';
+    $("sub").textContent="";
+  }
+})();
+</script>
+</body>
+</html>

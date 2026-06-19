@@ -1,0 +1,22 @@
+{
+  "name": "AniCal — Anime Release Calendar",
+  "short_name": "AniCal",
+  "description": "Live anime release calendar: upcoming episodes, premieres, finales and anime news. Follow shows, get countdowns and add episodes to your calendar.",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0d1117",
+  "theme_color": "#0d1117",
+  "categories": ["entertainment", "lifestyle", "utilities"],
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/og-image.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/og-image.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/og-image.png", "sizes": "1024x1024", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Airing today", "url": "/today/", "description": "Anime airing today" },
+    { "name": "Anime events", "url": "/?view=events", "description": "Conventions & expos worldwide" }
+  ]
+}
