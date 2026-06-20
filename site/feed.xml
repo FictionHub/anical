@@ -6,7 +6,7 @@
     <atom:link href="https://anicalendar.netlify.app/feed.xml" rel="self" type="application/rss+xml" />
     <description>Upcoming and recent anime premieres and season finales, updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Sat, 13 Jun 2026 10:58:03 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 20 Jun 2026 15:23:52 GMT</lastBuildDate>
     <ttl>720</ttl>
     <item>
       <title>Made in Abyss: Mezameru Shinpi — Premiere (Ep 1)</title>
@@ -20,7 +20,7 @@
       <link>https://anicalendar.netlify.app/anime/rascal-does-not-dream-of-a-dear-friend-199340/</link>
       <guid isPermaLink="false">anical-rss-199340-p1</guid>
       <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
-      <description>Premiere: Theatrical follow-up to Seishun Buta Yarou wa Santa Claus no Yume wo Minai .</description>
+      <description>Premiere: Theatrical follow-up to Seishun Buta Yarou wa Santa Claus no Yume wo Minai . &quot;Actually, I’m Touko Kirishima.&quot; The audience erupted in excitement upon learning that the true identity of the mysterious, wildly popular internet singer was none other than the nation’s favorite…</description>
     </item>
     <item>
       <title>To You in the Beyond — Premiere (Ep 1)</title>
@@ -48,11 +48,11 @@
       <link>https://anicalendar.netlify.app/anime/rezero-starting-life-in-another-world-season-4-189046/</link>
       <guid isPermaLink="false">anical-rss-189046-f19</guid>
       <pubDate>Wed, 30 Sep 2026 13:00:00 GMT</pubDate>
-      <description>Finale: The fourth season of Re:Zero kara Hajimeru Isekai Seikatsu . To save his stricken allies, Subaru faces a deadly desert to find the Sage at Pleiades Watchtower. (Source: Crunchyroll News) Note: Episode 1 pre-screened at Lucca Comics &amp; Games on November 1, 2025, before the…</description>
+      <description>Finale: The fourth season of Re:Zero kara Hajimeru Isekai Seikatsu . To save his stricken allies, Subaru faces a deadly desert to find the Sage at Pleiades Watchtower. (Source: Crunchyroll News) Note: Lucca Comics &amp; Games pre-screened episode 1 early on November 1, 2025, prior to the…</description>
     </item>
     <item>
-      <title>Reiwa no Dara-san — Finale (Ep 13)</title>
-      <link>https://anicalendar.netlify.app/anime/reiwa-no-dara-san-203880/</link>
+      <title>Dara-san of Reiwa — Finale (Ep 13)</title>
+      <link>https://anicalendar.netlify.app/anime/dara-san-of-reiwa-203880/</link>
       <guid isPermaLink="false">anical-rss-203880-f13</guid>
       <pubDate>Thu, 24 Sep 2026 12:30:00 GMT</pubDate>
       <description>Finale: Clouds blacken the sky and sheets of rain turn the mountain forest into a treacherous maze... A landslide crushes a razor wire fence, and buries a &quot;NO TRESPASSING&quot; sign... Two young siblings wander into a dark world where they do not belong, and a long, horrid shadow rears up…</description>
@@ -170,6 +170,20 @@
       <description>Premiere: Based on a series of Chiikawa comics posted on X by Nagano from March to November 2023, known as the &quot;Siren Arc&quot; . One day, while Chiikawa and Hachiware were relaxing in the square, Usagi suddenly appeared with a flyer stuck to its face. When Hachiware checked the flyer, it was…</description>
     </item>
     <item>
+      <title>Cyborg 009: Nemesis — Finale (Ep 3)</title>
+      <link>https://anicalendar.netlify.app/anime/cyborg-009-nemesis-196223/</link>
+      <guid isPermaLink="false">anical-rss-196223-f3</guid>
+      <pubDate>Sat, 18 Jul 2026 16:00:00 GMT</pubDate>
+      <description>Finale: To commemorate the 61st anniversary of the original manga's debut: a new anime based on Shoutarou Ishinomori's Cyborg 009 .</description>
+    </item>
+    <item>
+      <title>Cyborg 009: Nemesis — Premiere (Ep 1)</title>
+      <link>https://anicalendar.netlify.app/anime/cyborg-009-nemesis-196223/</link>
+      <guid isPermaLink="false">anical-rss-196223-p1</guid>
+      <pubDate>Sat, 18 Jul 2026 15:00:00 GMT</pubDate>
+      <description>Premiere: To commemorate the 61st anniversary of the original manga's debut: a new anime based on Shoutarou Ishinomori's Cyborg 009 .</description>
+    </item>
+    <item>
       <title>Kimi to Hanabi to Yakusoku to — Premiere (Ep 1)</title>
       <link>https://anicalendar.netlify.app/anime/kimi-to-hanabi-to-yakusoku-to-206819/</link>
       <guid isPermaLink="false">anical-rss-206819-p1</guid>
@@ -191,18 +205,11 @@
       <description>Premiere: Ryuusei Narukami spends his days cooped up in his room playing video games, but hides a secret past as an evil dark lord from a fantasy world reincarnated into our world. He has a fateful encounter with the belligerent Hanaori Meteor, the hero from Ryuusei's world who defeated…</description>
     </item>
     <item>
-      <title>Nige Jouzu no Wakagimi 2nd Season — Premiere (Ep 1)</title>
-      <link>https://anicalendar.netlify.app/anime/nige-jouzu-no-wakagimi-2nd-season-182616/</link>
+      <title>The Elusive Samurai Season 2 — Premiere (Ep 1)</title>
+      <link>https://anicalendar.netlify.app/anime/the-elusive-samurai-season-2-182616/</link>
       <guid isPermaLink="false">anical-rss-182616-p1</guid>
       <pubDate>Fri, 10 Jul 2026 14:30:00 GMT</pubDate>
       <description>Premiere: The second season of Nige Jouzu no Wakagimi .</description>
-    </item>
-    <item>
-      <title>Ryoumin 0-Nin Start no Henkyou Ryoushu-sama — Premiere (Ep 1)</title>
-      <link>https://anicalendar.netlify.app/anime/ryoumin-0-nin-start-no-henkyou-ryoushu-sama-196218/</link>
-      <guid isPermaLink="false">anical-rss-196218-p1</guid>
-      <pubDate>Fri, 10 Jul 2026 13:30:00 GMT</pubDate>
-      <description>Premiere: Dias finally returns home after decades of war. He's hailed as a hero and promptly rewarded with his own domain...which turns out to be little more than empty plains. Population: zero. Dias, who has only ever known battle, finds himself at a loss. How is he supposed to survive,…</description>
     </item>
     <item>
       <title>Shibou Yuugi de Meshi wo Kuu. 44:CLOUDY BEACH — Premiere (Ep 1)</title>
@@ -226,11 +233,18 @@
       <description>Premiere: At age forty-five, office worker Sasaki has had enough of the corporate grind. His only solace is smoking-and the friendly smile of supermarket cashier Yamada. When Sasaki can't find Yamada after a particularly trying day, a striking woman invites him to smoke with her. The…</description>
     </item>
     <item>
-      <title>Mebius Dust — Premiere (Ep 1)</title>
+      <title>MEBIUS DUST — Premiere (Ep 1)</title>
       <link>https://anicalendar.netlify.app/anime/mebius-dust-108992/</link>
       <guid isPermaLink="false">anical-rss-108992-p1</guid>
       <pubDate>Thu, 09 Jul 2026 14:30:00 GMT</pubDate>
       <description>Premiere: On February 29, 2000, a group of Möbius meteorites fell down to earth. These meteorites brought new material called Möbius Dust, which dissolves in air and can cause miracles. The day the Möbius meteorites fell was dubbed 2.29, and the economic disparity in Japan increased…</description>
+    </item>
+    <item>
+      <title>Thunder 3 — Premiere (Ep 1)</title>
+      <link>https://anicalendar.netlify.app/anime/thunder-3-207254/</link>
+      <guid isPermaLink="false">anical-rss-207254-p1</guid>
+      <pubDate>Wed, 08 Jul 2026 15:44:00 GMT</pubDate>
+      <description>Premiere: Three ordinary schoolboys come into possession of a DVD that supposedly opens a gateway to a parallel universe, but when their backs are turned Pyontaro's little sister Futaba passes through and gets kidnapped by the aliens that have overrun that version of Earth! Discovering…</description>
     </item>
     <item>
       <title>From Old Country Bumpkin to Master Swordsman Season 2 — Premiere (Ep 1)</title>
@@ -240,8 +254,8 @@
       <description>Premiere: The second season of Katainaka no Ossan, Kensei ni Naru .</description>
     </item>
     <item>
-      <title>Otomege Sekai wa Mob ni Kibishii Sekai desu 2 — Premiere (Ep 1)</title>
-      <link>https://anicalendar.netlify.app/anime/otomege-sekai-wa-mob-ni-kibishii-sekai-desu-2-159309/</link>
+      <title>Trapped in a Dating Sim: The World of Otome Games is Tough for Mobs Season 2 — Premiere (Ep 1)</title>
+      <link>https://anicalendar.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/</link>
       <guid isPermaLink="false">anical-rss-159309-p1</guid>
       <pubDate>Wed, 08 Jul 2026 14:30:00 GMT</pubDate>
       <description>Premiere: The second season of Otomege Sekai wa Mob ni Kibishii Sekai desu .</description>
@@ -289,8 +303,8 @@
       <description>Premiere: In an age when spies act behind the scenes in every land, Chloe spends her days successfully carrying out even the most difficult missions due to her unparalleled disguise skills and martial arts abilities. After the betrayal of her boss, she suddenly disappears—as Chloe plans…</description>
     </item>
     <item>
-      <title>Yoroi Shinden Samurai Troopers Part 2 — Premiere (Ep 1)</title>
-      <link>https://anicalendar.netlify.app/anime/yoroi-shinden-samurai-troopers-part-2-209800/</link>
+      <title>Yoroi-Shinden Samurai Troopers Cour 2 — Premiere (Ep 1)</title>
+      <link>https://anicalendar.netlify.app/anime/yoroi-shinden-samurai-troopers-cour-2-209800/</link>
       <guid isPermaLink="false">anical-rss-209800-p1</guid>
       <pubDate>Tue, 07 Jul 2026 14:30:00 GMT</pubDate>
       <description>Premiere: The second part of Yoroi Shinden Samurai Troopers .</description>
@@ -303,11 +317,18 @@
       <description>Premiere: The year is 2029. In near-future Japan, where the world has become highly information-intensive, with a vast corporate network covering the planet, electrons and light pulsing through it. But the nation-state and ethnic groups still survive. Motoko Kusanagi, a full-body cyborg,…</description>
     </item>
     <item>
-      <title>Kimi ga Shinu made Koi wo Shitai — Premiere (Ep 1)</title>
-      <link>https://anicalendar.netlify.app/anime/kimi-ga-shinu-made-koi-wo-shitai-187260/</link>
+      <title>I Want to Love You Till Your Dying Day — Premiere (Ep 1)</title>
+      <link>https://anicalendar.netlify.app/anime/i-want-to-love-you-till-your-dying-day-187260/</link>
       <guid isPermaLink="false">anical-rss-187260-p1</guid>
       <pubDate>Tue, 07 Jul 2026 12:30:00 GMT</pubDate>
       <description>Premiere: At the mysterious orphanage where Sheena lives, death is nothing new to its residents—girls who no longer have families of their own, who are raised as weapons of war, taught to kill and take the lives of others without batting an eye. Everyone, that is, except Sheena, who…</description>
+    </item>
+    <item>
+      <title>Young Ladies Don't Play Fighting Games — Premiere (Ep 1)</title>
+      <link>https://anicalendar.netlify.app/anime/young-ladies-dont-play-fighting-games-128757/</link>
+      <guid isPermaLink="false">anical-rss-128757-p1</guid>
+      <pubDate>Tue, 07 Jul 2026 11:30:00 GMT</pubDate>
+      <description>Premiere: Kuromi Girls’ Academy is a refined, elegant school that expects the very best in deportment from its young ladies. Aya got into this peerless rich-girls’ institution on a scholarship, and hopes to grow as lovely as her fellow student and idol Shirayui. But Shirayui hides a…</description>
     </item>
     <item>
       <title>Grand Blue Season 3 — Premiere (Ep 1)</title>
@@ -315,6 +336,13 @@
       <guid isPermaLink="false">anical-rss-199111-p1</guid>
       <pubDate>Mon, 06 Jul 2026 15:00:00 GMT</pubDate>
       <description>Premiere: The third season of Grand Blue .</description>
+    </item>
+    <item>
+      <title>Oh Boy, Was I Wrong About Her — Premiere (Ep 1)</title>
+      <link>https://anicalendar.netlify.app/anime/oh-boy-was-i-wrong-about-her-169583/</link>
+      <guid isPermaLink="false">anical-rss-169583-p1</guid>
+      <pubDate>Mon, 06 Jul 2026 14:30:00 GMT</pubDate>
+      <description>Premiere: I met my childhood friend again, and she had become a beautiful and innocent girl. &quot;It's been a while, Hayato.&quot; &quot;Haruki, is it?&quot; In the past, I used to play in the mud with my childhood friend in the countryside, and when I saw him again, there was no trace of the bratty young…</description>
     </item>
     <item>
       <title>The Forsaken Saintess and Her Foodie Roadtrip in Another World — Premiere (Ep 1)</title>
@@ -329,34 +357,6 @@
       <guid isPermaLink="false">anical-rss-195833-p1</guid>
       <pubDate>Mon, 06 Jul 2026 14:00:00 GMT</pubDate>
       <description>Premiere: The sequel to the legendary dodgeball manga Honou no Toukyuuji Dodge Danpei ! In this modern version of the hot-blooded dodgeball story, Danpei's daughter, Danko, follows in his footsteps, struggling to build a dodgeball team with the strongest fighting spirit in the modern age…</description>
-    </item>
-    <item>
-      <title>Buchigire Reijou wa Houfuku wo Chikaimashita.: Madousho no Chikara de Sokoku wo Tataki Tsubushimasu — Premiere (Ep 1)</title>
-      <link>https://anicalendar.netlify.app/anime/buchigire-reijou-wa-houfuku-wo-chikaimashita-madousho-no-chi-199408/</link>
-      <guid isPermaLink="false">anical-rss-199408-p1</guid>
-      <pubDate>Mon, 06 Jul 2026 13:30:00 GMT</pubDate>
-      <description>Premiere: Elizabeth Leiston, daughter of the influential prime minister, is a picture-perfect lady on the path to becoming the future queen of the Kingdom of Haldoria. But her life takes a sudden turn for the worst when her fiancé makes a show of publicly calling off their engagement.…</description>
-    </item>
-    <item>
-      <title>Toumei na Yoru ni Kakeru Kimi to, Me ni Mienai Koi wo Shita. — Premiere (Ep 1)</title>
-      <link>https://anicalendar.netlify.app/anime/toumei-na-yoru-ni-kakeru-kimi-to-me-ni-mienai-koi-wo-shita-202269/</link>
-      <guid isPermaLink="false">anical-rss-202269-p1</guid>
-      <pubDate>Mon, 06 Jul 2026 12:00:00 GMT</pubDate>
-      <description>Premiere: On an April night in Tokyo, still too early for fireworks, university student Kakeru Sorano meets a woman named Koharu Fuyutsuki. She is a beautiful girl who stands out from the crowd, laughs a lot, and exudes a warmth that contrasts sharply with Kakeru's own introversion. But…</description>
-    </item>
-    <item>
-      <title>Azur Lane: Bisoku Zenshin! Ni!! — Premiere (Ep 1)</title>
-      <link>https://anicalendar.netlify.app/anime/azur-lane-bisoku-zenshin-ni-169080/</link>
-      <guid isPermaLink="false">anical-rss-169080-p1</guid>
-      <pubDate>Sun, 05 Jul 2026 16:00:00 GMT</pubDate>
-      <description>Premiere: The second season of Azur Lane: Bisoku Zenshin!</description>
-    </item>
-    <item>
-      <title>Goodbye, Lara — Premiere (Ep 1)</title>
-      <link>https://anicalendar.netlify.app/anime/goodbye-lara-177637/</link>
-      <guid isPermaLink="false">anical-rss-177637-p1</guid>
-      <pubDate>Sun, 05 Jul 2026 15:30:00 GMT</pubDate>
-      <description>Premiere: Long, long ago, there lived a mermaid princess named Lara. She was raised with love by her father, the king of sea and her sisters. One day, Lara fell in love with a human prince who lived on land. It was a forbidden love—one that was not allowed in the world of mermaids.…</description>
     </item>
   </channel>
 </rss>
