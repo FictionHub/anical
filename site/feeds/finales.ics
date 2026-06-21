@@ -28,9 +28,9 @@ URL:https://anicalendar.netlify.app/anime/rezero-starting-life-in-another-world-
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-195600-f24@anicalendar.netlify.app
-DTSTAMP:20260912T143000Z
-DTSTART:20260912T143000Z
-DTEND:20260912T150000Z
+DTSTAMP:20260919T143000Z
+DTSTART:20260919T143000Z
+DTEND:20260919T150000Z
 SUMMARY:Daemons of the Shadow Realm — Finale (Ep 24)
 DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/daemons-of-the-shadow-realm-195600/
 URL:https://anicalendar.netlify.app/anime/daemons-of-the-shadow-realm-195600/
@@ -72,15 +72,6 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/marriagetoxin-1
 URL:https://anicalendar.netlify.app/anime/marriagetoxin-199547/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-170019-f12@anicalendar.netlify.app
-DTSTAMP:20260619T133000Z
-DTSTART:20260619T133000Z
-DTEND:20260619T140000Z
-SUMMARY:The Angel Next Door Spoils Me Rotten2 — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-angel-next-door-spoils-me-rotten2-170019/
-URL:https://anicalendar.netlify.app/anime/the-angel-next-door-spoils-me-rotten2-170019/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-199221-f13@anicalendar.netlify.app
 DTSTAMP:20260625T130000Z
 DTSTART:20260625T130000Z
@@ -97,6 +88,15 @@ DTEND:20260624T151500Z
 SUMMARY:Gals Can't Be Kind to Otaku!? — Finale (Ep 12)
 DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/gals-cant-be-kind-to-otaku-199588/
 URL:https://anicalendar.netlify.app/anime/gals-cant-be-kind-to-otaku-199588/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-185874-f13@anicalendar.netlify.app
+DTSTAMP:20261017T140000Z
+DTSTART:20261017T140000Z
+DTEND:20261017T143000Z
+SUMMARY:BLEACH: Thousand-Year Blood War - The Calamity — Finale (Ep 13)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/bleach-thousand-year-blood-war-the-calamity-185874/
+URL:https://anicalendar.netlify.app/anime/bleach-thousand-year-blood-war-the-calamity-185874/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-182483-f12@anicalendar.netlify.app
@@ -171,15 +171,6 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/kill-blue-19811
 URL:https://anicalendar.netlify.app/anime/kill-blue-198113/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-202102-f13@anicalendar.netlify.app
-DTSTAMP:20260627T153000Z
-DTSTART:20260627T153000Z
-DTEND:20260627T160000Z
-SUMMARY:NEEDY GIRL OVERDOSE — Finale (Ep 13)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/needy-girl-overdose-202102/
-URL:https://anicalendar.netlify.app/anime/needy-girl-overdose-202102/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-196935-f12@anicalendar.netlify.app
 DTSTAMP:20260620T143000Z
 DTSTART:20260620T143000Z
@@ -187,6 +178,15 @@ DTEND:20260620T150000Z
 SUMMARY:Akane-banashi — Finale (Ep 12)
 DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/akane-banashi-196935/
 URL:https://anicalendar.netlify.app/anime/akane-banashi-196935/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-202102-f13@anicalendar.netlify.app
+DTSTAMP:20260627T153000Z
+DTSTART:20260627T153000Z
+DTEND:20260627T160000Z
+SUMMARY:NEEDY GIRL OVERDOSE — Finale (Ep 13)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/needy-girl-overdose-202102/
+URL:https://anicalendar.netlify.app/anime/needy-girl-overdose-202102/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-184492-f24@anicalendar.netlify.app
@@ -225,15 +225,6 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/botan-kamiina-f
 URL:https://anicalendar.netlify.app/anime/botan-kamiina-fully-blossoms-when-drunk-187869/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-192808-f12@anicalendar.netlify.app
-DTSTAMP:20260619T130000Z
-DTSTART:20260619T130000Z
-DTEND:20260619T133000Z
-SUMMARY:An Observation Log of My Fiancée Who Calls Herself a Villainess — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/an-observation-log-of-my-fiancee-who-calls-herself-a-villain-192808/
-URL:https://anicalendar.netlify.app/anime/an-observation-log-of-my-fiancee-who-calls-herself-a-villain-192808/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-185211-f12@anicalendar.netlify.app
 DTSTAMP:20260627T123000Z
 DTSTART:20260627T123000Z
@@ -241,15 +232,6 @@ DTEND:20260627T130000Z
 SUMMARY:Yowayowa Sensei — Finale (Ep 12)
 DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/yowayowa-sensei-185211/
 URL:https://anicalendar.netlify.app/anime/yowayowa-sensei-185211/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-195333-f12@anicalendar.netlify.app
-DTSTAMP:20260618T162800Z
-DTSTART:20260618T162800Z
-DTEND:20260618T165800Z
-SUMMARY:Haibara's Teenage New Game+ — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/haibaras-teenage-new-game-195333/
-URL:https://anicalendar.netlify.app/anime/haibaras-teenage-new-game-195333/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-195268-f12@anicalendar.netlify.app
@@ -286,15 +268,6 @@ DTEND:20260623T172900Z
 SUMMARY:My Ribdiculous Reincarnation — Finale (Ep 12)
 DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/my-ribdiculous-reincarnation-206951/
 URL:https://anicalendar.netlify.app/anime/my-ribdiculous-reincarnation-206951/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-202381-f12@anicalendar.netlify.app
-DTSTAMP:20260618T165800Z
-DTSTART:20260618T165800Z
-DTEND:20260618T172800Z
-SUMMARY:Killed again\, Mr. Detective. — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/killed-again-mr-detective-202381/
-URL:https://anicalendar.netlify.app/anime/killed-again-mr-detective-202381/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-196029-f12@anicalendar.netlify.app
@@ -367,15 +340,6 @@ DTEND:20260621T164000Z
 SUMMARY:Ingoku Danchi:Deviant's Apartment Complex — Finale (Ep 12)
 DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/ingoku-danchideviants-apartment-complex-206166/
 URL:https://anicalendar.netlify.app/anime/ingoku-danchideviants-apartment-complex-206166/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-181284-f12@anicalendar.netlify.app
-DTSTAMP:20260618T152600Z
-DTSTART:20260618T152600Z
-DTEND:20260618T155600Z
-SUMMARY:Kirio Fan Club — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/kirio-fan-club-181284/
-URL:https://anicalendar.netlify.app/anime/kirio-fan-club-181284/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-195734-f11@anicalendar.netlify.app

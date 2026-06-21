@@ -6,7 +6,7 @@
     <atom:link href="https://anicalendar.netlify.app/feed.xml" rel="self" type="application/rss+xml" />
     <description>Upcoming and recent anime premieres and season finales, updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Sat, 20 Jun 2026 15:23:52 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 21 Jun 2026 15:30:17 GMT</lastBuildDate>
     <ttl>720</ttl>
     <item>
       <title>Made in Abyss: Mezameru Shinpi — Premiere (Ep 1)</title>
@@ -14,6 +14,13 @@
       <guid isPermaLink="false">anical-rss-160275-p1</guid>
       <pubDate>Thu, 22 Oct 2026 15:00:00 GMT</pubDate>
       <description>Premiere: Sequel to Made in Abyss: Retsujitsu no Ougonkyou.</description>
+    </item>
+    <item>
+      <title>BLEACH: Thousand-Year Blood War - The Calamity — Finale (Ep 13)</title>
+      <link>https://anicalendar.netlify.app/anime/bleach-thousand-year-blood-war-the-calamity-185874/</link>
+      <guid isPermaLink="false">anical-rss-185874-f13</guid>
+      <pubDate>Sat, 17 Oct 2026 14:00:00 GMT</pubDate>
+      <description>Finale: The fourth and final part of BLEACH: Sennen Kessen-hen .</description>
     </item>
     <item>
       <title>Rascal Does Not Dream of a Dear Friend — Premiere (Ep 1)</title>
@@ -72,6 +79,13 @@
       <description>Finale: Thirty years ago, the world was nearly destroyed by the sudden appearance of unknown &quot;invasive alien species.&quot; Humans and these “invasive species” continue to vie for living space, and while humanity’s safety is currently barely secured, the world could be destroyed at any…</description>
     </item>
     <item>
+      <title>Daemons of the Shadow Realm — Finale (Ep 24)</title>
+      <link>https://anicalendar.netlify.app/anime/daemons-of-the-shadow-realm-195600/</link>
+      <guid isPermaLink="false">anical-rss-195600-f24</guid>
+      <pubDate>Sat, 19 Sep 2026 14:30:00 GMT</pubDate>
+      <description>Finale: In a remote mountain village under the watchful eyes of two stone guardians, the young Yuru contentedly lives off the land while staying close to the only family he has left—Asa, his precious twin sister. Asa, meanwhile, carries out a mysterious “duty” on behalf of the village…</description>
+    </item>
+    <item>
       <title>The Drops of God — Finale (Ep 24)</title>
       <link>https://anicalendar.netlify.app/anime/the-drops-of-god-202508/</link>
       <guid isPermaLink="false">anical-rss-202508-f24</guid>
@@ -91,13 +105,6 @@
       <guid isPermaLink="false">anical-rss-197715-f12</guid>
       <pubDate>Wed, 16 Sep 2026 15:00:00 GMT</pubDate>
       <description>Finale: Monsters did not always exist in the island country of Hexaldoria, once known as Japan. But, once monsters appeared, their numbers grew in an instant. Eighty percent of the world is now too dangerous for people to live in. With the monsters' arrival, the world bestowed…</description>
-    </item>
-    <item>
-      <title>Daemons of the Shadow Realm — Finale (Ep 24)</title>
-      <link>https://anicalendar.netlify.app/anime/daemons-of-the-shadow-realm-195600/</link>
-      <guid isPermaLink="false">anical-rss-195600-f24</guid>
-      <pubDate>Sat, 12 Sep 2026 14:30:00 GMT</pubDate>
-      <description>Finale: In a remote mountain village under the watchful eyes of two stone guardians, the young Yuru contentedly lives off the land while staying close to the only family he has left—Asa, his precious twin sister. Asa, meanwhile, carries out a mysterious “duty” on behalf of the village…</description>
     </item>
     <item>
       <title>Welcome to Demon School! Iruma-kun Season 4 — Finale (Ep 24)</title>
@@ -161,6 +168,13 @@
       <guid isPermaLink="false">anical-rss-208829-p1</guid>
       <pubDate>Thu, 30 Jul 2026 15:00:00 GMT</pubDate>
       <description>Premiere: The Nohara family go to Hiroshi's hometown of Akita to attend a famous fireworks festival during the summer. However, an incident causes youkai to escape from their land and will wreak havoc in Akita and in other areas throughout Japan. The Nohara family then go to the land of…</description>
+    </item>
+    <item>
+      <title>BLEACH: Thousand-Year Blood War - The Calamity — Premiere (Ep 1)</title>
+      <link>https://anicalendar.netlify.app/anime/bleach-thousand-year-blood-war-the-calamity-185874/</link>
+      <guid isPermaLink="false">anical-rss-185874-p1</guid>
+      <pubDate>Sat, 25 Jul 2026 14:00:00 GMT</pubDate>
+      <description>Premiere: The fourth and final part of BLEACH: Sennen Kessen-hen .</description>
     </item>
     <item>
       <title>Chiikawa: Ningyo no Shima no Himitsu — Premiere (Ep 1)</title>
@@ -343,20 +357,6 @@
       <guid isPermaLink="false">anical-rss-169583-p1</guid>
       <pubDate>Mon, 06 Jul 2026 14:30:00 GMT</pubDate>
       <description>Premiere: I met my childhood friend again, and she had become a beautiful and innocent girl. &quot;It's been a while, Hayato.&quot; &quot;Haruki, is it?&quot; In the past, I used to play in the mud with my childhood friend in the countryside, and when I saw him again, there was no trace of the bratty young…</description>
-    </item>
-    <item>
-      <title>The Forsaken Saintess and Her Foodie Roadtrip in Another World — Premiere (Ep 1)</title>
-      <link>https://anicalendar.netlify.app/anime/the-forsaken-saintess-and-her-foodie-roadtrip-in-another-wor-209504/</link>
-      <guid isPermaLink="false">anical-rss-209504-p1</guid>
-      <pubDate>Mon, 06 Jul 2026 14:00:00 GMT</pubDate>
-      <description>Premiere: Rin Takanashi, a caregiver in her thirties, was unceremoniously discarded as &quot;trash&quot; despite being summoned as a saint. However, as a lover of the great outdoors and all things camping, she was blessed with a special skill, &quot;Survival,&quot; as well as another unique skill! Thus, a…</description>
-    </item>
-    <item>
-      <title>Honoo no Toukyuujyo Dodge Danko — Premiere (Ep 1)</title>
-      <link>https://anicalendar.netlify.app/anime/honoo-no-toukyuujyo-dodge-danko-195833/</link>
-      <guid isPermaLink="false">anical-rss-195833-p1</guid>
-      <pubDate>Mon, 06 Jul 2026 14:00:00 GMT</pubDate>
-      <description>Premiere: The sequel to the legendary dodgeball manga Honou no Toukyuuji Dodge Danpei ! In this modern version of the hot-blooded dodgeball story, Danpei's daughter, Danko, follows in his footsteps, struggling to build a dodgeball team with the strongest fighting spirit in the modern age…</description>
     </item>
   </channel>
 </rss>

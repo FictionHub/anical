@@ -36,6 +36,15 @@ DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/smoking-be
 URL:https://anicalendar.netlify.app/anime/smoking-behind-the-supermarket-with-you-196187/
 END:VEVENT
 BEGIN:VEVENT
+UID:anical-185874-1@anicalendar.netlify.app
+DTSTAMP:20260725T140000Z
+DTSTART:20260725T140000Z
+DTEND:20260725T143000Z
+SUMMARY:BLEACH: Thousand-Year Blood War - The Calamity — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/bleach-thousand-year-blood-war-the-calamity-185874/
+URL:https://anicalendar.netlify.app/anime/bleach-thousand-year-blood-war-the-calamity-185874/
+END:VEVENT
+BEGIN:VEVENT
 UID:anical-133007-1@anicalendar.netlify.app
 DTSTAMP:20260827T150000Z
 DTSTART:20260827T150000Z
@@ -297,15 +306,6 @@ DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/oh-boy-was
 URL:https://anicalendar.netlify.app/anime/oh-boy-was-i-wrong-about-her-169583/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-199748-1@anicalendar.netlify.app
-DTSTAMP:20260703T133000Z
-DTSTART:20260703T133000Z
-DTEND:20260703T140000Z
-SUMMARY:I Became a Legend After My 10 Year-Long Last Stand — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
-URL:https://anicalendar.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-202269-1@anicalendar.netlify.app
 DTSTAMP:20260706T120000Z
 DTSTART:20260706T120000Z
@@ -313,6 +313,15 @@ DTEND:20260706T123000Z
 SUMMARY:Love Unseen Beneath the Clear Night Sky — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/love-unseen-beneath-the-clear-night-sky-202269/
 URL:https://anicalendar.netlify.app/anime/love-unseen-beneath-the-clear-night-sky-202269/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-199748-1@anicalendar.netlify.app
+DTSTAMP:20260703T133000Z
+DTSTART:20260703T133000Z
+DTEND:20260703T140000Z
+SUMMARY:I Became a Legend After My 10 Year-Long Last Stand — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
+URL:https://anicalendar.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-204466-1@anicalendar.netlify.app
@@ -369,15 +378,6 @@ DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/to-you-in-
 URL:https://anicalendar.netlify.app/anime/to-you-in-the-beyond-207327/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-108992-1@anicalendar.netlify.app
-DTSTAMP:20260709T143000Z
-DTSTART:20260709T143000Z
-DTEND:20260709T150000Z
-SUMMARY:MEBIUS DUST — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/mebius-dust-108992/
-URL:https://anicalendar.netlify.app/anime/mebius-dust-108992/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-196218-1@anicalendar.netlify.app
 DTSTAMP:20260703T133000Z
 DTSTART:20260703T133000Z
@@ -385,6 +385,15 @@ DTEND:20260703T140000Z
 SUMMARY:Ryoumin 0-Nin Start no Henkyou Ryoushu-sama — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/ryoumin-0-nin-start-no-henkyou-ryoushu-sama-196218/
 URL:https://anicalendar.netlify.app/anime/ryoumin-0-nin-start-no-henkyou-ryoushu-sama-196218/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-108992-1@anicalendar.netlify.app
+DTSTAMP:20260709T143000Z
+DTSTART:20260709T143000Z
+DTEND:20260709T150000Z
+SUMMARY:MEBIUS DUST — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/mebius-dust-108992/
+URL:https://anicalendar.netlify.app/anime/mebius-dust-108992/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-186863-1@anicalendar.netlify.app
@@ -432,15 +441,6 @@ DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/kabushiki-
 URL:https://anicalendar.netlify.app/anime/kabushiki-gaisha-magi-lumiere-2nd-season-185692/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-207809-1@anicalendar.netlify.app
-DTSTAMP:20260707T163500Z
-DTSTART:20260707T163500Z
-DTEND:20260707T170500Z
-SUMMARY:Sora wa Akai Kawa no Hotori — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/sora-wa-akai-kawa-no-hotori-207809/
-URL:https://anicalendar.netlify.app/anime/sora-wa-akai-kawa-no-hotori-207809/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-192800-1@anicalendar.netlify.app
 DTSTAMP:20260624T133000Z
 DTSTART:20260624T133000Z
@@ -448,6 +448,15 @@ DTEND:20260624T140000Z
 SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
 URL:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-207809-1@anicalendar.netlify.app
+DTSTAMP:20260707T163500Z
+DTSTART:20260707T163500Z
+DTEND:20260707T170500Z
+SUMMARY:Sora wa Akai Kawa no Hotori — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/sora-wa-akai-kawa-no-hotori-207809/
+URL:https://anicalendar.netlify.app/anime/sora-wa-akai-kawa-no-hotori-207809/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-208754-1@anicalendar.netlify.app
@@ -540,15 +549,6 @@ DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/ibitte-kon
 URL:https://anicalendar.netlify.app/anime/ibitte-konai-gibo-to-gishi-196356/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-209504-1@anicalendar.netlify.app
-DTSTAMP:20260706T140000Z
-DTSTART:20260706T140000Z
-DTEND:20260706T143000Z
-SUMMARY:The Forsaken Saintess and Her Foodie Roadtrip in Another World — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/the-forsaken-saintess-and-her-foodie-roadtrip-in-another-wor-209504/
-URL:https://anicalendar.netlify.app/anime/the-forsaken-saintess-and-her-foodie-roadtrip-in-another-wor-209504/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-207674-1@anicalendar.netlify.app
 DTSTAMP:20260703T163000Z
 DTSTART:20260703T163000Z
@@ -556,6 +556,15 @@ DTEND:20260703T170000Z
 SUMMARY:Ushiro no Shoumen Kamui-san — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/ushiro-no-shoumen-kamui-san-207674/
 URL:https://anicalendar.netlify.app/anime/ushiro-no-shoumen-kamui-san-207674/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-209504-1@anicalendar.netlify.app
+DTSTAMP:20260706T140000Z
+DTSTART:20260706T140000Z
+DTEND:20260706T143000Z
+SUMMARY:The Forsaken Saintess and Her Foodie Roadtrip in Another World — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/the-forsaken-saintess-and-her-foodie-roadtrip-in-another-wor-209504/
+URL:https://anicalendar.netlify.app/anime/the-forsaken-saintess-and-her-foodie-roadtrip-in-another-wor-209504/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-202390-1@anicalendar.netlify.app
