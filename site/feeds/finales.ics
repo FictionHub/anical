@@ -99,15 +99,6 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/bleach-thousand
 URL:https://anicalendar.netlify.app/anime/bleach-thousand-year-blood-war-the-calamity-185874/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-182483-f12@anicalendar.netlify.app
-DTSTAMP:20260625T123000Z
-DTSTART:20260625T123000Z
-DTEND:20260625T130000Z
-SUMMARY:The Warrior Princess and the Barbaric King — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-warrior-princess-and-the-barbaric-king-182483/
-URL:https://anicalendar.netlify.app/anime/the-warrior-princess-and-the-barbaric-king-182483/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-206914-f12@anicalendar.netlify.app
 DTSTAMP:20260621T120000Z
 DTSTART:20260621T120000Z
@@ -115,6 +106,15 @@ DTEND:20260621T123000Z
 SUMMARY:NIPPON SANGOKU: The Three Nations of the Crimson Sun — Finale (Ep 12)
 DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/nippon-sangoku-the-three-nations-of-the-crimson-sun-206914/
 URL:https://anicalendar.netlify.app/anime/nippon-sangoku-the-three-nations-of-the-crimson-sun-206914/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-182483-f12@anicalendar.netlify.app
+DTSTAMP:20260625T123000Z
+DTSTART:20260625T123000Z
+DTEND:20260625T130000Z
+SUMMARY:The Warrior Princess and the Barbaric King — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-warrior-princess-and-the-barbaric-king-182483/
+URL:https://anicalendar.netlify.app/anime/the-warrior-princess-and-the-barbaric-king-182483/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-194393-f12@anicalendar.netlify.app
@@ -144,15 +144,6 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-beginning-a
 URL:https://anicalendar.netlify.app/anime/the-beginning-after-the-end-season-2-194317/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-190704-f12@anicalendar.netlify.app
-DTSTAMP:20260620T160000Z
-DTSTART:20260620T160000Z
-DTEND:20260620T163000Z
-SUMMARY:Mistress Kanan is Devilishly Easy — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/mistress-kanan-is-devilishly-easy-190704/
-URL:https://anicalendar.netlify.app/anime/mistress-kanan-is-devilishly-easy-190704/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-190143-f14@anicalendar.netlify.app
 DTSTAMP:20260627T150000Z
 DTSTART:20260627T150000Z
@@ -169,15 +160,6 @@ DTEND:20260627T143000Z
 SUMMARY:KILL BLUE — Finale (Ep 12)
 DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/kill-blue-198113/
 URL:https://anicalendar.netlify.app/anime/kill-blue-198113/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-196935-f12@anicalendar.netlify.app
-DTSTAMP:20260620T143000Z
-DTSTART:20260620T143000Z
-DTEND:20260620T150000Z
-SUMMARY:Akane-banashi — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/akane-banashi-196935/
-URL:https://anicalendar.netlify.app/anime/akane-banashi-196935/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-202102-f13@anicalendar.netlify.app
@@ -270,15 +252,6 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/my-ribdiculous-
 URL:https://anicalendar.netlify.app/anime/my-ribdiculous-reincarnation-206951/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-196029-f12@anicalendar.netlify.app
-DTSTAMP:20260620T163000Z
-DTSTART:20260620T163000Z
-DTEND:20260620T170000Z
-SUMMARY:Kusunoki's Garden of Gods — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/kusunokis-garden-of-gods-196029/
-URL:https://anicalendar.netlify.app/anime/kusunokis-garden-of-gods-196029/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-186744-f13@anicalendar.netlify.app
 DTSTAMP:20260630T143000Z
 DTSTART:20260630T143000Z
@@ -315,15 +288,6 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/a-hundred-scene
 URL:https://anicalendar.netlify.app/anime/a-hundred-scenes-of-awajima-177501/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-204319-f12@anicalendar.netlify.app
-DTSTAMP:20260621T160500Z
-DTSTART:20260621T160500Z
-DTEND:20260621T163500Z
-SUMMARY:Do You Like Big Girls? — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/do-you-like-big-girls-204319/
-URL:https://anicalendar.netlify.app/anime/do-you-like-big-girls-204319/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-202985-f12@anicalendar.netlify.app
 DTSTAMP:20260623T162900Z
 DTSTART:20260623T162900Z
@@ -340,15 +304,6 @@ DTEND:20260621T164000Z
 SUMMARY:Ingoku Danchi:Deviant's Apartment Complex — Finale (Ep 12)
 DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/ingoku-danchideviants-apartment-complex-206166/
 URL:https://anicalendar.netlify.app/anime/ingoku-danchideviants-apartment-complex-206166/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-195734-f11@anicalendar.netlify.app
-DTSTAMP:20260620T170000Z
-DTSTART:20260620T170000Z
-DTEND:20260620T173000Z
-SUMMARY:Ichijyoma Mankitsu Gurashi! — Finale (Ep 11)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/ichijyoma-mankitsu-gurashi-195734/
-URL:https://anicalendar.netlify.app/anime/ichijyoma-mankitsu-gurashi-195734/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-158036-f13@anicalendar.netlify.app
@@ -430,6 +385,15 @@ DTEND:20260924T130000Z
 SUMMARY:Dara-san of Reiwa — Finale (Ep 13)
 DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/dara-san-of-reiwa-203880/
 URL:https://anicalendar.netlify.app/anime/dara-san-of-reiwa-203880/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-207675-f12@anicalendar.netlify.app
+DTSTAMP:20260623T125500Z
+DTSTART:20260623T125500Z
+DTEND:20260623T132500Z
+SUMMARY:Hyakki Yakoushou — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/hyakki-yakoushou-207675/
+URL:https://anicalendar.netlify.app/anime/hyakki-yakoushou-207675/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-205772-f24@anicalendar.netlify.app
