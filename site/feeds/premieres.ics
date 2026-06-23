@@ -211,9 +211,9 @@ UID:anical-207141-1@anicalendar.netlify.app
 DTSTAMP:20260702T153000Z
 DTSTART:20260702T153000Z
 DTEND:20260702T160000Z
-SUMMARY:Yani Neko — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/yani-neko-207141/
-URL:https://anicalendar.netlify.app/anime/yani-neko-207141/
+SUMMARY:Chainsmoker Cat — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/chainsmoker-cat-207141/
+URL:https://anicalendar.netlify.app/anime/chainsmoker-cat-207141/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-128757-1@anicalendar.netlify.app
@@ -270,6 +270,15 @@ DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/boku-no-he
 URL:https://anicalendar.netlify.app/anime/boku-no-hero-academia-i-am-a-hero-too-211711/
 END:VEVENT
 BEGIN:VEVENT
+UID:anical-169583-1@anicalendar.netlify.app
+DTSTAMP:20260706T143000Z
+DTSTART:20260706T143000Z
+DTEND:20260706T150000Z
+SUMMARY:Oh Boy\, Was I Wrong About Her — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/oh-boy-was-i-wrong-about-her-169583/
+URL:https://anicalendar.netlify.app/anime/oh-boy-was-i-wrong-about-her-169583/
+END:VEVENT
+BEGIN:VEVENT
 UID:anical-206521-1@anicalendar.netlify.app
 DTSTAMP:20260629T130000Z
 DTSTART:20260629T130000Z
@@ -295,15 +304,6 @@ DTEND:20260701T153000Z
 SUMMARY:The Villager of Level 999 — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/the-villager-of-level-999-197715/
 URL:https://anicalendar.netlify.app/anime/the-villager-of-level-999-197715/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-169583-1@anicalendar.netlify.app
-DTSTAMP:20260706T143000Z
-DTSTART:20260706T143000Z
-DTEND:20260706T150000Z
-SUMMARY:Oh Boy\, Was I Wrong About Her — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/oh-boy-was-i-wrong-about-her-169583/
-URL:https://anicalendar.netlify.app/anime/oh-boy-was-i-wrong-about-her-169583/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-202269-1@anicalendar.netlify.app
@@ -387,6 +387,15 @@ DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/ryoumin-0-
 URL:https://anicalendar.netlify.app/anime/ryoumin-0-nin-start-no-henkyou-ryoushu-sama-196218/
 END:VEVENT
 BEGIN:VEVENT
+UID:anical-198409-1@anicalendar.netlify.app
+DTSTAMP:20260705T130000Z
+DTSTART:20260705T130000Z
+DTEND:20260705T133000Z
+SUMMARY:The World's Strongest Rearguard — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/the-worlds-strongest-rearguard-198409/
+URL:https://anicalendar.netlify.app/anime/the-worlds-strongest-rearguard-198409/
+END:VEVENT
+BEGIN:VEVENT
 UID:anical-108992-1@anicalendar.netlify.app
 DTSTAMP:20260709T143000Z
 DTSTART:20260709T143000Z
@@ -405,13 +414,13 @@ DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/the-cat-an
 URL:https://anicalendar.netlify.app/anime/the-cat-and-the-dragon-186863/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-198409-1@anicalendar.netlify.app
-DTSTAMP:20260705T130000Z
-DTSTART:20260705T130000Z
-DTEND:20260705T133000Z
-SUMMARY:The World's Strongest Rearguard — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/the-worlds-strongest-rearguard-198409/
-URL:https://anicalendar.netlify.app/anime/the-worlds-strongest-rearguard-198409/
+UID:anical-199066-1@anicalendar.netlify.app
+DTSTAMP:20260711T170000Z
+DTSTART:20260711T170000Z
+DTEND:20260711T173000Z
+SUMMARY:Hanaori-san Still Wants to Fight in the Next Life — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/hanaori-san-still-wants-to-fight-in-the-next-life-199066/
+URL:https://anicalendar.netlify.app/anime/hanaori-san-still-wants-to-fight-in-the-next-life-199066/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-199408-1@anicalendar.netlify.app
@@ -423,15 +432,6 @@ DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/buchigire-
 URL:https://anicalendar.netlify.app/anime/buchigire-reijou-wa-houfuku-wo-chikaimashita-madousho-no-chi-199408/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-199066-1@anicalendar.netlify.app
-DTSTAMP:20260711T170000Z
-DTSTART:20260711T170000Z
-DTEND:20260711T173000Z
-SUMMARY:Hanaori-san Still Wants to Fight in the Next Life — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/hanaori-san-still-wants-to-fight-in-the-next-life-199066/
-URL:https://anicalendar.netlify.app/anime/hanaori-san-still-wants-to-fight-in-the-next-life-199066/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-192800-1@anicalendar.netlify.app
 DTSTAMP:20260624T133000Z
 DTSTART:20260624T133000Z
@@ -441,15 +441,6 @@ DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/heroine-sa
 URL:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-185692-1@anicalendar.netlify.app
-DTSTAMP:20260704T155500Z
-DTSTART:20260704T155500Z
-DTEND:20260704T162500Z
-SUMMARY:Kabushiki Gaisha Magi Lumiere 2nd Season — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/kabushiki-gaisha-magi-lumiere-2nd-season-185692/
-URL:https://anicalendar.netlify.app/anime/kabushiki-gaisha-magi-lumiere-2nd-season-185692/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-207809-1@anicalendar.netlify.app
 DTSTAMP:20260707T163500Z
 DTSTART:20260707T163500Z
@@ -457,6 +448,15 @@ DTEND:20260707T170500Z
 SUMMARY:Sora wa Akai Kawa no Hotori — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/sora-wa-akai-kawa-no-hotori-207809/
 URL:https://anicalendar.netlify.app/anime/sora-wa-akai-kawa-no-hotori-207809/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-185692-1@anicalendar.netlify.app
+DTSTAMP:20260704T155500Z
+DTSTART:20260704T155500Z
+DTEND:20260704T162500Z
+SUMMARY:Kabushiki Gaisha Magi Lumiere 2nd Season — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/kabushiki-gaisha-magi-lumiere-2nd-season-185692/
+URL:https://anicalendar.netlify.app/anime/kabushiki-gaisha-magi-lumiere-2nd-season-185692/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-208754-1@anicalendar.netlify.app
@@ -513,15 +513,6 @@ DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/kimi-to-ha
 URL:https://anicalendar.netlify.app/anime/kimi-to-hanabi-to-yakusoku-to-206819/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-201667-1@anicalendar.netlify.app
-DTSTAMP:20260702T124000Z
-DTSTART:20260702T124000Z
-DTEND:20260702T131000Z
-SUMMARY:Bungo Stray Dogs WAN! 2 — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/bungo-stray-dogs-wan-2-201667/
-URL:https://anicalendar.netlify.app/anime/bungo-stray-dogs-wan-2-201667/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-208225-1@anicalendar.netlify.app
 DTSTAMP:20260704T163000Z
 DTSTART:20260704T163000Z
@@ -538,6 +529,15 @@ DTEND:20260702T130000Z
 SUMMARY:Dara-san of Reiwa — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/dara-san-of-reiwa-203880/
 URL:https://anicalendar.netlify.app/anime/dara-san-of-reiwa-203880/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-201667-1@anicalendar.netlify.app
+DTSTAMP:20260702T124000Z
+DTSTART:20260702T124000Z
+DTEND:20260702T131000Z
+SUMMARY:Bungo Stray Dogs WAN! 2 — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/bungo-stray-dogs-wan-2-201667/
+URL:https://anicalendar.netlify.app/anime/bungo-stray-dogs-wan-2-201667/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-207674-1@anicalendar.netlify.app
@@ -603,15 +603,6 @@ DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/kore-kaite
 URL:https://anicalendar.netlify.app/anime/kore-kaite-shine-188525/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-169080-1@anicalendar.netlify.app
-DTSTAMP:20260705T160000Z
-DTSTART:20260705T160000Z
-DTEND:20260705T163000Z
-SUMMARY:Anime AzurLane: Slow Ahead! Season 2 — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/anime-azurlane-slow-ahead-season-2-169080/
-URL:https://anicalendar.netlify.app/anime/anime-azurlane-slow-ahead-season-2-169080/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-198376-1@anicalendar.netlify.app
 DTSTAMP:20260702T140000Z
 DTSTART:20260702T140000Z
@@ -619,6 +610,15 @@ DTEND:20260702T143000Z
 SUMMARY:BanG Dream! Yume∞Mita — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/bang-dream-yumemita-198376/
 URL:https://anicalendar.netlify.app/anime/bang-dream-yumemita-198376/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-169080-1@anicalendar.netlify.app
+DTSTAMP:20260705T160000Z
+DTSTART:20260705T160000Z
+DTEND:20260705T163000Z
+SUMMARY:Anime AzurLane: Slow Ahead! Season 2 — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/anime-azurlane-slow-ahead-season-2-169080/
+URL:https://anicalendar.netlify.app/anime/anime-azurlane-slow-ahead-season-2-169080/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-196017-1@anicalendar.netlify.app
