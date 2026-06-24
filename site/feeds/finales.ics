@@ -9,15 +9,6 @@ NAME:AniCal — Season Finales
 REFRESH-INTERVAL;VALUE=DURATION:PT12H
 X-PUBLISHED-TTL:PT12H
 BEGIN:VEVENT
-UID:anical-147105-f13@anicalendar.netlify.app
-DTSTAMP:20260622T140000Z
-DTSTART:20260622T140000Z
-DTEND:20260622T143000Z
-SUMMARY:Witch Hat Atelier — Finale (Ep 13)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/witch-hat-atelier-147105/
-URL:https://anicalendar.netlify.app/anime/witch-hat-atelier-147105/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-189046-f19@anicalendar.netlify.app
 DTSTAMP:20260930T130000Z
 DTSTART:20260930T130000Z
@@ -117,15 +108,6 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/i-want-to-end-t
 URL:https://anicalendar.netlify.app/anime/i-want-to-end-this-love-game-194393/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-197824-f12@anicalendar.netlify.app
-DTSTAMP:20260622T133000Z
-DTSTART:20260622T133000Z
-DTEND:20260622T140000Z
-SUMMARY:Farming Life in Another World 2 — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/farming-life-in-another-world-2-197824/
-URL:https://anicalendar.netlify.app/anime/farming-life-in-another-world-2-197824/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-194317-f12@anicalendar.netlify.app
 DTSTAMP:20260624T143000Z
 DTSTART:20260624T143000Z
@@ -171,15 +153,6 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/welcome-to-demo
 URL:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-189987-f12@anicalendar.netlify.app
-DTSTAMP:20260622T142400Z
-DTSTART:20260622T142400Z
-DTEND:20260622T145400Z
-SUMMARY:The Klutzy Class Monitor and the Girl with the Short Skirt — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-klutzy-class-monitor-and-the-girl-with-the-short-skirt-189987/
-URL:https://anicalendar.netlify.app/anime/the-klutzy-class-monitor-and-the-girl-with-the-short-skirt-189987/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-179950-f13@anicalendar.netlify.app
 DTSTAMP:20260625T153000Z
 DTSTART:20260625T153000Z
@@ -196,6 +169,15 @@ DTEND:20260626T153000Z
 SUMMARY:Botan Kamiina Fully Blossoms When Drunk — Finale (Ep 12)
 DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/botan-kamiina-fully-blossoms-when-drunk-187869/
 URL:https://anicalendar.netlify.app/anime/botan-kamiina-fully-blossoms-when-drunk-187869/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-182578-f12@anicalendar.netlify.app
+DTSTAMP:20260628T080000Z
+DTSTART:20260628T080000Z
+DTEND:20260628T083000Z
+SUMMARY:Mission: Yozakura Family Season 2 — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/mission-yozakura-family-season-2-182578/
+URL:https://anicalendar.netlify.app/anime/mission-yozakura-family-season-2-182578/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-185211-f12@anicalendar.netlify.app
