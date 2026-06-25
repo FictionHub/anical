@@ -6,7 +6,7 @@
     <atom:link href="https://anicalendar.netlify.app/feed.xml" rel="self" type="application/rss+xml" />
     <description>Upcoming and recent anime premieres and season finales, updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 24 Jun 2026 16:37:55 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 25 Jun 2026 16:41:25 GMT</lastBuildDate>
     <ttl>720</ttl>
     <item>
       <title>Made in Abyss: Mezameru Shinpi — Premiere (Ep 1)</title>
@@ -20,7 +20,7 @@
       <link>https://anicalendar.netlify.app/anime/bleach-thousand-year-blood-war-the-calamity-185874/</link>
       <guid isPermaLink="false">anical-rss-185874-f13</guid>
       <pubDate>Sat, 17 Oct 2026 14:00:00 GMT</pubDate>
-      <description>Finale: The fourth and final part of BLEACH: Sennen Kessen-hen .</description>
+      <description>Finale: The fourth and final part of BLEACH: Sennen Kessen-hen . Destruction looms at the end of the Thousand-Year Blood War between the Soul Reapers and Quincies… as the death of the Soul King mirrors the collapse of the Three Worlds, distortions and omens of destruction start to…</description>
     </item>
     <item>
       <title>Rascal Does Not Dream of a Dear Friend — Premiere (Ep 1)</title>
@@ -72,6 +72,13 @@
       <description>Finale: Ame is a child who loves sweets, and the tooth decay that lives in her mouth called Caries. Caries lives a carefree life inside Ame's mouth and even calls her &quot;Mama&quot;, and Ame's body is always at Caries' mercy. (Source: Anime News Network, edited)</description>
     </item>
     <item>
+      <title>Goodbye, Lara — Finale (Ep 12)</title>
+      <link>https://anicalendar.netlify.app/anime/goodbye-lara-177637/</link>
+      <guid isPermaLink="false">anical-rss-177637-f12</guid>
+      <pubDate>Sun, 20 Sep 2026 15:30:00 GMT</pubDate>
+      <description>Finale: Long, long ago, there lived a mermaid princess named Lara. She was raised with love by her father, the king of sea and her sisters. One day, Lara fell in love with a human prince who lived on land. It was a forbidden love—one that was not allowed in the world of mermaids.…</description>
+    </item>
+    <item>
       <title>Magical Girl Lyrical Nanoha EXCEEDS Gun Blaze Vengeance — Finale (Ep 12)</title>
       <link>https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/</link>
       <guid isPermaLink="false">anical-rss-185875-f12</guid>
@@ -93,8 +100,8 @@
       <description>Finale: World-renowned wine critic Yutaka Kanzaki has passed away, leaving behind a wine collection worth over 12 billion yen. His will states that his collection will be given to the one who can identify the origin and year of twelve wines he’s chosen, the “Twelve Apostles”, and one…</description>
     </item>
     <item>
-      <title>Meitantei Precure (Movie) — Premiere (Ep 1)</title>
-      <link>https://anicalendar.netlify.app/anime/meitantei-precure-movie-198654/</link>
+      <title>Meitantei Precure! Fushigi na Niwa to Futari no Himitsu — Premiere (Ep 1)</title>
+      <link>https://anicalendar.netlify.app/anime/meitantei-precure-fushigi-na-niwa-to-futari-no-himitsu-198654/</link>
       <guid isPermaLink="false">anical-rss-198654-p1</guid>
       <pubDate>Thu, 17 Sep 2026 15:00:00 GMT</pubDate>
       <description>Premiere: Movie of Meitantei Precure! .</description>
@@ -174,7 +181,7 @@
       <link>https://anicalendar.netlify.app/anime/bleach-thousand-year-blood-war-the-calamity-185874/</link>
       <guid isPermaLink="false">anical-rss-185874-p1</guid>
       <pubDate>Sat, 25 Jul 2026 14:00:00 GMT</pubDate>
-      <description>Premiere: The fourth and final part of BLEACH: Sennen Kessen-hen .</description>
+      <description>Premiere: The fourth and final part of BLEACH: Sennen Kessen-hen . Destruction looms at the end of the Thousand-Year Blood War between the Soul Reapers and Quincies… as the death of the Soul King mirrors the collapse of the Three Worlds, distortions and omens of destruction start to…</description>
     </item>
     <item>
       <title>Chiikawa: Ningyo no Shima no Himitsu — Premiere (Ep 1)</title>
@@ -350,13 +357,6 @@
       <guid isPermaLink="false">anical-rss-199111-p1</guid>
       <pubDate>Mon, 06 Jul 2026 15:00:00 GMT</pubDate>
       <description>Premiere: The third season of Grand Blue .</description>
-    </item>
-    <item>
-      <title>Oh Boy, Was I Wrong About Her — Premiere (Ep 1)</title>
-      <link>https://anicalendar.netlify.app/anime/oh-boy-was-i-wrong-about-her-169583/</link>
-      <guid isPermaLink="false">anical-rss-169583-p1</guid>
-      <pubDate>Mon, 06 Jul 2026 14:30:00 GMT</pubDate>
-      <description>Premiere: I met my childhood friend again, and she had become a beautiful and innocent girl. &quot;It's been a while, Hayato.&quot; &quot;Haruki, is it?&quot; In the past, I used to play in the mud with my childhood friend in the countryside, and when I saw him again, there was no trace of the bratty young…</description>
     </item>
   </channel>
 </rss>

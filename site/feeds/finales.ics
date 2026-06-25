@@ -45,15 +45,6 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/wistoria-wand-a
 URL:https://anicalendar.netlify.app/anime/wistoria-wand-and-sword-season-2-182300/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-169580-f12@anicalendar.netlify.app
-DTSTAMP:20260623T143000Z
-DTSTART:20260623T143000Z
-DTEND:20260623T150000Z
-SUMMARY:I Made Friends with the Second Prettiest Girl in My Class — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/i-made-friends-with-the-second-prettiest-girl-in-my-class-169580/
-URL:https://anicalendar.netlify.app/anime/i-made-friends-with-the-second-prettiest-girl-in-my-class-169580/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-199547-f13@anicalendar.netlify.app
 DTSTAMP:20260630T140000Z
 DTSTART:20260630T140000Z
@@ -81,6 +72,15 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/gals-cant-be-ki
 URL:https://anicalendar.netlify.app/anime/gals-cant-be-kind-to-otaku-199588/
 END:VEVENT
 BEGIN:VEVENT
+UID:anical-186497-f14@anicalendar.netlify.app
+DTSTAMP:20260702T145600Z
+DTSTART:20260702T145600Z
+DTEND:20260702T152600Z
+SUMMARY:The Ramparts of Ice — Finale (Ep 14)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-ramparts-of-ice-186497/
+URL:https://anicalendar.netlify.app/anime/the-ramparts-of-ice-186497/
+END:VEVENT
+BEGIN:VEVENT
 UID:anical-185874-f13@anicalendar.netlify.app
 DTSTAMP:20261017T140000Z
 DTSTART:20261017T140000Z
@@ -90,15 +90,6 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/bleach-thousand
 URL:https://anicalendar.netlify.app/anime/bleach-thousand-year-blood-war-the-calamity-185874/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-182483-f12@anicalendar.netlify.app
-DTSTAMP:20260625T123000Z
-DTSTART:20260625T123000Z
-DTEND:20260625T130000Z
-SUMMARY:The Warrior Princess and the Barbaric King — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-warrior-princess-and-the-barbaric-king-182483/
-URL:https://anicalendar.netlify.app/anime/the-warrior-princess-and-the-barbaric-king-182483/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-194393-f12@anicalendar.netlify.app
 DTSTAMP:20260630T140000Z
 DTSTART:20260630T140000Z
@@ -106,6 +97,15 @@ DTEND:20260630T143000Z
 SUMMARY:I Want to End this Love Game — Finale (Ep 12)
 DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/i-want-to-end-this-love-game-194393/
 URL:https://anicalendar.netlify.app/anime/i-want-to-end-this-love-game-194393/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-182483-f12@anicalendar.netlify.app
+DTSTAMP:20260625T123000Z
+DTSTART:20260625T123000Z
+DTEND:20260625T130000Z
+SUMMARY:The Warrior Princess and the Barbaric King — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-warrior-princess-and-the-barbaric-king-182483/
+URL:https://anicalendar.netlify.app/anime/the-warrior-princess-and-the-barbaric-king-182483/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-194317-f12@anicalendar.netlify.app
@@ -189,15 +189,6 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/yowayowa-sensei
 URL:https://anicalendar.netlify.app/anime/yowayowa-sensei-185211/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-195268-f12@anicalendar.netlify.app
-DTSTAMP:20260623T130000Z
-DTSTART:20260623T130000Z
-DTEND:20260623T133000Z
-SUMMARY:The Most Heretical Last Boss Queen: From Villainess to Savior Season 2 — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-most-heretical-last-boss-queen-from-villainess-to-savior-195268/
-URL:https://anicalendar.netlify.app/anime/the-most-heretical-last-boss-queen-from-villainess-to-savior-195268/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-199029-f12@anicalendar.netlify.app
 DTSTAMP:20260624T130000Z
 DTSTART:20260624T130000Z
@@ -261,13 +252,13 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/a-hundred-scene
 URL:https://anicalendar.netlify.app/anime/a-hundred-scenes-of-awajima-177501/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-202985-f12@anicalendar.netlify.app
-DTSTAMP:20260623T162900Z
-DTSTART:20260623T162900Z
-DTEND:20260623T165900Z
-SUMMARY:Pardon the Intrusion\, I'm Home! — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/pardon-the-intrusion-im-home-202985/
-URL:https://anicalendar.netlify.app/anime/pardon-the-intrusion-im-home-202985/
+UID:anical-177637-f12@anicalendar.netlify.app
+DTSTAMP:20260920T153000Z
+DTSTART:20260920T153000Z
+DTEND:20260920T160000Z
+SUMMARY:Goodbye\, Lara — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/goodbye-lara-177637/
+URL:https://anicalendar.netlify.app/anime/goodbye-lara-177637/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-158036-f13@anicalendar.netlify.app
@@ -331,15 +322,6 @@ DTEND:20260924T130000Z
 SUMMARY:Dara-san of Reiwa — Finale (Ep 13)
 DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/dara-san-of-reiwa-203880/
 URL:https://anicalendar.netlify.app/anime/dara-san-of-reiwa-203880/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-207675-f12@anicalendar.netlify.app
-DTSTAMP:20260623T125500Z
-DTSTART:20260623T125500Z
-DTEND:20260623T132500Z
-SUMMARY:Hyakki Yakoushou — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/hyakki-yakoushou-207675/
-URL:https://anicalendar.netlify.app/anime/hyakki-yakoushou-207675/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-205772-f24@anicalendar.netlify.app
