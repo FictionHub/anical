@@ -6,7 +6,7 @@
     <atom:link href="https://anicalendar.netlify.app/feed.xml" rel="self" type="application/rss+xml" />
     <description>Upcoming and recent anime premieres and season finales, updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 25 Jun 2026 16:41:25 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 26 Jun 2026 16:30:50 GMT</lastBuildDate>
     <ttl>720</ttl>
     <item>
       <title>Made in Abyss: Mezameru Shinpi — Premiere (Ep 1)</title>
@@ -219,6 +219,13 @@
       <description>Premiere: As maidens from the Five Clans battle for the Crown Prince’s heart, jealous Keigetsu uses forbidden magic to swap bodies with the beloved Reirin. Switching places does not guarantee happiness for Keigetsu with her new body's ill health leaving her hanging on the verge of death.…</description>
     </item>
     <item>
+      <title>Plannosaurus Gachi Koseibutsu-bu — Premiere (Ep 1)</title>
+      <link>https://anicalendar.netlify.app/anime/plannosaurus-gachi-koseibutsu-bu-208824/</link>
+      <guid isPermaLink="false">anical-rss-208824-p1</guid>
+      <pubDate>Sat, 11 Jul 2026 22:00:00 GMT</pubDate>
+      <description>Premiere: Plannosaurus Gachi Koseibutsu-bu airs episode 1.</description>
+    </item>
+    <item>
       <title>Hanaori-san Still Wants to Fight in the Next Life — Premiere (Ep 1)</title>
       <link>https://anicalendar.netlify.app/anime/hanaori-san-still-wants-to-fight-in-the-next-life-199066/</link>
       <guid isPermaLink="false">anical-rss-199066-p1</guid>
@@ -350,13 +357,6 @@
       <guid isPermaLink="false">anical-rss-128757-p1</guid>
       <pubDate>Tue, 07 Jul 2026 11:30:00 GMT</pubDate>
       <description>Premiere: Kuromi Girls’ Academy is a refined, elegant school that expects the very best in deportment from its young ladies. Aya got into this peerless rich-girls’ institution on a scholarship, and hopes to grow as lovely as her fellow student and idol Shirayui. But Shirayui hides a…</description>
-    </item>
-    <item>
-      <title>Grand Blue Season 3 — Premiere (Ep 1)</title>
-      <link>https://anicalendar.netlify.app/anime/grand-blue-season-3-199111/</link>
-      <guid isPermaLink="false">anical-rss-199111-p1</guid>
-      <pubDate>Mon, 06 Jul 2026 15:00:00 GMT</pubDate>
-      <description>Premiere: The third season of Grand Blue .</description>
     </item>
   </channel>
 </rss>

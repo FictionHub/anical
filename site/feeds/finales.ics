@@ -27,15 +27,6 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/daemons-of-the-
 URL:https://anicalendar.netlify.app/anime/daemons-of-the-shadow-realm-195600/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-180745-f16@anicalendar.netlify.app
-DTSTAMP:20260624T123000Z
-DTSTART:20260624T123000Z
-DTEND:20260624T130000Z
-SUMMARY:Classroom of the Elite 4th Season: Second Year\, First Semester — Finale (Ep 16)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/classroom-of-the-elite-4th-season-second-year-first-semester-180745/
-URL:https://anicalendar.netlify.app/anime/classroom-of-the-elite-4th-season-second-year-first-semester-180745/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-182300-f12@anicalendar.netlify.app
 DTSTAMP:20260628T073000Z
 DTSTART:20260628T073000Z
@@ -63,15 +54,6 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/dr-stone-scienc
 URL:https://anicalendar.netlify.app/anime/dr-stone-science-future-cour-3-199221/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-199588-f12@anicalendar.netlify.app
-DTSTAMP:20260624T144500Z
-DTSTART:20260624T144500Z
-DTEND:20260624T151500Z
-SUMMARY:Gals Can't Be Kind to Otaku!? — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/gals-cant-be-kind-to-otaku-199588/
-URL:https://anicalendar.netlify.app/anime/gals-cant-be-kind-to-otaku-199588/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-186497-f14@anicalendar.netlify.app
 DTSTAMP:20260702T145600Z
 DTSTART:20260702T145600Z
@@ -90,15 +72,6 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/bleach-thousand
 URL:https://anicalendar.netlify.app/anime/bleach-thousand-year-blood-war-the-calamity-185874/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-194393-f12@anicalendar.netlify.app
-DTSTAMP:20260630T140000Z
-DTSTART:20260630T140000Z
-DTEND:20260630T143000Z
-SUMMARY:I Want to End this Love Game — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/i-want-to-end-this-love-game-194393/
-URL:https://anicalendar.netlify.app/anime/i-want-to-end-this-love-game-194393/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-182483-f12@anicalendar.netlify.app
 DTSTAMP:20260625T123000Z
 DTSTART:20260625T123000Z
@@ -108,13 +81,13 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-warrior-pri
 URL:https://anicalendar.netlify.app/anime/the-warrior-princess-and-the-barbaric-king-182483/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-194317-f12@anicalendar.netlify.app
-DTSTAMP:20260624T143000Z
-DTSTART:20260624T143000Z
-DTEND:20260624T150000Z
-SUMMARY:The Beginning After the End Season 2 — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-beginning-after-the-end-season-2-194317/
-URL:https://anicalendar.netlify.app/anime/the-beginning-after-the-end-season-2-194317/
+UID:anical-194393-f12@anicalendar.netlify.app
+DTSTAMP:20260630T140000Z
+DTSTART:20260630T140000Z
+DTEND:20260630T143000Z
+SUMMARY:I Want to End this Love Game — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/i-want-to-end-this-love-game-194393/
+URL:https://anicalendar.netlify.app/anime/i-want-to-end-this-love-game-194393/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-190143-f14@anicalendar.netlify.app
@@ -189,15 +162,6 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/yowayowa-sensei
 URL:https://anicalendar.netlify.app/anime/yowayowa-sensei-185211/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-199029-f12@anicalendar.netlify.app
-DTSTAMP:20260624T130000Z
-DTSTART:20260624T130000Z
-DTEND:20260624T133000Z
-SUMMARY:Rent-a-Girlfriend Season 5 — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/rent-a-girlfriend-season-5-199029/
-URL:https://anicalendar.netlify.app/anime/rent-a-girlfriend-season-5-199029/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-187989-f24@anicalendar.netlify.app
 DTSTAMP:20260627T155600Z
 DTSTART:20260627T155600Z
@@ -207,15 +171,6 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/scum-of-the-bra
 URL:https://anicalendar.netlify.app/anime/scum-of-the-brave-187989/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-206951-f12@anicalendar.netlify.app
-DTSTAMP:20260623T165900Z
-DTSTART:20260623T165900Z
-DTEND:20260623T172900Z
-SUMMARY:My Ribdiculous Reincarnation — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/my-ribdiculous-reincarnation-206951/
-URL:https://anicalendar.netlify.app/anime/my-ribdiculous-reincarnation-206951/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-186744-f13@anicalendar.netlify.app
 DTSTAMP:20260630T143000Z
 DTSTART:20260630T143000Z
@@ -223,15 +178,6 @@ DTEND:20260630T150000Z
 SUMMARY:Even a Replica Can Fall in Love — Finale (Ep 13)
 DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/even-a-replica-can-fall-in-love-186744/
 URL:https://anicalendar.netlify.app/anime/even-a-replica-can-fall-in-love-186744/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-198939-f12@anicalendar.netlify.app
-DTSTAMP:20260624T130000Z
-DTSTART:20260624T130000Z
-DTEND:20260624T133000Z
-SUMMARY:Reborn as a Vending Machine\, I Now Wander the Dungeon Season 3 — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/reborn-as-a-vending-machine-i-now-wander-the-dungeon-season--198939/
-URL:https://anicalendar.netlify.app/anime/reborn-as-a-vending-machine-i-now-wander-the-dungeon-season--198939/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-196144-f13@anicalendar.netlify.app
