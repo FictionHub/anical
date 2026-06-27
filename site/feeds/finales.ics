@@ -72,15 +72,6 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/bleach-thousand
 URL:https://anicalendar.netlify.app/anime/bleach-thousand-year-blood-war-the-calamity-185874/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-182483-f12@anicalendar.netlify.app
-DTSTAMP:20260625T123000Z
-DTSTART:20260625T123000Z
-DTEND:20260625T130000Z
-SUMMARY:The Warrior Princess and the Barbaric King — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-warrior-princess-and-the-barbaric-king-182483/
-URL:https://anicalendar.netlify.app/anime/the-warrior-princess-and-the-barbaric-king-182483/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-194393-f12@anicalendar.netlify.app
 DTSTAMP:20260630T140000Z
 DTSTART:20260630T140000Z
@@ -207,15 +198,6 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/goodbye-lara-17
 URL:https://anicalendar.netlify.app/anime/goodbye-lara-177637/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-158036-f13@anicalendar.netlify.app
-DTSTAMP:20260630T150000Z
-DTSTART:20260630T150000Z
-DTEND:20260630T153000Z
-SUMMARY:Eren the Southpaw — Finale (Ep 13)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/eren-the-southpaw-158036/
-URL:https://anicalendar.netlify.app/anime/eren-the-southpaw-158036/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-197715-f12@anicalendar.netlify.app
 DTSTAMP:20260916T150000Z
 DTSTART:20260916T150000Z
@@ -223,6 +205,15 @@ DTEND:20260916T153000Z
 SUMMARY:The Villager of Level 999 — Finale (Ep 12)
 DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-villager-of-level-999-197715/
 URL:https://anicalendar.netlify.app/anime/the-villager-of-level-999-197715/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-158036-f13@anicalendar.netlify.app
+DTSTAMP:20260630T150000Z
+DTSTART:20260630T150000Z
+DTEND:20260630T153000Z
+SUMMARY:Eren the Southpaw — Finale (Ep 13)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/eren-the-southpaw-158036/
+URL:https://anicalendar.netlify.app/anime/eren-the-southpaw-158036/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-169228-f14@anicalendar.netlify.app

@@ -342,15 +342,6 @@ DESCRIPTION:https://anicalendar.netlify.app/anime/bleach-thousand-year-blood-war
 URL:https://anicalendar.netlify.app/anime/bleach-thousand-year-blood-war-the-calamity-185874/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-182483-12@anicalendar.netlify.app
-DTSTAMP:20260625T123000Z
-DTSTART:20260625T123000Z
-DTEND:20260625T130000Z
-SUMMARY:The Warrior Princess and the Barbaric King — Ep 12
-DESCRIPTION:https://anicalendar.netlify.app/anime/the-warrior-princess-and-the-barbaric-king-182483/
-URL:https://anicalendar.netlify.app/anime/the-warrior-princess-and-the-barbaric-king-182483/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-194393-12@anicalendar.netlify.app
 DTSTAMP:20260630T140000Z
 DTSTART:20260630T140000Z
@@ -635,6 +626,15 @@ DTSTAMP:20260804T123000Z
 DTSTART:20260804T123000Z
 DTEND:20260804T130000Z
 SUMMARY:I Want to Love You Till Your Dying Day — Ep 5
+DESCRIPTION:https://anicalendar.netlify.app/anime/i-want-to-love-you-till-your-dying-day-187260/
+URL:https://anicalendar.netlify.app/anime/i-want-to-love-you-till-your-dying-day-187260/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-187260-6@anicalendar.netlify.app
+DTSTAMP:20260811T123000Z
+DTSTART:20260811T123000Z
+DTEND:20260811T130000Z
+SUMMARY:I Want to Love You Till Your Dying Day — Ep 6
 DESCRIPTION:https://anicalendar.netlify.app/anime/i-want-to-love-you-till-your-dying-day-187260/
 URL:https://anicalendar.netlify.app/anime/i-want-to-love-you-till-your-dying-day-187260/
 END:VEVENT
@@ -1143,6 +1143,60 @@ DESCRIPTION:https://anicalendar.netlify.app/anime/scum-of-the-brave-187989/
 URL:https://anicalendar.netlify.app/anime/scum-of-the-brave-187989/
 END:VEVENT
 BEGIN:VEVENT
+UID:anical-187538-1@anicalendar.netlify.app
+DTSTAMP:20260704T130000Z
+DTSTART:20260704T130000Z
+DTEND:20260704T133000Z
+SUMMARY:BLACK TORCH — Ep 1
+DESCRIPTION:https://anicalendar.netlify.app/anime/black-torch-187538/
+URL:https://anicalendar.netlify.app/anime/black-torch-187538/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-187538-2@anicalendar.netlify.app
+DTSTAMP:20260711T130000Z
+DTSTART:20260711T130000Z
+DTEND:20260711T133000Z
+SUMMARY:BLACK TORCH — Ep 2
+DESCRIPTION:https://anicalendar.netlify.app/anime/black-torch-187538/
+URL:https://anicalendar.netlify.app/anime/black-torch-187538/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-187538-3@anicalendar.netlify.app
+DTSTAMP:20260718T130000Z
+DTSTART:20260718T130000Z
+DTEND:20260718T133000Z
+SUMMARY:BLACK TORCH — Ep 3
+DESCRIPTION:https://anicalendar.netlify.app/anime/black-torch-187538/
+URL:https://anicalendar.netlify.app/anime/black-torch-187538/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-187538-4@anicalendar.netlify.app
+DTSTAMP:20260725T130000Z
+DTSTART:20260725T130000Z
+DTEND:20260725T133000Z
+SUMMARY:BLACK TORCH — Ep 4
+DESCRIPTION:https://anicalendar.netlify.app/anime/black-torch-187538/
+URL:https://anicalendar.netlify.app/anime/black-torch-187538/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-187538-5@anicalendar.netlify.app
+DTSTAMP:20260801T130000Z
+DTSTART:20260801T130000Z
+DTEND:20260801T133000Z
+SUMMARY:BLACK TORCH — Ep 5
+DESCRIPTION:https://anicalendar.netlify.app/anime/black-torch-187538/
+URL:https://anicalendar.netlify.app/anime/black-torch-187538/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-187538-6@anicalendar.netlify.app
+DTSTAMP:20260808T130000Z
+DTSTART:20260808T130000Z
+DTEND:20260808T133000Z
+SUMMARY:BLACK TORCH — Ep 6
+DESCRIPTION:https://anicalendar.netlify.app/anime/black-torch-187538/
+URL:https://anicalendar.netlify.app/anime/black-torch-187538/
+END:VEVENT
+BEGIN:VEVENT
 UID:anical-196012-13@anicalendar.netlify.app
 DTSTAMP:20260627T144600Z
 DTSTART:20260627T144600Z
@@ -1204,60 +1258,6 @@ DTEND:20260808T151600Z
 SUMMARY:MAO — Ep 19
 DESCRIPTION:https://anicalendar.netlify.app/anime/mao-196012/
 URL:https://anicalendar.netlify.app/anime/mao-196012/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-187538-1@anicalendar.netlify.app
-DTSTAMP:20260704T130000Z
-DTSTART:20260704T130000Z
-DTEND:20260704T133000Z
-SUMMARY:BLACK TORCH — Ep 1
-DESCRIPTION:https://anicalendar.netlify.app/anime/black-torch-187538/
-URL:https://anicalendar.netlify.app/anime/black-torch-187538/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-187538-2@anicalendar.netlify.app
-DTSTAMP:20260711T130000Z
-DTSTART:20260711T130000Z
-DTEND:20260711T133000Z
-SUMMARY:BLACK TORCH — Ep 2
-DESCRIPTION:https://anicalendar.netlify.app/anime/black-torch-187538/
-URL:https://anicalendar.netlify.app/anime/black-torch-187538/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-187538-3@anicalendar.netlify.app
-DTSTAMP:20260718T130000Z
-DTSTART:20260718T130000Z
-DTEND:20260718T133000Z
-SUMMARY:BLACK TORCH — Ep 3
-DESCRIPTION:https://anicalendar.netlify.app/anime/black-torch-187538/
-URL:https://anicalendar.netlify.app/anime/black-torch-187538/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-187538-4@anicalendar.netlify.app
-DTSTAMP:20260725T130000Z
-DTSTART:20260725T130000Z
-DTEND:20260725T133000Z
-SUMMARY:BLACK TORCH — Ep 4
-DESCRIPTION:https://anicalendar.netlify.app/anime/black-torch-187538/
-URL:https://anicalendar.netlify.app/anime/black-torch-187538/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-187538-5@anicalendar.netlify.app
-DTSTAMP:20260801T130000Z
-DTSTART:20260801T130000Z
-DTEND:20260801T133000Z
-SUMMARY:BLACK TORCH — Ep 5
-DESCRIPTION:https://anicalendar.netlify.app/anime/black-torch-187538/
-URL:https://anicalendar.netlify.app/anime/black-torch-187538/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-187538-6@anicalendar.netlify.app
-DTSTAMP:20260808T130000Z
-DTSTART:20260808T130000Z
-DTEND:20260808T133000Z
-SUMMARY:BLACK TORCH — Ep 6
-DESCRIPTION:https://anicalendar.netlify.app/anime/black-torch-187538/
-URL:https://anicalendar.netlify.app/anime/black-torch-187538/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-182616-1@anicalendar.netlify.app
@@ -1485,123 +1485,6 @@ DESCRIPTION:https://anicalendar.netlify.app/anime/jaadugar-a-witch-in-mongolia-1
 URL:https://anicalendar.netlify.app/anime/jaadugar-a-witch-in-mongolia-190569/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-196144-13@anicalendar.netlify.app
-DTSTAMP:20260626T143000Z
-DTSTART:20260626T143000Z
-DTEND:20260626T150000Z
-SUMMARY:SNOWBALL EARTH — Ep 13
-DESCRIPTION:https://anicalendar.netlify.app/anime/snowball-earth-196144/
-URL:https://anicalendar.netlify.app/anime/snowball-earth-196144/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-177501-12@anicalendar.netlify.app
-DTSTAMP:20260625T164500Z
-DTSTART:20260625T164500Z
-DTEND:20260625T171500Z
-SUMMARY:A Hundred Scenes of AWAJIMA — Ep 12
-DESCRIPTION:https://anicalendar.netlify.app/anime/a-hundred-scenes-of-awajima-177501/
-URL:https://anicalendar.netlify.app/anime/a-hundred-scenes-of-awajima-177501/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-128757-1@anicalendar.netlify.app
-DTSTAMP:20260707T113000Z
-DTSTART:20260707T113000Z
-DTEND:20260707T120000Z
-SUMMARY:Young Ladies Don't Play Fighting Games — Ep 1
-DESCRIPTION:https://anicalendar.netlify.app/anime/young-ladies-dont-play-fighting-games-128757/
-URL:https://anicalendar.netlify.app/anime/young-ladies-dont-play-fighting-games-128757/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-128757-2@anicalendar.netlify.app
-DTSTAMP:20260714T113000Z
-DTSTART:20260714T113000Z
-DTEND:20260714T120000Z
-SUMMARY:Young Ladies Don't Play Fighting Games — Ep 2
-DESCRIPTION:https://anicalendar.netlify.app/anime/young-ladies-dont-play-fighting-games-128757/
-URL:https://anicalendar.netlify.app/anime/young-ladies-dont-play-fighting-games-128757/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-128757-3@anicalendar.netlify.app
-DTSTAMP:20260721T113000Z
-DTSTART:20260721T113000Z
-DTEND:20260721T120000Z
-SUMMARY:Young Ladies Don't Play Fighting Games — Ep 3
-DESCRIPTION:https://anicalendar.netlify.app/anime/young-ladies-dont-play-fighting-games-128757/
-URL:https://anicalendar.netlify.app/anime/young-ladies-dont-play-fighting-games-128757/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-128757-4@anicalendar.netlify.app
-DTSTAMP:20260728T113000Z
-DTSTART:20260728T113000Z
-DTEND:20260728T120000Z
-SUMMARY:Young Ladies Don't Play Fighting Games — Ep 4
-DESCRIPTION:https://anicalendar.netlify.app/anime/young-ladies-dont-play-fighting-games-128757/
-URL:https://anicalendar.netlify.app/anime/young-ladies-dont-play-fighting-games-128757/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-128757-5@anicalendar.netlify.app
-DTSTAMP:20260804T113000Z
-DTSTART:20260804T113000Z
-DTEND:20260804T120000Z
-SUMMARY:Young Ladies Don't Play Fighting Games — Ep 5
-DESCRIPTION:https://anicalendar.netlify.app/anime/young-ladies-dont-play-fighting-games-128757/
-URL:https://anicalendar.netlify.app/anime/young-ladies-dont-play-fighting-games-128757/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-209983-1@anicalendar.netlify.app
-DTSTAMP:20260703T160000Z
-DTSTART:20260703T160000Z
-DTEND:20260703T163000Z
-SUMMARY:Hell Mode: Yarikomi-zuki no Gamer wa Haisettei no Isekai de Musou Suru 2nd Season — Ep 1
-DESCRIPTION:https://anicalendar.netlify.app/anime/hell-mode-yarikomi-zuki-no-gamer-wa-haisettei-no-isekai-de-m-209983/
-URL:https://anicalendar.netlify.app/anime/hell-mode-yarikomi-zuki-no-gamer-wa-haisettei-no-isekai-de-m-209983/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-209983-2@anicalendar.netlify.app
-DTSTAMP:20260710T160000Z
-DTSTART:20260710T160000Z
-DTEND:20260710T163000Z
-SUMMARY:Hell Mode: Yarikomi-zuki no Gamer wa Haisettei no Isekai de Musou Suru 2nd Season — Ep 2
-DESCRIPTION:https://anicalendar.netlify.app/anime/hell-mode-yarikomi-zuki-no-gamer-wa-haisettei-no-isekai-de-m-209983/
-URL:https://anicalendar.netlify.app/anime/hell-mode-yarikomi-zuki-no-gamer-wa-haisettei-no-isekai-de-m-209983/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-209983-3@anicalendar.netlify.app
-DTSTAMP:20260717T160000Z
-DTSTART:20260717T160000Z
-DTEND:20260717T163000Z
-SUMMARY:Hell Mode: Yarikomi-zuki no Gamer wa Haisettei no Isekai de Musou Suru 2nd Season — Ep 3
-DESCRIPTION:https://anicalendar.netlify.app/anime/hell-mode-yarikomi-zuki-no-gamer-wa-haisettei-no-isekai-de-m-209983/
-URL:https://anicalendar.netlify.app/anime/hell-mode-yarikomi-zuki-no-gamer-wa-haisettei-no-isekai-de-m-209983/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-209983-4@anicalendar.netlify.app
-DTSTAMP:20260724T160000Z
-DTSTART:20260724T160000Z
-DTEND:20260724T163000Z
-SUMMARY:Hell Mode: Yarikomi-zuki no Gamer wa Haisettei no Isekai de Musou Suru 2nd Season — Ep 4
-DESCRIPTION:https://anicalendar.netlify.app/anime/hell-mode-yarikomi-zuki-no-gamer-wa-haisettei-no-isekai-de-m-209983/
-URL:https://anicalendar.netlify.app/anime/hell-mode-yarikomi-zuki-no-gamer-wa-haisettei-no-isekai-de-m-209983/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-209983-5@anicalendar.netlify.app
-DTSTAMP:20260731T160000Z
-DTSTART:20260731T160000Z
-DTEND:20260731T163000Z
-SUMMARY:Hell Mode: Yarikomi-zuki no Gamer wa Haisettei no Isekai de Musou Suru 2nd Season — Ep 5
-DESCRIPTION:https://anicalendar.netlify.app/anime/hell-mode-yarikomi-zuki-no-gamer-wa-haisettei-no-isekai-de-m-209983/
-URL:https://anicalendar.netlify.app/anime/hell-mode-yarikomi-zuki-no-gamer-wa-haisettei-no-isekai-de-m-209983/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-209983-6@anicalendar.netlify.app
-DTSTAMP:20260807T160000Z
-DTSTART:20260807T160000Z
-DTEND:20260807T163000Z
-SUMMARY:Hell Mode: Yarikomi-zuki no Gamer wa Haisettei no Isekai de Musou Suru 2nd Season — Ep 6
-DESCRIPTION:https://anicalendar.netlify.app/anime/hell-mode-yarikomi-zuki-no-gamer-wa-haisettei-no-isekai-de-m-209983/
-URL:https://anicalendar.netlify.app/anime/hell-mode-yarikomi-zuki-no-gamer-wa-haisettei-no-isekai-de-m-209983/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-208044-1@anicalendar.netlify.app
 DTSTAMP:20260625T150000Z
 DTSTART:20260625T150000Z
@@ -1663,6 +1546,132 @@ DTEND:20260806T153000Z
 SUMMARY:From Overshadowed to Overpowered: Second Reincarnation of a Talentless Sage — Ep 7
 DESCRIPTION:https://anicalendar.netlify.app/anime/from-overshadowed-to-overpowered-second-reincarnation-of-a-t-208044/
 URL:https://anicalendar.netlify.app/anime/from-overshadowed-to-overpowered-second-reincarnation-of-a-t-208044/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-196144-13@anicalendar.netlify.app
+DTSTAMP:20260626T143000Z
+DTSTART:20260626T143000Z
+DTEND:20260626T150000Z
+SUMMARY:SNOWBALL EARTH — Ep 13
+DESCRIPTION:https://anicalendar.netlify.app/anime/snowball-earth-196144/
+URL:https://anicalendar.netlify.app/anime/snowball-earth-196144/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-128757-1@anicalendar.netlify.app
+DTSTAMP:20260707T113000Z
+DTSTART:20260707T113000Z
+DTEND:20260707T120000Z
+SUMMARY:Young Ladies Don't Play Fighting Games — Ep 1
+DESCRIPTION:https://anicalendar.netlify.app/anime/young-ladies-dont-play-fighting-games-128757/
+URL:https://anicalendar.netlify.app/anime/young-ladies-dont-play-fighting-games-128757/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-128757-2@anicalendar.netlify.app
+DTSTAMP:20260714T113000Z
+DTSTART:20260714T113000Z
+DTEND:20260714T120000Z
+SUMMARY:Young Ladies Don't Play Fighting Games — Ep 2
+DESCRIPTION:https://anicalendar.netlify.app/anime/young-ladies-dont-play-fighting-games-128757/
+URL:https://anicalendar.netlify.app/anime/young-ladies-dont-play-fighting-games-128757/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-128757-3@anicalendar.netlify.app
+DTSTAMP:20260721T113000Z
+DTSTART:20260721T113000Z
+DTEND:20260721T120000Z
+SUMMARY:Young Ladies Don't Play Fighting Games — Ep 3
+DESCRIPTION:https://anicalendar.netlify.app/anime/young-ladies-dont-play-fighting-games-128757/
+URL:https://anicalendar.netlify.app/anime/young-ladies-dont-play-fighting-games-128757/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-128757-4@anicalendar.netlify.app
+DTSTAMP:20260728T113000Z
+DTSTART:20260728T113000Z
+DTEND:20260728T120000Z
+SUMMARY:Young Ladies Don't Play Fighting Games — Ep 4
+DESCRIPTION:https://anicalendar.netlify.app/anime/young-ladies-dont-play-fighting-games-128757/
+URL:https://anicalendar.netlify.app/anime/young-ladies-dont-play-fighting-games-128757/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-128757-5@anicalendar.netlify.app
+DTSTAMP:20260804T113000Z
+DTSTART:20260804T113000Z
+DTEND:20260804T120000Z
+SUMMARY:Young Ladies Don't Play Fighting Games — Ep 5
+DESCRIPTION:https://anicalendar.netlify.app/anime/young-ladies-dont-play-fighting-games-128757/
+URL:https://anicalendar.netlify.app/anime/young-ladies-dont-play-fighting-games-128757/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-128757-6@anicalendar.netlify.app
+DTSTAMP:20260811T113000Z
+DTSTART:20260811T113000Z
+DTEND:20260811T120000Z
+SUMMARY:Young Ladies Don't Play Fighting Games — Ep 6
+DESCRIPTION:https://anicalendar.netlify.app/anime/young-ladies-dont-play-fighting-games-128757/
+URL:https://anicalendar.netlify.app/anime/young-ladies-dont-play-fighting-games-128757/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-177501-12@anicalendar.netlify.app
+DTSTAMP:20260625T164500Z
+DTSTART:20260625T164500Z
+DTEND:20260625T171500Z
+SUMMARY:A Hundred Scenes of AWAJIMA — Ep 12
+DESCRIPTION:https://anicalendar.netlify.app/anime/a-hundred-scenes-of-awajima-177501/
+URL:https://anicalendar.netlify.app/anime/a-hundred-scenes-of-awajima-177501/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-209983-1@anicalendar.netlify.app
+DTSTAMP:20260703T160000Z
+DTSTART:20260703T160000Z
+DTEND:20260703T163000Z
+SUMMARY:Hell Mode: Yarikomi-zuki no Gamer wa Haisettei no Isekai de Musou Suru 2nd Season — Ep 1
+DESCRIPTION:https://anicalendar.netlify.app/anime/hell-mode-yarikomi-zuki-no-gamer-wa-haisettei-no-isekai-de-m-209983/
+URL:https://anicalendar.netlify.app/anime/hell-mode-yarikomi-zuki-no-gamer-wa-haisettei-no-isekai-de-m-209983/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-209983-2@anicalendar.netlify.app
+DTSTAMP:20260710T160000Z
+DTSTART:20260710T160000Z
+DTEND:20260710T163000Z
+SUMMARY:Hell Mode: Yarikomi-zuki no Gamer wa Haisettei no Isekai de Musou Suru 2nd Season — Ep 2
+DESCRIPTION:https://anicalendar.netlify.app/anime/hell-mode-yarikomi-zuki-no-gamer-wa-haisettei-no-isekai-de-m-209983/
+URL:https://anicalendar.netlify.app/anime/hell-mode-yarikomi-zuki-no-gamer-wa-haisettei-no-isekai-de-m-209983/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-209983-3@anicalendar.netlify.app
+DTSTAMP:20260717T160000Z
+DTSTART:20260717T160000Z
+DTEND:20260717T163000Z
+SUMMARY:Hell Mode: Yarikomi-zuki no Gamer wa Haisettei no Isekai de Musou Suru 2nd Season — Ep 3
+DESCRIPTION:https://anicalendar.netlify.app/anime/hell-mode-yarikomi-zuki-no-gamer-wa-haisettei-no-isekai-de-m-209983/
+URL:https://anicalendar.netlify.app/anime/hell-mode-yarikomi-zuki-no-gamer-wa-haisettei-no-isekai-de-m-209983/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-209983-4@anicalendar.netlify.app
+DTSTAMP:20260724T160000Z
+DTSTART:20260724T160000Z
+DTEND:20260724T163000Z
+SUMMARY:Hell Mode: Yarikomi-zuki no Gamer wa Haisettei no Isekai de Musou Suru 2nd Season — Ep 4
+DESCRIPTION:https://anicalendar.netlify.app/anime/hell-mode-yarikomi-zuki-no-gamer-wa-haisettei-no-isekai-de-m-209983/
+URL:https://anicalendar.netlify.app/anime/hell-mode-yarikomi-zuki-no-gamer-wa-haisettei-no-isekai-de-m-209983/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-209983-5@anicalendar.netlify.app
+DTSTAMP:20260731T160000Z
+DTSTART:20260731T160000Z
+DTEND:20260731T163000Z
+SUMMARY:Hell Mode: Yarikomi-zuki no Gamer wa Haisettei no Isekai de Musou Suru 2nd Season — Ep 5
+DESCRIPTION:https://anicalendar.netlify.app/anime/hell-mode-yarikomi-zuki-no-gamer-wa-haisettei-no-isekai-de-m-209983/
+URL:https://anicalendar.netlify.app/anime/hell-mode-yarikomi-zuki-no-gamer-wa-haisettei-no-isekai-de-m-209983/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-209983-6@anicalendar.netlify.app
+DTSTAMP:20260807T160000Z
+DTSTART:20260807T160000Z
+DTEND:20260807T163000Z
+SUMMARY:Hell Mode: Yarikomi-zuki no Gamer wa Haisettei no Isekai de Musou Suru 2nd Season — Ep 6
+DESCRIPTION:https://anicalendar.netlify.app/anime/hell-mode-yarikomi-zuki-no-gamer-wa-haisettei-no-isekai-de-m-209983/
+URL:https://anicalendar.netlify.app/anime/hell-mode-yarikomi-zuki-no-gamer-wa-haisettei-no-isekai-de-m-209983/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-188139-1@anicalendar.netlify.app
@@ -1872,15 +1881,6 @@ DESCRIPTION:https://anicalendar.netlify.app/anime/oh-boy-was-i-wrong-about-her-1
 URL:https://anicalendar.netlify.app/anime/oh-boy-was-i-wrong-about-her-169583/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-158036-13@anicalendar.netlify.app
-DTSTAMP:20260630T150000Z
-DTSTART:20260630T150000Z
-DTEND:20260630T153000Z
-SUMMARY:Eren the Southpaw — Ep 13
-DESCRIPTION:https://anicalendar.netlify.app/anime/eren-the-southpaw-158036/
-URL:https://anicalendar.netlify.app/anime/eren-the-southpaw-158036/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-197715-1@anicalendar.netlify.app
 DTSTAMP:20260701T150000Z
 DTSTART:20260701T150000Z
@@ -1933,6 +1933,15 @@ DTEND:20260805T153000Z
 SUMMARY:The Villager of Level 999 — Ep 6
 DESCRIPTION:https://anicalendar.netlify.app/anime/the-villager-of-level-999-197715/
 URL:https://anicalendar.netlify.app/anime/the-villager-of-level-999-197715/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-158036-13@anicalendar.netlify.app
+DTSTAMP:20260630T150000Z
+DTSTART:20260630T150000Z
+DTEND:20260630T153000Z
+SUMMARY:Eren the Southpaw — Ep 13
+DESCRIPTION:https://anicalendar.netlify.app/anime/eren-the-southpaw-158036/
+URL:https://anicalendar.netlify.app/anime/eren-the-southpaw-158036/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-206521-1@anicalendar.netlify.app
@@ -2007,15 +2016,6 @@ DESCRIPTION:https://anicalendar.netlify.app/anime/boku-no-hero-academia-i-am-a-h
 URL:https://anicalendar.netlify.app/anime/boku-no-hero-academia-i-am-a-hero-too-211711/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-177634-13@anicalendar.netlify.app
-DTSTAMP:20260628T083000Z
-DTSTART:20260628T083000Z
-DTEND:20260628T090000Z
-SUMMARY:Ace of the Diamond act II -Second Season- — Ep 13
-DESCRIPTION:https://anicalendar.netlify.app/anime/ace-of-the-diamond-act-ii-second-season--177634/
-URL:https://anicalendar.netlify.app/anime/ace-of-the-diamond-act-ii-second-season--177634/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-204466-1@anicalendar.netlify.app
 DTSTAMP:20260702T162800Z
 DTSTART:20260702T162800Z
@@ -2068,6 +2068,15 @@ DTEND:20260806T165800Z
 SUMMARY:KAIJU GIRL CARAMELISE — Ep 6
 DESCRIPTION:https://anicalendar.netlify.app/anime/kaiju-girl-caramelise-204466/
 URL:https://anicalendar.netlify.app/anime/kaiju-girl-caramelise-204466/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-177634-13@anicalendar.netlify.app
+DTSTAMP:20260628T083000Z
+DTSTART:20260628T083000Z
+DTEND:20260628T090000Z
+SUMMARY:Ace of the Diamond act II -Second Season- — Ep 13
+DESCRIPTION:https://anicalendar.netlify.app/anime/ace-of-the-diamond-act-ii-second-season--177634/
+URL:https://anicalendar.netlify.app/anime/ace-of-the-diamond-act-ii-second-season--177634/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-202269-1@anicalendar.netlify.app
@@ -2187,24 +2196,6 @@ DESCRIPTION:https://anicalendar.netlify.app/anime/the-ribbon-hero-211308/
 URL:https://anicalendar.netlify.app/anime/the-ribbon-hero-211308/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-197178-1@anicalendar.netlify.app
-DTSTAMP:20260705T141500Z
-DTSTART:20260705T141500Z
-DTEND:20260705T144500Z
-SUMMARY:ONE PIECE HEROINES — Ep 1
-DESCRIPTION:https://anicalendar.netlify.app/anime/one-piece-heroines-197178/
-URL:https://anicalendar.netlify.app/anime/one-piece-heroines-197178/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-209961-1@anicalendar.netlify.app
-DTSTAMP:20260709T150000Z
-DTSTART:20260709T150000Z
-DTEND:20260709T153000Z
-SUMMARY:Shibou Yuugi de Meshi wo Kuu. 44:CLOUDY BEACH — Ep 1
-DESCRIPTION:https://anicalendar.netlify.app/anime/shibou-yuugi-de-meshi-wo-kuu-44cloudy-beach-209961/
-URL:https://anicalendar.netlify.app/anime/shibou-yuugi-de-meshi-wo-kuu-44cloudy-beach-209961/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-192800-2@anicalendar.netlify.app
 DTSTAMP:20260701T133000Z
 DTSTART:20260701T133000Z
@@ -2257,6 +2248,24 @@ DTEND:20260805T140000Z
 SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Ep 7
 DESCRIPTION:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
 URL:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-197178-1@anicalendar.netlify.app
+DTSTAMP:20260705T141500Z
+DTSTART:20260705T141500Z
+DTEND:20260705T144500Z
+SUMMARY:ONE PIECE HEROINES — Ep 1
+DESCRIPTION:https://anicalendar.netlify.app/anime/one-piece-heroines-197178/
+URL:https://anicalendar.netlify.app/anime/one-piece-heroines-197178/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-209961-1@anicalendar.netlify.app
+DTSTAMP:20260709T150000Z
+DTSTART:20260709T150000Z
+DTEND:20260709T153000Z
+SUMMARY:Shibou Yuugi de Meshi wo Kuu. 44:CLOUDY BEACH — Ep 1
+DESCRIPTION:https://anicalendar.netlify.app/anime/shibou-yuugi-de-meshi-wo-kuu-44cloudy-beach-209961/
+URL:https://anicalendar.netlify.app/anime/shibou-yuugi-de-meshi-wo-kuu-44cloudy-beach-209961/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-169228-14@anicalendar.netlify.app
@@ -2736,15 +2745,6 @@ DESCRIPTION:https://anicalendar.netlify.app/anime/mebius-dust-108992/
 URL:https://anicalendar.netlify.app/anime/mebius-dust-108992/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-177508-12@anicalendar.netlify.app
-DTSTAMP:20260625T133000Z
-DTSTART:20260625T133000Z
-DTEND:20260625T140000Z
-SUMMARY:Kujima: Why Sing\, When You Can Warble? — Ep 12
-DESCRIPTION:https://anicalendar.netlify.app/anime/kujima-why-sing-when-you-can-warble-177508/
-URL:https://anicalendar.netlify.app/anime/kujima-why-sing-when-you-can-warble-177508/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-207809-1@anicalendar.netlify.app
 DTSTAMP:20260707T163500Z
 DTSTART:20260707T163500Z
@@ -2790,13 +2790,13 @@ DESCRIPTION:https://anicalendar.netlify.app/anime/sora-wa-akai-kawa-no-hotori-20
 URL:https://anicalendar.netlify.app/anime/sora-wa-akai-kawa-no-hotori-207809/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-208754-1@anicalendar.netlify.app
-DTSTAMP:20260709T150000Z
-DTSTART:20260709T150000Z
-DTEND:20260709T153000Z
-SUMMARY:Unanswered//butterfly: Sword Art Online — Ep 1
-DESCRIPTION:https://anicalendar.netlify.app/anime/unansweredbutterfly-sword-art-online-208754/
-URL:https://anicalendar.netlify.app/anime/unansweredbutterfly-sword-art-online-208754/
+UID:anical-177508-12@anicalendar.netlify.app
+DTSTAMP:20260625T133000Z
+DTSTART:20260625T133000Z
+DTEND:20260625T140000Z
+SUMMARY:Kujima: Why Sing\, When You Can Warble? — Ep 12
+DESCRIPTION:https://anicalendar.netlify.app/anime/kujima-why-sing-when-you-can-warble-177508/
+URL:https://anicalendar.netlify.app/anime/kujima-why-sing-when-you-can-warble-177508/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-198709-1@anicalendar.netlify.app
@@ -2842,6 +2842,15 @@ DTEND:20260804T153000Z
 SUMMARY:Victoria of Many Faces — Ep 5
 DESCRIPTION:https://anicalendar.netlify.app/anime/victoria-of-many-faces-198709/
 URL:https://anicalendar.netlify.app/anime/victoria-of-many-faces-198709/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-208754-1@anicalendar.netlify.app
+DTSTAMP:20260709T150000Z
+DTSTART:20260709T150000Z
+DTEND:20260709T153000Z
+SUMMARY:Unanswered//butterfly: Sword Art Online — Ep 1
+DESCRIPTION:https://anicalendar.netlify.app/anime/unansweredbutterfly-sword-art-online-208754/
+URL:https://anicalendar.netlify.app/anime/unansweredbutterfly-sword-art-online-208754/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-185692-1@anicalendar.netlify.app
@@ -2952,60 +2961,6 @@ DESCRIPTION:https://anicalendar.netlify.app/anime/the-ogres-bride-194219/
 URL:https://anicalendar.netlify.app/anime/the-ogres-bride-194219/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-185875-1@anicalendar.netlify.app
-DTSTAMP:20260704T160000Z
-DTSTART:20260704T160000Z
-DTEND:20260704T163000Z
-SUMMARY:Magical Girl Lyrical Nanoha EXCEEDS Gun Blaze Vengeance — Ep 1
-DESCRIPTION:https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
-URL:https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-185875-2@anicalendar.netlify.app
-DTSTAMP:20260711T160000Z
-DTSTART:20260711T160000Z
-DTEND:20260711T163000Z
-SUMMARY:Magical Girl Lyrical Nanoha EXCEEDS Gun Blaze Vengeance — Ep 2
-DESCRIPTION:https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
-URL:https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-185875-3@anicalendar.netlify.app
-DTSTAMP:20260718T160000Z
-DTSTART:20260718T160000Z
-DTEND:20260718T163000Z
-SUMMARY:Magical Girl Lyrical Nanoha EXCEEDS Gun Blaze Vengeance — Ep 3
-DESCRIPTION:https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
-URL:https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-185875-4@anicalendar.netlify.app
-DTSTAMP:20260725T160000Z
-DTSTART:20260725T160000Z
-DTEND:20260725T163000Z
-SUMMARY:Magical Girl Lyrical Nanoha EXCEEDS Gun Blaze Vengeance — Ep 4
-DESCRIPTION:https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
-URL:https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-185875-5@anicalendar.netlify.app
-DTSTAMP:20260801T160000Z
-DTSTART:20260801T160000Z
-DTEND:20260801T163000Z
-SUMMARY:Magical Girl Lyrical Nanoha EXCEEDS Gun Blaze Vengeance — Ep 5
-DESCRIPTION:https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
-URL:https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-185875-6@anicalendar.netlify.app
-DTSTAMP:20260808T160000Z
-DTSTART:20260808T160000Z
-DTEND:20260808T163000Z
-SUMMARY:Magical Girl Lyrical Nanoha EXCEEDS Gun Blaze Vengeance — Ep 6
-DESCRIPTION:https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
-URL:https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-196219-1@anicalendar.netlify.app
 DTSTAMP:20260630T130000Z
 DTSTART:20260630T130000Z
@@ -3058,6 +3013,60 @@ DTEND:20260804T133000Z
 SUMMARY:The Oblivous Saint Can't Contain Her Power — Ep 6
 DESCRIPTION:https://anicalendar.netlify.app/anime/the-oblivous-saint-cant-contain-her-power-196219/
 URL:https://anicalendar.netlify.app/anime/the-oblivous-saint-cant-contain-her-power-196219/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-185875-1@anicalendar.netlify.app
+DTSTAMP:20260704T160000Z
+DTSTART:20260704T160000Z
+DTEND:20260704T163000Z
+SUMMARY:Magical Girl Lyrical Nanoha EXCEEDS Gun Blaze Vengeance — Ep 1
+DESCRIPTION:https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
+URL:https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-185875-2@anicalendar.netlify.app
+DTSTAMP:20260711T160000Z
+DTSTART:20260711T160000Z
+DTEND:20260711T163000Z
+SUMMARY:Magical Girl Lyrical Nanoha EXCEEDS Gun Blaze Vengeance — Ep 2
+DESCRIPTION:https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
+URL:https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-185875-3@anicalendar.netlify.app
+DTSTAMP:20260718T160000Z
+DTSTART:20260718T160000Z
+DTEND:20260718T163000Z
+SUMMARY:Magical Girl Lyrical Nanoha EXCEEDS Gun Blaze Vengeance — Ep 3
+DESCRIPTION:https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
+URL:https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-185875-4@anicalendar.netlify.app
+DTSTAMP:20260725T160000Z
+DTSTART:20260725T160000Z
+DTEND:20260725T163000Z
+SUMMARY:Magical Girl Lyrical Nanoha EXCEEDS Gun Blaze Vengeance — Ep 4
+DESCRIPTION:https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
+URL:https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-185875-5@anicalendar.netlify.app
+DTSTAMP:20260801T160000Z
+DTSTART:20260801T160000Z
+DTEND:20260801T163000Z
+SUMMARY:Magical Girl Lyrical Nanoha EXCEEDS Gun Blaze Vengeance — Ep 5
+DESCRIPTION:https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
+URL:https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-185875-6@anicalendar.netlify.app
+DTSTAMP:20260808T160000Z
+DTSTART:20260808T160000Z
+DTEND:20260808T163000Z
+SUMMARY:Magical Girl Lyrical Nanoha EXCEEDS Gun Blaze Vengeance — Ep 6
+DESCRIPTION:https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
+URL:https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-207674-1@anicalendar.netlify.app

@@ -117,15 +117,6 @@ DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/grand-blue
 URL:https://anicalendar.netlify.app/anime/grand-blue-season-3-199111/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-199340-1@anicalendar.netlify.app
-DTSTAMP:20261015T150000Z
-DTSTART:20261015T150000Z
-DTEND:20261015T153000Z
-SUMMARY:Rascal Does Not Dream of a Dear Friend — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/rascal-does-not-dream-of-a-dear-friend-199340/
-URL:https://anicalendar.netlify.app/anime/rascal-does-not-dream-of-a-dear-friend-199340/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-185542-1@anicalendar.netlify.app
 DTSTAMP:20260704T113000Z
 DTSTART:20260704T113000Z
@@ -133,6 +124,15 @@ DTEND:20260704T120000Z
 SUMMARY:Skeleton Knight in Another World Season 2 — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
 URL:https://anicalendar.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-199340-1@anicalendar.netlify.app
+DTSTAMP:20261015T150000Z
+DTSTART:20261015T150000Z
+DTEND:20261015T153000Z
+SUMMARY:Rascal Does Not Dream of a Dear Friend — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/rascal-does-not-dream-of-a-dear-friend-199340/
+URL:https://anicalendar.netlify.app/anime/rascal-does-not-dream-of-a-dear-friend-199340/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-177699-1@anicalendar.netlify.app
@@ -216,6 +216,15 @@ DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/jaadugar-a
 URL:https://anicalendar.netlify.app/anime/jaadugar-a-witch-in-mongolia-190569/
 END:VEVENT
 BEGIN:VEVENT
+UID:anical-208044-1@anicalendar.netlify.app
+DTSTAMP:20260625T150000Z
+DTSTART:20260625T150000Z
+DTEND:20260625T153000Z
+SUMMARY:From Overshadowed to Overpowered: Second Reincarnation of a Talentless Sage — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/from-overshadowed-to-overpowered-second-reincarnation-of-a-t-208044/
+URL:https://anicalendar.netlify.app/anime/from-overshadowed-to-overpowered-second-reincarnation-of-a-t-208044/
+END:VEVENT
+BEGIN:VEVENT
 UID:anical-128757-1@anicalendar.netlify.app
 DTSTAMP:20260707T113000Z
 DTSTART:20260707T113000Z
@@ -232,15 +241,6 @@ DTEND:20260703T163000Z
 SUMMARY:Hell Mode: Yarikomi-zuki no Gamer wa Haisettei no Isekai de Musou Suru 2nd Season — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/hell-mode-yarikomi-zuki-no-gamer-wa-haisettei-no-isekai-de-m-209983/
 URL:https://anicalendar.netlify.app/anime/hell-mode-yarikomi-zuki-no-gamer-wa-haisettei-no-isekai-de-m-209983/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-208044-1@anicalendar.netlify.app
-DTSTAMP:20260625T150000Z
-DTSTART:20260625T150000Z
-DTEND:20260625T153000Z
-SUMMARY:From Overshadowed to Overpowered: Second Reincarnation of a Talentless Sage — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/from-overshadowed-to-overpowered-second-reincarnation-of-a-t-208044/
-URL:https://anicalendar.netlify.app/anime/from-overshadowed-to-overpowered-second-reincarnation-of-a-t-208044/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-188139-1@anicalendar.netlify.app
@@ -441,15 +441,6 @@ DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/sora-wa-ak
 URL:https://anicalendar.netlify.app/anime/sora-wa-akai-kawa-no-hotori-207809/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-208754-1@anicalendar.netlify.app
-DTSTAMP:20260709T150000Z
-DTSTART:20260709T150000Z
-DTEND:20260709T153000Z
-SUMMARY:Unanswered//butterfly: Sword Art Online — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/unansweredbutterfly-sword-art-online-208754/
-URL:https://anicalendar.netlify.app/anime/unansweredbutterfly-sword-art-online-208754/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-198709-1@anicalendar.netlify.app
 DTSTAMP:20260707T150000Z
 DTSTART:20260707T150000Z
@@ -457,6 +448,15 @@ DTEND:20260707T153000Z
 SUMMARY:Victoria of Many Faces — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/victoria-of-many-faces-198709/
 URL:https://anicalendar.netlify.app/anime/victoria-of-many-faces-198709/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-208754-1@anicalendar.netlify.app
+DTSTAMP:20260709T150000Z
+DTSTART:20260709T150000Z
+DTEND:20260709T153000Z
+SUMMARY:Unanswered//butterfly: Sword Art Online — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/unansweredbutterfly-sword-art-online-208754/
+URL:https://anicalendar.netlify.app/anime/unansweredbutterfly-sword-art-online-208754/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-185692-1@anicalendar.netlify.app
@@ -477,15 +477,6 @@ DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/the-ogres-
 URL:https://anicalendar.netlify.app/anime/the-ogres-bride-194219/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-185875-1@anicalendar.netlify.app
-DTSTAMP:20260704T160000Z
-DTSTART:20260704T160000Z
-DTEND:20260704T163000Z
-SUMMARY:Magical Girl Lyrical Nanoha EXCEEDS Gun Blaze Vengeance — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
-URL:https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-196219-1@anicalendar.netlify.app
 DTSTAMP:20260630T130000Z
 DTSTART:20260630T130000Z
@@ -493,6 +484,15 @@ DTEND:20260630T133000Z
 SUMMARY:The Oblivous Saint Can't Contain Her Power — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/the-oblivous-saint-cant-contain-her-power-196219/
 URL:https://anicalendar.netlify.app/anime/the-oblivous-saint-cant-contain-her-power-196219/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-185875-1@anicalendar.netlify.app
+DTSTAMP:20260704T160000Z
+DTSTART:20260704T160000Z
+DTEND:20260704T163000Z
+SUMMARY:Magical Girl Lyrical Nanoha EXCEEDS Gun Blaze Vengeance — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
+URL:https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-207674-1@anicalendar.netlify.app
