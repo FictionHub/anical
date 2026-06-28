@@ -6,7 +6,7 @@
     <atom:link href="https://anicalendar.netlify.app/feed.xml" rel="self" type="application/rss+xml" />
     <description>Upcoming and recent anime premieres and season finales, updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Sat, 27 Jun 2026 12:55:55 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 28 Jun 2026 13:05:28 GMT</lastBuildDate>
     <ttl>720</ttl>
     <item>
       <title>Made in Abyss: Mezameru Shinpi — Premiere (Ep 1)</title>
@@ -56,6 +56,13 @@
       <guid isPermaLink="false">anical-rss-189046-f19</guid>
       <pubDate>Wed, 30 Sep 2026 13:00:00 GMT</pubDate>
       <description>Finale: The fourth season of Re:Zero kara Hajimeru Isekai Seikatsu . To save his stricken allies, Subaru faces a deadly desert to find the Sage at Pleiades Watchtower. (Source: Crunchyroll News) Note: Lucca Comics &amp; Games pre-screened episode 1 early on November 1, 2025, prior to the…</description>
+    </item>
+    <item>
+      <title>Wareware wa Uchuujin — Premiere (Ep 1)</title>
+      <link>https://anicalendar.netlify.app/anime/wareware-wa-uchuujin-202429/</link>
+      <guid isPermaLink="false">anical-rss-202429-p1</guid>
+      <pubDate>Thu, 24 Sep 2026 15:00:00 GMT</pubDate>
+      <description>Premiere: One summer in the third grade, a quiet boy named Tsubasa meets Kyotaro, a boy everyone in the class looked up to, and the two become close friends. Within their small world, they share irreplaceable moments—until a small incident suddenly tears them apart. Spanning more than…</description>
     </item>
     <item>
       <title>Dara-san of Reiwa — Finale (Ep 13)</title>
@@ -350,13 +357,6 @@
       <guid isPermaLink="false">anical-rss-187260-p1</guid>
       <pubDate>Tue, 07 Jul 2026 12:30:00 GMT</pubDate>
       <description>Premiere: At the mysterious orphanage where Sheena lives, death is nothing new to its residents—girls who no longer have families of their own, who are raised as weapons of war, taught to kill and take the lives of others without batting an eye. Everyone, that is, except Sheena, who…</description>
-    </item>
-    <item>
-      <title>Young Ladies Don't Play Fighting Games — Premiere (Ep 1)</title>
-      <link>https://anicalendar.netlify.app/anime/young-ladies-dont-play-fighting-games-128757/</link>
-      <guid isPermaLink="false">anical-rss-128757-p1</guid>
-      <pubDate>Tue, 07 Jul 2026 11:30:00 GMT</pubDate>
-      <description>Premiere: Kuromi Girls’ Academy is a refined, elegant school that expects the very best in deportment from its young ladies. Aya got into this peerless rich-girls’ institution on a scholarship, and hopes to grow as lovely as her fellow student and idol Shirayui. But Shirayui hides a…</description>
     </item>
   </channel>
 </rss>

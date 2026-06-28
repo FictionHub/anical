@@ -45,15 +45,6 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/marriagetoxin-1
 URL:https://anicalendar.netlify.app/anime/marriagetoxin-199547/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-199221-f13@anicalendar.netlify.app
-DTSTAMP:20260625T130000Z
-DTSTART:20260625T130000Z
-DTEND:20260625T133000Z
-SUMMARY:Dr. STONE SCIENCE FUTURE Cour 3 — Finale (Ep 13)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/dr-stone-science-future-cour-3-199221/
-URL:https://anicalendar.netlify.app/anime/dr-stone-science-future-cour-3-199221/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-186497-f14@anicalendar.netlify.app
 DTSTAMP:20260702T145600Z
 DTSTART:20260702T145600Z
@@ -117,15 +108,6 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/welcome-to-demo
 URL:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-179950-f13@anicalendar.netlify.app
-DTSTAMP:20260625T153000Z
-DTSTART:20260625T153000Z
-DTEND:20260625T160000Z
-SUMMARY:Petals of Reincarnation — Finale (Ep 13)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/petals-of-reincarnation-179950/
-URL:https://anicalendar.netlify.app/anime/petals-of-reincarnation-179950/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-187869-f12@anicalendar.netlify.app
 DTSTAMP:20260626T150000Z
 DTSTART:20260626T150000Z
@@ -180,15 +162,6 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/snowball-earth-
 URL:https://anicalendar.netlify.app/anime/snowball-earth-196144/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-177501-f12@anicalendar.netlify.app
-DTSTAMP:20260625T164500Z
-DTSTART:20260625T164500Z
-DTEND:20260625T171500Z
-SUMMARY:A Hundred Scenes of AWAJIMA — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/a-hundred-scenes-of-awajima-177501/
-URL:https://anicalendar.netlify.app/anime/a-hundred-scenes-of-awajima-177501/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-177637-f12@anicalendar.netlify.app
 DTSTAMP:20260920T153000Z
 DTSTART:20260920T153000Z
@@ -216,6 +189,15 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/eren-the-southp
 URL:https://anicalendar.netlify.app/anime/eren-the-southpaw-158036/
 END:VEVENT
 BEGIN:VEVENT
+UID:anical-177634-f13@anicalendar.netlify.app
+DTSTAMP:20260628T083000Z
+DTSTART:20260628T083000Z
+DTEND:20260628T090000Z
+SUMMARY:Ace of the Diamond act II -Second Season- — Finale (Ep 13)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/ace-of-the-diamond-act-ii-second-season--177634/
+URL:https://anicalendar.netlify.app/anime/ace-of-the-diamond-act-ii-second-season--177634/
+END:VEVENT
+BEGIN:VEVENT
 UID:anical-169228-f14@anicalendar.netlify.app
 DTSTAMP:20260626T160000Z
 DTSTART:20260626T160000Z
@@ -232,15 +214,6 @@ DTEND:20260918T150000Z
 SUMMARY:The Drops of God — Finale (Ep 24)
 DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-drops-of-god-202508/
 URL:https://anicalendar.netlify.app/anime/the-drops-of-god-202508/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-177508-f12@anicalendar.netlify.app
-DTSTAMP:20260625T133000Z
-DTSTART:20260625T133000Z
-DTEND:20260625T140000Z
-SUMMARY:Kujima: Why Sing\, When You Can Warble? — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/kujima-why-sing-when-you-can-warble-177508/
-URL:https://anicalendar.netlify.app/anime/kujima-why-sing-when-you-can-warble-177508/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-185875-f12@anicalendar.netlify.app

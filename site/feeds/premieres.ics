@@ -216,15 +216,6 @@ DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/jaadugar-a
 URL:https://anicalendar.netlify.app/anime/jaadugar-a-witch-in-mongolia-190569/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-208044-1@anicalendar.netlify.app
-DTSTAMP:20260625T150000Z
-DTSTART:20260625T150000Z
-DTEND:20260625T153000Z
-SUMMARY:From Overshadowed to Overpowered: Second Reincarnation of a Talentless Sage — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/from-overshadowed-to-overpowered-second-reincarnation-of-a-t-208044/
-URL:https://anicalendar.netlify.app/anime/from-overshadowed-to-overpowered-second-reincarnation-of-a-t-208044/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-128757-1@anicalendar.netlify.app
 DTSTAMP:20260707T113000Z
 DTSTART:20260707T113000Z
@@ -261,15 +252,6 @@ DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/rich-girl-
 URL:https://anicalendar.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-177637-1@anicalendar.netlify.app
-DTSTAMP:20260705T153000Z
-DTSTART:20260705T153000Z
-DTEND:20260705T160000Z
-SUMMARY:Goodbye\, Lara — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/goodbye-lara-177637/
-URL:https://anicalendar.netlify.app/anime/goodbye-lara-177637/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-169583-1@anicalendar.netlify.app
 DTSTAMP:20260706T143000Z
 DTSTART:20260706T143000Z
@@ -277,6 +259,15 @@ DTEND:20260706T150000Z
 SUMMARY:Oh Boy\, Was I Wrong About Her — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/oh-boy-was-i-wrong-about-her-169583/
 URL:https://anicalendar.netlify.app/anime/oh-boy-was-i-wrong-about-her-169583/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-177637-1@anicalendar.netlify.app
+DTSTAMP:20260705T153000Z
+DTSTART:20260705T153000Z
+DTEND:20260705T160000Z
+SUMMARY:Goodbye\, Lara — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/goodbye-lara-177637/
+URL:https://anicalendar.netlify.app/anime/goodbye-lara-177637/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-197715-1@anicalendar.netlify.app
@@ -297,15 +288,6 @@ DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/world-is-d
 URL:https://anicalendar.netlify.app/anime/world-is-dancing-206521/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-211711-1@anicalendar.netlify.app
-DTSTAMP:20260802T150000Z
-DTSTART:20260802T150000Z
-DTEND:20260802T153000Z
-SUMMARY:Boku no Hero Academia: I am a hero too — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/boku-no-hero-academia-i-am-a-hero-too-211711/
-URL:https://anicalendar.netlify.app/anime/boku-no-hero-academia-i-am-a-hero-too-211711/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-204466-1@anicalendar.netlify.app
 DTSTAMP:20260702T162800Z
 DTSTART:20260702T162800Z
@@ -313,6 +295,15 @@ DTEND:20260702T165800Z
 SUMMARY:KAIJU GIRL CARAMELISE — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/kaiju-girl-caramelise-204466/
 URL:https://anicalendar.netlify.app/anime/kaiju-girl-caramelise-204466/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-211711-1@anicalendar.netlify.app
+DTSTAMP:20260802T150000Z
+DTSTART:20260802T150000Z
+DTEND:20260802T153000Z
+SUMMARY:Boku no Hero Academia: I am a hero too — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/boku-no-hero-academia-i-am-a-hero-too-211711/
+URL:https://anicalendar.netlify.app/anime/boku-no-hero-academia-i-am-a-hero-too-211711/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-202269-1@anicalendar.netlify.app
@@ -360,6 +351,15 @@ DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/shibou-yuu
 URL:https://anicalendar.netlify.app/anime/shibou-yuugi-de-meshi-wo-kuu-44cloudy-beach-209961/
 END:VEVENT
 BEGIN:VEVENT
+UID:anical-186863-1@anicalendar.netlify.app
+DTSTAMP:20260627T120000Z
+DTSTART:20260627T120000Z
+DTEND:20260627T123000Z
+SUMMARY:The Cat and the Dragon — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/the-cat-and-the-dragon-186863/
+URL:https://anicalendar.netlify.app/anime/the-cat-and-the-dragon-186863/
+END:VEVENT
+BEGIN:VEVENT
 UID:anical-169582-1@anicalendar.netlify.app
 DTSTAMP:20260706T115700Z
 DTSTART:20260706T115700Z
@@ -378,15 +378,6 @@ DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/the-worlds
 URL:https://anicalendar.netlify.app/anime/the-worlds-strongest-rearguard-198409/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-196218-1@anicalendar.netlify.app
-DTSTAMP:20260703T133000Z
-DTSTART:20260703T133000Z
-DTEND:20260703T140000Z
-SUMMARY:Ryoumin 0-Nin Start no Henkyou Ryoushu-sama — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/ryoumin-0-nin-start-no-henkyou-ryoushu-sama-196218/
-URL:https://anicalendar.netlify.app/anime/ryoumin-0-nin-start-no-henkyou-ryoushu-sama-196218/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-199066-1@anicalendar.netlify.app
 DTSTAMP:20260711T170000Z
 DTSTART:20260711T170000Z
@@ -396,13 +387,13 @@ DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/hanaori-sa
 URL:https://anicalendar.netlify.app/anime/hanaori-san-still-wants-to-fight-in-the-next-life-199066/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-207327-1@anicalendar.netlify.app
-DTSTAMP:20261008T150000Z
-DTSTART:20261008T150000Z
-DTEND:20261008T153000Z
-SUMMARY:To You in the Beyond — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/to-you-in-the-beyond-207327/
-URL:https://anicalendar.netlify.app/anime/to-you-in-the-beyond-207327/
+UID:anical-196218-1@anicalendar.netlify.app
+DTSTAMP:20260703T133000Z
+DTSTART:20260703T133000Z
+DTEND:20260703T140000Z
+SUMMARY:Ryoumin 0-Nin Start no Henkyou Ryoushu-sama — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/ryoumin-0-nin-start-no-henkyou-ryoushu-sama-196218/
+URL:https://anicalendar.netlify.app/anime/ryoumin-0-nin-start-no-henkyou-ryoushu-sama-196218/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-199408-1@anicalendar.netlify.app
@@ -414,13 +405,13 @@ DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/buchigire-
 URL:https://anicalendar.netlify.app/anime/buchigire-reijou-wa-houfuku-wo-chikaimashita-madousho-no-chi-199408/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-186863-1@anicalendar.netlify.app
-DTSTAMP:20260627T120000Z
-DTSTART:20260627T120000Z
-DTEND:20260627T123000Z
-SUMMARY:The Cat and the Dragon — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/the-cat-and-the-dragon-186863/
-URL:https://anicalendar.netlify.app/anime/the-cat-and-the-dragon-186863/
+UID:anical-207327-1@anicalendar.netlify.app
+DTSTAMP:20261008T150000Z
+DTSTART:20261008T150000Z
+DTEND:20261008T153000Z
+SUMMARY:To You in the Beyond — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/to-you-in-the-beyond-207327/
+URL:https://anicalendar.netlify.app/anime/to-you-in-the-beyond-207327/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-108992-1@anicalendar.netlify.app
@@ -481,9 +472,9 @@ UID:anical-196219-1@anicalendar.netlify.app
 DTSTAMP:20260630T130000Z
 DTSTART:20260630T130000Z
 DTEND:20260630T133000Z
-SUMMARY:The Oblivous Saint Can't Contain Her Power — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/the-oblivous-saint-cant-contain-her-power-196219/
-URL:https://anicalendar.netlify.app/anime/the-oblivous-saint-cant-contain-her-power-196219/
+SUMMARY:The Oblivious Saint Can't Contain Her Power — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/the-oblivious-saint-cant-contain-her-power-196219/
+URL:https://anicalendar.netlify.app/anime/the-oblivious-saint-cant-contain-her-power-196219/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-185875-1@anicalendar.netlify.app
@@ -576,24 +567,6 @@ DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/kore-kaite
 URL:https://anicalendar.netlify.app/anime/kore-kaite-shine-188525/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-202390-1@anicalendar.netlify.app
-DTSTAMP:20261008T150000Z
-DTSTART:20261008T150000Z
-DTEND:20261008T153000Z
-SUMMARY:Girls und Panzer: Saishuushou 5 — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/girls-und-panzer-saishuushou-5-202390/
-URL:https://anicalendar.netlify.app/anime/girls-und-panzer-saishuushou-5-202390/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-194116-1@anicalendar.netlify.app
-DTSTAMP:20260910T150000Z
-DTSTART:20260910T150000Z
-DTEND:20260910T153000Z
-SUMMARY:Saishuu Gakushou Hibike! Euphonium - Kouhen — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/saishuu-gakushou-hibike-euphonium-kouhen-194116/
-URL:https://anicalendar.netlify.app/anime/saishuu-gakushou-hibike-euphonium-kouhen-194116/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-198376-1@anicalendar.netlify.app
 DTSTAMP:20260702T140000Z
 DTSTART:20260702T140000Z
@@ -612,13 +585,22 @@ DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/grow-up-sh
 URL:https://anicalendar.netlify.app/anime/grow-up-show-sunflower-circus--196017/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-169080-1@anicalendar.netlify.app
-DTSTAMP:20260705T160000Z
-DTSTART:20260705T160000Z
-DTEND:20260705T163000Z
-SUMMARY:Anime AzurLane: Slow Ahead! Season 2 — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/anime-azurlane-slow-ahead-season-2-169080/
-URL:https://anicalendar.netlify.app/anime/anime-azurlane-slow-ahead-season-2-169080/
+UID:anical-202390-1@anicalendar.netlify.app
+DTSTAMP:20261008T150000Z
+DTSTART:20261008T150000Z
+DTEND:20261008T153000Z
+SUMMARY:Girls und Panzer: Saishuushou 5 — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/girls-und-panzer-saishuushou-5-202390/
+URL:https://anicalendar.netlify.app/anime/girls-und-panzer-saishuushou-5-202390/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-194116-1@anicalendar.netlify.app
+DTSTAMP:20260910T150000Z
+DTSTART:20260910T150000Z
+DTEND:20260910T153000Z
+SUMMARY:Saishuu Gakushou Hibike! Euphonium - Kouhen — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/saishuu-gakushou-hibike-euphonium-kouhen-194116/
+URL:https://anicalendar.netlify.app/anime/saishuu-gakushou-hibike-euphonium-kouhen-194116/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-203490-1@anicalendar.netlify.app
@@ -628,6 +610,15 @@ DTEND:20260703T153000Z
 SUMMARY:Sorry About My Little Brothers — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/sorry-about-my-little-brothers-203490/
 URL:https://anicalendar.netlify.app/anime/sorry-about-my-little-brothers-203490/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-169080-1@anicalendar.netlify.app
+DTSTAMP:20260705T160000Z
+DTSTART:20260705T160000Z
+DTEND:20260705T163000Z
+SUMMARY:Anime AzurLane: Slow Ahead! Season 2 — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/anime-azurlane-slow-ahead-season-2-169080/
+URL:https://anicalendar.netlify.app/anime/anime-azurlane-slow-ahead-season-2-169080/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-204060-1@anicalendar.netlify.app
@@ -666,6 +657,15 @@ DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/chiikawa-n
 URL:https://anicalendar.netlify.app/anime/chiikawa-ningyo-no-shima-no-himitsu-202717/
 END:VEVENT
 BEGIN:VEVENT
+UID:anical-202429-1@anicalendar.netlify.app
+DTSTAMP:20260924T150000Z
+DTSTART:20260924T150000Z
+DTEND:20260924T153000Z
+SUMMARY:Wareware wa Uchuujin — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/wareware-wa-uchuujin-202429/
+URL:https://anicalendar.netlify.app/anime/wareware-wa-uchuujin-202429/
+END:VEVENT
+BEGIN:VEVENT
 UID:anical-176373-1@anicalendar.netlify.app
 DTSTAMP:20260820T150000Z
 DTSTART:20260820T150000Z
@@ -673,15 +673,6 @@ DTEND:20260820T153000Z
 SUMMARY:Shiranuhi — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/shiranuhi-176373/
 URL:https://anicalendar.netlify.app/anime/shiranuhi-176373/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-176636-1@anicalendar.netlify.app
-DTSTAMP:20260625T150000Z
-DTSTART:20260625T150000Z
-DTEND:20260625T153000Z
-SUMMARY:Shin Keroro Gunsou Movie: Fukkatsushite Sokkou Chikyuu Metsubou no Kiki de Arimasu!  — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/shin-keroro-gunsou-movie-fukkatsushite-sokkou-chikyuu-metsub-176636/
-URL:https://anicalendar.netlify.app/anime/shin-keroro-gunsou-movie-fukkatsushite-sokkou-chikyuu-metsub-176636/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-207254-1@anicalendar.netlify.app
@@ -772,15 +763,6 @@ DTEND:20260704T000000Z
 SUMMARY:Pan no Akachan (TV) — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/pan-no-akachan-tv-212308/
 URL:https://anicalendar.netlify.app/anime/pan-no-akachan-tv-212308/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-206682-1@anicalendar.netlify.app
-DTSTAMP:20260625T150000Z
-DTSTART:20260625T150000Z
-DTEND:20260625T153000Z
-SUMMARY:Soreike! Anpanman: Pantan to Yakusoku no Hoshi — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/soreike-anpanman-pantan-to-yakusoku-no-hoshi-206682/
-URL:https://anicalendar.netlify.app/anime/soreike-anpanman-pantan-to-yakusoku-no-hoshi-206682/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-205116-1@anicalendar.netlify.app
