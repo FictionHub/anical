@@ -72,33 +72,6 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/i-want-to-end-t
 URL:https://anicalendar.netlify.app/anime/i-want-to-end-this-love-game-194393/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-190143-f14@anicalendar.netlify.app
-DTSTAMP:20260627T150000Z
-DTSTART:20260627T150000Z
-DTEND:20260627T153000Z
-SUMMARY:Agents of the Four Seasons: Dance of Spring — Finale (Ep 14)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/agents-of-the-four-seasons-dance-of-spring-190143/
-URL:https://anicalendar.netlify.app/anime/agents-of-the-four-seasons-dance-of-spring-190143/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-198113-f12@anicalendar.netlify.app
-DTSTAMP:20260627T140000Z
-DTSTART:20260627T140000Z
-DTEND:20260627T143000Z
-SUMMARY:KILL BLUE — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/kill-blue-198113/
-URL:https://anicalendar.netlify.app/anime/kill-blue-198113/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-202102-f13@anicalendar.netlify.app
-DTSTAMP:20260627T153000Z
-DTSTART:20260627T153000Z
-DTEND:20260627T160000Z
-SUMMARY:NEEDY GIRL OVERDOSE — Finale (Ep 13)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/needy-girl-overdose-202102/
-URL:https://anicalendar.netlify.app/anime/needy-girl-overdose-202102/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-184492-f24@anicalendar.netlify.app
 DTSTAMP:20260912T092600Z
 DTSTART:20260912T092600Z
@@ -106,15 +79,6 @@ DTEND:20260912T095600Z
 SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Finale (Ep 24)
 DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
 URL:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-187869-f12@anicalendar.netlify.app
-DTSTAMP:20260626T150000Z
-DTSTART:20260626T150000Z
-DTEND:20260626T153000Z
-SUMMARY:Botan Kamiina Fully Blossoms When Drunk — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/botan-kamiina-fully-blossoms-when-drunk-187869/
-URL:https://anicalendar.netlify.app/anime/botan-kamiina-fully-blossoms-when-drunk-187869/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-182578-f12@anicalendar.netlify.app
@@ -126,24 +90,6 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/mission-yozakur
 URL:https://anicalendar.netlify.app/anime/mission-yozakura-family-season-2-182578/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-185211-f12@anicalendar.netlify.app
-DTSTAMP:20260627T123000Z
-DTSTART:20260627T123000Z
-DTEND:20260627T130000Z
-SUMMARY:Yowayowa Sensei — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/yowayowa-sensei-185211/
-URL:https://anicalendar.netlify.app/anime/yowayowa-sensei-185211/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-187989-f24@anicalendar.netlify.app
-DTSTAMP:20260627T155600Z
-DTSTART:20260627T155600Z
-DTEND:20260627T162600Z
-SUMMARY:Scum of the Brave — Finale (Ep 24)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/scum-of-the-brave-187989/
-URL:https://anicalendar.netlify.app/anime/scum-of-the-brave-187989/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-186744-f13@anicalendar.netlify.app
 DTSTAMP:20260630T143000Z
 DTSTART:20260630T143000Z
@@ -151,15 +97,6 @@ DTEND:20260630T150000Z
 SUMMARY:Even a Replica Can Fall in Love — Finale (Ep 13)
 DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/even-a-replica-can-fall-in-love-186744/
 URL:https://anicalendar.netlify.app/anime/even-a-replica-can-fall-in-love-186744/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-196144-f13@anicalendar.netlify.app
-DTSTAMP:20260626T143000Z
-DTSTART:20260626T143000Z
-DTEND:20260626T150000Z
-SUMMARY:SNOWBALL EARTH — Finale (Ep 13)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/snowball-earth-196144/
-URL:https://anicalendar.netlify.app/anime/snowball-earth-196144/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-177637-f12@anicalendar.netlify.app
@@ -196,15 +133,6 @@ DTEND:20260628T090000Z
 SUMMARY:Ace of the Diamond act II -Second Season- — Finale (Ep 13)
 DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/ace-of-the-diamond-act-ii-second-season--177634/
 URL:https://anicalendar.netlify.app/anime/ace-of-the-diamond-act-ii-second-season--177634/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-169228-f14@anicalendar.netlify.app
-DTSTAMP:20260626T160000Z
-DTSTART:20260626T160000Z
-DTEND:20260626T163000Z
-SUMMARY:FIST OF THE NORTH STAR: HOKUTO NO KEN — Finale (Ep 14)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/fist-of-the-north-star-hokuto-no-ken-169228/
-URL:https://anicalendar.netlify.app/anime/fist-of-the-north-star-hokuto-no-ken-169228/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-202508-f24@anicalendar.netlify.app
