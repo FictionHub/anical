@@ -27,15 +27,6 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/daemons-of-the-
 URL:https://anicalendar.netlify.app/anime/daemons-of-the-shadow-realm-195600/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-182300-f12@anicalendar.netlify.app
-DTSTAMP:20260628T073000Z
-DTSTART:20260628T073000Z
-DTEND:20260628T080000Z
-SUMMARY:Wistoria: Wand and Sword Season 2 — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/wistoria-wand-and-sword-season-2-182300/
-URL:https://anicalendar.netlify.app/anime/wistoria-wand-and-sword-season-2-182300/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-199547-f13@anicalendar.netlify.app
 DTSTAMP:20260630T140000Z
 DTSTART:20260630T140000Z
@@ -81,15 +72,6 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/welcome-to-demo
 URL:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-182578-f12@anicalendar.netlify.app
-DTSTAMP:20260628T080000Z
-DTSTART:20260628T080000Z
-DTEND:20260628T083000Z
-SUMMARY:Mission: Yozakura Family Season 2 — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/mission-yozakura-family-season-2-182578/
-URL:https://anicalendar.netlify.app/anime/mission-yozakura-family-season-2-182578/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-186744-f13@anicalendar.netlify.app
 DTSTAMP:20260630T143000Z
 DTSTART:20260630T143000Z
@@ -124,15 +106,6 @@ DTEND:20260630T153000Z
 SUMMARY:Eren the Southpaw — Finale (Ep 13)
 DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/eren-the-southpaw-158036/
 URL:https://anicalendar.netlify.app/anime/eren-the-southpaw-158036/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-177634-f13@anicalendar.netlify.app
-DTSTAMP:20260628T083000Z
-DTSTART:20260628T083000Z
-DTEND:20260628T090000Z
-SUMMARY:Ace of the Diamond act II -Second Season- — Finale (Ep 13)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/ace-of-the-diamond-act-ii-second-season--177634/
-URL:https://anicalendar.netlify.app/anime/ace-of-the-diamond-act-ii-second-season--177634/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-202508-f24@anicalendar.netlify.app
