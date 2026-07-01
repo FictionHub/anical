@@ -81,6 +81,15 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/even-a-replica-
 URL:https://anicalendar.netlify.app/anime/even-a-replica-can-fall-in-love-186744/
 END:VEVENT
 BEGIN:VEVENT
+UID:anical-201514-f12@anicalendar.netlify.app
+DTSTAMP:20260919T173800Z
+DTSTART:20260919T173800Z
+DTEND:20260919T180800Z
+SUMMARY:Rich Girl Caretaker: I'm Secretly the Caregiver of the Most Popular Girl in This Rich Kid School — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
+URL:https://anicalendar.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
+END:VEVENT
+BEGIN:VEVENT
 UID:anical-177637-f12@anicalendar.netlify.app
 DTSTAMP:20260920T153000Z
 DTSTART:20260920T153000Z
@@ -130,9 +139,9 @@ UID:anical-203880-f13@anicalendar.netlify.app
 DTSTAMP:20260924T123000Z
 DTSTART:20260924T123000Z
 DTEND:20260924T130000Z
-SUMMARY:Dara-san of Reiwa — Finale (Ep 13)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/dara-san-of-reiwa-203880/
-URL:https://anicalendar.netlify.app/anime/dara-san-of-reiwa-203880/
+SUMMARY:Dara-san of the Reiwa Era — Finale (Ep 13)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
+URL:https://anicalendar.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-205772-f24@anicalendar.netlify.app
