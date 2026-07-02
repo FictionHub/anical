@@ -27,15 +27,6 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/daemons-of-the-
 URL:https://anicalendar.netlify.app/anime/daemons-of-the-shadow-realm-195600/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-199547-f13@anicalendar.netlify.app
-DTSTAMP:20260630T140000Z
-DTSTART:20260630T140000Z
-DTEND:20260630T143000Z
-SUMMARY:MARRIAGETOXIN — Finale (Ep 13)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/marriagetoxin-199547/
-URL:https://anicalendar.netlify.app/anime/marriagetoxin-199547/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-186497-f14@anicalendar.netlify.app
 DTSTAMP:20260702T145600Z
 DTSTART:20260702T145600Z
@@ -54,15 +45,6 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/bleach-thousand
 URL:https://anicalendar.netlify.app/anime/bleach-thousand-year-blood-war-the-calamity-185874/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-194393-f12@anicalendar.netlify.app
-DTSTAMP:20260630T140000Z
-DTSTART:20260630T140000Z
-DTEND:20260630T143000Z
-SUMMARY:I Want to End this Love Game — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/i-want-to-end-this-love-game-194393/
-URL:https://anicalendar.netlify.app/anime/i-want-to-end-this-love-game-194393/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-184492-f24@anicalendar.netlify.app
 DTSTAMP:20260912T092600Z
 DTSTART:20260912T092600Z
@@ -72,13 +54,13 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/welcome-to-demo
 URL:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-186744-f13@anicalendar.netlify.app
-DTSTAMP:20260630T143000Z
-DTSTART:20260630T143000Z
-DTEND:20260630T150000Z
-SUMMARY:Even a Replica Can Fall in Love — Finale (Ep 13)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/even-a-replica-can-fall-in-love-186744/
-URL:https://anicalendar.netlify.app/anime/even-a-replica-can-fall-in-love-186744/
+UID:anical-197715-f12@anicalendar.netlify.app
+DTSTAMP:20260909T150000Z
+DTSTART:20260909T150000Z
+DTEND:20260909T153000Z
+SUMMARY:The Villager of Level 999 — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-villager-of-level-999-197715/
+URL:https://anicalendar.netlify.app/anime/the-villager-of-level-999-197715/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-201514-f12@anicalendar.netlify.app
@@ -99,22 +81,13 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/goodbye-lara-17
 URL:https://anicalendar.netlify.app/anime/goodbye-lara-177637/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-197715-f12@anicalendar.netlify.app
-DTSTAMP:20260916T150000Z
-DTSTART:20260916T150000Z
-DTEND:20260916T153000Z
-SUMMARY:The Villager of Level 999 — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-villager-of-level-999-197715/
-URL:https://anicalendar.netlify.app/anime/the-villager-of-level-999-197715/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-158036-f13@anicalendar.netlify.app
-DTSTAMP:20260630T150000Z
-DTSTART:20260630T150000Z
-DTEND:20260630T153000Z
-SUMMARY:Eren the Southpaw — Finale (Ep 13)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/eren-the-southpaw-158036/
-URL:https://anicalendar.netlify.app/anime/eren-the-southpaw-158036/
+UID:anical-192800-f12@anicalendar.netlify.app
+DTSTAMP:20260909T133000Z
+DTSTART:20260909T133000Z
+DTEND:20260909T140000Z
+SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+URL:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-202508-f24@anicalendar.netlify.app
@@ -142,6 +115,15 @@ DTEND:20260924T130000Z
 SUMMARY:Dara-san of the Reiwa Era — Finale (Ep 13)
 DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
 URL:https://anicalendar.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-209669-f13@anicalendar.netlify.app
+DTSTAMP:20260916T160000Z
+DTSTART:20260916T160000Z
+DTEND:20260916T163000Z
+SUMMARY:Hana-Kimi Season 2 — Finale (Ep 13)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/hana-kimi-season-2-209669/
+URL:https://anicalendar.netlify.app/anime/hana-kimi-season-2-209669/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-205772-f24@anicalendar.netlify.app
