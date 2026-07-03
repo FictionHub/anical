@@ -72,6 +72,15 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/rich-girl-caret
 URL:https://anicalendar.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
 END:VEVENT
 BEGIN:VEVENT
+UID:anical-192800-f12@anicalendar.netlify.app
+DTSTAMP:20260909T133000Z
+DTSTART:20260909T133000Z
+DTEND:20260909T140000Z
+SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+URL:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+END:VEVENT
+BEGIN:VEVENT
 UID:anical-177637-f12@anicalendar.netlify.app
 DTSTAMP:20260920T153000Z
 DTSTART:20260920T153000Z
@@ -81,13 +90,13 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/goodbye-lara-17
 URL:https://anicalendar.netlify.app/anime/goodbye-lara-177637/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-192800-f12@anicalendar.netlify.app
-DTSTAMP:20260909T133000Z
-DTSTART:20260909T133000Z
-DTEND:20260909T140000Z
-SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
-URL:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+UID:anical-203880-f13@anicalendar.netlify.app
+DTSTAMP:20260924T123000Z
+DTSTART:20260924T123000Z
+DTEND:20260924T130000Z
+SUMMARY:Dara-san of the Reiwa Era — Finale (Ep 13)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
+URL:https://anicalendar.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-202508-f24@anicalendar.netlify.app
@@ -108,15 +117,6 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/magical-girl-ly
 URL:https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-203880-f13@anicalendar.netlify.app
-DTSTAMP:20260924T123000Z
-DTSTART:20260924T123000Z
-DTEND:20260924T130000Z
-SUMMARY:Dara-san of the Reiwa Era — Finale (Ep 13)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
-URL:https://anicalendar.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-209669-f13@anicalendar.netlify.app
 DTSTAMP:20260916T160000Z
 DTSTART:20260916T160000Z
@@ -124,6 +124,15 @@ DTEND:20260916T163000Z
 SUMMARY:Hana-Kimi Season 2 — Finale (Ep 13)
 DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/hana-kimi-season-2-209669/
 URL:https://anicalendar.netlify.app/anime/hana-kimi-season-2-209669/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-198376-f13@anicalendar.netlify.app
+DTSTAMP:20260910T140000Z
+DTSTART:20260910T140000Z
+DTEND:20260910T143000Z
+SUMMARY:BanG Dream! YUME∞MITA — Finale (Ep 13)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/bang-dream-yumemita-198376/
+URL:https://anicalendar.netlify.app/anime/bang-dream-yumemita-198376/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-205772-f24@anicalendar.netlify.app

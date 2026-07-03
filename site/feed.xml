@@ -6,7 +6,7 @@
     <atom:link href="https://anicalendar.netlify.app/feed.xml" rel="self" type="application/rss+xml" />
     <description>Upcoming and recent anime premieres and season finales, updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 02 Jul 2026 16:16:32 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 03 Jul 2026 15:45:05 GMT</lastBuildDate>
     <ttl>720</ttl>
     <item>
       <title>Made in Abyss: Mezameru Shinpi — Premiere (Ep 1)</title>
@@ -28,6 +28,13 @@
       <guid isPermaLink="false">anical-rss-199340-p1</guid>
       <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
       <description>Premiere: Theatrical follow-up to Seishun Buta Yarou wa Santa Claus no Yume wo Minai . &quot;Actually, I’m Touko Kirishima.&quot; The audience erupted in excitement upon learning that the true identity of the mysterious, wildly popular internet singer was none other than the nation’s favorite…</description>
+    </item>
+    <item>
+      <title>Toaru Anbu no ITEM — Premiere (Ep 1)</title>
+      <link>https://anicalendar.netlify.app/anime/toaru-anbu-no-item-186742/</link>
+      <guid isPermaLink="false">anical-rss-186742-p1</guid>
+      <pubDate>Fri, 09 Oct 2026 15:30:00 GMT</pubDate>
+      <description>Premiere: This is a story of four girls living in the &quot;Dark Side&quot; of Academy City. In Academy City where &quot;ESP&quot; has been recognized as a general science. Behind the peace, there is a Dark Side organization that undertakes missions that cannot be made public. &quot;ITEM&quot; is an elite unit…</description>
     </item>
     <item>
       <title>To You in the Beyond — Premiere (Ep 1)</title>
@@ -147,6 +154,13 @@
       <guid isPermaLink="false">anical-rss-194116-p1</guid>
       <pubDate>Thu, 10 Sep 2026 15:00:00 GMT</pubDate>
       <description>Premiere: Sequel to Saishuu Gakushou Hibike! Euphonium - Zenpen . Note: Relations are provisional and subject to change.</description>
+    </item>
+    <item>
+      <title>BanG Dream! YUME∞MITA — Finale (Ep 13)</title>
+      <link>https://anicalendar.netlify.app/anime/bang-dream-yumemita-198376/</link>
+      <guid isPermaLink="false">anical-rss-198376-f13</guid>
+      <pubDate>Thu, 10 Sep 2026 14:00:00 GMT</pubDate>
+      <description>Finale: The latest anime project in the BanG Dream! franchise, spotlighting the band members in Mugendai Mewtype.</description>
     </item>
     <item>
       <title>The Villager of Level 999 — Finale (Ep 12)</title>
@@ -343,20 +357,6 @@
       <guid isPermaLink="false">anical-rss-198946-p1</guid>
       <pubDate>Wed, 08 Jul 2026 13:00:00 GMT</pubDate>
       <description>Premiere: The second season of Clevatess: Majuu no Ou to Akago to Kabane no Yuusha .</description>
-    </item>
-    <item>
-      <title>Saga of Tanya the Evil Season 2 — Premiere (Ep 1)</title>
-      <link>https://anicalendar.netlify.app/anime/saga-of-tanya-the-evil-season-2-135865/</link>
-      <guid isPermaLink="false">anical-rss-135865-p1</guid>
-      <pubDate>Wed, 08 Jul 2026 12:30:00 GMT</pubDate>
-      <description>Premiere: The second season of Youjo Senki .</description>
-    </item>
-    <item>
-      <title>Majo no Tani no Yoru — Premiere (Ep 1)</title>
-      <link>https://anicalendar.netlify.app/anime/majo-no-tani-no-yoru-211232/</link>
-      <guid isPermaLink="false">anical-rss-211232-p1</guid>
-      <pubDate>Wed, 08 Jul 2026 01:00:00 GMT</pubDate>
-      <description>Premiere: A short film only screened at the Cinema Orion at Ghibli Park in Nagakute. The film is set in Ghibli Park's &quot;Valley of the Witches&quot; and is the first original animated short film created by Studio Ghibli for Ghibli Park.</description>
     </item>
   </channel>
 </rss>
