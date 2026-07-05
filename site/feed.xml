@@ -6,8 +6,15 @@
     <atom:link href="https://anicalendar.netlify.app/feed.xml" rel="self" type="application/rss+xml" />
     <description>Upcoming and recent anime premieres and season finales, updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Sat, 04 Jul 2026 12:47:27 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 05 Jul 2026 12:52:05 GMT</lastBuildDate>
     <ttl>720</ttl>
+    <item>
+      <title>GROTESQQQUE — Premiere (Ep 1)</title>
+      <link>https://anicalendar.netlify.app/anime/grotesqqque-178972/</link>
+      <guid isPermaLink="false">anical-rss-178972-p1</guid>
+      <pubDate>Thu, 05 Nov 2026 15:00:00 GMT</pubDate>
+      <description>Premiere: Aliens, gyarus (gals), vampires… the girls race through a GROTESQQQUE night. A pop and edgy fusion of imagery and sound creates their unique world pulsing at the seams. (Souce: Fantasia International Film Festival) Note: Consists of three original segments: - Q1 - ÆLIENS…</description>
+    </item>
     <item>
       <title>Made in Abyss: Mezameru Shinpi — Premiere (Ep 1)</title>
       <link>https://anicalendar.netlify.app/anime/made-in-abyss-mezameru-shinpi-160275/</link>
@@ -49,6 +56,13 @@
       <guid isPermaLink="false">anical-rss-202390-p1</guid>
       <pubDate>Thu, 08 Oct 2026 15:00:00 GMT</pubDate>
       <description>Premiere: The fifth film in the six-part Girls und Panzer: Saishuushou film series.</description>
+    </item>
+    <item>
+      <title>Magic Knight Rayearth (2026) — Premiere (Ep 1)</title>
+      <link>https://anicalendar.netlify.app/anime/magic-knight-rayearth-2026-178868/</link>
+      <guid isPermaLink="false">anical-rss-178868-p1</guid>
+      <pubDate>Wed, 07 Oct 2026 14:46:00 GMT</pubDate>
+      <description>Premiere: In celebration of &quot;Magic Knight Rayearth” animes' 30th anniversary, a new animation project has been launched! Note: Title and relations are provisional and subject to change.</description>
     </item>
     <item>
       <title>Blue Box Season 2 — Premiere (Ep 1)</title>
@@ -100,6 +114,13 @@
       <description>Finale: Ame is a child who loves sweets, and the tooth decay that lives in her mouth called Caries. Caries lives a carefree life inside Ame's mouth and even calls her &quot;Mama&quot;, and Ame's body is always at Caries' mercy. (Source: Anime News Network, edited)</description>
     </item>
     <item>
+      <title>Skeleton Knight in Another World Season 2 — Finale (Ep 12)</title>
+      <link>https://anicalendar.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/</link>
+      <guid isPermaLink="false">anical-rss-185542-f12</guid>
+      <pubDate>Mon, 21 Sep 2026 13:00:00 GMT</pubDate>
+      <description>Finale: The second season of Gaikotsu Kishi-sama, Tadaima Isekai e Odekakechuu .</description>
+    </item>
+    <item>
       <title>Goodbye, Lara — Finale (Ep 12)</title>
       <link>https://anicalendar.netlify.app/anime/goodbye-lara-177637/</link>
       <guid isPermaLink="false">anical-rss-177637-f12</guid>
@@ -112,6 +133,13 @@
       <guid isPermaLink="false">anical-rss-201514-f12</guid>
       <pubDate>Sat, 19 Sep 2026 17:38:00 GMT</pubDate>
       <description>Finale: Hinako Konohana is the perfect young lady—graceful, elegant, and flawless… or so everyone thinks. Behind closed doors, she’s a total disaster who can’t handle basic chores! When ordinary student Itsuki Tomonari becomes her caretaker, he’s thrown into 24/7 damage control,…</description>
+    </item>
+    <item>
+      <title>The Duke’s Son Claims He Won’t Love Me Yet Showers Me with Adoration — Finale (Ep 12)</title>
+      <link>https://anicalendar.netlify.app/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/</link>
+      <guid isPermaLink="false">anical-rss-208225-f12</guid>
+      <pubDate>Sat, 19 Sep 2026 16:30:00 GMT</pubDate>
+      <description>Finale: Elsa, the daughter of a fallen aristocrat, receives news. It was a marriage proposal from Julius, a very elite nobleman. Elsa is wondering,&quot; Why would such a distinguished man marry me&quot;? But after the wedding, Julius, who had been kind and gentle up to that point, changed…</description>
     </item>
     <item>
       <title>Magical Girl Lyrical Nanoha EXCEEDS Gun Blaze Vengeance — Finale (Ep 12)</title>
@@ -195,7 +223,7 @@
       <link>https://anicalendar.netlify.app/anime/bang-dream-yumemita-198376/</link>
       <guid isPermaLink="false">anical-rss-198376-f13</guid>
       <pubDate>Thu, 10 Sep 2026 14:00:00 GMT</pubDate>
-      <description>Finale: The latest anime project in the BanG Dream! franchise, spotlighting the band members in Mugendai Mewtype.</description>
+      <description>Finale: Suddenly thrown together, a group of girls are now debuting as the virtual band, Mugendai Mewtype. They’ve got talent and personality, but no clue how to perform as one. Can they survive, let alone make it to the top in this unforgiving music world? (Source: Crunchyroll)</description>
     </item>
     <item>
       <title>The Villager of Level 999 — Finale (Ep 12)</title>
@@ -329,34 +357,6 @@
       <guid isPermaLink="false">anical-rss-208824-p1</guid>
       <pubDate>Sat, 11 Jul 2026 22:00:00 GMT</pubDate>
       <description>Premiere: Plannosaurus Gachi Koseibutsu-bu airs episode 1.</description>
-    </item>
-    <item>
-      <title>Hanaori-san Still Wants to Fight in the Next Life — Premiere (Ep 1)</title>
-      <link>https://anicalendar.netlify.app/anime/hanaori-san-still-wants-to-fight-in-the-next-life-199066/</link>
-      <guid isPermaLink="false">anical-rss-199066-p1</guid>
-      <pubDate>Sat, 11 Jul 2026 17:00:00 GMT</pubDate>
-      <description>Premiere: Once the Demon King, now a shut-in NEET—Ryuusei Narukami’s second life is anything but peaceful! When Meteor Hanaori, the Hero who once defeated him, suddenly returns as a normal high school girl, his world is thrown into chaos. Determined to change, Ryuusei reenters society as…</description>
-    </item>
-    <item>
-      <title>Bananya At-Home Party — Premiere (Ep 1)</title>
-      <link>https://anicalendar.netlify.app/anime/bananya-at-home-party-213750/</link>
-      <guid isPermaLink="false">anical-rss-213750-p1</guid>
-      <pubDate>Fri, 10 Jul 2026 00:00:00 GMT</pubDate>
-      <description>Premiere: Fourth season of Bananya .</description>
-    </item>
-    <item>
-      <title>Shibou Yuugi de Meshi wo Kuu. 44:CLOUDY BEACH — Premiere (Ep 1)</title>
-      <link>https://anicalendar.netlify.app/anime/shibou-yuugi-de-meshi-wo-kuu-44cloudy-beach-209961/</link>
-      <guid isPermaLink="false">anical-rss-209961-p1</guid>
-      <pubDate>Thu, 09 Jul 2026 15:00:00 GMT</pubDate>
-      <description>Premiere: Theatrical follow-up to Shibou Yuugi de Meshi wo Kuu. This is the story of a certain insane world. Player name: Yuuki. Occupation: Professional in deadly games. Overcoming the jinx known as the &quot;Thirty Game Wall,&quot; which drastically reduces the survival rate of players, Yuuki…</description>
-    </item>
-    <item>
-      <title>Unanswered//butterfly: Sword Art Online — Premiere (Ep 1)</title>
-      <link>https://anicalendar.netlify.app/anime/unansweredbutterfly-sword-art-online-208754/</link>
-      <guid isPermaLink="false">anical-rss-208754-p1</guid>
-      <pubDate>Thu, 09 Jul 2026 15:00:00 GMT</pubDate>
-      <description>Premiere: The world’s first full-dive VRMMO, Sword Art Online—known as SAO. What was meant to be a dream come true has instead transformed into a deadly game where dying in the virtual world means dying in reality. Emirun and Rex, who once knew each other in the real world, reunite by…</description>
     </item>
   </channel>
 </rss>
