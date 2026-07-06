@@ -72,13 +72,13 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/rich-girl-caret
 URL:https://anicalendar.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-192800-f12@anicalendar.netlify.app
-DTSTAMP:20260909T133000Z
-DTSTART:20260909T133000Z
-DTEND:20260909T140000Z
-SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
-URL:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+UID:anical-210482-f11@anicalendar.netlify.app
+DTSTAMP:20261203T150000Z
+DTSTART:20261203T150000Z
+DTEND:20261203T153000Z
+SUMMARY:STEEL BALL RUN JoJo's Bizarre Adventure 2nd - 3rd STAGE — Finale (Ep 11)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
+URL:https://anicalendar.netlify.app/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-177637-f12@anicalendar.netlify.app
@@ -90,6 +90,24 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/goodbye-lara-17
 URL:https://anicalendar.netlify.app/anime/goodbye-lara-177637/
 END:VEVENT
 BEGIN:VEVENT
+UID:anical-192800-f12@anicalendar.netlify.app
+DTSTAMP:20260909T133000Z
+DTSTART:20260909T133000Z
+DTEND:20260909T140000Z
+SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+URL:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-198409-f12@anicalendar.netlify.app
+DTSTAMP:20260920T130000Z
+DTSTART:20260920T130000Z
+DTEND:20260920T133000Z
+SUMMARY:The World's Strongest Rearguard — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-worlds-strongest-rearguard-198409/
+URL:https://anicalendar.netlify.app/anime/the-worlds-strongest-rearguard-198409/
+END:VEVENT
+BEGIN:VEVENT
 UID:anical-207674-f12@anicalendar.netlify.app
 DTSTAMP:20260918T163000Z
 DTSTART:20260918T163000Z
@@ -97,6 +115,15 @@ DTEND:20260918T170000Z
 SUMMARY:KAMUI ---He's behind you — Finale (Ep 12)
 DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/kamui-hes-behind-you-207674/
 URL:https://anicalendar.netlify.app/anime/kamui-hes-behind-you-207674/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-169582-f12@anicalendar.netlify.app
+DTSTAMP:20260921T115700Z
+DTSTART:20260921T115700Z
+DTEND:20260921T122700Z
+SUMMARY:The Insipid Prince's Furtive Grab for the Throne — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
+URL:https://anicalendar.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-203880-f13@anicalendar.netlify.app
@@ -108,15 +135,6 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/dara-san-of-the
 URL:https://anicalendar.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-185875-f12@anicalendar.netlify.app
-DTSTAMP:20260919T160000Z
-DTSTART:20260919T160000Z
-DTEND:20260919T163000Z
-SUMMARY:Magical Girl Lyrical Nanoha EXCEEDS Gun Blaze Vengeance — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
-URL:https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-208225-f12@anicalendar.netlify.app
 DTSTAMP:20260919T163000Z
 DTSTART:20260919T163000Z
@@ -126,13 +144,13 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-dukes-son-c
 URL:https://anicalendar.netlify.app/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-202508-f24@anicalendar.netlify.app
-DTSTAMP:20260918T143000Z
-DTSTART:20260918T143000Z
-DTEND:20260918T150000Z
-SUMMARY:The Drops of God — Finale (Ep 24)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-drops-of-god-202508/
-URL:https://anicalendar.netlify.app/anime/the-drops-of-god-202508/
+UID:anical-185875-f12@anicalendar.netlify.app
+DTSTAMP:20260919T160000Z
+DTSTART:20260919T160000Z
+DTEND:20260919T163000Z
+SUMMARY:Magical Girl Lyrical Nanoha EXCEEDS Gun Blaze Vengeance — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
+URL:https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-188525-f12@anicalendar.netlify.app
@@ -142,6 +160,15 @@ DTEND:20260918T150000Z
 SUMMARY:Draw This\, Then Die! — Finale (Ep 12)
 DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/draw-this-then-die-188525/
 URL:https://anicalendar.netlify.app/anime/draw-this-then-die-188525/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-202508-f24@anicalendar.netlify.app
+DTSTAMP:20260918T143000Z
+DTSTART:20260918T143000Z
+DTEND:20260918T150000Z
+SUMMARY:The Drops of God — Finale (Ep 24)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-drops-of-god-202508/
+URL:https://anicalendar.netlify.app/anime/the-drops-of-god-202508/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-198376-f13@anicalendar.netlify.app
@@ -169,6 +196,24 @@ DTEND:20260917T131000Z
 SUMMARY:Bungo Stray Dogs WAN! 2 — Finale (Ep 12)
 DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/bungo-stray-dogs-wan-2-201667/
 URL:https://anicalendar.netlify.app/anime/bungo-stray-dogs-wan-2-201667/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-200230-f12@anicalendar.netlify.app
+DTSTAMP:20260920T073000Z
+DTSTART:20260920T073000Z
+DTEND:20260920T080000Z
+SUMMARY:Let's go KAIKIGUMI — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/lets-go-kaikigumi-200230/
+URL:https://anicalendar.netlify.app/anime/lets-go-kaikigumi-200230/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-169080-f12@anicalendar.netlify.app
+DTSTAMP:20260920T160000Z
+DTSTART:20260920T160000Z
+DTEND:20260920T163000Z
+SUMMARY:Anime AzurLane: Slow Ahead! Season 2 — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/anime-azurlane-slow-ahead-season-2-169080/
+URL:https://anicalendar.netlify.app/anime/anime-azurlane-slow-ahead-season-2-169080/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-213847-f8@anicalendar.netlify.app
