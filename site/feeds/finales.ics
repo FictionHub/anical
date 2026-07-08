@@ -27,6 +27,15 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/daemons-of-the-
 URL:https://anicalendar.netlify.app/anime/daemons-of-the-shadow-realm-195600/
 END:VEVENT
 BEGIN:VEVENT
+UID:anical-135865-f12@anicalendar.netlify.app
+DTSTAMP:20260923T123000Z
+DTSTART:20260923T123000Z
+DTEND:20260923T130000Z
+SUMMARY:Saga of Tanya the Evil Season 2 — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/saga-of-tanya-the-evil-season-2-135865/
+URL:https://anicalendar.netlify.app/anime/saga-of-tanya-the-evil-season-2-135865/
+END:VEVENT
+BEGIN:VEVENT
 UID:anical-185874-f13@anicalendar.netlify.app
 DTSTAMP:20261017T140000Z
 DTSTART:20261017T140000Z
@@ -144,15 +153,6 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-insipid-pri
 URL:https://anicalendar.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-207674-f12@anicalendar.netlify.app
-DTSTAMP:20260918T163000Z
-DTSTART:20260918T163000Z
-DTEND:20260918T170000Z
-SUMMARY:KAMUI ---He's behind you — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/kamui-hes-behind-you-207674/
-URL:https://anicalendar.netlify.app/anime/kamui-hes-behind-you-207674/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-199408-f12@anicalendar.netlify.app
 DTSTAMP:20260921T133000Z
 DTSTART:20260921T133000Z
@@ -162,6 +162,24 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/a-livid-ladys-g
 URL:https://anicalendar.netlify.app/anime/a-livid-ladys-guide-to-getting-even-how-i-crushed-my-homelan-199408/
 END:VEVENT
 BEGIN:VEVENT
+UID:anical-207674-f12@anicalendar.netlify.app
+DTSTAMP:20260918T163000Z
+DTSTART:20260918T163000Z
+DTEND:20260918T170000Z
+SUMMARY:KAMUI ---He's behind you — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/kamui-hes-behind-you-207674/
+URL:https://anicalendar.netlify.app/anime/kamui-hes-behind-you-207674/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-194219-f12@anicalendar.netlify.app
+DTSTAMP:20260919T153000Z
+DTSTART:20260919T153000Z
+DTEND:20260919T160000Z
+SUMMARY:The Ogre's Bride — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-ogres-bride-194219/
+URL:https://anicalendar.netlify.app/anime/the-ogres-bride-194219/
+END:VEVENT
+BEGIN:VEVENT
 UID:anical-203880-f13@anicalendar.netlify.app
 DTSTAMP:20260924T123000Z
 DTSTART:20260924T123000Z
@@ -169,6 +187,24 @@ DTEND:20260924T130000Z
 SUMMARY:Dara-san of the Reiwa Era — Finale (Ep 13)
 DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
 URL:https://anicalendar.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-198709-f9@anicalendar.netlify.app
+DTSTAMP:20260901T150000Z
+DTSTART:20260901T150000Z
+DTEND:20260901T153000Z
+SUMMARY:Victoria of Many Faces — Finale (Ep 9)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/victoria-of-many-faces-198709/
+URL:https://anicalendar.netlify.app/anime/victoria-of-many-faces-198709/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-209504-f12@anicalendar.netlify.app
+DTSTAMP:20260921T140000Z
+DTSTART:20260921T140000Z
+DTEND:20260921T143000Z
+SUMMARY:The Forsaken Saintess and Her Foodie Roadtrip in Another World — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-forsaken-saintess-and-her-foodie-roadtrip-in-another-wor-209504/
+URL:https://anicalendar.netlify.app/anime/the-forsaken-saintess-and-her-foodie-roadtrip-in-another-wor-209504/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-208225-f12@anicalendar.netlify.app
@@ -187,15 +223,6 @@ DTEND:20260919T163000Z
 SUMMARY:Magical Girl Lyrical Nanoha EXCEEDS Gun Blaze Vengeance — Finale (Ep 12)
 DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
 URL:https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-209504-f12@anicalendar.netlify.app
-DTSTAMP:20260921T140000Z
-DTSTART:20260921T140000Z
-DTEND:20260921T143000Z
-SUMMARY:The Forsaken Saintess and Her Foodie Roadtrip in Another World — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-forsaken-saintess-and-her-foodie-roadtrip-in-another-wor-209504/
-URL:https://anicalendar.netlify.app/anime/the-forsaken-saintess-and-her-foodie-roadtrip-in-another-wor-209504/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-188525-f12@anicalendar.netlify.app
@@ -277,6 +304,15 @@ DTEND:20260921T143000Z
 SUMMARY:Flaming Dodgeball Girl Danko — Finale (Ep 12)
 DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/flaming-dodgeball-girl-danko-195833/
 URL:https://anicalendar.netlify.app/anime/flaming-dodgeball-girl-danko-195833/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-209800-f12@anicalendar.netlify.app
+DTSTAMP:20260922T143000Z
+DTSTART:20260922T143000Z
+DTEND:20260922T150000Z
+SUMMARY:Yoroi-Shinden Samurai Troopers Cour 2 — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/yoroi-shinden-samurai-troopers-cour-2-209800/
+URL:https://anicalendar.netlify.app/anime/yoroi-shinden-samurai-troopers-cour-2-209800/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-196223-f3@anicalendar.netlify.app
