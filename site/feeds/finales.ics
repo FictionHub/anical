@@ -45,6 +45,15 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/bleach-thousand
 URL:https://anicalendar.netlify.app/anime/bleach-thousand-year-blood-war-the-calamity-185874/
 END:VEVENT
 BEGIN:VEVENT
+UID:anical-187260-f13@anicalendar.netlify.app
+DTSTAMP:20260929T123000Z
+DTSTART:20260929T123000Z
+DTEND:20260929T130000Z
+SUMMARY:I Want to Love You Till Your Dying Day — Finale (Ep 13)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/i-want-to-love-you-till-your-dying-day-187260/
+URL:https://anicalendar.netlify.app/anime/i-want-to-love-you-till-your-dying-day-187260/
+END:VEVENT
+BEGIN:VEVENT
 UID:anical-184492-f24@anicalendar.netlify.app
 DTSTAMP:20260912T092600Z
 DTSTART:20260912T092600Z
@@ -54,13 +63,13 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/welcome-to-demo
 URL:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-187260-f13@anicalendar.netlify.app
-DTSTAMP:20260929T123000Z
-DTSTART:20260929T123000Z
-DTEND:20260929T130000Z
-SUMMARY:I Want to Love You Till Your Dying Day — Finale (Ep 13)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/i-want-to-love-you-till-your-dying-day-187260/
-URL:https://anicalendar.netlify.app/anime/i-want-to-love-you-till-your-dying-day-187260/
+UID:anical-159309-f12@anicalendar.netlify.app
+DTSTAMP:20260923T143000Z
+DTSTART:20260923T143000Z
+DTEND:20260923T150000Z
+SUMMARY:Trapped in a Dating Sim: The World of Otome Games is Tough for Mobs Season 2 — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
+URL:https://anicalendar.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-185542-f12@anicalendar.netlify.app
@@ -81,6 +90,15 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/grand-blue-drea
 URL:https://anicalendar.netlify.app/anime/grand-blue-dreaming-season-3-199111/
 END:VEVENT
 BEGIN:VEVENT
+UID:anical-198946-f13@anicalendar.netlify.app
+DTSTAMP:20260930T120000Z
+DTSTART:20260930T120000Z
+DTEND:20260930T123000Z
+SUMMARY:Clevatess Season 2 — Finale (Ep 13)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/clevatess-season-2-198946/
+URL:https://anicalendar.netlify.app/anime/clevatess-season-2-198946/
+END:VEVENT
+BEGIN:VEVENT
 UID:anical-197715-f12@anicalendar.netlify.app
 DTSTAMP:20260909T150000Z
 DTSTART:20260909T150000Z
@@ -88,6 +106,15 @@ DTEND:20260909T153000Z
 SUMMARY:The Villager of Level 999 — Finale (Ep 12)
 DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-villager-of-level-999-197715/
 URL:https://anicalendar.netlify.app/anime/the-villager-of-level-999-197715/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-199748-f12@anicalendar.netlify.app
+DTSTAMP:20260918T133000Z
+DTSTART:20260918T133000Z
+DTEND:20260918T140000Z
+SUMMARY:I Became a Legend After My 10 Year-Long Last Stand — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
+URL:https://anicalendar.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-201514-f12@anicalendar.netlify.app
@@ -99,15 +126,6 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/rich-girl-caret
 URL:https://anicalendar.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-210482-f11@anicalendar.netlify.app
-DTSTAMP:20261203T150000Z
-DTSTART:20261203T150000Z
-DTEND:20261203T153000Z
-SUMMARY:STEEL BALL RUN JoJo's Bizarre Adventure 2nd - 3rd STAGE — Finale (Ep 11)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
-URL:https://anicalendar.netlify.app/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-169583-f12@anicalendar.netlify.app
 DTSTAMP:20260921T143000Z
 DTSTART:20260921T143000Z
@@ -115,6 +133,15 @@ DTEND:20260921T150000Z
 SUMMARY:Oh Boy\, Was I Wrong About Her — Finale (Ep 12)
 DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/oh-boy-was-i-wrong-about-her-169583/
 URL:https://anicalendar.netlify.app/anime/oh-boy-was-i-wrong-about-her-169583/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-210482-f11@anicalendar.netlify.app
+DTSTAMP:20261203T150000Z
+DTSTART:20261203T150000Z
+DTEND:20261203T153000Z
+SUMMARY:STEEL BALL RUN JoJo's Bizarre Adventure 2nd - 3rd STAGE — Finale (Ep 11)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
+URL:https://anicalendar.netlify.app/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-177637-f12@anicalendar.netlify.app
@@ -162,15 +189,6 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/a-livid-ladys-g
 URL:https://anicalendar.netlify.app/anime/a-livid-ladys-guide-to-getting-even-how-i-crushed-my-homelan-199408/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-207674-f12@anicalendar.netlify.app
-DTSTAMP:20260918T163000Z
-DTSTART:20260918T163000Z
-DTEND:20260918T170000Z
-SUMMARY:KAMUI ---He's behind you — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/kamui-hes-behind-you-207674/
-URL:https://anicalendar.netlify.app/anime/kamui-hes-behind-you-207674/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-194219-f12@anicalendar.netlify.app
 DTSTAMP:20260919T153000Z
 DTSTART:20260919T153000Z
@@ -180,13 +198,13 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-ogres-bride
 URL:https://anicalendar.netlify.app/anime/the-ogres-bride-194219/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-203880-f13@anicalendar.netlify.app
-DTSTAMP:20260924T123000Z
-DTSTART:20260924T123000Z
-DTEND:20260924T130000Z
-SUMMARY:Dara-san of the Reiwa Era — Finale (Ep 13)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
-URL:https://anicalendar.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
+UID:anical-207674-f12@anicalendar.netlify.app
+DTSTAMP:20260918T163000Z
+DTSTART:20260918T163000Z
+DTEND:20260918T170000Z
+SUMMARY:KAMUI ---He's behind you — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/kamui-hes-behind-you-207674/
+URL:https://anicalendar.netlify.app/anime/kamui-hes-behind-you-207674/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-198709-f9@anicalendar.netlify.app
@@ -196,6 +214,15 @@ DTEND:20260901T153000Z
 SUMMARY:Victoria of Many Faces — Finale (Ep 9)
 DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/victoria-of-many-faces-198709/
 URL:https://anicalendar.netlify.app/anime/victoria-of-many-faces-198709/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-203880-f13@anicalendar.netlify.app
+DTSTAMP:20260924T123000Z
+DTSTART:20260924T123000Z
+DTEND:20260924T130000Z
+SUMMARY:Dara-san of the Reiwa Era — Finale (Ep 13)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
+URL:https://anicalendar.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-209504-f12@anicalendar.netlify.app
@@ -261,15 +288,6 @@ DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/hana-kimi-seaso
 URL:https://anicalendar.netlify.app/anime/hana-kimi-season-2-209669/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-201667-f12@anicalendar.netlify.app
-DTSTAMP:20260917T124000Z
-DTSTART:20260917T124000Z
-DTEND:20260917T131000Z
-SUMMARY:Bungo Stray Dogs WAN! 2 — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/bungo-stray-dogs-wan-2-201667/
-URL:https://anicalendar.netlify.app/anime/bungo-stray-dogs-wan-2-201667/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-200230-f12@anicalendar.netlify.app
 DTSTAMP:20260920T073000Z
 DTSTART:20260920T073000Z
@@ -277,6 +295,15 @@ DTEND:20260920T080000Z
 SUMMARY:Let's go KAIKIGUMI — Finale (Ep 12)
 DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/lets-go-kaikigumi-200230/
 URL:https://anicalendar.netlify.app/anime/lets-go-kaikigumi-200230/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-201667-f12@anicalendar.netlify.app
+DTSTAMP:20260917T124000Z
+DTSTART:20260917T124000Z
+DTEND:20260917T131000Z
+SUMMARY:Bungo Stray Dogs WAN! 2 — Finale (Ep 12)
+DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/bungo-stray-dogs-wan-2-201667/
+URL:https://anicalendar.netlify.app/anime/bungo-stray-dogs-wan-2-201667/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-169080-f12@anicalendar.netlify.app
