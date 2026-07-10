@@ -2725,10 +2725,18 @@ $("leadSel").value=String(state.notifyLead);
 document.querySelectorAll("#viewSeg button").forEach(b=>b.classList.toggle("active",b.dataset.view===state.viewMode));
 updateNotifyBtn();
 
-// live tick: refresh countdowns / agenda + roll notifications forward
-setInterval(()=>{ if(state.viewMode==="agenda" && !$("overlay").classList.contains("on")){ const w=$("calWrap"); w.innerHTML=""; renderAgenda(w); } scheduleNotifications(); }, 60000);
+// live tick: refresh countdowns / agenda + roll notifications forward.
+// Both timers no-op while the tab is hidden (saves CPU/battery on a backgrounded
+// tab); a visibilitychange handler catches everything up the moment it's shown.
+function minuteTick(){
+  if(document.hidden) return;
+  if(state.viewMode==="agenda" && !$("overlay").classList.contains("on")){ const w=$("calWrap"); w.innerHTML=""; renderAgenda(w); }
+  scheduleNotifications();
+}
+setInterval(minuteTick, 60000);
 // 1-second tick so every visible countdown ("in 3h 12m 04s") actually moves
-setInterval(tickCountdowns, 1000);
+setInterval(()=>{ if(!document.hidden) tickCountdowns(); }, 1000);
+document.addEventListener("visibilitychange",()=>{ if(!document.hidden){ tickCountdowns(); minuteTick(); } });
 
 // PWA: install prompt + service worker
 let deferredPrompt=null;
