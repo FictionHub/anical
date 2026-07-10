@@ -339,7 +339,7 @@
   .mh h2 .mtitle-sub{display:block;font-size:12px;color:var(--muted);font-style:italic;font-weight:400;margin-top:3px;line-height:1.3}
   .detail-grid{display:grid;grid-template-columns:260px minmax(0,1fr) minmax(220px,1fr);gap:24px;align-items:start;margin-bottom:2px}
   .detail-grid.no-side{grid-template-columns:260px minmax(0,1fr)}
-  .detail-poster img{width:100%;border-radius:12px;display:block;object-fit:cover}
+  .detail-poster img{width:100%;height:auto;aspect-ratio:2/3;border-radius:12px;display:block;object-fit:cover}
   .detail-main{min-width:0;display:flex;flex-direction:column;gap:12px}
   .detail-main .desc{color:var(--muted);font-size:13.5px;margin:2px 0 0;line-height:1.55}
   /* Livelier pills in the detail modal (accent-tinted, a touch larger). */
@@ -892,7 +892,7 @@ function castHTML(chars){
   if(!edges.length) return "";
   const cards=edges.slice(0,12).map(ed=>{
     const c=ed.node, va=ed.voiceActors&&ed.voiceActors[0];
-    const cimg=c.image&&c.image.medium?`<img src="${esc(c.image.medium)}" alt="" loading="lazy">`:"";
+    const cimg=c.image&&c.image.medium?`<img src="${esc(c.image.medium)}" alt="" loading="lazy" width="56" height="56">`:"";
     return `<a class="cast-c" href="https://anilist.co/character/${c.id}" target="_blank" rel="noopener">${cimg}<div class="cn">${esc(c.name.full)}</div>${va?`<div class="va">${esc(va.name.full)}</div>`:""}</a>`;
   }).join("");
   return `<h4 style="margin:16px 0 6px">Characters &amp; voice cast</h4><div class="cast">${cards}</div>`;
@@ -917,7 +917,7 @@ async function loadOnThisDay(){
   if(!items.length){ card.style.display="none"; return; }
   card.style.display="";
   $("onThisDay").innerHTML=items.map(m=>{ const yrs=curY-m.startDate.year; return `<div class="prow" role="button" tabindex="0" aria-label="${esc(title(m))}" data-otd="${m.id}">
-    <img src="${esc((m.coverImage&&m.coverImage.medium)||"")}" alt="" loading="lazy">
+    <img src="${esc((m.coverImage&&m.coverImage.medium)||"")}" alt="" loading="lazy" width="44" height="60">
     <div class="info"><div class="pt">${esc(title(m))}</div><div class="meta" style="margin-top:3px">Premiered ${m.startDate.year} · ${yrs} yr${yrs===1?"":"s"} ago</div></div></div>`; }).join("");
   $("onThisDay").querySelectorAll("[data-otd]").forEach(el=>el.onclick=()=>openShowById(el.dataset.otd));
 }
@@ -935,7 +935,7 @@ function recCoversHTML(nodes){
   const items=(nodes||[]).map(n=>n&&n.mediaRecommendation).filter(m=>m&&m.id&&!(state.hideNSFW&&m.isAdult)&&!isHidden(m.id));
   if(!items.length) return "";
   return `<h4 style="margin:16px 0 6px">You might also like</h4><div class="wn-list">`+
-    items.slice(0,10).map(m=>`<img class="wn-cover" role="button" tabindex="0" data-rec="${m.id}" src="${esc((m.coverImage&&m.coverImage.medium)||"")}" alt="${esc(title(m))}" title="${esc(title(m))}" loading="lazy">`).join("")+`</div>`;
+    items.slice(0,10).map(m=>`<img class="wn-cover" role="button" tabindex="0" data-rec="${m.id}" src="${esc((m.coverImage&&m.coverImage.medium)||"")}" alt="${esc(title(m))}" title="${esc(title(m))}" loading="lazy" width="84" height="118">`).join("")+`</div>`;
 }
 const studioCache=new Map();
 async function fetchStudioMedia(studioId){
@@ -950,7 +950,7 @@ function studioCoversHTML(studio, excludeId){
   const items=(studio&&studio.media&&studio.media.nodes||[]).filter(m=>m&&m.id && String(m.id)!==String(excludeId) && !(state.hideNSFW&&m.isAdult) && !isHidden(m.id));
   if(!items.length) return "";
   return `<h4 style="margin:16px 0 6px">More from ${esc(studio.name)}</h4><div class="wn-list">`+
-    items.slice(0,10).map(m=>`<img class="wn-cover" role="button" tabindex="0" data-rec="${m.id}" src="${esc((m.coverImage&&m.coverImage.medium)||"")}" alt="${esc(title(m))}" title="${esc(title(m))}" loading="lazy">`).join("")+`</div>`;
+    items.slice(0,10).map(m=>`<img class="wn-cover" role="button" tabindex="0" data-rec="${m.id}" src="${esc((m.coverImage&&m.coverImage.medium)||"")}" alt="${esc(title(m))}" title="${esc(title(m))}" loading="lazy" width="84" height="118">`).join("")+`</div>`;
 }
 async function loadModalExtras(id){
   let data; try{ data=await fetchModalExtras(id); }catch(e){ return; }
@@ -1017,7 +1017,7 @@ function renderWhatsNew(){
   if(!fresh.length){ box.style.display="none"; return; }
   const since=LAST_VISIT?(" since "+new Date(LAST_VISIT).toLocaleDateString([], {month:"short",day:"numeric"})):"";
   box.innerHTML=`<span class="wn-label">✨ ${fresh.length} new${since}</span>`+
-    `<div class="wn-list">`+fresh.slice(0,14).map(md=>`<img class="wn-cover" role="button" tabindex="0" data-wn="${md.id}" src="${md.coverImage&&md.coverImage.medium?esc(md.coverImage.medium):""}" alt="${esc(title(md))}" title="${esc(title(md))}" loading="lazy">`).join("")+`</div>`+
+    `<div class="wn-list">`+fresh.slice(0,14).map(md=>`<img class="wn-cover" role="button" tabindex="0" data-wn="${md.id}" src="${md.coverImage&&md.coverImage.medium?esc(md.coverImage.medium):""}" alt="${esc(title(md))}" title="${esc(title(md))}" loading="lazy" width="30" height="40">`).join("")+`</div>`+
     `<button class="wn-x" id="wnDismiss" title="Dismiss">✕</button>`;
   box.style.display="";
   box.querySelectorAll("[data-wn]").forEach(el=>{ el.onclick=()=>{ const md=state.media.find(x=>String(x.id)===el.dataset.wn); if(md) openDetail(md,(nextAir(md)||{}).episode||1); }; });
@@ -1356,7 +1356,7 @@ function eventEl(e){
   const el=document.createElement("div");
   el.className="ev"+(prem?" prem":fin?" fin":"")+(isWatched(md.id)?" mine":"");
   if(md.coverImage&&md.coverImage.color&&!prem&&!fin) el.style.borderLeftColor=md.coverImage.color;
-  el.innerHTML=(md.coverImage&&md.coverImage.medium?`<img src="${md.coverImage.medium}" alt="" loading="lazy">`:"")+
+  el.innerHTML=(md.coverImage&&md.coverImage.medium?`<img src="${md.coverImage.medium}" alt="" loading="lazy" width="20" height="26">`:"")+
     `<span class="t">${esc(title(md))}</span><span class="epn">${prem?"★EP1":fin?"🏁FIN":"E"+e.episode}</span>`;
   el.title=title(md)+" · Ep "+e.episode+(fin?" (Season finale)":"")+" · "+fmtTime(e.ts);
   kbdButton(el, title(md)+", episode "+e.episode+(prem?" premiere":fin?" finale":"")+", "+fmtTime(e.ts));
@@ -1431,7 +1431,7 @@ function agendaRow(e,now){
   kbdButton(row, title(md)+", episode "+e.episode+(prem?" premiere":fin?" finale":"")+", "+fmtTime(e.ts));
   row.innerHTML=
     `<span class="atime">${fmtTime(e.ts)}</span>`+
-    (md.coverImage&&md.coverImage.medium?`<img src="${md.coverImage.medium}" alt="" loading="lazy">`:"")+
+    (md.coverImage&&md.coverImage.medium?`<img src="${md.coverImage.medium}" alt="" loading="lazy" width="40" height="54">`:"")+
     `<div class="ainfo"><div class="at">${esc(title(md))}</div>
       <div class="ameta">
         ${prem?'<span class="pill prem">PREMIERE</span>':`<span class="pill">Ep ${e.episode}</span>`}
@@ -1503,7 +1503,7 @@ function renderSidebars(){
   const rv=(state.recent||[]).filter(r=>r&&!isHidden(r.id));
   const rvCard=$("rvCard");
   if(rvCard){
-    if(rv.length){ rvCard.style.display=""; $("recentRail").innerHTML=`<div class="wn-list">`+rv.slice(0,18).map(r=>`<img class="wn-cover" role="button" tabindex="0" data-rv="${esc(String(r.id))}" src="${esc(r.img||"")}" alt="${esc(r.t||"")}" title="${esc(r.t||"")}" loading="lazy">`).join("")+`</div>`; }
+    if(rv.length){ rvCard.style.display=""; $("recentRail").innerHTML=`<div class="wn-list">`+rv.slice(0,18).map(r=>`<img class="wn-cover" role="button" tabindex="0" data-rv="${esc(String(r.id))}" src="${esc(r.img||"")}" alt="${esc(r.t||"")}" title="${esc(r.t||"")}" loading="lazy" width="30" height="40">`).join("")+`</div>`; }
     else rvCard.style.display="none";
   }
 
@@ -1516,7 +1516,7 @@ function sdTs(sd){ return sd&&sd.year?Math.floor(new Date(sd.year,(sd.month||1)-
 function prow(md,sub,prem){
   const score=md.averageScore?`<span class="pill score">★ ${md.averageScore}</span>`:"";
   return `<div class="prow${isWatched(md.id)?" mine":""}" role="button" tabindex="0" aria-label="${esc(title(md))}" data-mid="${md.id}">
-    <img src="${md.coverImage&&md.coverImage.medium?md.coverImage.medium:""}" alt="" loading="lazy">
+    <img src="${md.coverImage&&md.coverImage.medium?md.coverImage.medium:""}" alt="" loading="lazy" width="44" height="60">
     <div class="info">
       <div class="pt">${esc(title(md))}</div>
       <div class="meta">${prem?'<span class="pill prem">EP1</span>':''}<span class="pill">${FMT_LABEL[md.format]||md.format||"?"}</span>${score}${starSpan(md.id)}${bellSpan(md.id)}</div>
@@ -1625,7 +1625,7 @@ function openDetail(md,episode){
   $("modalBody").innerHTML=`
     <div class="detail-grid${sched?"":" no-side"}">
       <div class="detail-poster">
-        ${cover?`<img src="${cover}" alt="">`:""}
+        ${cover?`<img src="${cover}" alt="" width="300" height="450">`:""}
       </div>
       <div class="detail-main">
         <div style="display:flex;gap:6px;flex-wrap:wrap">
@@ -1681,7 +1681,7 @@ function openDay(d,evs){
   $("modalBody").innerHTML=evs.slice().sort((a,b)=>a.ts-b.ts).map(e=>{
     const md=e.media,prem=e.episode===1,fin=isFinale(md,e.episode),up=e.ts>now;
     return `<div class="prow" role="button" tabindex="0" aria-label="${esc(title(md))}, episode ${e.episode}" data-mid2="${md.id}">
-      <img src="${md.coverImage&&md.coverImage.medium?md.coverImage.medium:""}" alt="">
+      <img src="${md.coverImage&&md.coverImage.medium?md.coverImage.medium:""}" alt="" width="44" height="60">
       <div class="info"><div class="pt">${esc(title(md))}</div>
         <div class="meta">${prem?'<span class="pill prem">PREMIERE</span>':''}${fin?'<span class="pill fin">🏁 FINALE</span>':''}<span class="pill">Ep ${e.episode}</span><span class="pill">${fmtTime(e.ts)}</span>${md.averageScore?`<span class="pill score">★ ${md.averageScore}</span>`:""}${up?`<span class="pill cd">in ${cdLive(e.ts)}</span>`:""}${bellSpan(md.id)}</div>
       </div></div>`;
@@ -2631,7 +2631,7 @@ function searchRowHTML(md){
                : (md.startDate&&md.startDate.year ? `${md.startDate.year}` : "")+((md.status?" · "+md.status.replace(/_/g," ").toLowerCase():"")||"—");
   const sc=md.averageScore?`<span class="pill score">★ ${md.averageScore}</span>`:"";
   return `<div class="sr-row" role="button" tabindex="0" aria-label="${esc(title(md))}" data-sid="${md.id}">
-    <img src="${md.coverImage&&md.coverImage.medium?esc(md.coverImage.medium):""}" alt="" loading="lazy">
+    <img src="${md.coverImage&&md.coverImage.medium?esc(md.coverImage.medium):""}" alt="" loading="lazy" width="34" height="46">
     <div style="min-width:0"><div class="srt">${esc(title(md))}</div>
       <div class="srm"><span class="pill">${esc(FMT_LABEL[md.format]||md.format||"?")}</span>${sc}<span>${esc(sub)}</span></div>
     </div></div>`;
