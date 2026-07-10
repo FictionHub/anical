@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>AniCal — Anime Airing Schedule (Embed)</title>
+<title>Tsuzuki — Anime Airing Schedule (Embed)</title>
 <!-- Widget meant for <iframe> embedding on other sites; not a search landing page. -->
 <meta name="robots" content="noindex, follow" />
-<meta name="description" content="Embeddable live anime airing schedule widget by AniCal." />
+<meta name="description" content="Embeddable live anime airing schedule widget by Tsuzuki." />
 <style>
   :root{--bg:#0d1117;--bg2:#161b22;--bg3:#1c2230;--line:#2a3140;--txt:#e6edf3;--muted:#8b97a7;--accent:#8b5cf6;--accent2:#22d3ee;--prem:#f59e0b;--fin:#ef4444}
   *{box-sizing:border-box}
@@ -36,9 +36,9 @@
 </style>
 </head>
 <body>
-<div class="hd"><span class="dot"></span><span class="nm">AniCal</span><span class="sub" id="sub">Loading…</span></div>
+<div class="hd"><span class="dot"></span><span class="nm">Tsuzuki</span><span class="sub" id="sub">Loading…</span></div>
 <div class="list" id="list"><div class="msg"><span class="spin"></span> Loading anime schedule…</div></div>
-<div class="ft">📅 <a href="https://anicalendar.netlify.app/" target="_blank" rel="noopener">Full anime calendar on AniCal →</a></div>
+<div class="ft">📅 <a href="https://tsuzuki.netlify.app/" target="_blank" rel="noopener">Full anime calendar on Tsuzuki →</a></div>
 <script>
 "use strict";
 const API="https://graphql.anilist.co";
@@ -94,7 +94,7 @@ async function fetchSeason(season,year){
     }
     $("list").innerHTML=html;
   }catch(err){
-    $("list").innerHTML='<div class="msg">Couldn\'t load the schedule.<br><a href="https://anicalendar.netlify.app/" target="_blank" rel="noopener">Open AniCal →</a></div>';
+    $("list").innerHTML='<div class="msg">Couldn\'t load the schedule.<br><a href="https://tsuzuki.netlify.app/" target="_blank" rel="noopener">Open Tsuzuki →</a></div>';
     $("sub").textContent="";
   }
 })();

@@ -1,6 +1,6 @@
 /* ============================================================
-   AniCal community — channel updater bot
-   Pulls the SAME data as https://anicalendar.netlify.app and posts
+   Tsuzuki community — channel updater bot
+   Pulls the SAME data as https://tsuzuki.netlify.app and posts
    it as embeds into #this-week, #premieres, #finales, #anime-news.
 
    Sources:  AniList GraphQL (schedules) + Anime News Network via rss2json.
@@ -21,7 +21,7 @@ const GUILD = process.env.GUILD_ID;
 const DAYS  = +(process.env.DAYS || 7);        // window for the #this-week schedule
 const LOOKAHEAD = +(process.env.LOOKAHEAD || 30); // window for #premieres / #finales
 const PING  = process.env.PING === "1";
-const SITE  = "https://anicalendar.netlify.app";
+const SITE  = "https://tsuzuki.netlify.app";
 const API   = "https://discord.com/api/v10";
 
 if (!TOKEN || !GUILD) { console.error("Missing BOT_TOKEN or GUILD_ID."); process.exit(1); }

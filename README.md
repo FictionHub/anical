@@ -1,4 +1,4 @@
-# AniCal — site + Discord automation
+# Tsuzuki — site + Discord automation
 
 This repo does two things, entirely in the cloud (no dependency on your PC):
 
@@ -9,7 +9,7 @@ This repo does two things, entirely in the cloud (no dependency on your PC):
    `bot/post-social.mjs` and posts a short "today in anime" blurb to Bluesky, Mastodon, and Twitter/X.
 
 ```
-site/                 the AniCal website (index.html, sitemap.xml, robots.txt, og-image.png, favicon.svg, 404.html)
+site/                 the Tsuzuki website (index.html, sitemap.xml, robots.txt, og-image.png, favicon.svg, 404.html)
 site/embed/           embeddable "what's airing" widget (iframe) for other sites — generates backlinks
 scripts/build-seo.mjs generates static SEO landing pages (/today/, /<season>-<year>/) from AniList at deploy time
 bot/post-updates.mjs  pulls AniList + ANN and posts embeds to Discord
@@ -32,11 +32,13 @@ git push -u origin main
 ```
 
 ### B. Auto-deploy the site (Netlify ↔ GitHub)
-In Netlify, link this repo to your existing **anicalendar** site so the URL stays the same:
-**Site configuration → Build & deploy → Link repository** (or *Add new site → Import an
-existing project* if starting fresh). Netlify reads `netlify.toml`, so just confirm the
-**publish directory is `site`** and leave the build command empty. Every push now deploys
-automatically.
+In Netlify, link this repo to your site and rename it to **tsuzuki** (Site configuration →
+Site details → Change site name) so it serves from `https://tsuzuki.netlify.app`. Set up the
+link under **Site configuration → Build & deploy → Link repository** (or *Add new site →
+Import an existing project* if starting fresh). Netlify reads `netlify.toml`, so just confirm
+the **publish directory is `site`** and leave the build command empty. Every push now deploys
+automatically. To preserve SEO, keep the old `anicalendar` name as a domain alias (or add a
+301 redirect) pointing at the new site.
 
 ### C. Daily Discord job (GitHub Actions)
 Add two encrypted secrets under **GitHub repo → Settings → Secrets and variables →
@@ -75,7 +77,7 @@ can also run `DRY_RUN=1 node bot/post-social.mjs`.
 The site ships with `sitemap.xml`, a `Sitemap:` line in `robots.txt`, Open Graph + Twitter
 card tags (with `og-image.png`), and JSON-LD structured data (`WebSite` + `WebApplication`).
 After deploy, submit the site once in [Google Search Console](https://search.google.com/search-console)
-(add the property, then **Sitemaps → submit `https://anicalendar.netlify.app/sitemap.xml`**)
+(add the property, then **Sitemaps → submit `https://tsuzuki.netlify.app/sitemap.xml`**)
 to start getting indexed.
 
 ### Programmatic SEO landing pages
@@ -103,7 +105,7 @@ Episode alerts work two ways:
   browser (or, on supported browsers, a kept-alive service worker) is around.
 - **Server-driven** (new): `netlify/functions/push-*.mjs` + a Netlify **scheduled function**
   (`push-send.mjs`, runs every 15 minutes) send real Web Push notifications for shows a user
-  has the 🔔 bell enabled on — these arrive even if AniCal is fully closed.
+  has the 🔔 bell enabled on — these arrive even if Tsuzuki is fully closed.
 
 Setup (one-time):
 1. `node scripts/generate-vapid-keys.mjs` → prints a VAPID_PUBLIC_KEY and VAPID_PRIVATE_KEY.
@@ -127,8 +129,8 @@ It fetches AniList client-side (always live, no rebuild) and links back to the m
 so every place someone embeds it becomes a backlink. Grab the snippet from the app footer's
 **⧉ Embed this calendar** link (with a live preview + copy button), or use directly:
 ```html
-<iframe src="https://anicalendar.netlify.app/embed/?days=7" width="360" height="520"
-        style="border:1px solid #2a3140;border-radius:12px" title="AniCal — anime airing schedule"></iframe>
+<iframe src="https://tsuzuki.netlify.app/embed/?days=7" width="360" height="520"
+        style="border:1px solid #2a3140;border-radius:12px" title="Tsuzuki — anime airing schedule"></iframe>
 ```
 Query params: `days` (1–31, default 7) and `limit` (max rows, default 25).
 

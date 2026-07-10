@@ -1,6 +1,6 @@
 {
-  "name": "AniCal — Anime Release Calendar",
-  "short_name": "AniCal",
+  "name": "Tsuzuki — Anime Release Calendar",
+  "short_name": "Tsuzuki",
   "description": "Live anime release calendar: upcoming episodes, premieres, finales and anime news. Follow shows, get countdowns and add episodes to your calendar.",
   "start_url": "/?source=pwa",
   "scope": "/",

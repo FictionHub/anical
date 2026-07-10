@@ -1,4 +1,4 @@
-/* AniCal service worker — makes the app installable & openable offline.
+/* Tsuzuki service worker — makes the app installable & openable offline.
    Strategy:
      • navigations  -> network-first, fall back to the cached app shell
      • *.json data  -> network-first, fall back to last cached copy
@@ -6,7 +6,7 @@
      • cross-origin (AniList, ANN, Open-Meteo, images) -> untouched (network)
    Live anime data is always fetched fresh; the cache only guarantees the app
    still opens with offline/sample data when there's no connection. */
-const CACHE = "anical-v2";
+const CACHE = "tsuzuki-v1";
 const SHELL = ["/", "/index.html", "/favicon.svg", "/manifest.webmanifest", "/og-image.png"];
 
 self.addEventListener("install", e => {
@@ -55,7 +55,7 @@ self.addEventListener("fetch", e => {
   );
 });
 
-// Clicking an episode alert focuses an open AniCal tab (or opens one) on that show.
+// Clicking an episode alert focuses an open Tsuzuki tab (or opens one) on that show.
 self.addEventListener("notificationclick", e => {
   e.notification.close();
   const url = (e.notification.data && e.notification.data.url) || "/";
@@ -72,7 +72,7 @@ self.addEventListener("notificationclick", e => {
 self.addEventListener("push", e => {
   let d = {};
   try { d = e.data ? e.data.json() : {}; } catch (_) { d = { body: e.data && e.data.text() }; }
-  e.waitUntil(self.registration.showNotification(d.title || "AniCal", {
+  e.waitUntil(self.registration.showNotification(d.title || "Tsuzuki", {
     body: d.body || "", icon: d.icon, tag: d.tag, data: { url: d.url || "/" },
   }));
 });

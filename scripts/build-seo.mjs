@@ -1,5 +1,5 @@
 /* ============================================================
-   AniCal — programmatic SEO page generator
+   Tsuzuki — programmatic SEO page generator
    Builds static, server-rendered landing pages from live AniList
    data so Google can index real anime titles + dates (the app
    itself is JS-only and mostly invisible to crawlers):
@@ -23,7 +23,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const SITE = "https://anicalendar.netlify.app";
+const SITE = "https://tsuzuki.netlify.app";
 const APP_DIR = dirname(fileURLToPath(import.meta.url));
 const SITE_DIR = join(APP_DIR, "..", "site");
 const DEFAULT_OG = `${SITE}/og-image.png`;
@@ -168,11 +168,11 @@ function shell({ titleTag, desc, canonical, h1, lede, body, jsonld, ogImage, ogL
 <meta name="theme-color" content="#0d1117" />
 <link rel="canonical" href="${esc(canonical)}" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="alternate" type="application/rss+xml" title="AniCal — Premieres &amp; Finales" href="/feed.xml" />
+<link rel="alternate" type="application/rss+xml" title="Tsuzuki — Premieres &amp; Finales" href="/feed.xml" />
 <link rel="preconnect" href="https://s4.anilist.co" crossorigin />
 <link rel="dns-prefetch" href="https://s4.anilist.co" />
 <meta property="og:type" content="website" />
-<meta property="og:site_name" content="AniCal" />
+<meta property="og:site_name" content="Tsuzuki" />
 <meta property="og:url" content="${esc(canonical)}" />
 <meta property="og:title" content="${esc(titleTag)}" />
 <meta property="og:description" content="${esc(desc)}" />
@@ -186,7 +186,7 @@ ${jsonld ? `<script type="application/ld+json">${jsonld}</script>` : ""}
 </head>
 <body>
 <div class="wrap">
-  <header class="top"><span class="dot"></span> <a href="/">AniCal</a></header>
+  <header class="top"><span class="dot"></span> <a href="/">Tsuzuki</a></header>
   ${crumbs || ""}
   <h1>${esc(h1)}</h1>
   <p class="lede">${lede}</p>
@@ -244,7 +244,7 @@ function vevent(uid, start, summary, desc, url) {
     "SUMMARY:" + icsEsc(summary), desc ? "DESCRIPTION:" + icsEsc(desc) : null, url ? "URL:" + icsEsc(url) : null, "END:VEVENT"].filter(Boolean).join("\r\n");
 }
 function calWrap(name, events) {
-  return ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//AniCal//anicalendar.netlify.app//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH",
+  return ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Tsuzuki//tsuzuki.netlify.app//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH",
     "X-WR-CALNAME:" + icsEsc(name), "X-WR-TIMEZONE:UTC", "NAME:" + icsEsc(name), "REFRESH-INTERVAL;VALUE=DURATION:PT12H", "X-PUBLISHED-TTL:PT12H",
     ...events, "END:VCALENDAR"].join("\r\n") + "\r\n";
 }
@@ -259,17 +259,17 @@ async function buildFeeds(union) {
       if (n.airingAt < past) continue;
       const d = new Date(n.airingAt * 1000);
       if (n.airingAt <= farHorizon && n.episode === 1)
-        prem.push(vevent(`anical-${md.id}-1@anicalendar.netlify.app`, d, `${title(md)} — Premiere (Ep 1)`, `New anime premiere. ${link}`, link));
+        prem.push(vevent(`tsuzuki-${md.id}-1@tsuzuki.netlify.app`, d, `${title(md)} — Premiere (Ep 1)`, `New anime premiere. ${link}`, link));
       if (n.airingAt <= farHorizon && isFinale(md, n.episode))
-        fin.push(vevent(`anical-${md.id}-f${n.episode}@anicalendar.netlify.app`, d, `${title(md)} — Finale (Ep ${n.episode})`, `Season finale. ${link}`, link));
+        fin.push(vevent(`tsuzuki-${md.id}-f${n.episode}@tsuzuki.netlify.app`, d, `${title(md)} — Finale (Ep ${n.episode})`, `Season finale. ${link}`, link));
       if (n.airingAt <= allHorizon)
-        all.push(vevent(`anical-${md.id}-${n.episode}@anicalendar.netlify.app`, d, `${title(md)} — Ep ${n.episode}`, link, link));
+        all.push(vevent(`tsuzuki-${md.id}-${n.episode}@tsuzuki.netlify.app`, d, `${title(md)} — Ep ${n.episode}`, link, link));
     }
   }
   await mkdir(join(SITE_DIR, "feeds"), { recursive: true });
-  await writeFile(join(SITE_DIR, "feeds", "premieres.ics"), calWrap("AniCal — Anime Premieres", prem), "utf8");
-  await writeFile(join(SITE_DIR, "feeds", "finales.ics"), calWrap("AniCal — Season Finales", fin), "utf8");
-  await writeFile(join(SITE_DIR, "feeds", "all.ics"), calWrap("AniCal — All Episodes (next ~6 weeks)", all), "utf8");
+  await writeFile(join(SITE_DIR, "feeds", "premieres.ics"), calWrap("Tsuzuki — Anime Premieres", prem), "utf8");
+  await writeFile(join(SITE_DIR, "feeds", "finales.ics"), calWrap("Tsuzuki — Season Finales", fin), "utf8");
+  await writeFile(join(SITE_DIR, "feeds", "all.ics"), calWrap("Tsuzuki — All Episodes (next ~6 weeks)", all), "utf8");
   return { prem: prem.length, fin: fin.length, all: all.length };
 }
 
@@ -293,7 +293,7 @@ async function buildRss(union) {
         at: n.airingAt,
         title: `${t} — ${kind} (Ep ${n.episode})`,
         link,
-        guid: `anical-rss-${md.id}-${isPrem ? "p" : "f"}${n.episode}`,
+        guid: `tsuzuki-rss-${md.id}-${isPrem ? "p" : "f"}${n.episode}`,
         desc: `${kind}: ${plain(md.description, 280) || `${t} airs episode ${n.episode}.`}`,
       });
     }
@@ -311,7 +311,7 @@ async function buildRss(union) {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>AniCal — Anime Premieres &amp; Finales</title>
+    <title>Tsuzuki — Anime Premieres &amp; Finales</title>
     <link>${SITE}/</link>
     <atom:link href="${SITE}/feed.xml" rel="self" type="application/rss+xml" />
     <description>Upcoming and recent anime premieres and season finales, updated daily.</description>
@@ -437,7 +437,7 @@ async function buildAnimePage(md, seasonSlugs, studioSlugSet) {
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "AniCal", item: SITE + "/" },
+          { "@type": "ListItem", position: 1, name: "Tsuzuki", item: SITE + "/" },
           ...(seasonLabel ? [{ "@type": "ListItem", position: 2, name: seasonLabel, item: `${SITE}/${seasonSlug}/` }] : []),
           { "@type": "ListItem", position: seasonLabel ? 3 : 2, name: t, item: `${SITE}/anime/${slug}/` },
         ],
@@ -446,7 +446,7 @@ async function buildAnimePage(md, seasonSlugs, studioSlugSet) {
   });
 
   const html = shell({
-    titleTag: `${t} — Air Dates, Episodes & Schedule | AniCal`,
+    titleTag: `${t} — Air Dates, Episodes & Schedule | Tsuzuki`,
     desc, canonical: `${SITE}/anime/${slug}/`, h1: t, lede, body, jsonld, crumbs,
     ogImage: ogFor(md), ogLarge: !!md.bannerImage,
   });
@@ -481,13 +481,13 @@ async function buildWatchPage(md, seasonSlugs) {
     </div>`;
   const jsonld = JSON.stringify({
     "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
-      { "@type": "ListItem", position: 1, name: "AniCal", item: SITE + "/" },
+      { "@type": "ListItem", position: 1, name: "Tsuzuki", item: SITE + "/" },
       { "@type": "ListItem", position: 2, name: t, item: `${SITE}/anime/${slug}/` },
       { "@type": "ListItem", position: 3, name: "Where to watch", item: `${SITE}/where-to-watch/${slug}/` },
     ],
   });
   const html = shell({
-    titleTag: `Where to Watch ${t} — Stream Online | AniCal`,
+    titleTag: `Where to Watch ${t} — Stream Online | Tsuzuki`,
     desc, canonical: `${SITE}/where-to-watch/${slug}/`, h1: `Where to watch ${t}`, lede, body, jsonld, crumbs,
     ogImage: ogFor(md), ogLarge: !!md.bannerImage,
   });
@@ -506,7 +506,7 @@ async function buildCollectionPage(kind, name, items, allSlugs) {
     ? `${sorted.length} ${name} anime — including ${names.slice(0, 3).join(", ")}. Air dates, scores, episode counts and where to watch, updated automatically.`
     : `Anime from ${name}: ${sorted.length} titles including ${names.slice(0, 3).join(", ")}. Air dates, scores and episodes — updated automatically.`).slice(0, 300);
   const lede = kind === "genre"
-    ? `Every <strong>${esc(name)}</strong> anime AniCal is tracking, sorted by popularity. Open any title for air dates, streaming links and reminders.`
+    ? `Every <strong>${esc(name)}</strong> anime Tsuzuki is tracking, sorted by popularity. Open any title for air dates, streaming links and reminders.`
     : `All anime by <strong>${esc(name)}</strong> currently tracked, sorted by popularity. Open any title for air dates, streaming links and reminders.`;
   const crumbs = `<div class="crumbs"><a href="/">Home</a> › ${kind === "genre" ? "Genre" : "Studio"} › ${esc(name)}</div>`;
   const cards = sorted.map(md => {
@@ -519,7 +519,7 @@ async function buildCollectionPage(kind, name, items, allSlugs) {
   });
   const body = seasonNav(allSlugs, null) + `<div class="grid">${cards}</div>`;
   const html = shell({
-    titleTag: `${human} — Schedule, Scores & Where to Watch | AniCal`,
+    titleTag: `${human} — Schedule, Scores & Where to Watch | Tsuzuki`,
     desc, canonical: `${SITE}/${kind}/${slug}/`, h1: human, lede, body, jsonld, crumbs,
     ogImage: ogFor(top), ogLarge: !!(top && top.bannerImage),
   });
@@ -533,12 +533,12 @@ async function buildHubPage(kind, items, allSlugs) {
   const human = kind === "genre" ? "Genres" : "Studios";
   const sorted = items.slice().sort((a, b) => kind === "genre" ? a.name.localeCompare(b.name) : ((b.count - a.count) || a.name.localeCompare(b.name)));
   const desc = `Browse anime by ${kind} — ${sorted.length} ${path} with air dates, scores and where to watch, updated automatically.`;
-  const lede = `Browse every anime ${kind} AniCal tracks. Pick a ${kind} to see its shows, air dates and streaming links.`;
+  const lede = `Browse every anime ${kind} Tsuzuki tracks. Pick a ${kind} to see its shows, air dates and streaming links.`;
   const crumbs = `<div class="crumbs"><a href="/">Home</a> › ${human}</div>`;
   const links = sorted.map(s => `<a class="hub-link" href="/${kind}/${s.slug}/">${esc(s.name)}<span class="hub-n">${s.count}</span></a>`).join("");
   const body = seasonNav(allSlugs, null) + `<div class="hub">${links}</div>`;
   const jsonld = JSON.stringify({ "@context": "https://schema.org", "@type": "CollectionPage", name: `Anime ${human}`, url: `${SITE}/${path}/` });
-  const html = shell({ titleTag: `Anime by ${human} | AniCal`, desc, canonical: `${SITE}/${path}/`, h1: `Anime ${human}`, lede, body, jsonld, crumbs });
+  const html = shell({ titleTag: `Anime by ${human} | Tsuzuki`, desc, canonical: `${SITE}/${path}/`, h1: `Anime ${human}`, lede, body, jsonld, crumbs });
   await writePage(path, html);
   return path;
 }
@@ -561,7 +561,7 @@ async function buildBestPage(media, season, year, allSlugs) {
   });
   const body = seasonNav(allSlugs, slug) + `<div class="grid">${cards}</div>`;
   const html = shell({
-    titleTag: `Best ${label} Anime — Top Rated | AniCal`,
+    titleTag: `Best ${label} Anime — Top Rated | Tsuzuki`,
     desc, canonical: `${SITE}/best/${slug}/`, h1: `Best Anime of ${label}`, lede, body, jsonld, crumbs,
     ogImage: ogFor(top), ogLarge: !!(top && top.bannerImage),
   });
@@ -595,7 +595,7 @@ async function buildSeasonPage(media, season, year, allSlugs, bestSet) {
   const bestLink = (bestSet && bestSet.has(slug)) ? `<a class="cta alt" href="/best/${slug}/">🏆 Best of ${esc(label)}</a>` : "";
   const body = bestLink + seasonNav(allSlugs, slug) + `<div class="grid">${cards}</div>`;
   const html = shell({
-    titleTag: `${label} Anime Schedule — Release Dates & Premieres | AniCal`,
+    titleTag: `${label} Anime Schedule — Release Dates & Premieres | Tsuzuki`,
     desc, canonical: `${SITE}/${slug}/`, h1: `${label} Anime Schedule`, lede, body, jsonld,
     ogImage: ogFor(top), ogLarge: !!(top && top.bannerImage),
   });
@@ -620,7 +620,7 @@ async function buildTodayPage(media, allSlugs) {
   const names = events.slice(0, 6).map(e => title(e.md));
   const desc = events.length
     ? `${events.length} anime episodes air today (${today}, UTC): ${names.slice(0, 4).join(", ")} and more. Times, premieres and finales — updated daily.`
-    : `See which anime episodes are airing today and this week on AniCal's live release calendar.`;
+    : `See which anime episodes are airing today and this week on Tsuzuki's live release calendar.`;
   const lede = `Every anime episode scheduled for <strong>today</strong> (${esc(today)}, times in UTC). ` +
     `Want your local times, countdowns and reminders? Open the <a href="/">live calendar</a>.`;
   const jsonld = JSON.stringify({
@@ -630,7 +630,7 @@ async function buildTodayPage(media, allSlugs) {
   const top = events[0] && events[0].md;
   const body = seasonNav(allSlugs, null) + `<div class="grid">${cards}</div>`;
   const html = shell({
-    titleTag: `Anime Airing Today — ${today} | AniCal`,
+    titleTag: `Anime Airing Today — ${today} | Tsuzuki`,
     desc, canonical: `${SITE}/today/`, h1: "Anime Airing Today", lede, body, jsonld,
     ogImage: ogFor(top), ogLarge: !!(top && top.bannerImage),
   });

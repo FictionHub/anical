@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://anicalendar.netlify.app/sitemap.xml
+Sitemap: https://tsuzuki.netlify.app/sitemap.xml

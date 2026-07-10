@@ -1,6 +1,6 @@
 name: Daily Discord update
 
-# Posts the AniCal schedule / premieres / finales / news into Discord.
+# Posts the Tsuzuki schedule / premieres / finales / news into Discord.
 # Runs on GitHub's servers, so it does NOT depend on your PC being on.
 on:
   schedule:

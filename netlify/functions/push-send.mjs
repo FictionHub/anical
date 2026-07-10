@@ -10,7 +10,7 @@ import webpush from "web-push";
 export const config = { schedule: "*/15 * * * *" };
 
 const ANILIST = "https://graphql.anilist.co";
-const SITE = "https://anicalendar.netlify.app";
+const SITE = "https://tsuzuki.netlify.app";
 const RUN_WINDOW_MS = 16 * 60 * 1000; // slightly more than the 15-min cadence
 const QUERY = `query($ids:[Int]){ Page(perPage:50){ media(id_in:$ids, type:ANIME){
   id title{romaji english} coverImage{medium}
@@ -47,7 +47,7 @@ export default async (req) => {
 
   const pub = process.env.VAPID_PUBLIC_KEY, priv = process.env.VAPID_PRIVATE_KEY;
   if (!pub || !priv) return new Response("VAPID keys not configured", { status: 500 });
-  webpush.setVapidDetails(process.env.VAPID_SUBJECT || "mailto:admin@anicalendar.netlify.app", pub, priv);
+  webpush.setVapidDetails(process.env.VAPID_SUBJECT || "mailto:admin@tsuzuki.netlify.app", pub, priv);
 
   const store = getStore("push-subscriptions");
   const { blobs } = await store.list();

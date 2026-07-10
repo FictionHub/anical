@@ -1,6 +1,6 @@
 // Stores (or updates) a Web Push subscription + the caller's followed-show
 // ids and notify lead time, so push-send.mjs can later notify them about
-// upcoming episodes — even when AniCal isn't open.
+// upcoming episodes — even when Tsuzuki isn't open.
 //
 // POST /api/push/subscribe   { subscription, mediaIds: ["123", ...], lead: 10 }
 import { getStore } from "@netlify/blobs";

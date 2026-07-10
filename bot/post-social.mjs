@@ -1,6 +1,6 @@
 /* ============================================================
-   AniCal — daily social auto-poster
-   Pulls the SAME AniList data as https://anicalendar.netlify.app and
+   Tsuzuki — daily social auto-poster
+   Pulls the SAME AniList data as https://tsuzuki.netlify.app and
    posts a short "today / this week in anime" blurb to:
      • Bluesky   (AT Protocol)
      • Mastodon  (any instance)
@@ -35,7 +35,7 @@
 
 import crypto from "node:crypto";
 
-const SITE = "https://anicalendar.netlify.app";
+const SITE = "https://tsuzuki.netlify.app";
 const DAYS = +(process.env.DAYS || 7);
 const DRY  = process.env.DRY_RUN === "1";
 

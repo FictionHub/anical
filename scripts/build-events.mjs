@@ -1,5 +1,5 @@
 /* ============================================================
-   AniCal — Events data builder (self-sustaining, worldwide)
+   Tsuzuki — Events data builder (self-sustaining, worldwide)
    Scrapes the upcoming anime-convention list from AnimeCons.com
    (worldwide: US, Canada, UK, Germany, Japan, Australia, …) and
    writes site/events.json with lat/lon so the website's Events
