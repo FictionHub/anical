@@ -10,7 +10,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
-const MAJOR_MINOR = "2.1";
+const MAJOR_MINOR = "2.2";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const INDEX = join(__dirname, "..", "site", "index.html");
 
