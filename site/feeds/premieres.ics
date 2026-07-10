@@ -1,326 +1,326 @@
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//AniCal//anicalendar.netlify.app//EN
+PRODID:-//Tsuzuki//tsuzuki.netlify.app//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
-X-WR-CALNAME:AniCal — Anime Premieres
+X-WR-CALNAME:Tsuzuki — Anime Premieres
 X-WR-TIMEZONE:UTC
-NAME:AniCal — Anime Premieres
+NAME:Tsuzuki — Anime Premieres
 REFRESH-INTERVAL;VALUE=DURATION:PT12H
 X-PUBLISHED-TTL:PT12H
 BEGIN:VEVENT
-UID:anical-196187-1@anicalendar.netlify.app
+UID:tsuzuki-196187-1@tsuzuki.netlify.app
 DTSTAMP:20260709T145600Z
 DTSTART:20260709T145600Z
 DTEND:20260709T152600Z
 SUMMARY:Smoking Behind the Supermarket with You — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/smoking-behind-the-supermarket-with-you-196187/
-URL:https://anicalendar.netlify.app/anime/smoking-behind-the-supermarket-with-you-196187/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/smoking-behind-the-supermarket-with-you-196187/
+URL:https://tsuzuki.netlify.app/anime/smoking-behind-the-supermarket-with-you-196187/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-185874-1@anicalendar.netlify.app
+UID:tsuzuki-185874-1@tsuzuki.netlify.app
 DTSTAMP:20260725T140000Z
 DTSTART:20260725T140000Z
 DTEND:20260725T143000Z
 SUMMARY:BLEACH: Thousand-Year Blood War - The Calamity — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/bleach-thousand-year-blood-war-the-calamity-185874/
-URL:https://anicalendar.netlify.app/anime/bleach-thousand-year-blood-war-the-calamity-185874/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/bleach-thousand-year-blood-war-the-calamity-185874/
+URL:https://tsuzuki.netlify.app/anime/bleach-thousand-year-blood-war-the-calamity-185874/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-133007-1@anicalendar.netlify.app
+UID:tsuzuki-133007-1@tsuzuki.netlify.app
 DTSTAMP:20260827T150000Z
 DTSTART:20260827T150000Z
 DTEND:20260827T153000Z
 SUMMARY:Puella Magi Madoka Magica the Movie -Walpurgisnacht: Rising- — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/puella-magi-madoka-magica-the-movie-walpurgisnacht-rising--133007/
-URL:https://anicalendar.netlify.app/anime/puella-magi-madoka-magica-the-movie-walpurgisnacht-rising--133007/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/puella-magi-madoka-magica-the-movie-walpurgisnacht-rising--133007/
+URL:https://tsuzuki.netlify.app/anime/puella-magi-madoka-magica-the-movie-walpurgisnacht-rising--133007/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-160275-1@anicalendar.netlify.app
+UID:tsuzuki-160275-1@tsuzuki.netlify.app
 DTSTAMP:20261022T150000Z
 DTSTART:20261022T150000Z
 DTEND:20261022T153000Z
 SUMMARY:Made in Abyss: Mezameru Shinpi — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/made-in-abyss-mezameru-shinpi-160275/
-URL:https://anicalendar.netlify.app/anime/made-in-abyss-mezameru-shinpi-160275/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/made-in-abyss-mezameru-shinpi-160275/
+URL:https://tsuzuki.netlify.app/anime/made-in-abyss-mezameru-shinpi-160275/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-143103-1@anicalendar.netlify.app
+UID:tsuzuki-143103-1@tsuzuki.netlify.app
 DTSTAMP:20261119T150000Z
 DTSTART:20261119T150000Z
 DTEND:20261119T153000Z
 SUMMARY:Witch on the Holy Night — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/witch-on-the-holy-night-143103/
-URL:https://anicalendar.netlify.app/anime/witch-on-the-holy-night-143103/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/witch-on-the-holy-night-143103/
+URL:https://tsuzuki.netlify.app/anime/witch-on-the-holy-night-143103/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-189123-1@anicalendar.netlify.app
+UID:tsuzuki-189123-1@tsuzuki.netlify.app
 DTSTAMP:20261004T073000Z
 DTSTART:20261004T073000Z
 DTEND:20261004T080000Z
 SUMMARY:Blue Box Season 2 — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/blue-box-season-2-189123/
-URL:https://anicalendar.netlify.app/anime/blue-box-season-2-189123/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/blue-box-season-2-189123/
+URL:https://tsuzuki.netlify.app/anime/blue-box-season-2-189123/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-199340-1@anicalendar.netlify.app
+UID:tsuzuki-199340-1@tsuzuki.netlify.app
 DTSTAMP:20261015T150000Z
 DTSTART:20261015T150000Z
 DTEND:20261015T153000Z
 SUMMARY:Rascal Does Not Dream of a Dear Friend — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/rascal-does-not-dream-of-a-dear-friend-199340/
-URL:https://anicalendar.netlify.app/anime/rascal-does-not-dream-of-a-dear-friend-199340/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/rascal-does-not-dream-of-a-dear-friend-199340/
+URL:https://tsuzuki.netlify.app/anime/rascal-does-not-dream-of-a-dear-friend-199340/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-210482-1@anicalendar.netlify.app
+UID:tsuzuki-210482-1@tsuzuki.netlify.app
 DTSTAMP:20260924T150000Z
 DTSTART:20260924T150000Z
 DTEND:20260924T153000Z
 SUMMARY:STEEL BALL RUN JoJo's Bizarre Adventure 2nd - 3rd STAGE — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
-URL:https://anicalendar.netlify.app/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
+URL:https://tsuzuki.netlify.app/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-182616-1@anicalendar.netlify.app
+UID:tsuzuki-182616-1@tsuzuki.netlify.app
 DTSTAMP:20260717T143000Z
 DTSTART:20260717T143000Z
 DTEND:20260717T150000Z
 SUMMARY:The Elusive Samurai Season 2 — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/the-elusive-samurai-season-2-182616/
-URL:https://anicalendar.netlify.app/anime/the-elusive-samurai-season-2-182616/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/the-elusive-samurai-season-2-182616/
+URL:https://tsuzuki.netlify.app/anime/the-elusive-samurai-season-2-182616/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-188139-1@anicalendar.netlify.app
+UID:tsuzuki-188139-1@tsuzuki.netlify.app
 DTSTAMP:20260712T144600Z
 DTSTART:20260712T144600Z
 DTEND:20260712T151600Z
 SUMMARY:Though I Am an Inept Villainess — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/though-i-am-an-inept-villainess-188139/
-URL:https://anicalendar.netlify.app/anime/though-i-am-an-inept-villainess-188139/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
+URL:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-213805-1@anicalendar.netlify.app
+UID:tsuzuki-213805-1@tsuzuki.netlify.app
 DTSTAMP:20261001T025600Z
 DTSTART:20261001T025600Z
 DTEND:20261001T032600Z
 SUMMARY:The Ramparts of Ice Season 2 — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/the-ramparts-of-ice-season-2-213805/
-URL:https://anicalendar.netlify.app/anime/the-ramparts-of-ice-season-2-213805/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/the-ramparts-of-ice-season-2-213805/
+URL:https://tsuzuki.netlify.app/anime/the-ramparts-of-ice-season-2-213805/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-211711-1@anicalendar.netlify.app
+UID:tsuzuki-211711-1@tsuzuki.netlify.app
 DTSTAMP:20260802T150000Z
 DTSTART:20260802T150000Z
 DTEND:20260802T153000Z
 SUMMARY:Boku no Hero Academia: I am a hero too — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/boku-no-hero-academia-i-am-a-hero-too-211711/
-URL:https://anicalendar.netlify.app/anime/boku-no-hero-academia-i-am-a-hero-too-211711/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/boku-no-hero-academia-i-am-a-hero-too-211711/
+URL:https://tsuzuki.netlify.app/anime/boku-no-hero-academia-i-am-a-hero-too-211711/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-211308-1@anicalendar.netlify.app
+UID:tsuzuki-211308-1@tsuzuki.netlify.app
 DTSTAMP:20260808T090100Z
 DTSTART:20260808T090100Z
 DTEND:20260808T093100Z
 SUMMARY:THE RIBBON HERO — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/the-ribbon-hero-211308/
-URL:https://anicalendar.netlify.app/anime/the-ribbon-hero-211308/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/the-ribbon-hero-211308/
+URL:https://tsuzuki.netlify.app/anime/the-ribbon-hero-211308/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-209961-1@anicalendar.netlify.app
+UID:tsuzuki-209961-1@tsuzuki.netlify.app
 DTSTAMP:20260709T150000Z
 DTSTART:20260709T150000Z
 DTEND:20260709T153000Z
 SUMMARY:Shibou Yuugi de Meshi wo Kuu. 44:CLOUDY BEACH — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/shibou-yuugi-de-meshi-wo-kuu-44cloudy-beach-209961/
-URL:https://anicalendar.netlify.app/anime/shibou-yuugi-de-meshi-wo-kuu-44cloudy-beach-209961/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/shibou-yuugi-de-meshi-wo-kuu-44cloudy-beach-209961/
+URL:https://tsuzuki.netlify.app/anime/shibou-yuugi-de-meshi-wo-kuu-44cloudy-beach-209961/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-199066-1@anicalendar.netlify.app
+UID:tsuzuki-199066-1@tsuzuki.netlify.app
 DTSTAMP:20260711T170000Z
 DTSTART:20260711T170000Z
 DTEND:20260711T173000Z
 SUMMARY:Hanaori-san Still Wants to Fight in the Next Life — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/hanaori-san-still-wants-to-fight-in-the-next-life-199066/
-URL:https://anicalendar.netlify.app/anime/hanaori-san-still-wants-to-fight-in-the-next-life-199066/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/hanaori-san-still-wants-to-fight-in-the-next-life-199066/
+URL:https://tsuzuki.netlify.app/anime/hanaori-san-still-wants-to-fight-in-the-next-life-199066/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-108992-1@anicalendar.netlify.app
+UID:tsuzuki-108992-1@tsuzuki.netlify.app
 DTSTAMP:20260709T143000Z
 DTSTART:20260709T143000Z
 DTEND:20260709T150000Z
 SUMMARY:Mebius Dust — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/mebius-dust-108992/
-URL:https://anicalendar.netlify.app/anime/mebius-dust-108992/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/mebius-dust-108992/
+URL:https://tsuzuki.netlify.app/anime/mebius-dust-108992/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-208754-1@anicalendar.netlify.app
+UID:tsuzuki-208754-1@tsuzuki.netlify.app
 DTSTAMP:20260709T150000Z
 DTSTART:20260709T150000Z
 DTEND:20260709T153000Z
 SUMMARY:Unanswered//butterfly: Sword Art Online — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/unansweredbutterfly-sword-art-online-208754/
-URL:https://anicalendar.netlify.app/anime/unansweredbutterfly-sword-art-online-208754/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/unansweredbutterfly-sword-art-online-208754/
+URL:https://tsuzuki.netlify.app/anime/unansweredbutterfly-sword-art-online-208754/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-207327-1@anicalendar.netlify.app
+UID:tsuzuki-207327-1@tsuzuki.netlify.app
 DTSTAMP:20261008T150000Z
 DTSTART:20261008T150000Z
 DTEND:20261008T153000Z
 SUMMARY:To You in the Beyond — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/to-you-in-the-beyond-207327/
-URL:https://anicalendar.netlify.app/anime/to-you-in-the-beyond-207327/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/to-you-in-the-beyond-207327/
+URL:https://tsuzuki.netlify.app/anime/to-you-in-the-beyond-207327/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-178868-1@anicalendar.netlify.app
+UID:tsuzuki-178868-1@tsuzuki.netlify.app
 DTSTAMP:20261007T144600Z
 DTSTART:20261007T144600Z
 DTEND:20261007T151600Z
 SUMMARY:Magic Knight Rayearth (2026) — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/magic-knight-rayearth-2026-178868/
-URL:https://anicalendar.netlify.app/anime/magic-knight-rayearth-2026-178868/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/magic-knight-rayearth-2026-178868/
+URL:https://tsuzuki.netlify.app/anime/magic-knight-rayearth-2026-178868/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-178972-1@anicalendar.netlify.app
+UID:tsuzuki-178972-1@tsuzuki.netlify.app
 DTSTAMP:20261105T150000Z
 DTSTART:20261105T150000Z
 DTEND:20261105T153000Z
 SUMMARY:GROTESQQQUE — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/grotesqqque-178972/
-URL:https://anicalendar.netlify.app/anime/grotesqqque-178972/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/grotesqqque-178972/
+URL:https://tsuzuki.netlify.app/anime/grotesqqque-178972/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-206819-1@anicalendar.netlify.app
+UID:tsuzuki-206819-1@tsuzuki.netlify.app
 DTSTAMP:20260716T150000Z
 DTSTART:20260716T150000Z
 DTEND:20260716T153000Z
 SUMMARY:Kimi to Hanabi to Yakusoku to — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/kimi-to-hanabi-to-yakusoku-to-206819/
-URL:https://anicalendar.netlify.app/anime/kimi-to-hanabi-to-yakusoku-to-206819/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/kimi-to-hanabi-to-yakusoku-to-206819/
+URL:https://tsuzuki.netlify.app/anime/kimi-to-hanabi-to-yakusoku-to-206819/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-186742-1@anicalendar.netlify.app
+UID:tsuzuki-186742-1@tsuzuki.netlify.app
 DTSTAMP:20261009T153000Z
 DTSTART:20261009T153000Z
 DTEND:20261009T160000Z
 SUMMARY:Toaru Anbu no ITEM — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/toaru-anbu-no-item-186742/
-URL:https://anicalendar.netlify.app/anime/toaru-anbu-no-item-186742/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/toaru-anbu-no-item-186742/
+URL:https://tsuzuki.netlify.app/anime/toaru-anbu-no-item-186742/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-194116-1@anicalendar.netlify.app
+UID:tsuzuki-194116-1@tsuzuki.netlify.app
 DTSTAMP:20260910T150000Z
 DTSTART:20260910T150000Z
 DTEND:20260910T153000Z
 SUMMARY:Saishuu Gakushou Hibike! Euphonium - Kouhen — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/saishuu-gakushou-hibike-euphonium-kouhen-194116/
-URL:https://anicalendar.netlify.app/anime/saishuu-gakushou-hibike-euphonium-kouhen-194116/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/saishuu-gakushou-hibike-euphonium-kouhen-194116/
+URL:https://tsuzuki.netlify.app/anime/saishuu-gakushou-hibike-euphonium-kouhen-194116/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-202390-1@anicalendar.netlify.app
+UID:tsuzuki-202390-1@tsuzuki.netlify.app
 DTSTAMP:20261008T150000Z
 DTSTART:20261008T150000Z
 DTEND:20261008T153000Z
 SUMMARY:Girls und Panzer: Saishuushou 5 — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/girls-und-panzer-saishuushou-5-202390/
-URL:https://anicalendar.netlify.app/anime/girls-und-panzer-saishuushou-5-202390/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/girls-und-panzer-saishuushou-5-202390/
+URL:https://tsuzuki.netlify.app/anime/girls-und-panzer-saishuushou-5-202390/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-202429-1@anicalendar.netlify.app
+UID:tsuzuki-202429-1@tsuzuki.netlify.app
 DTSTAMP:20260924T150000Z
 DTSTART:20260924T150000Z
 DTEND:20260924T153000Z
 SUMMARY:Wareware wa Uchuujin — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/wareware-wa-uchuujin-202429/
-URL:https://anicalendar.netlify.app/anime/wareware-wa-uchuujin-202429/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/wareware-wa-uchuujin-202429/
+URL:https://tsuzuki.netlify.app/anime/wareware-wa-uchuujin-202429/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-213847-1@anicalendar.netlify.app
+UID:tsuzuki-213847-1@tsuzuki.netlify.app
 DTSTAMP:20260804T150000Z
 DTSTART:20260804T150000Z
 DTEND:20260804T153000Z
 SUMMARY:Star Wars: Visions Presents - The Ninth Jedi — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/star-wars-visions-presents-the-ninth-jedi-213847/
-URL:https://anicalendar.netlify.app/anime/star-wars-visions-presents-the-ninth-jedi-213847/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/star-wars-visions-presents-the-ninth-jedi-213847/
+URL:https://tsuzuki.netlify.app/anime/star-wars-visions-presents-the-ninth-jedi-213847/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-202717-1@anicalendar.netlify.app
+UID:tsuzuki-202717-1@tsuzuki.netlify.app
 DTSTAMP:20260723T150000Z
 DTSTART:20260723T150000Z
 DTEND:20260723T153000Z
 SUMMARY:Chiikawa: Ningyo no Shima no Himitsu — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/chiikawa-ningyo-no-shima-no-himitsu-202717/
-URL:https://anicalendar.netlify.app/anime/chiikawa-ningyo-no-shima-no-himitsu-202717/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/chiikawa-ningyo-no-shima-no-himitsu-202717/
+URL:https://tsuzuki.netlify.app/anime/chiikawa-ningyo-no-shima-no-himitsu-202717/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-176373-1@anicalendar.netlify.app
+UID:tsuzuki-176373-1@tsuzuki.netlify.app
 DTSTAMP:20260820T150000Z
 DTSTART:20260820T150000Z
 DTEND:20260820T153000Z
 SUMMARY:Shiranuhi — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/shiranuhi-176373/
-URL:https://anicalendar.netlify.app/anime/shiranuhi-176373/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/shiranuhi-176373/
+URL:https://tsuzuki.netlify.app/anime/shiranuhi-176373/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-196223-1@anicalendar.netlify.app
+UID:tsuzuki-196223-1@tsuzuki.netlify.app
 DTSTAMP:20260718T150000Z
 DTSTART:20260718T150000Z
 DTEND:20260718T153000Z
 SUMMARY:Cyborg 009: Nemesis — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/cyborg-009-nemesis-196223/
-URL:https://anicalendar.netlify.app/anime/cyborg-009-nemesis-196223/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/cyborg-009-nemesis-196223/
+URL:https://tsuzuki.netlify.app/anime/cyborg-009-nemesis-196223/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-212652-1@anicalendar.netlify.app
+UID:tsuzuki-212652-1@tsuzuki.netlify.app
 DTSTAMP:20260820T150000Z
 DTSTART:20260820T150000Z
 DTEND:20260820T153000Z
 SUMMARY:Kidou Keisatsu Patlabor EZY File 2 — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/kidou-keisatsu-patlabor-ezy-file-2-212652/
-URL:https://anicalendar.netlify.app/anime/kidou-keisatsu-patlabor-ezy-file-2-212652/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/kidou-keisatsu-patlabor-ezy-file-2-212652/
+URL:https://tsuzuki.netlify.app/anime/kidou-keisatsu-patlabor-ezy-file-2-212652/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-198654-1@anicalendar.netlify.app
+UID:tsuzuki-198654-1@tsuzuki.netlify.app
 DTSTAMP:20260917T150000Z
 DTSTART:20260917T150000Z
 DTEND:20260917T153000Z
 SUMMARY:Meitantei Precure! Fushigi na Niwa to Futari no Himitsu — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/meitantei-precure-fushigi-na-niwa-to-futari-no-himitsu-198654/
-URL:https://anicalendar.netlify.app/anime/meitantei-precure-fushigi-na-niwa-to-futari-no-himitsu-198654/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/meitantei-precure-fushigi-na-niwa-to-futari-no-himitsu-198654/
+URL:https://tsuzuki.netlify.app/anime/meitantei-precure-fushigi-na-niwa-to-futari-no-himitsu-198654/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-208829-1@anicalendar.netlify.app
+UID:tsuzuki-208829-1@tsuzuki.netlify.app
 DTSTAMP:20260730T150000Z
 DTSTART:20260730T150000Z
 DTEND:20260730T153000Z
 SUMMARY:Crayon Shin-chan: Kikikaikai! Ora no Youkai Vacation — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/crayon-shin-chan-kikikaikai-ora-no-youkai-vacation-208829/
-URL:https://anicalendar.netlify.app/anime/crayon-shin-chan-kikikaikai-ora-no-youkai-vacation-208829/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/crayon-shin-chan-kikikaikai-ora-no-youkai-vacation-208829/
+URL:https://tsuzuki.netlify.app/anime/crayon-shin-chan-kikikaikai-ora-no-youkai-vacation-208829/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-213750-1@anicalendar.netlify.app
+UID:tsuzuki-213750-1@tsuzuki.netlify.app
 DTSTAMP:20260710T000000Z
 DTSTART:20260710T000000Z
 DTEND:20260710T003000Z
 SUMMARY:Bananya 10th Anniversary Special — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/bananya-10th-anniversary-special-213750/
-URL:https://anicalendar.netlify.app/anime/bananya-10th-anniversary-special-213750/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/bananya-10th-anniversary-special-213750/
+URL:https://tsuzuki.netlify.app/anime/bananya-10th-anniversary-special-213750/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-208824-1@anicalendar.netlify.app
+UID:tsuzuki-208824-1@tsuzuki.netlify.app
 DTSTAMP:20260711T220000Z
 DTSTART:20260711T220000Z
 DTEND:20260711T223000Z
 SUMMARY:Plannosaurus Gachi Koseibutsu-bu — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/plannosaurus-gachi-koseibutsu-bu-208824/
-URL:https://anicalendar.netlify.app/anime/plannosaurus-gachi-koseibutsu-bu-208824/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/plannosaurus-gachi-koseibutsu-bu-208824/
+URL:https://tsuzuki.netlify.app/anime/plannosaurus-gachi-koseibutsu-bu-208824/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-213908-1@anicalendar.netlify.app
+UID:tsuzuki-213908-1@tsuzuki.netlify.app
 DTSTAMP:20260731T150000Z
 DTSTART:20260731T150000Z
 DTEND:20260731T153000Z
 SUMMARY:Rusuban — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/rusuban-213908/
-URL:https://anicalendar.netlify.app/anime/rusuban-213908/
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/rusuban-213908/
+URL:https://tsuzuki.netlify.app/anime/rusuban-213908/
 END:VEVENT
 END:VCALENDAR

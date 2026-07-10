@@ -1,389 +1,389 @@
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//AniCal//anicalendar.netlify.app//EN
+PRODID:-//Tsuzuki//tsuzuki.netlify.app//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
-X-WR-CALNAME:AniCal — Season Finales
+X-WR-CALNAME:Tsuzuki — Season Finales
 X-WR-TIMEZONE:UTC
-NAME:AniCal — Season Finales
+NAME:Tsuzuki — Season Finales
 REFRESH-INTERVAL;VALUE=DURATION:PT12H
 X-PUBLISHED-TTL:PT12H
 BEGIN:VEVENT
-UID:anical-189046-f19@anicalendar.netlify.app
+UID:tsuzuki-189046-f19@tsuzuki.netlify.app
 DTSTAMP:20260930T130000Z
 DTSTART:20260930T130000Z
 DTEND:20260930T133000Z
 SUMMARY:Re:ZERO -Starting Life in Another World- Season 4 — Finale (Ep 19)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/rezero-starting-life-in-another-world-season-4-189046/
-URL:https://anicalendar.netlify.app/anime/rezero-starting-life-in-another-world-season-4-189046/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/rezero-starting-life-in-another-world-season-4-189046/
+URL:https://tsuzuki.netlify.app/anime/rezero-starting-life-in-another-world-season-4-189046/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-195600-f24@anicalendar.netlify.app
+UID:tsuzuki-195600-f24@tsuzuki.netlify.app
 DTSTAMP:20260919T143000Z
 DTSTART:20260919T143000Z
 DTEND:20260919T150000Z
 SUMMARY:Daemons of the Shadow Realm — Finale (Ep 24)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/daemons-of-the-shadow-realm-195600/
-URL:https://anicalendar.netlify.app/anime/daemons-of-the-shadow-realm-195600/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/daemons-of-the-shadow-realm-195600/
+URL:https://tsuzuki.netlify.app/anime/daemons-of-the-shadow-realm-195600/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-196187-f12@anicalendar.netlify.app
+UID:tsuzuki-196187-f12@tsuzuki.netlify.app
 DTSTAMP:20260924T145600Z
 DTSTART:20260924T145600Z
 DTEND:20260924T152600Z
 SUMMARY:Smoking Behind the Supermarket with You — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/smoking-behind-the-supermarket-with-you-196187/
-URL:https://anicalendar.netlify.app/anime/smoking-behind-the-supermarket-with-you-196187/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/smoking-behind-the-supermarket-with-you-196187/
+URL:https://tsuzuki.netlify.app/anime/smoking-behind-the-supermarket-with-you-196187/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-135865-f12@anicalendar.netlify.app
+UID:tsuzuki-135865-f12@tsuzuki.netlify.app
 DTSTAMP:20260923T123000Z
 DTSTART:20260923T123000Z
 DTEND:20260923T130000Z
 SUMMARY:Saga of Tanya the Evil Season 2 — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/saga-of-tanya-the-evil-season-2-135865/
-URL:https://anicalendar.netlify.app/anime/saga-of-tanya-the-evil-season-2-135865/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/saga-of-tanya-the-evil-season-2-135865/
+URL:https://tsuzuki.netlify.app/anime/saga-of-tanya-the-evil-season-2-135865/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-185874-f13@anicalendar.netlify.app
+UID:tsuzuki-185874-f13@tsuzuki.netlify.app
 DTSTAMP:20261017T140000Z
 DTSTART:20261017T140000Z
 DTEND:20261017T143000Z
 SUMMARY:BLEACH: Thousand-Year Blood War - The Calamity — Finale (Ep 13)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/bleach-thousand-year-blood-war-the-calamity-185874/
-URL:https://anicalendar.netlify.app/anime/bleach-thousand-year-blood-war-the-calamity-185874/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/bleach-thousand-year-blood-war-the-calamity-185874/
+URL:https://tsuzuki.netlify.app/anime/bleach-thousand-year-blood-war-the-calamity-185874/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-187260-f13@anicalendar.netlify.app
+UID:tsuzuki-187260-f13@tsuzuki.netlify.app
 DTSTAMP:20260929T123000Z
 DTSTART:20260929T123000Z
 DTEND:20260929T130000Z
 SUMMARY:I Want to Love You Till Your Dying Day — Finale (Ep 13)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/i-want-to-love-you-till-your-dying-day-187260/
-URL:https://anicalendar.netlify.app/anime/i-want-to-love-you-till-your-dying-day-187260/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/i-want-to-love-you-till-your-dying-day-187260/
+URL:https://tsuzuki.netlify.app/anime/i-want-to-love-you-till-your-dying-day-187260/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-184492-f24@anicalendar.netlify.app
+UID:tsuzuki-184492-f24@tsuzuki.netlify.app
 DTSTAMP:20260912T092600Z
 DTSTART:20260912T092600Z
 DTEND:20260912T095600Z
 SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Finale (Ep 24)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-URL:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
+URL:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-159309-f12@anicalendar.netlify.app
+UID:tsuzuki-159309-f12@tsuzuki.netlify.app
 DTSTAMP:20260923T143000Z
 DTSTART:20260923T143000Z
 DTEND:20260923T150000Z
 SUMMARY:Trapped in a Dating Sim: The World of Otome Games is Tough for Mobs Season 2 — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
-URL:https://anicalendar.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
+URL:https://tsuzuki.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-185542-f12@anicalendar.netlify.app
+UID:tsuzuki-185542-f12@tsuzuki.netlify.app
 DTSTAMP:20260921T130000Z
 DTSTART:20260921T130000Z
 DTEND:20260921T133000Z
 SUMMARY:Skeleton Knight in Another World Season 2 — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
-URL:https://anicalendar.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
+URL:https://tsuzuki.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-199111-f12@anicalendar.netlify.app
+UID:tsuzuki-199111-f12@tsuzuki.netlify.app
 DTSTAMP:20260921T150000Z
 DTSTART:20260921T150000Z
 DTEND:20260921T153000Z
 SUMMARY:Grand Blue Dreaming Season 3 — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/grand-blue-dreaming-season-3-199111/
-URL:https://anicalendar.netlify.app/anime/grand-blue-dreaming-season-3-199111/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/grand-blue-dreaming-season-3-199111/
+URL:https://tsuzuki.netlify.app/anime/grand-blue-dreaming-season-3-199111/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-198946-f13@anicalendar.netlify.app
+UID:tsuzuki-198946-f13@tsuzuki.netlify.app
 DTSTAMP:20260930T120000Z
 DTSTART:20260930T120000Z
 DTEND:20260930T123000Z
 SUMMARY:Clevatess Season 2 — Finale (Ep 13)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/clevatess-season-2-198946/
-URL:https://anicalendar.netlify.app/anime/clevatess-season-2-198946/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
+URL:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-197715-f12@anicalendar.netlify.app
+UID:tsuzuki-197715-f12@tsuzuki.netlify.app
 DTSTAMP:20260909T150000Z
 DTSTART:20260909T150000Z
 DTEND:20260909T153000Z
 SUMMARY:The Villager of Level 999 — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-villager-of-level-999-197715/
-URL:https://anicalendar.netlify.app/anime/the-villager-of-level-999-197715/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/the-villager-of-level-999-197715/
+URL:https://tsuzuki.netlify.app/anime/the-villager-of-level-999-197715/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-199748-f12@anicalendar.netlify.app
+UID:tsuzuki-199748-f12@tsuzuki.netlify.app
 DTSTAMP:20260918T133000Z
 DTSTART:20260918T133000Z
 DTEND:20260918T140000Z
 SUMMARY:I Became a Legend After My 10 Year-Long Last Stand — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
-URL:https://anicalendar.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
+URL:https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-201514-f12@anicalendar.netlify.app
+UID:tsuzuki-201514-f12@tsuzuki.netlify.app
 DTSTAMP:20260919T173800Z
 DTSTART:20260919T173800Z
 DTEND:20260919T180800Z
 SUMMARY:Rich Girl Caretaker: I'm Secretly the Caregiver of the Most Popular Girl in This Rich Kid School — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
-URL:https://anicalendar.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
+URL:https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-169583-f12@anicalendar.netlify.app
+UID:tsuzuki-169583-f12@tsuzuki.netlify.app
 DTSTAMP:20260921T143000Z
 DTSTART:20260921T143000Z
 DTEND:20260921T150000Z
 SUMMARY:Oh Boy\, Was I Wrong About Her — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/oh-boy-was-i-wrong-about-her-169583/
-URL:https://anicalendar.netlify.app/anime/oh-boy-was-i-wrong-about-her-169583/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/oh-boy-was-i-wrong-about-her-169583/
+URL:https://tsuzuki.netlify.app/anime/oh-boy-was-i-wrong-about-her-169583/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-210482-f11@anicalendar.netlify.app
+UID:tsuzuki-210482-f11@tsuzuki.netlify.app
 DTSTAMP:20261203T150000Z
 DTSTART:20261203T150000Z
 DTEND:20261203T153000Z
 SUMMARY:STEEL BALL RUN JoJo's Bizarre Adventure 2nd - 3rd STAGE — Finale (Ep 11)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
-URL:https://anicalendar.netlify.app/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
+URL:https://tsuzuki.netlify.app/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-177637-f12@anicalendar.netlify.app
+UID:tsuzuki-177637-f12@tsuzuki.netlify.app
 DTSTAMP:20260920T153000Z
 DTSTART:20260920T153000Z
 DTEND:20260920T160000Z
 SUMMARY:Goodbye\, Lara — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/goodbye-lara-177637/
-URL:https://anicalendar.netlify.app/anime/goodbye-lara-177637/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/goodbye-lara-177637/
+URL:https://tsuzuki.netlify.app/anime/goodbye-lara-177637/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-198409-f12@anicalendar.netlify.app
+UID:tsuzuki-198409-f12@tsuzuki.netlify.app
 DTSTAMP:20260920T130000Z
 DTSTART:20260920T130000Z
 DTEND:20260920T133000Z
 SUMMARY:The World's Strongest Rearguard — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-worlds-strongest-rearguard-198409/
-URL:https://anicalendar.netlify.app/anime/the-worlds-strongest-rearguard-198409/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/the-worlds-strongest-rearguard-198409/
+URL:https://tsuzuki.netlify.app/anime/the-worlds-strongest-rearguard-198409/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-192800-f12@anicalendar.netlify.app
+UID:tsuzuki-192800-f12@tsuzuki.netlify.app
 DTSTAMP:20260909T133000Z
 DTSTART:20260909T133000Z
 DTEND:20260909T140000Z
 SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
-URL:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+URL:https://tsuzuki.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-169582-f12@anicalendar.netlify.app
+UID:tsuzuki-169582-f12@tsuzuki.netlify.app
 DTSTAMP:20260921T115700Z
 DTSTART:20260921T115700Z
 DTEND:20260921T122700Z
 SUMMARY:The Insipid Prince's Furtive Grab for the Throne — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
-URL:https://anicalendar.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
+URL:https://tsuzuki.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-199408-f12@anicalendar.netlify.app
+UID:tsuzuki-199408-f12@tsuzuki.netlify.app
 DTSTAMP:20260921T133000Z
 DTSTART:20260921T133000Z
 DTEND:20260921T140000Z
 SUMMARY:A Livid Lady’s Guide to Getting Even: How I Crushed My Homeland with My Mighty Grimoires — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/a-livid-ladys-guide-to-getting-even-how-i-crushed-my-homelan-199408/
-URL:https://anicalendar.netlify.app/anime/a-livid-ladys-guide-to-getting-even-how-i-crushed-my-homelan-199408/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/a-livid-ladys-guide-to-getting-even-how-i-crushed-my-homelan-199408/
+URL:https://tsuzuki.netlify.app/anime/a-livid-ladys-guide-to-getting-even-how-i-crushed-my-homelan-199408/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-194219-f12@anicalendar.netlify.app
+UID:tsuzuki-194219-f12@tsuzuki.netlify.app
 DTSTAMP:20260919T153000Z
 DTSTART:20260919T153000Z
 DTEND:20260919T160000Z
 SUMMARY:The Ogre's Bride — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-ogres-bride-194219/
-URL:https://anicalendar.netlify.app/anime/the-ogres-bride-194219/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/the-ogres-bride-194219/
+URL:https://tsuzuki.netlify.app/anime/the-ogres-bride-194219/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-207674-f12@anicalendar.netlify.app
+UID:tsuzuki-207674-f12@tsuzuki.netlify.app
 DTSTAMP:20260918T163000Z
 DTSTART:20260918T163000Z
 DTEND:20260918T170000Z
 SUMMARY:KAMUI ---He's behind you — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/kamui-hes-behind-you-207674/
-URL:https://anicalendar.netlify.app/anime/kamui-hes-behind-you-207674/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/kamui-hes-behind-you-207674/
+URL:https://tsuzuki.netlify.app/anime/kamui-hes-behind-you-207674/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-198709-f9@anicalendar.netlify.app
+UID:tsuzuki-198709-f9@tsuzuki.netlify.app
 DTSTAMP:20260901T150000Z
 DTSTART:20260901T150000Z
 DTEND:20260901T153000Z
 SUMMARY:Victoria of Many Faces — Finale (Ep 9)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/victoria-of-many-faces-198709/
-URL:https://anicalendar.netlify.app/anime/victoria-of-many-faces-198709/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/victoria-of-many-faces-198709/
+URL:https://tsuzuki.netlify.app/anime/victoria-of-many-faces-198709/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-203880-f13@anicalendar.netlify.app
+UID:tsuzuki-203880-f13@tsuzuki.netlify.app
 DTSTAMP:20260924T123000Z
 DTSTART:20260924T123000Z
 DTEND:20260924T130000Z
 SUMMARY:Dara-san of the Reiwa Era — Finale (Ep 13)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
-URL:https://anicalendar.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
+URL:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-209504-f12@anicalendar.netlify.app
+UID:tsuzuki-209504-f12@tsuzuki.netlify.app
 DTSTAMP:20260921T140000Z
 DTSTART:20260921T140000Z
 DTEND:20260921T143000Z
 SUMMARY:The Forsaken Saintess and Her Foodie Roadtrip in Another World — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-forsaken-saintess-and-her-foodie-roadtrip-in-another-wor-209504/
-URL:https://anicalendar.netlify.app/anime/the-forsaken-saintess-and-her-foodie-roadtrip-in-another-wor-209504/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/the-forsaken-saintess-and-her-foodie-roadtrip-in-another-wor-209504/
+URL:https://tsuzuki.netlify.app/anime/the-forsaken-saintess-and-her-foodie-roadtrip-in-another-wor-209504/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-208225-f12@anicalendar.netlify.app
+UID:tsuzuki-208225-f12@tsuzuki.netlify.app
 DTSTAMP:20260919T163000Z
 DTSTART:20260919T163000Z
 DTEND:20260919T170000Z
 SUMMARY:The Duke’s Son Claims He Won’t Love Me Yet Showers Me with Adoration — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
-URL:https://anicalendar.netlify.app/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
+URL:https://tsuzuki.netlify.app/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-185875-f12@anicalendar.netlify.app
+UID:tsuzuki-185875-f12@tsuzuki.netlify.app
 DTSTAMP:20260919T160000Z
 DTSTART:20260919T160000Z
 DTEND:20260919T163000Z
 SUMMARY:Magical Girl Lyrical Nanoha EXCEEDS Gun Blaze Vengeance — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
-URL:https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
+URL:https://tsuzuki.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-188525-f12@anicalendar.netlify.app
+UID:tsuzuki-188525-f12@tsuzuki.netlify.app
 DTSTAMP:20260918T143000Z
 DTSTART:20260918T143000Z
 DTEND:20260918T150000Z
 SUMMARY:Draw This\, Then Die! — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/draw-this-then-die-188525/
-URL:https://anicalendar.netlify.app/anime/draw-this-then-die-188525/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/draw-this-then-die-188525/
+URL:https://tsuzuki.netlify.app/anime/draw-this-then-die-188525/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-202508-f24@anicalendar.netlify.app
+UID:tsuzuki-202508-f24@tsuzuki.netlify.app
 DTSTAMP:20260918T143000Z
 DTSTART:20260918T143000Z
 DTEND:20260918T150000Z
 SUMMARY:The Drops of God — Finale (Ep 24)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/the-drops-of-god-202508/
-URL:https://anicalendar.netlify.app/anime/the-drops-of-god-202508/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/the-drops-of-god-202508/
+URL:https://tsuzuki.netlify.app/anime/the-drops-of-god-202508/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-198376-f13@anicalendar.netlify.app
+UID:tsuzuki-198376-f13@tsuzuki.netlify.app
 DTSTAMP:20260910T140000Z
 DTSTART:20260910T140000Z
 DTEND:20260910T143000Z
 SUMMARY:BanG Dream! YUME∞MITA — Finale (Ep 13)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/bang-dream-yumemita-198376/
-URL:https://anicalendar.netlify.app/anime/bang-dream-yumemita-198376/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/bang-dream-yumemita-198376/
+URL:https://tsuzuki.netlify.app/anime/bang-dream-yumemita-198376/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-209669-f13@anicalendar.netlify.app
+UID:tsuzuki-209669-f13@tsuzuki.netlify.app
 DTSTAMP:20260916T160000Z
 DTSTART:20260916T160000Z
 DTEND:20260916T163000Z
 SUMMARY:Hana-Kimi Season 2 — Finale (Ep 13)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/hana-kimi-season-2-209669/
-URL:https://anicalendar.netlify.app/anime/hana-kimi-season-2-209669/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/hana-kimi-season-2-209669/
+URL:https://tsuzuki.netlify.app/anime/hana-kimi-season-2-209669/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-200230-f12@anicalendar.netlify.app
+UID:tsuzuki-200230-f12@tsuzuki.netlify.app
 DTSTAMP:20260920T073000Z
 DTSTART:20260920T073000Z
 DTEND:20260920T080000Z
 SUMMARY:Let's go KAIKIGUMI — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/lets-go-kaikigumi-200230/
-URL:https://anicalendar.netlify.app/anime/lets-go-kaikigumi-200230/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/lets-go-kaikigumi-200230/
+URL:https://tsuzuki.netlify.app/anime/lets-go-kaikigumi-200230/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-201667-f12@anicalendar.netlify.app
+UID:tsuzuki-201667-f12@tsuzuki.netlify.app
 DTSTAMP:20260917T124000Z
 DTSTART:20260917T124000Z
 DTEND:20260917T131000Z
 SUMMARY:Bungo Stray Dogs WAN! 2 — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/bungo-stray-dogs-wan-2-201667/
-URL:https://anicalendar.netlify.app/anime/bungo-stray-dogs-wan-2-201667/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/bungo-stray-dogs-wan-2-201667/
+URL:https://tsuzuki.netlify.app/anime/bungo-stray-dogs-wan-2-201667/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-169080-f12@anicalendar.netlify.app
+UID:tsuzuki-169080-f12@tsuzuki.netlify.app
 DTSTAMP:20260920T160000Z
 DTSTART:20260920T160000Z
 DTEND:20260920T163000Z
 SUMMARY:Anime AzurLane: Slow Ahead! Season 2 — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/anime-azurlane-slow-ahead-season-2-169080/
-URL:https://anicalendar.netlify.app/anime/anime-azurlane-slow-ahead-season-2-169080/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/anime-azurlane-slow-ahead-season-2-169080/
+URL:https://tsuzuki.netlify.app/anime/anime-azurlane-slow-ahead-season-2-169080/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-213847-f8@anicalendar.netlify.app
+UID:tsuzuki-213847-f8@tsuzuki.netlify.app
 DTSTAMP:20260804T150000Z
 DTSTART:20260804T150000Z
 DTEND:20260804T153000Z
 SUMMARY:Star Wars: Visions Presents - The Ninth Jedi — Finale (Ep 8)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/star-wars-visions-presents-the-ninth-jedi-213847/
-URL:https://anicalendar.netlify.app/anime/star-wars-visions-presents-the-ninth-jedi-213847/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/star-wars-visions-presents-the-ninth-jedi-213847/
+URL:https://tsuzuki.netlify.app/anime/star-wars-visions-presents-the-ninth-jedi-213847/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-195833-f12@anicalendar.netlify.app
+UID:tsuzuki-195833-f12@tsuzuki.netlify.app
 DTSTAMP:20260921T140000Z
 DTSTART:20260921T140000Z
 DTEND:20260921T143000Z
 SUMMARY:Flaming Dodgeball Girl Danko — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/flaming-dodgeball-girl-danko-195833/
-URL:https://anicalendar.netlify.app/anime/flaming-dodgeball-girl-danko-195833/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/flaming-dodgeball-girl-danko-195833/
+URL:https://tsuzuki.netlify.app/anime/flaming-dodgeball-girl-danko-195833/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-209800-f12@anicalendar.netlify.app
+UID:tsuzuki-209800-f12@tsuzuki.netlify.app
 DTSTAMP:20260922T143000Z
 DTSTART:20260922T143000Z
 DTEND:20260922T150000Z
 SUMMARY:Yoroi-Shinden Samurai Troopers Cour 2 — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/yoroi-shinden-samurai-troopers-cour-2-209800/
-URL:https://anicalendar.netlify.app/anime/yoroi-shinden-samurai-troopers-cour-2-209800/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/yoroi-shinden-samurai-troopers-cour-2-209800/
+URL:https://tsuzuki.netlify.app/anime/yoroi-shinden-samurai-troopers-cour-2-209800/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-196223-f3@anicalendar.netlify.app
+UID:tsuzuki-196223-f3@tsuzuki.netlify.app
 DTSTAMP:20260718T160000Z
 DTSTART:20260718T160000Z
 DTEND:20260718T163000Z
 SUMMARY:Cyborg 009: Nemesis — Finale (Ep 3)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/cyborg-009-nemesis-196223/
-URL:https://anicalendar.netlify.app/anime/cyborg-009-nemesis-196223/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/cyborg-009-nemesis-196223/
+URL:https://tsuzuki.netlify.app/anime/cyborg-009-nemesis-196223/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-205772-f24@anicalendar.netlify.app
+UID:tsuzuki-205772-f24@tsuzuki.netlify.app
 DTSTAMP:20260923T145600Z
 DTSTART:20260923T145600Z
 DTEND:20260923T152600Z
 SUMMARY:Candy Caries — Finale (Ep 24)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/candy-caries-205772/
-URL:https://anicalendar.netlify.app/anime/candy-caries-205772/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/candy-caries-205772/
+URL:https://tsuzuki.netlify.app/anime/candy-caries-205772/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-212652-f3@anicalendar.netlify.app
+UID:tsuzuki-212652-f3@tsuzuki.netlify.app
 DTSTAMP:20260820T150000Z
 DTSTART:20260820T150000Z
 DTEND:20260820T153000Z
 SUMMARY:Kidou Keisatsu Patlabor EZY File 2 — Finale (Ep 3)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/kidou-keisatsu-patlabor-ezy-file-2-212652/
-URL:https://anicalendar.netlify.app/anime/kidou-keisatsu-patlabor-ezy-file-2-212652/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/kidou-keisatsu-patlabor-ezy-file-2-212652/
+URL:https://tsuzuki.netlify.app/anime/kidou-keisatsu-patlabor-ezy-file-2-212652/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-213831-f12@anicalendar.netlify.app
+UID:tsuzuki-213831-f12@tsuzuki.netlify.app
 DTSTAMP:20260918T164200Z
 DTSTART:20260918T164200Z
 DTEND:20260918T171200Z
 SUMMARY:Snack Hazama — Finale (Ep 12)
-DESCRIPTION:Season finale. https://anicalendar.netlify.app/anime/snack-hazama-213831/
-URL:https://anicalendar.netlify.app/anime/snack-hazama-213831/
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/snack-hazama-213831/
+URL:https://tsuzuki.netlify.app/anime/snack-hazama-213831/
 END:VEVENT
 END:VCALENDAR
