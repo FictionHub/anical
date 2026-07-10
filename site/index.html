@@ -227,6 +227,15 @@
   .loadwarn span{flex:1;min-width:180px;color:var(--txt)}
   .loadwarn button{font-size:12px;padding:5px 10px}
   .loadwarn .lw-x{background:transparent;border:none;color:var(--muted);padding:5px 8px}
+  /* release notes ("what's new") modal */
+  .changelog .cl-entry{padding:2px 0 6px}
+  .changelog .cl-entry+.cl-entry{margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+  .changelog .cl-head{display:flex;align-items:baseline;gap:10px;margin-bottom:8px}
+  .changelog .cl-v{font-weight:800;font-size:16px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .changelog .cl-date{color:var(--muted);font-size:12.5px}
+  .changelog .cl-list{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:7px}
+  .changelog .cl-list li{font-size:13.5px;line-height:1.5;color:var(--txt)}
+  .changelog .cl-list li::marker{color:var(--accent2)}
   .wn-label{font-size:13px;font-weight:700;white-space:nowrap}
   .wn-list{display:flex;gap:6px;overflow-x:auto;flex:1;-webkit-overflow-scrolling:touch}
   .wn-cover{width:30px;height:40px;object-fit:cover;border-radius:4px;flex:none;cursor:pointer;background:#000;transition:.12s}
@@ -1030,6 +1039,44 @@ function renderWhatsNew(){
   box.style.display="";
   box.querySelectorAll("[data-wn]").forEach(el=>{ el.onclick=()=>{ const md=state.media.find(x=>String(x.id)===el.dataset.wn); if(md) openDetail(md,(nextAir(md)||{}).episode||1); }; });
   $("wnDismiss").onclick=()=>{ box.style.display="none"; };
+}
+
+/* ---------- release notes ("What's new") ----------
+   Add a new entry at the TOP with the next id whenever you ship a notable
+   update. Returning visitors see every entry newer than the one they last
+   saw, once, in a modal they close manually. Trim old entries freely. */
+const CHANGELOG=[
+  { id:1, v:"2.2", date:"July 2026", items:[
+    "Full keyboard & screen-reader access across the calendar, agenda and lists.",
+    "Shareable links — the current view, date and filters now live in the URL, and the browser Back button works.",
+    "Steadier layout: cover art no longer shifts the page as it loads.",
+    "A one-click Retry appears if AniList is busy and some titles can't load.",
+    "Roomier show pop-up: poster, details and airing schedule side by side, with bigger recommendation art.",
+    "This “What’s new” window — you’ll see it once after each major update.",
+  ]},
+];
+function openChangelog(entries){
+  const latestId=CHANGELOG.length?CHANGELOG[0].id:0;
+  localStorage.setItem("anical.changelogSeen", String(latestId));   // mark seen the moment it opens
+  $("modalTitle").textContent="✨ What’s new in AniCal";
+  $("modalBody").innerHTML=`<div class="changelog">`+entries.map(c=>`
+    <div class="cl-entry">
+      <div class="cl-head"><span class="cl-v">v${esc(c.v)}</span><span class="cl-date">${esc(c.date)}</span></div>
+      <ul class="cl-list">${c.items.map(i=>`<li>${esc(i)}</li>`).join("")}</ul>
+    </div>`).join("")+`</div>`;
+  $("overlay").classList.add("on");
+}
+// Show release notes if this visitor is behind the latest entry. Brand-new
+// visitors (no prior visit) are silently baselined so they aren't greeted with
+// a changelog on their very first load.
+function maybeShowChangelog(){
+  if(!CHANGELOG.length) return;
+  const latestId=CHANGELOG[0].id;
+  let seen=localStorage.getItem("anical.changelogSeen");
+  seen = seen==null ? (LAST_VISIT ? 0 : latestId) : (+seen||0);
+  const fresh=CHANGELOG.filter(c=>c.id>seen);
+  if(fresh.length) openChangelog(fresh);
+  else localStorage.setItem("anical.changelogSeen", String(latestId));
 }
 
 /* ---------- instant-load cache (stale-while-revalidate) ---------- */
@@ -2865,6 +2912,7 @@ async function openShowById(id){
   await load();
   const qs=_params.get("show");
   if(qs) openShowById(qs);
+  else maybeShowChangelog();   // greet returning visitors with release notes (once)
 })();
 </script>
 </body>
