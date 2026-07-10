@@ -2389,6 +2389,66 @@ function useFallback(){
   buildGenreOptions(); renderView();
 }
 
+/* ---------- shareable URL state (view · date · filters) ---------- */
+function sameDay(a,b){ return a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate(); }
+function fmtDateParam(d){ return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+// Build a querystring from the current view / anchor date / filters. Only
+// non-default values are included so the plain home URL stays clean ("/").
+function stateToParams(){
+  const p=new URLSearchParams(), f=state.filters||{};
+  if(state.viewMode && state.viewMode!=="month") p.set("view",state.viewMode);
+  if(!sameDay(state.anchor,new Date())) p.set("date",fmtDateParam(state.anchor));
+  if(f.format) p.set("format",f.format);
+  if(f.genre) p.set("genre",f.genre);
+  if(f.stream) p.set("stream",f.stream);
+  if(f.tag) p.set("tag",f.tag);
+  if(f.minScore) p.set("score",String(f.minScore));
+  if(f.premieresOnly) p.set("prem","1");
+  if(f.mine) p.set("mine","1");
+  return p;
+}
+// push=true adds a history entry (view/date changes → Back works); push=false
+// replaces it (filter tweaks shouldn't flood history).
+function syncURL(push){
+  const qs=stateToParams().toString();
+  const url=location.pathname+(qs?("?"+qs):"");
+  try{ history[push?"pushState":"replaceState"](null,"",url); }catch(_){}
+}
+// Reflect state into the toolbar controls (view segment + filter inputs).
+function syncControlsFromState(){
+  document.querySelectorAll("#viewSeg button").forEach(b=>b.classList.toggle("active",b.dataset.view===state.viewMode));
+  const f=state.filters;
+  if($("fFormat")) $("fFormat").value=f.format||"";
+  if($("fGenre")) $("fGenre").value=f.genre||"";
+  if($("fStream")) $("fStream").value=f.stream||"";
+  if($("fTag")) $("fTag").value=f.tag||"";
+  if($("fScore")) $("fScore").value=String(f.minScore||0);
+  if($("fPrem")) $("fPrem").checked=!!f.premieresOnly;
+  if($("fMine")) $("fMine").checked=!!f.mine;
+}
+// Apply URL params onto state. reset=true (popstate) restores any *absent* key
+// to its default; reset=false (initial load) only applies keys that are present,
+// so it can't wipe the mobile agenda default or the user's saved filters.
+function applyParamsToState(params, reset){
+  const qv=params.get("view");
+  if(qv && ["month","week","agenda","dashboard","events"].includes(qv)) state.viewMode=qv;
+  else if(reset) state.viewMode="month";
+  const qd=params.get("date");
+  if(qd && /^\d{4}-\d{2}-\d{2}$/.test(qd)){ const d=new Date(qd+"T12:00:00"); if(!isNaN(d)) state.anchor=d; }
+  else if(reset) state.anchor=new Date();
+  const f=state.filters;
+  if(params.has("format")) f.format=params.get("format"); else if(reset) f.format="";
+  if(params.has("genre")) f.genre=params.get("genre"); else if(reset) f.genre="";
+  if(params.has("stream")) f.stream=params.get("stream"); else if(reset) f.stream="";
+  if(params.has("tag")) f.tag=params.get("tag"); else if(reset) f.tag="";
+  if(params.has("score")) f.minScore=+params.get("score")||0; else if(reset) f.minScore=0;
+  if(params.has("prem")) f.premieresOnly=params.get("prem")==="1"; else if(reset) f.premieresOnly=false;
+  if(params.has("mine")) f.mine=params.get("mine")==="1"; else if(reset) f.mine=false;
+  syncControlsFromState();
+}
+// Browser Back/Forward: restore the state that URL encodes and reload.
+window.addEventListener("popstate",()=>{ applyParamsToState(new URLSearchParams(location.search), true); load(); });
+
 /* ---------- navigation ---------- */
 function step(dir){
   if(state.viewMode==="events") return;   // events list shows everything; no date paging
@@ -2397,19 +2457,19 @@ function step(dir){
   else if(state.viewMode==="month") state.anchor=new Date(a.getFullYear(),a.getMonth()+dir,1);
   else if(state.viewMode==="week") state.anchor=new Date(a.getFullYear(),a.getMonth(),a.getDate()+7*dir);
   else state.anchor=new Date(a.getFullYear(),a.getMonth(),a.getDate()+14*dir);
-  load();
+  syncURL(true); load();
 }
 function setView(mode){
   state.viewMode=mode; localStorage.setItem("anical.view",mode);
   document.querySelectorAll("#viewSeg button").forEach(b=>b.classList.toggle("active",b.dataset.view===mode));
-  load();
+  syncURL(true); load();
 }
 
 /* ---------- wire up ---------- */
 $("verline").textContent="AniCal v"+APP_VERSION;
 $("prev").onclick=()=>step(-1);
 $("next").onclick=()=>step(1);
-$("today").onclick=()=>{ state.anchor=new Date(); load(); };
+$("today").onclick=()=>{ state.anchor=new Date(); syncURL(true); load(); };
 $("refresh").onclick=()=>{ state.seasonCache.clear(); state.eventsData=null; load(); };
 $("modalClose").onclick=closeModal;
 $("overlay").onclick=e=>{ if(e.target===$("overlay")) closeModal(); };
@@ -2451,6 +2511,7 @@ document.addEventListener("click",e=>{
   state.filters.genre = (state.filters.genre===g) ? "" : g;
   const sel=$("fGenre"); if(sel) sel.value=state.filters.genre;
   localStorage.setItem("anical.filters",JSON.stringify(state.filters));
+  syncURL(false);
   renderView(); renderGenreChips();
   setStatus(false,`Live · ${state.media.length} titles · ${rangeEvents().length} episodes shown`);
 });
@@ -2585,6 +2646,7 @@ function onFilter(){
   state.filters.premieresOnly=$("fPrem").checked;
   state.filters.mine=$("fMine").checked;
   localStorage.setItem("anical.filters",JSON.stringify(state.filters));
+  syncURL(false);
   renderView();
   renderGenreChips();
   setStatus(false,`Live · ${state.media.length} titles · ${rangeEvents().length} episodes shown`);
@@ -2756,16 +2818,9 @@ if("serviceWorker" in navigator){
 const CF_TOKEN="";
 if(CF_TOKEN){ const s=document.createElement("script"); s.defer=true; s.src="https://static.cloudflareinsights.com/beacon.min.js"; s.setAttribute("data-cf-beacon", JSON.stringify({token:CF_TOKEN})); document.head.appendChild(s); }
 
-// deep links: ?view=<mode>, ?date=YYYY-MM-DD, ?show=<anilist id>
+// deep links: ?view=<mode>, ?date=YYYY-MM-DD, ?format/genre/stream/tag/score/prem/mine, ?show=<id>
 const _params=new URLSearchParams(location.search);
-{ const qv=_params.get("view");
-  if(qv && ["month","week","agenda","dashboard","events"].includes(qv)){
-    state.viewMode=qv;
-    document.querySelectorAll("#viewSeg button").forEach(b=>b.classList.toggle("active",b.dataset.view===qv));
-  }
-  const qd=_params.get("date");
-  if(qd && /^\d{4}-\d{2}-\d{2}$/.test(qd)){ const d=new Date(qd+"T12:00:00"); if(!isNaN(d)) state.anchor=d; }
-}
+applyParamsToState(_params, false);   // reset=false: only apply keys present in the URL
 async function openShowById(id){
   let md=findMediaById(id);
   if(!md){ try{ md=await fetchMediaById(id); }catch(e){ console.warn("?show fetch failed",e); } if(md && !state.media.some(x=>String(x.id)===String(md.id))) state.media.push(md); }
