@@ -6,7 +6,7 @@
     <atom:link href="https://anicalendar.netlify.app/feed.xml" rel="self" type="application/rss+xml" />
     <description>Upcoming and recent anime premieres and season finales, updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 09 Jul 2026 17:08:32 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 10 Jul 2026 16:36:45 GMT</lastBuildDate>
     <ttl>720</ttl>
     <item>
       <title>STEEL BALL RUN JoJo's Bizarre Adventure 2nd - 3rd STAGE — Finale (Ep 11)</title>
@@ -126,6 +126,13 @@
       <guid isPermaLink="false">anical-rss-202429-p1</guid>
       <pubDate>Thu, 24 Sep 2026 15:00:00 GMT</pubDate>
       <description>Premiere: One summer in the third grade, a quiet boy named Tsubasa meets Kyotaro, a boy everyone in the class looked up to, and the two become close friends. Within their small world, they share irreplaceable moments—until a small incident suddenly tears them apart. Spanning more than…</description>
+    </item>
+    <item>
+      <title>Smoking Behind the Supermarket with You — Finale (Ep 12)</title>
+      <link>https://anicalendar.netlify.app/anime/smoking-behind-the-supermarket-with-you-196187/</link>
+      <guid isPermaLink="false">anical-rss-196187-f12</guid>
+      <pubDate>Thu, 24 Sep 2026 14:56:00 GMT</pubDate>
+      <description>Finale: At age forty-five, office worker Sasaki has had enough of the corporate grind. His only solace is smoking-and the friendly smile of supermarket cashier Yamada. When Sasaki can't find Yamada after a particularly trying day, a striking woman invites him to smoke with her. The…</description>
     </item>
     <item>
       <title>Dara-san of the Reiwa Era — Finale (Ep 13)</title>
@@ -350,13 +357,6 @@
       <guid isPermaLink="false">anical-rss-198376-f13</guid>
       <pubDate>Thu, 10 Sep 2026 14:00:00 GMT</pubDate>
       <description>Finale: Suddenly thrown together, a group of girls are now debuting as the virtual band, Mugendai Mewtype. They’ve got talent and personality, but no clue how to perform as one. Can they survive, let alone make it to the top in this unforgiving music world? (Source: Crunchyroll)</description>
-    </item>
-    <item>
-      <title>The Villager of Level 999 — Finale (Ep 12)</title>
-      <link>https://anicalendar.netlify.app/anime/the-villager-of-level-999-197715/</link>
-      <guid isPermaLink="false">anical-rss-197715-f12</guid>
-      <pubDate>Wed, 09 Sep 2026 15:00:00 GMT</pubDate>
-      <description>Finale: In Earthclear, everyone is born into a fixed role, and villagers are the weakest of all. Most never rise above Level 5—except Kouji Kagami, who is Level…999?! On a monster hunt, he meets Alice, the Demon King’s daughter, and discovers they share an impossible dream: coexistence…</description>
     </item>
   </channel>
 </rss>
