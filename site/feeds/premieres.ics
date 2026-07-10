@@ -18,15 +18,6 @@ DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/smoking-be
 URL:https://anicalendar.netlify.app/anime/smoking-behind-the-supermarket-with-you-196187/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-135865-1@anicalendar.netlify.app
-DTSTAMP:20260708T123000Z
-DTSTART:20260708T123000Z
-DTEND:20260708T130000Z
-SUMMARY:Saga of Tanya the Evil Season 2 — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/saga-of-tanya-the-evil-season-2-135865/
-URL:https://anicalendar.netlify.app/anime/saga-of-tanya-the-evil-season-2-135865/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-185874-1@anicalendar.netlify.app
 DTSTAMP:20260725T140000Z
 DTSTART:20260725T140000Z
@@ -43,15 +34,6 @@ DTEND:20260827T153000Z
 SUMMARY:Puella Magi Madoka Magica the Movie -Walpurgisnacht: Rising- — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/puella-magi-madoka-magica-the-movie-walpurgisnacht-rising--133007/
 URL:https://anicalendar.netlify.app/anime/puella-magi-madoka-magica-the-movie-walpurgisnacht-rising--133007/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-159309-1@anicalendar.netlify.app
-DTSTAMP:20260708T143000Z
-DTSTART:20260708T143000Z
-DTEND:20260708T150000Z
-SUMMARY:Trapped in a Dating Sim: The World of Otome Games is Tough for Mobs Season 2 — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
-URL:https://anicalendar.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-160275-1@anicalendar.netlify.app
@@ -79,24 +61,6 @@ DTEND:20261004T080000Z
 SUMMARY:Blue Box Season 2 — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/blue-box-season-2-189123/
 URL:https://anicalendar.netlify.app/anime/blue-box-season-2-189123/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-198946-1@anicalendar.netlify.app
-DTSTAMP:20260708T120000Z
-DTSTART:20260708T120000Z
-DTEND:20260708T123000Z
-SUMMARY:Clevatess Season 2 — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/clevatess-season-2-198946/
-URL:https://anicalendar.netlify.app/anime/clevatess-season-2-198946/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-194829-1@anicalendar.netlify.app
-DTSTAMP:20260708T144600Z
-DTSTART:20260708T144600Z
-DTEND:20260708T151600Z
-SUMMARY:From Old Country Bumpkin to Master Swordsman II — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/from-old-country-bumpkin-to-master-swordsman-ii-194829/
-URL:https://anicalendar.netlify.app/anime/from-old-country-bumpkin-to-master-swordsman-ii-194829/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-199340-1@anicalendar.netlify.app
@@ -180,13 +144,13 @@ DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/hanaori-sa
 URL:https://anicalendar.netlify.app/anime/hanaori-san-still-wants-to-fight-in-the-next-life-199066/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-207327-1@anicalendar.netlify.app
-DTSTAMP:20261008T150000Z
-DTSTART:20261008T150000Z
-DTEND:20261008T153000Z
-SUMMARY:To You in the Beyond — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/to-you-in-the-beyond-207327/
-URL:https://anicalendar.netlify.app/anime/to-you-in-the-beyond-207327/
+UID:anical-108992-1@anicalendar.netlify.app
+DTSTAMP:20260709T143000Z
+DTSTART:20260709T143000Z
+DTEND:20260709T150000Z
+SUMMARY:Mebius Dust — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/mebius-dust-108992/
+URL:https://anicalendar.netlify.app/anime/mebius-dust-108992/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-208754-1@anicalendar.netlify.app
@@ -198,22 +162,13 @@ DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/unanswered
 URL:https://anicalendar.netlify.app/anime/unansweredbutterfly-sword-art-online-208754/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-108992-1@anicalendar.netlify.app
-DTSTAMP:20260709T143000Z
-DTSTART:20260709T143000Z
-DTEND:20260709T150000Z
-SUMMARY:Mebius Dust — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/mebius-dust-108992/
-URL:https://anicalendar.netlify.app/anime/mebius-dust-108992/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-196356-1@anicalendar.netlify.app
-DTSTAMP:20260708T143000Z
-DTSTART:20260708T143000Z
-DTEND:20260708T150000Z
-SUMMARY:My Stepmother and Stepsisters Aren’t Wicked — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/my-stepmother-and-stepsisters-arent-wicked-196356/
-URL:https://anicalendar.netlify.app/anime/my-stepmother-and-stepsisters-arent-wicked-196356/
+UID:anical-207327-1@anicalendar.netlify.app
+DTSTAMP:20261008T150000Z
+DTSTART:20261008T150000Z
+DTEND:20261008T153000Z
+SUMMARY:To You in the Beyond — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/to-you-in-the-beyond-207327/
+URL:https://anicalendar.netlify.app/anime/to-you-in-the-beyond-207327/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-178868-1@anicalendar.netlify.app
@@ -306,15 +261,6 @@ DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/shiranuhi-
 URL:https://anicalendar.netlify.app/anime/shiranuhi-176373/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-207254-1@anicalendar.netlify.app
-DTSTAMP:20260708T154400Z
-DTSTART:20260708T154400Z
-DTEND:20260708T161400Z
-SUMMARY:Thunder 3 — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/thunder-3-207254/
-URL:https://anicalendar.netlify.app/anime/thunder-3-207254/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-196223-1@anicalendar.netlify.app
 DTSTAMP:20260718T150000Z
 DTSTART:20260718T150000Z
@@ -322,15 +268,6 @@ DTEND:20260718T153000Z
 SUMMARY:Cyborg 009: Nemesis — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/cyborg-009-nemesis-196223/
 URL:https://anicalendar.netlify.app/anime/cyborg-009-nemesis-196223/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-211232-1@anicalendar.netlify.app
-DTSTAMP:20260708T010000Z
-DTSTART:20260708T010000Z
-DTEND:20260708T013000Z
-SUMMARY:Majo no Tani no Yoru — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/majo-no-tani-no-yoru-211232/
-URL:https://anicalendar.netlify.app/anime/majo-no-tani-no-yoru-211232/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-212652-1@anicalendar.netlify.app
@@ -364,9 +301,9 @@ UID:anical-213750-1@anicalendar.netlify.app
 DTSTAMP:20260710T000000Z
 DTSTART:20260710T000000Z
 DTEND:20260710T003000Z
-SUMMARY:Bananya At-Home Party — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/bananya-at-home-party-213750/
-URL:https://anicalendar.netlify.app/anime/bananya-at-home-party-213750/
+SUMMARY:Bananya 10th Anniversary Special — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/bananya-10th-anniversary-special-213750/
+URL:https://anicalendar.netlify.app/anime/bananya-10th-anniversary-special-213750/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-208824-1@anicalendar.netlify.app
@@ -376,15 +313,6 @@ DTEND:20260711T223000Z
 SUMMARY:Plannosaurus Gachi Koseibutsu-bu — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/plannosaurus-gachi-koseibutsu-bu-208824/
 URL:https://anicalendar.netlify.app/anime/plannosaurus-gachi-koseibutsu-bu-208824/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-213961-1@anicalendar.netlify.app
-DTSTAMP:20260708T150000Z
-DTSTART:20260708T150000Z
-DTEND:20260708T153000Z
-SUMMARY:Youjo Shenki 2 — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://anicalendar.netlify.app/anime/youjo-shenki-2-213961/
-URL:https://anicalendar.netlify.app/anime/youjo-shenki-2-213961/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-213908-1@anicalendar.netlify.app

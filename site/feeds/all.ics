@@ -90,69 +90,6 @@ DESCRIPTION:https://anicalendar.netlify.app/anime/daemons-of-the-shadow-realm-19
 URL:https://anicalendar.netlify.app/anime/daemons-of-the-shadow-realm-195600/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-182205-14@anicalendar.netlify.app
-DTSTAMP:20260710T140000Z
-DTSTART:20260710T140000Z
-DTEND:20260710T143000Z
-SUMMARY:That Time I Got Reincarnated as a Slime Season 4 — Ep 14
-DESCRIPTION:https://anicalendar.netlify.app/anime/that-time-i-got-reincarnated-as-a-slime-season-4-182205/
-URL:https://anicalendar.netlify.app/anime/that-time-i-got-reincarnated-as-a-slime-season-4-182205/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-182205-15@anicalendar.netlify.app
-DTSTAMP:20260717T140000Z
-DTSTART:20260717T140000Z
-DTEND:20260717T143000Z
-SUMMARY:That Time I Got Reincarnated as a Slime Season 4 — Ep 15
-DESCRIPTION:https://anicalendar.netlify.app/anime/that-time-i-got-reincarnated-as-a-slime-season-4-182205/
-URL:https://anicalendar.netlify.app/anime/that-time-i-got-reincarnated-as-a-slime-season-4-182205/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-182205-16@anicalendar.netlify.app
-DTSTAMP:20260724T140000Z
-DTSTART:20260724T140000Z
-DTEND:20260724T143000Z
-SUMMARY:That Time I Got Reincarnated as a Slime Season 4 — Ep 16
-DESCRIPTION:https://anicalendar.netlify.app/anime/that-time-i-got-reincarnated-as-a-slime-season-4-182205/
-URL:https://anicalendar.netlify.app/anime/that-time-i-got-reincarnated-as-a-slime-season-4-182205/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-182205-17@anicalendar.netlify.app
-DTSTAMP:20260731T140000Z
-DTSTART:20260731T140000Z
-DTEND:20260731T143000Z
-SUMMARY:That Time I Got Reincarnated as a Slime Season 4 — Ep 17
-DESCRIPTION:https://anicalendar.netlify.app/anime/that-time-i-got-reincarnated-as-a-slime-season-4-182205/
-URL:https://anicalendar.netlify.app/anime/that-time-i-got-reincarnated-as-a-slime-season-4-182205/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-182205-18@anicalendar.netlify.app
-DTSTAMP:20260807T140000Z
-DTSTART:20260807T140000Z
-DTEND:20260807T143000Z
-SUMMARY:That Time I Got Reincarnated as a Slime Season 4 — Ep 18
-DESCRIPTION:https://anicalendar.netlify.app/anime/that-time-i-got-reincarnated-as-a-slime-season-4-182205/
-URL:https://anicalendar.netlify.app/anime/that-time-i-got-reincarnated-as-a-slime-season-4-182205/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-182205-19@anicalendar.netlify.app
-DTSTAMP:20260814T140000Z
-DTSTART:20260814T140000Z
-DTEND:20260814T143000Z
-SUMMARY:That Time I Got Reincarnated as a Slime Season 4 — Ep 19
-DESCRIPTION:https://anicalendar.netlify.app/anime/that-time-i-got-reincarnated-as-a-slime-season-4-182205/
-URL:https://anicalendar.netlify.app/anime/that-time-i-got-reincarnated-as-a-slime-season-4-182205/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-182205-20@anicalendar.netlify.app
-DTSTAMP:20260821T140000Z
-DTSTART:20260821T140000Z
-DTEND:20260821T143000Z
-SUMMARY:That Time I Got Reincarnated as a Slime Season 4 — Ep 20
-DESCRIPTION:https://anicalendar.netlify.app/anime/that-time-i-got-reincarnated-as-a-slime-season-4-182205/
-URL:https://anicalendar.netlify.app/anime/that-time-i-got-reincarnated-as-a-slime-season-4-182205/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-178789-3@anicalendar.netlify.app
 DTSTAMP:20260712T150000Z
 DTSTART:20260712T150000Z
@@ -216,6 +153,69 @@ DESCRIPTION:https://anicalendar.netlify.app/anime/mushoku-tensei-jobless-reincar
 URL:https://anicalendar.netlify.app/anime/mushoku-tensei-jobless-reincarnation-season-3-178789/
 END:VEVENT
 BEGIN:VEVENT
+UID:anical-182205-14@anicalendar.netlify.app
+DTSTAMP:20260710T140000Z
+DTSTART:20260710T140000Z
+DTEND:20260710T143000Z
+SUMMARY:That Time I Got Reincarnated as a Slime Season 4 — Ep 14
+DESCRIPTION:https://anicalendar.netlify.app/anime/that-time-i-got-reincarnated-as-a-slime-season-4-182205/
+URL:https://anicalendar.netlify.app/anime/that-time-i-got-reincarnated-as-a-slime-season-4-182205/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-182205-15@anicalendar.netlify.app
+DTSTAMP:20260717T140000Z
+DTSTART:20260717T140000Z
+DTEND:20260717T143000Z
+SUMMARY:That Time I Got Reincarnated as a Slime Season 4 — Ep 15
+DESCRIPTION:https://anicalendar.netlify.app/anime/that-time-i-got-reincarnated-as-a-slime-season-4-182205/
+URL:https://anicalendar.netlify.app/anime/that-time-i-got-reincarnated-as-a-slime-season-4-182205/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-182205-16@anicalendar.netlify.app
+DTSTAMP:20260724T140000Z
+DTSTART:20260724T140000Z
+DTEND:20260724T143000Z
+SUMMARY:That Time I Got Reincarnated as a Slime Season 4 — Ep 16
+DESCRIPTION:https://anicalendar.netlify.app/anime/that-time-i-got-reincarnated-as-a-slime-season-4-182205/
+URL:https://anicalendar.netlify.app/anime/that-time-i-got-reincarnated-as-a-slime-season-4-182205/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-182205-17@anicalendar.netlify.app
+DTSTAMP:20260731T140000Z
+DTSTART:20260731T140000Z
+DTEND:20260731T143000Z
+SUMMARY:That Time I Got Reincarnated as a Slime Season 4 — Ep 17
+DESCRIPTION:https://anicalendar.netlify.app/anime/that-time-i-got-reincarnated-as-a-slime-season-4-182205/
+URL:https://anicalendar.netlify.app/anime/that-time-i-got-reincarnated-as-a-slime-season-4-182205/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-182205-18@anicalendar.netlify.app
+DTSTAMP:20260807T140000Z
+DTSTART:20260807T140000Z
+DTEND:20260807T143000Z
+SUMMARY:That Time I Got Reincarnated as a Slime Season 4 — Ep 18
+DESCRIPTION:https://anicalendar.netlify.app/anime/that-time-i-got-reincarnated-as-a-slime-season-4-182205/
+URL:https://anicalendar.netlify.app/anime/that-time-i-got-reincarnated-as-a-slime-season-4-182205/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-182205-19@anicalendar.netlify.app
+DTSTAMP:20260814T140000Z
+DTSTART:20260814T140000Z
+DTEND:20260814T143000Z
+SUMMARY:That Time I Got Reincarnated as a Slime Season 4 — Ep 19
+DESCRIPTION:https://anicalendar.netlify.app/anime/that-time-i-got-reincarnated-as-a-slime-season-4-182205/
+URL:https://anicalendar.netlify.app/anime/that-time-i-got-reincarnated-as-a-slime-season-4-182205/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-182205-20@anicalendar.netlify.app
+DTSTAMP:20260821T140000Z
+DTSTART:20260821T140000Z
+DTEND:20260821T143000Z
+SUMMARY:That Time I Got Reincarnated as a Slime Season 4 — Ep 20
+DESCRIPTION:https://anicalendar.netlify.app/anime/that-time-i-got-reincarnated-as-a-slime-season-4-182205/
+URL:https://anicalendar.netlify.app/anime/that-time-i-got-reincarnated-as-a-slime-season-4-182205/
+END:VEVENT
+BEGIN:VEVENT
 UID:anical-196187-1@anicalendar.netlify.app
 DTSTAMP:20260709T145600Z
 DTSTART:20260709T145600Z
@@ -277,15 +277,6 @@ DTEND:20260820T152600Z
 SUMMARY:Smoking Behind the Supermarket with You — Ep 7
 DESCRIPTION:https://anicalendar.netlify.app/anime/smoking-behind-the-supermarket-with-you-196187/
 URL:https://anicalendar.netlify.app/anime/smoking-behind-the-supermarket-with-you-196187/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-135865-1@anicalendar.netlify.app
-DTSTAMP:20260708T123000Z
-DTSTART:20260708T123000Z
-DTEND:20260708T130000Z
-SUMMARY:Saga of Tanya the Evil Season 2 — Ep 1
-DESCRIPTION:https://anicalendar.netlify.app/anime/saga-of-tanya-the-evil-season-2-135865/
-URL:https://anicalendar.netlify.app/anime/saga-of-tanya-the-evil-season-2-135865/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-135865-2@anicalendar.netlify.app
@@ -387,6 +378,69 @@ DESCRIPTION:https://anicalendar.netlify.app/anime/bleach-thousand-year-blood-war
 URL:https://anicalendar.netlify.app/anime/bleach-thousand-year-blood-war-the-calamity-185874/
 END:VEVENT
 BEGIN:VEVENT
+UID:anical-207141-2@anicalendar.netlify.app
+DTSTAMP:20260709T153000Z
+DTSTART:20260709T153000Z
+DTEND:20260709T160000Z
+SUMMARY:Chainsmoker Cat — Ep 2
+DESCRIPTION:https://anicalendar.netlify.app/anime/chainsmoker-cat-207141/
+URL:https://anicalendar.netlify.app/anime/chainsmoker-cat-207141/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-207141-3@anicalendar.netlify.app
+DTSTAMP:20260716T153000Z
+DTSTART:20260716T153000Z
+DTEND:20260716T160000Z
+SUMMARY:Chainsmoker Cat — Ep 3
+DESCRIPTION:https://anicalendar.netlify.app/anime/chainsmoker-cat-207141/
+URL:https://anicalendar.netlify.app/anime/chainsmoker-cat-207141/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-207141-4@anicalendar.netlify.app
+DTSTAMP:20260723T153000Z
+DTSTART:20260723T153000Z
+DTEND:20260723T160000Z
+SUMMARY:Chainsmoker Cat — Ep 4
+DESCRIPTION:https://anicalendar.netlify.app/anime/chainsmoker-cat-207141/
+URL:https://anicalendar.netlify.app/anime/chainsmoker-cat-207141/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-207141-5@anicalendar.netlify.app
+DTSTAMP:20260730T153000Z
+DTSTART:20260730T153000Z
+DTEND:20260730T160000Z
+SUMMARY:Chainsmoker Cat — Ep 5
+DESCRIPTION:https://anicalendar.netlify.app/anime/chainsmoker-cat-207141/
+URL:https://anicalendar.netlify.app/anime/chainsmoker-cat-207141/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-207141-6@anicalendar.netlify.app
+DTSTAMP:20260806T153000Z
+DTSTART:20260806T153000Z
+DTEND:20260806T160000Z
+SUMMARY:Chainsmoker Cat — Ep 6
+DESCRIPTION:https://anicalendar.netlify.app/anime/chainsmoker-cat-207141/
+URL:https://anicalendar.netlify.app/anime/chainsmoker-cat-207141/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-207141-7@anicalendar.netlify.app
+DTSTAMP:20260813T153000Z
+DTSTART:20260813T153000Z
+DTEND:20260813T160000Z
+SUMMARY:Chainsmoker Cat — Ep 7
+DESCRIPTION:https://anicalendar.netlify.app/anime/chainsmoker-cat-207141/
+URL:https://anicalendar.netlify.app/anime/chainsmoker-cat-207141/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-207141-8@anicalendar.netlify.app
+DTSTAMP:20260820T153000Z
+DTSTART:20260820T153000Z
+DTEND:20260820T160000Z
+SUMMARY:Chainsmoker Cat — Ep 8
+DESCRIPTION:https://anicalendar.netlify.app/anime/chainsmoker-cat-207141/
+URL:https://anicalendar.netlify.app/anime/chainsmoker-cat-207141/
+END:VEVENT
+BEGIN:VEVENT
 UID:anical-197754-15@anicalendar.netlify.app
 DTSTAMP:20260713T150000Z
 DTSTART:20260713T150000Z
@@ -437,6 +491,15 @@ DTSTAMP:20260817T150000Z
 DTSTART:20260817T150000Z
 DTEND:20260817T153000Z
 SUMMARY:LIAR GAME — Ep 20
+DESCRIPTION:https://anicalendar.netlify.app/anime/liar-game-197754/
+URL:https://anicalendar.netlify.app/anime/liar-game-197754/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-197754-21@anicalendar.netlify.app
+DTSTAMP:20260824T150000Z
+DTSTART:20260824T150000Z
+DTEND:20260824T153000Z
+SUMMARY:LIAR GAME — Ep 21
 DESCRIPTION:https://anicalendar.netlify.app/anime/liar-game-197754/
 URL:https://anicalendar.netlify.app/anime/liar-game-197754/
 END:VEVENT
@@ -558,69 +621,6 @@ DESCRIPTION:https://anicalendar.netlify.app/anime/i-want-to-love-you-till-your-d
 URL:https://anicalendar.netlify.app/anime/i-want-to-love-you-till-your-dying-day-187260/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-184492-15@anicalendar.netlify.app
-DTSTAMP:20260711T092600Z
-DTSTART:20260711T092600Z
-DTEND:20260711T095600Z
-SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Ep 15
-DESCRIPTION:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-URL:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-184492-16@anicalendar.netlify.app
-DTSTAMP:20260718T092600Z
-DTSTART:20260718T092600Z
-DTEND:20260718T095600Z
-SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Ep 16
-DESCRIPTION:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-URL:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-184492-17@anicalendar.netlify.app
-DTSTAMP:20260725T092600Z
-DTSTART:20260725T092600Z
-DTEND:20260725T095600Z
-SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Ep 17
-DESCRIPTION:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-URL:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-184492-18@anicalendar.netlify.app
-DTSTAMP:20260801T092600Z
-DTSTART:20260801T092600Z
-DTEND:20260801T095600Z
-SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Ep 18
-DESCRIPTION:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-URL:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-184492-19@anicalendar.netlify.app
-DTSTAMP:20260808T092600Z
-DTSTART:20260808T092600Z
-DTEND:20260808T095600Z
-SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Ep 19
-DESCRIPTION:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-URL:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-184492-20@anicalendar.netlify.app
-DTSTAMP:20260815T092600Z
-DTSTART:20260815T092600Z
-DTEND:20260815T095600Z
-SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Ep 20
-DESCRIPTION:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-URL:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-184492-21@anicalendar.netlify.app
-DTSTAMP:20260822T092600Z
-DTSTART:20260822T092600Z
-DTEND:20260822T095600Z
-SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Ep 21
-DESCRIPTION:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-URL:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-187538-2@anicalendar.netlify.app
 DTSTAMP:20260711T130000Z
 DTSTART:20260711T130000Z
@@ -684,67 +684,67 @@ DESCRIPTION:https://anicalendar.netlify.app/anime/black-torch-187538/
 URL:https://anicalendar.netlify.app/anime/black-torch-187538/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-207141-2@anicalendar.netlify.app
-DTSTAMP:20260709T153000Z
-DTSTART:20260709T153000Z
-DTEND:20260709T160000Z
-SUMMARY:Chainsmoker Cat — Ep 2
-DESCRIPTION:https://anicalendar.netlify.app/anime/chainsmoker-cat-207141/
-URL:https://anicalendar.netlify.app/anime/chainsmoker-cat-207141/
+UID:anical-184492-15@anicalendar.netlify.app
+DTSTAMP:20260711T092600Z
+DTSTART:20260711T092600Z
+DTEND:20260711T095600Z
+SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Ep 15
+DESCRIPTION:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
+URL:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-207141-3@anicalendar.netlify.app
-DTSTAMP:20260716T153000Z
-DTSTART:20260716T153000Z
-DTEND:20260716T160000Z
-SUMMARY:Chainsmoker Cat — Ep 3
-DESCRIPTION:https://anicalendar.netlify.app/anime/chainsmoker-cat-207141/
-URL:https://anicalendar.netlify.app/anime/chainsmoker-cat-207141/
+UID:anical-184492-16@anicalendar.netlify.app
+DTSTAMP:20260718T092600Z
+DTSTART:20260718T092600Z
+DTEND:20260718T095600Z
+SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Ep 16
+DESCRIPTION:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
+URL:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-207141-4@anicalendar.netlify.app
-DTSTAMP:20260723T153000Z
-DTSTART:20260723T153000Z
-DTEND:20260723T160000Z
-SUMMARY:Chainsmoker Cat — Ep 4
-DESCRIPTION:https://anicalendar.netlify.app/anime/chainsmoker-cat-207141/
-URL:https://anicalendar.netlify.app/anime/chainsmoker-cat-207141/
+UID:anical-184492-17@anicalendar.netlify.app
+DTSTAMP:20260725T092600Z
+DTSTART:20260725T092600Z
+DTEND:20260725T095600Z
+SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Ep 17
+DESCRIPTION:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
+URL:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-207141-5@anicalendar.netlify.app
-DTSTAMP:20260730T153000Z
-DTSTART:20260730T153000Z
-DTEND:20260730T160000Z
-SUMMARY:Chainsmoker Cat — Ep 5
-DESCRIPTION:https://anicalendar.netlify.app/anime/chainsmoker-cat-207141/
-URL:https://anicalendar.netlify.app/anime/chainsmoker-cat-207141/
+UID:anical-184492-18@anicalendar.netlify.app
+DTSTAMP:20260801T092600Z
+DTSTART:20260801T092600Z
+DTEND:20260801T095600Z
+SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Ep 18
+DESCRIPTION:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
+URL:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-207141-6@anicalendar.netlify.app
-DTSTAMP:20260806T153000Z
-DTSTART:20260806T153000Z
-DTEND:20260806T160000Z
-SUMMARY:Chainsmoker Cat — Ep 6
-DESCRIPTION:https://anicalendar.netlify.app/anime/chainsmoker-cat-207141/
-URL:https://anicalendar.netlify.app/anime/chainsmoker-cat-207141/
+UID:anical-184492-19@anicalendar.netlify.app
+DTSTAMP:20260808T092600Z
+DTSTART:20260808T092600Z
+DTEND:20260808T095600Z
+SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Ep 19
+DESCRIPTION:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
+URL:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-207141-7@anicalendar.netlify.app
-DTSTAMP:20260813T153000Z
-DTSTART:20260813T153000Z
-DTEND:20260813T160000Z
-SUMMARY:Chainsmoker Cat — Ep 7
-DESCRIPTION:https://anicalendar.netlify.app/anime/chainsmoker-cat-207141/
-URL:https://anicalendar.netlify.app/anime/chainsmoker-cat-207141/
+UID:anical-184492-20@anicalendar.netlify.app
+DTSTAMP:20260815T092600Z
+DTSTART:20260815T092600Z
+DTEND:20260815T095600Z
+SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Ep 20
+DESCRIPTION:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
+URL:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-207141-8@anicalendar.netlify.app
-DTSTAMP:20260820T153000Z
-DTSTART:20260820T153000Z
-DTEND:20260820T160000Z
-SUMMARY:Chainsmoker Cat — Ep 8
-DESCRIPTION:https://anicalendar.netlify.app/anime/chainsmoker-cat-207141/
-URL:https://anicalendar.netlify.app/anime/chainsmoker-cat-207141/
+UID:anical-184492-21@anicalendar.netlify.app
+DTSTAMP:20260822T092600Z
+DTSTART:20260822T092600Z
+DTEND:20260822T095600Z
+SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Ep 21
+DESCRIPTION:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
+URL:https://anicalendar.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-103303-2@anicalendar.netlify.app
@@ -810,6 +810,60 @@ DESCRIPTION:https://anicalendar.netlify.app/anime/sparks-of-tomorrow-103303/
 URL:https://anicalendar.netlify.app/anime/sparks-of-tomorrow-103303/
 END:VEVENT
 BEGIN:VEVENT
+UID:anical-159309-2@anicalendar.netlify.app
+DTSTAMP:20260715T143000Z
+DTSTART:20260715T143000Z
+DTEND:20260715T150000Z
+SUMMARY:Trapped in a Dating Sim: The World of Otome Games is Tough for Mobs Season 2 — Ep 2
+DESCRIPTION:https://anicalendar.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
+URL:https://anicalendar.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-159309-3@anicalendar.netlify.app
+DTSTAMP:20260722T143000Z
+DTSTART:20260722T143000Z
+DTEND:20260722T150000Z
+SUMMARY:Trapped in a Dating Sim: The World of Otome Games is Tough for Mobs Season 2 — Ep 3
+DESCRIPTION:https://anicalendar.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
+URL:https://anicalendar.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-159309-4@anicalendar.netlify.app
+DTSTAMP:20260729T143000Z
+DTSTART:20260729T143000Z
+DTEND:20260729T150000Z
+SUMMARY:Trapped in a Dating Sim: The World of Otome Games is Tough for Mobs Season 2 — Ep 4
+DESCRIPTION:https://anicalendar.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
+URL:https://anicalendar.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-159309-5@anicalendar.netlify.app
+DTSTAMP:20260805T143000Z
+DTSTART:20260805T143000Z
+DTEND:20260805T150000Z
+SUMMARY:Trapped in a Dating Sim: The World of Otome Games is Tough for Mobs Season 2 — Ep 5
+DESCRIPTION:https://anicalendar.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
+URL:https://anicalendar.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-159309-6@anicalendar.netlify.app
+DTSTAMP:20260812T143000Z
+DTSTART:20260812T143000Z
+DTEND:20260812T150000Z
+SUMMARY:Trapped in a Dating Sim: The World of Otome Games is Tough for Mobs Season 2 — Ep 6
+DESCRIPTION:https://anicalendar.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
+URL:https://anicalendar.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-159309-7@anicalendar.netlify.app
+DTSTAMP:20260819T143000Z
+DTSTART:20260819T143000Z
+DTEND:20260819T150000Z
+SUMMARY:Trapped in a Dating Sim: The World of Otome Games is Tough for Mobs Season 2 — Ep 7
+DESCRIPTION:https://anicalendar.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
+URL:https://anicalendar.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
+END:VEVENT
+BEGIN:VEVENT
 UID:anical-171110-13@anicalendar.netlify.app
 DTSTAMP:20260711T083000Z
 DTSTART:20260711T083000Z
@@ -873,123 +927,6 @@ DESCRIPTION:https://anicalendar.netlify.app/anime/ascendance-of-a-bookworm-adopt
 URL:https://anicalendar.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-159309-1@anicalendar.netlify.app
-DTSTAMP:20260708T143000Z
-DTSTART:20260708T143000Z
-DTEND:20260708T150000Z
-SUMMARY:Trapped in a Dating Sim: The World of Otome Games is Tough for Mobs Season 2 — Ep 1
-DESCRIPTION:https://anicalendar.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
-URL:https://anicalendar.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-159309-2@anicalendar.netlify.app
-DTSTAMP:20260715T143000Z
-DTSTART:20260715T143000Z
-DTEND:20260715T150000Z
-SUMMARY:Trapped in a Dating Sim: The World of Otome Games is Tough for Mobs Season 2 — Ep 2
-DESCRIPTION:https://anicalendar.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
-URL:https://anicalendar.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-159309-3@anicalendar.netlify.app
-DTSTAMP:20260722T143000Z
-DTSTART:20260722T143000Z
-DTEND:20260722T150000Z
-SUMMARY:Trapped in a Dating Sim: The World of Otome Games is Tough for Mobs Season 2 — Ep 3
-DESCRIPTION:https://anicalendar.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
-URL:https://anicalendar.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-159309-4@anicalendar.netlify.app
-DTSTAMP:20260729T143000Z
-DTSTART:20260729T143000Z
-DTEND:20260729T150000Z
-SUMMARY:Trapped in a Dating Sim: The World of Otome Games is Tough for Mobs Season 2 — Ep 4
-DESCRIPTION:https://anicalendar.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
-URL:https://anicalendar.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-159309-5@anicalendar.netlify.app
-DTSTAMP:20260805T143000Z
-DTSTART:20260805T143000Z
-DTEND:20260805T150000Z
-SUMMARY:Trapped in a Dating Sim: The World of Otome Games is Tough for Mobs Season 2 — Ep 5
-DESCRIPTION:https://anicalendar.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
-URL:https://anicalendar.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-159309-6@anicalendar.netlify.app
-DTSTAMP:20260812T143000Z
-DTSTART:20260812T143000Z
-DTEND:20260812T150000Z
-SUMMARY:Trapped in a Dating Sim: The World of Otome Games is Tough for Mobs Season 2 — Ep 6
-DESCRIPTION:https://anicalendar.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
-URL:https://anicalendar.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-159309-7@anicalendar.netlify.app
-DTSTAMP:20260819T143000Z
-DTSTART:20260819T143000Z
-DTEND:20260819T150000Z
-SUMMARY:Trapped in a Dating Sim: The World of Otome Games is Tough for Mobs Season 2 — Ep 7
-DESCRIPTION:https://anicalendar.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
-URL:https://anicalendar.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-185542-2@anicalendar.netlify.app
-DTSTAMP:20260713T130000Z
-DTSTART:20260713T130000Z
-DTEND:20260713T133000Z
-SUMMARY:Skeleton Knight in Another World Season 2 — Ep 2
-DESCRIPTION:https://anicalendar.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
-URL:https://anicalendar.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-185542-3@anicalendar.netlify.app
-DTSTAMP:20260720T130000Z
-DTSTART:20260720T130000Z
-DTEND:20260720T133000Z
-SUMMARY:Skeleton Knight in Another World Season 2 — Ep 3
-DESCRIPTION:https://anicalendar.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
-URL:https://anicalendar.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-185542-4@anicalendar.netlify.app
-DTSTAMP:20260727T130000Z
-DTSTART:20260727T130000Z
-DTEND:20260727T133000Z
-SUMMARY:Skeleton Knight in Another World Season 2 — Ep 4
-DESCRIPTION:https://anicalendar.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
-URL:https://anicalendar.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-185542-5@anicalendar.netlify.app
-DTSTAMP:20260803T130000Z
-DTSTART:20260803T130000Z
-DTEND:20260803T133000Z
-SUMMARY:Skeleton Knight in Another World Season 2 — Ep 5
-DESCRIPTION:https://anicalendar.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
-URL:https://anicalendar.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-185542-6@anicalendar.netlify.app
-DTSTAMP:20260810T130000Z
-DTSTART:20260810T130000Z
-DTEND:20260810T133000Z
-SUMMARY:Skeleton Knight in Another World Season 2 — Ep 6
-DESCRIPTION:https://anicalendar.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
-URL:https://anicalendar.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-185542-7@anicalendar.netlify.app
-DTSTAMP:20260817T130000Z
-DTSTART:20260817T130000Z
-DTEND:20260817T133000Z
-SUMMARY:Skeleton Knight in Another World Season 2 — Ep 7
-DESCRIPTION:https://anicalendar.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
-URL:https://anicalendar.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-180136-2@anicalendar.netlify.app
 DTSTAMP:20260709T152600Z
 DTSTART:20260709T152600Z
@@ -1051,6 +988,69 @@ DTEND:20260820T155600Z
 SUMMARY:The Exiled Heavy Knight Knows How to Game the System — Ep 8
 DESCRIPTION:https://anicalendar.netlify.app/anime/the-exiled-heavy-knight-knows-how-to-game-the-system-180136/
 URL:https://anicalendar.netlify.app/anime/the-exiled-heavy-knight-knows-how-to-game-the-system-180136/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-185542-2@anicalendar.netlify.app
+DTSTAMP:20260713T130000Z
+DTSTART:20260713T130000Z
+DTEND:20260713T133000Z
+SUMMARY:Skeleton Knight in Another World Season 2 — Ep 2
+DESCRIPTION:https://anicalendar.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
+URL:https://anicalendar.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-185542-3@anicalendar.netlify.app
+DTSTAMP:20260720T130000Z
+DTSTART:20260720T130000Z
+DTEND:20260720T133000Z
+SUMMARY:Skeleton Knight in Another World Season 2 — Ep 3
+DESCRIPTION:https://anicalendar.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
+URL:https://anicalendar.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-185542-4@anicalendar.netlify.app
+DTSTAMP:20260727T130000Z
+DTSTART:20260727T130000Z
+DTEND:20260727T133000Z
+SUMMARY:Skeleton Knight in Another World Season 2 — Ep 4
+DESCRIPTION:https://anicalendar.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
+URL:https://anicalendar.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-185542-5@anicalendar.netlify.app
+DTSTAMP:20260803T130000Z
+DTSTART:20260803T130000Z
+DTEND:20260803T133000Z
+SUMMARY:Skeleton Knight in Another World Season 2 — Ep 5
+DESCRIPTION:https://anicalendar.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
+URL:https://anicalendar.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-185542-6@anicalendar.netlify.app
+DTSTAMP:20260810T130000Z
+DTSTART:20260810T130000Z
+DTEND:20260810T133000Z
+SUMMARY:Skeleton Knight in Another World Season 2 — Ep 6
+DESCRIPTION:https://anicalendar.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
+URL:https://anicalendar.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-185542-7@anicalendar.netlify.app
+DTSTAMP:20260817T130000Z
+DTSTART:20260817T130000Z
+DTEND:20260817T133000Z
+SUMMARY:Skeleton Knight in Another World Season 2 — Ep 7
+DESCRIPTION:https://anicalendar.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
+URL:https://anicalendar.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-185542-8@anicalendar.netlify.app
+DTSTAMP:20260824T130000Z
+DTSTART:20260824T130000Z
+DTEND:20260824T133000Z
+SUMMARY:Skeleton Knight in Another World Season 2 — Ep 8
+DESCRIPTION:https://anicalendar.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
+URL:https://anicalendar.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-177699-2@anicalendar.netlify.app
@@ -1161,13 +1161,13 @@ DESCRIPTION:https://anicalendar.netlify.app/anime/grand-blue-dreaming-season-3-1
 URL:https://anicalendar.netlify.app/anime/grand-blue-dreaming-season-3-199111/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-198946-1@anicalendar.netlify.app
-DTSTAMP:20260708T120000Z
-DTSTART:20260708T120000Z
-DTEND:20260708T123000Z
-SUMMARY:Clevatess Season 2 — Ep 1
-DESCRIPTION:https://anicalendar.netlify.app/anime/clevatess-season-2-198946/
-URL:https://anicalendar.netlify.app/anime/clevatess-season-2-198946/
+UID:anical-199111-8@anicalendar.netlify.app
+DTSTAMP:20260824T150000Z
+DTSTART:20260824T150000Z
+DTEND:20260824T153000Z
+SUMMARY:Grand Blue Dreaming Season 3 — Ep 8
+DESCRIPTION:https://anicalendar.netlify.app/anime/grand-blue-dreaming-season-3-199111/
+URL:https://anicalendar.netlify.app/anime/grand-blue-dreaming-season-3-199111/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-198946-2@anicalendar.netlify.app
@@ -1222,69 +1222,6 @@ DTEND:20260819T123000Z
 SUMMARY:Clevatess Season 2 — Ep 7
 DESCRIPTION:https://anicalendar.netlify.app/anime/clevatess-season-2-198946/
 URL:https://anicalendar.netlify.app/anime/clevatess-season-2-198946/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-200637-2@anicalendar.netlify.app
-DTSTAMP:20260712T133000Z
-DTSTART:20260712T133000Z
-DTEND:20260712T140000Z
-SUMMARY:The 100 Girlfriends Who Really\, Really\, Really\, Really\, REALLY Love You Season 3 — Ep 2
-DESCRIPTION:https://anicalendar.netlify.app/anime/the-100-girlfriends-who-really-really-really-really-really-l-200637/
-URL:https://anicalendar.netlify.app/anime/the-100-girlfriends-who-really-really-really-really-really-l-200637/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-200637-3@anicalendar.netlify.app
-DTSTAMP:20260719T133000Z
-DTSTART:20260719T133000Z
-DTEND:20260719T140000Z
-SUMMARY:The 100 Girlfriends Who Really\, Really\, Really\, Really\, REALLY Love You Season 3 — Ep 3
-DESCRIPTION:https://anicalendar.netlify.app/anime/the-100-girlfriends-who-really-really-really-really-really-l-200637/
-URL:https://anicalendar.netlify.app/anime/the-100-girlfriends-who-really-really-really-really-really-l-200637/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-200637-4@anicalendar.netlify.app
-DTSTAMP:20260726T133000Z
-DTSTART:20260726T133000Z
-DTEND:20260726T140000Z
-SUMMARY:The 100 Girlfriends Who Really\, Really\, Really\, Really\, REALLY Love You Season 3 — Ep 4
-DESCRIPTION:https://anicalendar.netlify.app/anime/the-100-girlfriends-who-really-really-really-really-really-l-200637/
-URL:https://anicalendar.netlify.app/anime/the-100-girlfriends-who-really-really-really-really-really-l-200637/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-200637-5@anicalendar.netlify.app
-DTSTAMP:20260802T133000Z
-DTSTART:20260802T133000Z
-DTEND:20260802T140000Z
-SUMMARY:The 100 Girlfriends Who Really\, Really\, Really\, Really\, REALLY Love You Season 3 — Ep 5
-DESCRIPTION:https://anicalendar.netlify.app/anime/the-100-girlfriends-who-really-really-really-really-really-l-200637/
-URL:https://anicalendar.netlify.app/anime/the-100-girlfriends-who-really-really-really-really-really-l-200637/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-200637-6@anicalendar.netlify.app
-DTSTAMP:20260809T133000Z
-DTSTART:20260809T133000Z
-DTEND:20260809T140000Z
-SUMMARY:The 100 Girlfriends Who Really\, Really\, Really\, Really\, REALLY Love You Season 3 — Ep 6
-DESCRIPTION:https://anicalendar.netlify.app/anime/the-100-girlfriends-who-really-really-really-really-really-l-200637/
-URL:https://anicalendar.netlify.app/anime/the-100-girlfriends-who-really-really-really-really-really-l-200637/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-200637-7@anicalendar.netlify.app
-DTSTAMP:20260816T133000Z
-DTSTART:20260816T133000Z
-DTEND:20260816T140000Z
-SUMMARY:The 100 Girlfriends Who Really\, Really\, Really\, Really\, REALLY Love You Season 3 — Ep 7
-DESCRIPTION:https://anicalendar.netlify.app/anime/the-100-girlfriends-who-really-really-really-really-really-l-200637/
-URL:https://anicalendar.netlify.app/anime/the-100-girlfriends-who-really-really-really-really-really-l-200637/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-200637-8@anicalendar.netlify.app
-DTSTAMP:20260823T133000Z
-DTSTART:20260823T133000Z
-DTEND:20260823T140000Z
-SUMMARY:The 100 Girlfriends Who Really\, Really\, Really\, Really\, REALLY Love You Season 3 — Ep 8
-DESCRIPTION:https://anicalendar.netlify.app/anime/the-100-girlfriends-who-really-really-really-really-really-l-200637/
-URL:https://anicalendar.netlify.app/anime/the-100-girlfriends-who-really-really-really-really-really-l-200637/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-208044-3@anicalendar.netlify.app
@@ -1350,15 +1287,6 @@ DESCRIPTION:https://anicalendar.netlify.app/anime/from-overshadowed-to-overpower
 URL:https://anicalendar.netlify.app/anime/from-overshadowed-to-overpowered-second-reincarnation-of-a-t-208044/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-194829-1@anicalendar.netlify.app
-DTSTAMP:20260708T144600Z
-DTSTART:20260708T144600Z
-DTEND:20260708T151600Z
-SUMMARY:From Old Country Bumpkin to Master Swordsman II — Ep 1
-DESCRIPTION:https://anicalendar.netlify.app/anime/from-old-country-bumpkin-to-master-swordsman-ii-194829/
-URL:https://anicalendar.netlify.app/anime/from-old-country-bumpkin-to-master-swordsman-ii-194829/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-194829-2@anicalendar.netlify.app
 DTSTAMP:20260715T144600Z
 DTSTART:20260715T144600Z
@@ -1411,6 +1339,69 @@ DTEND:20260819T151600Z
 SUMMARY:From Old Country Bumpkin to Master Swordsman II — Ep 7
 DESCRIPTION:https://anicalendar.netlify.app/anime/from-old-country-bumpkin-to-master-swordsman-ii-194829/
 URL:https://anicalendar.netlify.app/anime/from-old-country-bumpkin-to-master-swordsman-ii-194829/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-200637-2@anicalendar.netlify.app
+DTSTAMP:20260712T133000Z
+DTSTART:20260712T133000Z
+DTEND:20260712T140000Z
+SUMMARY:The 100 Girlfriends Who Really\, Really\, Really\, Really\, REALLY Love You Season 3 — Ep 2
+DESCRIPTION:https://anicalendar.netlify.app/anime/the-100-girlfriends-who-really-really-really-really-really-l-200637/
+URL:https://anicalendar.netlify.app/anime/the-100-girlfriends-who-really-really-really-really-really-l-200637/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-200637-3@anicalendar.netlify.app
+DTSTAMP:20260719T133000Z
+DTSTART:20260719T133000Z
+DTEND:20260719T140000Z
+SUMMARY:The 100 Girlfriends Who Really\, Really\, Really\, Really\, REALLY Love You Season 3 — Ep 3
+DESCRIPTION:https://anicalendar.netlify.app/anime/the-100-girlfriends-who-really-really-really-really-really-l-200637/
+URL:https://anicalendar.netlify.app/anime/the-100-girlfriends-who-really-really-really-really-really-l-200637/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-200637-4@anicalendar.netlify.app
+DTSTAMP:20260726T133000Z
+DTSTART:20260726T133000Z
+DTEND:20260726T140000Z
+SUMMARY:The 100 Girlfriends Who Really\, Really\, Really\, Really\, REALLY Love You Season 3 — Ep 4
+DESCRIPTION:https://anicalendar.netlify.app/anime/the-100-girlfriends-who-really-really-really-really-really-l-200637/
+URL:https://anicalendar.netlify.app/anime/the-100-girlfriends-who-really-really-really-really-really-l-200637/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-200637-5@anicalendar.netlify.app
+DTSTAMP:20260802T133000Z
+DTSTART:20260802T133000Z
+DTEND:20260802T140000Z
+SUMMARY:The 100 Girlfriends Who Really\, Really\, Really\, Really\, REALLY Love You Season 3 — Ep 5
+DESCRIPTION:https://anicalendar.netlify.app/anime/the-100-girlfriends-who-really-really-really-really-really-l-200637/
+URL:https://anicalendar.netlify.app/anime/the-100-girlfriends-who-really-really-really-really-really-l-200637/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-200637-6@anicalendar.netlify.app
+DTSTAMP:20260809T133000Z
+DTSTART:20260809T133000Z
+DTEND:20260809T140000Z
+SUMMARY:The 100 Girlfriends Who Really\, Really\, Really\, Really\, REALLY Love You Season 3 — Ep 6
+DESCRIPTION:https://anicalendar.netlify.app/anime/the-100-girlfriends-who-really-really-really-really-really-l-200637/
+URL:https://anicalendar.netlify.app/anime/the-100-girlfriends-who-really-really-really-really-really-l-200637/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-200637-7@anicalendar.netlify.app
+DTSTAMP:20260816T133000Z
+DTSTART:20260816T133000Z
+DTEND:20260816T140000Z
+SUMMARY:The 100 Girlfriends Who Really\, Really\, Really\, Really\, REALLY Love You Season 3 — Ep 7
+DESCRIPTION:https://anicalendar.netlify.app/anime/the-100-girlfriends-who-really-really-really-really-really-l-200637/
+URL:https://anicalendar.netlify.app/anime/the-100-girlfriends-who-really-really-really-really-really-l-200637/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-200637-8@anicalendar.netlify.app
+DTSTAMP:20260823T133000Z
+DTSTART:20260823T133000Z
+DTEND:20260823T140000Z
+SUMMARY:The 100 Girlfriends Who Really\, Really\, Really\, Really\, REALLY Love You Season 3 — Ep 8
+DESCRIPTION:https://anicalendar.netlify.app/anime/the-100-girlfriends-who-really-really-really-really-really-l-200637/
+URL:https://anicalendar.netlify.app/anime/the-100-girlfriends-who-really-really-really-really-really-l-200637/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-190569-3@anicalendar.netlify.app
@@ -1474,15 +1465,6 @@ DTEND:20260822T150000Z
 SUMMARY:Jaadugar: A Witch in Mongolia — Ep 9
 DESCRIPTION:https://anicalendar.netlify.app/anime/jaadugar-a-witch-in-mongolia-190569/
 URL:https://anicalendar.netlify.app/anime/jaadugar-a-witch-in-mongolia-190569/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-197715-3@anicalendar.netlify.app
-DTSTAMP:20260708T150000Z
-DTSTART:20260708T150000Z
-DTEND:20260708T153000Z
-SUMMARY:The Villager of Level 999 — Ep 3
-DESCRIPTION:https://anicalendar.netlify.app/anime/the-villager-of-level-999-197715/
-URL:https://anicalendar.netlify.app/anime/the-villager-of-level-999-197715/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-197715-4@anicalendar.netlify.app
@@ -1665,6 +1647,69 @@ DESCRIPTION:https://anicalendar.netlify.app/anime/rich-girl-caretaker-im-secretl
 URL:https://anicalendar.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
 END:VEVENT
 BEGIN:VEVENT
+UID:anical-204466-2@anicalendar.netlify.app
+DTSTAMP:20260709T162800Z
+DTSTART:20260709T162800Z
+DTEND:20260709T165800Z
+SUMMARY:KAIJU GIRL CARAMELISE — Ep 2
+DESCRIPTION:https://anicalendar.netlify.app/anime/kaiju-girl-caramelise-204466/
+URL:https://anicalendar.netlify.app/anime/kaiju-girl-caramelise-204466/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-204466-3@anicalendar.netlify.app
+DTSTAMP:20260716T162800Z
+DTSTART:20260716T162800Z
+DTEND:20260716T165800Z
+SUMMARY:KAIJU GIRL CARAMELISE — Ep 3
+DESCRIPTION:https://anicalendar.netlify.app/anime/kaiju-girl-caramelise-204466/
+URL:https://anicalendar.netlify.app/anime/kaiju-girl-caramelise-204466/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-204466-4@anicalendar.netlify.app
+DTSTAMP:20260723T162800Z
+DTSTART:20260723T162800Z
+DTEND:20260723T165800Z
+SUMMARY:KAIJU GIRL CARAMELISE — Ep 4
+DESCRIPTION:https://anicalendar.netlify.app/anime/kaiju-girl-caramelise-204466/
+URL:https://anicalendar.netlify.app/anime/kaiju-girl-caramelise-204466/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-204466-5@anicalendar.netlify.app
+DTSTAMP:20260730T162800Z
+DTSTART:20260730T162800Z
+DTEND:20260730T165800Z
+SUMMARY:KAIJU GIRL CARAMELISE — Ep 5
+DESCRIPTION:https://anicalendar.netlify.app/anime/kaiju-girl-caramelise-204466/
+URL:https://anicalendar.netlify.app/anime/kaiju-girl-caramelise-204466/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-204466-6@anicalendar.netlify.app
+DTSTAMP:20260806T162800Z
+DTSTART:20260806T162800Z
+DTEND:20260806T165800Z
+SUMMARY:KAIJU GIRL CARAMELISE — Ep 6
+DESCRIPTION:https://anicalendar.netlify.app/anime/kaiju-girl-caramelise-204466/
+URL:https://anicalendar.netlify.app/anime/kaiju-girl-caramelise-204466/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-204466-7@anicalendar.netlify.app
+DTSTAMP:20260813T162800Z
+DTSTART:20260813T162800Z
+DTEND:20260813T165800Z
+SUMMARY:KAIJU GIRL CARAMELISE — Ep 7
+DESCRIPTION:https://anicalendar.netlify.app/anime/kaiju-girl-caramelise-204466/
+URL:https://anicalendar.netlify.app/anime/kaiju-girl-caramelise-204466/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-204466-8@anicalendar.netlify.app
+DTSTAMP:20260820T162800Z
+DTSTART:20260820T162800Z
+DTEND:20260820T165800Z
+SUMMARY:KAIJU GIRL CARAMELISE — Ep 8
+DESCRIPTION:https://anicalendar.netlify.app/anime/kaiju-girl-caramelise-204466/
+URL:https://anicalendar.netlify.app/anime/kaiju-girl-caramelise-204466/
+END:VEVENT
+BEGIN:VEVENT
 UID:anical-209983-2@anicalendar.netlify.app
 DTSTAMP:20260710T160000Z
 DTSTART:20260710T160000Z
@@ -1791,69 +1836,6 @@ DESCRIPTION:https://anicalendar.netlify.app/anime/the-classroom-of-the-black-cat
 URL:https://anicalendar.netlify.app/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-204466-2@anicalendar.netlify.app
-DTSTAMP:20260709T162800Z
-DTSTART:20260709T162800Z
-DTEND:20260709T165800Z
-SUMMARY:KAIJU GIRL CARAMELISE — Ep 2
-DESCRIPTION:https://anicalendar.netlify.app/anime/kaiju-girl-caramelise-204466/
-URL:https://anicalendar.netlify.app/anime/kaiju-girl-caramelise-204466/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-204466-3@anicalendar.netlify.app
-DTSTAMP:20260716T162800Z
-DTSTART:20260716T162800Z
-DTEND:20260716T165800Z
-SUMMARY:KAIJU GIRL CARAMELISE — Ep 3
-DESCRIPTION:https://anicalendar.netlify.app/anime/kaiju-girl-caramelise-204466/
-URL:https://anicalendar.netlify.app/anime/kaiju-girl-caramelise-204466/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-204466-4@anicalendar.netlify.app
-DTSTAMP:20260723T162800Z
-DTSTART:20260723T162800Z
-DTEND:20260723T165800Z
-SUMMARY:KAIJU GIRL CARAMELISE — Ep 4
-DESCRIPTION:https://anicalendar.netlify.app/anime/kaiju-girl-caramelise-204466/
-URL:https://anicalendar.netlify.app/anime/kaiju-girl-caramelise-204466/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-204466-5@anicalendar.netlify.app
-DTSTAMP:20260730T162800Z
-DTSTART:20260730T162800Z
-DTEND:20260730T165800Z
-SUMMARY:KAIJU GIRL CARAMELISE — Ep 5
-DESCRIPTION:https://anicalendar.netlify.app/anime/kaiju-girl-caramelise-204466/
-URL:https://anicalendar.netlify.app/anime/kaiju-girl-caramelise-204466/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-204466-6@anicalendar.netlify.app
-DTSTAMP:20260806T162800Z
-DTSTART:20260806T162800Z
-DTEND:20260806T165800Z
-SUMMARY:KAIJU GIRL CARAMELISE — Ep 6
-DESCRIPTION:https://anicalendar.netlify.app/anime/kaiju-girl-caramelise-204466/
-URL:https://anicalendar.netlify.app/anime/kaiju-girl-caramelise-204466/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-204466-7@anicalendar.netlify.app
-DTSTAMP:20260813T162800Z
-DTSTART:20260813T162800Z
-DTEND:20260813T165800Z
-SUMMARY:KAIJU GIRL CARAMELISE — Ep 7
-DESCRIPTION:https://anicalendar.netlify.app/anime/kaiju-girl-caramelise-204466/
-URL:https://anicalendar.netlify.app/anime/kaiju-girl-caramelise-204466/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-204466-8@anicalendar.netlify.app
-DTSTAMP:20260820T162800Z
-DTSTART:20260820T162800Z
-DTEND:20260820T165800Z
-SUMMARY:KAIJU GIRL CARAMELISE — Ep 8
-DESCRIPTION:https://anicalendar.netlify.app/anime/kaiju-girl-caramelise-204466/
-URL:https://anicalendar.netlify.app/anime/kaiju-girl-caramelise-204466/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-202269-2@anicalendar.netlify.app
 DTSTAMP:20260713T120000Z
 DTSTART:20260713T120000Z
@@ -1908,6 +1890,15 @@ DESCRIPTION:https://anicalendar.netlify.app/anime/love-unseen-beneath-the-clear-
 URL:https://anicalendar.netlify.app/anime/love-unseen-beneath-the-clear-night-sky-202269/
 END:VEVENT
 BEGIN:VEVENT
+UID:anical-202269-8@anicalendar.netlify.app
+DTSTAMP:20260824T120000Z
+DTSTART:20260824T120000Z
+DTEND:20260824T123000Z
+SUMMARY:Love Unseen Beneath the Clear Night Sky — Ep 8
+DESCRIPTION:https://anicalendar.netlify.app/anime/love-unseen-beneath-the-clear-night-sky-202269/
+URL:https://anicalendar.netlify.app/anime/love-unseen-beneath-the-clear-night-sky-202269/
+END:VEVENT
+BEGIN:VEVENT
 UID:anical-169583-2@anicalendar.netlify.app
 DTSTAMP:20260713T143000Z
 DTSTART:20260713T143000Z
@@ -1958,6 +1949,15 @@ DTSTAMP:20260817T143000Z
 DTSTART:20260817T143000Z
 DTEND:20260817T150000Z
 SUMMARY:Oh Boy\, Was I Wrong About Her — Ep 7
+DESCRIPTION:https://anicalendar.netlify.app/anime/oh-boy-was-i-wrong-about-her-169583/
+URL:https://anicalendar.netlify.app/anime/oh-boy-was-i-wrong-about-her-169583/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-169583-8@anicalendar.netlify.app
+DTSTAMP:20260824T143000Z
+DTSTART:20260824T143000Z
+DTEND:20260824T150000Z
+SUMMARY:Oh Boy\, Was I Wrong About Her — Ep 8
 DESCRIPTION:https://anicalendar.netlify.app/anime/oh-boy-was-i-wrong-about-her-169583/
 URL:https://anicalendar.netlify.app/anime/oh-boy-was-i-wrong-about-her-169583/
 END:VEVENT
@@ -2313,6 +2313,15 @@ DESCRIPTION:https://anicalendar.netlify.app/anime/the-world-is-dancing-206521/
 URL:https://anicalendar.netlify.app/anime/the-world-is-dancing-206521/
 END:VEVENT
 BEGIN:VEVENT
+UID:anical-206521-9@anicalendar.netlify.app
+DTSTAMP:20260824T130000Z
+DTSTART:20260824T130000Z
+DTEND:20260824T133000Z
+SUMMARY:The World Is Dancing — Ep 9
+DESCRIPTION:https://anicalendar.netlify.app/anime/the-world-is-dancing-206521/
+URL:https://anicalendar.netlify.app/anime/the-world-is-dancing-206521/
+END:VEVENT
+BEGIN:VEVENT
 UID:anical-198409-2@anicalendar.netlify.app
 DTSTAMP:20260712T130000Z
 DTSTART:20260712T130000Z
@@ -2439,6 +2448,60 @@ DESCRIPTION:https://anicalendar.netlify.app/anime/though-i-am-an-inept-villaines
 URL:https://anicalendar.netlify.app/anime/though-i-am-an-inept-villainess-188139/
 END:VEVENT
 BEGIN:VEVENT
+UID:anical-192800-4@anicalendar.netlify.app
+DTSTAMP:20260715T133000Z
+DTSTART:20260715T133000Z
+DTEND:20260715T140000Z
+SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Ep 4
+DESCRIPTION:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+URL:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-192800-5@anicalendar.netlify.app
+DTSTAMP:20260722T133000Z
+DTSTART:20260722T133000Z
+DTEND:20260722T140000Z
+SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Ep 5
+DESCRIPTION:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+URL:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-192800-6@anicalendar.netlify.app
+DTSTAMP:20260729T133000Z
+DTSTART:20260729T133000Z
+DTEND:20260729T140000Z
+SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Ep 6
+DESCRIPTION:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+URL:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-192800-7@anicalendar.netlify.app
+DTSTAMP:20260805T133000Z
+DTSTART:20260805T133000Z
+DTEND:20260805T140000Z
+SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Ep 7
+DESCRIPTION:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+URL:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-192800-8@anicalendar.netlify.app
+DTSTAMP:20260812T133000Z
+DTSTART:20260812T133000Z
+DTEND:20260812T140000Z
+SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Ep 8
+DESCRIPTION:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+URL:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-192800-9@anicalendar.netlify.app
+DTSTAMP:20260819T133000Z
+DTSTART:20260819T133000Z
+DTEND:20260819T140000Z
+SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Ep 9
+DESCRIPTION:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+URL:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+END:VEVENT
+BEGIN:VEVENT
 UID:anical-186863-3@anicalendar.netlify.app
 DTSTAMP:20260711T120000Z
 DTSTART:20260711T120000Z
@@ -2502,69 +2565,6 @@ DESCRIPTION:https://anicalendar.netlify.app/anime/the-cat-and-the-dragon-186863/
 URL:https://anicalendar.netlify.app/anime/the-cat-and-the-dragon-186863/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-192800-3@anicalendar.netlify.app
-DTSTAMP:20260708T133000Z
-DTSTART:20260708T133000Z
-DTEND:20260708T140000Z
-SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Ep 3
-DESCRIPTION:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
-URL:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-192800-4@anicalendar.netlify.app
-DTSTAMP:20260715T133000Z
-DTSTART:20260715T133000Z
-DTEND:20260715T140000Z
-SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Ep 4
-DESCRIPTION:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
-URL:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-192800-5@anicalendar.netlify.app
-DTSTAMP:20260722T133000Z
-DTSTART:20260722T133000Z
-DTEND:20260722T140000Z
-SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Ep 5
-DESCRIPTION:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
-URL:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-192800-6@anicalendar.netlify.app
-DTSTAMP:20260729T133000Z
-DTSTART:20260729T133000Z
-DTEND:20260729T140000Z
-SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Ep 6
-DESCRIPTION:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
-URL:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-192800-7@anicalendar.netlify.app
-DTSTAMP:20260805T133000Z
-DTSTART:20260805T133000Z
-DTEND:20260805T140000Z
-SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Ep 7
-DESCRIPTION:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
-URL:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-192800-8@anicalendar.netlify.app
-DTSTAMP:20260812T133000Z
-DTSTART:20260812T133000Z
-DTEND:20260812T140000Z
-SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Ep 8
-DESCRIPTION:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
-URL:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-192800-9@anicalendar.netlify.app
-DTSTAMP:20260819T133000Z
-DTSTART:20260819T133000Z
-DTEND:20260819T140000Z
-SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Ep 9
-DESCRIPTION:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
-URL:https://anicalendar.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-169582-2@anicalendar.netlify.app
 DTSTAMP:20260713T115700Z
 DTSTART:20260713T115700Z
@@ -2615,6 +2615,15 @@ DTSTAMP:20260817T115700Z
 DTSTART:20260817T115700Z
 DTEND:20260817T122700Z
 SUMMARY:The Insipid Prince's Furtive Grab for the Throne — Ep 7
+DESCRIPTION:https://anicalendar.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
+URL:https://anicalendar.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-169582-8@anicalendar.netlify.app
+DTSTAMP:20260824T115700Z
+DTSTART:20260824T115700Z
+DTEND:20260824T122700Z
+SUMMARY:The Insipid Prince's Furtive Grab for the Throne — Ep 8
 DESCRIPTION:https://anicalendar.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
 URL:https://anicalendar.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
 END:VEVENT
@@ -2723,6 +2732,15 @@ DTSTAMP:20260817T133000Z
 DTSTART:20260817T133000Z
 DTEND:20260817T140000Z
 SUMMARY:A Livid Lady’s Guide to Getting Even: How I Crushed My Homeland with My Mighty Grimoires — Ep 7
+DESCRIPTION:https://anicalendar.netlify.app/anime/a-livid-ladys-guide-to-getting-even-how-i-crushed-my-homelan-199408/
+URL:https://anicalendar.netlify.app/anime/a-livid-ladys-guide-to-getting-even-how-i-crushed-my-homelan-199408/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-199408-8@anicalendar.netlify.app
+DTSTAMP:20260824T133000Z
+DTSTART:20260824T133000Z
+DTEND:20260824T140000Z
+SUMMARY:A Livid Lady’s Guide to Getting Even: How I Crushed My Homeland with My Mighty Grimoires — Ep 8
 DESCRIPTION:https://anicalendar.netlify.app/anime/a-livid-ladys-guide-to-getting-even-how-i-crushed-my-homelan-199408/
 URL:https://anicalendar.netlify.app/anime/a-livid-ladys-guide-to-getting-even-how-i-crushed-my-homelan-199408/
 END:VEVENT
@@ -3051,6 +3069,15 @@ DESCRIPTION:https://anicalendar.netlify.app/anime/the-forsaken-saintess-and-her-
 URL:https://anicalendar.netlify.app/anime/the-forsaken-saintess-and-her-foodie-roadtrip-in-another-wor-209504/
 END:VEVENT
 BEGIN:VEVENT
+UID:anical-209504-8@anicalendar.netlify.app
+DTSTAMP:20260824T140000Z
+DTSTART:20260824T140000Z
+DTEND:20260824T143000Z
+SUMMARY:The Forsaken Saintess and Her Foodie Roadtrip in Another World — Ep 8
+DESCRIPTION:https://anicalendar.netlify.app/anime/the-forsaken-saintess-and-her-foodie-roadtrip-in-another-wor-209504/
+URL:https://anicalendar.netlify.app/anime/the-forsaken-saintess-and-her-foodie-roadtrip-in-another-wor-209504/
+END:VEVENT
+BEGIN:VEVENT
 UID:anical-199066-1@anicalendar.netlify.app
 DTSTAMP:20260711T170000Z
 DTSTART:20260711T170000Z
@@ -3294,78 +3321,6 @@ DESCRIPTION:https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-ex
 URL:https://anicalendar.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-188525-2@anicalendar.netlify.app
-DTSTAMP:20260710T143000Z
-DTSTART:20260710T143000Z
-DTEND:20260710T150000Z
-SUMMARY:Draw This\, Then Die! — Ep 2
-DESCRIPTION:https://anicalendar.netlify.app/anime/draw-this-then-die-188525/
-URL:https://anicalendar.netlify.app/anime/draw-this-then-die-188525/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-188525-3@anicalendar.netlify.app
-DTSTAMP:20260717T143000Z
-DTSTART:20260717T143000Z
-DTEND:20260717T150000Z
-SUMMARY:Draw This\, Then Die! — Ep 3
-DESCRIPTION:https://anicalendar.netlify.app/anime/draw-this-then-die-188525/
-URL:https://anicalendar.netlify.app/anime/draw-this-then-die-188525/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-188525-4@anicalendar.netlify.app
-DTSTAMP:20260724T143000Z
-DTSTART:20260724T143000Z
-DTEND:20260724T150000Z
-SUMMARY:Draw This\, Then Die! — Ep 4
-DESCRIPTION:https://anicalendar.netlify.app/anime/draw-this-then-die-188525/
-URL:https://anicalendar.netlify.app/anime/draw-this-then-die-188525/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-188525-5@anicalendar.netlify.app
-DTSTAMP:20260731T143000Z
-DTSTART:20260731T143000Z
-DTEND:20260731T150000Z
-SUMMARY:Draw This\, Then Die! — Ep 5
-DESCRIPTION:https://anicalendar.netlify.app/anime/draw-this-then-die-188525/
-URL:https://anicalendar.netlify.app/anime/draw-this-then-die-188525/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-188525-6@anicalendar.netlify.app
-DTSTAMP:20260807T143000Z
-DTSTART:20260807T143000Z
-DTEND:20260807T150000Z
-SUMMARY:Draw This\, Then Die! — Ep 6
-DESCRIPTION:https://anicalendar.netlify.app/anime/draw-this-then-die-188525/
-URL:https://anicalendar.netlify.app/anime/draw-this-then-die-188525/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-188525-7@anicalendar.netlify.app
-DTSTAMP:20260814T143000Z
-DTSTART:20260814T143000Z
-DTEND:20260814T150000Z
-SUMMARY:Draw This\, Then Die! — Ep 7
-DESCRIPTION:https://anicalendar.netlify.app/anime/draw-this-then-die-188525/
-URL:https://anicalendar.netlify.app/anime/draw-this-then-die-188525/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-188525-8@anicalendar.netlify.app
-DTSTAMP:20260821T143000Z
-DTSTART:20260821T143000Z
-DTEND:20260821T150000Z
-SUMMARY:Draw This\, Then Die! — Ep 8
-DESCRIPTION:https://anicalendar.netlify.app/anime/draw-this-then-die-188525/
-URL:https://anicalendar.netlify.app/anime/draw-this-then-die-188525/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-208754-1@anicalendar.netlify.app
-DTSTAMP:20260709T150000Z
-DTSTART:20260709T150000Z
-DTEND:20260709T153000Z
-SUMMARY:Unanswered//butterfly: Sword Art Online — Ep 1
-DESCRIPTION:https://anicalendar.netlify.app/anime/unansweredbutterfly-sword-art-online-208754/
-URL:https://anicalendar.netlify.app/anime/unansweredbutterfly-sword-art-online-208754/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-108992-1@anicalendar.netlify.app
 DTSTAMP:20260709T143000Z
 DTSTART:20260709T143000Z
@@ -3427,6 +3382,132 @@ DTEND:20260820T150000Z
 SUMMARY:Mebius Dust — Ep 7
 DESCRIPTION:https://anicalendar.netlify.app/anime/mebius-dust-108992/
 URL:https://anicalendar.netlify.app/anime/mebius-dust-108992/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-196356-2@anicalendar.netlify.app
+DTSTAMP:20260715T143000Z
+DTSTART:20260715T143000Z
+DTEND:20260715T150000Z
+SUMMARY:My Stepmother and Stepsisters Aren’t Wicked — Ep 2
+DESCRIPTION:https://anicalendar.netlify.app/anime/my-stepmother-and-stepsisters-arent-wicked-196356/
+URL:https://anicalendar.netlify.app/anime/my-stepmother-and-stepsisters-arent-wicked-196356/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-196356-3@anicalendar.netlify.app
+DTSTAMP:20260722T143000Z
+DTSTART:20260722T143000Z
+DTEND:20260722T150000Z
+SUMMARY:My Stepmother and Stepsisters Aren’t Wicked — Ep 3
+DESCRIPTION:https://anicalendar.netlify.app/anime/my-stepmother-and-stepsisters-arent-wicked-196356/
+URL:https://anicalendar.netlify.app/anime/my-stepmother-and-stepsisters-arent-wicked-196356/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-196356-4@anicalendar.netlify.app
+DTSTAMP:20260729T143000Z
+DTSTART:20260729T143000Z
+DTEND:20260729T150000Z
+SUMMARY:My Stepmother and Stepsisters Aren’t Wicked — Ep 4
+DESCRIPTION:https://anicalendar.netlify.app/anime/my-stepmother-and-stepsisters-arent-wicked-196356/
+URL:https://anicalendar.netlify.app/anime/my-stepmother-and-stepsisters-arent-wicked-196356/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-196356-5@anicalendar.netlify.app
+DTSTAMP:20260805T143000Z
+DTSTART:20260805T143000Z
+DTEND:20260805T150000Z
+SUMMARY:My Stepmother and Stepsisters Aren’t Wicked — Ep 5
+DESCRIPTION:https://anicalendar.netlify.app/anime/my-stepmother-and-stepsisters-arent-wicked-196356/
+URL:https://anicalendar.netlify.app/anime/my-stepmother-and-stepsisters-arent-wicked-196356/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-196356-6@anicalendar.netlify.app
+DTSTAMP:20260812T143000Z
+DTSTART:20260812T143000Z
+DTEND:20260812T150000Z
+SUMMARY:My Stepmother and Stepsisters Aren’t Wicked — Ep 6
+DESCRIPTION:https://anicalendar.netlify.app/anime/my-stepmother-and-stepsisters-arent-wicked-196356/
+URL:https://anicalendar.netlify.app/anime/my-stepmother-and-stepsisters-arent-wicked-196356/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-196356-7@anicalendar.netlify.app
+DTSTAMP:20260819T143000Z
+DTSTART:20260819T143000Z
+DTEND:20260819T150000Z
+SUMMARY:My Stepmother and Stepsisters Aren’t Wicked — Ep 7
+DESCRIPTION:https://anicalendar.netlify.app/anime/my-stepmother-and-stepsisters-arent-wicked-196356/
+URL:https://anicalendar.netlify.app/anime/my-stepmother-and-stepsisters-arent-wicked-196356/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-208754-1@anicalendar.netlify.app
+DTSTAMP:20260709T150000Z
+DTSTART:20260709T150000Z
+DTEND:20260709T153000Z
+SUMMARY:Unanswered//butterfly: Sword Art Online — Ep 1
+DESCRIPTION:https://anicalendar.netlify.app/anime/unansweredbutterfly-sword-art-online-208754/
+URL:https://anicalendar.netlify.app/anime/unansweredbutterfly-sword-art-online-208754/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-188525-2@anicalendar.netlify.app
+DTSTAMP:20260710T143000Z
+DTSTART:20260710T143000Z
+DTEND:20260710T150000Z
+SUMMARY:Draw This\, Then Die! — Ep 2
+DESCRIPTION:https://anicalendar.netlify.app/anime/draw-this-then-die-188525/
+URL:https://anicalendar.netlify.app/anime/draw-this-then-die-188525/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-188525-3@anicalendar.netlify.app
+DTSTAMP:20260717T143000Z
+DTSTART:20260717T143000Z
+DTEND:20260717T150000Z
+SUMMARY:Draw This\, Then Die! — Ep 3
+DESCRIPTION:https://anicalendar.netlify.app/anime/draw-this-then-die-188525/
+URL:https://anicalendar.netlify.app/anime/draw-this-then-die-188525/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-188525-4@anicalendar.netlify.app
+DTSTAMP:20260724T143000Z
+DTSTART:20260724T143000Z
+DTEND:20260724T150000Z
+SUMMARY:Draw This\, Then Die! — Ep 4
+DESCRIPTION:https://anicalendar.netlify.app/anime/draw-this-then-die-188525/
+URL:https://anicalendar.netlify.app/anime/draw-this-then-die-188525/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-188525-5@anicalendar.netlify.app
+DTSTAMP:20260731T143000Z
+DTSTART:20260731T143000Z
+DTEND:20260731T150000Z
+SUMMARY:Draw This\, Then Die! — Ep 5
+DESCRIPTION:https://anicalendar.netlify.app/anime/draw-this-then-die-188525/
+URL:https://anicalendar.netlify.app/anime/draw-this-then-die-188525/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-188525-6@anicalendar.netlify.app
+DTSTAMP:20260807T143000Z
+DTSTART:20260807T143000Z
+DTEND:20260807T150000Z
+SUMMARY:Draw This\, Then Die! — Ep 6
+DESCRIPTION:https://anicalendar.netlify.app/anime/draw-this-then-die-188525/
+URL:https://anicalendar.netlify.app/anime/draw-this-then-die-188525/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-188525-7@anicalendar.netlify.app
+DTSTAMP:20260814T143000Z
+DTSTART:20260814T143000Z
+DTEND:20260814T150000Z
+SUMMARY:Draw This\, Then Die! — Ep 7
+DESCRIPTION:https://anicalendar.netlify.app/anime/draw-this-then-die-188525/
+URL:https://anicalendar.netlify.app/anime/draw-this-then-die-188525/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-188525-8@anicalendar.netlify.app
+DTSTAMP:20260821T143000Z
+DTSTART:20260821T143000Z
+DTEND:20260821T150000Z
+SUMMARY:Draw This\, Then Die! — Ep 8
+DESCRIPTION:https://anicalendar.netlify.app/anime/draw-this-then-die-188525/
+URL:https://anicalendar.netlify.app/anime/draw-this-then-die-188525/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-185692-2@anicalendar.netlify.app
@@ -3492,67 +3573,67 @@ DESCRIPTION:https://anicalendar.netlify.app/anime/magilumiere-magical-girls-inc-
 URL:https://anicalendar.netlify.app/anime/magilumiere-magical-girls-inc-season-2-185692/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-196356-1@anicalendar.netlify.app
-DTSTAMP:20260708T143000Z
-DTSTART:20260708T143000Z
-DTEND:20260708T150000Z
-SUMMARY:My Stepmother and Stepsisters Aren’t Wicked — Ep 1
-DESCRIPTION:https://anicalendar.netlify.app/anime/my-stepmother-and-stepsisters-arent-wicked-196356/
-URL:https://anicalendar.netlify.app/anime/my-stepmother-and-stepsisters-arent-wicked-196356/
+UID:anical-204060-2@anicalendar.netlify.app
+DTSTAMP:20260712T083000Z
+DTSTART:20260712T083000Z
+DTEND:20260712T090000Z
+SUMMARY:Iron Wok Jan! — Ep 2
+DESCRIPTION:https://anicalendar.netlify.app/anime/iron-wok-jan-204060/
+URL:https://anicalendar.netlify.app/anime/iron-wok-jan-204060/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-196356-2@anicalendar.netlify.app
-DTSTAMP:20260715T143000Z
-DTSTART:20260715T143000Z
-DTEND:20260715T150000Z
-SUMMARY:My Stepmother and Stepsisters Aren’t Wicked — Ep 2
-DESCRIPTION:https://anicalendar.netlify.app/anime/my-stepmother-and-stepsisters-arent-wicked-196356/
-URL:https://anicalendar.netlify.app/anime/my-stepmother-and-stepsisters-arent-wicked-196356/
+UID:anical-204060-3@anicalendar.netlify.app
+DTSTAMP:20260719T083000Z
+DTSTART:20260719T083000Z
+DTEND:20260719T090000Z
+SUMMARY:Iron Wok Jan! — Ep 3
+DESCRIPTION:https://anicalendar.netlify.app/anime/iron-wok-jan-204060/
+URL:https://anicalendar.netlify.app/anime/iron-wok-jan-204060/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-196356-3@anicalendar.netlify.app
-DTSTAMP:20260722T143000Z
-DTSTART:20260722T143000Z
-DTEND:20260722T150000Z
-SUMMARY:My Stepmother and Stepsisters Aren’t Wicked — Ep 3
-DESCRIPTION:https://anicalendar.netlify.app/anime/my-stepmother-and-stepsisters-arent-wicked-196356/
-URL:https://anicalendar.netlify.app/anime/my-stepmother-and-stepsisters-arent-wicked-196356/
+UID:anical-204060-4@anicalendar.netlify.app
+DTSTAMP:20260726T083000Z
+DTSTART:20260726T083000Z
+DTEND:20260726T090000Z
+SUMMARY:Iron Wok Jan! — Ep 4
+DESCRIPTION:https://anicalendar.netlify.app/anime/iron-wok-jan-204060/
+URL:https://anicalendar.netlify.app/anime/iron-wok-jan-204060/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-196356-4@anicalendar.netlify.app
-DTSTAMP:20260729T143000Z
-DTSTART:20260729T143000Z
-DTEND:20260729T150000Z
-SUMMARY:My Stepmother and Stepsisters Aren’t Wicked — Ep 4
-DESCRIPTION:https://anicalendar.netlify.app/anime/my-stepmother-and-stepsisters-arent-wicked-196356/
-URL:https://anicalendar.netlify.app/anime/my-stepmother-and-stepsisters-arent-wicked-196356/
+UID:anical-204060-5@anicalendar.netlify.app
+DTSTAMP:20260802T083000Z
+DTSTART:20260802T083000Z
+DTEND:20260802T090000Z
+SUMMARY:Iron Wok Jan! — Ep 5
+DESCRIPTION:https://anicalendar.netlify.app/anime/iron-wok-jan-204060/
+URL:https://anicalendar.netlify.app/anime/iron-wok-jan-204060/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-196356-5@anicalendar.netlify.app
-DTSTAMP:20260805T143000Z
-DTSTART:20260805T143000Z
-DTEND:20260805T150000Z
-SUMMARY:My Stepmother and Stepsisters Aren’t Wicked — Ep 5
-DESCRIPTION:https://anicalendar.netlify.app/anime/my-stepmother-and-stepsisters-arent-wicked-196356/
-URL:https://anicalendar.netlify.app/anime/my-stepmother-and-stepsisters-arent-wicked-196356/
+UID:anical-204060-6@anicalendar.netlify.app
+DTSTAMP:20260809T083000Z
+DTSTART:20260809T083000Z
+DTEND:20260809T090000Z
+SUMMARY:Iron Wok Jan! — Ep 6
+DESCRIPTION:https://anicalendar.netlify.app/anime/iron-wok-jan-204060/
+URL:https://anicalendar.netlify.app/anime/iron-wok-jan-204060/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-196356-6@anicalendar.netlify.app
-DTSTAMP:20260812T143000Z
-DTSTART:20260812T143000Z
-DTEND:20260812T150000Z
-SUMMARY:My Stepmother and Stepsisters Aren’t Wicked — Ep 6
-DESCRIPTION:https://anicalendar.netlify.app/anime/my-stepmother-and-stepsisters-arent-wicked-196356/
-URL:https://anicalendar.netlify.app/anime/my-stepmother-and-stepsisters-arent-wicked-196356/
+UID:anical-204060-7@anicalendar.netlify.app
+DTSTAMP:20260816T083000Z
+DTSTART:20260816T083000Z
+DTEND:20260816T090000Z
+SUMMARY:Iron Wok Jan! — Ep 7
+DESCRIPTION:https://anicalendar.netlify.app/anime/iron-wok-jan-204060/
+URL:https://anicalendar.netlify.app/anime/iron-wok-jan-204060/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-196356-7@anicalendar.netlify.app
-DTSTAMP:20260819T143000Z
-DTSTART:20260819T143000Z
-DTEND:20260819T150000Z
-SUMMARY:My Stepmother and Stepsisters Aren’t Wicked — Ep 7
-DESCRIPTION:https://anicalendar.netlify.app/anime/my-stepmother-and-stepsisters-arent-wicked-196356/
-URL:https://anicalendar.netlify.app/anime/my-stepmother-and-stepsisters-arent-wicked-196356/
+UID:anical-204060-8@anicalendar.netlify.app
+DTSTAMP:20260823T083000Z
+DTSTART:20260823T083000Z
+DTEND:20260823T090000Z
+SUMMARY:Iron Wok Jan! — Ep 8
+DESCRIPTION:https://anicalendar.netlify.app/anime/iron-wok-jan-204060/
+URL:https://anicalendar.netlify.app/anime/iron-wok-jan-204060/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-196017-2@anicalendar.netlify.app
@@ -3616,69 +3697,6 @@ DTEND:20260822T153000Z
 SUMMARY:Grow Up Show — Ep 8
 DESCRIPTION:https://anicalendar.netlify.app/anime/grow-up-show-196017/
 URL:https://anicalendar.netlify.app/anime/grow-up-show-196017/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-204060-2@anicalendar.netlify.app
-DTSTAMP:20260712T083000Z
-DTSTART:20260712T083000Z
-DTEND:20260712T090000Z
-SUMMARY:Iron Wok Jan! — Ep 2
-DESCRIPTION:https://anicalendar.netlify.app/anime/iron-wok-jan-204060/
-URL:https://anicalendar.netlify.app/anime/iron-wok-jan-204060/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-204060-3@anicalendar.netlify.app
-DTSTAMP:20260719T083000Z
-DTSTART:20260719T083000Z
-DTEND:20260719T090000Z
-SUMMARY:Iron Wok Jan! — Ep 3
-DESCRIPTION:https://anicalendar.netlify.app/anime/iron-wok-jan-204060/
-URL:https://anicalendar.netlify.app/anime/iron-wok-jan-204060/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-204060-4@anicalendar.netlify.app
-DTSTAMP:20260726T083000Z
-DTSTART:20260726T083000Z
-DTEND:20260726T090000Z
-SUMMARY:Iron Wok Jan! — Ep 4
-DESCRIPTION:https://anicalendar.netlify.app/anime/iron-wok-jan-204060/
-URL:https://anicalendar.netlify.app/anime/iron-wok-jan-204060/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-204060-5@anicalendar.netlify.app
-DTSTAMP:20260802T083000Z
-DTSTART:20260802T083000Z
-DTEND:20260802T090000Z
-SUMMARY:Iron Wok Jan! — Ep 5
-DESCRIPTION:https://anicalendar.netlify.app/anime/iron-wok-jan-204060/
-URL:https://anicalendar.netlify.app/anime/iron-wok-jan-204060/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-204060-6@anicalendar.netlify.app
-DTSTAMP:20260809T083000Z
-DTSTART:20260809T083000Z
-DTEND:20260809T090000Z
-SUMMARY:Iron Wok Jan! — Ep 6
-DESCRIPTION:https://anicalendar.netlify.app/anime/iron-wok-jan-204060/
-URL:https://anicalendar.netlify.app/anime/iron-wok-jan-204060/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-204060-7@anicalendar.netlify.app
-DTSTAMP:20260816T083000Z
-DTSTART:20260816T083000Z
-DTEND:20260816T090000Z
-SUMMARY:Iron Wok Jan! — Ep 7
-DESCRIPTION:https://anicalendar.netlify.app/anime/iron-wok-jan-204060/
-URL:https://anicalendar.netlify.app/anime/iron-wok-jan-204060/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-204060-8@anicalendar.netlify.app
-DTSTAMP:20260823T083000Z
-DTSTART:20260823T083000Z
-DTEND:20260823T090000Z
-SUMMARY:Iron Wok Jan! — Ep 8
-DESCRIPTION:https://anicalendar.netlify.app/anime/iron-wok-jan-204060/
-URL:https://anicalendar.netlify.app/anime/iron-wok-jan-204060/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-203490-2@anicalendar.netlify.app
@@ -3868,15 +3886,6 @@ DTEND:20260820T143000Z
 SUMMARY:BanG Dream! YUME∞MITA — Ep 10
 DESCRIPTION:https://anicalendar.netlify.app/anime/bang-dream-yumemita-198376/
 URL:https://anicalendar.netlify.app/anime/bang-dream-yumemita-198376/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-209669-3@anicalendar.netlify.app
-DTSTAMP:20260708T160000Z
-DTSTART:20260708T160000Z
-DTEND:20260708T163000Z
-SUMMARY:Hana-Kimi Season 2 — Ep 3
-DESCRIPTION:https://anicalendar.netlify.app/anime/hana-kimi-season-2-209669/
-URL:https://anicalendar.netlify.app/anime/hana-kimi-season-2-209669/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-209669-4@anicalendar.netlify.app
@@ -4365,6 +4374,60 @@ DESCRIPTION:https://anicalendar.netlify.app/anime/shiranuhi-176373/
 URL:https://anicalendar.netlify.app/anime/shiranuhi-176373/
 END:VEVENT
 BEGIN:VEVENT
+UID:anical-207254-2@anicalendar.netlify.app
+DTSTAMP:20260715T154400Z
+DTSTART:20260715T154400Z
+DTEND:20260715T161400Z
+SUMMARY:Thunder 3 — Ep 2
+DESCRIPTION:https://anicalendar.netlify.app/anime/thunder-3-207254/
+URL:https://anicalendar.netlify.app/anime/thunder-3-207254/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-207254-3@anicalendar.netlify.app
+DTSTAMP:20260722T154400Z
+DTSTART:20260722T154400Z
+DTEND:20260722T161400Z
+SUMMARY:Thunder 3 — Ep 3
+DESCRIPTION:https://anicalendar.netlify.app/anime/thunder-3-207254/
+URL:https://anicalendar.netlify.app/anime/thunder-3-207254/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-207254-4@anicalendar.netlify.app
+DTSTAMP:20260729T154400Z
+DTSTART:20260729T154400Z
+DTEND:20260729T161400Z
+SUMMARY:Thunder 3 — Ep 4
+DESCRIPTION:https://anicalendar.netlify.app/anime/thunder-3-207254/
+URL:https://anicalendar.netlify.app/anime/thunder-3-207254/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-207254-5@anicalendar.netlify.app
+DTSTAMP:20260805T154400Z
+DTSTART:20260805T154400Z
+DTEND:20260805T161400Z
+SUMMARY:Thunder 3 — Ep 5
+DESCRIPTION:https://anicalendar.netlify.app/anime/thunder-3-207254/
+URL:https://anicalendar.netlify.app/anime/thunder-3-207254/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-207254-6@anicalendar.netlify.app
+DTSTAMP:20260812T154400Z
+DTSTART:20260812T154400Z
+DTEND:20260812T161400Z
+SUMMARY:Thunder 3 — Ep 6
+DESCRIPTION:https://anicalendar.netlify.app/anime/thunder-3-207254/
+URL:https://anicalendar.netlify.app/anime/thunder-3-207254/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-207254-7@anicalendar.netlify.app
+DTSTAMP:20260819T154400Z
+DTSTART:20260819T154400Z
+DTEND:20260819T161400Z
+SUMMARY:Thunder 3 — Ep 7
+DESCRIPTION:https://anicalendar.netlify.app/anime/thunder-3-207254/
+URL:https://anicalendar.netlify.app/anime/thunder-3-207254/
+END:VEVENT
+BEGIN:VEVENT
 UID:anical-195833-2@anicalendar.netlify.app
 DTSTAMP:20260713T140000Z
 DTSTART:20260713T140000Z
@@ -4419,67 +4482,13 @@ DESCRIPTION:https://anicalendar.netlify.app/anime/flaming-dodgeball-girl-danko-1
 URL:https://anicalendar.netlify.app/anime/flaming-dodgeball-girl-danko-195833/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-207254-1@anicalendar.netlify.app
-DTSTAMP:20260708T154400Z
-DTSTART:20260708T154400Z
-DTEND:20260708T161400Z
-SUMMARY:Thunder 3 — Ep 1
-DESCRIPTION:https://anicalendar.netlify.app/anime/thunder-3-207254/
-URL:https://anicalendar.netlify.app/anime/thunder-3-207254/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-207254-2@anicalendar.netlify.app
-DTSTAMP:20260715T154400Z
-DTSTART:20260715T154400Z
-DTEND:20260715T161400Z
-SUMMARY:Thunder 3 — Ep 2
-DESCRIPTION:https://anicalendar.netlify.app/anime/thunder-3-207254/
-URL:https://anicalendar.netlify.app/anime/thunder-3-207254/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-207254-3@anicalendar.netlify.app
-DTSTAMP:20260722T154400Z
-DTSTART:20260722T154400Z
-DTEND:20260722T161400Z
-SUMMARY:Thunder 3 — Ep 3
-DESCRIPTION:https://anicalendar.netlify.app/anime/thunder-3-207254/
-URL:https://anicalendar.netlify.app/anime/thunder-3-207254/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-207254-4@anicalendar.netlify.app
-DTSTAMP:20260729T154400Z
-DTSTART:20260729T154400Z
-DTEND:20260729T161400Z
-SUMMARY:Thunder 3 — Ep 4
-DESCRIPTION:https://anicalendar.netlify.app/anime/thunder-3-207254/
-URL:https://anicalendar.netlify.app/anime/thunder-3-207254/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-207254-5@anicalendar.netlify.app
-DTSTAMP:20260805T154400Z
-DTSTART:20260805T154400Z
-DTEND:20260805T161400Z
-SUMMARY:Thunder 3 — Ep 5
-DESCRIPTION:https://anicalendar.netlify.app/anime/thunder-3-207254/
-URL:https://anicalendar.netlify.app/anime/thunder-3-207254/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-207254-6@anicalendar.netlify.app
-DTSTAMP:20260812T154400Z
-DTSTART:20260812T154400Z
-DTEND:20260812T161400Z
-SUMMARY:Thunder 3 — Ep 6
-DESCRIPTION:https://anicalendar.netlify.app/anime/thunder-3-207254/
-URL:https://anicalendar.netlify.app/anime/thunder-3-207254/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-207254-7@anicalendar.netlify.app
-DTSTAMP:20260819T154400Z
-DTSTART:20260819T154400Z
-DTEND:20260819T161400Z
-SUMMARY:Thunder 3 — Ep 7
-DESCRIPTION:https://anicalendar.netlify.app/anime/thunder-3-207254/
-URL:https://anicalendar.netlify.app/anime/thunder-3-207254/
+UID:anical-195833-8@anicalendar.netlify.app
+DTSTAMP:20260824T140000Z
+DTSTART:20260824T140000Z
+DTEND:20260824T143000Z
+SUMMARY:Flaming Dodgeball Girl Danko — Ep 8
+DESCRIPTION:https://anicalendar.netlify.app/anime/flaming-dodgeball-girl-danko-195833/
+URL:https://anicalendar.netlify.app/anime/flaming-dodgeball-girl-danko-195833/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-213665-2@anicalendar.netlify.app
@@ -4590,6 +4599,60 @@ DESCRIPTION:https://anicalendar.netlify.app/anime/yoroi-shinden-samurai-troopers
 URL:https://anicalendar.netlify.app/anime/yoroi-shinden-samurai-troopers-cour-2-209800/
 END:VEVENT
 BEGIN:VEVENT
+UID:anical-213666-2@anicalendar.netlify.app
+DTSTAMP:20260715T130000Z
+DTSTART:20260715T130000Z
+DTEND:20260715T133000Z
+SUMMARY:Perfect Addiction — Ep 2
+DESCRIPTION:https://anicalendar.netlify.app/anime/perfect-addiction-213666/
+URL:https://anicalendar.netlify.app/anime/perfect-addiction-213666/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-213666-3@anicalendar.netlify.app
+DTSTAMP:20260722T130000Z
+DTSTART:20260722T130000Z
+DTEND:20260722T133000Z
+SUMMARY:Perfect Addiction — Ep 3
+DESCRIPTION:https://anicalendar.netlify.app/anime/perfect-addiction-213666/
+URL:https://anicalendar.netlify.app/anime/perfect-addiction-213666/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-213666-4@anicalendar.netlify.app
+DTSTAMP:20260729T130000Z
+DTSTART:20260729T130000Z
+DTEND:20260729T133000Z
+SUMMARY:Perfect Addiction — Ep 4
+DESCRIPTION:https://anicalendar.netlify.app/anime/perfect-addiction-213666/
+URL:https://anicalendar.netlify.app/anime/perfect-addiction-213666/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-213666-5@anicalendar.netlify.app
+DTSTAMP:20260805T130000Z
+DTSTART:20260805T130000Z
+DTEND:20260805T133000Z
+SUMMARY:Perfect Addiction — Ep 5
+DESCRIPTION:https://anicalendar.netlify.app/anime/perfect-addiction-213666/
+URL:https://anicalendar.netlify.app/anime/perfect-addiction-213666/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-213666-6@anicalendar.netlify.app
+DTSTAMP:20260812T130000Z
+DTSTART:20260812T130000Z
+DTEND:20260812T133000Z
+SUMMARY:Perfect Addiction — Ep 6
+DESCRIPTION:https://anicalendar.netlify.app/anime/perfect-addiction-213666/
+URL:https://anicalendar.netlify.app/anime/perfect-addiction-213666/
+END:VEVENT
+BEGIN:VEVENT
+UID:anical-213666-7@anicalendar.netlify.app
+DTSTAMP:20260819T130000Z
+DTSTART:20260819T130000Z
+DTEND:20260819T133000Z
+SUMMARY:Perfect Addiction — Ep 7
+DESCRIPTION:https://anicalendar.netlify.app/anime/perfect-addiction-213666/
+URL:https://anicalendar.netlify.app/anime/perfect-addiction-213666/
+END:VEVENT
+BEGIN:VEVENT
 UID:anical-196223-1@anicalendar.netlify.app
 DTSTAMP:20260718T150000Z
 DTSTART:20260718T150000Z
@@ -4680,15 +4743,6 @@ DESCRIPTION:https://anicalendar.netlify.app/anime/onegai-aipri-206523/
 URL:https://anicalendar.netlify.app/anime/onegai-aipri-206523/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-205772-13@anicalendar.netlify.app
-DTSTAMP:20260708T145600Z
-DTSTART:20260708T145600Z
-DTEND:20260708T152600Z
-SUMMARY:Candy Caries — Ep 13
-DESCRIPTION:https://anicalendar.netlify.app/anime/candy-caries-205772/
-URL:https://anicalendar.netlify.app/anime/candy-caries-205772/
-END:VEVENT
-BEGIN:VEVENT
 UID:anical-205772-14@anicalendar.netlify.app
 DTSTAMP:20260715T145600Z
 DTSTART:20260715T145600Z
@@ -4741,15 +4795,6 @@ DTEND:20260819T152600Z
 SUMMARY:Candy Caries — Ep 19
 DESCRIPTION:https://anicalendar.netlify.app/anime/candy-caries-205772/
 URL:https://anicalendar.netlify.app/anime/candy-caries-205772/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-211232-1@anicalendar.netlify.app
-DTSTAMP:20260708T010000Z
-DTSTART:20260708T010000Z
-DTEND:20260708T013000Z
-SUMMARY:Majo no Tani no Yoru — Ep 1
-DESCRIPTION:https://anicalendar.netlify.app/anime/majo-no-tani-no-yoru-211232/
-URL:https://anicalendar.netlify.app/anime/majo-no-tani-no-yoru-211232/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-204269-14@anicalendar.netlify.app
@@ -4918,63 +4963,63 @@ UID:anical-213750-1@anicalendar.netlify.app
 DTSTAMP:20260710T000000Z
 DTSTART:20260710T000000Z
 DTEND:20260710T003000Z
-SUMMARY:Bananya At-Home Party — Ep 1
-DESCRIPTION:https://anicalendar.netlify.app/anime/bananya-at-home-party-213750/
-URL:https://anicalendar.netlify.app/anime/bananya-at-home-party-213750/
+SUMMARY:Bananya 10th Anniversary Special — Ep 1
+DESCRIPTION:https://anicalendar.netlify.app/anime/bananya-10th-anniversary-special-213750/
+URL:https://anicalendar.netlify.app/anime/bananya-10th-anniversary-special-213750/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-213750-2@anicalendar.netlify.app
-DTSTAMP:20260717T000000Z
-DTSTART:20260717T000000Z
-DTEND:20260717T003000Z
-SUMMARY:Bananya At-Home Party — Ep 2
-DESCRIPTION:https://anicalendar.netlify.app/anime/bananya-at-home-party-213750/
-URL:https://anicalendar.netlify.app/anime/bananya-at-home-party-213750/
+UID:anical-213961-2@anicalendar.netlify.app
+DTSTAMP:20260715T150000Z
+DTSTART:20260715T150000Z
+DTEND:20260715T153000Z
+SUMMARY:Youjo Shenki 2 — Ep 2
+DESCRIPTION:https://anicalendar.netlify.app/anime/youjo-shenki-2-213961/
+URL:https://anicalendar.netlify.app/anime/youjo-shenki-2-213961/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-213750-3@anicalendar.netlify.app
-DTSTAMP:20260724T000000Z
-DTSTART:20260724T000000Z
-DTEND:20260724T003000Z
-SUMMARY:Bananya At-Home Party — Ep 3
-DESCRIPTION:https://anicalendar.netlify.app/anime/bananya-at-home-party-213750/
-URL:https://anicalendar.netlify.app/anime/bananya-at-home-party-213750/
+UID:anical-213961-3@anicalendar.netlify.app
+DTSTAMP:20260722T150000Z
+DTSTART:20260722T150000Z
+DTEND:20260722T153000Z
+SUMMARY:Youjo Shenki 2 — Ep 3
+DESCRIPTION:https://anicalendar.netlify.app/anime/youjo-shenki-2-213961/
+URL:https://anicalendar.netlify.app/anime/youjo-shenki-2-213961/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-213750-4@anicalendar.netlify.app
-DTSTAMP:20260731T000000Z
-DTSTART:20260731T000000Z
-DTEND:20260731T003000Z
-SUMMARY:Bananya At-Home Party — Ep 4
-DESCRIPTION:https://anicalendar.netlify.app/anime/bananya-at-home-party-213750/
-URL:https://anicalendar.netlify.app/anime/bananya-at-home-party-213750/
+UID:anical-213961-4@anicalendar.netlify.app
+DTSTAMP:20260729T150000Z
+DTSTART:20260729T150000Z
+DTEND:20260729T153000Z
+SUMMARY:Youjo Shenki 2 — Ep 4
+DESCRIPTION:https://anicalendar.netlify.app/anime/youjo-shenki-2-213961/
+URL:https://anicalendar.netlify.app/anime/youjo-shenki-2-213961/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-213750-5@anicalendar.netlify.app
-DTSTAMP:20260807T000000Z
-DTSTART:20260807T000000Z
-DTEND:20260807T003000Z
-SUMMARY:Bananya At-Home Party — Ep 5
-DESCRIPTION:https://anicalendar.netlify.app/anime/bananya-at-home-party-213750/
-URL:https://anicalendar.netlify.app/anime/bananya-at-home-party-213750/
+UID:anical-213961-5@anicalendar.netlify.app
+DTSTAMP:20260805T150000Z
+DTSTART:20260805T150000Z
+DTEND:20260805T153000Z
+SUMMARY:Youjo Shenki 2 — Ep 5
+DESCRIPTION:https://anicalendar.netlify.app/anime/youjo-shenki-2-213961/
+URL:https://anicalendar.netlify.app/anime/youjo-shenki-2-213961/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-213750-6@anicalendar.netlify.app
-DTSTAMP:20260814T000000Z
-DTSTART:20260814T000000Z
-DTEND:20260814T003000Z
-SUMMARY:Bananya At-Home Party — Ep 6
-DESCRIPTION:https://anicalendar.netlify.app/anime/bananya-at-home-party-213750/
-URL:https://anicalendar.netlify.app/anime/bananya-at-home-party-213750/
+UID:anical-213961-6@anicalendar.netlify.app
+DTSTAMP:20260812T150000Z
+DTSTART:20260812T150000Z
+DTEND:20260812T153000Z
+SUMMARY:Youjo Shenki 2 — Ep 6
+DESCRIPTION:https://anicalendar.netlify.app/anime/youjo-shenki-2-213961/
+URL:https://anicalendar.netlify.app/anime/youjo-shenki-2-213961/
 END:VEVENT
 BEGIN:VEVENT
-UID:anical-213750-7@anicalendar.netlify.app
-DTSTAMP:20260821T000000Z
-DTSTART:20260821T000000Z
-DTEND:20260821T003000Z
-SUMMARY:Bananya At-Home Party — Ep 7
-DESCRIPTION:https://anicalendar.netlify.app/anime/bananya-at-home-party-213750/
-URL:https://anicalendar.netlify.app/anime/bananya-at-home-party-213750/
+UID:anical-213961-7@anicalendar.netlify.app
+DTSTAMP:20260819T150000Z
+DTSTART:20260819T150000Z
+DTEND:20260819T153000Z
+SUMMARY:Youjo Shenki 2 — Ep 7
+DESCRIPTION:https://anicalendar.netlify.app/anime/youjo-shenki-2-213961/
+URL:https://anicalendar.netlify.app/anime/youjo-shenki-2-213961/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-208824-1@anicalendar.netlify.app
@@ -5101,69 +5146,6 @@ DTEND:20260822T000000Z
 SUMMARY:Pan no Akachan (TV) — Ep 8
 DESCRIPTION:https://anicalendar.netlify.app/anime/pan-no-akachan-tv-212308/
 URL:https://anicalendar.netlify.app/anime/pan-no-akachan-tv-212308/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-213961-1@anicalendar.netlify.app
-DTSTAMP:20260708T150000Z
-DTSTART:20260708T150000Z
-DTEND:20260708T153000Z
-SUMMARY:Youjo Shenki 2 — Ep 1
-DESCRIPTION:https://anicalendar.netlify.app/anime/youjo-shenki-2-213961/
-URL:https://anicalendar.netlify.app/anime/youjo-shenki-2-213961/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-213961-2@anicalendar.netlify.app
-DTSTAMP:20260715T150000Z
-DTSTART:20260715T150000Z
-DTEND:20260715T153000Z
-SUMMARY:Youjo Shenki 2 — Ep 2
-DESCRIPTION:https://anicalendar.netlify.app/anime/youjo-shenki-2-213961/
-URL:https://anicalendar.netlify.app/anime/youjo-shenki-2-213961/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-213961-3@anicalendar.netlify.app
-DTSTAMP:20260722T150000Z
-DTSTART:20260722T150000Z
-DTEND:20260722T153000Z
-SUMMARY:Youjo Shenki 2 — Ep 3
-DESCRIPTION:https://anicalendar.netlify.app/anime/youjo-shenki-2-213961/
-URL:https://anicalendar.netlify.app/anime/youjo-shenki-2-213961/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-213961-4@anicalendar.netlify.app
-DTSTAMP:20260729T150000Z
-DTSTART:20260729T150000Z
-DTEND:20260729T153000Z
-SUMMARY:Youjo Shenki 2 — Ep 4
-DESCRIPTION:https://anicalendar.netlify.app/anime/youjo-shenki-2-213961/
-URL:https://anicalendar.netlify.app/anime/youjo-shenki-2-213961/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-213961-5@anicalendar.netlify.app
-DTSTAMP:20260805T150000Z
-DTSTART:20260805T150000Z
-DTEND:20260805T153000Z
-SUMMARY:Youjo Shenki 2 — Ep 5
-DESCRIPTION:https://anicalendar.netlify.app/anime/youjo-shenki-2-213961/
-URL:https://anicalendar.netlify.app/anime/youjo-shenki-2-213961/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-213961-6@anicalendar.netlify.app
-DTSTAMP:20260812T150000Z
-DTSTART:20260812T150000Z
-DTEND:20260812T153000Z
-SUMMARY:Youjo Shenki 2 — Ep 6
-DESCRIPTION:https://anicalendar.netlify.app/anime/youjo-shenki-2-213961/
-URL:https://anicalendar.netlify.app/anime/youjo-shenki-2-213961/
-END:VEVENT
-BEGIN:VEVENT
-UID:anical-213961-7@anicalendar.netlify.app
-DTSTAMP:20260819T150000Z
-DTSTART:20260819T150000Z
-DTEND:20260819T153000Z
-SUMMARY:Youjo Shenki 2 — Ep 7
-DESCRIPTION:https://anicalendar.netlify.app/anime/youjo-shenki-2-213961/
-URL:https://anicalendar.netlify.app/anime/youjo-shenki-2-213961/
 END:VEVENT
 BEGIN:VEVENT
 UID:anical-213908-1@anicalendar.netlify.app
