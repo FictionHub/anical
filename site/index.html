@@ -223,6 +223,10 @@
   @media(max-width:1080px){main{grid-template-columns:minmax(0,1fr)}}
   /* what's new since last visit */
   .whatsnew{display:flex;align-items:center;gap:10px;background:linear-gradient(90deg,rgba(139,92,246,.16),var(--bg2));border:1px solid var(--line);border-radius:12px;padding:8px 12px;margin-bottom:12px;box-shadow:var(--shadow)}
+  .loadwarn{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:linear-gradient(90deg,rgba(245,158,11,.16),var(--bg2));border:1px solid var(--premiere);border-radius:12px;padding:8px 12px;margin-bottom:12px;font-size:13px}
+  .loadwarn span{flex:1;min-width:180px;color:var(--txt)}
+  .loadwarn button{font-size:12px;padding:5px 10px}
+  .loadwarn .lw-x{background:transparent;border:none;color:var(--muted);padding:5px 8px}
   .wn-label{font-size:13px;font-weight:700;white-space:nowrap}
   .wn-list{display:flex;gap:6px;overflow-x:auto;flex:1;-webkit-overflow-scrolling:touch}
   .wn-cover{width:30px;height:40px;object-fit:cover;border-radius:4px;flex:none;cursor:pointer;background:#000;transition:.12s}
@@ -588,6 +592,7 @@
 
 <main id="main" tabindex="-1">
   <section>
+    <div class="loadwarn" id="loadWarn" style="display:none"></div>
     <div class="whatsnew" id="whatsNew" style="display:none"></div>
     <div class="chips" id="genreChips"></div>
     <div class="cal" id="calWrap"></div>
@@ -966,7 +971,7 @@ async function loadModalExtras(id){
     }catch(e){}
   }
 }
-async function fetchSeason(season,year){
+async function fetchSeason(season,year,report){
   const key=season+"-"+year;
   if(state.seasonCache.has(key)) return state.seasonCache.get(key);
   // 3 pages (150) fully covers a normal season; bounded so a month view (≤3
@@ -987,17 +992,20 @@ async function fetchSeason(season,year){
     all=all.concat(json.data.Page.media); more=json.data.Page.pageInfo.hasNextPage; page++;
   }
   if(!aborted) state.seasonCache.set(key,all);   // don't cache a rate-limited partial; let a later view retry
+  else if(report) report.rateLimited=true;       // signal the caller that data is incomplete
   return all;
 }
 async function loadDataForRange(start,end){
   const seasons=seasonsForRange(start,end);
-  const results=await Promise.allSettled(seasons.map(s=>fetchSeason(s.season,s.year)));
-  let media=[],ok=false;
-  for(const r of results){ if(r.status==="fulfilled"){ media=media.concat(r.value); ok=true; } }
+  const report={rateLimited:false};
+  const results=await Promise.allSettled(seasons.map(s=>fetchSeason(s.season,s.year,report)));
+  let media=[],ok=false,failed=0;
+  for(const r of results){ if(r.status==="fulfilled"){ media=media.concat(r.value); ok=true; } else failed++; }
   if(!ok) throw new Error("All season fetches failed");
   const seen=new Set(),out=[];
   for(const md of media){ if(!seen.has(md.id)){ seen.add(md.id); out.push(md); } }
-  return out;
+  // partial = at least one season is missing/incomplete (hard failure or rate-limited)
+  return { media:out, partial: report.rateLimited || failed>0 };
 }
 
 /* ---------- "what's new since your last visit" ---------- */
@@ -2318,7 +2326,9 @@ async function load(){
   setStatus(true,"Pulling latest releases from AniList…");
   try{
     const {start,end}=visibleRange();
-    state.media=await loadDataForRange(start,end);
+    const res=await loadDataForRange(start,end);
+    state.media=res.media;
+    showLoadWarning(res.partial ? "partial" : null);
     buildGenreOptions();
     buildStreamOptions();
     buildTagOptions();
@@ -2333,9 +2343,23 @@ async function load(){
   }catch(err){
     console.error(err);
     useFallback();
+    showLoadWarning("failed");
     setStatus(false,"⚠ Live fetch failed — showing offline sample data. Click Refresh to retry.");
     $("footer").textContent="Network/API unavailable. Showing a small embedded sample so the app still works offline.";
   }
+}
+// Visible banner when AniList data is incomplete (rate-limited) or unreachable,
+// with a one-click Retry. kind: "partial" | "failed" | null (hide).
+function showLoadWarning(kind){
+  const el=$("loadWarn"); if(!el) return;
+  if(!kind){ el.style.display="none"; el.innerHTML=""; return; }
+  const msg = kind==="failed"
+    ? "⚠ Couldn't reach AniList — showing sample data."
+    : "⚠ Some releases couldn't load (AniList rate limit) — a few titles may be missing.";
+  el.style.display="";
+  el.innerHTML=`<span>${msg}</span><button id="loadWarnRetry">↻ Retry</button><button class="lw-x" id="loadWarnX" aria-label="Dismiss">✕</button>`;
+  $("loadWarnRetry").onclick=()=>{ state.seasonCache.clear(); showLoadWarning(null); load(); };
+  $("loadWarnX").onclick=()=>{ el.style.display="none"; };
 }
 function setStatus(loading,text){ document.body.classList.toggle("loading",loading); $("statusText").textContent=text; }
 
