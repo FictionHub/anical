@@ -743,7 +743,7 @@ function toggleHidden(id){
 }
 /* ⭐ watchlist ("My list") */
 function isWatched(id){ return state.watch.has(String(id)); }
-function starSpan(id){ const on=isWatched(id); return `<span class="star ${on?'on':''}" data-watch="${esc(String(id))}" title="Add to My List">${on?'★':'☆'}</span>`; }
+function starSpan(id){ const on=isWatched(id); return `<span class="star ${on?'on':''}" role="button" tabindex="0" aria-label="${on?'Remove from My List':'Add to My List'}" data-watch="${esc(String(id))}" title="Add to My List">${on?'★':'☆'}</span>`; }
 function setStar(el,on){ el.classList.toggle("on",on); if(el.tagName==="BUTTON") el.textContent=on?"★ In My List":"☆ Add to My List"; else el.textContent=on?"★":"☆"; }
 function toggleWatch(id){
   id=String(id);
@@ -916,7 +916,7 @@ async function loadOnThisDay(){
   const items=(media||[]).filter(m=>m.startDate&&m.startDate.year&&m.startDate.year<curY&&m.startDate.month===now.getMonth()+1&&m.startDate.day===now.getDate()&&!(state.hideNSFW&&m.isAdult)&&!isHidden(m.id)).slice(0,8);
   if(!items.length){ card.style.display="none"; return; }
   card.style.display="";
-  $("onThisDay").innerHTML=items.map(m=>{ const yrs=curY-m.startDate.year; return `<div class="prow" data-otd="${m.id}">
+  $("onThisDay").innerHTML=items.map(m=>{ const yrs=curY-m.startDate.year; return `<div class="prow" role="button" tabindex="0" aria-label="${esc(title(m))}" data-otd="${m.id}">
     <img src="${esc((m.coverImage&&m.coverImage.medium)||"")}" alt="" loading="lazy">
     <div class="info"><div class="pt">${esc(title(m))}</div><div class="meta" style="margin-top:3px">Premiered ${m.startDate.year} · ${yrs} yr${yrs===1?"":"s"} ago</div></div></div>`; }).join("");
   $("onThisDay").querySelectorAll("[data-otd]").forEach(el=>el.onclick=()=>openShowById(el.dataset.otd));
@@ -935,7 +935,7 @@ function recCoversHTML(nodes){
   const items=(nodes||[]).map(n=>n&&n.mediaRecommendation).filter(m=>m&&m.id&&!(state.hideNSFW&&m.isAdult)&&!isHidden(m.id));
   if(!items.length) return "";
   return `<h4 style="margin:16px 0 6px">You might also like</h4><div class="wn-list">`+
-    items.slice(0,10).map(m=>`<img class="wn-cover" data-rec="${m.id}" src="${esc((m.coverImage&&m.coverImage.medium)||"")}" alt="${esc(title(m))}" title="${esc(title(m))}" loading="lazy">`).join("")+`</div>`;
+    items.slice(0,10).map(m=>`<img class="wn-cover" role="button" tabindex="0" data-rec="${m.id}" src="${esc((m.coverImage&&m.coverImage.medium)||"")}" alt="${esc(title(m))}" title="${esc(title(m))}" loading="lazy">`).join("")+`</div>`;
 }
 const studioCache=new Map();
 async function fetchStudioMedia(studioId){
@@ -950,7 +950,7 @@ function studioCoversHTML(studio, excludeId){
   const items=(studio&&studio.media&&studio.media.nodes||[]).filter(m=>m&&m.id && String(m.id)!==String(excludeId) && !(state.hideNSFW&&m.isAdult) && !isHidden(m.id));
   if(!items.length) return "";
   return `<h4 style="margin:16px 0 6px">More from ${esc(studio.name)}</h4><div class="wn-list">`+
-    items.slice(0,10).map(m=>`<img class="wn-cover" data-rec="${m.id}" src="${esc((m.coverImage&&m.coverImage.medium)||"")}" alt="${esc(title(m))}" title="${esc(title(m))}" loading="lazy">`).join("")+`</div>`;
+    items.slice(0,10).map(m=>`<img class="wn-cover" role="button" tabindex="0" data-rec="${m.id}" src="${esc((m.coverImage&&m.coverImage.medium)||"")}" alt="${esc(title(m))}" title="${esc(title(m))}" loading="lazy">`).join("")+`</div>`;
 }
 async function loadModalExtras(id){
   let data; try{ data=await fetchModalExtras(id); }catch(e){ return; }
@@ -1017,7 +1017,7 @@ function renderWhatsNew(){
   if(!fresh.length){ box.style.display="none"; return; }
   const since=LAST_VISIT?(" since "+new Date(LAST_VISIT).toLocaleDateString([], {month:"short",day:"numeric"})):"";
   box.innerHTML=`<span class="wn-label">✨ ${fresh.length} new${since}</span>`+
-    `<div class="wn-list">`+fresh.slice(0,14).map(md=>`<img class="wn-cover" data-wn="${md.id}" src="${md.coverImage&&md.coverImage.medium?esc(md.coverImage.medium):""}" alt="${esc(title(md))}" title="${esc(title(md))}" loading="lazy">`).join("")+`</div>`+
+    `<div class="wn-list">`+fresh.slice(0,14).map(md=>`<img class="wn-cover" role="button" tabindex="0" data-wn="${md.id}" src="${md.coverImage&&md.coverImage.medium?esc(md.coverImage.medium):""}" alt="${esc(title(md))}" title="${esc(title(md))}" loading="lazy">`).join("")+`</div>`+
     `<button class="wn-x" id="wnDismiss" title="Dismiss">✕</button>`;
   box.style.display="";
   box.querySelectorAll("[data-wn]").forEach(el=>{ el.onclick=()=>{ const md=state.media.find(x=>String(x.id)===el.dataset.wn); if(md) openDetail(md,(nextAir(md)||{}).episode||1); }; });
@@ -1199,7 +1199,7 @@ function relTime(d){
 
 /* ---------- bells ---------- */
 function isFollowed(id){ return state.notify.has(String(id)); }
-function bellSpan(id){ const on=isFollowed(id); return `<span class="bell ${on?'on':''}" data-bell="${id}" title="Toggle episode alerts">${on?'🔔':'🔕'}</span>`; }
+function bellSpan(id){ const on=isFollowed(id); return `<span class="bell ${on?'on':''}" role="button" tabindex="0" aria-label="${on?'Disable episode alerts':'Enable episode alerts'}" data-bell="${id}" title="Toggle episode alerts">${on?'🔔':'🔕'}</span>`; }
 function setBellEl(el,on){
   el.classList.toggle("on",on);
   if(el.classList.contains("bellbtn")) el.textContent = on?"🔔 Alerts on":"🔕 Notify me";
@@ -1343,6 +1343,7 @@ function dayCell(date, evs, opts){
   if(opts.max && evs.length>show.length){
     const more=document.createElement("div"); more.className="more";
     more.textContent="+"+(evs.length-show.length)+" more";
+    kbdButton(more, "Show all "+evs.length+" releases on "+date.toLocaleDateString([], {month:"long",day:"numeric"}));
     more.onclick=()=>openDay(date,evs);
     cell.appendChild(more);
   }
@@ -1358,8 +1359,17 @@ function eventEl(e){
   el.innerHTML=(md.coverImage&&md.coverImage.medium?`<img src="${md.coverImage.medium}" alt="" loading="lazy">`:"")+
     `<span class="t">${esc(title(md))}</span><span class="epn">${prem?"★EP1":fin?"🏁FIN":"E"+e.episode}</span>`;
   el.title=title(md)+" · Ep "+e.episode+(fin?" (Season finale)":"")+" · "+fmtTime(e.ts);
+  kbdButton(el, title(md)+", episode "+e.episode+(prem?" premiere":fin?" finale":"")+", "+fmtTime(e.ts));
   el.onclick=(ev)=>{ ev.stopPropagation(); openDetail(md,e.episode); };
   return el;
+}
+// Make a non-<button> element behave like a button for keyboard users: focusable,
+// announced as a button, and activatable with Enter/Space (see the global keydown
+// handler that turns those keys into a click on role="button" elements).
+function kbdButton(el, label){
+  el.setAttribute("role","button");
+  el.setAttribute("tabindex","0");
+  if(label) el.setAttribute("aria-label",label);
 }
 function dowHeader(){
   const h=document.createElement("div"); h.className="dow";
@@ -1418,6 +1428,7 @@ function agendaRow(e,now){
   const md=e.media, prem=e.episode===1, fin=isFinale(md,e.episode), past=e.ts<=now;
   const row=document.createElement("div");
   row.className="arow"+(prem?" prem":fin?" fin":"")+(past?" past":"")+(isWatched(md.id)?" mine":"");
+  kbdButton(row, title(md)+", episode "+e.episode+(prem?" premiere":fin?" finale":"")+", "+fmtTime(e.ts));
   row.innerHTML=
     `<span class="atime">${fmtTime(e.ts)}</span>`+
     (md.coverImage&&md.coverImage.medium?`<img src="${md.coverImage.medium}" alt="" loading="lazy">`:"")+
@@ -1492,7 +1503,7 @@ function renderSidebars(){
   const rv=(state.recent||[]).filter(r=>r&&!isHidden(r.id));
   const rvCard=$("rvCard");
   if(rvCard){
-    if(rv.length){ rvCard.style.display=""; $("recentRail").innerHTML=`<div class="wn-list">`+rv.slice(0,18).map(r=>`<img class="wn-cover" data-rv="${esc(String(r.id))}" src="${esc(r.img||"")}" alt="${esc(r.t||"")}" title="${esc(r.t||"")}" loading="lazy">`).join("")+`</div>`; }
+    if(rv.length){ rvCard.style.display=""; $("recentRail").innerHTML=`<div class="wn-list">`+rv.slice(0,18).map(r=>`<img class="wn-cover" role="button" tabindex="0" data-rv="${esc(String(r.id))}" src="${esc(r.img||"")}" alt="${esc(r.t||"")}" title="${esc(r.t||"")}" loading="lazy">`).join("")+`</div>`; }
     else rvCard.style.display="none";
   }
 
@@ -1504,7 +1515,7 @@ function renderSidebars(){
 function sdTs(sd){ return sd&&sd.year?Math.floor(new Date(sd.year,(sd.month||1)-1,sd.day||1).getTime()/1000):null; }
 function prow(md,sub,prem){
   const score=md.averageScore?`<span class="pill score">★ ${md.averageScore}</span>`:"";
-  return `<div class="prow${isWatched(md.id)?" mine":""}" data-mid="${md.id}">
+  return `<div class="prow${isWatched(md.id)?" mine":""}" role="button" tabindex="0" aria-label="${esc(title(md))}" data-mid="${md.id}">
     <img src="${md.coverImage&&md.coverImage.medium?md.coverImage.medium:""}" alt="" loading="lazy">
     <div class="info">
       <div class="pt">${esc(title(md))}</div>
@@ -1553,7 +1564,7 @@ function trailerEmbedHTML(md){
   else return "";
   const thumb = tr.site==="youtube" ? `https://i.ytimg.com/vi/${encodeURIComponent(tr.id)}/hqdefault.jpg`
               : (md.bannerImage || (md.coverImage&&md.coverImage.large) || "");
-  return `<div class="trailer" data-embed="${esc(src)}" title="Play trailer">
+  return `<div class="trailer" role="button" tabindex="0" aria-label="Play trailer" data-embed="${esc(src)}" title="Play trailer">
     ${thumb?`<img src="${esc(thumb)}" alt="${esc(title(md))} trailer" loading="lazy">`:""}
     <span class="tplay">▶</span><span class="tlabel">▶ Play trailer</span>
   </div>`;
@@ -1654,7 +1665,7 @@ function renderScheduleList(md){
   const rows=nodes.slice().sort((a,b)=>a.airingAt-b.airingAt).map(n=>{
     const up=n.airingAt>now, watched=!up && n.episode<=prog;
     const mark = up ? `<span style="width:18px;flex:none"></span>`
-      : `<span class="mark ${watched?'on':''}" data-mark="${md.id}|${n.episode}" title="${watched?'Watched — click to unmark':'Mark watched (this & earlier)'}">${watched?'✓':''}</span>`;
+      : `<span class="mark ${watched?'on':''}" role="button" tabindex="0" aria-label="${watched?'Watched — mark unwatched':'Mark watched up to episode '+n.episode}" data-mark="${md.id}|${n.episode}" title="${watched?'Watched — click to unmark':'Mark watched (this & earlier)'}">${watched?'✓':''}</span>`;
     return `<div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid var(--line);${up?"":(watched?"":"opacity:.6")}">
       ${mark}
       <span style="flex:1">Episode ${n.episode}${isFinale(md,n.episode)?' <span class="pill fin">🏁 FINALE</span>':""}${up?` <span class="pill cd">in ${cdLive(n.airingAt)}</span>`:""}</span>
@@ -1669,7 +1680,7 @@ function openDay(d,evs){
   const now=Date.now()/1000;
   $("modalBody").innerHTML=evs.slice().sort((a,b)=>a.ts-b.ts).map(e=>{
     const md=e.media,prem=e.episode===1,fin=isFinale(md,e.episode),up=e.ts>now;
-    return `<div class="prow" data-mid2="${md.id}">
+    return `<div class="prow" role="button" tabindex="0" aria-label="${esc(title(md))}, episode ${e.episode}" data-mid2="${md.id}">
       <img src="${md.coverImage&&md.coverImage.medium?md.coverImage.medium:""}" alt="">
       <div class="info"><div class="pt">${esc(title(md))}</div>
         <div class="meta">${prem?'<span class="pill prem">PREMIERE</span>':''}${fin?'<span class="pill fin">🏁 FINALE</span>':''}<span class="pill">Ep ${e.episode}</span><span class="pill">${fmtTime(e.ts)}</span>${md.averageScore?`<span class="pill score">★ ${md.averageScore}</span>`:""}${up?`<span class="pill cd">in ${cdLive(e.ts)}</span>`:""}${bellSpan(md.id)}</div>
@@ -2490,6 +2501,20 @@ document.addEventListener("keydown",e=>{
   }
 });
 
+// Keyboard activation for our custom role="button" elements (calendar events,
+// agenda/sidebar rows, cover thumbnails, star/bell/mark, trailer…). Enter or Space
+// dispatches a click, which flows through all the delegated click handlers below.
+// Native <button>/<a>/form controls are left to the browser's own handling.
+document.addEventListener("keydown",e=>{
+  if(e.key!=="Enter" && e.key!==" " && e.key!=="Spacebar") return;
+  const el=e.target;
+  if(!el || !el.getAttribute || el.getAttribute("role")!=="button") return;
+  const tag=el.tagName;
+  if(tag==="BUTTON"||tag==="A"||tag==="INPUT"||tag==="SELECT"||tag==="TEXTAREA") return;
+  e.preventDefault();   // stop Space from scrolling the page
+  el.click();
+});
+
 // bell delegation (covers modal, sidebar, agenda)
 document.addEventListener("click",e=>{ const b=e.target.closest("[data-bell]"); if(b){ e.preventDefault(); e.stopPropagation(); toggleNotify(b.dataset.bell); } });
 // event-reminder bell delegation (event cards + event modal)
@@ -2605,7 +2630,7 @@ function searchRowHTML(md){
   const sub=na ? `Next: ${new Date(na.airingAt*1000).toLocaleDateString([], {month:"short",day:"numeric",year:"numeric"})} · Ep ${na.episode}`
                : (md.startDate&&md.startDate.year ? `${md.startDate.year}` : "")+((md.status?" · "+md.status.replace(/_/g," ").toLowerCase():"")||"—");
   const sc=md.averageScore?`<span class="pill score">★ ${md.averageScore}</span>`:"";
-  return `<div class="sr-row" data-sid="${md.id}">
+  return `<div class="sr-row" role="button" tabindex="0" aria-label="${esc(title(md))}" data-sid="${md.id}">
     <img src="${md.coverImage&&md.coverImage.medium?esc(md.coverImage.medium):""}" alt="" loading="lazy">
     <div style="min-width:0"><div class="srt">${esc(title(md))}</div>
       <div class="srm"><span class="pill">${esc(FMT_LABEL[md.format]||md.format||"?")}</span>${sc}<span>${esc(sub)}</span></div>
