@@ -108,15 +108,6 @@ DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/the-ramparts-o
 URL:https://tsuzuki.netlify.app/anime/the-ramparts-of-ice-season-2-213805/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-211711-1@tsuzuki.netlify.app
-DTSTAMP:20260802T150000Z
-DTSTART:20260802T150000Z
-DTEND:20260802T153000Z
-SUMMARY:Boku no Hero Academia: I am a hero too — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/boku-no-hero-academia-i-am-a-hero-too-211711/
-URL:https://tsuzuki.netlify.app/anime/boku-no-hero-academia-i-am-a-hero-too-211711/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-211308-1@tsuzuki.netlify.app
 DTSTAMP:20260808T090100Z
 DTSTART:20260808T090100Z
@@ -124,6 +115,15 @@ DTEND:20260808T093100Z
 SUMMARY:THE RIBBON HERO — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/the-ribbon-hero-211308/
 URL:https://tsuzuki.netlify.app/anime/the-ribbon-hero-211308/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-211711-1@tsuzuki.netlify.app
+DTSTAMP:20260802T150000Z
+DTSTART:20260802T150000Z
+DTEND:20260802T153000Z
+SUMMARY:Boku no Hero Academia: I am a hero too — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/boku-no-hero-academia-i-am-a-hero-too-211711/
+URL:https://tsuzuki.netlify.app/anime/boku-no-hero-academia-i-am-a-hero-too-211711/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-209961-1@tsuzuki.netlify.app
@@ -144,15 +144,6 @@ DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/hanaori-san-st
 URL:https://tsuzuki.netlify.app/anime/hanaori-san-still-wants-to-fight-in-the-next-life-199066/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-108992-1@tsuzuki.netlify.app
-DTSTAMP:20260709T143000Z
-DTSTART:20260709T143000Z
-DTEND:20260709T150000Z
-SUMMARY:Mebius Dust — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/mebius-dust-108992/
-URL:https://tsuzuki.netlify.app/anime/mebius-dust-108992/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-208754-1@tsuzuki.netlify.app
 DTSTAMP:20260709T150000Z
 DTSTART:20260709T150000Z
@@ -160,6 +151,15 @@ DTEND:20260709T153000Z
 SUMMARY:Unanswered//butterfly: Sword Art Online — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/unansweredbutterfly-sword-art-online-208754/
 URL:https://tsuzuki.netlify.app/anime/unansweredbutterfly-sword-art-online-208754/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-108992-1@tsuzuki.netlify.app
+DTSTAMP:20260709T143000Z
+DTSTART:20260709T143000Z
+DTEND:20260709T150000Z
+SUMMARY:Mebius Dust — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/mebius-dust-108992/
+URL:https://tsuzuki.netlify.app/anime/mebius-dust-108992/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-207327-1@tsuzuki.netlify.app

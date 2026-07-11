@@ -198,15 +198,6 @@ DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/a-livid-ladys-guide
 URL:https://tsuzuki.netlify.app/anime/a-livid-ladys-guide-to-getting-even-how-i-crushed-my-homelan-199408/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-194219-f12@tsuzuki.netlify.app
-DTSTAMP:20260919T153000Z
-DTSTART:20260919T153000Z
-DTEND:20260919T160000Z
-SUMMARY:The Ogre's Bride — Finale (Ep 12)
-DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/the-ogres-bride-194219/
-URL:https://tsuzuki.netlify.app/anime/the-ogres-bride-194219/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-207674-f12@tsuzuki.netlify.app
 DTSTAMP:20260918T163000Z
 DTSTART:20260918T163000Z
@@ -214,6 +205,15 @@ DTEND:20260918T170000Z
 SUMMARY:KAMUI ---He's behind you — Finale (Ep 12)
 DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/kamui-hes-behind-you-207674/
 URL:https://tsuzuki.netlify.app/anime/kamui-hes-behind-you-207674/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-194219-f12@tsuzuki.netlify.app
+DTSTAMP:20260919T153000Z
+DTSTART:20260919T153000Z
+DTEND:20260919T160000Z
+SUMMARY:The Ogre's Bride — Finale (Ep 12)
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/the-ogres-bride-194219/
+URL:https://tsuzuki.netlify.app/anime/the-ogres-bride-194219/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-198709-f9@tsuzuki.netlify.app
