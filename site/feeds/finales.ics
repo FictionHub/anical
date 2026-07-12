@@ -63,15 +63,6 @@ DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/i-want-to-love-you-
 URL:https://tsuzuki.netlify.app/anime/i-want-to-love-you-till-your-dying-day-187260/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-184492-f24@tsuzuki.netlify.app
-DTSTAMP:20260912T092600Z
-DTSTART:20260912T092600Z
-DTEND:20260912T095600Z
-SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Finale (Ep 24)
-DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-URL:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-159309-f12@tsuzuki.netlify.app
 DTSTAMP:20260923T143000Z
 DTSTART:20260923T143000Z
@@ -79,6 +70,15 @@ DTEND:20260923T150000Z
 SUMMARY:Trapped in a Dating Sim: The World of Otome Games is Tough for Mobs Season 2 — Finale (Ep 12)
 DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
 URL:https://tsuzuki.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-184492-f24@tsuzuki.netlify.app
+DTSTAMP:20260912T092600Z
+DTSTART:20260912T092600Z
+DTEND:20260912T095600Z
+SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Finale (Ep 24)
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
+URL:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-185542-f12@tsuzuki.netlify.app
@@ -90,15 +90,6 @@ DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/skeleton-knight-in-
 URL:https://tsuzuki.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-199111-f12@tsuzuki.netlify.app
-DTSTAMP:20260921T150000Z
-DTSTART:20260921T150000Z
-DTEND:20260921T153000Z
-SUMMARY:Grand Blue Dreaming Season 3 — Finale (Ep 12)
-DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/grand-blue-dreaming-season-3-199111/
-URL:https://tsuzuki.netlify.app/anime/grand-blue-dreaming-season-3-199111/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-198946-f13@tsuzuki.netlify.app
 DTSTAMP:20260930T120000Z
 DTSTART:20260930T120000Z
@@ -106,6 +97,15 @@ DTEND:20260930T123000Z
 SUMMARY:Clevatess Season 2 — Finale (Ep 13)
 DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
 URL:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-199111-f12@tsuzuki.netlify.app
+DTSTAMP:20260921T150000Z
+DTSTART:20260921T150000Z
+DTEND:20260921T153000Z
+SUMMARY:Grand Blue Dreaming Season 3 — Finale (Ep 12)
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/grand-blue-dreaming-season-3-199111/
+URL:https://tsuzuki.netlify.app/anime/grand-blue-dreaming-season-3-199111/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-197715-f12@tsuzuki.netlify.app
@@ -369,15 +369,6 @@ DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/candy-caries-205772
 URL:https://tsuzuki.netlify.app/anime/candy-caries-205772/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-212652-f3@tsuzuki.netlify.app
-DTSTAMP:20260820T150000Z
-DTSTART:20260820T150000Z
-DTEND:20260820T153000Z
-SUMMARY:Kidou Keisatsu Patlabor EZY File 2 — Finale (Ep 3)
-DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/kidou-keisatsu-patlabor-ezy-file-2-212652/
-URL:https://tsuzuki.netlify.app/anime/kidou-keisatsu-patlabor-ezy-file-2-212652/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-213831-f12@tsuzuki.netlify.app
 DTSTAMP:20260918T164200Z
 DTSTART:20260918T164200Z
@@ -385,5 +376,14 @@ DTEND:20260918T171200Z
 SUMMARY:Snack Hazama — Finale (Ep 12)
 DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/snack-hazama-213831/
 URL:https://tsuzuki.netlify.app/anime/snack-hazama-213831/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-212652-f3@tsuzuki.netlify.app
+DTSTAMP:20260820T150000Z
+DTSTART:20260820T150000Z
+DTEND:20260820T153000Z
+SUMMARY:Kidou Keisatsu Patlabor EZY File 2 — Finale (Ep 3)
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/kidou-keisatsu-patlabor-ezy-file-2-212652/
+URL:https://tsuzuki.netlify.app/anime/kidou-keisatsu-patlabor-ezy-file-2-212652/
 END:VEVENT
 END:VCALENDAR

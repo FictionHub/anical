@@ -9,15 +9,6 @@ NAME:Tsuzuki — Anime Premieres
 REFRESH-INTERVAL;VALUE=DURATION:PT12H
 X-PUBLISHED-TTL:PT12H
 BEGIN:VEVENT
-UID:tsuzuki-196187-1@tsuzuki.netlify.app
-DTSTAMP:20260709T145600Z
-DTSTART:20260709T145600Z
-DTEND:20260709T152600Z
-SUMMARY:Smoking Behind the Supermarket with You — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/smoking-behind-the-supermarket-with-you-196187/
-URL:https://tsuzuki.netlify.app/anime/smoking-behind-the-supermarket-with-you-196187/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-185874-1@tsuzuki.netlify.app
 DTSTAMP:20260725T140000Z
 DTSTART:20260725T140000Z
@@ -126,15 +117,6 @@ DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/boku-no-hero-a
 URL:https://tsuzuki.netlify.app/anime/boku-no-hero-academia-i-am-a-hero-too-211711/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-209961-1@tsuzuki.netlify.app
-DTSTAMP:20260709T150000Z
-DTSTART:20260709T150000Z
-DTEND:20260709T153000Z
-SUMMARY:Shibou Yuugi de Meshi wo Kuu. 44:CLOUDY BEACH — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/shibou-yuugi-de-meshi-wo-kuu-44cloudy-beach-209961/
-URL:https://tsuzuki.netlify.app/anime/shibou-yuugi-de-meshi-wo-kuu-44cloudy-beach-209961/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-199066-1@tsuzuki.netlify.app
 DTSTAMP:20260711T170000Z
 DTSTART:20260711T170000Z
@@ -142,24 +124,6 @@ DTEND:20260711T173000Z
 SUMMARY:Hanaori-san Still Wants to Fight in the Next Life — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/hanaori-san-still-wants-to-fight-in-the-next-life-199066/
 URL:https://tsuzuki.netlify.app/anime/hanaori-san-still-wants-to-fight-in-the-next-life-199066/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-208754-1@tsuzuki.netlify.app
-DTSTAMP:20260709T150000Z
-DTSTART:20260709T150000Z
-DTEND:20260709T153000Z
-SUMMARY:Unanswered//butterfly: Sword Art Online — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/unansweredbutterfly-sword-art-online-208754/
-URL:https://tsuzuki.netlify.app/anime/unansweredbutterfly-sword-art-online-208754/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-108992-1@tsuzuki.netlify.app
-DTSTAMP:20260709T143000Z
-DTSTART:20260709T143000Z
-DTEND:20260709T150000Z
-SUMMARY:Mebius Dust — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/mebius-dust-108992/
-URL:https://tsuzuki.netlify.app/anime/mebius-dust-108992/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-207327-1@tsuzuki.netlify.app
@@ -207,15 +171,6 @@ DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/toaru-anbu-no-
 URL:https://tsuzuki.netlify.app/anime/toaru-anbu-no-item-186742/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-194116-1@tsuzuki.netlify.app
-DTSTAMP:20260910T150000Z
-DTSTART:20260910T150000Z
-DTEND:20260910T153000Z
-SUMMARY:Saishuu Gakushou Hibike! Euphonium - Kouhen — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/saishuu-gakushou-hibike-euphonium-kouhen-194116/
-URL:https://tsuzuki.netlify.app/anime/saishuu-gakushou-hibike-euphonium-kouhen-194116/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-202390-1@tsuzuki.netlify.app
 DTSTAMP:20261008T150000Z
 DTSTART:20261008T150000Z
@@ -223,6 +178,15 @@ DTEND:20261008T153000Z
 SUMMARY:Girls und Panzer: Saishuushou 5 — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/girls-und-panzer-saishuushou-5-202390/
 URL:https://tsuzuki.netlify.app/anime/girls-und-panzer-saishuushou-5-202390/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-194116-1@tsuzuki.netlify.app
+DTSTAMP:20260910T150000Z
+DTSTART:20260910T150000Z
+DTEND:20260910T153000Z
+SUMMARY:Saishuu Gakushou Hibike! Euphonium - Kouhen — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/saishuu-gakushou-hibike-euphonium-kouhen-194116/
+URL:https://tsuzuki.netlify.app/anime/saishuu-gakushou-hibike-euphonium-kouhen-194116/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-202429-1@tsuzuki.netlify.app
@@ -297,13 +261,13 @@ DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/crayon-shin-ch
 URL:https://tsuzuki.netlify.app/anime/crayon-shin-chan-kikikaikai-ora-no-youkai-vacation-208829/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-213750-1@tsuzuki.netlify.app
-DTSTAMP:20260710T000000Z
-DTSTART:20260710T000000Z
-DTEND:20260710T003000Z
-SUMMARY:Bananya 10th Anniversary Special — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/bananya-10th-anniversary-special-213750/
-URL:https://tsuzuki.netlify.app/anime/bananya-10th-anniversary-special-213750/
+UID:tsuzuki-213359-1@tsuzuki.netlify.app
+DTSTAMP:20260712T182000Z
+DTSTART:20260712T182000Z
+DTEND:20260712T185000Z
+SUMMARY:Theatre of Darkness: Yamishibai 17 — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/theatre-of-darkness-yamishibai-17-213359/
+URL:https://tsuzuki.netlify.app/anime/theatre-of-darkness-yamishibai-17-213359/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-208824-1@tsuzuki.netlify.app
