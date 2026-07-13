@@ -81,6 +81,15 @@ DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/the-elusive-sa
 URL:https://tsuzuki.netlify.app/anime/the-elusive-samurai-season-2-182616/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-200929-1@tsuzuki.netlify.app
+DTSTAMP:20261210T150000Z
+DTSTART:20261210T150000Z
+DTEND:20261210T153000Z
+SUMMARY:Kusuriya no Hitorigoto: Bouhi no Hihou — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/kusuriya-no-hitorigoto-bouhi-no-hihou-200929/
+URL:https://tsuzuki.netlify.app/anime/kusuriya-no-hitorigoto-bouhi-no-hihou-200929/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-188139-1@tsuzuki.netlify.app
 DTSTAMP:20260712T144600Z
 DTSTART:20260712T144600Z
@@ -115,15 +124,6 @@ DTEND:20260802T153000Z
 SUMMARY:Boku no Hero Academia: I am a hero too — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/boku-no-hero-academia-i-am-a-hero-too-211711/
 URL:https://tsuzuki.netlify.app/anime/boku-no-hero-academia-i-am-a-hero-too-211711/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-199066-1@tsuzuki.netlify.app
-DTSTAMP:20260711T170000Z
-DTSTART:20260711T170000Z
-DTEND:20260711T173000Z
-SUMMARY:Hanaori-san Still Wants to Fight in the Next Life — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/hanaori-san-still-wants-to-fight-in-the-next-life-199066/
-URL:https://tsuzuki.netlify.app/anime/hanaori-san-still-wants-to-fight-in-the-next-life-199066/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-207327-1@tsuzuki.netlify.app
@@ -171,15 +171,6 @@ DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/toaru-anbu-no-
 URL:https://tsuzuki.netlify.app/anime/toaru-anbu-no-item-186742/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-202390-1@tsuzuki.netlify.app
-DTSTAMP:20261008T150000Z
-DTSTART:20261008T150000Z
-DTEND:20261008T153000Z
-SUMMARY:Girls und Panzer: Saishuushou 5 — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/girls-und-panzer-saishuushou-5-202390/
-URL:https://tsuzuki.netlify.app/anime/girls-und-panzer-saishuushou-5-202390/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-194116-1@tsuzuki.netlify.app
 DTSTAMP:20260910T150000Z
 DTSTART:20260910T150000Z
@@ -187,6 +178,15 @@ DTEND:20260910T153000Z
 SUMMARY:Saishuu Gakushou Hibike! Euphonium - Kouhen — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/saishuu-gakushou-hibike-euphonium-kouhen-194116/
 URL:https://tsuzuki.netlify.app/anime/saishuu-gakushou-hibike-euphonium-kouhen-194116/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-202390-1@tsuzuki.netlify.app
+DTSTAMP:20261008T150000Z
+DTSTART:20261008T150000Z
+DTEND:20261008T153000Z
+SUMMARY:Girls und Panzer: Saishuushou 5 — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/girls-und-panzer-saishuushou-5-202390/
+URL:https://tsuzuki.netlify.app/anime/girls-und-panzer-saishuushou-5-202390/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-202429-1@tsuzuki.netlify.app

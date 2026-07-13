@@ -6,8 +6,15 @@
     <atom:link href="https://tsuzuki.netlify.app/feed.xml" rel="self" type="application/rss+xml" />
     <description>Upcoming and recent anime premieres and season finales, updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Sun, 12 Jul 2026 11:47:58 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 13 Jul 2026 17:01:23 GMT</lastBuildDate>
     <ttl>720</ttl>
+    <item>
+      <title>Kusuriya no Hitorigoto: Bouhi no Hihou — Premiere (Ep 1)</title>
+      <link>https://tsuzuki.netlify.app/anime/kusuriya-no-hitorigoto-bouhi-no-hihou-200929/</link>
+      <guid isPermaLink="false">tsuzuki-rss-200929-p1</guid>
+      <pubDate>Thu, 10 Dec 2026 15:00:00 GMT</pubDate>
+      <description>Premiere: An original movie for Kusuriya no Hitorigoto Note: Relations are provisional and subject to change.</description>
+    </item>
     <item>
       <title>STEEL BALL RUN JoJo's Bizarre Adventure 2nd - 3rd STAGE — Finale (Ep 11)</title>
       <link>https://tsuzuki.netlify.app/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/</link>
@@ -350,13 +357,6 @@
       <guid isPermaLink="false">tsuzuki-rss-194116-p1</guid>
       <pubDate>Thu, 10 Sep 2026 15:00:00 GMT</pubDate>
       <description>Premiere: Sequel to Saishuu Gakushou Hibike! Euphonium - Zenpen . Note: Relations are provisional and subject to change.</description>
-    </item>
-    <item>
-      <title>BanG Dream! YUME∞MITA — Finale (Ep 13)</title>
-      <link>https://tsuzuki.netlify.app/anime/bang-dream-yumemita-198376/</link>
-      <guid isPermaLink="false">tsuzuki-rss-198376-f13</guid>
-      <pubDate>Thu, 10 Sep 2026 14:00:00 GMT</pubDate>
-      <description>Finale: Suddenly thrown together, a group of girls are now debuting as the virtual band, Mugendai Mewtype. They’ve got talent and personality, but no clue how to perform as one. Can they survive, let alone make it to the top in this unforgiving music world? (Source: Crunchyroll)</description>
     </item>
   </channel>
 </rss>
