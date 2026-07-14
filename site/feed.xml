@@ -6,7 +6,7 @@
     <atom:link href="https://tsuzuki.netlify.app/feed.xml" rel="self" type="application/rss+xml" />
     <description>Upcoming and recent anime premieres and season finales, updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 13 Jul 2026 17:01:23 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 14 Jul 2026 12:51:24 GMT</lastBuildDate>
     <ttl>720</ttl>
     <item>
       <title>Kusuriya no Hitorigoto: Bouhi no Hihou — Premiere (Ep 1)</title>
@@ -84,6 +84,13 @@
       <guid isPermaLink="false">tsuzuki-rss-178868-p1</guid>
       <pubDate>Wed, 07 Oct 2026 14:46:00 GMT</pubDate>
       <description>Premiere: In celebration of &quot;Magic Knight Rayearth” animes' 30th anniversary, a new animation project has been launched! Note: Title and relations are provisional and subject to change.</description>
+    </item>
+    <item>
+      <title>Kanata Kara — Premiere (Ep 1)</title>
+      <link>https://tsuzuki.netlify.app/anime/kanata-kara-209463/</link>
+      <guid isPermaLink="false">tsuzuki-rss-209463-p1</guid>
+      <pubDate>Sun, 04 Oct 2026 15:00:00 GMT</pubDate>
+      <description>Premiere: On her way home from school one day, Noriko is unexpectedly plunged into a strange and extraordinary fantasy world. Her troubles compound exponentially when she is rescued and befriended by a handsome young man by the name of Izark. He may be brave and courageous, but inside…</description>
     </item>
     <item>
       <title>Blue Box Season 2 — Premiere (Ep 1)</title>
@@ -350,13 +357,6 @@
       <guid isPermaLink="false">tsuzuki-rss-184492-f24</guid>
       <pubDate>Sat, 12 Sep 2026 09:26:00 GMT</pubDate>
       <description>Finale: The fourth season of Mairimashita! Iruma-kun. Suzuki Iruma and all thirteen students of the Misfit Class must perform to reach Rank 4 at the Music Festival. (Source: Crunchyroll News)</description>
-    </item>
-    <item>
-      <title>Saishuu Gakushou Hibike! Euphonium - Kouhen — Premiere (Ep 1)</title>
-      <link>https://tsuzuki.netlify.app/anime/saishuu-gakushou-hibike-euphonium-kouhen-194116/</link>
-      <guid isPermaLink="false">tsuzuki-rss-194116-p1</guid>
-      <pubDate>Thu, 10 Sep 2026 15:00:00 GMT</pubDate>
-      <description>Premiere: Sequel to Saishuu Gakushou Hibike! Euphonium - Zenpen . Note: Relations are provisional and subject to change.</description>
     </item>
   </channel>
 </rss>

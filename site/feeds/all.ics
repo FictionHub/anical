@@ -504,15 +504,6 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/black-torch-187538/
 URL:https://tsuzuki.netlify.app/anime/black-torch-187538/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-210031-2@tsuzuki.netlify.app
-DTSTAMP:20260712T080000Z
-DTSTART:20260712T080000Z
-DTEND:20260712T083000Z
-SUMMARY:You and I Are Polar Opposites Season 2 — Ep 2
-DESCRIPTION:https://tsuzuki.netlify.app/anime/you-and-i-are-polar-opposites-season-2-210031/
-URL:https://tsuzuki.netlify.app/anime/you-and-i-are-polar-opposites-season-2-210031/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-210031-3@tsuzuki.netlify.app
 DTSTAMP:20260719T080000Z
 DTSTART:20260719T080000Z
@@ -565,69 +556,6 @@ DTEND:20260823T083000Z
 SUMMARY:You and I Are Polar Opposites Season 2 — Ep 8
 DESCRIPTION:https://tsuzuki.netlify.app/anime/you-and-i-are-polar-opposites-season-2-210031/
 URL:https://tsuzuki.netlify.app/anime/you-and-i-are-polar-opposites-season-2-210031/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-103303-2@tsuzuki.netlify.app
-DTSTAMP:20260712T140000Z
-DTSTART:20260712T140000Z
-DTEND:20260712T143000Z
-SUMMARY:Sparks of Tomorrow — Ep 2
-DESCRIPTION:https://tsuzuki.netlify.app/anime/sparks-of-tomorrow-103303/
-URL:https://tsuzuki.netlify.app/anime/sparks-of-tomorrow-103303/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-103303-3@tsuzuki.netlify.app
-DTSTAMP:20260719T140000Z
-DTSTART:20260719T140000Z
-DTEND:20260719T143000Z
-SUMMARY:Sparks of Tomorrow — Ep 3
-DESCRIPTION:https://tsuzuki.netlify.app/anime/sparks-of-tomorrow-103303/
-URL:https://tsuzuki.netlify.app/anime/sparks-of-tomorrow-103303/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-103303-4@tsuzuki.netlify.app
-DTSTAMP:20260726T140000Z
-DTSTART:20260726T140000Z
-DTEND:20260726T143000Z
-SUMMARY:Sparks of Tomorrow — Ep 4
-DESCRIPTION:https://tsuzuki.netlify.app/anime/sparks-of-tomorrow-103303/
-URL:https://tsuzuki.netlify.app/anime/sparks-of-tomorrow-103303/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-103303-5@tsuzuki.netlify.app
-DTSTAMP:20260802T140000Z
-DTSTART:20260802T140000Z
-DTEND:20260802T143000Z
-SUMMARY:Sparks of Tomorrow — Ep 5
-DESCRIPTION:https://tsuzuki.netlify.app/anime/sparks-of-tomorrow-103303/
-URL:https://tsuzuki.netlify.app/anime/sparks-of-tomorrow-103303/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-103303-6@tsuzuki.netlify.app
-DTSTAMP:20260809T140000Z
-DTSTART:20260809T140000Z
-DTEND:20260809T143000Z
-SUMMARY:Sparks of Tomorrow — Ep 6
-DESCRIPTION:https://tsuzuki.netlify.app/anime/sparks-of-tomorrow-103303/
-URL:https://tsuzuki.netlify.app/anime/sparks-of-tomorrow-103303/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-103303-7@tsuzuki.netlify.app
-DTSTAMP:20260816T140000Z
-DTSTART:20260816T140000Z
-DTEND:20260816T143000Z
-SUMMARY:Sparks of Tomorrow — Ep 7
-DESCRIPTION:https://tsuzuki.netlify.app/anime/sparks-of-tomorrow-103303/
-URL:https://tsuzuki.netlify.app/anime/sparks-of-tomorrow-103303/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-103303-8@tsuzuki.netlify.app
-DTSTAMP:20260823T140000Z
-DTSTART:20260823T140000Z
-DTEND:20260823T143000Z
-SUMMARY:Sparks of Tomorrow — Ep 8
-DESCRIPTION:https://tsuzuki.netlify.app/anime/sparks-of-tomorrow-103303/
-URL:https://tsuzuki.netlify.app/anime/sparks-of-tomorrow-103303/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-187260-2@tsuzuki.netlify.app
@@ -691,6 +619,69 @@ DTEND:20260825T130000Z
 SUMMARY:I Want to Love You Till Your Dying Day — Ep 8
 DESCRIPTION:https://tsuzuki.netlify.app/anime/i-want-to-love-you-till-your-dying-day-187260/
 URL:https://tsuzuki.netlify.app/anime/i-want-to-love-you-till-your-dying-day-187260/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-103303-2@tsuzuki.netlify.app
+DTSTAMP:20260712T140000Z
+DTSTART:20260712T140000Z
+DTEND:20260712T143000Z
+SUMMARY:Sparks of Tomorrow — Ep 2
+DESCRIPTION:https://tsuzuki.netlify.app/anime/sparks-of-tomorrow-103303/
+URL:https://tsuzuki.netlify.app/anime/sparks-of-tomorrow-103303/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-103303-3@tsuzuki.netlify.app
+DTSTAMP:20260719T140000Z
+DTSTART:20260719T140000Z
+DTEND:20260719T143000Z
+SUMMARY:Sparks of Tomorrow — Ep 3
+DESCRIPTION:https://tsuzuki.netlify.app/anime/sparks-of-tomorrow-103303/
+URL:https://tsuzuki.netlify.app/anime/sparks-of-tomorrow-103303/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-103303-4@tsuzuki.netlify.app
+DTSTAMP:20260726T140000Z
+DTSTART:20260726T140000Z
+DTEND:20260726T143000Z
+SUMMARY:Sparks of Tomorrow — Ep 4
+DESCRIPTION:https://tsuzuki.netlify.app/anime/sparks-of-tomorrow-103303/
+URL:https://tsuzuki.netlify.app/anime/sparks-of-tomorrow-103303/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-103303-5@tsuzuki.netlify.app
+DTSTAMP:20260802T140000Z
+DTSTART:20260802T140000Z
+DTEND:20260802T143000Z
+SUMMARY:Sparks of Tomorrow — Ep 5
+DESCRIPTION:https://tsuzuki.netlify.app/anime/sparks-of-tomorrow-103303/
+URL:https://tsuzuki.netlify.app/anime/sparks-of-tomorrow-103303/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-103303-6@tsuzuki.netlify.app
+DTSTAMP:20260809T140000Z
+DTSTART:20260809T140000Z
+DTEND:20260809T143000Z
+SUMMARY:Sparks of Tomorrow — Ep 6
+DESCRIPTION:https://tsuzuki.netlify.app/anime/sparks-of-tomorrow-103303/
+URL:https://tsuzuki.netlify.app/anime/sparks-of-tomorrow-103303/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-103303-7@tsuzuki.netlify.app
+DTSTAMP:20260816T140000Z
+DTSTART:20260816T140000Z
+DTEND:20260816T143000Z
+SUMMARY:Sparks of Tomorrow — Ep 7
+DESCRIPTION:https://tsuzuki.netlify.app/anime/sparks-of-tomorrow-103303/
+URL:https://tsuzuki.netlify.app/anime/sparks-of-tomorrow-103303/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-103303-8@tsuzuki.netlify.app
+DTSTAMP:20260823T140000Z
+DTSTART:20260823T140000Z
+DTEND:20260823T143000Z
+SUMMARY:Sparks of Tomorrow — Ep 8
+DESCRIPTION:https://tsuzuki.netlify.app/anime/sparks-of-tomorrow-103303/
+URL:https://tsuzuki.netlify.app/anime/sparks-of-tomorrow-103303/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-197754-15@tsuzuki.netlify.app
@@ -936,58 +927,67 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-
 URL:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-171110-14@tsuzuki.netlify.app
-DTSTAMP:20260718T083000Z
-DTSTART:20260718T083000Z
-DTEND:20260718T090000Z
-SUMMARY:Ascendance of a Bookworm: Adopted Daughter of an Archduke — Ep 14
-DESCRIPTION:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
-URL:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
+UID:tsuzuki-185542-2@tsuzuki.netlify.app
+DTSTAMP:20260713T130000Z
+DTSTART:20260713T130000Z
+DTEND:20260713T133000Z
+SUMMARY:Skeleton Knight in Another World Season 2 — Ep 2
+DESCRIPTION:https://tsuzuki.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
+URL:https://tsuzuki.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-171110-15@tsuzuki.netlify.app
-DTSTAMP:20260725T083000Z
-DTSTART:20260725T083000Z
-DTEND:20260725T090000Z
-SUMMARY:Ascendance of a Bookworm: Adopted Daughter of an Archduke — Ep 15
-DESCRIPTION:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
-URL:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
+UID:tsuzuki-185542-3@tsuzuki.netlify.app
+DTSTAMP:20260720T130000Z
+DTSTART:20260720T130000Z
+DTEND:20260720T133000Z
+SUMMARY:Skeleton Knight in Another World Season 2 — Ep 3
+DESCRIPTION:https://tsuzuki.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
+URL:https://tsuzuki.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-171110-16@tsuzuki.netlify.app
-DTSTAMP:20260801T083000Z
-DTSTART:20260801T083000Z
-DTEND:20260801T090000Z
-SUMMARY:Ascendance of a Bookworm: Adopted Daughter of an Archduke — Ep 16
-DESCRIPTION:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
-URL:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
+UID:tsuzuki-185542-4@tsuzuki.netlify.app
+DTSTAMP:20260727T130000Z
+DTSTART:20260727T130000Z
+DTEND:20260727T133000Z
+SUMMARY:Skeleton Knight in Another World Season 2 — Ep 4
+DESCRIPTION:https://tsuzuki.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
+URL:https://tsuzuki.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-171110-17@tsuzuki.netlify.app
-DTSTAMP:20260808T083000Z
-DTSTART:20260808T083000Z
-DTEND:20260808T090000Z
-SUMMARY:Ascendance of a Bookworm: Adopted Daughter of an Archduke — Ep 17
-DESCRIPTION:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
-URL:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
+UID:tsuzuki-185542-5@tsuzuki.netlify.app
+DTSTAMP:20260803T130000Z
+DTSTART:20260803T130000Z
+DTEND:20260803T133000Z
+SUMMARY:Skeleton Knight in Another World Season 2 — Ep 5
+DESCRIPTION:https://tsuzuki.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
+URL:https://tsuzuki.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-171110-18@tsuzuki.netlify.app
-DTSTAMP:20260815T083000Z
-DTSTART:20260815T083000Z
-DTEND:20260815T090000Z
-SUMMARY:Ascendance of a Bookworm: Adopted Daughter of an Archduke — Ep 18
-DESCRIPTION:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
-URL:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
+UID:tsuzuki-185542-6@tsuzuki.netlify.app
+DTSTAMP:20260810T130000Z
+DTSTART:20260810T130000Z
+DTEND:20260810T133000Z
+SUMMARY:Skeleton Knight in Another World Season 2 — Ep 6
+DESCRIPTION:https://tsuzuki.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
+URL:https://tsuzuki.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-171110-19@tsuzuki.netlify.app
-DTSTAMP:20260822T083000Z
-DTSTART:20260822T083000Z
-DTEND:20260822T090000Z
-SUMMARY:Ascendance of a Bookworm: Adopted Daughter of an Archduke — Ep 19
-DESCRIPTION:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
-URL:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
+UID:tsuzuki-185542-7@tsuzuki.netlify.app
+DTSTAMP:20260817T130000Z
+DTSTART:20260817T130000Z
+DTEND:20260817T133000Z
+SUMMARY:Skeleton Knight in Another World Season 2 — Ep 7
+DESCRIPTION:https://tsuzuki.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
+URL:https://tsuzuki.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-185542-8@tsuzuki.netlify.app
+DTSTAMP:20260824T130000Z
+DTSTART:20260824T130000Z
+DTEND:20260824T133000Z
+SUMMARY:Skeleton Knight in Another World Season 2 — Ep 8
+DESCRIPTION:https://tsuzuki.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
+URL:https://tsuzuki.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-177699-2@tsuzuki.netlify.app
@@ -1053,130 +1053,58 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/the-ghost-in-the-shell-177699/
 URL:https://tsuzuki.netlify.app/anime/the-ghost-in-the-shell-177699/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-185542-2@tsuzuki.netlify.app
-DTSTAMP:20260713T130000Z
-DTSTART:20260713T130000Z
-DTEND:20260713T133000Z
-SUMMARY:Skeleton Knight in Another World Season 2 — Ep 2
-DESCRIPTION:https://tsuzuki.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
-URL:https://tsuzuki.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
+UID:tsuzuki-171110-14@tsuzuki.netlify.app
+DTSTAMP:20260718T083000Z
+DTSTART:20260718T083000Z
+DTEND:20260718T090000Z
+SUMMARY:Ascendance of a Bookworm: Adopted Daughter of an Archduke — Ep 14
+DESCRIPTION:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
+URL:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-185542-3@tsuzuki.netlify.app
-DTSTAMP:20260720T130000Z
-DTSTART:20260720T130000Z
-DTEND:20260720T133000Z
-SUMMARY:Skeleton Knight in Another World Season 2 — Ep 3
-DESCRIPTION:https://tsuzuki.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
-URL:https://tsuzuki.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
+UID:tsuzuki-171110-15@tsuzuki.netlify.app
+DTSTAMP:20260725T083000Z
+DTSTART:20260725T083000Z
+DTEND:20260725T090000Z
+SUMMARY:Ascendance of a Bookworm: Adopted Daughter of an Archduke — Ep 15
+DESCRIPTION:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
+URL:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-185542-4@tsuzuki.netlify.app
-DTSTAMP:20260727T130000Z
-DTSTART:20260727T130000Z
-DTEND:20260727T133000Z
-SUMMARY:Skeleton Knight in Another World Season 2 — Ep 4
-DESCRIPTION:https://tsuzuki.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
-URL:https://tsuzuki.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
+UID:tsuzuki-171110-16@tsuzuki.netlify.app
+DTSTAMP:20260801T083000Z
+DTSTART:20260801T083000Z
+DTEND:20260801T090000Z
+SUMMARY:Ascendance of a Bookworm: Adopted Daughter of an Archduke — Ep 16
+DESCRIPTION:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
+URL:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-185542-5@tsuzuki.netlify.app
-DTSTAMP:20260803T130000Z
-DTSTART:20260803T130000Z
-DTEND:20260803T133000Z
-SUMMARY:Skeleton Knight in Another World Season 2 — Ep 5
-DESCRIPTION:https://tsuzuki.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
-URL:https://tsuzuki.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
+UID:tsuzuki-171110-17@tsuzuki.netlify.app
+DTSTAMP:20260808T083000Z
+DTSTART:20260808T083000Z
+DTEND:20260808T090000Z
+SUMMARY:Ascendance of a Bookworm: Adopted Daughter of an Archduke — Ep 17
+DESCRIPTION:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
+URL:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-185542-6@tsuzuki.netlify.app
-DTSTAMP:20260810T130000Z
-DTSTART:20260810T130000Z
-DTEND:20260810T133000Z
-SUMMARY:Skeleton Knight in Another World Season 2 — Ep 6
-DESCRIPTION:https://tsuzuki.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
-URL:https://tsuzuki.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
+UID:tsuzuki-171110-18@tsuzuki.netlify.app
+DTSTAMP:20260815T083000Z
+DTSTART:20260815T083000Z
+DTEND:20260815T090000Z
+SUMMARY:Ascendance of a Bookworm: Adopted Daughter of an Archduke — Ep 18
+DESCRIPTION:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
+URL:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-185542-7@tsuzuki.netlify.app
-DTSTAMP:20260817T130000Z
-DTSTART:20260817T130000Z
-DTEND:20260817T133000Z
-SUMMARY:Skeleton Knight in Another World Season 2 — Ep 7
-DESCRIPTION:https://tsuzuki.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
-URL:https://tsuzuki.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-185542-8@tsuzuki.netlify.app
-DTSTAMP:20260824T130000Z
-DTSTART:20260824T130000Z
-DTEND:20260824T133000Z
-SUMMARY:Skeleton Knight in Another World Season 2 — Ep 8
-DESCRIPTION:https://tsuzuki.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
-URL:https://tsuzuki.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-198946-2@tsuzuki.netlify.app
-DTSTAMP:20260715T120000Z
-DTSTART:20260715T120000Z
-DTEND:20260715T123000Z
-SUMMARY:Clevatess Season 2 — Ep 2
-DESCRIPTION:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
-URL:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-198946-3@tsuzuki.netlify.app
-DTSTAMP:20260722T120000Z
-DTSTART:20260722T120000Z
-DTEND:20260722T123000Z
-SUMMARY:Clevatess Season 2 — Ep 3
-DESCRIPTION:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
-URL:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-198946-4@tsuzuki.netlify.app
-DTSTAMP:20260729T120000Z
-DTSTART:20260729T120000Z
-DTEND:20260729T123000Z
-SUMMARY:Clevatess Season 2 — Ep 4
-DESCRIPTION:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
-URL:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-198946-5@tsuzuki.netlify.app
-DTSTAMP:20260805T120000Z
-DTSTART:20260805T120000Z
-DTEND:20260805T123000Z
-SUMMARY:Clevatess Season 2 — Ep 5
-DESCRIPTION:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
-URL:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-198946-6@tsuzuki.netlify.app
-DTSTAMP:20260812T120000Z
-DTSTART:20260812T120000Z
-DTEND:20260812T123000Z
-SUMMARY:Clevatess Season 2 — Ep 6
-DESCRIPTION:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
-URL:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-198946-7@tsuzuki.netlify.app
-DTSTAMP:20260819T120000Z
-DTSTART:20260819T120000Z
-DTEND:20260819T123000Z
-SUMMARY:Clevatess Season 2 — Ep 7
-DESCRIPTION:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
-URL:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-198946-8@tsuzuki.netlify.app
-DTSTAMP:20260826T120000Z
-DTSTART:20260826T120000Z
-DTEND:20260826T123000Z
-SUMMARY:Clevatess Season 2 — Ep 8
-DESCRIPTION:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
-URL:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
+UID:tsuzuki-171110-19@tsuzuki.netlify.app
+DTSTAMP:20260822T083000Z
+DTSTART:20260822T083000Z
+DTEND:20260822T090000Z
+SUMMARY:Ascendance of a Bookworm: Adopted Daughter of an Archduke — Ep 19
+DESCRIPTION:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
+URL:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-199111-2@tsuzuki.netlify.app
@@ -1240,6 +1168,69 @@ DTEND:20260824T153000Z
 SUMMARY:Grand Blue Dreaming Season 3 — Ep 8
 DESCRIPTION:https://tsuzuki.netlify.app/anime/grand-blue-dreaming-season-3-199111/
 URL:https://tsuzuki.netlify.app/anime/grand-blue-dreaming-season-3-199111/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-198946-2@tsuzuki.netlify.app
+DTSTAMP:20260715T120000Z
+DTSTART:20260715T120000Z
+DTEND:20260715T123000Z
+SUMMARY:Clevatess Season 2 — Ep 2
+DESCRIPTION:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
+URL:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-198946-3@tsuzuki.netlify.app
+DTSTAMP:20260722T120000Z
+DTSTART:20260722T120000Z
+DTEND:20260722T123000Z
+SUMMARY:Clevatess Season 2 — Ep 3
+DESCRIPTION:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
+URL:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-198946-4@tsuzuki.netlify.app
+DTSTAMP:20260729T120000Z
+DTSTART:20260729T120000Z
+DTEND:20260729T123000Z
+SUMMARY:Clevatess Season 2 — Ep 4
+DESCRIPTION:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
+URL:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-198946-5@tsuzuki.netlify.app
+DTSTAMP:20260805T120000Z
+DTSTART:20260805T120000Z
+DTEND:20260805T123000Z
+SUMMARY:Clevatess Season 2 — Ep 5
+DESCRIPTION:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
+URL:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-198946-6@tsuzuki.netlify.app
+DTSTAMP:20260812T120000Z
+DTSTART:20260812T120000Z
+DTEND:20260812T123000Z
+SUMMARY:Clevatess Season 2 — Ep 6
+DESCRIPTION:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
+URL:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-198946-7@tsuzuki.netlify.app
+DTSTAMP:20260819T120000Z
+DTSTART:20260819T120000Z
+DTEND:20260819T123000Z
+SUMMARY:Clevatess Season 2 — Ep 7
+DESCRIPTION:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
+URL:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-198946-8@tsuzuki.netlify.app
+DTSTAMP:20260826T120000Z
+DTSTART:20260826T120000Z
+DTEND:20260826T123000Z
+SUMMARY:Clevatess Season 2 — Ep 8
+DESCRIPTION:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
+URL:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-208044-4@tsuzuki.netlify.app
@@ -1485,6 +1476,114 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/jaadugar-a-witch-in-mongolia-19056
 URL:https://tsuzuki.netlify.app/anime/jaadugar-a-witch-in-mongolia-190569/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-199748-3@tsuzuki.netlify.app
+DTSTAMP:20260717T133000Z
+DTSTART:20260717T133000Z
+DTEND:20260717T140000Z
+SUMMARY:I Became a Legend After My 10 Year-Long Last Stand — Ep 3
+DESCRIPTION:https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
+URL:https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-199748-4@tsuzuki.netlify.app
+DTSTAMP:20260724T133000Z
+DTSTART:20260724T133000Z
+DTEND:20260724T140000Z
+SUMMARY:I Became a Legend After My 10 Year-Long Last Stand — Ep 4
+DESCRIPTION:https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
+URL:https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-199748-5@tsuzuki.netlify.app
+DTSTAMP:20260731T133000Z
+DTSTART:20260731T133000Z
+DTEND:20260731T140000Z
+SUMMARY:I Became a Legend After My 10 Year-Long Last Stand — Ep 5
+DESCRIPTION:https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
+URL:https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-199748-6@tsuzuki.netlify.app
+DTSTAMP:20260807T133000Z
+DTSTART:20260807T133000Z
+DTEND:20260807T140000Z
+SUMMARY:I Became a Legend After My 10 Year-Long Last Stand — Ep 6
+DESCRIPTION:https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
+URL:https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-199748-7@tsuzuki.netlify.app
+DTSTAMP:20260814T133000Z
+DTSTART:20260814T133000Z
+DTEND:20260814T140000Z
+SUMMARY:I Became a Legend After My 10 Year-Long Last Stand — Ep 7
+DESCRIPTION:https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
+URL:https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-199748-8@tsuzuki.netlify.app
+DTSTAMP:20260821T133000Z
+DTSTART:20260821T133000Z
+DTEND:20260821T140000Z
+SUMMARY:I Became a Legend After My 10 Year-Long Last Stand — Ep 8
+DESCRIPTION:https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
+URL:https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-201514-3@tsuzuki.netlify.app
+DTSTAMP:20260718T173800Z
+DTSTART:20260718T173800Z
+DTEND:20260718T180800Z
+SUMMARY:Rich Girl Caretaker: I'm Secretly the Caregiver of the Most Popular Girl in This Rich Kid School — Ep 3
+DESCRIPTION:https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
+URL:https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-201514-4@tsuzuki.netlify.app
+DTSTAMP:20260725T173800Z
+DTSTART:20260725T173800Z
+DTEND:20260725T180800Z
+SUMMARY:Rich Girl Caretaker: I'm Secretly the Caregiver of the Most Popular Girl in This Rich Kid School — Ep 4
+DESCRIPTION:https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
+URL:https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-201514-5@tsuzuki.netlify.app
+DTSTAMP:20260801T173800Z
+DTSTART:20260801T173800Z
+DTEND:20260801T180800Z
+SUMMARY:Rich Girl Caretaker: I'm Secretly the Caregiver of the Most Popular Girl in This Rich Kid School — Ep 5
+DESCRIPTION:https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
+URL:https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-201514-6@tsuzuki.netlify.app
+DTSTAMP:20260808T173800Z
+DTSTART:20260808T173800Z
+DTEND:20260808T180800Z
+SUMMARY:Rich Girl Caretaker: I'm Secretly the Caregiver of the Most Popular Girl in This Rich Kid School — Ep 6
+DESCRIPTION:https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
+URL:https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-201514-7@tsuzuki.netlify.app
+DTSTAMP:20260815T173800Z
+DTSTART:20260815T173800Z
+DTEND:20260815T180800Z
+SUMMARY:Rich Girl Caretaker: I'm Secretly the Caregiver of the Most Popular Girl in This Rich Kid School — Ep 7
+DESCRIPTION:https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
+URL:https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-201514-8@tsuzuki.netlify.app
+DTSTAMP:20260822T173800Z
+DTSTART:20260822T173800Z
+DTEND:20260822T180800Z
+SUMMARY:Rich Girl Caretaker: I'm Secretly the Caregiver of the Most Popular Girl in This Rich Kid School — Ep 8
+DESCRIPTION:https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
+URL:https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-197715-4@tsuzuki.netlify.app
 DTSTAMP:20260715T150000Z
 DTSTART:20260715T150000Z
@@ -1546,123 +1645,6 @@ DTEND:20260826T153000Z
 SUMMARY:The Villager of Level 999 — Ep 10
 DESCRIPTION:https://tsuzuki.netlify.app/anime/the-villager-of-level-999-197715/
 URL:https://tsuzuki.netlify.app/anime/the-villager-of-level-999-197715/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-199748-3@tsuzuki.netlify.app
-DTSTAMP:20260717T133000Z
-DTSTART:20260717T133000Z
-DTEND:20260717T140000Z
-SUMMARY:I Became a Legend After My 10 Year-Long Last Stand — Ep 3
-DESCRIPTION:https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
-URL:https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-199748-4@tsuzuki.netlify.app
-DTSTAMP:20260724T133000Z
-DTSTART:20260724T133000Z
-DTEND:20260724T140000Z
-SUMMARY:I Became a Legend After My 10 Year-Long Last Stand — Ep 4
-DESCRIPTION:https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
-URL:https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-199748-5@tsuzuki.netlify.app
-DTSTAMP:20260731T133000Z
-DTSTART:20260731T133000Z
-DTEND:20260731T140000Z
-SUMMARY:I Became a Legend After My 10 Year-Long Last Stand — Ep 5
-DESCRIPTION:https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
-URL:https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-199748-6@tsuzuki.netlify.app
-DTSTAMP:20260807T133000Z
-DTSTART:20260807T133000Z
-DTEND:20260807T140000Z
-SUMMARY:I Became a Legend After My 10 Year-Long Last Stand — Ep 6
-DESCRIPTION:https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
-URL:https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-199748-7@tsuzuki.netlify.app
-DTSTAMP:20260814T133000Z
-DTSTART:20260814T133000Z
-DTEND:20260814T140000Z
-SUMMARY:I Became a Legend After My 10 Year-Long Last Stand — Ep 7
-DESCRIPTION:https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
-URL:https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-199748-8@tsuzuki.netlify.app
-DTSTAMP:20260821T133000Z
-DTSTART:20260821T133000Z
-DTEND:20260821T140000Z
-SUMMARY:I Became a Legend After My 10 Year-Long Last Stand — Ep 8
-DESCRIPTION:https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
-URL:https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-201514-2@tsuzuki.netlify.app
-DTSTAMP:20260711T173800Z
-DTSTART:20260711T173800Z
-DTEND:20260711T180800Z
-SUMMARY:Rich Girl Caretaker: I'm Secretly the Caregiver of the Most Popular Girl in This Rich Kid School — Ep 2
-DESCRIPTION:https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
-URL:https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-201514-3@tsuzuki.netlify.app
-DTSTAMP:20260718T173800Z
-DTSTART:20260718T173800Z
-DTEND:20260718T180800Z
-SUMMARY:Rich Girl Caretaker: I'm Secretly the Caregiver of the Most Popular Girl in This Rich Kid School — Ep 3
-DESCRIPTION:https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
-URL:https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-201514-4@tsuzuki.netlify.app
-DTSTAMP:20260725T173800Z
-DTSTART:20260725T173800Z
-DTEND:20260725T180800Z
-SUMMARY:Rich Girl Caretaker: I'm Secretly the Caregiver of the Most Popular Girl in This Rich Kid School — Ep 4
-DESCRIPTION:https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
-URL:https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-201514-5@tsuzuki.netlify.app
-DTSTAMP:20260801T173800Z
-DTSTART:20260801T173800Z
-DTEND:20260801T180800Z
-SUMMARY:Rich Girl Caretaker: I'm Secretly the Caregiver of the Most Popular Girl in This Rich Kid School — Ep 5
-DESCRIPTION:https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
-URL:https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-201514-6@tsuzuki.netlify.app
-DTSTAMP:20260808T173800Z
-DTSTART:20260808T173800Z
-DTEND:20260808T180800Z
-SUMMARY:Rich Girl Caretaker: I'm Secretly the Caregiver of the Most Popular Girl in This Rich Kid School — Ep 6
-DESCRIPTION:https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
-URL:https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-201514-7@tsuzuki.netlify.app
-DTSTAMP:20260815T173800Z
-DTSTART:20260815T173800Z
-DTEND:20260815T180800Z
-SUMMARY:Rich Girl Caretaker: I'm Secretly the Caregiver of the Most Popular Girl in This Rich Kid School — Ep 7
-DESCRIPTION:https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
-URL:https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-201514-8@tsuzuki.netlify.app
-DTSTAMP:20260822T173800Z
-DTSTART:20260822T173800Z
-DTEND:20260822T180800Z
-SUMMARY:Rich Girl Caretaker: I'm Secretly the Caregiver of the Most Popular Girl in This Rich Kid School — Ep 8
-DESCRIPTION:https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
-URL:https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-209983-3@tsuzuki.netlify.app
@@ -1845,69 +1827,6 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/love-unseen-beneath-the-clear-nigh
 URL:https://tsuzuki.netlify.app/anime/love-unseen-beneath-the-clear-night-sky-202269/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-196974-14@tsuzuki.netlify.app
-DTSTAMP:20260712T143000Z
-DTSTART:20260712T143000Z
-DTEND:20260712T150000Z
-SUMMARY:The Classroom of the Black Cat and a Witch — Ep 14
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
-URL:https://tsuzuki.netlify.app/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-196974-15@tsuzuki.netlify.app
-DTSTAMP:20260719T143000Z
-DTSTART:20260719T143000Z
-DTEND:20260719T150000Z
-SUMMARY:The Classroom of the Black Cat and a Witch — Ep 15
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
-URL:https://tsuzuki.netlify.app/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-196974-16@tsuzuki.netlify.app
-DTSTAMP:20260726T143000Z
-DTSTART:20260726T143000Z
-DTEND:20260726T150000Z
-SUMMARY:The Classroom of the Black Cat and a Witch — Ep 16
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
-URL:https://tsuzuki.netlify.app/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-196974-17@tsuzuki.netlify.app
-DTSTAMP:20260802T143000Z
-DTSTART:20260802T143000Z
-DTEND:20260802T150000Z
-SUMMARY:The Classroom of the Black Cat and a Witch — Ep 17
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
-URL:https://tsuzuki.netlify.app/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-196974-18@tsuzuki.netlify.app
-DTSTAMP:20260809T143000Z
-DTSTART:20260809T143000Z
-DTEND:20260809T150000Z
-SUMMARY:The Classroom of the Black Cat and a Witch — Ep 18
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
-URL:https://tsuzuki.netlify.app/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-196974-19@tsuzuki.netlify.app
-DTSTAMP:20260816T143000Z
-DTSTART:20260816T143000Z
-DTEND:20260816T150000Z
-SUMMARY:The Classroom of the Black Cat and a Witch — Ep 19
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
-URL:https://tsuzuki.netlify.app/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-196974-20@tsuzuki.netlify.app
-DTSTAMP:20260823T143000Z
-DTSTART:20260823T143000Z
-DTEND:20260823T150000Z
-SUMMARY:The Classroom of the Black Cat and a Witch — Ep 20
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
-URL:https://tsuzuki.netlify.app/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-169583-2@tsuzuki.netlify.app
 DTSTAMP:20260713T143000Z
 DTSTART:20260713T143000Z
@@ -1969,6 +1888,69 @@ DTEND:20260824T150000Z
 SUMMARY:Oh Boy\, Was I Wrong About Her — Ep 8
 DESCRIPTION:https://tsuzuki.netlify.app/anime/oh-boy-was-i-wrong-about-her-169583/
 URL:https://tsuzuki.netlify.app/anime/oh-boy-was-i-wrong-about-her-169583/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-196974-14@tsuzuki.netlify.app
+DTSTAMP:20260712T143000Z
+DTSTART:20260712T143000Z
+DTEND:20260712T150000Z
+SUMMARY:The Classroom of the Black Cat and a Witch — Ep 14
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
+URL:https://tsuzuki.netlify.app/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-196974-15@tsuzuki.netlify.app
+DTSTAMP:20260719T143000Z
+DTSTART:20260719T143000Z
+DTEND:20260719T150000Z
+SUMMARY:The Classroom of the Black Cat and a Witch — Ep 15
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
+URL:https://tsuzuki.netlify.app/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-196974-16@tsuzuki.netlify.app
+DTSTAMP:20260726T143000Z
+DTSTART:20260726T143000Z
+DTEND:20260726T150000Z
+SUMMARY:The Classroom of the Black Cat and a Witch — Ep 16
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
+URL:https://tsuzuki.netlify.app/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-196974-17@tsuzuki.netlify.app
+DTSTAMP:20260802T143000Z
+DTSTART:20260802T143000Z
+DTEND:20260802T150000Z
+SUMMARY:The Classroom of the Black Cat and a Witch — Ep 17
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
+URL:https://tsuzuki.netlify.app/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-196974-18@tsuzuki.netlify.app
+DTSTAMP:20260809T143000Z
+DTSTART:20260809T143000Z
+DTEND:20260809T150000Z
+SUMMARY:The Classroom of the Black Cat and a Witch — Ep 18
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
+URL:https://tsuzuki.netlify.app/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-196974-19@tsuzuki.netlify.app
+DTSTAMP:20260816T143000Z
+DTSTART:20260816T143000Z
+DTEND:20260816T150000Z
+SUMMARY:The Classroom of the Black Cat and a Witch — Ep 19
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
+URL:https://tsuzuki.netlify.app/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-196974-20@tsuzuki.netlify.app
+DTSTAMP:20260823T143000Z
+DTSTART:20260823T143000Z
+DTEND:20260823T150000Z
+SUMMARY:The Classroom of the Black Cat and a Witch — Ep 20
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
+URL:https://tsuzuki.netlify.app/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-196218-3@tsuzuki.netlify.app
@@ -2088,60 +2070,6 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/young-ladies-dont-play-fighting-ga
 URL:https://tsuzuki.netlify.app/anime/young-ladies-dont-play-fighting-games-128757/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-182616-1@tsuzuki.netlify.app
-DTSTAMP:20260717T143000Z
-DTSTART:20260717T143000Z
-DTEND:20260717T150000Z
-SUMMARY:The Elusive Samurai Season 2 — Ep 1
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-elusive-samurai-season-2-182616/
-URL:https://tsuzuki.netlify.app/anime/the-elusive-samurai-season-2-182616/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-182616-2@tsuzuki.netlify.app
-DTSTAMP:20260724T143000Z
-DTSTART:20260724T143000Z
-DTEND:20260724T150000Z
-SUMMARY:The Elusive Samurai Season 2 — Ep 2
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-elusive-samurai-season-2-182616/
-URL:https://tsuzuki.netlify.app/anime/the-elusive-samurai-season-2-182616/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-182616-3@tsuzuki.netlify.app
-DTSTAMP:20260731T143000Z
-DTSTART:20260731T143000Z
-DTEND:20260731T150000Z
-SUMMARY:The Elusive Samurai Season 2 — Ep 3
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-elusive-samurai-season-2-182616/
-URL:https://tsuzuki.netlify.app/anime/the-elusive-samurai-season-2-182616/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-182616-4@tsuzuki.netlify.app
-DTSTAMP:20260807T143000Z
-DTSTART:20260807T143000Z
-DTEND:20260807T150000Z
-SUMMARY:The Elusive Samurai Season 2 — Ep 4
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-elusive-samurai-season-2-182616/
-URL:https://tsuzuki.netlify.app/anime/the-elusive-samurai-season-2-182616/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-182616-5@tsuzuki.netlify.app
-DTSTAMP:20260814T143000Z
-DTSTART:20260814T143000Z
-DTEND:20260814T150000Z
-SUMMARY:The Elusive Samurai Season 2 — Ep 5
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-elusive-samurai-season-2-182616/
-URL:https://tsuzuki.netlify.app/anime/the-elusive-samurai-season-2-182616/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-182616-6@tsuzuki.netlify.app
-DTSTAMP:20260821T143000Z
-DTSTART:20260821T143000Z
-DTEND:20260821T150000Z
-SUMMARY:The Elusive Samurai Season 2 — Ep 6
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-elusive-samurai-season-2-182616/
-URL:https://tsuzuki.netlify.app/anime/the-elusive-samurai-season-2-182616/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-177637-2@tsuzuki.netlify.app
 DTSTAMP:20260712T153000Z
 DTSTART:20260712T153000Z
@@ -2203,6 +2131,123 @@ DTEND:20260823T160000Z
 SUMMARY:Goodbye\, Lara — Ep 8
 DESCRIPTION:https://tsuzuki.netlify.app/anime/goodbye-lara-177637/
 URL:https://tsuzuki.netlify.app/anime/goodbye-lara-177637/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-182616-1@tsuzuki.netlify.app
+DTSTAMP:20260717T143000Z
+DTSTART:20260717T143000Z
+DTEND:20260717T150000Z
+SUMMARY:The Elusive Samurai Season 2 — Ep 1
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-elusive-samurai-season-2-182616/
+URL:https://tsuzuki.netlify.app/anime/the-elusive-samurai-season-2-182616/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-182616-2@tsuzuki.netlify.app
+DTSTAMP:20260724T143000Z
+DTSTART:20260724T143000Z
+DTEND:20260724T150000Z
+SUMMARY:The Elusive Samurai Season 2 — Ep 2
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-elusive-samurai-season-2-182616/
+URL:https://tsuzuki.netlify.app/anime/the-elusive-samurai-season-2-182616/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-182616-3@tsuzuki.netlify.app
+DTSTAMP:20260731T143000Z
+DTSTART:20260731T143000Z
+DTEND:20260731T150000Z
+SUMMARY:The Elusive Samurai Season 2 — Ep 3
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-elusive-samurai-season-2-182616/
+URL:https://tsuzuki.netlify.app/anime/the-elusive-samurai-season-2-182616/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-182616-4@tsuzuki.netlify.app
+DTSTAMP:20260807T143000Z
+DTSTART:20260807T143000Z
+DTEND:20260807T150000Z
+SUMMARY:The Elusive Samurai Season 2 — Ep 4
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-elusive-samurai-season-2-182616/
+URL:https://tsuzuki.netlify.app/anime/the-elusive-samurai-season-2-182616/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-182616-5@tsuzuki.netlify.app
+DTSTAMP:20260814T143000Z
+DTSTART:20260814T143000Z
+DTEND:20260814T150000Z
+SUMMARY:The Elusive Samurai Season 2 — Ep 5
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-elusive-samurai-season-2-182616/
+URL:https://tsuzuki.netlify.app/anime/the-elusive-samurai-season-2-182616/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-182616-6@tsuzuki.netlify.app
+DTSTAMP:20260821T143000Z
+DTSTART:20260821T143000Z
+DTEND:20260821T150000Z
+SUMMARY:The Elusive Samurai Season 2 — Ep 6
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-elusive-samurai-season-2-182616/
+URL:https://tsuzuki.netlify.app/anime/the-elusive-samurai-season-2-182616/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-188139-1@tsuzuki.netlify.app
+DTSTAMP:20260712T144600Z
+DTSTART:20260712T144600Z
+DTEND:20260712T151600Z
+SUMMARY:Though I Am an Inept Villainess — Ep 1
+DESCRIPTION:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
+URL:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-188139-2@tsuzuki.netlify.app
+DTSTAMP:20260719T144600Z
+DTSTART:20260719T144600Z
+DTEND:20260719T151600Z
+SUMMARY:Though I Am an Inept Villainess — Ep 2
+DESCRIPTION:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
+URL:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-188139-3@tsuzuki.netlify.app
+DTSTAMP:20260726T144600Z
+DTSTART:20260726T144600Z
+DTEND:20260726T151600Z
+SUMMARY:Though I Am an Inept Villainess — Ep 3
+DESCRIPTION:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
+URL:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-188139-4@tsuzuki.netlify.app
+DTSTAMP:20260802T144600Z
+DTSTART:20260802T144600Z
+DTEND:20260802T151600Z
+SUMMARY:Though I Am an Inept Villainess — Ep 4
+DESCRIPTION:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
+URL:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-188139-5@tsuzuki.netlify.app
+DTSTAMP:20260809T144600Z
+DTSTART:20260809T144600Z
+DTEND:20260809T151600Z
+SUMMARY:Though I Am an Inept Villainess — Ep 5
+DESCRIPTION:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
+URL:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-188139-6@tsuzuki.netlify.app
+DTSTAMP:20260816T144600Z
+DTSTART:20260816T144600Z
+DTEND:20260816T151600Z
+SUMMARY:Though I Am an Inept Villainess — Ep 6
+DESCRIPTION:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
+URL:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-188139-7@tsuzuki.netlify.app
+DTSTAMP:20260823T144600Z
+DTSTART:20260823T144600Z
+DTEND:20260823T151600Z
+SUMMARY:Though I Am an Inept Villainess — Ep 7
+DESCRIPTION:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
+URL:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-198409-2@tsuzuki.netlify.app
@@ -2331,69 +2376,6 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/mao-196012/
 URL:https://tsuzuki.netlify.app/anime/mao-196012/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-188139-1@tsuzuki.netlify.app
-DTSTAMP:20260712T144600Z
-DTSTART:20260712T144600Z
-DTEND:20260712T151600Z
-SUMMARY:Though I Am an Inept Villainess — Ep 1
-DESCRIPTION:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
-URL:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-188139-2@tsuzuki.netlify.app
-DTSTAMP:20260719T144600Z
-DTSTART:20260719T144600Z
-DTEND:20260719T151600Z
-SUMMARY:Though I Am an Inept Villainess — Ep 2
-DESCRIPTION:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
-URL:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-188139-3@tsuzuki.netlify.app
-DTSTAMP:20260726T144600Z
-DTSTART:20260726T144600Z
-DTEND:20260726T151600Z
-SUMMARY:Though I Am an Inept Villainess — Ep 3
-DESCRIPTION:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
-URL:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-188139-4@tsuzuki.netlify.app
-DTSTAMP:20260802T144600Z
-DTSTART:20260802T144600Z
-DTEND:20260802T151600Z
-SUMMARY:Though I Am an Inept Villainess — Ep 4
-DESCRIPTION:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
-URL:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-188139-5@tsuzuki.netlify.app
-DTSTAMP:20260809T144600Z
-DTSTART:20260809T144600Z
-DTEND:20260809T151600Z
-SUMMARY:Though I Am an Inept Villainess — Ep 5
-DESCRIPTION:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
-URL:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-188139-6@tsuzuki.netlify.app
-DTSTAMP:20260816T144600Z
-DTSTART:20260816T144600Z
-DTEND:20260816T151600Z
-SUMMARY:Though I Am an Inept Villainess — Ep 6
-DESCRIPTION:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
-URL:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-188139-7@tsuzuki.netlify.app
-DTSTAMP:20260823T144600Z
-DTSTART:20260823T144600Z
-DTEND:20260823T151600Z
-SUMMARY:Though I Am an Inept Villainess — Ep 7
-DESCRIPTION:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
-URL:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-206521-3@tsuzuki.netlify.app
 DTSTAMP:20260713T130000Z
 DTSTART:20260713T130000Z
@@ -2511,69 +2493,6 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/the-cat-and-the-dragon-186863/
 URL:https://tsuzuki.netlify.app/anime/the-cat-and-the-dragon-186863/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-192800-4@tsuzuki.netlify.app
-DTSTAMP:20260715T133000Z
-DTSTART:20260715T133000Z
-DTEND:20260715T140000Z
-SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Ep 4
-DESCRIPTION:https://tsuzuki.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
-URL:https://tsuzuki.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-192800-5@tsuzuki.netlify.app
-DTSTAMP:20260722T133000Z
-DTSTART:20260722T133000Z
-DTEND:20260722T140000Z
-SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Ep 5
-DESCRIPTION:https://tsuzuki.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
-URL:https://tsuzuki.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-192800-6@tsuzuki.netlify.app
-DTSTAMP:20260729T133000Z
-DTSTART:20260729T133000Z
-DTEND:20260729T140000Z
-SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Ep 6
-DESCRIPTION:https://tsuzuki.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
-URL:https://tsuzuki.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-192800-7@tsuzuki.netlify.app
-DTSTAMP:20260805T133000Z
-DTSTART:20260805T133000Z
-DTEND:20260805T140000Z
-SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Ep 7
-DESCRIPTION:https://tsuzuki.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
-URL:https://tsuzuki.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-192800-8@tsuzuki.netlify.app
-DTSTAMP:20260812T133000Z
-DTSTART:20260812T133000Z
-DTEND:20260812T140000Z
-SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Ep 8
-DESCRIPTION:https://tsuzuki.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
-URL:https://tsuzuki.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-192800-9@tsuzuki.netlify.app
-DTSTAMP:20260819T133000Z
-DTSTART:20260819T133000Z
-DTEND:20260819T140000Z
-SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Ep 9
-DESCRIPTION:https://tsuzuki.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
-URL:https://tsuzuki.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-192800-10@tsuzuki.netlify.app
-DTSTAMP:20260826T133000Z
-DTSTART:20260826T133000Z
-DTEND:20260826T140000Z
-SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Ep 10
-DESCRIPTION:https://tsuzuki.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
-URL:https://tsuzuki.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-169582-2@tsuzuki.netlify.app
 DTSTAMP:20260713T115700Z
 DTSTART:20260713T115700Z
@@ -2635,6 +2554,69 @@ DTEND:20260824T122700Z
 SUMMARY:The Insipid Prince's Furtive Grab for the Throne — Ep 8
 DESCRIPTION:https://tsuzuki.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
 URL:https://tsuzuki.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-192800-4@tsuzuki.netlify.app
+DTSTAMP:20260715T133000Z
+DTSTART:20260715T133000Z
+DTEND:20260715T140000Z
+SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Ep 4
+DESCRIPTION:https://tsuzuki.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+URL:https://tsuzuki.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-192800-5@tsuzuki.netlify.app
+DTSTAMP:20260722T133000Z
+DTSTART:20260722T133000Z
+DTEND:20260722T140000Z
+SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Ep 5
+DESCRIPTION:https://tsuzuki.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+URL:https://tsuzuki.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-192800-6@tsuzuki.netlify.app
+DTSTAMP:20260729T133000Z
+DTSTART:20260729T133000Z
+DTEND:20260729T140000Z
+SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Ep 6
+DESCRIPTION:https://tsuzuki.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+URL:https://tsuzuki.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-192800-7@tsuzuki.netlify.app
+DTSTAMP:20260805T133000Z
+DTSTART:20260805T133000Z
+DTEND:20260805T140000Z
+SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Ep 7
+DESCRIPTION:https://tsuzuki.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+URL:https://tsuzuki.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-192800-8@tsuzuki.netlify.app
+DTSTAMP:20260812T133000Z
+DTSTART:20260812T133000Z
+DTEND:20260812T140000Z
+SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Ep 8
+DESCRIPTION:https://tsuzuki.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+URL:https://tsuzuki.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-192800-9@tsuzuki.netlify.app
+DTSTAMP:20260819T133000Z
+DTSTART:20260819T133000Z
+DTEND:20260819T140000Z
+SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Ep 9
+DESCRIPTION:https://tsuzuki.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+URL:https://tsuzuki.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-192800-10@tsuzuki.netlify.app
+DTSTAMP:20260826T133000Z
+DTSTART:20260826T133000Z
+DTEND:20260826T140000Z
+SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Ep 10
+DESCRIPTION:https://tsuzuki.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+URL:https://tsuzuki.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-196219-3@tsuzuki.netlify.app
@@ -2763,60 +2745,6 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/a-livid-ladys-guide-to-getting-eve
 URL:https://tsuzuki.netlify.app/anime/a-livid-ladys-guide-to-getting-even-how-i-crushed-my-homelan-199408/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-194219-3@tsuzuki.netlify.app
-DTSTAMP:20260718T153000Z
-DTSTART:20260718T153000Z
-DTEND:20260718T160000Z
-SUMMARY:The Ogre's Bride — Ep 3
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-ogres-bride-194219/
-URL:https://tsuzuki.netlify.app/anime/the-ogres-bride-194219/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-194219-4@tsuzuki.netlify.app
-DTSTAMP:20260725T153000Z
-DTSTART:20260725T153000Z
-DTEND:20260725T160000Z
-SUMMARY:The Ogre's Bride — Ep 4
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-ogres-bride-194219/
-URL:https://tsuzuki.netlify.app/anime/the-ogres-bride-194219/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-194219-5@tsuzuki.netlify.app
-DTSTAMP:20260801T153000Z
-DTSTART:20260801T153000Z
-DTEND:20260801T160000Z
-SUMMARY:The Ogre's Bride — Ep 5
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-ogres-bride-194219/
-URL:https://tsuzuki.netlify.app/anime/the-ogres-bride-194219/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-194219-6@tsuzuki.netlify.app
-DTSTAMP:20260808T153000Z
-DTSTART:20260808T153000Z
-DTEND:20260808T160000Z
-SUMMARY:The Ogre's Bride — Ep 6
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-ogres-bride-194219/
-URL:https://tsuzuki.netlify.app/anime/the-ogres-bride-194219/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-194219-7@tsuzuki.netlify.app
-DTSTAMP:20260815T153000Z
-DTSTART:20260815T153000Z
-DTEND:20260815T160000Z
-SUMMARY:The Ogre's Bride — Ep 7
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-ogres-bride-194219/
-URL:https://tsuzuki.netlify.app/anime/the-ogres-bride-194219/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-194219-8@tsuzuki.netlify.app
-DTSTAMP:20260822T153000Z
-DTSTART:20260822T153000Z
-DTEND:20260822T160000Z
-SUMMARY:The Ogre's Bride — Ep 8
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-ogres-bride-194219/
-URL:https://tsuzuki.netlify.app/anime/the-ogres-bride-194219/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-199066-2@tsuzuki.netlify.app
 DTSTAMP:20260718T170000Z
 DTSTART:20260718T170000Z
@@ -2869,6 +2797,60 @@ DTEND:20260822T173000Z
 SUMMARY:Hanaori-san Still Wants to Fight in the Next Life — Ep 7
 DESCRIPTION:https://tsuzuki.netlify.app/anime/hanaori-san-still-wants-to-fight-in-the-next-life-199066/
 URL:https://tsuzuki.netlify.app/anime/hanaori-san-still-wants-to-fight-in-the-next-life-199066/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-194219-3@tsuzuki.netlify.app
+DTSTAMP:20260718T153000Z
+DTSTART:20260718T153000Z
+DTEND:20260718T160000Z
+SUMMARY:The Ogre's Bride — Ep 3
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-ogres-bride-194219/
+URL:https://tsuzuki.netlify.app/anime/the-ogres-bride-194219/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-194219-4@tsuzuki.netlify.app
+DTSTAMP:20260725T153000Z
+DTSTART:20260725T153000Z
+DTEND:20260725T160000Z
+SUMMARY:The Ogre's Bride — Ep 4
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-ogres-bride-194219/
+URL:https://tsuzuki.netlify.app/anime/the-ogres-bride-194219/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-194219-5@tsuzuki.netlify.app
+DTSTAMP:20260801T153000Z
+DTSTART:20260801T153000Z
+DTEND:20260801T160000Z
+SUMMARY:The Ogre's Bride — Ep 5
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-ogres-bride-194219/
+URL:https://tsuzuki.netlify.app/anime/the-ogres-bride-194219/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-194219-6@tsuzuki.netlify.app
+DTSTAMP:20260808T153000Z
+DTSTART:20260808T153000Z
+DTEND:20260808T160000Z
+SUMMARY:The Ogre's Bride — Ep 6
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-ogres-bride-194219/
+URL:https://tsuzuki.netlify.app/anime/the-ogres-bride-194219/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-194219-7@tsuzuki.netlify.app
+DTSTAMP:20260815T153000Z
+DTSTART:20260815T153000Z
+DTEND:20260815T160000Z
+SUMMARY:The Ogre's Bride — Ep 7
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-ogres-bride-194219/
+URL:https://tsuzuki.netlify.app/anime/the-ogres-bride-194219/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-194219-8@tsuzuki.netlify.app
+DTSTAMP:20260822T153000Z
+DTSTART:20260822T153000Z
+DTEND:20260822T160000Z
+SUMMARY:The Ogre's Bride — Ep 8
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-ogres-bride-194219/
+URL:https://tsuzuki.netlify.app/anime/the-ogres-bride-194219/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-207674-3@tsuzuki.netlify.app
@@ -3006,69 +2988,6 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/victoria-of-many-faces-198709/
 URL:https://tsuzuki.netlify.app/anime/victoria-of-many-faces-198709/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-203880-3@tsuzuki.netlify.app
-DTSTAMP:20260716T123000Z
-DTSTART:20260716T123000Z
-DTEND:20260716T130000Z
-SUMMARY:Dara-san of the Reiwa Era — Ep 3
-DESCRIPTION:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
-URL:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-203880-4@tsuzuki.netlify.app
-DTSTAMP:20260723T123000Z
-DTSTART:20260723T123000Z
-DTEND:20260723T130000Z
-SUMMARY:Dara-san of the Reiwa Era — Ep 4
-DESCRIPTION:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
-URL:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-203880-5@tsuzuki.netlify.app
-DTSTAMP:20260730T123000Z
-DTSTART:20260730T123000Z
-DTEND:20260730T130000Z
-SUMMARY:Dara-san of the Reiwa Era — Ep 5
-DESCRIPTION:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
-URL:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-203880-6@tsuzuki.netlify.app
-DTSTAMP:20260806T123000Z
-DTSTART:20260806T123000Z
-DTEND:20260806T130000Z
-SUMMARY:Dara-san of the Reiwa Era — Ep 6
-DESCRIPTION:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
-URL:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-203880-7@tsuzuki.netlify.app
-DTSTAMP:20260813T123000Z
-DTSTART:20260813T123000Z
-DTEND:20260813T130000Z
-SUMMARY:Dara-san of the Reiwa Era — Ep 7
-DESCRIPTION:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
-URL:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-203880-8@tsuzuki.netlify.app
-DTSTAMP:20260820T123000Z
-DTSTART:20260820T123000Z
-DTEND:20260820T130000Z
-SUMMARY:Dara-san of the Reiwa Era — Ep 8
-DESCRIPTION:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
-URL:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-203880-9@tsuzuki.netlify.app
-DTSTAMP:20260827T123000Z
-DTSTART:20260827T123000Z
-DTEND:20260827T130000Z
-SUMMARY:Dara-san of the Reiwa Era — Ep 9
-DESCRIPTION:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
-URL:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-209504-2@tsuzuki.netlify.app
 DTSTAMP:20260713T140000Z
 DTSTART:20260713T140000Z
@@ -3130,6 +3049,69 @@ DTEND:20260824T143000Z
 SUMMARY:The Forsaken Saintess and Her Foodie Roadtrip in Another World — Ep 8
 DESCRIPTION:https://tsuzuki.netlify.app/anime/the-forsaken-saintess-and-her-foodie-roadtrip-in-another-wor-209504/
 URL:https://tsuzuki.netlify.app/anime/the-forsaken-saintess-and-her-foodie-roadtrip-in-another-wor-209504/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-203880-3@tsuzuki.netlify.app
+DTSTAMP:20260716T123000Z
+DTSTART:20260716T123000Z
+DTEND:20260716T130000Z
+SUMMARY:Dara-san of the Reiwa Era — Ep 3
+DESCRIPTION:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
+URL:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-203880-4@tsuzuki.netlify.app
+DTSTAMP:20260723T123000Z
+DTSTART:20260723T123000Z
+DTEND:20260723T130000Z
+SUMMARY:Dara-san of the Reiwa Era — Ep 4
+DESCRIPTION:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
+URL:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-203880-5@tsuzuki.netlify.app
+DTSTAMP:20260730T123000Z
+DTSTART:20260730T123000Z
+DTEND:20260730T130000Z
+SUMMARY:Dara-san of the Reiwa Era — Ep 5
+DESCRIPTION:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
+URL:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-203880-6@tsuzuki.netlify.app
+DTSTAMP:20260806T123000Z
+DTSTART:20260806T123000Z
+DTEND:20260806T130000Z
+SUMMARY:Dara-san of the Reiwa Era — Ep 6
+DESCRIPTION:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
+URL:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-203880-7@tsuzuki.netlify.app
+DTSTAMP:20260813T123000Z
+DTSTART:20260813T123000Z
+DTEND:20260813T130000Z
+SUMMARY:Dara-san of the Reiwa Era — Ep 7
+DESCRIPTION:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
+URL:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-203880-8@tsuzuki.netlify.app
+DTSTAMP:20260820T123000Z
+DTSTART:20260820T123000Z
+DTEND:20260820T130000Z
+SUMMARY:Dara-san of the Reiwa Era — Ep 8
+DESCRIPTION:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
+URL:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-203880-9@tsuzuki.netlify.app
+DTSTAMP:20260827T123000Z
+DTSTART:20260827T123000Z
+DTEND:20260827T130000Z
+SUMMARY:Dara-san of the Reiwa Era — Ep 9
+DESCRIPTION:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
+URL:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-208225-3@tsuzuki.netlify.app
@@ -3481,15 +3463,6 @@ DTEND:20260821T150000Z
 SUMMARY:Draw This\, Then Die! — Ep 8
 DESCRIPTION:https://tsuzuki.netlify.app/anime/draw-this-then-die-188525/
 URL:https://tsuzuki.netlify.app/anime/draw-this-then-die-188525/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-204060-2@tsuzuki.netlify.app
-DTSTAMP:20260712T083000Z
-DTSTART:20260712T083000Z
-DTEND:20260712T090000Z
-SUMMARY:Iron Wok Jan! — Ep 2
-DESCRIPTION:https://tsuzuki.netlify.app/anime/iron-wok-jan-204060/
-URL:https://tsuzuki.netlify.app/anime/iron-wok-jan-204060/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-204060-3@tsuzuki.netlify.app
@@ -3949,15 +3922,6 @@ DTEND:20260716T153000Z
 SUMMARY:Kimi to Hanabi to Yakusoku to — Ep 1
 DESCRIPTION:https://tsuzuki.netlify.app/anime/kimi-to-hanabi-to-yakusoku-to-206819/
 URL:https://tsuzuki.netlify.app/anime/kimi-to-hanabi-to-yakusoku-to-206819/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-200230-2@tsuzuki.netlify.app
-DTSTAMP:20260712T073000Z
-DTSTART:20260712T073000Z
-DTEND:20260712T080000Z
-SUMMARY:Let's go KAIKIGUMI — Ep 2
-DESCRIPTION:https://tsuzuki.netlify.app/anime/lets-go-kaikigumi-200230/
-URL:https://tsuzuki.netlify.app/anime/lets-go-kaikigumi-200230/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-200230-3@tsuzuki.netlify.app
@@ -4653,15 +4617,6 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/cyborg-009-nemesis-196223/
 URL:https://tsuzuki.netlify.app/anime/cyborg-009-nemesis-196223/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-206523-15@tsuzuki.netlify.app
-DTSTAMP:20260712T003000Z
-DTSTART:20260712T003000Z
-DTEND:20260712T010000Z
-SUMMARY:Onegai AiPri — Ep 15
-DESCRIPTION:https://tsuzuki.netlify.app/anime/onegai-aipri-206523/
-URL:https://tsuzuki.netlify.app/anime/onegai-aipri-206523/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-206523-16@tsuzuki.netlify.app
 DTSTAMP:20260719T003000Z
 DTSTART:20260719T003000Z
@@ -4831,15 +4786,6 @@ DTEND:20260821T171200Z
 SUMMARY:Snack Hazama — Ep 8
 DESCRIPTION:https://tsuzuki.netlify.app/anime/snack-hazama-213831/
 URL:https://tsuzuki.netlify.app/anime/snack-hazama-213831/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-204269-14@tsuzuki.netlify.app
-DTSTAMP:20260711T220000Z
-DTSTART:20260711T220000Z
-DTEND:20260711T223000Z
-SUMMARY:Little Shark's Day Out Season 2 — Ep 14
-DESCRIPTION:https://tsuzuki.netlify.app/anime/little-sharks-day-out-season-2-204269/
-URL:https://tsuzuki.netlify.app/anime/little-sharks-day-out-season-2-204269/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-204269-15@tsuzuki.netlify.app
@@ -5056,15 +5002,6 @@ DTEND:20260823T185000Z
 SUMMARY:Theatre of Darkness: Yamishibai 17 — Ep 7
 DESCRIPTION:https://tsuzuki.netlify.app/anime/theatre-of-darkness-yamishibai-17-213359/
 URL:https://tsuzuki.netlify.app/anime/theatre-of-darkness-yamishibai-17-213359/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-208824-1@tsuzuki.netlify.app
-DTSTAMP:20260711T220000Z
-DTSTART:20260711T220000Z
-DTEND:20260711T223000Z
-SUMMARY:Plannosaurus Gachi Koseibutsu-bu — Ep 1
-DESCRIPTION:https://tsuzuki.netlify.app/anime/plannosaurus-gachi-koseibutsu-bu-208824/
-URL:https://tsuzuki.netlify.app/anime/plannosaurus-gachi-koseibutsu-bu-208824/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-208824-2@tsuzuki.netlify.app

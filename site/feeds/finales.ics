@@ -90,15 +90,6 @@ DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/skeleton-knight-in-
 URL:https://tsuzuki.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-198946-f13@tsuzuki.netlify.app
-DTSTAMP:20260930T120000Z
-DTSTART:20260930T120000Z
-DTEND:20260930T123000Z
-SUMMARY:Clevatess Season 2 — Finale (Ep 13)
-DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
-URL:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-199111-f12@tsuzuki.netlify.app
 DTSTAMP:20260921T150000Z
 DTSTART:20260921T150000Z
@@ -108,13 +99,13 @@ DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/grand-blue-dreaming
 URL:https://tsuzuki.netlify.app/anime/grand-blue-dreaming-season-3-199111/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-197715-f12@tsuzuki.netlify.app
-DTSTAMP:20260909T150000Z
-DTSTART:20260909T150000Z
-DTEND:20260909T153000Z
-SUMMARY:The Villager of Level 999 — Finale (Ep 12)
-DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/the-villager-of-level-999-197715/
-URL:https://tsuzuki.netlify.app/anime/the-villager-of-level-999-197715/
+UID:tsuzuki-198946-f13@tsuzuki.netlify.app
+DTSTAMP:20260930T120000Z
+DTSTART:20260930T120000Z
+DTEND:20260930T123000Z
+SUMMARY:Clevatess Season 2 — Finale (Ep 13)
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
+URL:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-199748-f12@tsuzuki.netlify.app
@@ -135,6 +126,15 @@ DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/rich-girl-caretaker
 URL:https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-197715-f12@tsuzuki.netlify.app
+DTSTAMP:20260909T150000Z
+DTSTART:20260909T150000Z
+DTEND:20260909T153000Z
+SUMMARY:The Villager of Level 999 — Finale (Ep 12)
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/the-villager-of-level-999-197715/
+URL:https://tsuzuki.netlify.app/anime/the-villager-of-level-999-197715/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-169583-f12@tsuzuki.netlify.app
 DTSTAMP:20260921T143000Z
 DTSTART:20260921T143000Z
@@ -142,15 +142,6 @@ DTEND:20260921T150000Z
 SUMMARY:Oh Boy\, Was I Wrong About Her — Finale (Ep 12)
 DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/oh-boy-was-i-wrong-about-her-169583/
 URL:https://tsuzuki.netlify.app/anime/oh-boy-was-i-wrong-about-her-169583/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-210482-f11@tsuzuki.netlify.app
-DTSTAMP:20261203T150000Z
-DTSTART:20261203T150000Z
-DTEND:20261203T153000Z
-SUMMARY:STEEL BALL RUN JoJo's Bizarre Adventure 2nd - 3rd STAGE — Finale (Ep 11)
-DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
-URL:https://tsuzuki.netlify.app/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-177637-f12@tsuzuki.netlify.app
@@ -162,6 +153,15 @@ DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/goodbye-lara-177637
 URL:https://tsuzuki.netlify.app/anime/goodbye-lara-177637/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-210482-f11@tsuzuki.netlify.app
+DTSTAMP:20261203T150000Z
+DTSTART:20261203T150000Z
+DTEND:20261203T153000Z
+SUMMARY:STEEL BALL RUN JoJo's Bizarre Adventure 2nd - 3rd STAGE — Finale (Ep 11)
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
+URL:https://tsuzuki.netlify.app/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-198409-f12@tsuzuki.netlify.app
 DTSTAMP:20260920T130000Z
 DTSTART:20260920T130000Z
@@ -171,15 +171,6 @@ DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/the-worlds-stronges
 URL:https://tsuzuki.netlify.app/anime/the-worlds-strongest-rearguard-198409/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-192800-f12@tsuzuki.netlify.app
-DTSTAMP:20260909T133000Z
-DTSTART:20260909T133000Z
-DTEND:20260909T140000Z
-SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Finale (Ep 12)
-DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
-URL:https://tsuzuki.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-169582-f12@tsuzuki.netlify.app
 DTSTAMP:20260921T115700Z
 DTSTART:20260921T115700Z
@@ -187,6 +178,15 @@ DTEND:20260921T122700Z
 SUMMARY:The Insipid Prince's Furtive Grab for the Throne — Finale (Ep 12)
 DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
 URL:https://tsuzuki.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-192800-f12@tsuzuki.netlify.app
+DTSTAMP:20260909T133000Z
+DTSTART:20260909T133000Z
+DTEND:20260909T140000Z
+SUMMARY:Heroine? Saint? No\, I’m an All-Works Maid (And Proud of It)! — Finale (Ep 12)
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
+URL:https://tsuzuki.netlify.app/anime/heroine-saint-no-im-an-all-works-maid-and-proud-of-it-192800/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-199408-f12@tsuzuki.netlify.app
@@ -225,15 +225,6 @@ DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/victoria-of-many-fa
 URL:https://tsuzuki.netlify.app/anime/victoria-of-many-faces-198709/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-203880-f13@tsuzuki.netlify.app
-DTSTAMP:20260924T123000Z
-DTSTART:20260924T123000Z
-DTEND:20260924T130000Z
-SUMMARY:Dara-san of the Reiwa Era — Finale (Ep 13)
-DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
-URL:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-209504-f12@tsuzuki.netlify.app
 DTSTAMP:20260921T140000Z
 DTSTART:20260921T140000Z
@@ -241,6 +232,15 @@ DTEND:20260921T143000Z
 SUMMARY:The Forsaken Saintess and Her Foodie Roadtrip in Another World — Finale (Ep 12)
 DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/the-forsaken-saintess-and-her-foodie-roadtrip-in-another-wor-209504/
 URL:https://tsuzuki.netlify.app/anime/the-forsaken-saintess-and-her-foodie-roadtrip-in-another-wor-209504/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-203880-f13@tsuzuki.netlify.app
+DTSTAMP:20260924T123000Z
+DTSTART:20260924T123000Z
+DTEND:20260924T130000Z
+SUMMARY:Dara-san of the Reiwa Era — Finale (Ep 13)
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
+URL:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-208225-f12@tsuzuki.netlify.app
