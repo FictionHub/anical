@@ -81,15 +81,6 @@ DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/the-elusive-sa
 URL:https://tsuzuki.netlify.app/anime/the-elusive-samurai-season-2-182616/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-188139-1@tsuzuki.netlify.app
-DTSTAMP:20260712T144600Z
-DTSTART:20260712T144600Z
-DTEND:20260712T151600Z
-SUMMARY:Though I Am an Inept Villainess — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
-URL:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-200929-1@tsuzuki.netlify.app
 DTSTAMP:20261210T150000Z
 DTSTART:20261210T150000Z
@@ -171,15 +162,6 @@ DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/toaru-anbu-no-
 URL:https://tsuzuki.netlify.app/anime/toaru-anbu-no-item-186742/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-194116-1@tsuzuki.netlify.app
-DTSTAMP:20260910T150000Z
-DTSTART:20260910T150000Z
-DTEND:20260910T153000Z
-SUMMARY:Saishuu Gakushou Hibike! Euphonium - Kouhen — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/saishuu-gakushou-hibike-euphonium-kouhen-194116/
-URL:https://tsuzuki.netlify.app/anime/saishuu-gakushou-hibike-euphonium-kouhen-194116/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-202390-1@tsuzuki.netlify.app
 DTSTAMP:20261008T150000Z
 DTSTART:20261008T150000Z
@@ -187,6 +169,15 @@ DTEND:20261008T153000Z
 SUMMARY:Girls und Panzer: Saishuushou 5 — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/girls-und-panzer-saishuushou-5-202390/
 URL:https://tsuzuki.netlify.app/anime/girls-und-panzer-saishuushou-5-202390/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-194116-1@tsuzuki.netlify.app
+DTSTAMP:20260910T150000Z
+DTSTART:20260910T150000Z
+DTEND:20260910T153000Z
+SUMMARY:Saishuu Gakushou Hibike! Euphonium - Kouhen — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/saishuu-gakushou-hibike-euphonium-kouhen-194116/
+URL:https://tsuzuki.netlify.app/anime/saishuu-gakushou-hibike-euphonium-kouhen-194116/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-202429-1@tsuzuki.netlify.app
@@ -268,15 +259,6 @@ DTEND:20260730T153000Z
 SUMMARY:Crayon Shin-chan: Kikikaikai! Ora no Youkai Vacation — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/crayon-shin-chan-kikikaikai-ora-no-youkai-vacation-208829/
 URL:https://tsuzuki.netlify.app/anime/crayon-shin-chan-kikikaikai-ora-no-youkai-vacation-208829/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-213359-1@tsuzuki.netlify.app
-DTSTAMP:20260712T182000Z
-DTSTART:20260712T182000Z
-DTEND:20260712T185000Z
-SUMMARY:Theatre of Darkness: Yamishibai 17 — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/theatre-of-darkness-yamishibai-17-213359/
-URL:https://tsuzuki.netlify.app/anime/theatre-of-darkness-yamishibai-17-213359/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-213908-1@tsuzuki.netlify.app

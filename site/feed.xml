@@ -6,8 +6,15 @@
     <atom:link href="https://tsuzuki.netlify.app/feed.xml" rel="self" type="application/rss+xml" />
     <description>Upcoming and recent anime premieres and season finales, updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 14 Jul 2026 12:51:24 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 15 Jul 2026 12:58:29 GMT</lastBuildDate>
     <ttl>720</ttl>
+    <item>
+      <title>Please Excuse My Younger Brothers — Finale (Ep 24)</title>
+      <link>https://tsuzuki.netlify.app/anime/please-excuse-my-younger-brothers-203490/</link>
+      <guid isPermaLink="false">tsuzuki-rss-203490-f24</guid>
+      <pubDate>Fri, 11 Dec 2026 15:00:00 GMT</pubDate>
+      <description>Finale: The manga centers on high school student Ito Hazui. During her spring break at the end of her first year of high school, Ito's mother remarries, and Ito moves to live with her new family, becoming Ito Narita. Upon arriving at her new house, Ito is shocked to learn she now has…</description>
+    </item>
     <item>
       <title>Kusuriya no Hitorigoto: Bouhi no Hihou — Premiere (Ep 1)</title>
       <link>https://tsuzuki.netlify.app/anime/kusuriya-no-hitorigoto-bouhi-no-hihou-200929/</link>
@@ -350,13 +357,6 @@
       <guid isPermaLink="false">tsuzuki-rss-209669-f13</guid>
       <pubDate>Wed, 16 Sep 2026 16:00:00 GMT</pubDate>
       <description>Finale: The second season of Hanazakari no Kimitachi e . Note: Hanazakari no Kimitachi e 2nd Season is streaming 1 week in advance of the TV broadcast on Prime Video and Crunchyroll beginning with episode 2 on July 2nd.</description>
-    </item>
-    <item>
-      <title>Welcome to Demon School! Iruma-kun Season 4 — Finale (Ep 24)</title>
-      <link>https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/</link>
-      <guid isPermaLink="false">tsuzuki-rss-184492-f24</guid>
-      <pubDate>Sat, 12 Sep 2026 09:26:00 GMT</pubDate>
-      <description>Finale: The fourth season of Mairimashita! Iruma-kun. Suzuki Iruma and all thirteen students of the Misfit Class must perform to reach Rank 4 at the Music Festival. (Source: Crunchyroll News)</description>
     </item>
   </channel>
 </rss>

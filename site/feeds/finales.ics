@@ -108,15 +108,6 @@ DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/clevatess-season-2-
 URL:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-199748-f12@tsuzuki.netlify.app
-DTSTAMP:20260918T133000Z
-DTSTART:20260918T133000Z
-DTEND:20260918T140000Z
-SUMMARY:I Became a Legend After My 10 Year-Long Last Stand — Finale (Ep 12)
-DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
-URL:https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-201514-f12@tsuzuki.netlify.app
 DTSTAMP:20260919T173800Z
 DTSTART:20260919T173800Z
@@ -124,6 +115,15 @@ DTEND:20260919T180800Z
 SUMMARY:Rich Girl Caretaker: I'm Secretly the Caregiver of the Most Popular Girl in This Rich Kid School — Finale (Ep 12)
 DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
 URL:https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-199748-f12@tsuzuki.netlify.app
+DTSTAMP:20260918T133000Z
+DTSTART:20260918T133000Z
+DTEND:20260918T140000Z
+SUMMARY:I Became a Legend After My 10 Year-Long Last Stand — Finale (Ep 12)
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
+URL:https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-197715-f12@tsuzuki.netlify.app
@@ -268,6 +268,15 @@ DTEND:20260918T150000Z
 SUMMARY:Draw This\, Then Die! — Finale (Ep 12)
 DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/draw-this-then-die-188525/
 URL:https://tsuzuki.netlify.app/anime/draw-this-then-die-188525/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-203490-f24@tsuzuki.netlify.app
+DTSTAMP:20261211T150000Z
+DTSTART:20261211T150000Z
+DTEND:20261211T153000Z
+SUMMARY:Please Excuse My Younger Brothers — Finale (Ep 24)
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/please-excuse-my-younger-brothers-203490/
+URL:https://tsuzuki.netlify.app/anime/please-excuse-my-younger-brothers-203490/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-198376-f13@tsuzuki.netlify.app
