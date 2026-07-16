@@ -90,6 +90,15 @@ DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/skeleton-knight-in-
 URL:https://tsuzuki.netlify.app/anime/skeleton-knight-in-another-world-season-2-185542/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-198946-f13@tsuzuki.netlify.app
+DTSTAMP:20260930T120000Z
+DTSTART:20260930T120000Z
+DTEND:20260930T123000Z
+SUMMARY:Clevatess Season 2 — Finale (Ep 13)
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
+URL:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-199111-f12@tsuzuki.netlify.app
 DTSTAMP:20260921T150000Z
 DTSTART:20260921T150000Z
@@ -99,13 +108,13 @@ DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/grand-blue-dreaming
 URL:https://tsuzuki.netlify.app/anime/grand-blue-dreaming-season-3-199111/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-198946-f13@tsuzuki.netlify.app
-DTSTAMP:20260930T120000Z
-DTSTART:20260930T120000Z
-DTEND:20260930T123000Z
-SUMMARY:Clevatess Season 2 — Finale (Ep 13)
-DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
-URL:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
+UID:tsuzuki-197715-f12@tsuzuki.netlify.app
+DTSTAMP:20260909T150000Z
+DTSTART:20260909T150000Z
+DTEND:20260909T153000Z
+SUMMARY:The Villager of Level 999 — Finale (Ep 12)
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/the-villager-of-level-999-197715/
+URL:https://tsuzuki.netlify.app/anime/the-villager-of-level-999-197715/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-201514-f12@tsuzuki.netlify.app
@@ -124,15 +133,6 @@ DTEND:20260918T140000Z
 SUMMARY:I Became a Legend After My 10 Year-Long Last Stand — Finale (Ep 12)
 DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
 URL:https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-197715-f12@tsuzuki.netlify.app
-DTSTAMP:20260909T150000Z
-DTSTART:20260909T150000Z
-DTEND:20260909T153000Z
-SUMMARY:The Villager of Level 999 — Finale (Ep 12)
-DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/the-villager-of-level-999-197715/
-URL:https://tsuzuki.netlify.app/anime/the-villager-of-level-999-197715/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-169583-f12@tsuzuki.netlify.app

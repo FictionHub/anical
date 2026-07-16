@@ -162,15 +162,6 @@ DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/toaru-anbu-no-
 URL:https://tsuzuki.netlify.app/anime/toaru-anbu-no-item-186742/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-202390-1@tsuzuki.netlify.app
-DTSTAMP:20261008T150000Z
-DTSTART:20261008T150000Z
-DTEND:20261008T153000Z
-SUMMARY:Girls und Panzer: Saishuushou 5 — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/girls-und-panzer-saishuushou-5-202390/
-URL:https://tsuzuki.netlify.app/anime/girls-und-panzer-saishuushou-5-202390/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-194116-1@tsuzuki.netlify.app
 DTSTAMP:20260910T150000Z
 DTSTART:20260910T150000Z
@@ -178,6 +169,15 @@ DTEND:20260910T153000Z
 SUMMARY:Saishuu Gakushou Hibike! Euphonium - Kouhen — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/saishuu-gakushou-hibike-euphonium-kouhen-194116/
 URL:https://tsuzuki.netlify.app/anime/saishuu-gakushou-hibike-euphonium-kouhen-194116/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-202390-1@tsuzuki.netlify.app
+DTSTAMP:20261008T150000Z
+DTSTART:20261008T150000Z
+DTEND:20261008T153000Z
+SUMMARY:Girls und Panzer: Saishuushou 5 — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/girls-und-panzer-saishuushou-5-202390/
+URL:https://tsuzuki.netlify.app/anime/girls-und-panzer-saishuushou-5-202390/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-202429-1@tsuzuki.netlify.app
