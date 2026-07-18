@@ -117,15 +117,6 @@ DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/the-villager-of-lev
 URL:https://tsuzuki.netlify.app/anime/the-villager-of-level-999-197715/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-201514-f12@tsuzuki.netlify.app
-DTSTAMP:20260919T173800Z
-DTSTART:20260919T173800Z
-DTEND:20260919T180800Z
-SUMMARY:Rich Girl Caretaker: I'm Secretly the Caregiver of the Most Popular Girl in This Rich Kid School — Finale (Ep 12)
-DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
-URL:https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-199748-f12@tsuzuki.netlify.app
 DTSTAMP:20260918T133000Z
 DTSTART:20260918T133000Z
@@ -133,6 +124,15 @@ DTEND:20260918T140000Z
 SUMMARY:I Became a Legend After My 10 Year-Long Last Stand — Finale (Ep 12)
 DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
 URL:https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-201514-f12@tsuzuki.netlify.app
+DTSTAMP:20260919T173800Z
+DTSTART:20260919T173800Z
+DTEND:20260919T180800Z
+SUMMARY:Rich Girl Caretaker: I'm Secretly the Caregiver of the Most Popular Girl in This Rich Kid School — Finale (Ep 12)
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
+URL:https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-169583-f12@tsuzuki.netlify.app
@@ -151,6 +151,15 @@ DTEND:20260920T160000Z
 SUMMARY:Goodbye\, Lara — Finale (Ep 12)
 DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/goodbye-lara-177637/
 URL:https://tsuzuki.netlify.app/anime/goodbye-lara-177637/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-182616-f12@tsuzuki.netlify.app
+DTSTAMP:20261002T143000Z
+DTSTART:20261002T143000Z
+DTEND:20261002T150000Z
+SUMMARY:The Elusive Samurai Season 2 — Finale (Ep 12)
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/the-elusive-samurai-season-2-182616/
+URL:https://tsuzuki.netlify.app/anime/the-elusive-samurai-season-2-182616/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-210482-f11@tsuzuki.netlify.app

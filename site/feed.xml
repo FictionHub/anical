@@ -6,7 +6,7 @@
     <atom:link href="https://tsuzuki.netlify.app/feed.xml" rel="self" type="application/rss+xml" />
     <description>Upcoming and recent anime premieres and season finales, updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 17 Jul 2026 12:44:49 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 18 Jul 2026 11:37:18 GMT</lastBuildDate>
     <ttl>720</ttl>
     <item>
       <title>Please Excuse My Younger Brothers — Finale (Ep 24)</title>
@@ -105,6 +105,13 @@
       <guid isPermaLink="false">tsuzuki-rss-189123-p1</guid>
       <pubDate>Sun, 04 Oct 2026 07:30:00 GMT</pubDate>
       <description>Premiere: The second season of Ao no Hako .</description>
+    </item>
+    <item>
+      <title>The Elusive Samurai Season 2 — Finale (Ep 12)</title>
+      <link>https://tsuzuki.netlify.app/anime/the-elusive-samurai-season-2-182616/</link>
+      <guid isPermaLink="false">tsuzuki-rss-182616-f12</guid>
+      <pubDate>Fri, 02 Oct 2026 14:30:00 GMT</pubDate>
+      <description>Finale: The second season of Nige Jouzu no Wakagimi .</description>
     </item>
     <item>
       <title>The Ramparts of Ice Season 2 — Premiere (Ep 1)</title>
@@ -350,13 +357,6 @@
       <guid isPermaLink="false">tsuzuki-rss-201667-f12</guid>
       <pubDate>Thu, 17 Sep 2026 12:40:00 GMT</pubDate>
       <description>Finale: The second season of Bungou Stray Dogs Wan!</description>
-    </item>
-    <item>
-      <title>Hana-Kimi Season 2 — Finale (Ep 13)</title>
-      <link>https://tsuzuki.netlify.app/anime/hana-kimi-season-2-209669/</link>
-      <guid isPermaLink="false">tsuzuki-rss-209669-f13</guid>
-      <pubDate>Wed, 16 Sep 2026 16:00:00 GMT</pubDate>
-      <description>Finale: The second season of Hanazakari no Kimitachi e . Note: Hanazakari no Kimitachi e 2nd Season is streaming 1 week in advance of the TV broadcast on Prime Video and Crunchyroll beginning with episode 2 on July 2nd.</description>
     </item>
   </channel>
 </rss>

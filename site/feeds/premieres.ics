@@ -63,15 +63,6 @@ DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/rascal-does-no
 URL:https://tsuzuki.netlify.app/anime/rascal-does-not-dream-of-a-dear-friend-199340/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-210482-1@tsuzuki.netlify.app
-DTSTAMP:20260924T150000Z
-DTSTART:20260924T150000Z
-DTEND:20260924T153000Z
-SUMMARY:STEEL BALL RUN JoJo's Bizarre Adventure 2nd - 3rd STAGE — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
-URL:https://tsuzuki.netlify.app/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-182616-1@tsuzuki.netlify.app
 DTSTAMP:20260717T143000Z
 DTSTART:20260717T143000Z
@@ -79,6 +70,15 @@ DTEND:20260717T150000Z
 SUMMARY:The Elusive Samurai Season 2 — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/the-elusive-samurai-season-2-182616/
 URL:https://tsuzuki.netlify.app/anime/the-elusive-samurai-season-2-182616/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-210482-1@tsuzuki.netlify.app
+DTSTAMP:20260924T150000Z
+DTSTART:20260924T150000Z
+DTEND:20260924T153000Z
+SUMMARY:STEEL BALL RUN JoJo's Bizarre Adventure 2nd - 3rd STAGE — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
+URL:https://tsuzuki.netlify.app/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-200929-1@tsuzuki.netlify.app
