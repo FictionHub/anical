@@ -108,13 +108,13 @@ DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/grand-blue-dreaming
 URL:https://tsuzuki.netlify.app/anime/grand-blue-dreaming-season-3-199111/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-197715-f12@tsuzuki.netlify.app
-DTSTAMP:20260909T150000Z
-DTSTART:20260909T150000Z
-DTEND:20260909T153000Z
-SUMMARY:The Villager of Level 999 — Finale (Ep 12)
-DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/the-villager-of-level-999-197715/
-URL:https://tsuzuki.netlify.app/anime/the-villager-of-level-999-197715/
+UID:tsuzuki-201514-f12@tsuzuki.netlify.app
+DTSTAMP:20260919T173800Z
+DTSTART:20260919T173800Z
+DTEND:20260919T180800Z
+SUMMARY:Rich Girl Caretaker: I'm Secretly the Caregiver of the Most Popular Girl in This Rich Kid School — Finale (Ep 12)
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
+URL:https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-199748-f12@tsuzuki.netlify.app
@@ -126,13 +126,13 @@ DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/i-became-a-legend-a
 URL:https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-201514-f12@tsuzuki.netlify.app
-DTSTAMP:20260919T173800Z
-DTSTART:20260919T173800Z
-DTEND:20260919T180800Z
-SUMMARY:Rich Girl Caretaker: I'm Secretly the Caregiver of the Most Popular Girl in This Rich Kid School — Finale (Ep 12)
-DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
-URL:https://tsuzuki.netlify.app/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
+UID:tsuzuki-197715-f12@tsuzuki.netlify.app
+DTSTAMP:20260909T150000Z
+DTSTART:20260909T150000Z
+DTEND:20260909T153000Z
+SUMMARY:The Villager of Level 999 — Finale (Ep 12)
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/the-villager-of-level-999-197715/
+URL:https://tsuzuki.netlify.app/anime/the-villager-of-level-999-197715/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-169583-f12@tsuzuki.netlify.app
@@ -162,15 +162,6 @@ DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/the-elusive-samurai
 URL:https://tsuzuki.netlify.app/anime/the-elusive-samurai-season-2-182616/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-210482-f11@tsuzuki.netlify.app
-DTSTAMP:20261203T150000Z
-DTSTART:20261203T150000Z
-DTEND:20261203T153000Z
-SUMMARY:STEEL BALL RUN JoJo's Bizarre Adventure 2nd - 3rd STAGE — Finale (Ep 11)
-DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
-URL:https://tsuzuki.netlify.app/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-198409-f12@tsuzuki.netlify.app
 DTSTAMP:20260920T130000Z
 DTSTART:20260920T130000Z
@@ -178,6 +169,15 @@ DTEND:20260920T133000Z
 SUMMARY:The World's Strongest Rearguard — Finale (Ep 12)
 DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/the-worlds-strongest-rearguard-198409/
 URL:https://tsuzuki.netlify.app/anime/the-worlds-strongest-rearguard-198409/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-210482-f11@tsuzuki.netlify.app
+DTSTAMP:20261203T150000Z
+DTSTART:20261203T150000Z
+DTEND:20261203T153000Z
+SUMMARY:STEEL BALL RUN JoJo's Bizarre Adventure 2nd - 3rd STAGE — Finale (Ep 11)
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
+URL:https://tsuzuki.netlify.app/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-169582-f12@tsuzuki.netlify.app
