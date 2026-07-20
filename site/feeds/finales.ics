@@ -378,15 +378,6 @@ DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/cyborg-009-nemesis-
 URL:https://tsuzuki.netlify.app/anime/cyborg-009-nemesis-196223/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-205772-f24@tsuzuki.netlify.app
-DTSTAMP:20260923T145600Z
-DTSTART:20260923T145600Z
-DTEND:20260923T152600Z
-SUMMARY:Candy Caries — Finale (Ep 24)
-DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/candy-caries-205772/
-URL:https://tsuzuki.netlify.app/anime/candy-caries-205772/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-213831-f12@tsuzuki.netlify.app
 DTSTAMP:20260918T164200Z
 DTSTART:20260918T164200Z
@@ -394,6 +385,15 @@ DTEND:20260918T171200Z
 SUMMARY:Snack Hazama — Finale (Ep 12)
 DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/snack-hazama-213831/
 URL:https://tsuzuki.netlify.app/anime/snack-hazama-213831/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-205772-f24@tsuzuki.netlify.app
+DTSTAMP:20260923T145600Z
+DTSTART:20260923T145600Z
+DTEND:20260923T152600Z
+SUMMARY:Candy Caries — Finale (Ep 24)
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/candy-caries-205772/
+URL:https://tsuzuki.netlify.app/anime/candy-caries-205772/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-212652-f3@tsuzuki.netlify.app
