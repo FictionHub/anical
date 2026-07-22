@@ -6,7 +6,7 @@
     <atom:link href="https://tsuzuki.netlify.app/feed.xml" rel="self" type="application/rss+xml" />
     <description>Upcoming and recent anime premieres and season finales, updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 21 Jul 2026 10:37:24 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 22 Jul 2026 10:37:23 GMT</lastBuildDate>
     <ttl>720</ttl>
     <item>
       <title>Please Excuse My Younger Brothers — Finale (Ep 24)</title>
@@ -35,6 +35,13 @@
       <guid isPermaLink="false">tsuzuki-rss-143103-p1</guid>
       <pubDate>Thu, 19 Nov 2026 15:00:00 GMT</pubDate>
       <description>Premiere: Near the end of the Showa era in the late 1980s, in Misaki town, an old mansion is rumored to be the home of a witch. After moving into the mansion, Aoko Aozaki begins to learn sorcery from a young mage, Alice Kuonji, the rumored witch of the mansion. The Aozaki family oversees…</description>
+    </item>
+    <item>
+      <title>Mahou no Princess Minky Momo - Akogare no Yume he, Magokoro no Duo — Premiere (Ep 1)</title>
+      <link>https://tsuzuki.netlify.app/anime/mahou-no-princess-minky-momo-akogare-no-yume-he-magokoro-no--204561/</link>
+      <guid isPermaLink="false">tsuzuki-rss-204561-p1</guid>
+      <pubDate>Thu, 12 Nov 2026 15:00:00 GMT</pubDate>
+      <description>Premiere: A new original video anime for Mahou no Princess Minky Momo . Note: Title and Relations are provisional and will be updated when more info is announced.</description>
     </item>
     <item>
       <title>GROTESQQQUE — Premiere (Ep 1)</title>
@@ -350,13 +357,6 @@
       <guid isPermaLink="false">tsuzuki-rss-198654-p1</guid>
       <pubDate>Thu, 17 Sep 2026 15:00:00 GMT</pubDate>
       <description>Premiere: Movie of Meitantei Precure! .</description>
-    </item>
-    <item>
-      <title>Bungo Stray Dogs WAN! 2 — Finale (Ep 12)</title>
-      <link>https://tsuzuki.netlify.app/anime/bungo-stray-dogs-wan-2-201667/</link>
-      <guid isPermaLink="false">tsuzuki-rss-201667-f12</guid>
-      <pubDate>Thu, 17 Sep 2026 12:40:00 GMT</pubDate>
-      <description>Finale: The second season of Bungou Stray Dogs Wan!</description>
     </item>
   </channel>
 </rss>

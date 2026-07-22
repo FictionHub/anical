@@ -234,6 +234,15 @@ DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/crayon-shin-ch
 URL:https://tsuzuki.netlify.app/anime/crayon-shin-chan-kikikaikai-ora-no-youkai-vacation-208829/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-204561-1@tsuzuki.netlify.app
+DTSTAMP:20261112T150000Z
+DTSTART:20261112T150000Z
+DTEND:20261112T153000Z
+SUMMARY:Mahou no Princess Minky Momo - Akogare no Yume he\, Magokoro no Duo — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/mahou-no-princess-minky-momo-akogare-no-yume-he-magokoro-no--204561/
+URL:https://tsuzuki.netlify.app/anime/mahou-no-princess-minky-momo-akogare-no-yume-he-magokoro-no--204561/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-213908-1@tsuzuki.netlify.app
 DTSTAMP:20260731T150000Z
 DTSTART:20260731T150000Z
