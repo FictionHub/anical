@@ -6,7 +6,7 @@
     <atom:link href="https://tsuzuki.netlify.app/feed.xml" rel="self" type="application/rss+xml" />
     <description>Upcoming and recent anime premieres and season finales, updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 24 Jul 2026 10:32:48 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 25 Jul 2026 10:06:25 GMT</lastBuildDate>
     <ttl>720</ttl>
     <item>
       <title>Please Excuse My Younger Brothers — Finale (Ep 24)</title>
@@ -56,13 +56,6 @@
       <guid isPermaLink="false">tsuzuki-rss-160275-p1</guid>
       <pubDate>Thu, 22 Oct 2026 15:00:00 GMT</pubDate>
       <description>Premiere: Sequel to Made in Abyss: Retsujitsu no Ougonkyou.</description>
-    </item>
-    <item>
-      <title>BLEACH: Thousand-Year Blood War - The Calamity — Finale (Ep 13)</title>
-      <link>https://tsuzuki.netlify.app/anime/bleach-thousand-year-blood-war-the-calamity-185874/</link>
-      <guid isPermaLink="false">tsuzuki-rss-185874-f13</guid>
-      <pubDate>Sat, 17 Oct 2026 14:00:00 GMT</pubDate>
-      <description>Finale: The fourth and final part of BLEACH: Sennen Kessen-hen . Destruction looms at the end of the Thousand-Year Blood War between the Soul Reapers and Quincies… as the death of the Soul King mirrors the collapse of the Three Worlds, distortions and omens of destruction start to…</description>
     </item>
     <item>
       <title>Rascal Does Not Dream of a Dear Friend — Premiere (Ep 1)</title>
@@ -147,6 +140,13 @@
       <guid isPermaLink="false">tsuzuki-rss-187260-f13</guid>
       <pubDate>Tue, 29 Sep 2026 12:30:00 GMT</pubDate>
       <description>Finale: At the mysterious orphanage where Sheena lives, death is nothing new to its residents—girls who no longer have families of their own, who are raised as weapons of war, taught to kill and take the lives of others without batting an eye. Everyone, that is, except Sheena, who…</description>
+    </item>
+    <item>
+      <title>BLEACH: Thousand-Year Blood War - The Calamity — Finale (Ep 10)</title>
+      <link>https://tsuzuki.netlify.app/anime/bleach-thousand-year-blood-war-the-calamity-185874/</link>
+      <guid isPermaLink="false">tsuzuki-rss-185874-f10</guid>
+      <pubDate>Sat, 26 Sep 2026 14:00:00 GMT</pubDate>
+      <description>Finale: The fourth and final part of BLEACH: Sennen Kessen-hen . Destruction looms at the end of the Thousand-Year Blood War between the Soul Reapers and Quincies… as the death of the Soul King mirrors the collapse of the Three Worlds, distortions and omens of destruction start to…</description>
     </item>
     <item>
       <title>STEEL BALL RUN JoJo's Bizarre Adventure 2nd - 3rd STAGE — Premiere (Ep 1)</title>
