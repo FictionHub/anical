@@ -6,7 +6,7 @@
     <atom:link href="https://tsuzuki.netlify.app/feed.xml" rel="self" type="application/rss+xml" />
     <description>Upcoming and recent anime premieres and season finales, updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Sat, 25 Jul 2026 10:06:25 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 26 Jul 2026 10:17:11 GMT</lastBuildDate>
     <ttl>720</ttl>
     <item>
       <title>Please Excuse My Younger Brothers — Finale (Ep 24)</title>
@@ -105,6 +105,13 @@
       <guid isPermaLink="false">tsuzuki-rss-189123-p1</guid>
       <pubDate>Sun, 04 Oct 2026 07:30:00 GMT</pubDate>
       <description>Premiere: The second season of Ao no Hako .</description>
+    </item>
+    <item>
+      <title>Ranma1/2 (2024) Season 3 — Premiere (Ep 1)</title>
+      <link>https://tsuzuki.netlify.app/anime/ranma12-2024-season-3-209872/</link>
+      <guid isPermaLink="false">tsuzuki-rss-209872-p1</guid>
+      <pubDate>Sat, 03 Oct 2026 15:56:00 GMT</pubDate>
+      <description>Premiere: The third season of Ranma 1/2 (2024) .</description>
     </item>
     <item>
       <title>The Elusive Samurai Season 2 — Finale (Ep 12)</title>
@@ -321,7 +328,7 @@
       <link>https://tsuzuki.netlify.app/anime/snack-hazama-213831/</link>
       <guid isPermaLink="false">tsuzuki-rss-213831-f12</guid>
       <pubDate>Fri, 18 Sep 2026 16:42:00 GMT</pubDate>
-      <description>Finale: A weekly mini anime shown with each episode of Ushiro no Shoumen Kamui-san .</description>
+      <description>Finale: A weekly mini anime shown with each episode of Ushiro no Shoumen Kamui-san exclusively on the AT-X broadcast of the TV anime and online on OceanVeil.</description>
     </item>
     <item>
       <title>KAMUI ---He's behind you — Finale (Ep 12)</title>
@@ -350,13 +357,6 @@
       <guid isPermaLink="false">tsuzuki-rss-199748-f12</guid>
       <pubDate>Fri, 18 Sep 2026 13:30:00 GMT</pubDate>
       <description>Finale: Luck, an S-rank mage in the hero’s party, makes a last stand against the Demon King to save his companions. When he finally returns victorious, ten years have passed, and the world praises him as a legendary hero who died in battle. Unable to reclaim his former life, Luck…</description>
-    </item>
-    <item>
-      <title>Meitantei Precure! Fushigi na Niwa to Futari no Himitsu — Premiere (Ep 1)</title>
-      <link>https://tsuzuki.netlify.app/anime/meitantei-precure-fushigi-na-niwa-to-futari-no-himitsu-198654/</link>
-      <guid isPermaLink="false">tsuzuki-rss-198654-p1</guid>
-      <pubDate>Thu, 17 Sep 2026 15:00:00 GMT</pubDate>
-      <description>Premiere: Movie of Meitantei Precure! .</description>
     </item>
   </channel>
 </rss>

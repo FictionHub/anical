@@ -225,15 +225,6 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/that-time-i-got-reincarnated-as-a-
 URL:https://tsuzuki.netlify.app/anime/that-time-i-got-reincarnated-as-a-slime-season-4-182205/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-196187-3@tsuzuki.netlify.app
-DTSTAMP:20260723T145600Z
-DTSTART:20260723T145600Z
-DTEND:20260723T152600Z
-SUMMARY:Smoking Behind the Supermarket with You — Ep 3
-DESCRIPTION:https://tsuzuki.netlify.app/anime/smoking-behind-the-supermarket-with-you-196187/
-URL:https://tsuzuki.netlify.app/anime/smoking-behind-the-supermarket-with-you-196187/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-196187-4@tsuzuki.netlify.app
 DTSTAMP:20260730T145600Z
 DTSTART:20260730T145600Z
@@ -403,15 +394,6 @@ DTEND:20260905T143000Z
 SUMMARY:BLEACH: Thousand-Year Blood War - The Calamity — Ep 7
 DESCRIPTION:https://tsuzuki.netlify.app/anime/bleach-thousand-year-blood-war-the-calamity-185874/
 URL:https://tsuzuki.netlify.app/anime/bleach-thousand-year-blood-war-the-calamity-185874/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-207141-4@tsuzuki.netlify.app
-DTSTAMP:20260723T153000Z
-DTSTART:20260723T153000Z
-DTEND:20260723T160000Z
-SUMMARY:Chainsmoker Cat — Ep 4
-DESCRIPTION:https://tsuzuki.netlify.app/anime/chainsmoker-cat-207141/
-URL:https://tsuzuki.netlify.app/anime/chainsmoker-cat-207141/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-207141-5@tsuzuki.netlify.app
@@ -603,15 +585,6 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/you-and-i-are-polar-opposites-seas
 URL:https://tsuzuki.netlify.app/anime/you-and-i-are-polar-opposites-season-2-210031/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-180136-4@tsuzuki.netlify.app
-DTSTAMP:20260723T152600Z
-DTSTART:20260723T152600Z
-DTEND:20260723T155600Z
-SUMMARY:The Exiled Heavy Knight Knows How to Game the System — Ep 4
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-exiled-heavy-knight-knows-how-to-game-the-system-180136/
-URL:https://tsuzuki.netlify.app/anime/the-exiled-heavy-knight-knows-how-to-game-the-system-180136/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-180136-5@tsuzuki.netlify.app
 DTSTAMP:20260730T152600Z
 DTSTART:20260730T152600Z
@@ -716,6 +689,15 @@ DTSTAMP:20260901T123000Z
 DTSTART:20260901T123000Z
 DTEND:20260901T130000Z
 SUMMARY:I Want to Love You Till Your Dying Day — Ep 9
+DESCRIPTION:https://tsuzuki.netlify.app/anime/i-want-to-love-you-till-your-dying-day-187260/
+URL:https://tsuzuki.netlify.app/anime/i-want-to-love-you-till-your-dying-day-187260/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-187260-10@tsuzuki.netlify.app
+DTSTAMP:20260908T123000Z
+DTSTART:20260908T123000Z
+DTEND:20260908T130000Z
+SUMMARY:I Want to Love You Till Your Dying Day — Ep 10
 DESCRIPTION:https://tsuzuki.netlify.app/anime/i-want-to-love-you-till-your-dying-day-187260/
 URL:https://tsuzuki.netlify.app/anime/i-want-to-love-you-till-your-dying-day-187260/
 END:VEVENT
@@ -887,6 +869,15 @@ DTSTAMP:20260901T140000Z
 DTSTART:20260901T140000Z
 DTEND:20260901T143000Z
 SUMMARY:THE GHOST IN THE SHELL — Ep 9
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-ghost-in-the-shell-177699/
+URL:https://tsuzuki.netlify.app/anime/the-ghost-in-the-shell-177699/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-177699-10@tsuzuki.netlify.app
+DTSTAMP:20260908T140000Z
+DTSTART:20260908T140000Z
+DTEND:20260908T143000Z
+SUMMARY:THE GHOST IN THE SHELL — Ep 10
 DESCRIPTION:https://tsuzuki.netlify.app/anime/the-ghost-in-the-shell-177699/
 URL:https://tsuzuki.netlify.app/anime/the-ghost-in-the-shell-177699/
 END:VEVENT
@@ -1078,15 +1069,6 @@ DTEND:20260905T095600Z
 SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Ep 23
 DESCRIPTION:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
 URL:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-208044-5@tsuzuki.netlify.app
-DTSTAMP:20260723T150000Z
-DTSTART:20260723T150000Z
-DTEND:20260723T153000Z
-SUMMARY:From Overshadowed to Overpowered: Second Reincarnation of a Talentless Sage — Ep 5
-DESCRIPTION:https://tsuzuki.netlify.app/anime/from-overshadowed-to-overpowered-second-reincarnation-of-a-t-208044/
-URL:https://tsuzuki.netlify.app/anime/from-overshadowed-to-overpowered-second-reincarnation-of-a-t-208044/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-208044-6@tsuzuki.netlify.app
@@ -1683,15 +1665,6 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/the-villager-of-level-999-197715/
 URL:https://tsuzuki.netlify.app/anime/the-villager-of-level-999-197715/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-204466-4@tsuzuki.netlify.app
-DTSTAMP:20260723T162800Z
-DTSTART:20260723T162800Z
-DTEND:20260723T165800Z
-SUMMARY:KAIJU GIRL CARAMELISE — Ep 4
-DESCRIPTION:https://tsuzuki.netlify.app/anime/kaiju-girl-caramelise-204466/
-URL:https://tsuzuki.netlify.app/anime/kaiju-girl-caramelise-204466/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-204466-5@tsuzuki.netlify.app
 DTSTAMP:20260730T162800Z
 DTSTART:20260730T162800Z
@@ -2178,6 +2151,15 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/young-ladies-dont-play-fighting-ga
 URL:https://tsuzuki.netlify.app/anime/young-ladies-dont-play-fighting-games-128757/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-128757-10@tsuzuki.netlify.app
+DTSTAMP:20260908T113000Z
+DTSTART:20260908T113000Z
+DTEND:20260908T120000Z
+SUMMARY:Young Ladies Don't Play Fighting Games — Ep 10
+DESCRIPTION:https://tsuzuki.netlify.app/anime/young-ladies-dont-play-fighting-games-128757/
+URL:https://tsuzuki.netlify.app/anime/young-ladies-dont-play-fighting-games-128757/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-182616-2@tsuzuki.netlify.app
 DTSTAMP:20260724T143000Z
 DTSTART:20260724T143000Z
@@ -2430,69 +2412,6 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/the-world-is-dancing-206521/
 URL:https://tsuzuki.netlify.app/anime/the-world-is-dancing-206521/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-169582-4@tsuzuki.netlify.app
-DTSTAMP:20260727T115700Z
-DTSTART:20260727T115700Z
-DTEND:20260727T122700Z
-SUMMARY:The Insipid Prince's Furtive Grab for the Throne — Ep 4
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
-URL:https://tsuzuki.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-169582-5@tsuzuki.netlify.app
-DTSTAMP:20260803T115700Z
-DTSTART:20260803T115700Z
-DTEND:20260803T122700Z
-SUMMARY:The Insipid Prince's Furtive Grab for the Throne — Ep 5
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
-URL:https://tsuzuki.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-169582-6@tsuzuki.netlify.app
-DTSTAMP:20260810T115700Z
-DTSTART:20260810T115700Z
-DTEND:20260810T122700Z
-SUMMARY:The Insipid Prince's Furtive Grab for the Throne — Ep 6
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
-URL:https://tsuzuki.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-169582-7@tsuzuki.netlify.app
-DTSTAMP:20260817T115700Z
-DTSTART:20260817T115700Z
-DTEND:20260817T122700Z
-SUMMARY:The Insipid Prince's Furtive Grab for the Throne — Ep 7
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
-URL:https://tsuzuki.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-169582-8@tsuzuki.netlify.app
-DTSTAMP:20260824T115700Z
-DTSTART:20260824T115700Z
-DTEND:20260824T122700Z
-SUMMARY:The Insipid Prince's Furtive Grab for the Throne — Ep 8
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
-URL:https://tsuzuki.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-169582-9@tsuzuki.netlify.app
-DTSTAMP:20260831T115700Z
-DTSTART:20260831T115700Z
-DTEND:20260831T122700Z
-SUMMARY:The Insipid Prince's Furtive Grab for the Throne — Ep 9
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
-URL:https://tsuzuki.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-169582-10@tsuzuki.netlify.app
-DTSTAMP:20260907T115700Z
-DTSTART:20260907T115700Z
-DTEND:20260907T122700Z
-SUMMARY:The Insipid Prince's Furtive Grab for the Throne — Ep 10
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
-URL:https://tsuzuki.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-186863-5@tsuzuki.netlify.app
 DTSTAMP:20260725T120000Z
 DTSTART:20260725T120000Z
@@ -2554,6 +2473,69 @@ DTEND:20260905T123000Z
 SUMMARY:The Cat and the Dragon — Ep 11
 DESCRIPTION:https://tsuzuki.netlify.app/anime/the-cat-and-the-dragon-186863/
 URL:https://tsuzuki.netlify.app/anime/the-cat-and-the-dragon-186863/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-169582-4@tsuzuki.netlify.app
+DTSTAMP:20260727T115700Z
+DTSTART:20260727T115700Z
+DTEND:20260727T122700Z
+SUMMARY:The Insipid Prince's Furtive Grab for the Throne — Ep 4
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
+URL:https://tsuzuki.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-169582-5@tsuzuki.netlify.app
+DTSTAMP:20260803T115700Z
+DTSTART:20260803T115700Z
+DTEND:20260803T122700Z
+SUMMARY:The Insipid Prince's Furtive Grab for the Throne — Ep 5
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
+URL:https://tsuzuki.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-169582-6@tsuzuki.netlify.app
+DTSTAMP:20260810T115700Z
+DTSTART:20260810T115700Z
+DTEND:20260810T122700Z
+SUMMARY:The Insipid Prince's Furtive Grab for the Throne — Ep 6
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
+URL:https://tsuzuki.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-169582-7@tsuzuki.netlify.app
+DTSTAMP:20260817T115700Z
+DTSTART:20260817T115700Z
+DTEND:20260817T122700Z
+SUMMARY:The Insipid Prince's Furtive Grab for the Throne — Ep 7
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
+URL:https://tsuzuki.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-169582-8@tsuzuki.netlify.app
+DTSTAMP:20260824T115700Z
+DTSTART:20260824T115700Z
+DTEND:20260824T122700Z
+SUMMARY:The Insipid Prince's Furtive Grab for the Throne — Ep 8
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
+URL:https://tsuzuki.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-169582-9@tsuzuki.netlify.app
+DTSTAMP:20260831T115700Z
+DTSTART:20260831T115700Z
+DTEND:20260831T122700Z
+SUMMARY:The Insipid Prince's Furtive Grab for the Throne — Ep 9
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
+URL:https://tsuzuki.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-169582-10@tsuzuki.netlify.app
+DTSTAMP:20260907T115700Z
+DTSTART:20260907T115700Z
+DTEND:20260907T122700Z
+SUMMARY:The Insipid Prince's Furtive Grab for the Throne — Ep 10
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
+URL:https://tsuzuki.netlify.app/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-196012-17@tsuzuki.netlify.app
@@ -2853,6 +2835,15 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/the-oblivious-saint-cant-contain-h
 URL:https://tsuzuki.netlify.app/anime/the-oblivious-saint-cant-contain-her-power-196219/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-196219-11@tsuzuki.netlify.app
+DTSTAMP:20260908T130000Z
+DTSTART:20260908T130000Z
+DTEND:20260908T133000Z
+SUMMARY:The Oblivious Saint Can't Contain Her Power — Ep 11
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-oblivious-saint-cant-contain-her-power-196219/
+URL:https://tsuzuki.netlify.app/anime/the-oblivious-saint-cant-contain-her-power-196219/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-194219-4@tsuzuki.netlify.app
 DTSTAMP:20260725T153000Z
 DTSTART:20260725T153000Z
@@ -3033,6 +3024,15 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/victoria-of-many-faces-198709/
 URL:https://tsuzuki.netlify.app/anime/victoria-of-many-faces-198709/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-198709-10@tsuzuki.netlify.app
+DTSTAMP:20260908T150000Z
+DTSTART:20260908T150000Z
+DTEND:20260908T153000Z
+SUMMARY:Victoria of Many Faces — Ep 10
+DESCRIPTION:https://tsuzuki.netlify.app/anime/victoria-of-many-faces-198709/
+URL:https://tsuzuki.netlify.app/anime/victoria-of-many-faces-198709/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-209504-4@tsuzuki.netlify.app
 DTSTAMP:20260727T140000Z
 DTSTART:20260727T140000Z
@@ -3112,15 +3112,6 @@ DTEND:20260802T153000Z
 SUMMARY:Boku no Hero Academia: I am a hero too — Ep 1
 DESCRIPTION:https://tsuzuki.netlify.app/anime/boku-no-hero-academia-i-am-a-hero-too-211711/
 URL:https://tsuzuki.netlify.app/anime/boku-no-hero-academia-i-am-a-hero-too-211711/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-203880-4@tsuzuki.netlify.app
-DTSTAMP:20260723T123000Z
-DTSTART:20260723T123000Z
-DTEND:20260723T130000Z
-SUMMARY:Dara-san of the Reiwa Era — Ep 4
-DESCRIPTION:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
-URL:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-203880-5@tsuzuki.netlify.app
@@ -3344,6 +3335,15 @@ DTSTAMP:20260901T163500Z
 DTSTART:20260901T163500Z
 DTEND:20260901T170500Z
 SUMMARY:Red River — Ep 9
+DESCRIPTION:https://tsuzuki.netlify.app/anime/red-river-207809/
+URL:https://tsuzuki.netlify.app/anime/red-river-207809/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-207809-10@tsuzuki.netlify.app
+DTSTAMP:20260908T163500Z
+DTSTART:20260908T163500Z
+DTEND:20260908T170500Z
+SUMMARY:Red River — Ep 10
 DESCRIPTION:https://tsuzuki.netlify.app/anime/red-river-207809/
 URL:https://tsuzuki.netlify.app/anime/red-river-207809/
 END:VEVENT
@@ -3663,15 +3663,6 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/please-excuse-my-younger-brothers-
 URL:https://tsuzuki.netlify.app/anime/please-excuse-my-younger-brothers-203490/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-108992-3@tsuzuki.netlify.app
-DTSTAMP:20260723T143000Z
-DTSTART:20260723T143000Z
-DTEND:20260723T150000Z
-SUMMARY:Mebius Dust — Ep 3
-DESCRIPTION:https://tsuzuki.netlify.app/anime/mebius-dust-108992/
-URL:https://tsuzuki.netlify.app/anime/mebius-dust-108992/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-108992-4@tsuzuki.netlify.app
 DTSTAMP:20260730T143000Z
 DTSTART:20260730T143000Z
@@ -3789,15 +3780,6 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/magilumiere-magical-girls-inc-seas
 URL:https://tsuzuki.netlify.app/anime/magilumiere-magical-girls-inc-season-2-185692/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-198376-6@tsuzuki.netlify.app
-DTSTAMP:20260723T140000Z
-DTSTART:20260723T140000Z
-DTEND:20260723T143000Z
-SUMMARY:BanG Dream! YUME∞MITA — Ep 6
-DESCRIPTION:https://tsuzuki.netlify.app/anime/bang-dream-yumemita-198376/
-URL:https://tsuzuki.netlify.app/anime/bang-dream-yumemita-198376/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-198376-7@tsuzuki.netlify.app
 DTSTAMP:20260730T140000Z
 DTSTART:20260730T140000Z
@@ -3906,69 +3888,6 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/hana-kimi-season-2-209669/
 URL:https://tsuzuki.netlify.app/anime/hana-kimi-season-2-209669/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-202508-16@tsuzuki.netlify.app
-DTSTAMP:20260724T143000Z
-DTSTART:20260724T143000Z
-DTEND:20260724T150000Z
-SUMMARY:The Drops of God — Ep 16
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-drops-of-god-202508/
-URL:https://tsuzuki.netlify.app/anime/the-drops-of-god-202508/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-202508-17@tsuzuki.netlify.app
-DTSTAMP:20260731T143000Z
-DTSTART:20260731T143000Z
-DTEND:20260731T150000Z
-SUMMARY:The Drops of God — Ep 17
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-drops-of-god-202508/
-URL:https://tsuzuki.netlify.app/anime/the-drops-of-god-202508/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-202508-18@tsuzuki.netlify.app
-DTSTAMP:20260807T143000Z
-DTSTART:20260807T143000Z
-DTEND:20260807T150000Z
-SUMMARY:The Drops of God — Ep 18
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-drops-of-god-202508/
-URL:https://tsuzuki.netlify.app/anime/the-drops-of-god-202508/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-202508-19@tsuzuki.netlify.app
-DTSTAMP:20260814T143000Z
-DTSTART:20260814T143000Z
-DTEND:20260814T150000Z
-SUMMARY:The Drops of God — Ep 19
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-drops-of-god-202508/
-URL:https://tsuzuki.netlify.app/anime/the-drops-of-god-202508/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-202508-20@tsuzuki.netlify.app
-DTSTAMP:20260821T143000Z
-DTSTART:20260821T143000Z
-DTEND:20260821T150000Z
-SUMMARY:The Drops of God — Ep 20
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-drops-of-god-202508/
-URL:https://tsuzuki.netlify.app/anime/the-drops-of-god-202508/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-202508-21@tsuzuki.netlify.app
-DTSTAMP:20260828T143000Z
-DTSTART:20260828T143000Z
-DTEND:20260828T150000Z
-SUMMARY:The Drops of God — Ep 21
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-drops-of-god-202508/
-URL:https://tsuzuki.netlify.app/anime/the-drops-of-god-202508/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-202508-22@tsuzuki.netlify.app
-DTSTAMP:20260904T143000Z
-DTSTART:20260904T143000Z
-DTEND:20260904T150000Z
-SUMMARY:The Drops of God — Ep 22
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-drops-of-god-202508/
-URL:https://tsuzuki.netlify.app/anime/the-drops-of-god-202508/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-206249-4@tsuzuki.netlify.app
 DTSTAMP:20260725T133000Z
 DTSTART:20260725T133000Z
@@ -4032,6 +3951,69 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/recommendations-from-iwamoto-senpa
 URL:https://tsuzuki.netlify.app/anime/recommendations-from-iwamoto-senpai-206249/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-202508-16@tsuzuki.netlify.app
+DTSTAMP:20260724T143000Z
+DTSTART:20260724T143000Z
+DTEND:20260724T150000Z
+SUMMARY:The Drops of God — Ep 16
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-drops-of-god-202508/
+URL:https://tsuzuki.netlify.app/anime/the-drops-of-god-202508/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-202508-17@tsuzuki.netlify.app
+DTSTAMP:20260731T143000Z
+DTSTART:20260731T143000Z
+DTEND:20260731T150000Z
+SUMMARY:The Drops of God — Ep 17
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-drops-of-god-202508/
+URL:https://tsuzuki.netlify.app/anime/the-drops-of-god-202508/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-202508-18@tsuzuki.netlify.app
+DTSTAMP:20260807T143000Z
+DTSTART:20260807T143000Z
+DTEND:20260807T150000Z
+SUMMARY:The Drops of God — Ep 18
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-drops-of-god-202508/
+URL:https://tsuzuki.netlify.app/anime/the-drops-of-god-202508/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-202508-19@tsuzuki.netlify.app
+DTSTAMP:20260814T143000Z
+DTSTART:20260814T143000Z
+DTEND:20260814T150000Z
+SUMMARY:The Drops of God — Ep 19
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-drops-of-god-202508/
+URL:https://tsuzuki.netlify.app/anime/the-drops-of-god-202508/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-202508-20@tsuzuki.netlify.app
+DTSTAMP:20260821T143000Z
+DTSTART:20260821T143000Z
+DTEND:20260821T150000Z
+SUMMARY:The Drops of God — Ep 20
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-drops-of-god-202508/
+URL:https://tsuzuki.netlify.app/anime/the-drops-of-god-202508/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-202508-21@tsuzuki.netlify.app
+DTSTAMP:20260828T143000Z
+DTSTART:20260828T143000Z
+DTEND:20260828T150000Z
+SUMMARY:The Drops of God — Ep 21
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-drops-of-god-202508/
+URL:https://tsuzuki.netlify.app/anime/the-drops-of-god-202508/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-202508-22@tsuzuki.netlify.app
+DTSTAMP:20260904T143000Z
+DTSTART:20260904T143000Z
+DTEND:20260904T150000Z
+SUMMARY:The Drops of God — Ep 22
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-drops-of-god-202508/
+URL:https://tsuzuki.netlify.app/anime/the-drops-of-god-202508/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-200230-4@tsuzuki.netlify.app
 DTSTAMP:20260726T073000Z
 DTSTART:20260726T073000Z
@@ -4093,15 +4075,6 @@ DTEND:20260906T080000Z
 SUMMARY:Let's go KAIKIGUMI — Ep 10
 DESCRIPTION:https://tsuzuki.netlify.app/anime/lets-go-kaikigumi-200230/
 URL:https://tsuzuki.netlify.app/anime/lets-go-kaikigumi-200230/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-201667-4@tsuzuki.netlify.app
-DTSTAMP:20260723T124000Z
-DTSTART:20260723T124000Z
-DTEND:20260723T131000Z
-SUMMARY:Bungo Stray Dogs WAN! 2 — Ep 4
-DESCRIPTION:https://tsuzuki.netlify.app/anime/bungo-stray-dogs-wan-2-201667/
-URL:https://tsuzuki.netlify.app/anime/bungo-stray-dogs-wan-2-201667/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-201667-5@tsuzuki.netlify.app
@@ -4383,13 +4356,13 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/saved-by-the-ice-cold-princes-embr
 URL:https://tsuzuki.netlify.app/anime/saved-by-the-ice-cold-princes-embrace-213665/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-202717-1@tsuzuki.netlify.app
-DTSTAMP:20260723T150000Z
-DTSTART:20260723T150000Z
-DTEND:20260723T153000Z
-SUMMARY:Chiikawa: Ningyo no Shima no Himitsu — Ep 1
-DESCRIPTION:https://tsuzuki.netlify.app/anime/chiikawa-ningyo-no-shima-no-himitsu-202717/
-URL:https://tsuzuki.netlify.app/anime/chiikawa-ningyo-no-shima-no-himitsu-202717/
+UID:tsuzuki-213665-10@tsuzuki.netlify.app
+DTSTAMP:20260908T125500Z
+DTSTART:20260908T125500Z
+DTEND:20260908T132500Z
+SUMMARY:Saved By the Ice Cold Prince's Embrace — Ep 10
+DESCRIPTION:https://tsuzuki.netlify.app/anime/saved-by-the-ice-cold-princes-embrace-213665/
+URL:https://tsuzuki.netlify.app/anime/saved-by-the-ice-cold-princes-embrace-213665/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-213666-4@tsuzuki.netlify.app
@@ -4685,6 +4658,15 @@ DTSTAMP:20260901T143000Z
 DTSTART:20260901T143000Z
 DTEND:20260901T150000Z
 SUMMARY:Yoroi-Shinden Samurai Troopers Cour 2 — Ep 9
+DESCRIPTION:https://tsuzuki.netlify.app/anime/yoroi-shinden-samurai-troopers-cour-2-209800/
+URL:https://tsuzuki.netlify.app/anime/yoroi-shinden-samurai-troopers-cour-2-209800/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-209800-10@tsuzuki.netlify.app
+DTSTAMP:20260908T143000Z
+DTSTART:20260908T143000Z
+DTEND:20260908T150000Z
+SUMMARY:Yoroi-Shinden Samurai Troopers Cour 2 — Ep 10
 DESCRIPTION:https://tsuzuki.netlify.app/anime/yoroi-shinden-samurai-troopers-cour-2-209800/
 URL:https://tsuzuki.netlify.app/anime/yoroi-shinden-samurai-troopers-cour-2-209800/
 END:VEVENT

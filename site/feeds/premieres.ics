@@ -108,6 +108,15 @@ DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/boku-no-hero-a
 URL:https://tsuzuki.netlify.app/anime/boku-no-hero-academia-i-am-a-hero-too-211711/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-209872-1@tsuzuki.netlify.app
+DTSTAMP:20261003T155600Z
+DTSTART:20261003T155600Z
+DTEND:20261003T162600Z
+SUMMARY:Ranma1/2 (2024) Season 3 — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/ranma12-2024-season-3-209872/
+URL:https://tsuzuki.netlify.app/anime/ranma12-2024-season-3-209872/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-207327-1@tsuzuki.netlify.app
 DTSTAMP:20261008T150000Z
 DTSTART:20261008T150000Z
@@ -178,15 +187,6 @@ DTEND:20260804T153000Z
 SUMMARY:Star Wars: Visions Presents - The Ninth Jedi — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/star-wars-visions-presents-the-ninth-jedi-213847/
 URL:https://tsuzuki.netlify.app/anime/star-wars-visions-presents-the-ninth-jedi-213847/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-202717-1@tsuzuki.netlify.app
-DTSTAMP:20260723T150000Z
-DTSTART:20260723T150000Z
-DTEND:20260723T153000Z
-SUMMARY:Chiikawa: Ningyo no Shima no Himitsu — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/chiikawa-ningyo-no-shima-no-himitsu-202717/
-URL:https://tsuzuki.netlify.app/anime/chiikawa-ningyo-no-shima-no-himitsu-202717/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-176373-1@tsuzuki.netlify.app
