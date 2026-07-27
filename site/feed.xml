@@ -6,7 +6,7 @@
     <atom:link href="https://tsuzuki.netlify.app/feed.xml" rel="self" type="application/rss+xml" />
     <description>Upcoming and recent anime premieres and season finales, updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Sun, 26 Jul 2026 10:17:11 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 27 Jul 2026 11:49:20 GMT</lastBuildDate>
     <ttl>720</ttl>
     <item>
       <title>Please Excuse My Younger Brothers — Finale (Ep 24)</title>
@@ -181,7 +181,7 @@
       <link>https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/</link>
       <guid isPermaLink="false">tsuzuki-rss-203880-f13</guid>
       <pubDate>Thu, 24 Sep 2026 12:30:00 GMT</pubDate>
-      <description>Finale: Clouds blacken the sky and sheets of rain turn the mountain forest into a treacherous maze... A landslide crushes a razor wire fence, and buries a &quot;NO TRESPASSING&quot; sign... Two young siblings wander into a dark world where they do not belong, and a long, horrid shadow rears up…</description>
+      <description>Finale: After venturing into a restricted, treacherous mountain forest, siblings Hinata and Kaoru meet a terrifying serpent god and become besties! Despite her initially scary appearance, the self-named “god of misfortune” is awkward, lonely, and surprisingly easy to talk to. This is…</description>
     </item>
     <item>
       <title>Candy Caries — Finale (Ep 24)</title>
@@ -210,6 +210,13 @@
       <guid isPermaLink="false">tsuzuki-rss-209800-f12</guid>
       <pubDate>Tue, 22 Sep 2026 14:30:00 GMT</pubDate>
       <description>Finale: The second part of Yoroi Shinden Samurai Troopers .</description>
+    </item>
+    <item>
+      <title>Young Ladies Don't Play Fighting Games — Finale (Ep 12)</title>
+      <link>https://tsuzuki.netlify.app/anime/young-ladies-dont-play-fighting-games-128757/</link>
+      <guid isPermaLink="false">tsuzuki-rss-128757-f12</guid>
+      <pubDate>Tue, 22 Sep 2026 11:30:00 GMT</pubDate>
+      <description>Finale: Mitsuki Aya has one goal at the elite Kuromi Girls’ Academy: to become a refined young lady like the school’s flawless “White Lily,” Yorue Mio. But her image of Mio shatters when Aya accidentally catches her...playing fighting games?! Turns out, the elegant Mio is actually a…</description>
     </item>
     <item>
       <title>Grand Blue Dreaming Season 3 — Finale (Ep 12)</title>
@@ -273,6 +280,13 @@
       <guid isPermaLink="false">tsuzuki-rss-177637-f12</guid>
       <pubDate>Sun, 20 Sep 2026 15:30:00 GMT</pubDate>
       <description>Finale: Once upon a time, a mermaid princess named Lara fell in love with a human prince. To be with him, she used a witch’s potion to become human—but the magic came at a cost: If she failed to find true love, she would vanish into sea foam forever. Now, 200 years later, Lara awakens…</description>
+    </item>
+    <item>
+      <title>Though I Am an Inept Villainess — Finale (Ep 11)</title>
+      <link>https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/</link>
+      <guid isPermaLink="false">tsuzuki-rss-188139-f11</guid>
+      <pubDate>Sun, 20 Sep 2026 14:46:00 GMT</pubDate>
+      <description>Finale: As maidens from the Five Clans battle for the Crown Prince’s heart, jealous Keigetsu uses forbidden magic to swap bodies with the beloved Reirin. Switching places does not guarantee happiness for Keigetsu with her new body's ill health leaving her hanging on the verge of death.…</description>
     </item>
     <item>
       <title>The World's Strongest Rearguard — Finale (Ep 12)</title>
@@ -343,20 +357,6 @@
       <guid isPermaLink="false">tsuzuki-rss-188525-f12</guid>
       <pubDate>Fri, 18 Sep 2026 14:30:00 GMT</pubDate>
       <description>Finale: First-year high school student Ai Yasumi lives on the island of Izu Oshima and loves reading manga. But after a certain turning point, she sets her sights on creating stories of her own! As she dives into the world of manga-making, Ai faces challenges, growth, and the…</description>
-    </item>
-    <item>
-      <title>The Drops of God — Finale (Ep 24)</title>
-      <link>https://tsuzuki.netlify.app/anime/the-drops-of-god-202508/</link>
-      <guid isPermaLink="false">tsuzuki-rss-202508-f24</guid>
-      <pubDate>Fri, 18 Sep 2026 14:30:00 GMT</pubDate>
-      <description>Finale: World-renowned wine critic Yutaka Kanzaki has passed away, leaving behind a wine collection worth over 12 billion yen. His will states that his collection will be given to the one who can identify the origin and year of twelve wines he’s chosen, the “Twelve Apostles”, and one…</description>
-    </item>
-    <item>
-      <title>I Became a Legend After My 10 Year-Long Last Stand — Finale (Ep 12)</title>
-      <link>https://tsuzuki.netlify.app/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/</link>
-      <guid isPermaLink="false">tsuzuki-rss-199748-f12</guid>
-      <pubDate>Fri, 18 Sep 2026 13:30:00 GMT</pubDate>
-      <description>Finale: Luck, an S-rank mage in the hero’s party, makes a last stand against the Demon King to save his companions. When he finally returns victorious, ten years have passed, and the world praises him as a legendary hero who died in battle. Unable to reclaim his former life, Luck…</description>
     </item>
   </channel>
 </rss>

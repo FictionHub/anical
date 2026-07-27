@@ -144,6 +144,15 @@ DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/oh-boy-was-i-wrong-
 URL:https://tsuzuki.netlify.app/anime/oh-boy-was-i-wrong-about-her-169583/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-188139-f11@tsuzuki.netlify.app
+DTSTAMP:20260920T144600Z
+DTSTART:20260920T144600Z
+DTEND:20260920T151600Z
+SUMMARY:Though I Am an Inept Villainess — Finale (Ep 11)
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
+URL:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-177637-f12@tsuzuki.netlify.app
 DTSTAMP:20260920T153000Z
 DTSTART:20260920T153000Z
@@ -151,6 +160,15 @@ DTEND:20260920T160000Z
 SUMMARY:Goodbye\, Lara — Finale (Ep 12)
 DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/goodbye-lara-177637/
 URL:https://tsuzuki.netlify.app/anime/goodbye-lara-177637/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-128757-f12@tsuzuki.netlify.app
+DTSTAMP:20260922T113000Z
+DTSTART:20260922T113000Z
+DTEND:20260922T120000Z
+SUMMARY:Young Ladies Don't Play Fighting Games — Finale (Ep 12)
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/young-ladies-dont-play-fighting-games-128757/
+URL:https://tsuzuki.netlify.app/anime/young-ladies-dont-play-fighting-games-128757/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-182616-f12@tsuzuki.netlify.app
