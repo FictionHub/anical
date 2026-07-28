@@ -6,7 +6,7 @@
     <atom:link href="https://tsuzuki.netlify.app/feed.xml" rel="self" type="application/rss+xml" />
     <description>Upcoming and recent anime premieres and season finales, updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 27 Jul 2026 11:49:20 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 28 Jul 2026 10:56:19 GMT</lastBuildDate>
     <ttl>720</ttl>
     <item>
       <title>Please Excuse My Younger Brothers — Finale (Ep 24)</title>
@@ -93,6 +93,13 @@
       <description>Premiere: In celebration of &quot;Magic Knight Rayearth” animes' 30th anniversary, a new animation project has been launched! Note: Title and relations are provisional and subject to change.</description>
     </item>
     <item>
+      <title>Kyouran Reijou Nia Liston — Premiere (Ep 1)</title>
+      <link>https://tsuzuki.netlify.app/anime/kyouran-reijou-nia-liston-206949/</link>
+      <guid isPermaLink="false">tsuzuki-rss-206949-p1</guid>
+      <pubDate>Tue, 06 Oct 2026 12:26:00 GMT</pubDate>
+      <description>Premiere: A great hero lies undefeated on her deathbed, regretting that she never found a foe who could take her down. She never intended to meet her fate anywhere other than on the battlefield, and her peaceful demise has her wishing desperately that things could have been different...…</description>
+    </item>
+    <item>
       <title>Kanata Kara — Premiere (Ep 1)</title>
       <link>https://tsuzuki.netlify.app/anime/kanata-kara-209463/</link>
       <guid isPermaLink="false">tsuzuki-rss-209463-p1</guid>
@@ -154,6 +161,13 @@
       <guid isPermaLink="false">tsuzuki-rss-185874-f10</guid>
       <pubDate>Sat, 26 Sep 2026 14:00:00 GMT</pubDate>
       <description>Finale: The fourth and final part of BLEACH: Sennen Kessen-hen . Destruction looms at the end of the Thousand-Year Blood War between the Soul Reapers and Quincies… as the death of the Soul King mirrors the collapse of the Three Worlds, distortions and omens of destruction start to…</description>
+    </item>
+    <item>
+      <title>Ascendance of a Bookworm: Adopted Daughter of an Archduke — Finale (Ep 24)</title>
+      <link>https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/</link>
+      <guid isPermaLink="false">tsuzuki-rss-171110-f24</guid>
+      <pubDate>Sat, 26 Sep 2026 08:30:00 GMT</pubDate>
+      <description>Finale: Anime adaptation of Part 3 of Honzuki no Gekokujou . Following a disastrous encounter with a noble, Myne finally resolves to say goodbye to her family and friends in the lower city, changing her name to “Rozemyne” and beginning her new life as the adopted daughter of…</description>
     </item>
     <item>
       <title>STEEL BALL RUN JoJo's Bizarre Adventure 2nd - 3rd STAGE — Premiere (Ep 1)</title>
@@ -343,20 +357,6 @@
       <guid isPermaLink="false">tsuzuki-rss-213831-f12</guid>
       <pubDate>Fri, 18 Sep 2026 16:42:00 GMT</pubDate>
       <description>Finale: A weekly mini anime shown with each episode of Ushiro no Shoumen Kamui-san exclusively on the AT-X broadcast of the TV anime and online on OceanVeil.</description>
-    </item>
-    <item>
-      <title>KAMUI ---He's behind you — Finale (Ep 12)</title>
-      <link>https://tsuzuki.netlify.app/anime/kamui-hes-behind-you-207674/</link>
-      <guid isPermaLink="false">tsuzuki-rss-207674-f12</guid>
-      <pubDate>Fri, 18 Sep 2026 16:30:00 GMT</pubDate>
-      <description>Finale: This exorcism is OMFFFFFFFFF!!!! Shizuka is a self-proclaimed ordinary high school girl who &quot;only&quot; sees ghosts. Using her unique ability to attract spirits, she works as an assistant to the famous psychic, Kamui. Though Kamui boasts overwhelming spiritual power, his exorcism…</description>
-    </item>
-    <item>
-      <title>Draw This, Then Die! — Finale (Ep 12)</title>
-      <link>https://tsuzuki.netlify.app/anime/draw-this-then-die-188525/</link>
-      <guid isPermaLink="false">tsuzuki-rss-188525-f12</guid>
-      <pubDate>Fri, 18 Sep 2026 14:30:00 GMT</pubDate>
-      <description>Finale: First-year high school student Ai Yasumi lives on the island of Izu Oshima and loves reading manga. But after a certain turning point, she sets her sights on creating stories of her own! As she dives into the world of manga-making, Ai faces challenges, growth, and the…</description>
     </item>
   </channel>
 </rss>
