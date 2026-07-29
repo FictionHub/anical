@@ -90,15 +90,6 @@ DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/welcome-to-demon-sc
 URL:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-171110-f24@tsuzuki.netlify.app
-DTSTAMP:20260926T083000Z
-DTSTART:20260926T083000Z
-DTEND:20260926T090000Z
-SUMMARY:Ascendance of a Bookworm: Adopted Daughter of an Archduke — Finale (Ep 24)
-DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
-URL:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-198946-f13@tsuzuki.netlify.app
 DTSTAMP:20260930T120000Z
 DTSTART:20260930T120000Z
@@ -106,6 +97,15 @@ DTEND:20260930T123000Z
 SUMMARY:Clevatess Season 2 — Finale (Ep 13)
 DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
 URL:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-171110-f24@tsuzuki.netlify.app
+DTSTAMP:20260926T083000Z
+DTSTART:20260926T083000Z
+DTEND:20260926T090000Z
+SUMMARY:Ascendance of a Bookworm: Adopted Daughter of an Archduke — Finale (Ep 24)
+DESCRIPTION:Season finale. https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
+URL:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-199111-f12@tsuzuki.netlify.app
