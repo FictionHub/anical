@@ -6,7 +6,7 @@
     <atom:link href="https://tsuzuki.netlify.app/feed.xml" rel="self" type="application/rss+xml" />
     <description>Upcoming and recent anime premieres and season finales, updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 29 Jul 2026 11:01:33 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 30 Jul 2026 10:37:17 GMT</lastBuildDate>
     <ttl>720</ttl>
     <item>
       <title>Please Excuse My Younger Brothers — Finale (Ep 24)</title>
@@ -30,6 +30,13 @@
       <description>Finale: The second race stage of JoJo no Kimyou na Bouken: Steel Ball Run . In the 2nd STAGE, a desert crossing spanning roughly 750 miles- the land that Johnny Joestar and Gyro Zeppeli must challenge, is home to the area that is feared as the &quot;Devil's Palm.&quot; In 1875, a threat lurking…</description>
     </item>
     <item>
+      <title>CARDFIGHT!! VANGUARD Divinez: Parallactic Fate — Finale (Ep 3)</title>
+      <link>https://tsuzuki.netlify.app/anime/cardfight-vanguard-divinez-parallactic-fate-214536/</link>
+      <guid isPermaLink="false">tsuzuki-rss-214536-f3</guid>
+      <pubDate>Sat, 21 Nov 2026 14:30:00 GMT</pubDate>
+      <description>Finale: Note: The anime first premiered in theaters across Japan on October 2, 2026. It was later split into 3 episodes aired weekly on TV starting November 7, 2026.</description>
+    </item>
+    <item>
       <title>Witch on the Holy Night — Premiere (Ep 1)</title>
       <link>https://tsuzuki.netlify.app/anime/witch-on-the-holy-night-143103/</link>
       <guid isPermaLink="false">tsuzuki-rss-143103-p1</guid>
@@ -42,6 +49,13 @@
       <guid isPermaLink="false">tsuzuki-rss-204561-p1</guid>
       <pubDate>Thu, 12 Nov 2026 15:00:00 GMT</pubDate>
       <description>Premiere: A new original video anime for Mahou no Princess Minky Momo . Note: Title and Relations are provisional and will be updated when more info is announced.</description>
+    </item>
+    <item>
+      <title>CARDFIGHT!! VANGUARD Divinez: Parallactic Fate — Premiere (Ep 1)</title>
+      <link>https://tsuzuki.netlify.app/anime/cardfight-vanguard-divinez-parallactic-fate-214536/</link>
+      <guid isPermaLink="false">tsuzuki-rss-214536-p1</guid>
+      <pubDate>Sat, 07 Nov 2026 14:30:00 GMT</pubDate>
+      <description>Premiere: Note: The anime first premiered in theaters across Japan on October 2, 2026. It was later split into 3 episodes aired weekly on TV starting November 7, 2026.</description>
     </item>
     <item>
       <title>GROTESQQQUE — Premiere (Ep 1)</title>
@@ -343,20 +357,6 @@
       <guid isPermaLink="false">tsuzuki-rss-194219-f12</guid>
       <pubDate>Sat, 19 Sep 2026 15:30:00 GMT</pubDate>
       <description>Finale: A Japanese-style ayakashi Cinderella story! &quot;You're the bride I've been searching for all this time.&quot; The ayakashi and humans coexist in harmony. The ayakashi, having superior abilities and beautiful appearances, sometimes find their partner among human women, making them their…</description>
-    </item>
-    <item>
-      <title>Daemons of the Shadow Realm — Finale (Ep 24)</title>
-      <link>https://tsuzuki.netlify.app/anime/daemons-of-the-shadow-realm-195600/</link>
-      <guid isPermaLink="false">tsuzuki-rss-195600-f24</guid>
-      <pubDate>Sat, 19 Sep 2026 14:30:00 GMT</pubDate>
-      <description>Finale: In a remote mountain village under the watchful eyes of two stone guardians, the young Yuru contentedly lives off the land while staying close to the only family he has left—Asa, his precious twin sister. Asa, meanwhile, carries out a mysterious “duty” on behalf of the village…</description>
-    </item>
-    <item>
-      <title>Snack Hazama — Finale (Ep 12)</title>
-      <link>https://tsuzuki.netlify.app/anime/snack-hazama-213831/</link>
-      <guid isPermaLink="false">tsuzuki-rss-213831-f12</guid>
-      <pubDate>Fri, 18 Sep 2026 16:42:00 GMT</pubDate>
-      <description>Finale: A weekly mini anime shown with each episode of Ushiro no Shoumen Kamui-san exclusively on the AT-X broadcast of the TV anime and online on OceanVeil.</description>
     </item>
   </channel>
 </rss>
