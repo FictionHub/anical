@@ -207,6 +207,15 @@ DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/kanata-kara-20
 URL:https://tsuzuki.netlify.app/anime/kanata-kara-209463/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-202079-1@tsuzuki.netlify.app
+DTSTAMP:20261004T130000Z
+DTSTART:20261004T130000Z
+DTEND:20261004T133000Z
+SUMMARY:Oji-san wa Kawaii Mono ga Osuki. — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/oji-san-wa-kawaii-mono-ga-osuki-202079/
+URL:https://tsuzuki.netlify.app/anime/oji-san-wa-kawaii-mono-ga-osuki-202079/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-212652-1@tsuzuki.netlify.app
 DTSTAMP:20260820T150000Z
 DTSTART:20260820T150000Z

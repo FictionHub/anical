@@ -63,6 +63,15 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/mushoku-tensei-jobless-reincarnati
 URL:https://tsuzuki.netlify.app/anime/mushoku-tensei-jobless-reincarnation-season-3-178789/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-178789-12@tsuzuki.netlify.app
+DTSTAMP:20260913T150000Z
+DTSTART:20260913T150000Z
+DTEND:20260913T153000Z
+SUMMARY:Mushoku Tensei: Jobless Reincarnation Season 3 — Ep 12
+DESCRIPTION:https://tsuzuki.netlify.app/anime/mushoku-tensei-jobless-reincarnation-season-3-178789/
+URL:https://tsuzuki.netlify.app/anime/mushoku-tensei-jobless-reincarnation-season-3-178789/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-189046-12@tsuzuki.netlify.app
 DTSTAMP:20260812T130000Z
 DTSTART:20260812T130000Z
@@ -540,15 +549,6 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/black-torch-187538/
 URL:https://tsuzuki.netlify.app/anime/black-torch-187538/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-133007-1@tsuzuki.netlify.app
-DTSTAMP:20260827T150000Z
-DTSTART:20260827T150000Z
-DTEND:20260827T153000Z
-SUMMARY:Puella Magi Madoka Magica the Movie -Walpurgisnacht: Rising- — Ep 1
-DESCRIPTION:https://tsuzuki.netlify.app/anime/puella-magi-madoka-magica-the-movie-walpurgisnacht-rising--133007/
-URL:https://tsuzuki.netlify.app/anime/puella-magi-madoka-magica-the-movie-walpurgisnacht-rising--133007/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-210031-5@tsuzuki.netlify.app
 DTSTAMP:20260802T080000Z
 DTSTART:20260802T080000Z
@@ -612,6 +612,15 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/you-and-i-are-polar-opposites-seas
 URL:https://tsuzuki.netlify.app/anime/you-and-i-are-polar-opposites-season-2-210031/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-133007-1@tsuzuki.netlify.app
+DTSTAMP:20260827T150000Z
+DTSTART:20260827T150000Z
+DTEND:20260827T153000Z
+SUMMARY:Puella Magi Madoka Magica the Movie -Walpurgisnacht: Rising- — Ep 1
+DESCRIPTION:https://tsuzuki.netlify.app/anime/puella-magi-madoka-magica-the-movie-walpurgisnacht-rising--133007/
+URL:https://tsuzuki.netlify.app/anime/puella-magi-madoka-magica-the-movie-walpurgisnacht-rising--133007/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-180136-5@tsuzuki.netlify.app
 DTSTAMP:20260730T152600Z
 DTSTART:20260730T152600Z
@@ -673,15 +682,6 @@ DTEND:20260910T155600Z
 SUMMARY:The Exiled Heavy Knight Knows How to Game the System — Ep 11
 DESCRIPTION:https://tsuzuki.netlify.app/anime/the-exiled-heavy-knight-knows-how-to-game-the-system-180136/
 URL:https://tsuzuki.netlify.app/anime/the-exiled-heavy-knight-knows-how-to-game-the-system-180136/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-187260-4@tsuzuki.netlify.app
-DTSTAMP:20260728T123000Z
-DTSTART:20260728T123000Z
-DTEND:20260728T130000Z
-SUMMARY:I Want to Love You Till Your Dying Day — Ep 4
-DESCRIPTION:https://tsuzuki.netlify.app/anime/i-want-to-love-you-till-your-dying-day-187260/
-URL:https://tsuzuki.netlify.app/anime/i-want-to-love-you-till-your-dying-day-187260/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-187260-5@tsuzuki.netlify.app
@@ -792,6 +792,15 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/sparks-of-tomorrow-103303/
 URL:https://tsuzuki.netlify.app/anime/sparks-of-tomorrow-103303/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-103303-11@tsuzuki.netlify.app
+DTSTAMP:20260913T140000Z
+DTSTART:20260913T140000Z
+DTEND:20260913T143000Z
+SUMMARY:Sparks of Tomorrow — Ep 11
+DESCRIPTION:https://tsuzuki.netlify.app/anime/sparks-of-tomorrow-103303/
+URL:https://tsuzuki.netlify.app/anime/sparks-of-tomorrow-103303/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-159309-4@tsuzuki.netlify.app
 DTSTAMP:20260729T143000Z
 DTSTART:20260729T143000Z
@@ -853,15 +862,6 @@ DTEND:20260909T150000Z
 SUMMARY:Trapped in a Dating Sim: The World of Otome Games is Tough for Mobs Season 2 — Ep 10
 DESCRIPTION:https://tsuzuki.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
 URL:https://tsuzuki.netlify.app/anime/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-fo-159309/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-177699-4@tsuzuki.netlify.app
-DTSTAMP:20260728T140000Z
-DTSTART:20260728T140000Z
-DTEND:20260728T143000Z
-SUMMARY:THE GHOST IN THE SHELL — Ep 4
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-ghost-in-the-shell-177699/
-URL:https://tsuzuki.netlify.app/anime/the-ghost-in-the-shell-177699/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-177699-5@tsuzuki.netlify.app
@@ -1026,69 +1026,6 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/liar-game-197754/
 URL:https://tsuzuki.netlify.app/anime/liar-game-197754/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-184492-18@tsuzuki.netlify.app
-DTSTAMP:20260801T092600Z
-DTSTART:20260801T092600Z
-DTEND:20260801T095600Z
-SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Ep 18
-DESCRIPTION:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-URL:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-184492-19@tsuzuki.netlify.app
-DTSTAMP:20260808T092600Z
-DTSTART:20260808T092600Z
-DTEND:20260808T095600Z
-SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Ep 19
-DESCRIPTION:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-URL:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-184492-20@tsuzuki.netlify.app
-DTSTAMP:20260815T092600Z
-DTSTART:20260815T092600Z
-DTEND:20260815T095600Z
-SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Ep 20
-DESCRIPTION:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-URL:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-184492-21@tsuzuki.netlify.app
-DTSTAMP:20260822T092600Z
-DTSTART:20260822T092600Z
-DTEND:20260822T095600Z
-SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Ep 21
-DESCRIPTION:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-URL:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-184492-22@tsuzuki.netlify.app
-DTSTAMP:20260829T092600Z
-DTSTART:20260829T092600Z
-DTEND:20260829T095600Z
-SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Ep 22
-DESCRIPTION:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-URL:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-184492-23@tsuzuki.netlify.app
-DTSTAMP:20260905T092600Z
-DTSTART:20260905T092600Z
-DTEND:20260905T095600Z
-SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Ep 23
-DESCRIPTION:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-URL:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-184492-24@tsuzuki.netlify.app
-DTSTAMP:20260912T092600Z
-DTSTART:20260912T092600Z
-DTEND:20260912T095600Z
-SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Ep 24
-DESCRIPTION:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-URL:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-208044-6@tsuzuki.netlify.app
 DTSTAMP:20260730T150000Z
 DTSTART:20260730T150000Z
@@ -1150,6 +1087,69 @@ DTEND:20260910T153000Z
 SUMMARY:From Overshadowed to Overpowered: Second Reincarnation of a Talentless Sage — Ep 12
 DESCRIPTION:https://tsuzuki.netlify.app/anime/from-overshadowed-to-overpowered-second-reincarnation-of-a-t-208044/
 URL:https://tsuzuki.netlify.app/anime/from-overshadowed-to-overpowered-second-reincarnation-of-a-t-208044/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-184492-18@tsuzuki.netlify.app
+DTSTAMP:20260801T092600Z
+DTSTART:20260801T092600Z
+DTEND:20260801T095600Z
+SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Ep 18
+DESCRIPTION:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
+URL:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-184492-19@tsuzuki.netlify.app
+DTSTAMP:20260808T092600Z
+DTSTART:20260808T092600Z
+DTEND:20260808T095600Z
+SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Ep 19
+DESCRIPTION:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
+URL:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-184492-20@tsuzuki.netlify.app
+DTSTAMP:20260815T092600Z
+DTSTART:20260815T092600Z
+DTEND:20260815T095600Z
+SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Ep 20
+DESCRIPTION:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
+URL:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-184492-21@tsuzuki.netlify.app
+DTSTAMP:20260822T092600Z
+DTSTART:20260822T092600Z
+DTEND:20260822T095600Z
+SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Ep 21
+DESCRIPTION:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
+URL:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-184492-22@tsuzuki.netlify.app
+DTSTAMP:20260829T092600Z
+DTSTART:20260829T092600Z
+DTEND:20260829T095600Z
+SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Ep 22
+DESCRIPTION:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
+URL:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-184492-23@tsuzuki.netlify.app
+DTSTAMP:20260905T092600Z
+DTSTART:20260905T092600Z
+DTEND:20260905T095600Z
+SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Ep 23
+DESCRIPTION:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
+URL:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-184492-24@tsuzuki.netlify.app
+DTSTAMP:20260912T092600Z
+DTSTART:20260912T092600Z
+DTEND:20260912T095600Z
+SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Ep 24
+DESCRIPTION:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
+URL:https://tsuzuki.netlify.app/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-198946-4@tsuzuki.netlify.app
@@ -1215,69 +1215,6 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
 URL:https://tsuzuki.netlify.app/anime/clevatess-season-2-198946/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-171110-16@tsuzuki.netlify.app
-DTSTAMP:20260801T083000Z
-DTSTART:20260801T083000Z
-DTEND:20260801T090000Z
-SUMMARY:Ascendance of a Bookworm: Adopted Daughter of an Archduke — Ep 16
-DESCRIPTION:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
-URL:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-171110-17@tsuzuki.netlify.app
-DTSTAMP:20260808T083000Z
-DTSTART:20260808T083000Z
-DTEND:20260808T090000Z
-SUMMARY:Ascendance of a Bookworm: Adopted Daughter of an Archduke — Ep 17
-DESCRIPTION:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
-URL:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-171110-18@tsuzuki.netlify.app
-DTSTAMP:20260815T083000Z
-DTSTART:20260815T083000Z
-DTEND:20260815T090000Z
-SUMMARY:Ascendance of a Bookworm: Adopted Daughter of an Archduke — Ep 18
-DESCRIPTION:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
-URL:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-171110-19@tsuzuki.netlify.app
-DTSTAMP:20260822T083000Z
-DTSTART:20260822T083000Z
-DTEND:20260822T090000Z
-SUMMARY:Ascendance of a Bookworm: Adopted Daughter of an Archduke — Ep 19
-DESCRIPTION:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
-URL:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-171110-20@tsuzuki.netlify.app
-DTSTAMP:20260829T083000Z
-DTSTART:20260829T083000Z
-DTEND:20260829T090000Z
-SUMMARY:Ascendance of a Bookworm: Adopted Daughter of an Archduke — Ep 20
-DESCRIPTION:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
-URL:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-171110-21@tsuzuki.netlify.app
-DTSTAMP:20260905T083000Z
-DTSTART:20260905T083000Z
-DTEND:20260905T090000Z
-SUMMARY:Ascendance of a Bookworm: Adopted Daughter of an Archduke — Ep 21
-DESCRIPTION:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
-URL:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-171110-22@tsuzuki.netlify.app
-DTSTAMP:20260912T083000Z
-DTSTART:20260912T083000Z
-DTEND:20260912T090000Z
-SUMMARY:Ascendance of a Bookworm: Adopted Daughter of an Archduke — Ep 22
-DESCRIPTION:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
-URL:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-194829-4@tsuzuki.netlify.app
 DTSTAMP:20260729T144600Z
 DTSTART:20260729T144600Z
@@ -1339,6 +1276,69 @@ DTEND:20260909T151600Z
 SUMMARY:From Old Country Bumpkin to Master Swordsman II — Ep 10
 DESCRIPTION:https://tsuzuki.netlify.app/anime/from-old-country-bumpkin-to-master-swordsman-ii-194829/
 URL:https://tsuzuki.netlify.app/anime/from-old-country-bumpkin-to-master-swordsman-ii-194829/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-171110-16@tsuzuki.netlify.app
+DTSTAMP:20260801T083000Z
+DTSTART:20260801T083000Z
+DTEND:20260801T090000Z
+SUMMARY:Ascendance of a Bookworm: Adopted Daughter of an Archduke — Ep 16
+DESCRIPTION:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
+URL:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-171110-17@tsuzuki.netlify.app
+DTSTAMP:20260808T083000Z
+DTSTART:20260808T083000Z
+DTEND:20260808T090000Z
+SUMMARY:Ascendance of a Bookworm: Adopted Daughter of an Archduke — Ep 17
+DESCRIPTION:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
+URL:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-171110-18@tsuzuki.netlify.app
+DTSTAMP:20260815T083000Z
+DTSTART:20260815T083000Z
+DTEND:20260815T090000Z
+SUMMARY:Ascendance of a Bookworm: Adopted Daughter of an Archduke — Ep 18
+DESCRIPTION:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
+URL:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-171110-19@tsuzuki.netlify.app
+DTSTAMP:20260822T083000Z
+DTSTART:20260822T083000Z
+DTEND:20260822T090000Z
+SUMMARY:Ascendance of a Bookworm: Adopted Daughter of an Archduke — Ep 19
+DESCRIPTION:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
+URL:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-171110-20@tsuzuki.netlify.app
+DTSTAMP:20260829T083000Z
+DTSTART:20260829T083000Z
+DTEND:20260829T090000Z
+SUMMARY:Ascendance of a Bookworm: Adopted Daughter of an Archduke — Ep 20
+DESCRIPTION:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
+URL:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-171110-21@tsuzuki.netlify.app
+DTSTAMP:20260905T083000Z
+DTSTART:20260905T083000Z
+DTEND:20260905T090000Z
+SUMMARY:Ascendance of a Bookworm: Adopted Daughter of an Archduke — Ep 21
+DESCRIPTION:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
+URL:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-171110-22@tsuzuki.netlify.app
+DTSTAMP:20260912T083000Z
+DTSTART:20260912T083000Z
+DTEND:20260912T090000Z
+SUMMARY:Ascendance of a Bookworm: Adopted Daughter of an Archduke — Ep 22
+DESCRIPTION:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
+URL:https://tsuzuki.netlify.app/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-199111-5@tsuzuki.netlify.app
@@ -1508,6 +1508,15 @@ DTSTAMP:20260906T133000Z
 DTSTART:20260906T133000Z
 DTEND:20260906T140000Z
 SUMMARY:The 100 Girlfriends Who Really\, Really\, Really\, Really\, REALLY Love You Season 3 — Ep 10
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-100-girlfriends-who-really-really-really-really-really-l-200637/
+URL:https://tsuzuki.netlify.app/anime/the-100-girlfriends-who-really-really-really-really-really-l-200637/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-200637-11@tsuzuki.netlify.app
+DTSTAMP:20260913T133000Z
+DTSTART:20260913T133000Z
+DTEND:20260913T140000Z
+SUMMARY:The 100 Girlfriends Who Really\, Really\, Really\, Really\, REALLY Love You Season 3 — Ep 11
 DESCRIPTION:https://tsuzuki.netlify.app/anime/the-100-girlfriends-who-really-really-really-really-really-l-200637/
 URL:https://tsuzuki.netlify.app/anime/the-100-girlfriends-who-really-really-really-really-really-l-200637/
 END:VEVENT
@@ -1989,6 +1998,15 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-18
 URL:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-188139-10@tsuzuki.netlify.app
+DTSTAMP:20260913T144600Z
+DTSTART:20260913T144600Z
+DTEND:20260913T151600Z
+SUMMARY:Though I Am an Inept Villainess — Ep 10
+DESCRIPTION:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
+URL:https://tsuzuki.netlify.app/anime/though-i-am-an-inept-villainess-188139/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-196218-5@tsuzuki.netlify.app
 DTSTAMP:20260731T133000Z
 DTSTART:20260731T133000Z
@@ -2106,13 +2124,13 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/goodbye-lara-177637/
 URL:https://tsuzuki.netlify.app/anime/goodbye-lara-177637/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-128757-4@tsuzuki.netlify.app
-DTSTAMP:20260728T113000Z
-DTSTART:20260728T113000Z
-DTEND:20260728T120000Z
-SUMMARY:Young Ladies Don't Play Fighting Games — Ep 4
-DESCRIPTION:https://tsuzuki.netlify.app/anime/young-ladies-dont-play-fighting-games-128757/
-URL:https://tsuzuki.netlify.app/anime/young-ladies-dont-play-fighting-games-128757/
+UID:tsuzuki-177637-11@tsuzuki.netlify.app
+DTSTAMP:20260913T153000Z
+DTSTART:20260913T153000Z
+DTEND:20260913T160000Z
+SUMMARY:Goodbye\, Lara — Ep 11
+DESCRIPTION:https://tsuzuki.netlify.app/anime/goodbye-lara-177637/
+URL:https://tsuzuki.netlify.app/anime/goodbye-lara-177637/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-128757-5@tsuzuki.netlify.app
@@ -2286,6 +2304,15 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/the-classroom-of-the-black-cat-and
 URL:https://tsuzuki.netlify.app/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-196974-23@tsuzuki.netlify.app
+DTSTAMP:20260913T143000Z
+DTSTART:20260913T143000Z
+DTEND:20260913T150000Z
+SUMMARY:The Classroom of the Black Cat and a Witch — Ep 23
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
+URL:https://tsuzuki.netlify.app/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-198409-5@tsuzuki.netlify.app
 DTSTAMP:20260802T130000Z
 DTSTART:20260802T130000Z
@@ -2336,6 +2363,15 @@ DTSTAMP:20260906T130000Z
 DTSTART:20260906T130000Z
 DTEND:20260906T133000Z
 SUMMARY:The World's Strongest Rearguard — Ep 10
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-worlds-strongest-rearguard-198409/
+URL:https://tsuzuki.netlify.app/anime/the-worlds-strongest-rearguard-198409/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-198409-11@tsuzuki.netlify.app
+DTSTAMP:20260913T130000Z
+DTSTART:20260913T130000Z
+DTEND:20260913T133000Z
+SUMMARY:The World's Strongest Rearguard — Ep 11
 DESCRIPTION:https://tsuzuki.netlify.app/anime/the-worlds-strongest-rearguard-198409/
 URL:https://tsuzuki.netlify.app/anime/the-worlds-strongest-rearguard-198409/
 END:VEVENT
@@ -2754,15 +2790,6 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/a-livid-ladys-guide-to-getting-eve
 URL:https://tsuzuki.netlify.app/anime/a-livid-ladys-guide-to-getting-even-how-i-crushed-my-homelan-199408/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-196219-5@tsuzuki.netlify.app
-DTSTAMP:20260728T130000Z
-DTSTART:20260728T130000Z
-DTEND:20260728T133000Z
-SUMMARY:The Oblivious Saint Can't Contain Her Power — Ep 5
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-oblivious-saint-cant-contain-her-power-196219/
-URL:https://tsuzuki.netlify.app/anime/the-oblivious-saint-cant-contain-her-power-196219/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-196219-6@tsuzuki.netlify.app
 DTSTAMP:20260804T130000Z
 DTSTART:20260804T130000Z
@@ -2941,15 +2968,6 @@ DTEND:20260911T170000Z
 SUMMARY:KAMUI ---He's behind you — Ep 11
 DESCRIPTION:https://tsuzuki.netlify.app/anime/kamui-hes-behind-you-207674/
 URL:https://tsuzuki.netlify.app/anime/kamui-hes-behind-you-207674/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-198709-4@tsuzuki.netlify.app
-DTSTAMP:20260728T150000Z
-DTSTART:20260728T150000Z
-DTEND:20260728T153000Z
-SUMMARY:Victoria of Many Faces — Ep 4
-DESCRIPTION:https://tsuzuki.netlify.app/anime/victoria-of-many-faces-198709/
-URL:https://tsuzuki.netlify.app/anime/victoria-of-many-faces-198709/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-198709-5@tsuzuki.netlify.app
@@ -3141,69 +3159,6 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
 URL:https://tsuzuki.netlify.app/anime/dara-san-of-the-reiwa-era-203880/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-208225-5@tsuzuki.netlify.app
-DTSTAMP:20260801T163000Z
-DTSTART:20260801T163000Z
-DTEND:20260801T170000Z
-SUMMARY:The Duke’s Son Claims He Won’t Love Me Yet Showers Me with Adoration — Ep 5
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
-URL:https://tsuzuki.netlify.app/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-208225-6@tsuzuki.netlify.app
-DTSTAMP:20260808T163000Z
-DTSTART:20260808T163000Z
-DTEND:20260808T170000Z
-SUMMARY:The Duke’s Son Claims He Won’t Love Me Yet Showers Me with Adoration — Ep 6
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
-URL:https://tsuzuki.netlify.app/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-208225-7@tsuzuki.netlify.app
-DTSTAMP:20260815T163000Z
-DTSTART:20260815T163000Z
-DTEND:20260815T170000Z
-SUMMARY:The Duke’s Son Claims He Won’t Love Me Yet Showers Me with Adoration — Ep 7
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
-URL:https://tsuzuki.netlify.app/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-208225-8@tsuzuki.netlify.app
-DTSTAMP:20260822T163000Z
-DTSTART:20260822T163000Z
-DTEND:20260822T170000Z
-SUMMARY:The Duke’s Son Claims He Won’t Love Me Yet Showers Me with Adoration — Ep 8
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
-URL:https://tsuzuki.netlify.app/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-208225-9@tsuzuki.netlify.app
-DTSTAMP:20260829T163000Z
-DTSTART:20260829T163000Z
-DTEND:20260829T170000Z
-SUMMARY:The Duke’s Son Claims He Won’t Love Me Yet Showers Me with Adoration — Ep 9
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
-URL:https://tsuzuki.netlify.app/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-208225-10@tsuzuki.netlify.app
-DTSTAMP:20260905T163000Z
-DTSTART:20260905T163000Z
-DTEND:20260905T170000Z
-SUMMARY:The Duke’s Son Claims He Won’t Love Me Yet Showers Me with Adoration — Ep 10
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
-URL:https://tsuzuki.netlify.app/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-208225-11@tsuzuki.netlify.app
-DTSTAMP:20260912T163000Z
-DTSTART:20260912T163000Z
-DTEND:20260912T170000Z
-SUMMARY:The Duke’s Son Claims He Won’t Love Me Yet Showers Me with Adoration — Ep 11
-DESCRIPTION:https://tsuzuki.netlify.app/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
-URL:https://tsuzuki.netlify.app/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-196356-4@tsuzuki.netlify.app
 DTSTAMP:20260729T143000Z
 DTSTART:20260729T143000Z
@@ -3267,13 +3222,67 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/my-stepmother-and-stepsisters-aren
 URL:https://tsuzuki.netlify.app/anime/my-stepmother-and-stepsisters-arent-wicked-196356/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-207809-4@tsuzuki.netlify.app
-DTSTAMP:20260728T163500Z
-DTSTART:20260728T163500Z
-DTEND:20260728T170500Z
-SUMMARY:Red River — Ep 4
-DESCRIPTION:https://tsuzuki.netlify.app/anime/red-river-207809/
-URL:https://tsuzuki.netlify.app/anime/red-river-207809/
+UID:tsuzuki-208225-5@tsuzuki.netlify.app
+DTSTAMP:20260801T163000Z
+DTSTART:20260801T163000Z
+DTEND:20260801T170000Z
+SUMMARY:The Duke’s Son Claims He Won’t Love Me Yet Showers Me with Adoration — Ep 5
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
+URL:https://tsuzuki.netlify.app/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-208225-6@tsuzuki.netlify.app
+DTSTAMP:20260808T163000Z
+DTSTART:20260808T163000Z
+DTEND:20260808T170000Z
+SUMMARY:The Duke’s Son Claims He Won’t Love Me Yet Showers Me with Adoration — Ep 6
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
+URL:https://tsuzuki.netlify.app/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-208225-7@tsuzuki.netlify.app
+DTSTAMP:20260815T163000Z
+DTSTART:20260815T163000Z
+DTEND:20260815T170000Z
+SUMMARY:The Duke’s Son Claims He Won’t Love Me Yet Showers Me with Adoration — Ep 7
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
+URL:https://tsuzuki.netlify.app/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-208225-8@tsuzuki.netlify.app
+DTSTAMP:20260822T163000Z
+DTSTART:20260822T163000Z
+DTEND:20260822T170000Z
+SUMMARY:The Duke’s Son Claims He Won’t Love Me Yet Showers Me with Adoration — Ep 8
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
+URL:https://tsuzuki.netlify.app/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-208225-9@tsuzuki.netlify.app
+DTSTAMP:20260829T163000Z
+DTSTART:20260829T163000Z
+DTEND:20260829T170000Z
+SUMMARY:The Duke’s Son Claims He Won’t Love Me Yet Showers Me with Adoration — Ep 9
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
+URL:https://tsuzuki.netlify.app/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-208225-10@tsuzuki.netlify.app
+DTSTAMP:20260905T163000Z
+DTSTART:20260905T163000Z
+DTEND:20260905T170000Z
+SUMMARY:The Duke’s Son Claims He Won’t Love Me Yet Showers Me with Adoration — Ep 10
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
+URL:https://tsuzuki.netlify.app/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-208225-11@tsuzuki.netlify.app
+DTSTAMP:20260912T163000Z
+DTSTART:20260912T163000Z
+DTEND:20260912T170000Z
+SUMMARY:The Duke’s Son Claims He Won’t Love Me Yet Showers Me with Adoration — Ep 11
+DESCRIPTION:https://tsuzuki.netlify.app/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
+URL:https://tsuzuki.netlify.app/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-207809-5@tsuzuki.netlify.app
@@ -4203,6 +4212,15 @@ DESCRIPTION:https://tsuzuki.netlify.app/anime/anime-azurlane-slow-ahead-season-2
 URL:https://tsuzuki.netlify.app/anime/anime-azurlane-slow-ahead-season-2-169080/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-169080-11@tsuzuki.netlify.app
+DTSTAMP:20260913T160000Z
+DTSTART:20260913T160000Z
+DTEND:20260913T163000Z
+SUMMARY:Anime AzurLane: Slow Ahead! Season 2 — Ep 11
+DESCRIPTION:https://tsuzuki.netlify.app/anime/anime-azurlane-slow-ahead-season-2-169080/
+URL:https://tsuzuki.netlify.app/anime/anime-azurlane-slow-ahead-season-2-169080/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-194116-1@tsuzuki.netlify.app
 DTSTAMP:20260910T150000Z
 DTSTART:20260910T150000Z
@@ -4327,15 +4345,6 @@ DTEND:20260909T140000Z
 SUMMARY:Re:Zero kara Hajimeru Kyuukei Jikan (Break Time) 4th Season — Ep 16
 DESCRIPTION:https://tsuzuki.netlify.app/anime/rezero-kara-hajimeru-kyuukei-jikan-break-time-4th-season-210687/
 URL:https://tsuzuki.netlify.app/anime/rezero-kara-hajimeru-kyuukei-jikan-break-time-4th-season-210687/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-213665-4@tsuzuki.netlify.app
-DTSTAMP:20260728T125500Z
-DTSTART:20260728T125500Z
-DTEND:20260728T132500Z
-SUMMARY:Saved By the Ice Cold Prince's Embrace — Ep 4
-DESCRIPTION:https://tsuzuki.netlify.app/anime/saved-by-the-ice-cold-princes-embrace-213665/
-URL:https://tsuzuki.netlify.app/anime/saved-by-the-ice-cold-princes-embrace-213665/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-213665-5@tsuzuki.netlify.app
@@ -4642,15 +4651,6 @@ DTEND:20260820T153000Z
 SUMMARY:Shiranuhi — Ep 1
 DESCRIPTION:https://tsuzuki.netlify.app/anime/shiranuhi-176373/
 URL:https://tsuzuki.netlify.app/anime/shiranuhi-176373/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-209800-4@tsuzuki.netlify.app
-DTSTAMP:20260728T143000Z
-DTSTART:20260728T143000Z
-DTEND:20260728T150000Z
-SUMMARY:Yoroi-Shinden Samurai Troopers Cour 2 — Ep 4
-DESCRIPTION:https://tsuzuki.netlify.app/anime/yoroi-shinden-samurai-troopers-cour-2-209800/
-URL:https://tsuzuki.netlify.app/anime/yoroi-shinden-samurai-troopers-cour-2-209800/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-209800-5@tsuzuki.netlify.app
@@ -5108,6 +5108,15 @@ DTSTAMP:20260906T182000Z
 DTSTART:20260906T182000Z
 DTEND:20260906T185000Z
 SUMMARY:Theatre of Darkness: Yamishibai 17 — Ep 9
+DESCRIPTION:https://tsuzuki.netlify.app/anime/theatre-of-darkness-yamishibai-17-213359/
+URL:https://tsuzuki.netlify.app/anime/theatre-of-darkness-yamishibai-17-213359/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-213359-10@tsuzuki.netlify.app
+DTSTAMP:20260913T182000Z
+DTSTART:20260913T182000Z
+DTEND:20260913T185000Z
+SUMMARY:Theatre of Darkness: Yamishibai 17 — Ep 10
 DESCRIPTION:https://tsuzuki.netlify.app/anime/theatre-of-darkness-yamishibai-17-213359/
 URL:https://tsuzuki.netlify.app/anime/theatre-of-darkness-yamishibai-17-213359/
 END:VEVENT
