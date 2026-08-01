@@ -472,6 +472,23 @@
   body.events-mode .filters,body.events-mode .legend{display:none}
   @media(max-width:520px){.ev-date{width:62px}.ev-date .ev-d{font-size:20px}}
 
+  /* board (watch statuses) */
+  .board{max-width:1500px;margin:0 auto;padding:18px 22px}
+  .board-head h2{margin:0 0 5px;font-size:22px}
+  .board-cols{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin-top:16px}
+  .board-col{background:var(--bg2);border:1px solid var(--line);border-radius:var(--radius);padding:12px;min-height:80px;box-shadow:var(--shadow)}
+  .board-col h3{margin:0 0 10px;font-size:13.5px;display:flex;align-items:center;gap:6px}
+  .board-count{margin-left:auto;background:var(--bg3);color:var(--muted);font-size:11px;font-weight:700;padding:1px 8px;border-radius:20px}
+  .board-empty{color:var(--muted);font-size:12px;padding:10px 2px;text-align:center}
+  .board-card{display:flex;gap:8px;background:var(--bg3);border:1px solid var(--line);border-radius:9px;padding:7px;margin-bottom:8px;cursor:pointer;transition:.12s}
+  .board-card:hover{border-color:var(--accent)}
+  .board-card img{width:42px;height:59px;object-fit:cover;border-radius:5px;flex:none;background:#000}
+  .board-card-info{min-width:0;display:flex;flex-direction:column;gap:5px;justify-content:center}
+  .board-card-title{font-size:12.5px;font-weight:700;line-height:1.25;max-height:32px;overflow:hidden}
+  .status-sel{font-size:11px;padding:3px 5px;border-radius:6px;background:var(--bg);border:1px solid var(--line);color:var(--txt);max-width:100%}
+  body.board-mode .filters,body.board-mode .legend{display:none}
+  @media(max-width:900px){.board-cols{grid-template-columns:repeat(5,minmax(200px,1fr));overflow-x:auto;padding-bottom:8px}}
+
   /* ============ mobile / phone optimizations ============ */
   @media(max-width:640px){
     /* header: tighter, no big status line, controls flow naturally */
@@ -510,7 +527,7 @@
     .modal{max-width:100%;width:100%;max-height:92vh;border-radius:16px 16px 0 0}
     .trailer{margin-top:12px}
     /* events + dashboard breathing room */
-    .events,.dashboard{padding:14px 12px}
+    .events,.dashboard,.board{padding:14px 12px}
     .ev-card{padding:11px 12px;gap:11px}
     .dash-tiles{gap:10px}
   }
@@ -554,6 +571,7 @@
     <button data-view="week">Week</button>
     <button data-view="agenda">Agenda</button>
     <button data-view="dashboard">📊 Dashboard</button>
+    <button data-view="board">🗂️ Board</button>
     <button data-view="events">🎟️ Events</button>
   </div>
   <button id="surpriseBtn" title="Open a random highly-rated show">🎲 Surprise me</button>
@@ -640,6 +658,7 @@
 </main>
 
 <div class="dashboard" id="dashboardWrap" style="display:none"></div>
+<div class="board" id="boardWrap" style="display:none"></div>
 <div class="events" id="eventsWrap" style="display:none"></div>
 
 <!-- Static links: a crawlable entry point to the generated SEO pages, and the embed widget. -->
@@ -717,6 +736,7 @@ const state = {
   notifyEvents: new Set(),       // followed real-life events (reminders)
   hidden: new Set(),             // "not interested" shows, hidden everywhere
   watch: new Set(),              // ⭐ "My list" — followed shows
+  status: {},                    // mediaId -> watch status key (see STATUS_DEFS); implies watch
   recent: [],                    // recently viewed show ids (most-recent first)
   progress: {},                  // mediaId -> highest watched episode number
   notifyLead: 10,
@@ -727,6 +747,7 @@ try{ state.notify = new Set(JSON.parse(localStorage.getItem("anical.notify")||"[
 try{ state.notifyEvents = new Set(JSON.parse(localStorage.getItem("anical.notifyEvents")||"[]")); }catch(e){}
 try{ state.hidden = new Set(JSON.parse(localStorage.getItem("anical.hidden")||"[]")); }catch(e){}
 try{ state.watch = new Set(JSON.parse(localStorage.getItem("anical.watch")||"[]")); }catch(e){}
+try{ state.status = JSON.parse(localStorage.getItem("anical.status")||"{}")||{}; }catch(e){}
 try{ state.recent = JSON.parse(localStorage.getItem("anical.recent")||"[]"); }catch(e){}
 try{ state.progress = JSON.parse(localStorage.getItem("anical.progress")||"{}")||{}; }catch(e){}
 state.notifyLead = +(localStorage.getItem("anical.lead")||10);
@@ -765,6 +786,31 @@ function toggleWatch(id){
   localStorage.setItem("anical.watch", JSON.stringify([...state.watch]));
   document.querySelectorAll('[data-watch="'+CSS.escape(id)+'"]').forEach(el=>setStar(el, state.watch.has(id)));
   renderView();   // reflects "My list" filter + highlight
+}
+/* watch statuses (Watching / Plan / On-hold / Dropped / Completed) — the board view */
+const STATUS_DEFS = [
+  {key:"watching", label:"Watching", emoji:"▶️"},
+  {key:"plan", label:"Plan to Watch", emoji:"📋"},
+  {key:"onhold", label:"On Hold", emoji:"⏸️"},
+  {key:"dropped", label:"Dropped", emoji:"🗑️"},
+  {key:"completed", label:"Completed", emoji:"✅"},
+];
+function getStatusOf(id){ return state.status[String(id)] || "watching"; }
+function setStatusOf(id, key){
+  id=String(id);
+  if(key) state.status[id]=key; else delete state.status[id];
+  localStorage.setItem("anical.status", JSON.stringify(state.status));
+  if(!state.watch.has(id)){   // setting a status implies you're tracking the show
+    state.watch.add(id);
+    localStorage.setItem("anical.watch", JSON.stringify([...state.watch]));
+    document.querySelectorAll('[data-watch="'+CSS.escape(id)+'"]').forEach(el=>setStar(el, true));
+  }
+}
+function statusSelectHtml(id){
+  const cur=getStatusOf(id);
+  return `<select class="status-sel" data-status-sel="${esc(String(id))}" title="Watch status">
+    ${STATUS_DEFS.map(s=>`<option value="${s.key}" ${s.key===cur?"selected":""}>${s.emoji} ${s.label}</option>`).join("")}
+  </select>`;
 }
 /* episode progress ("mark watched" + Continue Watching) */
 function getProgress(id){ return state.progress[String(id)]||0; }
@@ -1046,6 +1092,10 @@ function renderWhatsNew(){
    update. Returning visitors see every entry newer than the one they last
    saw, once, in a modal they close manually. Trim old entries freely. */
 const CHANGELOG=[
+  { id:3, v:"2.3", date:"August 2026", items:[
+    "New 🗂️ Board view — track shows as Watching, Plan to Watch, On Hold, Dropped or Completed, with per-status counts at a glance.",
+    "Set a show's status right from its detail pop-up — it's added to My List automatically.",
+  ]},
   { id:2, v:"2.3", date:"July 2026", items:[
     "AniCal is now Tsuzuki — 続き, “what’s next.” Same app, same live schedule, a name that’s truly ours.",
     "Everything you’ve saved — your list, watch progress and settings — carries over untouched.",
@@ -1505,9 +1555,10 @@ function agendaRow(e,now){
   return row;
 }
 function renderView(){
-  if(state.viewMode==="dashboard"){ hideEvents(); renderDashboard(); return; }
-  if(state.viewMode==="events"){ hideDashboard(); renderEvents(); return; }
-  hideDashboard(); hideEvents();
+  if(state.viewMode==="dashboard"){ hideEvents(); hideBoard(); renderDashboard(); return; }
+  if(state.viewMode==="events"){ hideDashboard(); hideBoard(); renderEvents(); return; }
+  if(state.viewMode==="board"){ hideDashboard(); hideEvents(); renderBoard(); return; }
+  hideDashboard(); hideEvents(); hideBoard();
   const wrap=$("calWrap"); wrap.innerHTML="";
   wrap.classList.toggle("cal", true);
   if(state.viewMode==="week") renderWeek(wrap);
@@ -1703,6 +1754,10 @@ function openDetail(md,episode){
           <button data-hide="${md.id}" title="Hide this show everywhere">${isHidden(md.id)?"✓ Unhide":"🚫 Not interested"}</button>
           <a href="${md.siteUrl||"#"}" target="_blank" rel="noopener">AniList →</a>
           <a href="${nyaaUrl}" target="_blank" rel="noopener">Nyaa →</a>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:2px">
+          <label style="color:var(--muted);font-size:12px">Status:</label>
+          ${statusSelectHtml(md.id)}
         </div>
         ${nextBlock}
         ${streamChipsHTML(md)}
@@ -2106,6 +2161,54 @@ function hideDashboard(){
   destroyDashCharts();
 }
 
+/* ---------- board (watch statuses) ---------- */
+function boardCardHtml(md){
+  const cover=md.coverImage?(md.coverImage.large||md.coverImage.medium):"";
+  return `<div class="board-card" data-openshow="${esc(String(md.id))}">
+    ${cover?`<img src="${cover}" alt="" loading="lazy">`:""}
+    <div class="board-card-info">
+      <div class="board-card-title">${esc(title(md))}</div>
+      ${statusSelectHtml(md.id)}
+    </div>
+  </div>`;
+}
+async function renderBoard(){
+  const wrap=$("boardWrap");
+  wrap.style.display=""; document.querySelector("main").style.display="none"; document.body.classList.add("board-mode");
+
+  const ids=[...state.watch];
+  if(!ids.length){
+    wrap.innerHTML=`<div class="board-head"><h2>🗂️ My Board</h2><div class="ev-sub">Watching, Plan to Watch, On Hold, Dropped, Completed — track every show you follow, at a glance.</div></div>
+      <div class="ev-loading">Star some shows (⭐ Add to My List) to start building your board.</div>`;
+    return;
+  }
+  wrap.innerHTML='<div class="ev-loading"><span class="spin" style="display:inline-block;margin-right:8px"></span> Loading your board…</div>';
+
+  const missing=ids.filter(id=>!findMediaById(id));
+  if(missing.length){
+    const fetched=await Promise.all(missing.map(id=>fetchMediaById(id).catch(()=>null)));
+    fetched.forEach(md=>{ if(md && !state.media.some(x=>String(x.id)===String(md.id))) state.media.push(md); });
+  }
+  if(state.viewMode!=="board") return;   // user navigated away while fetching
+
+  const shows=ids.map(id=>findMediaById(id)).filter(Boolean);
+  const cols=STATUS_DEFS.map(sd=>({...sd, shows: shows.filter(md=>getStatusOf(md.id)===sd.key)}));
+
+  wrap.innerHTML=`<div class="board-head"><h2>🗂️ My Board</h2><div class="ev-sub">${shows.length} tracked show${shows.length===1?"":"s"}. Change a card's status from its dropdown to move it between columns.</div></div>
+    <div class="board-cols">
+      ${cols.map(c=>`
+        <div class="board-col">
+          <h3>${c.emoji} ${esc(c.label)} <span class="board-count">${c.shows.length}</span></h3>
+          ${c.shows.length ? c.shows.map(boardCardHtml).join("") : '<div class="board-empty">Nothing here</div>'}
+        </div>`).join("")}
+    </div>`;
+}
+function hideBoard(){
+  document.querySelector("main").style.display="";
+  const w=$("boardWrap"); if(w) w.style.display="none";
+  document.body.classList.remove("board-mode");
+}
+
 /* ---------- events (real-life conventions / showcases where anime news breaks) ---------- */
 const EV_COLOR = { "Convention":"#8b5cf6", "Online Showcase":"#22d3ee", "Awards":"#f59e0b", "Doujin":"#ec4899", "Industry":"#22c55e", "Broadcast":"#14b8a6" };
 const evColor = t => EV_COLOR[t] || "#8b5cf6";
@@ -2359,6 +2462,7 @@ function openEventDetail(e){
 /* ---------- main load ---------- */
 function rangeTitle(){
   if(state.viewMode==="events") return "Anime Events";
+  if(state.viewMode==="board") return "My Board";
   if(state.viewMode==="dashboard"){
     const a=state.anchor, sn=seasonOf(a.getMonth());
     return sn.charAt(0)+sn.slice(1).toLowerCase()+" "+a.getFullYear()+" · Dashboard";
@@ -2372,6 +2476,11 @@ async function load(){
   if(state.viewMode==="events"){   // events view needs no AniList data
     renderView();
     setStatus(false,"Real-life anime events & showcases");
+    return;
+  }
+  if(state.viewMode==="board"){   // board fetches only the shows you follow, not a date range
+    renderView();
+    setStatus(false,`Your board · ${state.watch.size} tracked show${state.watch.size===1?"":"s"}`);
     return;
   }
   loadNews();
@@ -2507,7 +2616,7 @@ function syncControlsFromState(){
 // so it can't wipe the mobile agenda default or the user's saved filters.
 function applyParamsToState(params, reset){
   const qv=params.get("view");
-  if(qv && ["month","week","agenda","dashboard","events"].includes(qv)) state.viewMode=qv;
+  if(qv && ["month","week","agenda","dashboard","events","board"].includes(qv)) state.viewMode=qv;
   else if(reset) state.viewMode="month";
   const qd=params.get("date");
   if(qd && /^\d{4}-\d{2}-\d{2}$/.test(qd)){ const d=new Date(qd+"T12:00:00"); if(!isNaN(d)) state.anchor=d; }
@@ -2527,7 +2636,7 @@ window.addEventListener("popstate",()=>{ applyParamsToState(new URLSearchParams(
 
 /* ---------- navigation ---------- */
 function step(dir){
-  if(state.viewMode==="events") return;   // events list shows everything; no date paging
+  if(state.viewMode==="events"||state.viewMode==="board") return;   // no date paging in these views
   const a=state.anchor;
   if(state.viewMode==="dashboard") state.anchor=new Date(a.getFullYear(),a.getMonth()+3*dir,1);
   else if(state.viewMode==="month") state.anchor=new Date(a.getFullYear(),a.getMonth()+dir,1);
@@ -2658,6 +2767,18 @@ document.addEventListener("click",e=>{ const b=e.target.closest("[data-bell]"); 
 document.addEventListener("click",e=>{ const b=e.target.closest("[data-evbell]"); if(b){ e.preventDefault(); e.stopPropagation(); toggleEventNotify(b.dataset.evbell); } });
 // watchlist star delegation (modal + agenda + sidebars)
 document.addEventListener("click",e=>{ const w=e.target.closest("[data-watch]"); if(w){ e.preventDefault(); e.stopPropagation(); toggleWatch(w.dataset.watch); } });
+// watch-status delegation (modal + board): change a show's status, refresh the board if open
+document.addEventListener("change",e=>{
+  const s=e.target.closest("[data-status-sel]"); if(!s) return;
+  setStatusOf(s.dataset.statusSel, s.value);
+  if(state.viewMode==="board") renderBoard();
+});
+// board card delegation: open the show detail (but not when interacting with the status select)
+document.addEventListener("click",e=>{
+  if(e.target.closest("select")) return;
+  const c=e.target.closest("[data-openshow]"); if(!c) return;
+  const md=findMediaById(c.dataset.openshow); if(md) openDetail(md,(nextAir(md)||{}).episode||1);
+});
 // mark-watched delegation (detail-modal schedule). Click an episode = watched up to here; click again = unwatch from here.
 document.addEventListener("click",e=>{
   const m=e.target.closest("[data-mark]"); if(!m) return; e.preventDefault(); e.stopPropagation();
@@ -2799,7 +2920,7 @@ function selectSearchResult(id){
   const target=pickTargetTs(md);
   if(target){
     state.anchor=new Date(target*1000);
-    if(state.viewMode==="week"||state.viewMode==="dashboard"){          // pick a view that will actually show it
+    if(state.viewMode==="week"||state.viewMode==="dashboard"||state.viewMode==="board"){   // pick a view that will actually show it
       state.viewMode="month"; localStorage.setItem("anical.view","month");
       document.querySelectorAll("#viewSeg button").forEach(b=>b.classList.toggle("active",b.dataset.view==="month"));
     }

@@ -22,6 +22,12 @@
   to = "/.netlify/functions/push-unsubscribe"
   status = 200
 
+# Read-only status for the ingestion backbone's scheduled worker (ingest.mjs).
+[[redirects]]
+  from = "/api/ingest/status"
+  to = "/.netlify/functions/ingest-status"
+  status = 200
+
 [[headers]]
   for = "/*"
   [headers.values]

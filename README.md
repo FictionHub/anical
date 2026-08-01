@@ -123,6 +123,29 @@ Subscriptions (push endpoint + followed-show ids + lead time) are stored in Netl
 keyed by push endpoint, and pruned automatically when a subscription expires (404/410 from
 the push service).
 
+## Ingestion backbone (data platform)
+`netlify/functions/ingest.mjs` is a Netlify **scheduled function** (runs every 6
+hours) that pulls the previous/current/next anime season from AniList through a
+shared retry + rate-limit budget (`_lib/ingest-http.mjs`), normalizes each show
+into a versioned canonical schema (`_lib/ingest-schema.mjs`), and archives every
+raw API payload it fetched — all in Netlify Blobs, so there's no separate
+database to provision. `_lib/ingest-sources/` also has stub adapters for ANN,
+TMDB and studio feeds (each returns `{skipped:true, reason:"..."}` today) so
+those sources have a place to land the moment they're implemented, without
+changing the orchestrator's shape.
+
+This is the first milestone (2026·08) of the 10-year roadmap's "Own the Data"
+year — entity resolution across sources, conflict resolution when they
+disagree, and historical backfill are the months that follow, building on the
+canonical records this worker writes.
+
+- Check the latest run: `curl https://<site>/api/ingest/status`
+- Manually trigger a run (uses the same `CRON_SECRET` as push-send.mjs):
+  `curl "https://<site>/.netlify/functions/ingest?secret=$CRON_SECRET"`
+- No client-facing behavior changes yet — the app still reads AniList directly;
+  nothing in `site/` consumes `ingest-canonical` until a later milestone wires
+  it up as the app's actual data source.
+
 ## Embed widget — free backlinks
 `site/embed/` is a self-contained `<iframe>` widget showing the next few days of airing anime.
 It fetches AniList client-side (always live, no rebuild) and links back to the main site —
