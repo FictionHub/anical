@@ -497,6 +497,23 @@
   .board-card-info{min-width:0;display:flex;flex-direction:column;gap:5px;justify-content:center}
   .board-card-title{font-size:12.5px;font-weight:700;line-height:1.25;max-height:32px;overflow:hidden}
   .board-card-marks{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+
+  /* custom collections ("Lists") — a kanban of your own making. Reuses the
+     board's card/column look; columns scroll sideways since there can be many. */
+  .lists-cols{display:flex;gap:14px;margin-top:16px;overflow-x:auto;padding-bottom:10px;align-items:flex-start}
+  .lists-cols .board-col{flex:0 0 252px;max-width:252px}
+  .col-head{display:flex;align-items:center;gap:6px;margin:0 0 10px}
+  .col-name{font-size:13.5px;font-weight:700;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .col-btn{padding:2px 5px;font-size:11px;border-radius:6px;background:transparent;border:1px solid transparent;color:var(--muted)}
+  .col-btn:hover{background:var(--bg3);border-color:var(--line);color:var(--txt);transform:none}
+  .col-btn:disabled{opacity:.3}
+  .board-col.drop-on{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,var(--bg2))}
+  .board-card.dragging{opacity:.4}
+  .board-card[draggable=true]{cursor:grab}
+  .card-sel{font-size:11px;padding:3px 5px;border-radius:6px;background:var(--bg);border:1px solid var(--line);color:var(--txt);max-width:100%;font-weight:600}
+  .lists-hint{color:var(--muted);font-size:12px;margin-top:8px}
+  body.lists-mode .filters>*:not(.search-wrap){display:none}
+  body.lists-mode .legend{display:none}
   /* the board keeps the search box — it's how shows get added — but not the
      calendar-only filters next to it */
   body.board-mode .filters>*:not(.search-wrap){display:none}
@@ -640,6 +657,7 @@
     <button data-view="agenda">Agenda</button>
     <button data-view="dashboard">📊 Dashboard</button>
     <button data-view="board">🗂️ Board</button>
+    <button data-view="lists">📚 Lists</button>
     <button data-view="events">🎟️ Events</button>
   </div>
   <button id="surpriseBtn" title="Open a random highly-rated show">🎲 Surprise me</button>
@@ -727,6 +745,7 @@
 
 <div class="dashboard" id="dashboardWrap" style="display:none"></div>
 <div class="board" id="boardWrap" style="display:none"></div>
+<div class="board" id="listsWrap" style="display:none"></div>
 <div class="events" id="eventsWrap" style="display:none"></div>
 
 <!-- Static links: a crawlable entry point to the generated SEO pages, and the embed widget. -->
@@ -772,7 +791,7 @@
 
 // Build number auto-stamped from the git commit count by scripts/stamp-version.mjs
 // (run via the .githooks/pre-commit hook). Do not edit by hand — it changes every commit.
-const APP_VERSION = "2.5.61";
+const APP_VERSION = "2.5.62";
 
 const API = "https://graphql.anilist.co";
 // Public VAPID key for Web Push (server-driven alerts that work even when
@@ -808,6 +827,7 @@ const state = {
   status: {},                    // mediaId -> watch status key (see STATUS_DEFS); implies watch
   ratings: {},                   // mediaId -> your own 1–10 score
   notes: {},                     // mediaId -> your private free-text note
+  collections: [],               // your own lists: [{id, name, ids:[mediaId…]}], in your order
   recent: [],                    // recently viewed show ids (most-recent first)
   progress: {},                  // mediaId -> highest watched episode number
   notifyLead: 10,
@@ -821,6 +841,12 @@ try{ state.watch = new Set(JSON.parse(localStorage.getItem("anical.watch")||"[]"
 try{ state.status = JSON.parse(localStorage.getItem("anical.status")||"{}")||{}; }catch(e){}
 try{ state.ratings = JSON.parse(localStorage.getItem("anical.ratings")||"{}")||{}; }catch(e){}
 try{ state.notes = JSON.parse(localStorage.getItem("anical.notes")||"{}")||{}; }catch(e){}
+// Collections arrive from localStorage or a pasted sync code, so never trust the shape.
+try{
+  const raw=JSON.parse(localStorage.getItem("anical.collections")||"[]");
+  state.collections=(Array.isArray(raw)?raw:[]).filter(c=>c&&c.id&&typeof c.name==="string")
+    .map(c=>({id:String(c.id), name:String(c.name).slice(0,40), ids:(Array.isArray(c.ids)?c.ids:[]).map(String)}));
+}catch(e){}
 try{ state.recent = JSON.parse(localStorage.getItem("anical.recent")||"[]"); }catch(e){}
 try{ state.progress = JSON.parse(localStorage.getItem("anical.progress")||"{}")||{}; }catch(e){}
 state.notifyLead = +(localStorage.getItem("anical.lead")||10);
@@ -994,6 +1020,88 @@ function saveNoteNow(){
   setNote(id, el.value);
   const label=$("noteState"); if(label && label.isConnected) label.textContent="Saved ✓";
   if(had!==hasNote(id)) renderView();   // the 📝 mark on cards appears / disappears
+}
+/* ---------- custom collections ("Lists") ----------
+   Your own named lists, independent of the five watch statuses: a show can sit
+   in any number of them (or none), and the order of both the lists and the
+   shows inside them is yours. Stored locally like everything else. */
+const COLLECTION_NAME_MAX = 40;
+function saveCollections(){ localStorage.setItem("anical.collections", JSON.stringify(state.collections)); }
+function collectionById(id){ return state.collections.find(c=>c.id===String(id))||null; }
+function cleanCollectionName(name){ return String(name==null?"":name).replace(/\s+/g," ").trim().slice(0,COLLECTION_NAME_MAX); }
+function createCollection(name){
+  const clean=cleanCollectionName(name); if(!clean) return null;
+  const col={id:"c"+Date.now().toString(36)+Math.random().toString(36).slice(2,6), name:clean, ids:[]};
+  state.collections.push(col); saveCollections();
+  return col;
+}
+function renameCollection(id, name){
+  const col=collectionById(id), clean=cleanCollectionName(name);
+  if(!col||!clean) return false;
+  col.name=clean; saveCollections(); return true;
+}
+// Returns what was removed (plus where it sat) so the Undo toast can put it back.
+function deleteCollection(id){
+  const i=state.collections.findIndex(c=>c.id===String(id));
+  if(i<0) return null;
+  const col=state.collections[i];
+  state.collections.splice(i,1); saveCollections();
+  return {index:i, col};
+}
+function restoreCollection(index, col){
+  state.collections.splice(Math.max(0,Math.min(index,state.collections.length)),0,col);
+  saveCollections();
+}
+function moveCollection(id, dir){
+  const i=state.collections.findIndex(c=>c.id===String(id)), j=i+dir;
+  if(i<0||j<0||j>=state.collections.length) return false;
+  const [col]=state.collections.splice(i,1);
+  state.collections.splice(j,0,col); saveCollections(); return true;
+}
+function inCollection(colId, mediaId){
+  const col=collectionById(colId);
+  return !!col && col.ids.indexOf(String(mediaId))>=0;
+}
+function collectionsOf(mediaId){ const m=String(mediaId); return state.collections.filter(c=>c.ids.indexOf(m)>=0); }
+function addToCollection(colId, mediaId){
+  const col=collectionById(colId), m=String(mediaId);
+  if(!col || col.ids.indexOf(m)>=0) return false;
+  col.ids.push(m); saveCollections(); return true;
+}
+function removeFromCollection(colId, mediaId){
+  const col=collectionById(colId), m=String(mediaId);
+  if(!col) return false;
+  const i=col.ids.indexOf(m); if(i<0) return false;
+  col.ids.splice(i,1); saveCollections(); return true;
+}
+function toggleInCollection(colId, mediaId){
+  return inCollection(colId, mediaId) ? (removeFromCollection(colId, mediaId), false)
+                                      : (addToCollection(colId, mediaId), true);
+}
+/* Move between columns in the Lists view. "" means the un-listed column, so
+   dragging out of a list and back to "Not in a list" both go through here. */
+function moveBetweenCollections(mediaId, fromId, toId){
+  if(String(fromId||"")===String(toId||"")) return false;
+  if(fromId) removeFromCollection(fromId, mediaId);
+  if(toId) addToCollection(toId, mediaId);
+  return true;
+}
+/* Chips in the detail pop-up: one per list, plus a "new list" that also adds
+   the show you're looking at. */
+function collectionPickerHtml(id){
+  const sid=esc(String(id));
+  const chips=state.collections.map(c=>{
+    const on=inCollection(c.id, id);
+    return `<button type="button" class="st-chip${on?" on":""}" data-col="${esc(c.id)}|${sid}" aria-pressed="${on?"true":"false"}" title="${on?"Remove from "+esc(c.name):"Add to "+esc(c.name)}">${on?"✓ ":""}${esc(c.name)}</button>`;
+  }).join("");
+  return `<div class="st-pick" data-col-pick="${sid}" role="group" aria-label="Your lists">${chips}
+    <button type="button" class="st-chip" data-col-new="${sid}" title="Make a new list with this show in it">＋ New list</button>
+  </div>`;
+}
+function refreshCollectionPickers(id){
+  document.querySelectorAll('[data-col-pick="'+CSS.escape(String(id))+'"]').forEach(el=>{
+    el.outerHTML=collectionPickerHtml(id);
+  });
 }
 /* transient confirmation, with a one-click Undo for status changes */
 let toastTimer=null, toastUndo=null;
@@ -1320,6 +1428,12 @@ function renderWhatsNew(){
    update. Returning visitors see every entry newer than the one they last
    saw, once, in a modal they close manually. Trim old entries freely. */
 const CHANGELOG=[
+  { id:6, v:"2.6", date:"August 2026", items:[
+    "New 📚 Lists view — make your own collections (Comfort watches, Rewatch pile, Movie night…) and drag shows between them.",
+    "Rename, reorder and delete lists from the column headers, with an Undo if you delete one by mistake.",
+    "A show can sit in as many lists as you like — add it to any of them straight from its detail pop-up.",
+    "Every card has a “Move to…” picker too, so lists work fine on a phone where dragging doesn't.",
+  ]},
   { id:5, v:"2.5", date:"August 2026", items:[
     "Rate any show 1–10 — your own score, shown next to the community average on every card so you can tell them apart at a glance.",
     "Private notes per show: where you left off, who recommended it, why you dropped it. They save as you type and never leave this device.",
@@ -1799,10 +1913,11 @@ function agendaRow(e,now){
   return row;
 }
 function renderView(){
-  if(state.viewMode==="dashboard"){ hideEvents(); hideBoard(); renderDashboard(); return; }
-  if(state.viewMode==="events"){ hideDashboard(); hideBoard(); renderEvents(); return; }
-  if(state.viewMode==="board"){ hideDashboard(); hideEvents(); renderBoard(); return; }
-  hideDashboard(); hideEvents(); hideBoard();
+  if(state.viewMode==="dashboard"){ hideEvents(); hideBoard(); hideLists(); renderDashboard(); return; }
+  if(state.viewMode==="events"){ hideDashboard(); hideBoard(); hideLists(); renderEvents(); return; }
+  if(state.viewMode==="board"){ hideDashboard(); hideEvents(); hideLists(); renderBoard(); return; }
+  if(state.viewMode==="lists"){ hideDashboard(); hideEvents(); hideBoard(); renderLists(); return; }
+  hideDashboard(); hideEvents(); hideBoard(); hideLists();
   const wrap=$("calWrap"); wrap.innerHTML="";
   wrap.classList.toggle("cal", true);
   if(state.viewMode==="week") renderWeek(wrap);
@@ -2024,6 +2139,11 @@ function openDetail(md,episode){
           </div>
           <div class="tznote">Saved on this device only — never uploaded.</div>
         </div>
+        <div class="st-row">
+          <span class="st-row-label">📚 Your lists:</span>
+          ${collectionPickerHtml(md.id)}
+          <span class="st-hint">Your own collections, separate from the watch statuses — a show can be in as many as you like. Arrange them in the 📚 Lists view.</span>
+        </div>
         ${trailerEmbedHTML(md)}
         ${desc?`<p class="desc">${esc(desc)}</p>`:""}
       </div>
@@ -2142,7 +2262,7 @@ function openSettings(){
         <button id="setExport">⬇ Export file</button><button id="setImport">⬆ Import file</button>
         <button id="setCopyCode">📋 Copy sync code</button><button id="setPasteCode">📥 Paste code</button>
       </div></div>
-    <p style="color:var(--muted);font-size:12px;margin-bottom:0">Your board, ratings, private notes, watch-bells, hidden shows and reminders are saved on this device — nothing is uploaded. Use Export or a sync code to copy them to another device. Import pulls your public AniList list into ⭐ My List with its statuses, watch progress and scores.</p>`;
+    <p style="color:var(--muted);font-size:12px;margin-bottom:0">Your board, lists, ratings, private notes, watch-bells, hidden shows and reminders are saved on this device — nothing is uploaded. Use Export or a sync code to copy them to another device. Import pulls your public AniList list into ⭐ My List with its statuses, watch progress and scores.</p>`;
   if($("setUnhide")) $("setUnhide").onclick=()=>{ state.hidden.clear(); localStorage.removeItem("anical.hidden"); renderView(); openSettings(); };
   if($("aniImport")){
     const run=async()=>{
@@ -2480,6 +2600,97 @@ function hideBoard(){
   document.body.classList.remove("board-mode");
 }
 
+/* ---------- custom collections view ("📚 Lists") ----------
+   A kanban of your own lists. The first column holds every tracked show that
+   isn't in a list yet, so there's always something to drag from. Drag works on
+   a mouse; the per-card "Move to…" picker does the same job on touch and by
+   keyboard, so nothing is drag-only. */
+function listCardHtml(md, fromId){
+  const cover=md.coverImage?(md.coverImage.large||md.coverImage.medium):"";
+  const mid=esc(String(md.id));
+  const opts=[
+    fromId?`<option value="">📥 Not in a list</option>`:"",
+    ...state.collections.filter(c=>c.id!==fromId).map(c=>`<option value="${esc(c.id)}">${esc(c.name)}</option>`)
+  ].join("");
+  // img/select are draggable="false" so the card itself is what gets dragged
+  // (otherwise the browser drags the cover art, and Firefox eats clicks on the select)
+  return `<div class="board-card" draggable="true" data-openshow="${mid}" data-lcard="${mid}" data-lfrom="${esc(fromId||"")}">
+    ${cover?`<img src="${cover}" alt="" loading="lazy" draggable="false">`:""}
+    <div class="board-card-info">
+      <div class="board-card-title">${esc(title(md))}</div>
+      ${(getRating(md.id)||hasNote(md.id))?`<div class="board-card-marks">${myMarks(md.id)}</div>`:""}
+      ${opts?`<select class="card-sel" draggable="false" data-lmove="${mid}|${esc(fromId||"")}" title="Move ${esc(title(md))} to another list"><option value="" selected disabled>Move to…</option>${opts}</select>`:""}
+    </div>
+  </div>`;
+}
+function listColumnHtml(col, shows, idx, total){
+  const cid=esc(col.id);
+  return `<div class="board-col" data-ldrop="${cid}">
+    <div class="col-head">
+      <span class="col-name" title="${esc(col.name)}">📚 ${esc(col.name)}</span>
+      <span class="board-count">${shows.length}</span>
+      <button type="button" class="col-btn" data-col-move="${cid}|-1" title="Move list left" aria-label="Move ${esc(col.name)} left"${idx===0?" disabled":""}>‹</button>
+      <button type="button" class="col-btn" data-col-move="${cid}|1" title="Move list right" aria-label="Move ${esc(col.name)} right"${idx===total-1?" disabled":""}>›</button>
+      <button type="button" class="col-btn" data-col-rename="${cid}" title="Rename list" aria-label="Rename ${esc(col.name)}">✏️</button>
+      <button type="button" class="col-btn" data-col-del="${cid}" title="Delete list" aria-label="Delete ${esc(col.name)}">🗑️</button>
+    </div>
+    ${shows.length ? shows.map(md=>listCardHtml(md, col.id)).join("") : '<div class="board-empty">Drop a show here</div>'}
+  </div>`;
+}
+async function renderLists(){
+  const wrap=$("listsWrap");
+  wrap.style.display=""; document.querySelector("main").style.display="none"; document.body.classList.add("lists-mode");
+
+  const head=`<div class="board-top">
+      <div class="board-head"><h2>📚 My Lists</h2><div class="ev-sub">Your own collections — Comfort watches, Rewatch pile, Movie night, anything. A show can live in as many as you like.</div></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="primary" data-col-new="" title="Make a new list">＋ New list</button>
+        <button data-focus-search title="Search any anime">🔍 Add anime</button>
+      </div>
+    </div>`;
+
+  // Every id we need art and titles for: tracked shows plus everything filed away.
+  const ids=[...new Set([...state.watch, ...state.collections.flatMap(c=>c.ids)])];
+  if(!ids.length && !state.collections.length){
+    wrap.innerHTML=head+`<div class="ev-loading">No lists yet. Make one, then drag shows in from your board — or add anime from the search box.</div>`;
+    return;
+  }
+  wrap.innerHTML=head+'<div class="ev-loading"><span class="spin" style="display:inline-block;margin-right:8px"></span> Loading your lists…</div>';
+
+  const missing=ids.filter(id=>!findMediaById(id));
+  if(missing.length){
+    const fetched=await Promise.all(missing.map(id=>fetchMediaById(id).catch(()=>null)));
+    fetched.forEach(md=>{ if(md && !state.media.some(x=>String(x.id)===String(md.id))) state.media.push(md); });
+  }
+  if(state.viewMode!=="lists") return;   // user navigated away while fetching
+
+  const filed=new Set(state.collections.flatMap(c=>c.ids));
+  const unsorted=[...state.watch].filter(id=>!filed.has(String(id))).map(id=>findMediaById(id)).filter(Boolean);
+  const total=state.collections.length;
+
+  wrap.innerHTML=head+`<div class="lists-cols">
+      <div class="board-col" data-ldrop="">
+        <div class="col-head">
+          <span class="col-name" title="Tracked shows that aren't in any list">📥 Not in a list</span>
+          <span class="board-count">${unsorted.length}</span>
+        </div>
+        ${unsorted.length ? unsorted.map(md=>listCardHtml(md,"")).join("") : '<div class="board-empty">Everything is filed</div>'}
+      </div>
+      ${state.collections.map((c,i)=>listColumnHtml(c, c.ids.map(id=>findMediaById(id)).filter(Boolean), i, total)).join("")}
+    </div>
+    <div class="lists-hint">Drag a card between columns, or use its “Move to…” picker. You can also add a show to any list from its detail pop-up.</div>`;
+}
+function hideLists(){
+  document.querySelector("main").style.display="";
+  const w=$("listsWrap"); if(w) w.style.display="none";
+  document.body.classList.remove("lists-mode");
+}
+function listsStatusText(){
+  const n=state.collections.length;
+  const filed=new Set(state.collections.flatMap(c=>c.ids)).size;
+  return n ? `${n} list${n===1?"":"s"} · ${filed} show${filed===1?"":"s"} filed` : "No lists yet — make your first one";
+}
+
 /* ---------- events (real-life conventions / showcases where anime news breaks) ---------- */
 const EV_COLOR = { "Convention":"#8b5cf6", "Online Showcase":"#22d3ee", "Awards":"#f59e0b", "Doujin":"#ec4899", "Industry":"#22c55e", "Broadcast":"#14b8a6" };
 const evColor = t => EV_COLOR[t] || "#8b5cf6";
@@ -2734,6 +2945,7 @@ function openEventDetail(e){
 function rangeTitle(){
   if(state.viewMode==="events") return "Anime Events";
   if(state.viewMode==="board") return "My Board";
+  if(state.viewMode==="lists") return "My Lists";
   if(state.viewMode==="dashboard"){
     const a=state.anchor, sn=seasonOf(a.getMonth());
     return sn.charAt(0)+sn.slice(1).toLowerCase()+" "+a.getFullYear()+" · Dashboard";
@@ -2752,6 +2964,11 @@ async function load(){
   if(state.viewMode==="board"){   // board fetches only the shows you follow, not a date range
     renderView();
     setStatus(false,`Your board · ${state.watch.size} tracked show${state.watch.size===1?"":"s"}`);
+    return;
+  }
+  if(state.viewMode==="lists"){   // same for your own collections
+    renderView();
+    setStatus(false, listsStatusText());
     return;
   }
   loadNews();
@@ -2887,7 +3104,7 @@ function syncControlsFromState(){
 // so it can't wipe the mobile agenda default or the user's saved filters.
 function applyParamsToState(params, reset){
   const qv=params.get("view");
-  if(qv && ["month","week","agenda","dashboard","events","board"].includes(qv)) state.viewMode=qv;
+  if(qv && ["month","week","agenda","dashboard","events","board","lists"].includes(qv)) state.viewMode=qv;
   else if(reset) state.viewMode="month";
   const qd=params.get("date");
   if(qd && /^\d{4}-\d{2}-\d{2}$/.test(qd)){ const d=new Date(qd+"T12:00:00"); if(!isNaN(d)) state.anchor=d; }
@@ -2907,7 +3124,7 @@ window.addEventListener("popstate",()=>{ applyParamsToState(new URLSearchParams(
 
 /* ---------- navigation ---------- */
 function step(dir){
-  if(state.viewMode==="events"||state.viewMode==="board") return;   // no date paging in these views
+  if(state.viewMode==="events"||state.viewMode==="board"||state.viewMode==="lists") return;   // no date paging in these views
   const a=state.anchor;
   if(state.viewMode==="dashboard") state.anchor=new Date(a.getFullYear(),a.getMonth()+3*dir,1);
   else if(state.viewMode==="month") state.anchor=new Date(a.getFullYear(),a.getMonth()+dir,1);
@@ -2994,7 +3211,7 @@ function openShortcutsHelp(){
   $("modalTitle").textContent="⌨️ Keyboard shortcuts";
   const rows=[["/","Focus the search box"],["↑ / ↓","Move through search results"],["Enter","Open the highlighted result"],
     ["T","Jump to today"],["← / →","Previous / next period"],
-    ["M","Month view"],["W","Week view"],["A","Agenda view"],["D","Dashboard"],["E","Events"],
+    ["M","Month view"],["W","Week view"],["A","Agenda view"],["D","Dashboard"],["L","Lists"],["E","Events"],
     ["Esc","Close dialog · clear search"],["?","Show this help"]];
   $("modalBody").innerHTML=`<div class="kb-grid">`+
     rows.map(([k,v])=>`<kbd>${esc(k)}</kbd><span>${esc(v)}</span>`).join("")+`</div>`;
@@ -3014,6 +3231,7 @@ document.addEventListener("keydown",e=>{
     case "w": case "W": setView("week"); break;
     case "a": case "A": setView("agenda"); break;
     case "d": case "D": setView("dashboard"); break;
+    case "l": case "L": setView("lists"); break;
     case "e": case "E": setView("events"); break;
     case "?": e.preventDefault(); openShortcutsHelp(); break;
   }
@@ -3054,6 +3272,7 @@ document.addEventListener("click",e=>{
   const after=()=>{
     renderView();   // moves the board card / re-applies the ⭐ My List filter
     if(state.viewMode==="board") setStatus(false,`Your board · ${state.watch.size} tracked show${state.watch.size===1?"":"s"}`);
+    else if(state.viewMode==="lists") setStatus(false, listsStatusText());
   };
   toast(next ? `${statusLabel(next)} · ${name}` : `Removed from board · ${name}`,
         ()=>{ setStatusOf(id, prev); after(); });
@@ -3082,9 +3301,108 @@ document.addEventListener("input",e=>{
 // don't lose a note to a closed tab, a backgrounded PWA or a hard refresh
 window.addEventListener("pagehide", saveNoteNow);
 document.addEventListener("visibilitychange",()=>{ if(document.visibilityState==="hidden") saveNoteNow(); });
-// board card delegation: open the show detail (but not when picking a status/rating)
+/* ---------- custom collections: chips, columns, drag & drop ---------- */
+// add/remove a show from a list (detail pop-up chips)
 document.addEventListener("click",e=>{
-  if(e.target.closest("select,[data-st],[data-rt]")) return;
+  const chip=e.target.closest("[data-col]"); if(!chip) return;
+  e.preventDefault(); e.stopPropagation();
+  const parts=String(chip.dataset.col).split("|"), colId=parts[0], mid=parts[1];
+  const col=collectionById(colId); if(!col) return;
+  const added=toggleInCollection(colId, mid);
+  const md=findMediaById(mid), name=md?title(md):"Show";
+  refreshCollectionPickers(mid);
+  toast(`${added?"Added to":"Removed from"} ${col.name} · ${name}`,
+        ()=>{ toggleInCollection(colId, mid); refreshCollectionPickers(mid); if(state.viewMode==="lists") renderLists(); });
+  if(state.viewMode==="lists") renderLists();
+});
+// make a new list — from the Lists view (no media id) or from a show's pop-up
+document.addEventListener("click",e=>{
+  const btn=e.target.closest("[data-col-new]"); if(!btn) return;
+  e.preventDefault(); e.stopPropagation();
+  const mid=btn.dataset.colNew||"";
+  const name=window.prompt("Name your new list:", "");
+  if(name===null) return;
+  const col=createCollection(name);
+  if(!col){ if(name.trim()==="") return; alert("That name can't be used."); return; }
+  if(mid){ addToCollection(col.id, mid); refreshCollectionPickers(mid); }
+  if(state.viewMode==="lists") renderLists();
+  setStatus(false, state.viewMode==="lists" ? listsStatusText() : `Created list “${col.name}”`);
+});
+document.addEventListener("click",e=>{
+  const btn=e.target.closest("[data-col-rename]"); if(!btn) return;
+  e.preventDefault(); e.stopPropagation();
+  const col=collectionById(btn.dataset.colRename); if(!col) return;
+  const name=window.prompt("Rename list:", col.name);
+  if(name===null) return;
+  if(!renameCollection(col.id, name)) return;
+  renderLists();
+});
+document.addEventListener("click",e=>{
+  const btn=e.target.closest("[data-col-del]"); if(!btn) return;
+  e.preventDefault(); e.stopPropagation();
+  const removed=deleteCollection(btn.dataset.colDel); if(!removed) return;
+  renderLists();
+  // no confirm dialog — the Undo in the toast is faster and less annoying
+  toast(`Deleted “${removed.col.name}” (${removed.col.ids.length} show${removed.col.ids.length===1?"":"s"})`,
+        ()=>{ restoreCollection(removed.index, removed.col); renderLists(); });
+});
+document.addEventListener("click",e=>{
+  const btn=e.target.closest("[data-col-move]"); if(!btn) return;
+  e.preventDefault(); e.stopPropagation();
+  const parts=String(btn.dataset.colMove).split("|");
+  if(moveCollection(parts[0], +parts[1])) renderLists();
+});
+// per-card "Move to…" — the pointer-free equivalent of dragging
+document.addEventListener("change",e=>{
+  const sel=e.target.closest("[data-lmove]"); if(!sel) return;
+  const parts=String(sel.dataset.lmove).split("|"), mid=parts[0], from=parts[1]||"";
+  const to=sel.value;
+  if(!moveBetweenCollections(mid, from, to)){ renderLists(); return; }
+  const md=findMediaById(mid), name=md?title(md):"Show";
+  const toCol=collectionById(to);
+  renderLists();
+  toast(`Moved to ${toCol?toCol.name:"Not in a list"} · ${name}`,
+        ()=>{ moveBetweenCollections(mid, to, from); renderLists(); });
+});
+// drag & drop between columns (mouse/trackpad; touch uses the picker above)
+let listDrag=null;
+document.addEventListener("dragstart",e=>{
+  const card=e.target.closest("[data-lcard]"); if(!card) return;
+  listDrag={mid:card.dataset.lcard, from:card.dataset.lfrom||""};
+  card.classList.add("dragging");
+  if(e.dataTransfer){ e.dataTransfer.effectAllowed="move"; try{ e.dataTransfer.setData("text/plain", card.dataset.lcard); }catch(_){} }
+});
+document.addEventListener("dragend",()=>{
+  listDrag=null;
+  document.querySelectorAll(".board-card.dragging").forEach(el=>el.classList.remove("dragging"));
+  document.querySelectorAll(".board-col.drop-on").forEach(el=>el.classList.remove("drop-on"));
+});
+document.addEventListener("dragover",e=>{
+  if(!listDrag) return;
+  const col=e.target.closest("[data-ldrop]"); if(!col) return;
+  e.preventDefault();
+  if(e.dataTransfer) e.dataTransfer.dropEffect="move";
+  if(col.dataset.ldrop!==listDrag.from) col.classList.add("drop-on");
+});
+document.addEventListener("dragleave",e=>{
+  const col=e.target.closest("[data-ldrop]");
+  if(col && !col.contains(e.relatedTarget)) col.classList.remove("drop-on");
+});
+document.addEventListener("drop",e=>{
+  if(!listDrag) return;
+  const col=e.target.closest("[data-ldrop]"); if(!col) return;
+  e.preventDefault();
+  const {mid, from}=listDrag, to=col.dataset.ldrop||"";
+  listDrag=null;
+  if(!moveBetweenCollections(mid, from, to)){ renderLists(); return; }
+  const md=findMediaById(mid), name=md?title(md):"Show", toCol=collectionById(to);
+  renderLists();
+  toast(`Moved to ${toCol?toCol.name:"Not in a list"} · ${name}`,
+        ()=>{ moveBetweenCollections(mid, to, from); renderLists(); });
+});
+// board / list card delegation: open the show detail (but not when using a control on the card)
+document.addEventListener("click",e=>{
+  if(e.target.closest("select,button,[data-st],[data-rt]")) return;
   const c=e.target.closest("[data-openshow]"); if(!c) return;
   const md=findMediaById(c.dataset.openshow); if(md) openDetail(md,(nextAir(md)||{}).episode||1);
 });
@@ -3251,7 +3569,7 @@ function selectSearchResult(id){
   const target=pickTargetTs(md);
   if(target){
     state.anchor=new Date(target*1000);
-    if(state.viewMode==="week"||state.viewMode==="dashboard"||state.viewMode==="board"){   // pick a view that will actually show it
+    if(state.viewMode==="week"||state.viewMode==="dashboard"||state.viewMode==="board"||state.viewMode==="lists"){   // pick a view that will actually show it
       state.viewMode="month"; localStorage.setItem("anical.view","month");
       document.querySelectorAll("#viewSeg button").forEach(b=>b.classList.toggle("active",b.dataset.view==="month"));
     }
@@ -3265,7 +3583,7 @@ function onSearch(){
   state.search=raw.toLowerCase();
   // The typed text filters the calendar; the board and events views aren't filtered
   // by it, so don't rebuild them on every keystroke.
-  const calendarView = state.viewMode!=="board" && state.viewMode!=="events";
+  const calendarView = !["board","lists","events"].includes(state.viewMode);
   if(calendarView){
     renderView();   // live-filter the loaded calendar by what's typed
     setStatus(false,`Live · ${state.media.length} titles · ${rangeEvents().length} episodes shown`);
@@ -3296,7 +3614,7 @@ $("fSearch").oninput=onSearch;
 $("fSearch").onfocus=()=>{ if(state.search) onSearch(); };
 $("fSearch").onkeydown=e=>{
   if(e.key==="Escape"){ e.stopPropagation(); $("fSearch").value=""; state.search=""; clearTimeout(searchTimer); hideSearchResults();
-    if(state.viewMode!=="board" && state.viewMode!=="events"){ renderView();
+    if(!["board","lists","events"].includes(state.viewMode)){ renderView();
       setStatus(false,`Live · ${state.media.length} titles · ${rangeEvents().length} episodes shown`); } }
   else if(e.key==="ArrowDown"){ if(srMove(1)) e.preventDefault(); }
   else if(e.key==="ArrowUp"){ if(srMove(-1)) e.preventDefault(); }
