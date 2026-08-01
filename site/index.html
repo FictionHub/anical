@@ -475,6 +475,8 @@
   /* board (watch statuses) */
   .board{max-width:1500px;margin:0 auto;padding:18px 22px}
   .board-head h2{margin:0 0 5px;font-size:22px}
+  .board-top{display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap}
+  .board-top .board-head{flex:1;min-width:200px}
   .board-cols{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin-top:16px}
   .board-col{background:var(--bg2);border:1px solid var(--line);border-radius:var(--radius);padding:12px;min-height:80px;box-shadow:var(--shadow)}
   .board-col h3{margin:0 0 10px;font-size:13.5px;display:flex;align-items:center;gap:6px}
@@ -485,9 +487,39 @@
   .board-card img{width:42px;height:59px;object-fit:cover;border-radius:5px;flex:none;background:#000}
   .board-card-info{min-width:0;display:flex;flex-direction:column;gap:5px;justify-content:center}
   .board-card-title{font-size:12.5px;font-weight:700;line-height:1.25;max-height:32px;overflow:hidden}
-  .status-sel{font-size:11px;padding:3px 5px;border-radius:6px;background:var(--bg);border:1px solid var(--line);color:var(--txt);max-width:100%}
-  body.board-mode .filters,body.board-mode .legend{display:none}
+  /* the board keeps the search box — it's how shows get added — but not the
+     calendar-only filters next to it */
+  body.board-mode .filters>*:not(.search-wrap){display:none}
+  body.board-mode .legend{display:none}
   @media(max-width:900px){.board-cols{grid-template-columns:repeat(5,minmax(200px,1fr));overflow-x:auto;padding-bottom:8px}}
+
+  /* one-click status picker (detail pop-up · board cards · search results).
+     Nothing is highlighted until the user picks a status — clicking the
+     highlighted one again takes the show back off the board. */
+  .st-pick{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+  .st-chip{background:var(--bg3);color:var(--muted);border:1px solid var(--line);
+    padding:6px 10px;border-radius:8px;font-size:12.5px;font-weight:600;gap:6px;line-height:1;white-space:nowrap}
+  .st-chip:hover{color:var(--txt)}
+  .st-chip.on{background:linear-gradient(135deg,var(--accent),#6d28d9);border-color:transparent;color:#fff}
+  .st-pick.sm{gap:4px}
+  .st-pick.sm .st-chip{padding:4px 6px;font-size:12.5px;gap:0;border-radius:7px}
+  .st-pick.sm .st-lab{display:none}
+  .st-row{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-top:4px;
+    background:var(--bg3);border:1px solid var(--line);border-radius:11px;padding:9px 11px}
+  .st-row-label{font-size:12.5px;font-weight:700;color:var(--muted)}
+  .st-hint{flex-basis:100%;font-size:11.5px;color:var(--muted)}
+  /* quick-add strip inside a search result row */
+  .sr-add{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:5px}
+  .sr-add-label{font-size:11px;font-weight:700;color:var(--muted)}
+
+  /* transient confirmation (status changes) with a one-click Undo */
+  .toast{position:fixed;left:50%;bottom:22px;z-index:200;display:flex;align-items:center;gap:12px;
+    max-width:min(92vw,460px);background:var(--bg2);border:1px solid var(--line);border-radius:12px;
+    padding:10px 14px;box-shadow:var(--shadow);font-size:13.5px;font-weight:600;
+    opacity:0;pointer-events:none;transform:translateX(-50%) translateY(14px);transition:.18s}
+  .toast.on{opacity:1;pointer-events:auto;transform:translateX(-50%)}
+  .toast span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .toast button{padding:5px 11px;font-size:12.5px;flex:none}
 
   /* ============ mobile / phone optimizations ============ */
   @media(max-width:640px){
@@ -530,6 +562,9 @@
     .events,.dashboard,.board{padding:14px 12px}
     .ev-card{padding:11px 12px;gap:11px}
     .dash-tiles{gap:10px}
+    /* roomier touch targets for the status chips */
+    .st-chip{padding:8px 11px}
+    .st-pick.sm .st-chip{padding:7px 9px}
   }
   @media(max-width:400px){
     .seg button{padding:8px 11px}
@@ -782,12 +817,20 @@ function starSpan(id){ const on=isWatched(id); return `<span class="star ${on?'o
 function setStar(el,on){ el.classList.toggle("on",on); if(el.tagName==="BUTTON") el.textContent=on?"★ In My List":"☆ Add to My List"; else el.textContent=on?"★":"☆"; }
 function toggleWatch(id){
   id=String(id);
-  if(state.watch.has(id)) state.watch.delete(id); else state.watch.add(id);
+  // ⭐ and the board are the same list: starring drops the show in Watching,
+  // un-starring takes it off the board entirely.
+  if(state.watch.has(id)){ state.watch.delete(id); delete state.status[id]; }
+  else { state.watch.add(id); if(!state.status[id]) state.status[id]=DEFAULT_STATUS; }
   localStorage.setItem("anical.watch", JSON.stringify([...state.watch]));
+  localStorage.setItem("anical.status", JSON.stringify(state.status));
   document.querySelectorAll('[data-watch="'+CSS.escape(id)+'"]').forEach(el=>setStar(el, state.watch.has(id)));
+  refreshStatusPickers(id);
   renderView();   // reflects "My list" filter + highlight
 }
-/* watch statuses (Watching / Plan / On-hold / Dropped / Completed) — the board view */
+/* watch statuses (Watching / Plan / On-hold / Dropped / Completed) — the board view.
+   A status is always something the user picked: an untracked show has none, so the
+   picker starts with nothing highlighted and one click both tracks the show and
+   sets its status. Clicking the highlighted status again removes the show. */
 const STATUS_DEFS = [
   {key:"watching", label:"Watching", emoji:"▶️"},
   {key:"plan", label:"Plan to Watch", emoji:"📋"},
@@ -795,22 +838,73 @@ const STATUS_DEFS = [
   {key:"dropped", label:"Dropped", emoji:"🗑️"},
   {key:"completed", label:"Completed", emoji:"✅"},
 ];
-function getStatusOf(id){ return state.status[String(id)] || "watching"; }
+const STATUS_BY_KEY = STATUS_DEFS.reduce((m,s)=>{ m[s.key]=s; return m; },{});
+const DEFAULT_STATUS = "watching";
+/* "" when the user hasn't picked one — nothing is ever pre-selected for them. */
+function getStatusOf(id){ return state.status[String(id)] || ""; }
+/* Column a tracked show lands in (older saves may be starred without a status). */
+function boardStatusOf(id){ return getStatusOf(id) || DEFAULT_STATUS; }
+function statusLabel(key){ const s=STATUS_BY_KEY[key]; return s?`${s.emoji} ${s.label}`:""; }
+// Earlier versions (and AniList imports) starred shows without storing a status but
+// still displayed them under Watching. Write that down once so what's shown is real.
+(function migrateStatuses(){
+  let changed=false;
+  for(const id of state.watch) if(!state.status[id]){ state.status[id]=DEFAULT_STATUS; changed=true; }
+  if(changed) localStorage.setItem("anical.status", JSON.stringify(state.status));
+})();
 function setStatusOf(id, key){
   id=String(id);
   if(key) state.status[id]=key; else delete state.status[id];
   localStorage.setItem("anical.status", JSON.stringify(state.status));
-  if(!state.watch.has(id)){   // setting a status implies you're tracking the show
-    state.watch.add(id);
+  const before=state.watch.has(id);
+  if(key) state.watch.add(id); else state.watch.delete(id);   // a status implies tracking
+  if(before!==state.watch.has(id)){
     localStorage.setItem("anical.watch", JSON.stringify([...state.watch]));
-    document.querySelectorAll('[data-watch="'+CSS.escape(id)+'"]').forEach(el=>setStar(el, true));
+    document.querySelectorAll('[data-watch="'+CSS.escape(id)+'"]').forEach(el=>setStar(el, state.watch.has(id)));
   }
+  refreshStatusPickers(id);
 }
-function statusSelectHtml(id){
+/* One-click status picker. size: "" = labelled (detail pop-up), "sm" = emoji-only
+   (board cards, search rows). */
+function statusPickerHtml(id, size){
+  const cur=getStatusOf(id), sid=esc(String(id));
+  return `<div class="st-pick${size?" "+size:""}" data-st-pick="${sid}" role="group" aria-label="Watch status">`
+    + STATUS_DEFS.map(s=>`<button type="button" class="st-chip${s.key===cur?" on":""}" data-st="${sid}|${s.key}" aria-pressed="${s.key===cur?"true":"false"}" title="${s.key===cur?"Remove from board":esc(s.label)}"><span>${s.emoji}</span><span class="st-lab">${esc(s.label)}</span></button>`).join("")
+    + `</div>`;
+}
+// Keep every picker for a show in sync (the detail pop-up, its board card and the
+// search row can all be on screen at once) without re-rendering the view.
+function refreshStatusPickers(id){
+  id=String(id);
   const cur=getStatusOf(id);
-  return `<select class="status-sel" data-status-sel="${esc(String(id))}" title="Watch status">
-    ${STATUS_DEFS.map(s=>`<option value="${s.key}" ${s.key===cur?"selected":""}>${s.emoji} ${s.label}</option>`).join("")}
-  </select>`;
+  document.querySelectorAll('[data-st-pick="'+CSS.escape(id)+'"] .st-chip').forEach(chip=>{
+    const key=String(chip.dataset.st||"").split("|")[1], on=key===cur, def=STATUS_BY_KEY[key];
+    chip.classList.toggle("on",on);
+    chip.setAttribute("aria-pressed", on?"true":"false");
+    if(def) chip.title = on ? "Remove from board" : def.label;
+  });
+  document.querySelectorAll('[data-st-label="'+CSS.escape(id)+'"]').forEach(el=>{
+    el.textContent = cur ? (el.dataset.onLabel||"") : (el.dataset.offLabel||"");
+  });
+}
+/* transient confirmation, with a one-click Undo for status changes */
+let toastTimer=null, toastUndo=null;
+function toast(msg, undo){
+  let el=$("toast");
+  if(!el){ el=document.createElement("div"); el.id="toast"; el.className="toast"; el.setAttribute("role","status"); document.body.appendChild(el); }
+  toastUndo=undo||null;
+  el.innerHTML=`<span>${esc(msg)}</span>`+(undo?`<button type="button" id="toastUndo">↩ Undo</button>`:"");
+  el.classList.add("on");
+  if(undo) $("toastUndo").onclick=()=>{ const u=toastUndo; hideToast(); if(u) u(); };
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(hideToast, undo?5500:2600);
+}
+function hideToast(){ const el=$("toast"); if(el) el.classList.remove("on"); toastUndo=null; }
+/* Send the user to the one place shows are added from. */
+function focusSearch(){
+  const el=$("fSearch"); if(!el) return;
+  window.scrollTo({top:0,behavior:"smooth"});
+  el.focus(); el.select();
 }
 /* episode progress ("mark watched" + Continue Watching) */
 function getProgress(id){ return state.progress[String(id)]||0; }
@@ -899,8 +993,9 @@ async function fetchMediaById(id){
 }
 
 // Import a user's PUBLIC AniList anime list (no auth/key needed). Watching/Planning/
-// Paused/Rewatching go into the ⭐ list; episode progress is applied from every entry
-// so "Continue watching" and the mark-watched ticks reflect where you left off.
+// Paused/Rewatching go into the ⭐ list — each keeping its AniList status, so the board
+// comes across as-is; episode progress is applied from every entry so "Continue watching"
+// and the mark-watched ticks reflect where you left off.
 const LIST_QUERY=`
 query ($name: String) {
   MediaListCollection(userName: $name, type: ANIME) {
@@ -908,6 +1003,7 @@ query ($name: String) {
   }
 }`;
 const WATCH_STATUSES=new Set(["CURRENT","PLANNING","PAUSED","REPEATING"]);
+const AL_STATUS_MAP={CURRENT:"watching", REPEATING:"watching", PLANNING:"plan", PAUSED:"onhold", DROPPED:"dropped", COMPLETED:"completed"};
 async function importAniList(name){
   name=String(name||"").trim();
   if(!name) throw new Error("Enter your AniList username.");
@@ -920,10 +1016,14 @@ async function importAniList(name){
   let added=0, progressed=0;
   for(const l of lists) for(const e of l.entries||[]){
     const id=e.media&&e.media.id; if(!id) continue;
-    if(WATCH_STATUSES.has(e.status) && !state.watch.has(String(id))){ state.watch.add(String(id)); added++; }
+    if(WATCH_STATUSES.has(e.status)){
+      if(!state.watch.has(String(id))){ state.watch.add(String(id)); added++; }
+      state.status[String(id)]=AL_STATUS_MAP[e.status]||DEFAULT_STATUS;   // mirror AniList onto the board
+    }
     if(e.progress>0){ state.progress[String(id)]=Math.max(state.progress[String(id)]||0, e.progress); progressed++; }
   }
   localStorage.setItem("anical.watch", JSON.stringify([...state.watch]));
+  localStorage.setItem("anical.status", JSON.stringify(state.status));
   localStorage.setItem("anical.progress", JSON.stringify(state.progress));
   document.querySelectorAll("[data-watch]").forEach(el=>setStar(el, state.watch.has(el.dataset.watch)));
   renderView();
@@ -1092,6 +1192,14 @@ function renderWhatsNew(){
    update. Returning visitors see every entry newer than the one they last
    saw, once, in a modal they close manually. Trim old entries freely. */
 const CHANGELOG=[
+  { id:4, v:"2.4", date:"August 2026", items:[
+    "Adding a show to your board is one click: search it, click a status in the result row, done — the search stays open so you can add the next one.",
+    "Statuses are buttons now instead of a dropdown, and nothing is picked for you — a show only shows a status once you've chosen it.",
+    "Click a show's highlighted status again to take it off your board, with an Undo if that wasn't the plan.",
+    "Board cards move columns with a single click, and there's a ＋ Add anime button right in the board.",
+    "↑ / ↓ move through search results, Enter opens the highlighted show.",
+    "AniList imports now carry each show's status across (Watching, Plan to Watch, Paused → On Hold).",
+  ]},
   { id:3, v:"2.3", date:"August 2026", items:[
     "New 🗂️ Board view — track shows as Watching, Plan to Watch, On Hold, Dropped or Completed, with per-status counts at a glance.",
     "Set a show's status right from its detail pop-up — it's added to My List automatically.",
@@ -1747,6 +1855,11 @@ function openDetail(md,episode){
         </div>
         ${studio?`<div style="color:var(--muted);font-size:13px">Studio: ${esc(studio)}</div>`:""}
         ${genres?`<div>${genres}</div>`:""}
+        <div class="st-row">
+          <span class="st-row-label" data-st-label="${md.id}" data-on-label="🗂️ On your board:" data-off-label="🗂️ Add to your board:">${getStatusOf(md.id)?"🗂️ On your board:":"🗂️ Add to your board:"}</span>
+          ${statusPickerHtml(md.id,"")}
+          <span class="st-hint">One click adds it to My List and your board. Click the highlighted status again to remove it.</span>
+        </div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
           <button data-watch="${md.id}">${isWatched(md.id)?"★ In My List":"☆ Add to My List"}</button>
           <button class="bellbtn ${on?'on':''}" data-bell="${md.id}">${on?"🔔 Alerts on":"🔕 Notify me"}</button>
@@ -1754,10 +1867,6 @@ function openDetail(md,episode){
           <button data-hide="${md.id}" title="Hide this show everywhere">${isHidden(md.id)?"✓ Unhide":"🚫 Not interested"}</button>
           <a href="${md.siteUrl||"#"}" target="_blank" rel="noopener">AniList →</a>
           <a href="${nyaaUrl}" target="_blank" rel="noopener">Nyaa →</a>
-        </div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:2px">
-          <label style="color:var(--muted);font-size:12px">Status:</label>
-          ${statusSelectHtml(md.id)}
         </div>
         ${nextBlock}
         ${streamChipsHTML(md)}
@@ -2168,18 +2277,22 @@ function boardCardHtml(md){
     ${cover?`<img src="${cover}" alt="" loading="lazy">`:""}
     <div class="board-card-info">
       <div class="board-card-title">${esc(title(md))}</div>
-      ${statusSelectHtml(md.id)}
+      ${statusPickerHtml(md.id,"sm")}
     </div>
   </div>`;
 }
+const boardAddBtn = `<button class="primary" data-focus-search title="Search any anime and pick a status">＋ Add anime</button>`;
 async function renderBoard(){
   const wrap=$("boardWrap");
   wrap.style.display=""; document.querySelector("main").style.display="none"; document.body.classList.add("board-mode");
 
   const ids=[...state.watch];
   if(!ids.length){
-    wrap.innerHTML=`<div class="board-head"><h2>🗂️ My Board</h2><div class="ev-sub">Watching, Plan to Watch, On Hold, Dropped, Completed — track every show you follow, at a glance.</div></div>
-      <div class="ev-loading">Star some shows (⭐ Add to My List) to start building your board.</div>`;
+    wrap.innerHTML=`<div class="board-top">
+        <div class="board-head"><h2>🗂️ My Board</h2><div class="ev-sub">Watching, Plan to Watch, On Hold, Dropped, Completed — track every show you follow, at a glance.</div></div>
+        ${boardAddBtn}
+      </div>
+      <div class="ev-loading">Your board is empty. Search any anime up top, then click a status — that's it.</div>`;
     return;
   }
   wrap.innerHTML='<div class="ev-loading"><span class="spin" style="display:inline-block;margin-right:8px"></span> Loading your board…</div>';
@@ -2192,9 +2305,12 @@ async function renderBoard(){
   if(state.viewMode!=="board") return;   // user navigated away while fetching
 
   const shows=ids.map(id=>findMediaById(id)).filter(Boolean);
-  const cols=STATUS_DEFS.map(sd=>({...sd, shows: shows.filter(md=>getStatusOf(md.id)===sd.key)}));
+  const cols=STATUS_DEFS.map(sd=>({...sd, shows: shows.filter(md=>boardStatusOf(md.id)===sd.key)}));
 
-  wrap.innerHTML=`<div class="board-head"><h2>🗂️ My Board</h2><div class="ev-sub">${shows.length} tracked show${shows.length===1?"":"s"}. Change a card's status from its dropdown to move it between columns.</div></div>
+  wrap.innerHTML=`<div class="board-top">
+      <div class="board-head"><h2>🗂️ My Board</h2><div class="ev-sub">${shows.length} tracked show${shows.length===1?"":"s"}. Click a card's status icon to move it between columns — click the highlighted one to take it off the board.</div></div>
+      ${boardAddBtn}
+    </div>
     <div class="board-cols">
       ${cols.map(c=>`
         <div class="board-col">
@@ -2721,7 +2837,8 @@ document.addEventListener("click",e=>{
 /* ---------- keyboard shortcuts ---------- */
 function openShortcutsHelp(){
   $("modalTitle").textContent="⌨️ Keyboard shortcuts";
-  const rows=[["/","Focus the search box"],["T","Jump to today"],["← / →","Previous / next period"],
+  const rows=[["/","Focus the search box"],["↑ / ↓","Move through search results"],["Enter","Open the highlighted result"],
+    ["T","Jump to today"],["← / →","Previous / next period"],
     ["M","Month view"],["W","Week view"],["A","Agenda view"],["D","Dashboard"],["E","Events"],
     ["Esc","Close dialog · clear search"],["?","Show this help"]];
   $("modalBody").innerHTML=`<div class="kb-grid">`+
@@ -2767,18 +2884,34 @@ document.addEventListener("click",e=>{ const b=e.target.closest("[data-bell]"); 
 document.addEventListener("click",e=>{ const b=e.target.closest("[data-evbell]"); if(b){ e.preventDefault(); e.stopPropagation(); toggleEventNotify(b.dataset.evbell); } });
 // watchlist star delegation (modal + agenda + sidebars)
 document.addEventListener("click",e=>{ const w=e.target.closest("[data-watch]"); if(w){ e.preventDefault(); e.stopPropagation(); toggleWatch(w.dataset.watch); } });
-// watch-status delegation (modal + board): change a show's status, refresh the board if open
-document.addEventListener("change",e=>{
-  const s=e.target.closest("[data-status-sel]"); if(!s) return;
-  setStatusOf(s.dataset.statusSel, s.value);
-  if(state.viewMode==="board") renderBoard();
-});
-// board card delegation: open the show detail (but not when interacting with the status select)
+// one-click status delegation (detail pop-up · board cards · search results).
+// Picking a status tracks the show; picking the one it already has removes it.
 document.addEventListener("click",e=>{
-  if(e.target.closest("select")) return;
+  const chip=e.target.closest("[data-st]"); if(!chip) return;
+  e.preventDefault(); e.stopPropagation();
+  const parts=String(chip.dataset.st).split("|"), id=parts[0], key=parts[1];
+  const prev=getStatusOf(id), next=(prev===key) ? "" : key;
+  const md=findMediaById(id);
+  // a show added straight from the search results isn't in the loaded seasons yet
+  if(next && md && !state.media.some(x=>String(x.id)===String(id))) state.media.push(md);
+  setStatusOf(id, next);
+  const name=md?title(md):"Show";
+  const after=()=>{
+    renderView();   // moves the board card / re-applies the ⭐ My List filter
+    if(state.viewMode==="board") setStatus(false,`Your board · ${state.watch.size} tracked show${state.watch.size===1?"":"s"}`);
+  };
+  toast(next ? `${statusLabel(next)} · ${name}` : `Removed from board · ${name}`,
+        ()=>{ setStatusOf(id, prev); after(); });
+  after();
+});
+// board card delegation: open the show detail (but not when picking a status)
+document.addEventListener("click",e=>{
+  if(e.target.closest("select,[data-st]")) return;
   const c=e.target.closest("[data-openshow]"); if(!c) return;
   const md=findMediaById(c.dataset.openshow); if(md) openDetail(md,(nextAir(md)||{}).episode||1);
 });
+// "＋ Add anime" (board) → the search box is where shows come from
+document.addEventListener("click",e=>{ if(e.target.closest("[data-focus-search]")) focusSearch(); });
 // mark-watched delegation (detail-modal schedule). Click an episode = watched up to here; click again = unwatch from here.
 document.addEventListener("click",e=>{
   const m=e.target.closest("[data-mark]"); if(!m) return; e.preventDefault(); e.stopPropagation();
@@ -2870,7 +3003,7 @@ function nextAir(md){
   const now=Date.now()/1000;
   return ((md.airingSchedule&&md.airingSchedule.nodes)||[]).filter(n=>n.airingAt>now).sort((a,b)=>a.airingAt-b.airingAt)[0]||null;
 }
-function hideSearchResults(){ $("searchResults").classList.remove("on"); }
+function hideSearchResults(){ $("searchResults").classList.remove("on"); srIndex=-1; }
 function localMatches(q){
   const seen=new Set(), out=[];
   for(const md of state.media){ if(seen.has(md.id))continue; if(nsfwHidden(md)||isHidden(md.id))continue; if(matchTitle(md,q)){ seen.add(md.id); out.push(md); } }
@@ -2889,19 +3022,39 @@ function searchRowHTML(md){
   const sub=na ? `Next: ${new Date(na.airingAt*1000).toLocaleDateString([], {month:"short",day:"numeric",year:"numeric"})} · Ep ${na.episode}`
                : (md.startDate&&md.startDate.year ? `${md.startDate.year}` : "")+((md.status?" · "+md.status.replace(/_/g," ").toLowerCase():"")||"—");
   const sc=md.averageScore?`<span class="pill score">★ ${md.averageScore}</span>`:"";
+  // Quick-add strip: one click puts the show on the board with that status, without
+  // leaving the search — so adding several shows in a row stays a single flow.
   return `<div class="sr-row" role="button" tabindex="0" aria-label="${esc(title(md))}" data-sid="${md.id}">
     <img src="${md.coverImage&&md.coverImage.medium?esc(md.coverImage.medium):""}" alt="" loading="lazy" width="34" height="46">
-    <div style="min-width:0"><div class="srt">${esc(title(md))}</div>
+    <div style="min-width:0;flex:1"><div class="srt">${esc(title(md))}</div>
       <div class="srm"><span class="pill">${esc(FMT_LABEL[md.format]||md.format||"?")}</span>${sc}<span>${esc(sub)}</span></div>
+      <div class="sr-add">
+        <span class="sr-add-label" data-st-label="${md.id}" data-on-label="On board:" data-off-label="Add:">${getStatusOf(md.id)?"On board:":"Add:"}</span>
+        ${statusPickerHtml(md.id,"sm")}
+      </div>
     </div></div>`;
 }
 function showSearchRows(list){
   const box=$("searchResults");
-  if(!list.length){ box.innerHTML=`<div class="sr-empty">No anime found for “${esc(state.search)}”.</div>`; box.classList.add("on"); return; }
+  if(!list.length){ box.innerHTML=`<div class="sr-empty">No anime found for “${esc(state.search)}”.</div>`; box.classList.add("on"); srIndex=-1; return; }
   state.searchResults=new Map(list.map(md=>[String(md.id),md]));
   box.innerHTML=list.slice(0,10).map(searchRowHTML).join("");
   box.classList.add("on");
-  box.querySelectorAll("[data-sid]").forEach(el=>{ el.onclick=()=>selectSearchResult(el.dataset.sid); });
+  srIndex=-1;
+  box.querySelectorAll("[data-sid]").forEach(el=>{
+    el.onclick=ev=>{ if(ev.target.closest("[data-st]")) return;   // status chips add in place
+      selectSearchResult(el.dataset.sid); };
+  });
+}
+/* ↑/↓ through the results, Enter opens the highlighted one */
+let srIndex=-1;
+function srRows(){ const b=$("searchResults"); return b.classList.contains("on") ? [...b.querySelectorAll("[data-sid]")] : []; }
+function srMove(delta){
+  const rows=srRows(); if(!rows.length) return false;
+  srIndex = srIndex<0 ? (delta>0?0:rows.length-1) : (srIndex+delta+rows.length)%rows.length;
+  rows.forEach((r,n)=>r.classList.toggle("active", n===srIndex));
+  rows[srIndex].scrollIntoView({block:"nearest"});
+  return true;
 }
 function pickTargetTs(md){
   const nodes=((md.airingSchedule&&md.airingSchedule.nodes)||[]).map(n=>n.airingAt).sort((a,b)=>a-b);
@@ -2932,8 +3085,13 @@ let searchSeq=0, searchTimer=null;
 function onSearch(){
   const raw=$("fSearch").value.trim();
   state.search=raw.toLowerCase();
-  renderView();   // live-filter the loaded calendar by what's typed
-  setStatus(false,`Live · ${state.media.length} titles · ${rangeEvents().length} episodes shown`);
+  // The typed text filters the calendar; the board and events views aren't filtered
+  // by it, so don't rebuild them on every keystroke.
+  const calendarView = state.viewMode!=="board" && state.viewMode!=="events";
+  if(calendarView){
+    renderView();   // live-filter the loaded calendar by what's typed
+    setStatus(false,`Live · ${state.media.length} titles · ${rangeEvents().length} episodes shown`);
+  }
   const box=$("searchResults");
   if(!raw){ hideSearchResults(); box.innerHTML=""; state.searchResults=new Map(); clearTimeout(searchTimer); return; }
   // 1) instant local matches
@@ -2959,9 +3117,12 @@ function onSearch(){
 $("fSearch").oninput=onSearch;
 $("fSearch").onfocus=()=>{ if(state.search) onSearch(); };
 $("fSearch").onkeydown=e=>{
-  if(e.key==="Escape"){ e.stopPropagation(); $("fSearch").value=""; state.search=""; clearTimeout(searchTimer); renderView(); hideSearchResults();
-    setStatus(false,`Live · ${state.media.length} titles · ${rangeEvents().length} episodes shown`); }
-  else if(e.key==="Enter"){ const first=$("searchResults").querySelector("[data-sid]"); if(first) first.click(); }
+  if(e.key==="Escape"){ e.stopPropagation(); $("fSearch").value=""; state.search=""; clearTimeout(searchTimer); hideSearchResults();
+    if(state.viewMode!=="board" && state.viewMode!=="events"){ renderView();
+      setStatus(false,`Live · ${state.media.length} titles · ${rangeEvents().length} episodes shown`); } }
+  else if(e.key==="ArrowDown"){ if(srMove(1)) e.preventDefault(); }
+  else if(e.key==="ArrowUp"){ if(srMove(-1)) e.preventDefault(); }
+  else if(e.key==="Enter"){ const rows=srRows(); const row=rows[srIndex>=0?srIndex:0]; if(row) row.click(); }
 };
 document.addEventListener("click",e=>{ if(!e.target.closest(".search-wrap")) hideSearchResults(); });
 
