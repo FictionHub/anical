@@ -171,15 +171,6 @@ DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/saishuu-gakush
 URL:https://tsuzuki.netlify.app/anime/saishuu-gakushou-hibike-euphonium-kouhen-194116/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-202429-1@tsuzuki.netlify.app
-DTSTAMP:20260924T150000Z
-DTSTART:20260924T150000Z
-DTEND:20260924T153000Z
-SUMMARY:Wareware wa Uchuujin — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/wareware-wa-uchuujin-202429/
-URL:https://tsuzuki.netlify.app/anime/wareware-wa-uchuujin-202429/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-213847-1@tsuzuki.netlify.app
 DTSTAMP:20260804T150000Z
 DTSTART:20260804T150000Z
@@ -189,13 +180,13 @@ DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/star-wars-visi
 URL:https://tsuzuki.netlify.app/anime/star-wars-visions-presents-the-ninth-jedi-213847/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-176373-1@tsuzuki.netlify.app
-DTSTAMP:20260820T150000Z
-DTSTART:20260820T150000Z
-DTEND:20260820T153000Z
-SUMMARY:Shiranuhi — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/shiranuhi-176373/
-URL:https://tsuzuki.netlify.app/anime/shiranuhi-176373/
+UID:tsuzuki-202429-1@tsuzuki.netlify.app
+DTSTAMP:20260924T150000Z
+DTSTART:20260924T150000Z
+DTEND:20260924T153000Z
+SUMMARY:Wareware wa Uchuujin — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/wareware-wa-uchuujin-202429/
+URL:https://tsuzuki.netlify.app/anime/wareware-wa-uchuujin-202429/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-209463-1@tsuzuki.netlify.app
@@ -207,13 +198,22 @@ DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/kanata-kara-20
 URL:https://tsuzuki.netlify.app/anime/kanata-kara-209463/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-176373-1@tsuzuki.netlify.app
+DTSTAMP:20260820T150000Z
+DTSTART:20260820T150000Z
+DTEND:20260820T153000Z
+SUMMARY:Shiranuhi — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/shiranuhi-176373/
+URL:https://tsuzuki.netlify.app/anime/shiranuhi-176373/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-202079-1@tsuzuki.netlify.app
 DTSTAMP:20261004T130000Z
 DTSTART:20261004T130000Z
 DTEND:20261004T133000Z
-SUMMARY:Oji-san wa Kawaii Mono ga Osuki. — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/oji-san-wa-kawaii-mono-ga-osuki-202079/
-URL:https://tsuzuki.netlify.app/anime/oji-san-wa-kawaii-mono-ga-osuki-202079/
+SUMMARY:Uncle's Obsession with Cute Things — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/uncles-obsession-with-cute-things-202079/
+URL:https://tsuzuki.netlify.app/anime/uncles-obsession-with-cute-things-202079/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-212652-1@tsuzuki.netlify.app
@@ -232,15 +232,6 @@ DTEND:20260917T153000Z
 SUMMARY:Meitantei Precure! Fushigi na Niwa to Futari no Himitsu — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/meitantei-precure-fushigi-na-niwa-to-futari-no-himitsu-198654/
 URL:https://tsuzuki.netlify.app/anime/meitantei-precure-fushigi-na-niwa-to-futari-no-himitsu-198654/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-208829-1@tsuzuki.netlify.app
-DTSTAMP:20260730T150000Z
-DTSTART:20260730T150000Z
-DTEND:20260730T153000Z
-SUMMARY:Crayon Shin-chan: Kikikaikai! Ora no Youkai Vacation — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/crayon-shin-chan-kikikaikai-ora-no-youkai-vacation-208829/
-URL:https://tsuzuki.netlify.app/anime/crayon-shin-chan-kikikaikai-ora-no-youkai-vacation-208829/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-204561-1@tsuzuki.netlify.app
