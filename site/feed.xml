@@ -6,7 +6,7 @@
     <atom:link href="https://tsuzuki.netlify.app/feed.xml" rel="self" type="application/rss+xml" />
     <description>Upcoming and recent anime premieres and season finales, updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Sat, 01 Aug 2026 10:15:34 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 03 Aug 2026 11:55:09 GMT</lastBuildDate>
     <ttl>720</ttl>
     <item>
       <title>Please Excuse My Younger Brothers — Finale (Ep 24)</title>
@@ -86,6 +86,13 @@
       <description>Premiere: This is a story of four girls living in the &quot;Dark Side&quot; of Academy City. In Academy City where &quot;ESP&quot; has been recognized as a general science. Behind the peace, there is a Dark Side organization that undertakes missions that cannot be made public. &quot;ITEM&quot; is an elite unit…</description>
     </item>
     <item>
+      <title>Firefly Wedding — Premiere (Ep 1)</title>
+      <link>https://tsuzuki.netlify.app/anime/firefly-wedding-205909/</link>
+      <guid isPermaLink="false">tsuzuki-rss-205909-p1</guid>
+      <pubDate>Fri, 09 Oct 2026 14:30:00 GMT</pubDate>
+      <description>Premiere: On the surface, Satoko has it all—she’s beautiful, the daughter of a nobleman, and at a prime age for marriage. Unfortunately, she is also quite ill and only has a short time left to live. Before she can secure a marriage that will redeem her worth in her family’s eyes, she…</description>
+    </item>
+    <item>
       <title>To You in the Beyond — Premiere (Ep 1)</title>
       <link>https://tsuzuki.netlify.app/anime/to-you-in-the-beyond-207327/</link>
       <guid isPermaLink="false">tsuzuki-rss-207327-p1</guid>
@@ -121,8 +128,8 @@
       <description>Premiere: On her way home from school one day, Noriko is unexpectedly plunged into a strange and extraordinary fantasy world. Her troubles compound exponentially when she is rescued and befriended by a handsome young man by the name of Izark. He may be brave and courageous, but inside…</description>
     </item>
     <item>
-      <title>Oji-san wa Kawaii Mono ga Osuki. — Premiere (Ep 1)</title>
-      <link>https://tsuzuki.netlify.app/anime/oji-san-wa-kawaii-mono-ga-osuki-202079/</link>
+      <title>Uncle's Obsession with Cute Things — Premiere (Ep 1)</title>
+      <link>https://tsuzuki.netlify.app/anime/uncles-obsession-with-cute-things-202079/</link>
       <guid isPermaLink="false">tsuzuki-rss-202079-p1</guid>
       <pubDate>Sun, 04 Oct 2026 13:00:00 GMT</pubDate>
       <description>Premiere: The manga centers on Mitsutaka Oji, a 40-year-old man who by all appearances is attractive and cool and is excellent at his job. However, he has a secret: he absolutely loves small and cute things. The comedy manga follows his everyday life. (Source: ANN)</description>
@@ -350,13 +357,6 @@
       <guid isPermaLink="false">tsuzuki-rss-208225-f12</guid>
       <pubDate>Sat, 19 Sep 2026 16:30:00 GMT</pubDate>
       <description>Finale: Elsa, the daughter of a fallen aristocrat, receives news. It was a marriage proposal from Julius, a very elite nobleman. Elsa is wondering,&quot; Why would such a distinguished man marry me&quot;? But after the wedding, Julius, who had been kind and gentle up to that point, changed…</description>
-    </item>
-    <item>
-      <title>Magical Girl Lyrical Nanoha EXCEEDS Gun Blaze Vengeance — Finale (Ep 12)</title>
-      <link>https://tsuzuki.netlify.app/anime/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance-185875/</link>
-      <guid isPermaLink="false">tsuzuki-rss-185875-f12</guid>
-      <pubDate>Sat, 19 Sep 2026 16:00:00 GMT</pubDate>
-      <description>Finale: Thirty years ago, the world was nearly destroyed by the sudden appearance of unknown &quot;invasive alien species.&quot; Humans and these “invasive species” continue to vie for living space, and while humanity’s safety is currently barely secured, the world could be destroyed at any…</description>
     </item>
   </channel>
 </rss>
