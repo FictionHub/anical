@@ -738,7 +738,7 @@
 
 // Build number auto-stamped from the git commit count by scripts/stamp-version.mjs
 // (run via the .githooks/pre-commit hook). Do not edit by hand — it changes every commit.
-const APP_VERSION = "2.3.34";
+const APP_VERSION = "2.3.61";
 
 const API = "https://graphql.anilist.co";
 // Public VAPID key for Web Push (server-driven alerts that work even when
@@ -2207,7 +2207,7 @@ async function renderDashboard(){
   const light=effectiveTheme()==="light";
   Chart.defaults.color = light ? "#5c6675" : "#8b97a7";
   Chart.defaults.borderColor = light ? "#d9deea" : "#2a3140";
-  const GRID = light ? "rgba(0,0,0,.09)" : GRID;
+  const GRID = light ? "rgba(0,0,0,.09)" : "rgba(255,255,255,.07)";
 
   // Genre (horizontal bar)
   const ge=Object.entries(st.genreCounts).sort((a,b)=>b[1]-a[1]).slice(0,15);
