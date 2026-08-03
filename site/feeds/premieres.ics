@@ -81,13 +81,13 @@ DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/the-ramparts-o
 URL:https://tsuzuki.netlify.app/anime/the-ramparts-of-ice-season-2-213805/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-211308-1@tsuzuki.netlify.app
-DTSTAMP:20260808T090100Z
-DTSTART:20260808T090100Z
-DTEND:20260808T093100Z
-SUMMARY:THE RIBBON HERO — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/the-ribbon-hero-211308/
-URL:https://tsuzuki.netlify.app/anime/the-ribbon-hero-211308/
+UID:tsuzuki-205909-1@tsuzuki.netlify.app
+DTSTAMP:20261009T143000Z
+DTSTART:20261009T143000Z
+DTEND:20261009T150000Z
+SUMMARY:Firefly Wedding — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/firefly-wedding-205909/
+URL:https://tsuzuki.netlify.app/anime/firefly-wedding-205909/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-211711-1@tsuzuki.netlify.app
@@ -97,6 +97,15 @@ DTEND:20260802T153000Z
 SUMMARY:Boku no Hero Academia: I am a hero too — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/boku-no-hero-academia-i-am-a-hero-too-211711/
 URL:https://tsuzuki.netlify.app/anime/boku-no-hero-academia-i-am-a-hero-too-211711/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-211308-1@tsuzuki.netlify.app
+DTSTAMP:20260808T090100Z
+DTSTART:20260808T090100Z
+DTEND:20260808T093100Z
+SUMMARY:THE RIBBON HERO — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/the-ribbon-hero-211308/
+URL:https://tsuzuki.netlify.app/anime/the-ribbon-hero-211308/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-209872-1@tsuzuki.netlify.app
@@ -241,15 +250,6 @@ DTEND:20261112T153000Z
 SUMMARY:Mahou no Princess Minky Momo - Akogare no Yume he\, Magokoro no Duo — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/mahou-no-princess-minky-momo-akogare-no-yume-he-magokoro-no--204561/
 URL:https://tsuzuki.netlify.app/anime/mahou-no-princess-minky-momo-akogare-no-yume-he-magokoro-no--204561/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-213908-1@tsuzuki.netlify.app
-DTSTAMP:20260731T150000Z
-DTSTART:20260731T150000Z
-DTEND:20260731T153000Z
-SUMMARY:Rusuban — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.netlify.app/anime/rusuban-213908/
-URL:https://tsuzuki.netlify.app/anime/rusuban-213908/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-214536-1@tsuzuki.netlify.app
