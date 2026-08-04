@@ -62,11 +62,14 @@ jobs:
           npx playwright install --with-deps chromium
 
       - name: Derive offsets
+        id: derive
         env:
           ADMIN_SECRET: ${{ secrets.ADMIN_SECRET }}
           SITE_URL: ${{ vars.SITE_URL || 'https://tsuzuki.netlify.app' }}
         run: |
-          node scripts/ingest-crunchyroll.mjs ${{ inputs.dry_run && '--dry-run' || '' }}
+          # pipefail so a failing node still fails the step through the tee.
+          set -o pipefail
+          node scripts/ingest-crunchyroll.mjs ${{ inputs.dry_run && '--dry-run' || '' }} 2>&1 | tee /tmp/ingest.log
 
       - name: Commit the audit trail
         if: ${{ !inputs.dry_run }}
@@ -82,11 +85,27 @@ jobs:
             echo "Committed. No Netlify deploy: nothing under site/ changed."
           fi
 
+      # The summary must never present the committed data/derived-offsets.json as
+      # if this run had produced it. That file is checked out with the repo, so a
+      # run that dies before writing it still finds the LAST GOOD result on disk
+      # — which rendered a failed job as a clean ingest table, twice, and hid the
+      # real error in a step log nobody had reason to open.
       - name: Summary
         if: always()
         run: |
           {
             echo "### Simulcast / dub offset ingestion"
+            if [ "${{ steps.derive.outcome }}" != "success" ]; then
+              echo ""
+              echo "**❌ The ingest step failed — nothing below was produced by this run.**"
+              echo ""
+              echo '```'
+              tail -n 30 /tmp/ingest.log 2>/dev/null || echo "(the step produced no output)"
+              echo '```'
+              echo ""
+              echo "_Any table shown below is the last committed result, checked out with the repo._"
+              echo ""
+            fi
             if [ -f data/derived-offsets.json ]; then
               node -e '
                 const d = require("./data/derived-offsets.json");
