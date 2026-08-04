@@ -19,8 +19,11 @@
   #
   # /netlify is in the list because the functions ship in the same deploy: with
   # /site alone, a functions-only fix would be silently skipped and the old code
-  # would stay live.
-  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- site netlify"
+  # would stay live. package.json and its lockfile are here for the same reason
+  # — they are what makes Netlify install the functions' dependencies, so a
+  # change to them that didn't deploy would be the one change guaranteed to
+  # matter.
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- site netlify package.json package-lock.json"
 
 [functions]
   directory = "netlify/functions"

@@ -1,0 +1,13 @@
+{
+  "name": "tsuzuki",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Tsuzuki — anime release calendar. This root manifest exists so Netlify installs the serverless functions' dependencies; the site itself is static and has no build step.",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0",
+    "web-push": "^3.6.7"
+  }
+}
