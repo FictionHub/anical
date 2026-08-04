@@ -71,6 +71,21 @@ jobs:
           set -o pipefail
           node scripts/ingest-crunchyroll.mjs ${{ inputs.dry_run && '--dry-run' || '' }} 2>&1 | tee /tmp/ingest.log
 
+      # A scrape that works on a laptop and fails on a runner can only be
+      # diagnosed by seeing the runner's own page. Kept for 7 days; only
+      # uploaded when the step actually failed.
+      - name: Upload failure evidence
+        if: ${{ failure() && steps.derive.outcome == 'failure' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: crunchyroll-failure
+          path: |
+            /tmp/crunchyroll-fail.png
+            /tmp/crunchyroll-fail.html
+            /tmp/ingest.log
+          retention-days: 7
+          if-no-files-found: warn
+
       - name: Commit the audit trail
         if: ${{ !inputs.dry_run }}
         run: |

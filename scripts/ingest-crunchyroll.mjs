@@ -248,7 +248,34 @@ async function scrapeCalendar() {
     const ctx = await browser.newContext({ locale: "en-US", timezoneId: "UTC" });
     const page = await ctx.newPage();
     await page.goto(CALENDAR, { waitUntil: "domcontentloaded", timeout: 60_000 });
-    await page.waitForSelector("time.available-time", { timeout: 30_000 });
+
+    // "attached", not the default "visible": the extraction below is a
+    // querySelectorAll, which does not care whether an element has a box. The
+    // stricter default turned "the page rendered but something is overlaying
+    // it" into the same timeout as "the page never rendered at all".
+    try {
+      await page.waitForSelector("time.available-time", { state: "attached", timeout: 45_000 });
+    } catch (e) {
+      // A headless scrape that fails in CI and works on a laptop is unfixable
+      // without seeing what the runner saw. Dump it next to the log; the
+      // workflow uploads these as artifacts when the step fails.
+      const where = "/tmp";
+      const url = page.url();
+      const title = await page.title().catch(() => "(no title)");
+      const counts = await page.evaluate(() => ({
+        anyTime: document.querySelectorAll("time").length,
+        availableTime: document.querySelectorAll("time.available-time").length,
+        articles: document.querySelectorAll("article").length,
+        calendarDays: document.querySelectorAll(".calendar-day").length,
+        bodyChars: (document.body && document.body.innerText || "").length,
+      })).catch(() => ({}));
+      await page.screenshot({ path: `${where}/crunchyroll-fail.png`, fullPage: true }).catch(() => {});
+      await writeFile(`${where}/crunchyroll-fail.html`, await page.content().catch(() => ""), "utf8").catch(() => {});
+      throw new Error(
+        `Calendar never rendered. final URL: ${url} | title: ${title} | ` +
+        `DOM counts: ${JSON.stringify(counts)} | original: ${e.message.split("\n")[0]}`
+      );
+    }
     return await page.evaluate(() => {
       const out = new Set();
       document.querySelectorAll("time.available-time").forEach(t => {
