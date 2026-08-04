@@ -8,7 +8,7 @@ name: Refresh SEO pages & events
 
 on:
   schedule:
-    - cron: "30 8 * * *" # 08:30 UTC daily, after the social/discord posts
+    - cron: "5 * * * *" # hourly, offset off :00 so it doesn't stack on AniList alongside push-send (*/15) and ingest (0 */6 * * *)
   workflow_dispatch: {}
 
 permissions:

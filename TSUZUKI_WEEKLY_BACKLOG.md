@@ -28,30 +28,32 @@ A 1–10 personal score and free-text notes per show, surfaced on cards and in t
 ### Week 03 | Custom collections
 Make your own lists, rename them, and drag shows between them.
 
-### Week 04 | Watch-later queue
-A prioritized, reorderable queue that's separate from what you follow.
+### Week 04 | Rating system v2
+Break the single score into story, art, sound, characters and enjoyment, with half-points and a weighted composite you control. Old 1–10 scores migrate as the composite, so nobody loses their history.
 
-### Week 05 | Bulk actions bar
-Multi-select shows to set status, add to a list, or hide them all at once.
+### Week 05 | Rate by comparison
+Instead of guessing a number, pick between two shows you've already rated. A few head-to-heads calibrate the whole list — and the pairs become the training signal the September engine runs on.
 
 ---
 
-## Month 02: September 2026 · Calendar for power users
+## Month 02: September 2026 · The rating engine & recommendations
 
-### Week 06 | Hour-grid week view
-A time-of-day grid with lanes for episodes that air in the same slot.
+*The positioning shift: not a release schedule with a list attached, but the anime info site that knows your taste.*
 
-### Week 07 | Hide-watched toggles
-Collapse watched or completed shows out of the calendar view.
+### Week 06 | Taste profile
+Turn your ratings into a readable profile — genres, studios, tags, era, pacing, length — with the axes you over- and under-rate versus the crowd.
 
-### Week 08 | Timezone preview
-See the whole schedule in any timezone — plan around travel or watch in JST.
+### Week 07 | Predicted score
+An AI estimate of what *you* would rate any unrated show, built from your ratings and the comparison pairs, shown as a badge with a confidence level. Low confidence says so instead of guessing loudly.
 
-### Week 09 | Jump-to-date
-A mini date-picker plus keyboard navigation to leap across the calendar.
+### Week 08 | Recommendations page
+A dedicated page, not a rail: ranked picks with filters for length, season, genre and status, plus "surprise me" and "safe bet" modes.
 
-### Week 10 | Busy-day heatmap
-Shade the month grid by how many releases each day carries.
+### Week 09 | Why this pick
+Every predicted score and recommendation opens into its reasoning — the rated shows it leaned on, the axes that drove it — with sliders and thumbs that retrain the profile on the spot.
+
+### Week 10 | Show info pages
+A real page per show: staff, studio, source and adaptation range, themes, related entries, streaming, airing history, and the rating distribution next to your predicted score. The page you'd link someone to.
 
 ---
 
