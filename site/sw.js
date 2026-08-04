@@ -1,12 +1,13 @@
 /* Tsuzuki service worker — makes the app installable & openable offline.
    Strategy:
      • navigations  -> network-first, fall back to the cached app shell
+     • /api/*       -> never cached (schedule corrections must land immediately)
      • *.json data  -> network-first, fall back to last cached copy
      • other same-origin static -> cache-first (then network + cache)
      • cross-origin (AniList, ANN, Open-Meteo, images) -> untouched (network)
    Live anime data is always fetched fresh; the cache only guarantees the app
    still opens with offline/sample data when there's no connection. */
-const CACHE = "tsuzuki-v1";
+const CACHE = "tsuzuki-v2";
 const SHELL = ["/", "/index.html", "/favicon.svg", "/manifest.webmanifest", "/og-image.png"];
 
 self.addEventListener("install", e => {
@@ -36,6 +37,11 @@ self.addEventListener("fetch", e => {
     );
     return;
   }
+
+  // Functions (/api/overrides, /api/report): the whole point of the correction
+  // layer is that a fix lands in minutes, so it must never be served from a
+  // cache. The app already fails soft when these are unreachable.
+  if (url.pathname.startsWith("/api/")) return;
 
   // JSON data (events.json, etc.): network-first so it stays current, cache as backup.
   if (url.pathname.endsWith(".json")) {

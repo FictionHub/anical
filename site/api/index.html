@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tsuzuki API — Anime Schedules with Sub, Dub &amp; Broadcast Times</title>
+<meta name="description" content="A free REST API for anime airing schedules that returns sub, dub and Japanese broadcast times separately, with delays and broadcast breaks already corrected. No key required." />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0d1117" />
+<link rel="canonical" href="https://tsuzuki.netlify.app/api/" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Tsuzuki" />
+<meta property="og:url" content="https://tsuzuki.netlify.app/api/" />
+<meta property="og:title" content="Tsuzuki API — Anime Schedules with Sub, Dub &amp; Broadcast Times" />
+<meta property="og:description" content="A free REST API for anime airing schedules that returns sub, dub and Japanese broadcast times separately, with delays and broadcast breaks already corrected." />
+<meta property="og:image" content="https://tsuzuki.netlify.app/og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebAPI","name":"Tsuzuki API","description":"Anime airing schedules with sub, dub and Japanese broadcast release times, and human corrections for delays and broadcast breaks.","url":"https://tsuzuki.netlify.app/api/","documentation":"https://tsuzuki.netlify.app/api/","provider":{"@type":"Organization","name":"Tsuzuki","url":"https://tsuzuki.netlify.app/"}}</script>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#0d1117;color:#e6edf3;
+  font:15px/1.6 "Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+  background-image:radial-gradient(1200px 600px at 80% -10%,#1b1235 0,transparent 60%),radial-gradient(900px 500px at -10% 110%,#08323a 0,transparent 55%)}
+a{color:#22d3ee;text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:900px;margin:0 auto;padding:26px 20px 70px}
+header.top{display:flex;align-items:center;gap:10px;font-weight:800;font-size:22px;margin-bottom:6px}
+header.top a{color:inherit}
+header.top .dot{width:13px;height:13px;border-radius:50%;background:conic-gradient(from 0deg,#8b5cf6,#22d3ee,#f59e0b,#8b5cf6);box-shadow:0 0 14px #8b5cf6}
+.crumbs{font-size:13px;color:#8b97a7;margin:6px 0 2px}.crumbs a{color:#8b97a7}
+h1{font-size:29px;margin:14px 0 8px;line-height:1.2}
+h2{font-size:20px;margin:36px 0 6px;border-bottom:1px solid #2a3140;padding-bottom:7px}
+h3{font-size:15px;margin:24px 0 4px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#c4b5fd}
+.lede{color:#aeb9c7;max-width:720px;font-size:16px}
+.cta{display:inline-block;margin:16px 8px 6px 0;background:linear-gradient(135deg,#8b5cf6,#6d28d9);color:#fff;font-weight:700;padding:11px 18px;border-radius:10px}
+.cta:hover{text-decoration:none;filter:brightness(1.08)}
+.cta.alt{background:#1c2230;border:1px solid #2a3140}
+pre{background:#12171f;border:1px solid #2a3140;border-radius:10px;padding:13px 15px;overflow-x:auto;
+  font:12.5px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace;color:#c4cdd9}
+code{background:#1c2230;border:1px solid #2a3140;border-radius:5px;padding:1px 5px;
+  font:12.5px ui-monospace,SFMono-Regular,Menlo,monospace;color:#e6edf3}
+pre code{background:none;border:0;padding:0;font-size:inherit}
+table{width:100%;border-collapse:collapse;margin-top:10px;font-size:14px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid #2a3140;vertical-align:top}
+th{color:#8b97a7;font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+td code{white-space:nowrap}
+.note{background:#161b22;border:1px solid #2a3140;border-left:3px solid #8b5cf6;border-radius:0 10px 10px 0;
+  padding:12px 15px;margin:18px 0;color:#c4cdd9;font-size:14px}
+.note.warn{border-left-color:#f59e0b}
+footer{margin-top:44px;color:#8b97a7;font-size:12.5px;border-top:1px solid #2a3140;padding-top:16px}
+.tag{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.4px;padding:2px 8px;border-radius:20px;
+  background:rgba(34,211,238,.14);border:1px solid #22d3ee;color:#22d3ee;margin-left:8px;vertical-align:middle}
+@media(max-width:640px){table,thead,tbody,th,td,tr{display:block}th{display:none}
+  td{border:0;padding:3px 0}tr{border-bottom:1px solid #2a3140;padding:9px 0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top"><span class="dot"></span> <a href="/">Tsuzuki</a></header>
+  <div class="crumbs"><a href="/">Home</a> › API</div>
+
+  <h1>Tsuzuki API <span class="tag">v1 · FREE · NO KEY</span></h1>
+  <p class="lede">
+    A read-only REST API for anime airing schedules. Unlike the upstream data it is built on,
+    every episode comes back with the <strong>release variants that actually exist</strong> —
+    the Japanese broadcast, the subtitled simulcast and the English dub — and with human
+    corrections for delays and broadcast breaks already applied.
+  </p>
+  <a class="cta" href="/api/v1/schedule?days=1">Try it now →</a>
+  <a class="cta alt" href="/">Open the calendar</a>
+
+  <h2>Why not just call AniList?</h2>
+  <p>
+    You should, for most things — this API is built on AniList and credits it everywhere.
+    But AniList publishes <em>one</em> time per episode: the Japanese TV broadcast. It has no
+    field for when Crunchyroll actually posts the sub, no dub dates at all, and no way to say
+    "this week's episode was pre-empted by a sports block."
+  </p>
+  <p>
+    That correction layer is what this API adds. If you only need Japanese broadcast times,
+    <a href="https://anilist.co/graphiql" target="_blank" rel="noopener">go straight to AniList</a>
+    and skip the hop.
+  </p>
+
+  <h2>Conventions</h2>
+  <table>
+    <tr><th>Item</th><th>Detail</th></tr>
+    <tr><td>Base URL</td><td><code>https://tsuzuki.netlify.app/api/v1</code></td></tr>
+    <tr><td>Auth</td><td>None. No key, no signup.</td></tr>
+    <tr><td>Format</td><td>JSON. Every response has an <code>ok</code> boolean; errors add <code>error</code> and sometimes <code>hint</code>.</td></tr>
+    <tr><td>Times</td><td>Unix seconds in <code>airingAt</code>, plus an ISO-8601 UTC string in <code>airingAtIso</code>. Convert to your own timezone.</td></tr>
+    <tr><td>CORS</td><td>Open to any origin — call it straight from a browser.</td></tr>
+    <tr><td>Caching</td><td>Responses are CDN-cached for 5 minutes. Cache on your side too; do not poll faster than the data changes.</td></tr>
+    <tr><td>Rate limit</td><td>Roughly 60 requests/minute per client. Over it you get <code>429</code> with <code>Retry-After</code>.</td></tr>
+    <tr><td>Adult titles</td><td>Excluded by default. Pass <code>includeAdult=1</code> on <code>/schedule</code> if you need them.</td></tr>
+  </table>
+
+  <div class="note warn">
+    <strong>Attribution is required.</strong> If you ship anything public on top of this, credit
+    <strong>AniList</strong> (the underlying data) and <strong>Tsuzuki</strong> (the corrections),
+    both with a visible link. This runs on a free tier — bulk scraping will get blocked, but
+    asking first almost never will. Ask in
+    <a href="https://discord.gg/YxphmhYga7" target="_blank" rel="noopener">the Discord</a>.
+  </div>
+
+  <h2>The air-type model</h2>
+  <p>Every episode entry carries an <code>airType</code> and two honesty flags:</p>
+  <table>
+    <tr><th>Field</th><th>Meaning</th></tr>
+    <tr><td><code>airType</code></td><td><code>raw</code> (Japanese broadcast), <code>sub</code> (subtitled simulcast), or <code>dub</code> (English dub).</td></tr>
+    <tr><td><code>exact</code></td><td><code>true</code> when the time comes from the broadcast schedule or a confirmed correction.</td></tr>
+    <tr><td><code>estimated</code></td><td><code>true</code> when we derived the time rather than confirming it — currently only for subs on a known simulcast platform, where we fall back to the broadcast time. <strong>Never shown to a user without a marker; please do the same.</strong></td></tr>
+    <tr><td><code>platform</code></td><td>Where that release lands, when known.</td></tr>
+    <tr><td><code>note</code></td><td><code>null</code>, or <code>{kind, reason, source}</code> where kind is <code>delay</code>, <code>break</code>, <code>early</code> or <code>note</code>.</td></tr>
+    <tr><td><code>isBreak</code></td><td><code>true</code> when there is no episode in that slot. Break entries have a <code>null</code> <code>airingAt</code> and never appear in <code>/schedule</code>.</td></tr>
+  </table>
+  <p>
+    A dub entry only exists where someone has confirmed a dub date. We would rather return
+    nothing than a date we invented — so an absent <code>dub</code> means "unknown", not "no dub".
+  </p>
+
+  <h2>Endpoints</h2>
+
+  <h3>GET /api/v1</h3>
+  <p>Service description and the machine-readable endpoint list.</p>
+
+  <h3>GET /api/v1/schedule</h3>
+  <p>Corrected schedule for a date window. This is the endpoint most people want.</p>
+  <table>
+    <tr><th>Param</th><th>Default</th><th>Notes</th></tr>
+    <tr><td><code>start</code></td><td>today</td><td><code>YYYY-MM-DD</code>, interpreted as UTC.</td></tr>
+    <tr><td><code>days</code></td><td>7</td><td>1–31.</td></tr>
+    <tr><td><code>airType</code></td><td>all</td><td><code>raw</code>, <code>sub</code> or <code>dub</code>.</td></tr>
+    <tr><td><code>platform</code></td><td>—</td><td>Exact platform name, e.g. <code>Crunchyroll</code>.</td></tr>
+    <tr><td><code>format</code></td><td>—</td><td><code>TV</code>, <code>TV_SHORT</code>, <code>MOVIE</code>, <code>ONA</code>, <code>OVA</code>, <code>SPECIAL</code>.</td></tr>
+    <tr><td><code>includeAdult</code></td><td>off</td><td><code>1</code> to include adult titles.</td></tr>
+  </table>
+<pre><code>curl "https://tsuzuki.netlify.app/api/v1/schedule?days=1&amp;airType=sub&amp;platform=Crunchyroll"</code></pre>
+<pre><code>{
+  "ok": true,
+  "query": { "start": "2026-08-04", "days": 1, "airType": "sub", "platform": "Crunchyroll" },
+  "count": 12,
+  "episodes": [
+    {
+      "mediaId": 128757,
+      "episode": 5,
+      "airType": "sub",
+      "airingAt": 1754321400,
+      "airingAtIso": "2026-08-04T13:30:00.000Z",
+      "exact": true,
+      "estimated": false,
+      "platform": "Crunchyroll",
+      "isBreak": false,
+      "note": null,
+      "title": "Young Ladies Don't Play Fighting Games",
+      "coverImage": "https://s4.anilist.co/…"
+    }
+  ],
+  "attribution": "Data from AniList, corrected by Tsuzuki."
+}</code></pre>
+
+  <h3>GET /api/v1/anime/{anilistId}</h3>
+  <p>
+    One title with its full per-episode variant schedule, plus the raw
+    <code>corrections</code> record if one exists. Break weeks <em>are</em> included here.
+  </p>
+<pre><code>curl "https://tsuzuki.netlify.app/api/v1/anime/128757"</code></pre>
+
+  <h3>GET /api/v1/seasons/{season}/{year}</h3>
+  <p>
+    A season's lineup, each title with its <code>nextEpisode</code> already resolved through
+    the correction layer. <code>season</code> is <code>winter</code>, <code>spring</code>,
+    <code>summer</code> or <code>fall</code>.
+  </p>
+<pre><code>curl "https://tsuzuki.netlify.app/api/v1/seasons/summer/2026"</code></pre>
+
+  <h3>GET /api/v1/overrides</h3>
+  <p>
+    The raw correction document — every offset rule, exact time and delay/break note we hold,
+    keyed by AniList id. Useful if you want to apply the corrections yourself against data you
+    already have. The schema is documented inside
+    <a href="/data/overrides.json">/data/overrides.json</a>.
+  </p>
+
+  <h2>Errors</h2>
+  <table>
+    <tr><th>Status</th><th>Means</th></tr>
+    <tr><td><code>400</code></td><td>A parameter is malformed. <code>error</code> says which.</td></tr>
+    <tr><td><code>404</code></td><td>Unknown endpoint, or no anime with that id.</td></tr>
+    <tr><td><code>429</code></td><td>Rate limited. Wait <code>Retry-After</code> seconds.</td></tr>
+    <tr><td><code>502</code> / <code>503</code></td><td>Upstream AniList failed or rate-limited us. Retry shortly.</td></tr>
+  </table>
+
+  <div class="note">
+    <strong>Found a wrong time?</strong> The corrections are only as good as what gets reported.
+    Open any show on the <a href="/">calendar</a> and use <strong>⚠ Report a wrong time</strong> —
+    fixes go live for every API consumer within minutes.
+  </div>
+
+  <footer>
+    Browse: <a href="/best/">top anime</a> · <a href="/genres/">all genres</a> ·
+    <a href="/studios/">all studios</a> · <a href="/where-to-watch/">where to watch</a> ·
+    <a href="/today/">airing today</a><br>
+    Schedule data from <a href="https://anilist.co" target="_blank" rel="noopener">AniList</a>,
+    with corrections maintained by Tsuzuki.
+  </footer>
+</div>
+</body>
+</html>

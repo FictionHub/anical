@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-04T12:10:00.000Z",
+  "_readme": {
+    "what": "Human corrections layered on top of AniList's airing schedule. AniList carries the Japanese TV broadcast time only: no simulcast drop time, no dub date, and no signal when a broadcast is pre-empted. Everything the app knows beyond the raw broadcast comes from here.",
+    "who-reads-it": "site/index.html loads this file, then merges /api/overrides (the live store) over it. The static copy is the reviewable seed and the offline fallback; the live store is the fast lane that fixes a wrong time without spending a deploy. /admin/ is the maintainer console that writes to the live store.",
+    "keys": "shows is keyed by AniList media id, as a string.",
+    "show-level-rules": {
+      "sub": "{ offsetMin, platform, fromEpisode?, toEpisode? } — simulcast time as an offset in minutes from the JP broadcast. offsetMin 0 means it lands with the broadcast.",
+      "dub": "{ offsetMin, platform, fromEpisode?, toEpisode? } — dub release as an offset from the JP broadcast of THE SAME EPISODE NUMBER. A dub running two weeks behind a weekly show is 20160."
+    },
+    "per-episode": {
+      "raw|sub|dub": "{ airingAt, platform? } — an exact unix time for one episode. Beats the show-level rule.",
+      "status": "{ kind, reason, shiftMin?, source? } where kind is delay | break | early | note. delay/early shift every variant by shiftMin unless an exact airingAt is given. break means no episode in that slot: it renders as a break and never produces a countdown or an alert."
+    },
+    "provenance": "source and verifiedAt are informational and ignored by the resolver, but every entry below should carry them. An offset with no stated source is indistinguishable from a guess, and a guess is worse than nothing.",
+    "estimated-vs-exact": "With no entry here, a show that streams on a known simulcast platform still gets a sub variant at the broadcast time, flagged estimated and shown with a ~. The measured offsets below are exactly why that fallback is only an estimate: real simulcast delays range from 0 to 63 minutes across this sample alone. Dub variants are never estimated — no data means no dub row, because a made-up dub date is worse than none.",
+    "how-these-were-measured": "Crunchyroll publishes its release calendar at crunchyroll.com/simulcastcalendar with machine-readable timestamps (<time datetime> carrying an explicit UTC offset). Each entry below is that published release time minus AniList's published broadcast time for the same episode. Nothing is inferred from a pattern except where noted, and the one derived case (LIAR GAME dub) was checked against a broadcast cadence confirmed to be exactly 7 days across 17 episodes.",
+    "writing-to-the-live-store": "Use /admin/, or: curl -X POST \"https://<site>/api/overrides?secret=$ADMIN_SECRET\" -H 'Content-Type: application/json' -d '{\"shows\":{\"170942\":{\"episodes\":{\"5\":{\"status\":{\"kind\":\"delay\",\"shiftMin\":10080,\"reason\":\"Pre-empted\"}}}}}}'",
+    "promoting-to-the-seed": "Corrections that are permanent (a season's dub cadence, a fixed simulcast offset) belong in this file so they survive the blob store; one-off weekly delays can live in the live store only."
+  },
+  "shows": {
+    "128757": {
+      "sub": { "offsetMin": 0, "platform": "Crunchyroll", "source": "crunchyroll.com/simulcastcalendar", "verifiedAt": "2026-08-04" }
+    },
+    "185542": {
+      "sub": { "offsetMin": 0, "platform": "Crunchyroll", "source": "crunchyroll.com/simulcastcalendar", "verifiedAt": "2026-08-04" },
+      "dub": { "offsetMin": 0, "platform": "Crunchyroll", "source": "crunchyroll.com/simulcastcalendar — English dub listed at the same slot as the subtitled release", "verifiedAt": "2026-08-04" }
+    },
+    "197754": {
+      "sub": { "offsetMin": 60, "platform": "Crunchyroll", "source": "crunchyroll.com/simulcastcalendar", "verifiedAt": "2026-08-04" },
+      "dub": { "offsetMin": 20220, "platform": "Crunchyroll", "source": "crunchyroll.com/simulcastcalendar — English dub ep16 published at the same instant as subtitled ep18; broadcast cadence confirmed at exactly 7 days over 17 episodes, so the dub runs 2 weeks + 60 min behind", "verifiedAt": "2026-08-04" }
+    },
+    "199111": {
+      "sub": { "offsetMin": 30, "platform": "Crunchyroll", "source": "crunchyroll.com/simulcastcalendar", "verifiedAt": "2026-08-04" }
+    },
+    "199408": {
+      "sub": { "offsetMin": 60, "platform": "Crunchyroll", "source": "crunchyroll.com/simulcastcalendar", "verifiedAt": "2026-08-04" }
+    },
+    "202269": {
+      "sub": { "offsetMin": 30, "platform": "Crunchyroll", "source": "crunchyroll.com/simulcastcalendar", "verifiedAt": "2026-08-04" }
+    },
+    "169582": {
+      "sub": { "offsetMin": 63, "platform": "Crunchyroll", "source": "crunchyroll.com/simulcastcalendar — broadcast starts at :57, Crunchyroll publishes on the hour", "verifiedAt": "2026-08-04" }
+    },
+    "169583": {
+      "sub": { "offsetMin": 30, "platform": "Crunchyroll", "source": "crunchyroll.com/simulcastcalendar", "verifiedAt": "2026-08-04" }
+    }
+  }
+}

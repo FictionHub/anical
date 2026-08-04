@@ -7,3 +7,25 @@ node_modules/
 
 # Local Netlify folder
 .netlify
+
+# ---------------------------------------------------------------------------
+# Credentials. This repo is PUBLIC, so anything matched here would be readable
+# by the whole internet the moment it were committed — and git history keeps it
+# readable even after the file is deleted.
+#
+# Real secrets belong in GitHub Actions secrets and Netlify environment
+# variables, never in a file in the tree. These patterns are the backstop for
+# when someone runs `git add -A` without looking.
+# ---------------------------------------------------------------------------
+secrets.json
+**/secrets.json
+*.secrets.json
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+vapid-*.json
+
+# Local test scaffolding for the Netlify functions (a stubbed @netlify/blobs)
+.blobstub/

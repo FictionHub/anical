@@ -12,14 +12,23 @@
 # uploads whatever is in /site.
 [build]
   publish = "site"
-  # Skip the deploy entirely when a push didn't touch /site — docs, workflow
-  # edits and bot scripts change nothing users can see, so they shouldn't cost
-  # a deploy. Netlify cancels the build when this command exits 0, and
-  # `git diff --quiet` exits 0 precisely when /site is unchanged.
-  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- site"
+  # Skip the deploy entirely when a push didn't touch /site or /netlify — docs,
+  # workflow edits and bot scripts change nothing users can see, so they
+  # shouldn't cost a deploy. Netlify cancels the build when this command exits
+  # 0, and `git diff --quiet` exits 0 precisely when both paths are unchanged.
+  #
+  # /netlify is in the list because the functions ship in the same deploy: with
+  # /site alone, a functions-only fix would be silently skipped and the old code
+  # would stay live.
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- site netlify"
 
 [functions]
   directory = "netlify/functions"
+  # Ship the committed correction seed inside the function bundle. Without this
+  # the functions would have to fetch the site's own /data/overrides.json over
+  # HTTP to read a file that is already part of the same deploy — a needless
+  # round trip that silently drops every correction if the CDN is cold.
+  included_files = ["site/data/**"]
 
 # Friendly aliases for the Web Push API used by site/index.html.
 [[redirects]]
@@ -38,11 +47,53 @@
   to = "/.netlify/functions/ingest-status"
   status = 200
 
+# Release-schedule corrections: GET is public (every client layers this over
+# AniList), POST is maintainer-only. Lets a wrong air time be fixed without
+# spending a deploy — see netlify/functions/overrides.mjs.
+[[redirects]]
+  from = "/api/overrides"
+  to = "/.netlify/functions/overrides"
+  status = 200
+
+# "This time is wrong" intake from the show modal.
+[[redirects]]
+  from = "/api/report"
+  to = "/.netlify/functions/report"
+  status = 200
+
+# Grounded anime chat (SSE). Answers from the corrected schedule via tool calls,
+# and falls back to Google Search for anything the calendar doesn't hold — see
+# netlify/functions/chat.mjs. Needs GEMINI_API_KEY in the site environment.
+[[redirects]]
+  from = "/api/chat"
+  to = "/.netlify/functions/chat"
+  status = 200
+
+# Public read API. Declared after the specific /api/* routes above so those keep
+# winning — Netlify takes the first matching rule, and a splat here would
+# otherwise swallow them. /api/ itself stays a static file (the docs page).
+[[redirects]]
+  from = "/api/v1"
+  to = "/.netlify/functions/api"
+  status = 200
+
+[[redirects]]
+  from = "/api/v1/*"
+  to = "/.netlify/functions/api"
+  status = 200
+
 [[headers]]
   for = "/*"
   [headers.values]
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+# The committed override seed is a correction layer — it must not sit in a CDN
+# cache for a day after a fix ships.
+[[headers]]
+  for = "/data/*"
+  [headers.values]
+    Cache-Control = "public, max-age=300, stale-while-revalidate=86400"
 
 # Subscribable calendar feeds must be served as text/calendar (nosniff is on,
 # so the Content-Type has to be correct for calendar apps to accept them).

@@ -71,6 +71,17 @@ footer{margin-top:34px;color:#8b97a7;font-size:12.5px;border-top:1px solid #2a31
 .hub-link{background:#161b22;border:1px solid #2a3140;border-radius:10px;padding:9px 14px;font-weight:600;color:#e6edf3}
 .hub-link:hover{border-color:#8b5cf6;text-decoration:none}
 .hub-n{color:#8b97a7;font-weight:400;font-size:12px;margin-left:5px}
+h2{font-size:20px;margin:32px 0 2px}
+h2:first-of-type{margin-top:24px}
+.sub{color:#8b97a7;font-size:13.5px;margin:4px 0 0}
+.rank{counter-reset:r;margin-top:18px}
+.rank .card{position:relative;padding-left:44px}
+.rank .card::before{counter-increment:r;content:counter(r);position:absolute;left:12px;top:12px;
+  font-weight:800;font-size:15px;color:#8b5cf6;font-variant-numeric:tabular-nums}
+.plat-nav{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.plat-nav a{background:#161b22;border:1px solid #2a3140;border-radius:20px;padding:6px 13px;font-size:13px;font-weight:600;color:#e6edf3}
+.plat-nav a:hover{border-color:#8b5cf6;text-decoration:none}
+.plat{scroll-margin-top:14px}
 </style>
 </head>
 <body>
@@ -100,7 +111,7 @@ footer{margin-top:34px;color:#8b97a7;font-size:12.5px;border-top:1px solid #2a31
     <h2 style="font-size:18px;margin-top:24px">Episode air dates</h2><div class="sched"><div class="row"><span>Episode 1 <span class="pill prem">PREMIERE</span></span><span class="when2">Fri, Oct 9, 3:30 PM UTC</span></div><div class="row"><span>Episode 2</span><span class="when2">Fri, Oct 16, 3:30 PM UTC</span></div><div class="row"><span>Episode 3</span><span class="when2">Fri, Oct 23, 3:30 PM UTC</span></div><div class="row"><span>Episode 4</span><span class="when2">Fri, Oct 30, 3:30 PM UTC</span></div><div class="row"><span>Episode 5</span><span class="when2">Fri, Nov 6, 3:30 PM UTC</span></div><div class="row"><span>Episode 6</span><span class="when2">Fri, Nov 13, 3:30 PM UTC</span></div><div class="row"><span>Episode 7</span><span class="when2">Fri, Nov 20, 3:30 PM UTC</span></div><div class="row"><span>Episode 8</span><span class="when2">Fri, Nov 27, 3:30 PM UTC</span></div><div class="row"><span>Episode 9</span><span class="when2">Fri, Dec 4, 3:30 PM UTC</span></div><div class="row"><span>Episode 10</span><span class="when2">Fri, Dec 11, 3:30 PM UTC</span></div><div class="row"><span>Episode 11</span><span class="when2">Fri, Dec 18, 3:30 PM UTC</span></div><div class="row"><span>Episode 12</span><span class="when2">Fri, Dec 25, 3:30 PM UTC</span></div></div>
     <nav class="seasons"><a class="" href="/spring-2026/">Spring 2026</a><a class="" href="/summer-2026/">Summer 2026</a><a class="cur" href="/fall-2026/">Fall 2026</a><a class="" href="/winter-2027/">Winter 2027</a><a href="/today/">Airing today</a></nav>
   <footer>
-    Browse: <a href="/genres/">all genres</a> · <a href="/studios/">all studios</a> · <a href="/today/">airing today</a><br>
+    Browse: <a href="/best/">top anime</a> · <a href="/genres/">all genres</a> · <a href="/studios/">all studios</a> · <a href="/where-to-watch/">where to watch</a> · <a href="/today/">airing today</a><br>
     Data from <a href="https://anilist.co" target="_blank" rel="noopener">AniList</a>.
     Air times listed in UTC; the <a href="/">live calendar</a> converts to your local timezone,
     shows live countdowns, and lets you add episodes to your calendar.

@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+# Maintainer console. Useless without ADMIN_SECRET, but it has no business
+# being crawled or indexed.
+Disallow: /admin/
 
 Sitemap: https://tsuzuki.netlify.app/sitemap.xml

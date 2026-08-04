@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tsuzuki — correction queue</title>
+<!-- Maintainer tool. Not linked from anywhere, excluded in robots.txt, and
+     useless without the secret — but keep it out of the index regardless. -->
+<meta name="robots" content="noindex, nofollow, noarchive" />
+<meta name="referrer" content="no-referrer" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#0d1117;color:#e6edf3;font:14px/1.55 "Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif}
+a{color:#22d3ee}
+.wrap{max-width:1040px;margin:0 auto;padding:22px 18px 70px}
+h1{font-size:22px;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+h1 .dot{width:12px;height:12px;border-radius:50%;background:conic-gradient(from 0deg,#8b5cf6,#22d3ee,#f59e0b,#8b5cf6)}
+.sub{color:#8b97a7;font-size:13px;margin:0 0 18px}
+button,input,select,textarea{font:inherit}
+button{background:#1c2230;border:1px solid #2a3140;color:#e6edf3;border-radius:8px;padding:7px 12px;cursor:pointer}
+button:hover:not(:disabled){border-color:#8b5cf6}
+button:disabled{opacity:.5;cursor:not-allowed}
+button.primary{background:linear-gradient(135deg,#8b5cf6,#6d28d9);border-color:transparent;font-weight:700}
+button.danger{border-color:#7f1d1d;color:#fca5a5}
+input,select,textarea{background:#12171f;border:1px solid #2a3140;color:#e6edf3;border-radius:8px;padding:7px 10px}
+input:focus,select:focus,textarea:focus{outline:none;border-color:#8b5cf6}
+.bar{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-bottom:16px;
+  background:#161b22;border:1px solid #2a3140;border-radius:12px;padding:12px 14px}
+.bar .grow{flex:1;min-width:170px}
+.tabs{display:flex;gap:7px;margin-bottom:14px}
+.tabs button.on{background:linear-gradient(135deg,#8b5cf6,#6d28d9);border-color:transparent;font-weight:700}
+.card{background:#161b22;border:1px solid #2a3140;border-radius:12px;padding:13px 15px;margin-bottom:12px}
+.card.applied{opacity:.55}
+.card h3{margin:0 0 3px;font-size:15px}
+.meta{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:6px 0}
+.pill{font-size:10.5px;padding:2px 8px;border-radius:20px;background:#1c2230;border:1px solid #2a3140;color:#8b97a7}
+.pill.k{border-color:#8b5cf6;color:#c4b5fd}
+.pill.air{border-color:#22d3ee;color:#22d3ee;font-weight:700}
+.pill.st-open{border-color:#f59e0b;color:#fcd34d}
+.pill.st-applied{border-color:#22c55e;color:#86efac}
+.pill.st-rejected,.pill.st-duplicate{border-color:#7f1d1d;color:#fca5a5}
+.detail{background:#12171f;border-left:3px solid #8b5cf6;border-radius:0 8px 8px 0;padding:9px 12px;margin:8px 0;white-space:pre-wrap}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end;margin-top:10px}
+.row label{display:flex;flex-direction:column;gap:3px;font-size:11.5px;color:#8b97a7}
+.row label input,.row label select{min-width:120px}
+.hint{color:#8b97a7;font-size:12px}
+.empty{color:#8b97a7;text-align:center;padding:40px 0}
+.err{color:#fca5a5}
+.ok{color:#86efac}
+pre{background:#12171f;border:1px solid #2a3140;border-radius:10px;padding:12px;overflow:auto;
+  font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;max-height:60vh}
+textarea.json{width:100%;min-height:340px;font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace}
+.gate{max-width:420px;margin:12vh auto;background:#161b22;border:1px solid #2a3140;border-radius:14px;padding:22px}
+.gate h1{margin-bottom:10px}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+
+<script>
+"use strict";
+/* Maintainer console for the correction layer.
+   Reads /api/report and writes /api/overrides. The secret lives in
+   sessionStorage only — it dies with the tab, and is never put in the URL,
+   because a URL leaks through history, bookmarks and Referer headers. */
+const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const SECRET_KEY="tsuzuki.admin.secret";
+let secret=sessionStorage.getItem(SECRET_KEY)||"";
+let tab="open", reports=[], overrides={shows:{}}, busy=false;
+
+const hdr=()=>({"Content-Type":"application/json","x-tsuzuki-secret":secret});
+async function api(path,opts){
+  const res=await fetch(path,{...opts,headers:{...hdr(),...(opts&&opts.headers||{})}});
+  if(res.status===403){ throw new Error("Wrong secret, or ADMIN_SECRET isn't set on the site."); }
+  const j=await res.json().catch(()=>({}));
+  if(!res.ok||j.ok===false) throw new Error(j.error||("HTTP "+res.status));
+  return j;
+}
+
+/* ---------- gate ---------- */
+function renderGate(msg){
+  $("app").innerHTML=`<div class="gate">
+    <h1><span class="dot"></span> Correction queue</h1>
+    <p class="sub">Maintainers only. Paste the site's <code>ADMIN_SECRET</code>.</p>
+    <div class="row"><label style="flex:1">Secret<input type="password" id="sec" autocomplete="off"></label>
+      <button class="primary" id="go">Unlock</button></div>
+    ${msg?`<p class="err" style="margin-bottom:0">${esc(msg)}</p>`:""}
+  </div>`;
+  const submit=()=>{ secret=$("sec").value.trim(); if(!secret) return;
+    sessionStorage.setItem(SECRET_KEY,secret); boot(); };
+  $("go").onclick=submit;
+  $("sec").onkeydown=e=>{ if(e.key==="Enter") submit(); };
+  $("sec").focus();
+}
+
+/* ---------- shell ---------- */
+function renderShell(){
+  const openN=reports.filter(r=>(r.status||"open")==="open").length;
+  $("app").innerHTML=`
+    <h1><span class="dot"></span> Correction queue</h1>
+    <p class="sub">Reader reports on the left of each card; the fix you apply goes straight into the live
+      override store, so it reaches every visitor and every API consumer within minutes. No deploy.</p>
+    <div class="bar">
+      <button id="reload">↻ Reload</button>
+      <span class="hint grow" id="status">${openN} open · ${reports.length} total</span>
+      <button id="lock">Lock</button>
+    </div>
+    <div class="tabs">
+      <button data-tab="open" class="${tab==="open"?"on":""}">Open (${openN})</button>
+      <button data-tab="all" class="${tab==="all"?"on":""}">All reports</button>
+      <button data-tab="raw" class="${tab==="raw"?"on":""}">Raw overrides</button>
+    </div>
+    <div id="body"></div>`;
+  $("reload").onclick=boot;
+  $("lock").onclick=()=>{ sessionStorage.removeItem(SECRET_KEY); secret=""; renderGate(""); };
+  document.querySelectorAll("[data-tab]").forEach(b=>b.onclick=()=>{ tab=b.dataset.tab; renderShell(); });
+  if(tab==="raw") renderRaw(); else renderReports();
+}
+
+/* ---------- reports ---------- */
+const AIRS=["sub","dub","raw"];
+function ovFor(id){ return (overrides.shows&&overrides.shows[String(id)])||null; }
+
+function renderReports(){
+  const list=reports.filter(r=>tab==="all"||(r.status||"open")==="open");
+  if(!list.length){ $("body").innerHTML=`<div class="empty">Nothing here. ${tab==="open"?"Queue is clear.":"No reports yet."}</div>`; return; }
+  $("body").innerHTML=list.map(cardHTML).join("");
+  list.forEach(r=>wireCard(r));
+}
+
+function cardHTML(r){
+  const st=r.status||"open";
+  const ov=ovFor(r.mediaId);
+  const when=r.createdAt?new Date(r.createdAt).toLocaleString():"";
+  return `<div class="card ${st!=="open"?"applied":""}" id="c-${esc(r.key)}">
+    <h3>${esc(r.title||("Media "+r.mediaId))}
+      <a href="/?show=${esc(r.mediaId)}" target="_blank" rel="noopener" style="font-size:12px;font-weight:400">open →</a>
+      <a href="https://anilist.co/anime/${esc(r.mediaId)}" target="_blank" rel="noopener" style="font-size:12px;font-weight:400">AniList →</a></h3>
+    <div class="meta">
+      <span class="pill st-${esc(st)}">${esc(st.toUpperCase())}</span>
+      <span class="pill k">${esc(r.kind||"other")}</span>
+      ${r.episode?`<span class="pill">Ep ${esc(r.episode)}</span>`:""}
+      ${r.airType?`<span class="pill air">${esc(r.airType.toUpperCase())}</span>`:""}
+      ${r.platform?`<span class="pill">${esc(r.platform)}</span>`:""}
+      <span class="pill">id ${esc(r.mediaId)}</span>
+      <span class="pill">${esc(when)}</span>
+      <span class="pill">from ${esc(r.reporter||"?")}</span>
+      ${ov?`<span class="pill k">has overrides</span>`:""}
+    </div>
+    ${r.expected?`<div class="hint">Reporter says the correct time is: <b>${esc(r.expected)}</b></div>`:""}
+    <div class="detail">${esc(r.detail||"")}</div>
+    ${r.source?`<div class="hint">Source: <a href="${esc(r.source)}" target="_blank" rel="noopener noreferrer">${esc(r.source)}</a></div>`:""}
+    ${r.maintainerNote?`<div class="hint">Note: ${esc(r.maintainerNote)}</div>`:""}
+
+    <div class="row">
+      <label>Fix<select data-f="mode">
+        <option value="exact">Exact time for this episode</option>
+        <option value="delay">Delay this episode</option>
+        <option value="break">Break — no episode</option>
+        <option value="rule">Show-wide offset rule</option>
+      </select></label>
+      <label>Release<select data-f="air">${AIRS.map(a=>`<option value="${a}"${a===(r.airType||"sub")?" selected":""}>${a.toUpperCase()}</option>`).join("")}</select></label>
+      <label>Episode<input type="number" data-f="ep" value="${esc(r.episode||1)}" min="0" style="width:80px"></label>
+      <label data-when="exact">New local time<input type="datetime-local" data-f="dt"></label>
+      <label data-when="delay">Shift by<select data-f="shift">
+        <option value="60">1 hour</option><option value="1440">1 day</option>
+        <option value="10080" selected>1 week</option><option value="20160">2 weeks</option></select></label>
+      <label data-when="rule">Offset (min)<input type="number" data-f="off" placeholder="e.g. 60" style="width:110px"></label>
+      <label data-when="rule">From episode<input type="number" data-f="from" min="1" placeholder="1" style="width:100px"></label>
+      <label data-when="rule exact">Platform<input type="text" data-f="plat" value="${esc(r.platform||"")}" placeholder="Crunchyroll" style="width:130px"></label>
+      <label data-when="delay break" class="grow">Reason<input type="text" data-f="reason" placeholder="Pre-empted by…" style="width:100%"></label>
+    </div>
+    <div class="row">
+      <button class="primary" data-a="apply">✓ Apply &amp; close</button>
+      <button data-a="preview">Preview patch</button>
+      <button data-a="reject">Reject</button>
+      <button data-a="dupe">Duplicate</button>
+      <button class="danger" data-a="delete">Delete</button>
+      <span class="hint" data-a="msg"></span>
+    </div>
+    <pre data-a="patch" style="display:none"></pre>
+  </div>`;
+}
+
+// Build the override patch this card's form describes. Returns null with a
+// message when the form isn't answerable yet, so Apply can't write a
+// half-specified correction.
+function buildPatch(root, r){
+  const v=f=>{ const el=root.querySelector(`[data-f="${f}"]`); return el?el.value.trim():""; };
+  const mode=v("mode"), air=v("air"), ep=String(parseInt(v("ep"),10)||0);
+  const id=String(r.mediaId);
+  const plat=v("plat")||undefined;
+  if(mode==="rule"){
+    const off=parseInt(v("off"),10);
+    if(!Number.isFinite(off)) return {err:"Enter an offset in minutes."};
+    if(air==="raw") return {err:"A show-wide rule only makes sense for sub or dub."};
+    const rule={offsetMin:off};
+    if(plat) rule.platform=plat;
+    const from=parseInt(v("from"),10); if(from>0) rule.fromEpisode=from;
+    return {patch:{shows:{[id]:{[air]:rule}}}};
+  }
+  if(!ep) return {err:"Which episode?"};
+  if(mode==="break"){
+    return {patch:{shows:{[id]:{episodes:{[ep]:{status:{kind:"break",reason:v("reason")||"Broadcast break — no episode"}}}}}}};
+  }
+  if(mode==="delay"){
+    const shift=parseInt(v("shift"),10)||0;
+    if(!shift) return {err:"Pick how far to shift it."};
+    return {patch:{shows:{[id]:{episodes:{[ep]:{status:{kind:"delay",shiftMin:shift,reason:v("reason")||"Delayed",
+      source:r.source||undefined}}}}}}};
+  }
+  const dt=v("dt");
+  if(!dt) return {err:"Pick the corrected time."};
+  const ts=Math.floor(new Date(dt).getTime()/1000);
+  if(!Number.isFinite(ts)) return {err:"That date didn't parse."};
+  const entry={airingAt:ts};
+  if(plat&&air!=="raw") entry.platform=plat;
+  return {patch:{shows:{[id]:{episodes:{[ep]:{[air]:entry}}}}}};
+}
+
+function wireCard(r){
+  const root=$("c-"+r.key); if(!root) return;
+  const msg=root.querySelector('[data-a="msg"]');
+  const modeSel=root.querySelector('[data-f="mode"]');
+  const syncFields=()=>{
+    const m=modeSel.value;
+    root.querySelectorAll("[data-when]").forEach(el=>{
+      el.style.display=el.dataset.when.split(" ").includes(m)?"":"none";
+    });
+  };
+  modeSel.onchange=syncFields; syncFields();
+
+  // Seed the datetime picker from the episode's current time so a maintainer
+  // adjusts a real value instead of typing one from scratch.
+  const dtEl=root.querySelector('[data-f="dt"]');
+  const epEl=root.querySelector('[data-f="ep"]');
+  const airEl=root.querySelector('[data-f="air"]');
+  const seedTime=async()=>{
+    try{
+      const j=await (await fetch(`/api/v1/anime/${encodeURIComponent(r.mediaId)}`)).json();
+      const want=+epEl.value, air=airEl.value;
+      const hit=(j.episodes||[]).find(e=>e.episode===want&&e.airType===air&&e.airingAt);
+      if(hit){ const d=new Date(hit.airingAt*1000);
+        dtEl.value=new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,16);
+        msg.textContent=`Currently ${d.toLocaleString()} (${air.toUpperCase()})`;
+      } else msg.textContent="No current time for that episode/release.";
+    }catch(e){ msg.textContent=""; }
+  };
+  epEl.onchange=seedTime; airEl.onchange=seedTime; seedTime();
+
+  const setStatus=async(status)=>{
+    if(busy) return; busy=true;
+    try{ await api("/api/report",{method:"POST",body:JSON.stringify({key:r.key,status})}); await boot(); }
+    catch(e){ msg.textContent=e.message; msg.className="hint err"; }
+    finally{ busy=false; }
+  };
+
+  root.querySelector('[data-a="preview"]').onclick=()=>{
+    const {patch,err}=buildPatch(root,r);
+    const pre=root.querySelector('[data-a="patch"]');
+    pre.style.display=""; pre.textContent=err?("⚠ "+err):JSON.stringify(patch,null,2);
+  };
+  root.querySelector('[data-a="apply"]').onclick=async()=>{
+    const {patch,err}=buildPatch(root,r);
+    if(err){ msg.textContent="⚠ "+err; msg.className="hint err"; return; }
+    if(busy) return; busy=true;
+    msg.textContent="Applying…"; msg.className="hint";
+    try{
+      await api("/api/overrides",{method:"POST",body:JSON.stringify(patch)});   // merge mode
+      await api("/api/report",{method:"POST",body:JSON.stringify({key:r.key,status:"applied"})});
+      await boot();
+    }catch(e){ msg.textContent=e.message; msg.className="hint err"; }
+    finally{ busy=false; }
+  };
+  root.querySelector('[data-a="reject"]').onclick=()=>setStatus("rejected");
+  root.querySelector('[data-a="dupe"]').onclick=()=>setStatus("duplicate");
+  root.querySelector('[data-a="delete"]').onclick=async()=>{
+    if(!confirm("Delete this report permanently?")) return;
+    if(busy) return; busy=true;
+    try{ await api("/api/report",{method:"POST",body:JSON.stringify({key:r.key,action:"delete"})}); await boot(); }
+    catch(e){ msg.textContent=e.message; msg.className="hint err"; }
+    finally{ busy=false; }
+  };
+}
+
+/* ---------- raw editor ---------- */
+function renderRaw(){
+  $("body").innerHTML=`
+    <p class="hint">The whole live override document. Editing here <b>replaces</b> it — for one-off fixes use the
+      queue instead. The committed seed at <a href="/data/overrides.json" target="_blank">/data/overrides.json</a>
+      is merged underneath this at read time.</p>
+    <textarea class="json" id="rawJson">${esc(JSON.stringify(overrides,null,2))}</textarea>
+    <div class="row"><button class="primary" id="rawSave">Save (replace)</button>
+      <button id="rawReload">Discard changes</button><span class="hint" id="rawMsg"></span></div>`;
+  $("rawReload").onclick=boot;
+  $("rawSave").onclick=async()=>{
+    const m=$("rawMsg");
+    let doc; try{ doc=JSON.parse($("rawJson").value); }catch(e){ m.textContent="Invalid JSON: "+e.message; m.className="hint err"; return; }
+    if(!confirm("Replace the entire live override document?")) return;
+    m.textContent="Saving…"; m.className="hint";
+    try{ const j=await api("/api/overrides?mode=replace",{method:"POST",body:JSON.stringify(doc)});
+      m.textContent=`Saved — ${j.shows} shows.`; m.className="hint ok"; await boot(); }
+    catch(e){ m.textContent=e.message; m.className="hint err"; }
+  };
+}
+
+/* ---------- boot ---------- */
+async function boot(){
+  if(!secret) return renderGate("");
+  try{
+    const [rep,ov]=await Promise.all([
+      api("/api/report?status=all"),
+      fetch("/api/overrides").then(r=>r.json()),
+    ]);
+    reports=rep.reports||[];
+    overrides={version:ov.version||1, updatedAt:ov.updatedAt||null, shows:ov.shows||{}};
+    renderShell();
+  }catch(e){ renderGate(e.message); }
+}
+boot();
+</script>
+</body>
+</html>

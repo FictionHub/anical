@@ -1,0 +1,159 @@
+{
+  "generatedAt": "2026-08-04T13:11:26.457Z",
+  "source": "https://www.crunchyroll.com/simulcastcalendar",
+  "note": "Machine-derived. Audit trail only — the live store at /api/overrides is what serves. Lives outside site/ so committing it costs no Netlify deploy.",
+  "findings": [
+    {
+      "mediaId": 202269,
+      "title": "Love Unseen Beneath the Clear Night Sky",
+      "crTitle": "LOVE UNSEEN BENEATH THE CLEAR NIGHT SKY STAFFEL 1",
+      "kind": "sub",
+      "episode": 5,
+      "offsetMin": 30,
+      "cadenceDerived": false,
+      "confidence": 1,
+      "observedAt": "2026-08-03T05:30:00-07:00",
+      "observations": 1
+    },
+    {
+      "mediaId": 169582,
+      "title": "The Insipid Prince's Furtive Grab for the Throne",
+      "crTitle": "THE INSIPID PRINCE'S FURTIVE GRAB FOR THE THRONE STAFFEL 1",
+      "kind": "sub",
+      "episode": 5,
+      "offsetMin": 63,
+      "cadenceDerived": false,
+      "confidence": 1,
+      "observedAt": "2026-08-03T06:00:00-07:00",
+      "observations": 1
+    },
+    {
+      "mediaId": 185542,
+      "title": "Skeleton Knight in Another World Season 2",
+      "crTitle": "SKELETON KNIGHT IN ANOTHER WORLD STAFFEL 2",
+      "kind": "sub",
+      "episode": 5,
+      "offsetMin": 0,
+      "cadenceDerived": false,
+      "confidence": 1,
+      "observedAt": "2026-08-03T06:00:00-07:00",
+      "observations": 1
+    },
+    {
+      "mediaId": 185542,
+      "title": "Skeleton Knight in Another World Season 2",
+      "crTitle": "SKELETON KNIGHT IN ANOTHER WORLD STAFFEL 2",
+      "kind": "dub",
+      "episode": 5,
+      "offsetMin": 0,
+      "cadenceDerived": false,
+      "confidence": 1,
+      "observedAt": "2026-08-03T06:00:00-07:00",
+      "observations": 1
+    },
+    {
+      "mediaId": 199408,
+      "title": "A Livid Lady’s Guide to Getting Even: How I Crushed My Homeland with My Mighty Grimoires",
+      "crTitle": "A LIVID LADY'S GUIDE TO GETTING EVEN: HOW I CRUSHED MY HOMELAND WITH MY MIGHTY GRIMOIRES STAFFEL 1",
+      "kind": "sub",
+      "episode": 5,
+      "offsetMin": 60,
+      "cadenceDerived": false,
+      "confidence": 1,
+      "observedAt": "2026-08-03T07:30:00-07:00",
+      "observations": 1
+    },
+    {
+      "mediaId": 169583,
+      "title": "Oh Boy, Was I Wrong About Her",
+      "crTitle": "OH BOY, WAS I WRONG ABOUT HER STAFFEL 1",
+      "kind": "sub",
+      "episode": 5,
+      "offsetMin": 30,
+      "cadenceDerived": false,
+      "confidence": 1,
+      "observedAt": "2026-08-03T08:00:00-07:00",
+      "observations": 1
+    },
+    {
+      "mediaId": 199111,
+      "title": "Grand Blue Dreaming Season 3",
+      "crTitle": "GRAND BLUE DREAMING STAFFEL 3",
+      "kind": "sub",
+      "episode": 5,
+      "offsetMin": 30,
+      "cadenceDerived": false,
+      "confidence": 1,
+      "observedAt": "2026-08-03T08:30:00-07:00",
+      "observations": 1
+    },
+    {
+      "mediaId": 197754,
+      "title": "LIAR GAME",
+      "crTitle": "LIAR GAME STAFFEL 1",
+      "kind": "sub",
+      "episode": 18,
+      "offsetMin": 60,
+      "cadenceDerived": false,
+      "confidence": 1,
+      "observedAt": "2026-08-03T09:00:00-07:00",
+      "observations": 1
+    },
+    {
+      "mediaId": 197754,
+      "title": "LIAR GAME",
+      "crTitle": "LIAR GAME STAFFEL 1",
+      "kind": "dub",
+      "episode": 16,
+      "offsetMin": 20220,
+      "cadenceDerived": false,
+      "confidence": 1,
+      "observedAt": "2026-08-03T09:00:00-07:00",
+      "observations": 1
+    },
+    {
+      "mediaId": 128757,
+      "title": "Young Ladies Don't Play Fighting Games",
+      "crTitle": "YOUNG LADIES DON'T PLAY FIGHTING GAMES STAFFEL 1",
+      "kind": "sub",
+      "episode": 5,
+      "offsetMin": 0,
+      "cadenceDerived": false,
+      "confidence": 1,
+      "observedAt": "2026-08-04T04:30:00-07:00",
+      "observations": 1
+    }
+  ],
+  "skipped": [
+    {
+      "iso": "2026-08-03T06:00:00-07:00",
+      "ep": 2,
+      "title": "THE INSIPID PRINCE'S FURTIVE GRAB FOR THE THRONE STAFFEL 1 (ไทย)",
+      "why": "ignored language: ไทย"
+    },
+    {
+      "iso": "2026-08-03T06:00:00-07:00",
+      "ep": 5,
+      "title": "SKELETON KNIGHT IN ANOTHER WORLD STAFFEL 2 (DEUTSCH)",
+      "why": "ignored language: DEUTSCH"
+    },
+    {
+      "iso": "2026-08-03T08:00:00-07:00",
+      "ep": 2,
+      "title": "OH BOY, WAS I WRONG ABOUT HER STAFFEL 1 (ไทย)",
+      "why": "ignored language: ไทย"
+    },
+    {
+      "iso": "2026-08-03T21:00:00-07:00",
+      "ep": 13,
+      "title": "CROWNED IN A HUNDRED DAYS STAFFEL 1 (中文 (普通话))",
+      "why": "no confident AniList match"
+    },
+    {
+      "iso": "2026-08-04T04:30:00-07:00",
+      "ep": 2,
+      "title": "YOUNG LADIES DON'T PLAY FIGHTING GAMES STAFFEL 1 (ไทย)",
+      "why": "ignored language: ไทย"
+    }
+  ]
+}

@@ -327,6 +327,63 @@
   .pill.myscore.ok{background:rgba(245,158,11,.15);border-color:var(--premiere);color:#fcd34d}
   .pill.myscore.bad{background:rgba(239,68,68,.15);border-color:var(--finale);color:#fca5a5}
   .pill.notepill{cursor:help}
+  /* Which release a row is: the JP broadcast, the simulcast, or the dub.
+     `.est` marks a time we derived rather than one a human confirmed. */
+  .pill.air{font-weight:800;letter-spacing:.4px}
+  .pill.air-raw{background:rgba(148,163,184,.14);border-color:#64748b;color:#cbd5e1}
+  .pill.air-sub{background:rgba(34,211,238,.14);border-color:var(--accent2);color:var(--accent2)}
+  .pill.air-dub{background:rgba(168,85,247,.16);border-color:#a855f7;color:#d8b4fe}
+  .pill.air.est{border-style:dashed;opacity:.85}
+  .pill.warn{background:rgba(245,158,11,.16);border-color:var(--premiere);color:#fcd34d;font-weight:700}
+  .pill.brk{background:rgba(148,163,184,.12);border-color:#64748b;color:#94a3b8;font-weight:700}
+  .ev .airtag{font-size:8.5px;font-weight:800;letter-spacing:.3px;padding:0 3px;border-radius:4px;flex:none;
+    background:rgba(34,211,238,.16);color:var(--accent2)}
+  .ev .airtag.air-raw{background:rgba(148,163,184,.16);color:#cbd5e1}
+  .ev .airtag.air-dub{background:rgba(168,85,247,.18);color:#d8b4fe}
+  .ev.brk{opacity:.55}
+  .arow.brk{opacity:.6}
+  .arow.brk .at{font-weight:600;font-style:italic}
+  /* Delay / break notice inside the detail modal */
+  .schednote{display:flex;gap:8px;align-items:flex-start;padding:9px 11px;border-radius:10px;font-size:12.5px;line-height:1.45;
+    background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.45);color:#fcd34d}
+  .schednote.brk{background:rgba(148,163,184,.1);border-color:rgba(148,163,184,.4);color:#cbd5e1}
+  .schednote a{color:inherit;text-decoration:underline}
+  /* Air-type panel */
+  .airpanel{display:flex;flex-direction:column;gap:16px}
+  .airpanel .grp{display:flex;flex-direction:column;gap:6px}
+  .airpanel .grp>span.lbl{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+  .airpanel .row{display:flex;gap:7px;flex-wrap:wrap}
+  .airpanel .opt{cursor:pointer;font-size:12.5px;padding:6px 12px;border-radius:20px;border:1px solid var(--line);
+    background:var(--bg3);color:var(--muted);user-select:none;transition:.12s}
+  .airpanel .opt:hover{border-color:var(--accent)}
+  .airpanel .opt.on{background:linear-gradient(135deg,var(--accent),#6d28d9);border-color:transparent;color:#fff}
+  .airpanel .hint{font-size:12px;color:var(--muted);line-height:1.5}
+  #airBtn.narrowed{border-color:var(--accent2)}
+  /* Settings panel sections */
+  .set-head{margin:20px 0 2px;font-size:12px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;
+    color:var(--accent2);border-bottom:1px solid var(--line);padding-bottom:6px}
+  .set-head:first-child{margin-top:0}
+  .num-row{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+  .num-in{width:74px;padding:6px 9px;border-radius:8px;border:1px solid var(--line);background:var(--bg3);color:var(--txt);font:inherit;font-size:13px}
+  .num-in:focus{outline:none;border-color:var(--accent)}
+  .num-sep{color:var(--muted)}
+  .num-hint{flex-basis:100%;color:var(--muted);font-size:11.5px;line-height:1.45}
+  .airhint-link{color:var(--accent2);cursor:pointer;text-decoration:underline}
+  /* "Images: off" — a text-only timetable fits far more rows on screen.
+     Purely presentational, so it's a body class rather than a re-render. */
+  body.no-covers .ev img,
+  body.no-covers .arow img,
+  body.no-covers .prow img,
+  body.no-covers .sr-row img{display:none}
+  body.no-covers .arow .atime{width:70px}
+  /* Report-a-wrong-time form */
+  .repform{display:flex;flex-direction:column;gap:10px}
+  .repform label{font-size:12px;color:var(--muted);display:flex;flex-direction:column;gap:4px}
+  .repform input,.repform select,.repform textarea{background:var(--bg3);border:1px solid var(--line);border-radius:8px;
+    color:var(--txt);padding:7px 9px;font:inherit;font-size:13px}
+  .repform textarea{resize:vertical;min-height:70px}
+  .repform .rf-row{display:flex;gap:10px;flex-wrap:wrap}
+  .repform .rf-row>label{flex:1;min-width:150px}
   .empty{color:var(--muted);font-size:13px;padding:14px;text-align:center}
 
   /* bell toggle */
@@ -620,6 +677,75 @@
     .seg button{padding:8px 11px}
     .brand .dot{width:10px;height:10px}
   }
+
+  /* ---- chat widget ----
+     Sits above the modal overlay (z-index 50) so it can be opened from a show
+     dialog, and below nothing else. */
+  .chat-fab{position:fixed;right:20px;bottom:20px;z-index:60;width:56px;height:56px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;padding:0;font-size:23px;line-height:1;
+    background:linear-gradient(135deg,var(--accent),#6d28d9);border:1px solid transparent;color:#fff;
+    box-shadow:0 8px 24px rgba(139,92,246,.42);transition:transform .15s,box-shadow .15s}
+  .chat-fab:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 12px 30px rgba(139,92,246,.55);background:linear-gradient(135deg,var(--accent),#6d28d9)}
+  .chat-fab.open{transform:scale(.92);opacity:.85}
+  .chat-fab .cf-dot{position:absolute;top:-2px;right:-2px;width:13px;height:13px;border-radius:50%;
+    background:var(--accent2);border:2px solid var(--bg);display:none}
+  .chat-fab.unread .cf-dot{display:block}
+
+  .chat-panel{position:fixed;right:20px;bottom:88px;z-index:60;width:390px;max-width:calc(100vw - 32px);
+    height:min(620px,calc(100vh - 130px));background:var(--bg2);border:1px solid var(--line);border-radius:16px;
+    box-shadow:var(--shadow);display:none;flex-direction:column;overflow:hidden}
+  .chat-panel.on{display:flex}
+  .chat-head{display:flex;align-items:center;gap:9px;padding:12px 14px;border-bottom:1px solid var(--line);
+    background:linear-gradient(90deg,rgba(139,92,246,.16),var(--bg2));flex:none}
+  .chat-head .ch-t{font-weight:800;font-size:14.5px}
+  .chat-head .ch-s{font-size:11.5px;color:var(--muted)}
+  .chat-head .ch-sp{margin-left:auto;display:flex;gap:4px}
+  .chat-head button{padding:5px 8px;background:transparent;border:none;color:var(--muted);font-size:14px}
+  .chat-head button:hover{color:var(--txt);background:var(--bg3);transform:none}
+
+  .chat-log{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:14px;display:flex;flex-direction:column;gap:11px}
+  .chat-msg{max-width:88%;padding:9px 12px;border-radius:13px;font-size:13.5px;line-height:1.55;word-wrap:break-word;overflow-wrap:anywhere}
+  .chat-msg.me{align-self:flex-end;background:linear-gradient(135deg,var(--accent),#6d28d9);color:#fff;border-bottom-right-radius:4px}
+  .chat-msg.bot{align-self:flex-start;background:var(--bg3);border:1px solid var(--line);border-bottom-left-radius:4px}
+  .chat-msg.err{align-self:stretch;max-width:100%;background:rgba(239,68,68,.13);border:1px solid var(--finale);color:var(--txt);font-size:12.5px}
+  .chat-msg p{margin:0 0 7px}
+  .chat-msg p:last-child{margin-bottom:0}
+  .chat-msg ul{margin:5px 0;padding-left:19px}
+  .chat-msg li{margin-bottom:3px}
+  .chat-msg li::marker{color:var(--accent2)}
+  .chat-msg code{background:rgba(127,127,127,.18);padding:1px 4px;border-radius:4px;font-size:12px}
+  .chat-src{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;padding-top:7px;border-top:1px solid var(--line)}
+  .chat-src a{font-size:11px;color:var(--muted);background:var(--bg2);border:1px solid var(--line);
+    border-radius:20px;padding:2px 8px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .chat-src a:hover{color:var(--accent2);border-color:var(--accent)}
+  .chat-status{align-self:flex-start;display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted);padding:2px 2px}
+  .chat-status .spin{width:12px;height:12px}
+  .chat-caret{display:inline-block;width:7px;height:14px;background:var(--accent2);vertical-align:-2px;
+    margin-left:2px;animation:cblink 1s steps(2,start) infinite}
+  @keyframes cblink{50%{opacity:0}}
+
+  .chat-intro{color:var(--muted);font-size:12.5px;line-height:1.6}
+  .chat-sugg{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+  .chat-sugg button{font-size:12px;padding:6px 10px;border-radius:20px;background:var(--bg3);
+    border:1px solid var(--line);color:var(--txt);font-weight:600}
+
+  .chat-foot{flex:none;border-top:1px solid var(--line);padding:10px 12px;background:var(--bg2)}
+  .chat-form{display:flex;gap:8px;align-items:flex-end}
+  .chat-form textarea{flex:1;resize:none;background:var(--bg3);color:var(--txt);border:1px solid var(--line);
+    border-radius:11px;padding:9px 11px;font:inherit;font-size:13.5px;line-height:1.45;max-height:110px;min-height:38px}
+  .chat-form textarea:focus{outline:none;border-color:var(--accent)}
+  .chat-form textarea::placeholder{color:var(--muted)}
+  .chat-form button{flex:none;padding:9px 13px;border-radius:11px}
+  .chat-note{font-size:10.5px;color:var(--muted);text-align:center;margin-top:7px;line-height:1.4}
+
+  @media(max-width:700px){
+    .chat-fab{right:14px;bottom:14px;width:52px;height:52px;font-size:21px}
+    .chat-panel{right:0;left:0;bottom:0;width:100%;max-width:100%;height:88vh;border-radius:16px 16px 0 0}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .chat-fab,.chat-fab:hover{transition:none;transform:none}
+    .chat-caret{animation:none}
+  }
 </style>
 </head>
 <body>
@@ -690,6 +816,7 @@
       <option value="80">★ 80+</option>
       <option value="90">★ 90+</option>
     </select>
+    <button id="airBtn" title="Choose which release you're tracking: the Japanese broadcast, the subtitled simulcast, or the dub">🎧 Sub</button>
     <label title="Show only the shows in your list"><input type="checkbox" id="fMine"> ⭐ My list</label>
     <label><input type="checkbox" id="fPrem"> Premieres only</label>
     <label title="Hide adult / hentai titles"><input type="checkbox" id="fNSFW"> 🔞 Hide NSFW</label>
@@ -752,6 +879,12 @@
 <nav class="seo-nav" id="seoNav">
   <a href="/today/">📅 Anime airing today</a>
   <span class="sep">·</span>
+  <a href="/best/">🏆 Top anime</a>
+  <span class="sep">·</span>
+  <a href="/where-to-watch/">📺 Where to watch</a>
+  <span class="sep">·</span>
+  <a href="/api/">🔌 API</a>
+  <span class="sep">·</span>
   <a href="#" id="subscribeLink">🔔 Subscribe (calendar feed)</a>
   <span class="sep">·</span>
   <a href="#" id="embedLink">⧉ Embed this calendar</a>
@@ -762,8 +895,12 @@
   <details><summary>Is Tsuzuki free?</summary><p>Yes. Tsuzuki is completely free, with no signup and no ads.</p></details>
   <details><summary>Where does the anime data come from?</summary><p>Airing schedules, premieres and finales come from AniList, and headlines come from Anime News Network. The data is refreshed every time you open the calendar.</p></details>
   <details><summary>What timezone are the air times shown in?</summary><p>All air times are converted to your device's local timezone automatically, with live countdowns to each episode.</p></details>
+  <details><summary>Do you show sub and dub release times, or just the Japanese broadcast?</summary><p>Both. Every episode can carry up to three times: the Japanese TV broadcast (RAW), the subtitled simulcast (SUB) and the English dub (DUB). Pick which ones you want with the 🎧 button in the toolbar — by default Tsuzuki shows the subtitled release and falls back to the broadcast time when a show isn't simulcast. Times we derived rather than confirmed are marked with a ~.</p></details>
+  <details><summary>What happens when an episode is delayed or a show takes a week off?</summary><p>Delays and broadcast breaks are shown inline, with the reason where we have it. A delayed episode moves to its new time and is flagged; a break week is shown as a break instead of a phantom episode, and never fires a countdown or an alert. If you spot a time that's wrong, use "⚠ Report a wrong time" in any show's details — corrections go live without waiting for a new release of the site.</p></details>
   <details><summary>Can I get notified when an episode airs?</summary><p>Yes. Follow a show with the bell icon to get browser alerts before each episode. On browsers that support scheduled notifications, alerts can fire even when Tsuzuki is closed.</p></details>
   <details><summary>Can I add anime to my own calendar?</summary><p>Yes. You can add individual episodes to Google Calendar or download an .ics file, or subscribe to a live feed of premieres, finales, or all episodes that updates automatically.</p></details>
+  <details><summary>Can I sync with my AniList account?</summary><p>Yes, in both directions. Connect your account in ⚙ Settings and your list — including private entries — comes across; after that, every status, score and episode-progress change you make here goes back to AniList automatically. Removing a show from Tsuzuki never deletes it on AniList. You can also import any <em>public</em> list by username without signing in at all.</p></details>
+  <details><summary>Is there an API?</summary><p>Yes — a free, keyless one at <a href="/api/">/api/</a>. It's the only anime schedule API that returns sub, dub and Japanese broadcast times as separate entries, with delays and broadcast breaks already corrected. Attribution to AniList and Tsuzuki is required if you ship something public with it.</p></details>
   <details><summary>Can I rate shows and keep private notes?</summary><p>Yes. Every show has your own 1–10 rating and a private notes box, shown alongside the community score on your board, in the calendar and in search. Both are saved only in your browser and are never uploaded.</p></details>
   <details><summary>Can I install Tsuzuki or use it offline?</summary><p>Yes. Tsuzuki is a progressive web app you can install on your phone or desktop, and it opens offline using your last loaded schedule.</p></details>
 </section>
@@ -775,6 +912,32 @@
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="mh"><h2 id="modalTitle"></h2><button class="x" id="modalClose" aria-label="Close dialog">✕</button></div>
     <div class="mb" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- Chat widget. Answers come from /api/chat, which reads the same corrected
+     schedule the calendar renders and falls back to web search for the rest. -->
+<button class="chat-fab" id="chatFab" aria-label="Open anime chat" aria-expanded="false" aria-controls="chatPanel">
+  <span aria-hidden="true">✨</span><span class="cf-dot"></span>
+</button>
+<div class="chat-panel" id="chatPanel" role="dialog" aria-modal="false" aria-labelledby="chatTitle">
+  <div class="chat-head">
+    <div>
+      <div class="ch-t" id="chatTitle">Ask about anime</div>
+      <div class="ch-s">Schedules, shows, speculation</div>
+    </div>
+    <div class="ch-sp">
+      <button id="chatClear" title="Clear conversation" aria-label="Clear conversation">↺</button>
+      <button id="chatClose" title="Close" aria-label="Close chat">✕</button>
+    </div>
+  </div>
+  <div class="chat-log" id="chatLog" aria-live="polite" aria-atomic="false"></div>
+  <div class="chat-foot">
+    <form class="chat-form" id="chatForm">
+      <textarea id="chatInput" rows="1" placeholder="When does the next episode drop?" aria-label="Message" maxlength="1200"></textarea>
+      <button type="submit" class="primary" id="chatSend" aria-label="Send">➤</button>
+    </form>
+    <div class="chat-note">AI answers can be wrong — check the calendar for the times that matter.</div>
   </div>
 </div>
 
@@ -791,7 +954,7 @@
 
 // Build number auto-stamped from the git commit count by scripts/stamp-version.mjs
 // (run via the .githooks/pre-commit hook). Do not edit by hand — it changes every commit.
-const APP_VERSION = "2.5.70";
+const APP_VERSION = "3.0.71";
 
 const API = "https://graphql.anilist.co";
 // Public VAPID key for Web Push (server-driven alerts that work even when
@@ -799,6 +962,37 @@ const API = "https://graphql.anilist.co";
 const VAPID_PUBLIC_KEY = "BG_oPd3dWly-EeNDo5mgU4wyWZAyuIk5uYJuzGAd2RsKAfL3pJsm6QaNJw1CRZ0kQPod_B5JaJVr6NMtT6ja48s";
 const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 const DOW = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+
+/* ---------- timetable preferences ----------
+   Which weekday a week starts on, whether times read as 12h or 24h, and how
+   the shows inside one day are ordered. All three are per-viewer habits the
+   app has no business guessing, so they're settings rather than defaults. */
+// 0–6, or today's weekday under "rotating". Month keeps a fixed start: a grid
+// whose first column changed daily would be unreadable, so "rotating" there
+// falls back to Sunday.
+function weekStartDow(forMonth){
+  const w=state.weekStart;
+  if(w==="rot") return forMonth ? 0 : new Date().getDay();
+  const n=+w;
+  return (n>=0&&n<=6)?n:0;
+}
+// DOW rotated so the configured start day comes first.
+function dowLabels(forMonth){
+  const s=weekStartDow(forMonth);
+  return DOW.slice(s).concat(DOW.slice(0,s));
+}
+// How many days back from `d` the containing week began.
+function daysSinceWeekStart(d, forMonth){
+  return (d.getDay() - weekStartDow(forMonth) + 7) % 7;
+}
+// Force 12h/24h when asked, otherwise leave the viewer's locale alone.
+// hour12:false is not the same as h23 — in some locales it yields "24:00".
+function timeOpts(base){
+  const o={...base};
+  if(state.timeFormat==="12") o.hour12=true;
+  else if(state.timeFormat==="24") o.hourCycle="h23";
+  return o;
+}
 const FMT_LABEL = {TV:"TV", TV_SHORT:"TV Short", MOVIE:"Movie", ONA:"ONA", OVA:"OVA", SPECIAL:"Special", MUSIC:"Music"};
 
 const state = {
@@ -814,6 +1008,12 @@ const state = {
   theme: localStorage.getItem("anical.theme")||"dark",              // dark | light
   accent: localStorage.getItem("anical.accent")||"#8b5cf6|#22d3ee", // "<accent>|<accent2>"
   density: localStorage.getItem("anical.density")||"normal",        // normal | dense
+  // Timetable preferences (see the "timetable preferences" section below).
+  weekStart: localStorage.getItem("anical.weekStart")||"0",         // "0" Sun | "1" Mon | "6" Sat | "rot" (today first)
+  timeFormat: localStorage.getItem("anical.timeFormat")||"auto",    // auto (your locale) | 12 | 24
+  daySort: localStorage.getItem("anical.daySort")||"popularity",    // popularity | time | alpha | score
+  showImages: localStorage.getItem("anical.showImages")!=="0",      // cover art in rows and cells
+  showDonghua: localStorage.getItem("anical.showDonghua")!=="0",    // Chinese productions (countryOfOrigin CN)
   eventsData: null,              // cached events.json (real-life events view)
   eventsItems: null,             // parsed+sorted events (with ts)
   eventsFilter: "",              // events view text filter (not persisted)
@@ -832,6 +1032,14 @@ const state = {
   progress: {},                  // mediaId -> highest watched episode number
   notifyLead: 10,
   scheduled: new Map(),         // "id-ep" -> timeout id
+  // Release-type preferences (see the "release variants" section below).
+  airTypes: new Set(["raw","sub"]),   // which of raw/sub/dub to show at all
+  hideRules: {                        // …and when one release should suppress another
+    rawWhenSub:true, rawWhenDub:false,
+    subWhenDub:false, subWhenRaw:false,
+    dubWhenSub:false, dubWhenRaw:false,
+  },
+  overrides: {shows:{}},         // human corrections layered over AniList
 };
 try{ Object.assign(state.filters, JSON.parse(localStorage.getItem("anical.filters")||"{}")); }catch(e){}
 try{ state.notify = new Set(JSON.parse(localStorage.getItem("anical.notify")||"[]")); }catch(e){}
@@ -849,6 +1057,14 @@ try{
 }catch(e){}
 try{ state.recent = JSON.parse(localStorage.getItem("anical.recent")||"[]"); }catch(e){}
 try{ state.progress = JSON.parse(localStorage.getItem("anical.progress")||"{}")||{}; }catch(e){}
+try{
+  const raw=JSON.parse(localStorage.getItem("anical.airTypes")||"null");
+  if(Array.isArray(raw)){ const s=new Set(raw.filter(t=>t==="raw"||t==="sub"||t==="dub")); if(s.size) state.airTypes=s; }
+}catch(e){}
+try{ Object.assign(state.hideRules, JSON.parse(localStorage.getItem("anical.hideRules")||"{}")); }catch(e){}
+// Last-known corrections, so the instant paint from cache is already corrected;
+// loadOverrides() refreshes them right after.
+try{ const c=JSON.parse(localStorage.getItem("anical.overrides")||"null"); if(c&&c.shows) state.overrides=c; }catch(e){}
 state.notifyLead = +(localStorage.getItem("anical.lead")||10);
 applyAppearance();   // theme / accent / density before first paint
 
@@ -859,7 +1075,7 @@ const title = md => {
   if(state.titleLang==="native") return t.native||t.romaji||t.english||"Untitled";
   return t.english||t.romaji||t.native||"Untitled";
 };
-const fmtTime = ts => new Date(ts*1000).toLocaleTimeString([], {hour:"numeric", minute:"2-digit"});
+const fmtTime = ts => new Date(ts*1000).toLocaleTimeString([], timeOpts({hour:"numeric", minute:"2-digit"}));
 const dayKeyTs = ts => { const d=new Date(ts*1000); return d.getFullYear()+"-"+d.getMonth()+"-"+d.getDate(); };
 const keyOf = d => d.getFullYear()+"-"+d.getMonth()+"-"+d.getDate();
 function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
@@ -869,6 +1085,13 @@ function isFinale(md, ep){ return !!md.episodes && md.episodes>1 && ep===md.epis
 // NSFW = AniList's isAdult flag (authoritative) or the Hentai genre.
 function isAdultMedia(md){ return !!(md && (md.isAdult || (md.genres||[]).includes("Hentai"))); }
 function nsfwHidden(md){ return state.hideNSFW && isAdultMedia(md); }
+// Chinese productions. Cached entries from before this field was queried have
+// no countryOfOrigin — treat those as Japanese rather than hiding them, so a
+// stale cache can never blank the calendar.
+function isDonghua(md){ return !!md && md.countryOfOrigin==="CN"; }
+// Every "should this show be on screen at all" rule in one place. Used by the
+// calendar filter and by the sidebars/option builders, which must agree with it.
+function excluded(md){ return nsfwHidden(md) || isHidden(md.id) || (!state.showDonghua && isDonghua(md)); }
 function isHidden(id){ return state.hidden.has(String(id)); }
 function toggleHidden(id){
   id=String(id);
@@ -889,6 +1112,10 @@ function toggleWatch(id){
   localStorage.setItem("anical.status", JSON.stringify(state.status));
   document.querySelectorAll('[data-watch="'+CSS.escape(id)+'"]').forEach(el=>setStar(el, state.watch.has(id)));
   refreshStatusPickers(id);
+  // Only a *star on* is pushed. Un-starring is a local decision — deleting
+  // someone's AniList entry (and its score and progress with it) because they
+  // tidied their Tsuzuki board would be unrecoverable.
+  if(state.watch.has(id)) alEnqueue(id);
   renderView();   // reflects "My list" filter + highlight
 }
 /* watch statuses (Watching / Plan / On-hold / Dropped / Completed) — the board view.
@@ -927,6 +1154,7 @@ function setStatusOf(id, key){
     document.querySelectorAll('[data-watch="'+CSS.escape(id)+'"]').forEach(el=>setStar(el, state.watch.has(id)));
   }
   refreshStatusPickers(id);
+  if(key) alEnqueue(id);   // clearing a status is local-only — see toggleWatch
 }
 /* One-click status picker. size: "" = labelled (detail pop-up), "sm" = emoji-only
    (board cards, search rows). */
@@ -952,9 +1180,10 @@ function refreshStatusPickers(id){
   });
 }
 /* ---------- your rating (1–10) and private notes ----------
-   Both are personal, live only in this browser, and are never sent anywhere.
-   A rating is what YOU think of a show — kept visually distinct from AniList's
-   community ★ average, which is the other number on every card. */
+   Notes live only in this browser and are never sent anywhere. A rating is the
+   same idea — your own number, kept visually distinct from AniList's community
+   ★ average — but it does go back to AniList when an account is connected,
+   because that's what "sync my list" is understood to mean. Notes don't. */
 const RATING_MAX = 10;
 const NOTE_MAX = 2000;
 function getRating(id){ return +state.ratings[String(id)] || 0; }
@@ -963,6 +1192,7 @@ function setRating(id, n){
   if(n) state.ratings[id]=n; else delete state.ratings[id];
   localStorage.setItem("anical.ratings", JSON.stringify(state.ratings));
   refreshRatingPickers(id);
+  if(n) alEnqueue(id);   // clearing a score is local-only, same reasoning as toggleWatch
 }
 function getNote(id){ return state.notes[String(id)]||""; }
 function hasNote(id){ return !!getNote(id); }
@@ -1124,7 +1354,7 @@ function focusSearch(){
 }
 /* episode progress ("mark watched" + Continue Watching) */
 function getProgress(id){ return state.progress[String(id)]||0; }
-function setProgress(id,ep){ id=String(id); ep=Math.max(0,ep|0); if(ep) state.progress[id]=ep; else delete state.progress[id]; localStorage.setItem("anical.progress", JSON.stringify(state.progress)); }
+function setProgress(id,ep){ id=String(id); ep=Math.max(0,ep|0); if(ep) state.progress[id]=ep; else delete state.progress[id]; localStorage.setItem("anical.progress", JSON.stringify(state.progress)); if(ep) alEnqueue(id); }
 function maxAiredEp(md){ const now=Date.now()/1000; let m=0; for(const n of (md.airingSchedule&&md.airingSchedule.nodes)||[]) if(n.airingAt<=now && n.episode>m) m=n.episode; return m; }
 /* recently viewed */
 function pushRecent(md){
@@ -1156,7 +1386,7 @@ query ($season: MediaSeason, $seasonYear: Int, $page: Int) {
   Page(page: $page, perPage: 50) {
     pageInfo { hasNextPage }
     media(season: $season, seasonYear: $seasonYear, type: ANIME, sort: POPULARITY_DESC) {
-      id title { romaji english native } format episodes genres status popularity trending averageScore source isAdult tags { name rank isMediaSpoiler isAdult }
+      id title { romaji english native } format episodes genres status popularity trending averageScore source isAdult countryOfOrigin tags { name rank isMediaSpoiler isAdult }
       description(asHtml: false) siteUrl trailer { id site }
       externalLinks { site url type color icon }
       coverImage { medium large color }
@@ -1173,7 +1403,7 @@ const SEARCH_QUERY = `
 query ($search: String) {
   Page(page: 1, perPage: 12) {
     media(type: ANIME, search: $search, sort: [SEARCH_MATCH, POPULARITY_DESC]) {
-      id title { romaji english native } format episodes genres status popularity trending averageScore source isAdult tags { name rank isMediaSpoiler isAdult }
+      id title { romaji english native } format episodes genres status popularity trending averageScore source isAdult countryOfOrigin tags { name rank isMediaSpoiler isAdult }
       description(asHtml: false) siteUrl trailer { id site }
       externalLinks { site url type color icon }
       coverImage { medium large color }
@@ -1190,7 +1420,7 @@ query ($search: String) {
 const ID_QUERY = `
 query ($id: Int) {
   Media(id: $id, type: ANIME) {
-    id title { romaji english native } format episodes genres status popularity trending averageScore source isAdult tags { name rank isMediaSpoiler isAdult }
+    id title { romaji english native } format episodes genres status popularity trending averageScore source isAdult countryOfOrigin tags { name rank isMediaSpoiler isAdult }
     description(asHtml: false) siteUrl trailer { id site }
     externalLinks { site url type color icon }
     coverImage { medium large color }
@@ -1264,6 +1494,203 @@ async function importAniList(name){
   document.querySelectorAll("[data-watch]").forEach(el=>setStar(el, state.watch.has(el.dataset.watch)));
   renderView();
   return { added, progressed, rated, total: lists.reduce((n,l)=>n+(l.entries?l.entries.length:0),0) };
+}
+
+/* ---------- AniList account sync (two-way) ----------
+   The username import above is read-only and only sees a *public* list. This
+   is the connected version: OAuth implicit grant, so private entries come
+   across and local changes go back the other way.
+
+   Implicit grant (response_type=token) rather than the code flow on purpose —
+   the code flow needs a client secret, a secret needs a server to hold it, and
+   the whole point of this app is that there isn't one. The token lives in this
+   browser and never leaves it except to talk to AniList.
+
+   The client id is public by design — it travels in the authorize URL every
+   time anyone signs in. There is no secret here to leak, which is the whole
+   reason the implicit flow was chosen. Registered at
+   https://anilist.co/settings/developer; the Redirect URL set on that
+   registration decides where sign-in returns to (see alBeginConnect).
+   Left empty, the connect UI explains that instead of half-working.           */
+const ANILIST_CLIENT_ID = "47767";
+const AL_TOKEN_KEY="anical.al.token", AL_EXP_KEY="anical.al.exp", AL_USER_KEY="anical.al.user";
+const AL_AUTO_KEY="anical.al.auto", AL_QUEUE_KEY="anical.al.queue";
+// Our board statuses -> AniList's. "watching" maps to CURRENT rather than
+// REPEATING: we track rewatches separately and guessing would overwrite it.
+const AL_STATUS_OUT={watching:"CURRENT", plan:"PLANNING", onhold:"PAUSED", dropped:"DROPPED", completed:"COMPLETED"};
+
+const alState={ token:null, exp:0, user:null, queue:[], busy:false, syncing:false, lastError:null };
+try{
+  alState.token=localStorage.getItem(AL_TOKEN_KEY)||null;
+  alState.exp=+(localStorage.getItem(AL_EXP_KEY)||0);
+  alState.user=JSON.parse(localStorage.getItem(AL_USER_KEY)||"null");
+  alState.queue=JSON.parse(localStorage.getItem(AL_QUEUE_KEY)||"[]")||[];
+}catch(e){}
+
+function alConfigured(){ return !!ANILIST_CLIENT_ID; }
+function alTokenValid(){ return !!alState.token && (!alState.exp || Date.now()<alState.exp); }
+function alConnected(){ return alTokenValid() && !!alState.user; }
+function alAutoSync(){ return localStorage.getItem(AL_AUTO_KEY)!=="0"; }
+function alSaveQueue(){ try{ localStorage.setItem(AL_QUEUE_KEY, JSON.stringify(alState.queue)); }catch(e){} }
+function alDisconnect(){
+  alState.token=null; alState.exp=0; alState.user=null; alState.queue=[]; alState.lastError=null;
+  for(const k of [AL_TOKEN_KEY,AL_EXP_KEY,AL_USER_KEY,AL_QUEUE_KEY]) localStorage.removeItem(k);
+}
+function alBeginConnect(){
+  if(!alConfigured()) return;
+  // No redirect_uri on purpose. AniList matches it against the app's registered
+  // Redirect URL exactly, so sending one means a trailing slash or a stray
+  // query string turns sign-in into an error page. Omitted, AniList just uses
+  // the registered URL — which is the only one that can ever be right.
+  //
+  // The token comes back in the URL *fragment*, so it is never sent to a server
+  // — not to Netlify, not into its logs. alCaptureToken() takes it from there.
+  location.href="https://anilist.co/api/v2/oauth/authorize?client_id="+
+    encodeURIComponent(ANILIST_CLIENT_ID)+"&response_type=token";
+}
+// Called once on boot: pick the token out of the fragment and scrub it from the
+// address bar so it can't be shared or land in history.
+function alCaptureToken(){
+  if(!location.hash || location.hash.indexOf("access_token=")<0) return false;
+  const h=new URLSearchParams(location.hash.slice(1));
+  const tok=h.get("access_token");
+  if(!tok) return false;
+  alState.token=tok;
+  alState.exp=Date.now()+(+(h.get("expires_in")||0)*1000 || 365*24*3600*1000);
+  try{
+    localStorage.setItem(AL_TOKEN_KEY,tok);
+    localStorage.setItem(AL_EXP_KEY,String(alState.exp));
+  }catch(e){}
+  try{ history.replaceState(null,"",location.pathname+location.search); }catch(_){ location.hash=""; }
+  return true;
+}
+async function alQuery(query, variables){
+  if(!alTokenValid()) throw new Error("Not connected to AniList.");
+  const res=await fetch(API,{method:"POST",headers:{
+    "Content-Type":"application/json", Accept:"application/json", Authorization:"Bearer "+alState.token}, body:JSON.stringify({query,variables})});
+  if(res.status===401){ alDisconnect(); throw new Error("AniList sign-in expired — connect again."); }
+  if(res.status===429){ const e=new Error("AniList rate limit"); e.retryAfter=+(res.headers.get("retry-after"))||60; e.rateLimited=true; throw e; }
+  const j=await res.json().catch(()=>({}));
+  if(j.errors) throw new Error(j.errors[0].message);
+  if(!res.ok) throw new Error("AniList HTTP "+res.status);
+  return j.data;
+}
+const AL_VIEWER_QUERY=`query{ Viewer{ id name avatar{ medium } mediaListOptions{ scoreFormat } } }`;
+async function alFetchViewer(){
+  const d=await alQuery(AL_VIEWER_QUERY,{});
+  alState.user=d&&d.Viewer||null;
+  try{ localStorage.setItem(AL_USER_KEY, JSON.stringify(alState.user)); }catch(e){}
+  return alState.user;
+}
+
+// Pull: AniList wins. This is an explicit action, so "the server is right" is
+// the only policy that isn't surprising — the local copy is what gets rebuilt.
+const AL_PULL_QUERY=`
+query ($userId: Int) {
+  MediaListCollection(userId: $userId, type: ANIME) {
+    lists { entries { id mediaId status progress score(format: POINT_100) } }
+  }
+}`;
+async function alPull(){
+  if(!alConnected()) throw new Error("Connect your AniList account first.");
+  alState.syncing=true;   // stop the change hooks from echoing every write back
+  try{
+    const d=await alQuery(AL_PULL_QUERY,{userId:alState.user.id});
+    const lists=(d&&d.MediaListCollection&&d.MediaListCollection.lists)||[];
+    let added=0, progressed=0, rated=0, total=0;
+    for(const l of lists) for(const e of l.entries||[]){
+      const id=e&&e.mediaId; if(!id) continue;
+      total++;
+      const key=String(id);
+      if(WATCH_STATUSES.has(e.status)){
+        if(!state.watch.has(key)){ state.watch.add(key); added++; }
+        state.status[key]=AL_STATUS_MAP[e.status]||DEFAULT_STATUS;
+      }else if(e.status==="COMPLETED"||e.status==="DROPPED"){
+        state.status[key]=AL_STATUS_MAP[e.status];
+        if(!state.watch.has(key)){ state.watch.add(key); added++; }
+      }
+      if(e.progress>0){ state.progress[key]=e.progress; progressed++; }
+      const score=alScoreTo10(e.score,"POINT_100");
+      if(score){ state.ratings[key]=score; rated++; }
+    }
+    localStorage.setItem("anical.watch", JSON.stringify([...state.watch]));
+    localStorage.setItem("anical.status", JSON.stringify(state.status));
+    localStorage.setItem("anical.progress", JSON.stringify(state.progress));
+    localStorage.setItem("anical.ratings", JSON.stringify(state.ratings));
+    document.querySelectorAll("[data-watch]").forEach(el=>setStar(el, state.watch.has(el.dataset.watch)));
+    renderView();
+    return { added, progressed, rated, total };
+  } finally { alState.syncing=false; }
+}
+
+// Push: local wins, one show at a time, through a queue that survives a reload.
+// AniList allows roughly 30 requests a minute and is often degraded below that,
+// so the worker is deliberately slow rather than bursty.
+const AL_SAVE_MUTATION=`
+mutation ($mediaId: Int, $status: MediaListStatus, $scoreRaw: Int, $progress: Int) {
+  SaveMediaListEntry(mediaId: $mediaId, status: $status, scoreRaw: $scoreRaw, progress: $progress) {
+    id mediaId status progress
+  }
+}`;
+const AL_PUSH_GAP_MS=2200;
+function alEnqueue(mediaId){
+  if(!alConnected()||!alAutoSync()||alState.syncing) return;
+  const id=String(mediaId);
+  if(!alState.queue.includes(id)) alState.queue.push(id);   // coalesce: we always send current state, not a diff
+  alSaveQueue();
+  alRunQueue();
+}
+function alPayloadFor(id){
+  const key=String(id);
+  const st=state.status[key];
+  const rating=+state.ratings[key]||0;
+  const prog=+state.progress[key]||0;
+  const v={mediaId:+key};
+  // Only send what we actually hold. Sending status:null would clear it.
+  if(st&&AL_STATUS_OUT[st]) v.status=AL_STATUS_OUT[st];
+  else if(state.watch.has(key)) v.status=AL_STATUS_OUT[DEFAULT_STATUS];
+  if(rating) v.scoreRaw=rating*10;      // our 1–10 -> AniList's scale-independent 0–100
+  if(prog) v.progress=prog;
+  return v;
+}
+async function alRunQueue(){
+  if(alState.busy||!alState.queue.length||!alConnected()) return;
+  alState.busy=true;
+  try{
+    while(alState.queue.length&&alConnected()){
+      const id=alState.queue[0];
+      try{
+        await alQuery(AL_SAVE_MUTATION, alPayloadFor(id));
+        alState.queue.shift(); alSaveQueue();
+        alState.lastError=null;
+      }catch(err){
+        if(err&&err.rateLimited){
+          // Keep the item queued and back off; it'll go out on the next turn.
+          await new Promise(r=>setTimeout(r, Math.min(err.retryAfter,120)*1000));
+          continue;
+        }
+        // A permanent failure on one show must not wedge the whole queue.
+        alState.queue.shift(); alSaveQueue();
+        alState.lastError=(err&&err.message)||"Sync failed";
+        console.warn("AniList push failed for",id,err);
+      }
+      alSyncBadge();
+      if(alState.queue.length) await new Promise(r=>setTimeout(r,AL_PUSH_GAP_MS));
+    }
+  } finally { alState.busy=false; alSyncBadge(); }
+}
+// Re-send everything we hold — the repair button for "my list drifted".
+function alPushAll(){
+  if(!alConnected()) return 0;
+  const ids=new Set([...state.watch, ...Object.keys(state.status), ...Object.keys(state.ratings), ...Object.keys(state.progress)]);
+  for(const id of ids) if(!alState.queue.includes(String(id))) alState.queue.push(String(id));
+  alSaveQueue(); alRunQueue();
+  return ids.size;
+}
+function alSyncBadge(){
+  const el=$("alQueueState"); if(!el) return;
+  el.textContent = alState.queue.length ? `Syncing… ${alState.queue.length} left`
+    : alState.lastError ? `Last sync error: ${alState.lastError}` : "All changes synced.";
 }
 
 // Extra detail-modal data (recommendations, cast) — fetched lazily per show so the
@@ -1428,6 +1855,21 @@ function renderWhatsNew(){
    update. Returning visitors see every entry newer than the one they last
    saw, once, in a modal they close manually. Trim old entries freely. */
 const CHANGELOG=[
+  { id:9, v:"3.0", date:"August 2026", items:[
+    "✨ New: ask Tsuzuki anything. The button in the bottom-right corner opens a chat that reads this calendar directly — air dates, what's on tonight, which season a show belongs to — and searches the web for everything the calendar doesn't hold, like staff, plot, sequel rumours and what a series is actually about.",
+    "It answers with the corrected times, says which release it means (sub, dub or broadcast), and flags an estimate as an estimate instead of pretending to know. Speculation is always labelled as speculation.",
+    "Sub, dub and Japanese-broadcast times are now tracked separately — pick which ones you want with the new 🎧 button in the toolbar.",
+    "Simulcast times are measured against Crunchyroll's own schedule rather than assumed to match the broadcast. They ran up to an hour late, every week, on most shows.",
+    "Episodes show which release they are (SUB / DUB / RAW) and where it streams. A ~ means the time is estimated from the broadcast rather than confirmed.",
+    "Delays and broadcast breaks appear inline with the reason: a delayed episode moves and is flagged, a break week shows as a break instead of a phantom episode — and never fires an alert.",
+    "Spotted a wrong time? Every show now has ⚠ Report a wrong time. Corrections go live for everyone without waiting for a new release of the site.",
+    "Episode alerts, calendar exports and “next episode” all follow the release you track, so dub watchers stop being told about a broadcast they can't watch.",
+    "Connect your AniList account: private entries come across, and status, score and episode progress you change here sync straight back.",
+    "New timetable settings — start the week on Sunday, Monday, Saturday or today; 12h or 24h times; order each day by popularity, air time, A–Z or score.",
+    "Hide cover art for a much denser list, hide donghua, and filter by season length or episode number.",
+    "New browse pages: 🏆 Top Anime and 📺 Where to Watch, both reachable from the calendar footer.",
+    "A free public API at /api/ — the only one that gives you sub, dub and broadcast times separately, with delays and breaks already corrected.",
+  ]},
   { id:6, v:"2.6", date:"August 2026", items:[
     "New 📚 Lists view — make your own collections (Comfort watches, Rewatch pile, Movie night…) and drag shows between them.",
     "Rename, reorder and delete lists from the column headers, with an Undo if you delete one by mistake.",
@@ -1514,6 +1956,164 @@ function readCache(maxAgeMs){
   }catch(e){ return null; }
 }
 
+/* ---------- release variants: raw / sub / dub + corrections ----------
+   AniList only carries the Japanese TV broadcast time. That is the wrong
+   number for almost everyone: a simulcast viewer wants the Crunchyroll drop, a
+   dub viewer wants a date AniList doesn't have at all, and neither reflects the
+   week a broadcast gets pre-empted.
+
+   So one AniList airing node fans out into the *variants* that really exist for
+   that episode, with human corrections layered on top. The correction document
+   comes from two places, merged in this order:
+     1. /data/overrides.json — committed, reviewable, cached, works offline.
+     2. /api/overrides       — the live store, so a wrong time is fixable in
+                               minutes instead of waiting on a deploy.
+   Both are optional; with neither, the app behaves as it always did plus a
+   marked-estimated simulcast row.
+
+   netlify/functions/_lib/schedule-overrides.mjs is the mirror of this logic for
+   the server (push alerts). The client can't import it — there's no build step
+   — so the two are kept deliberately parallel. Change one, change the other. */
+const AIR_TYPES=["raw","sub","dub"];
+const AIR_LABEL={raw:"RAW", sub:"SUB", dub:"DUB"};
+const AIR_LONG={raw:"Japanese broadcast", sub:"Subtitled release", dub:"English dub"};
+// Platforms whose simulcast lands close enough to the broadcast that "the sub
+// is up around this time" is a fair estimate rather than a number we made up.
+// Anything else gets no estimated sub row at all.
+const SIMULCAST_SITES=new Set(["Crunchyroll","HIDIVE","Netflix","Amazon Prime Video","Hulu","Disney Plus","Bilibili TV","Muse Asia","Ani-One Asia","YouTube"]);
+
+function showOverride(id){ return (state.overrides&&state.overrides.shows&&state.overrides.shows[String(id)])||null; }
+function ruleInRange(rule, episode){
+  if(!rule) return false;
+  if(rule.fromEpisode!=null && episode<rule.fromEpisode) return false;
+  if(rule.toEpisode!=null && episode>rule.toEpisode) return false;
+  return true;
+}
+function simulcastSite(md){
+  for(const l of md.externalLinks||[]) if(l&&l.type==="STREAMING"&&SIMULCAST_SITES.has(l.site)) return l.site;
+  return null;
+}
+// One airing node -> {status, variants:[{type,ts,exact,estimated,platform}]}.
+// A "break" returns no variants: there is no episode to count down to.
+function variantsFor(md,node){
+  const ov=showOverride(md.id), ep=node.episode;
+  const epOv=(ov&&ov.episodes&&ov.episodes[String(ep)])||null;
+  const status=(epOv&&epOv.status)||null;
+  if(status&&status.kind==="break") return {status, variants:[]};
+  const shift=(status&&(status.kind==="delay"||status.kind==="early")&&status.shiftMin)?status.shiftMin*60:0;
+  const out=[];
+  const rawTs=(epOv&&epOv.raw&&epOv.raw.airingAt)||node.airingAt+shift;
+  out.push({type:"raw", ts:rawTs, exact:true, estimated:false, platform:null});
+  if(epOv&&epOv.sub&&epOv.sub.airingAt)
+    out.push({type:"sub", ts:epOv.sub.airingAt, exact:true, estimated:false, platform:epOv.sub.platform||(ov.sub&&ov.sub.platform)||null});
+  else if(ov&&ruleInRange(ov.sub,ep))
+    out.push({type:"sub", ts:rawTs+(ov.sub.offsetMin||0)*60, exact:true, estimated:false, platform:ov.sub.platform||null});
+  else{
+    const site=simulcastSite(md);
+    if(site) out.push({type:"sub", ts:rawTs, exact:false, estimated:true, platform:site});
+  }
+  // No dub without data — an invented dub date is worse than no dub row.
+  if(epOv&&epOv.dub&&epOv.dub.airingAt)
+    out.push({type:"dub", ts:epOv.dub.airingAt, exact:true, estimated:false, platform:epOv.dub.platform||(ov.dub&&ov.dub.platform)||null});
+  else if(ov&&ruleInRange(ov.dub,ep))
+    out.push({type:"dub", ts:rawTs+(ov.dub.offsetMin||0)*60, exact:true, estimated:false, platform:ov.dub.platform||null});
+  return {status, variants:out};
+}
+// Apply the hide rules: e.g. "hide the broadcast row once a sub row exists".
+// A rule only fires against a release type that is itself switched on, so
+// turning Dub off can never make a Raw row vanish.
+function enabledTypes(){ return state.airTypes.size?state.airTypes:new Set(["raw"]); }
+function visibleVariants(variants){
+  const on=enabledTypes();
+  const avail=new Set(variants.filter(v=>on.has(v.type)).map(v=>v.type));
+  const r=state.hideRules;
+  const keep=variants.filter(v=>{
+    if(!on.has(v.type)) return false;
+    if(v.type==="raw") return !((r.rawWhenSub&&avail.has("sub"))||(r.rawWhenDub&&avail.has("dub")));
+    if(v.type==="sub") return !((r.subWhenDub&&avail.has("dub"))||(r.subWhenRaw&&avail.has("raw")));
+    return !((r.dubWhenSub&&avail.has("sub"))||(r.dubWhenRaw&&avail.has("raw")));
+  });
+  // A contradictory *hide-rule* combination must never empty a row that has
+  // something to show. Asking for dubs only and getting nothing back is a
+  // different thing — that's the filter working, and airEmptyHint() explains it.
+  if(keep.length) return keep;
+  for(const t of ["sub","raw","dub"]){ const v=variants.find(x=>x.type===t&&on.has(t)); if(v) return [v]; }
+  return [];
+}
+// Why the calendar is empty, when the reason is the release filter rather than
+// the date range. Dub data only exists where a maintainer has entered it, so
+// "Dub only" legitimately hides most of the schedule — say so instead of
+// leaving a blank grid that reads as a broken app.
+function airEmptyHint(){
+  const on=enabledTypes();
+  if(!on.has("dub")||on.size>1) return "";
+  return ` You're showing <b>dubs only</b>, and dub dates exist only for shows someone has confirmed them for — <span class="airhint-link" role="button" tabindex="0" data-open-air="1">add the sub or broadcast release</span> to see the rest of the schedule.`;
+}
+// The single release used where only one time makes sense (alerts, "next
+// episode", jumping the calendar to a search hit).
+function primaryAirType(){
+  const on=enabledTypes();
+  for(const t of ["sub","raw","dub"]) if(on.has(t)) return t;
+  return "raw";
+}
+function preferredVariant(variants, want){
+  if(!variants.length) return null;
+  for(const t of [want||primaryAirType(),"sub","raw","dub"]){ const v=variants.find(x=>x.type===t); if(v) return v; }
+  return variants[0];
+}
+// Every displayable entry for one show in one time window: an entry per visible
+// variant, plus a break marker where an episode was cancelled for that slot.
+function entriesFor(md,node){
+  const {status,variants}=variantsFor(md,node);
+  if(!variants.length) return status?[{media:md, episode:node.episode, ts:node.airingAt, air:null, status, brk:true}]:[];
+  return visibleVariants(variants).map(v=>({media:md, episode:node.episode, ts:v.ts, air:v, status, brk:false}));
+}
+function airPillHTML(e){
+  if(e.brk) return `<span class="pill brk">⏸ BREAK</span>`;
+  if(!e.air) return "";
+  const est=e.air.estimated;
+  const where=e.air.platform?` · ${e.air.platform}`:"";
+  const t=`${AIR_LONG[e.air.type]}${where}${est?" — estimated from the broadcast time, not confirmed":""}`;
+  return `<span class="pill air air-${e.air.type}${est?" est":""}" title="${esc(t)}">${est?"~":""}${AIR_LABEL[e.air.type]}</span>`;
+}
+function statusPillHTML(e){
+  if(!e.status||e.brk) return "";
+  if(e.status.kind==="delay") return `<span class="pill warn" title="${esc(e.status.reason||"Delayed")}">⚠ DELAYED</span>`;
+  if(e.status.kind==="early") return `<span class="pill warn" title="${esc(e.status.reason||"Released early")}">⚡ EARLY</span>`;
+  if(e.status.kind==="note") return `<span class="pill warn" title="${esc(e.status.reason||"")}">ℹ NOTE</span>`;
+  return "";
+}
+// Compact tag for the dense month/week chips, where a full pill doesn't fit.
+// Only shown once a row could be ambiguous — i.e. more than one type is on.
+function airTagHTML(e){
+  if(e.brk) return `<span class="airtag air-raw" title="Break — no episode">⏸</span>`;
+  if(!e.air||enabledTypes().size<2) return "";
+  return `<span class="airtag air-${e.air.type}" title="${esc(AIR_LONG[e.air.type])}">${e.air.estimated?"~":""}${AIR_LABEL[e.air.type][0]}</span>`;
+}
+
+const OVERRIDES_SEED="/data/overrides.json";
+const OVERRIDES_LIVE="/api/overrides";
+function mergeOverrideDocs(seed,live){
+  const shows={...((seed&&seed.shows)||{})};
+  for(const [id,rec] of Object.entries((live&&live.shows)||{})){
+    const base=shows[id];
+    shows[id]=base?{...base,...rec, episodes:{...(base.episodes||{}), ...(rec.episodes||{})}}:rec;
+  }
+  return {shows, updatedAt:(live&&live.updatedAt)||(seed&&seed.updatedAt)||null};
+}
+// Never let the correction layer block the calendar: both fetches fail soft,
+// and a cached copy covers an offline launch.
+async function loadOverrides(){
+  const get=async url=>{ try{ const r=await fetch(url,{cache:"no-cache"}); return r.ok?await r.json():null; }catch(e){ return null; } };
+  const [seed,live]=await Promise.all([get(OVERRIDES_SEED), get(OVERRIDES_LIVE)]);
+  if(!seed&&!live){
+    try{ const c=JSON.parse(localStorage.getItem("anical.overrides")||"null"); if(c&&c.shows) state.overrides=c; }catch(e){}
+    return;
+  }
+  state.overrides=mergeOverrideDocs(seed,live);
+  try{ localStorage.setItem("anical.overrides", JSON.stringify(state.overrides)); }catch(e){}
+}
+
 /* ---------- range + events ---------- */
 function visibleRange(){
   const a=state.anchor;
@@ -1526,12 +2126,12 @@ function visibleRange(){
   }
   if(state.viewMode==="month"){
     const first=new Date(a.getFullYear(),a.getMonth(),1);
-    const start=new Date(first); start.setDate(1-first.getDay());
+    const start=new Date(first); start.setDate(1-daysSinceWeekStart(first,true));
     const end=new Date(start); end.setDate(start.getDate()+41);
     return {start,end};
   }
   if(state.viewMode==="week"){
-    const start=new Date(a); start.setDate(a.getDate()-a.getDay()); start.setHours(0,0,0,0);
+    const start=new Date(a); start.setDate(a.getDate()-daysSinceWeekStart(a)); start.setHours(0,0,0,0);
     const end=new Date(start); end.setDate(start.getDate()+6);
     return {start,end};
   }
@@ -1546,8 +2146,7 @@ function matchTitle(md,q){
 }
 function passFilter(e){
   const f=state.filters, md=e.media;
-  if(nsfwHidden(md)) return false;
-  if(isHidden(md.id)) return false;
+  if(excluded(md)) return false;
   if(f.mine && !isWatched(md.id)) return false;
   if(f.stream && !((md.externalLinks||[]).some(l=>l&&l.type==="STREAMING"&&l.site===f.stream))) return false;
   if(state.search && !matchTitle(md,state.search)) return false;
@@ -1556,6 +2155,15 @@ function passFilter(e){
   if(f.genre && !((md.genres||[]).includes(f.genre))) return false;
   if(f.tag && !((md.tags||[]).some(t=>t&&t.name===f.tag&&!t.isMediaSpoiler&&(t.rank||0)>=MIN_TAG_RANK))) return false;
   if(f.minScore && (md.averageScore||0)<f.minScore) return false;
+  // Season length: "how long a commitment is this". A show with no announced
+  // episode count is only dropped by a *minimum*, never by a maximum — an
+  // unknown length shouldn't read as a short one.
+  if(f.epsMin && !(md.episodes>=f.epsMin)) return false;
+  if(f.epsMax && md.episodes && md.episodes>f.epsMax) return false;
+  // How far into its run this particular episode is: lets you find shows just
+  // getting going, or catch the tail of a long-runner.
+  if(f.airedMin && e.episode<f.airedMin) return false;
+  if(f.airedMax && e.episode>f.airedMax) return false;
   return true;
 }
 function rangeEvents(){
@@ -1565,16 +2173,32 @@ function rangeEvents(){
   const out=[];
   for(const md of state.media){
     for(const n of (md.airingSchedule&&md.airingSchedule.nodes)||[]){
-      const t=n.airingAt*1000;
-      if(t>=s && t<=e){ const ev={media:md,episode:n.episode,ts:n.airingAt}; if(passFilter(ev)) out.push(ev); }
+      // One broadcast node can produce several rows (sub and dub land on
+      // different days), so the window is tested per resolved variant rather
+      // than once on the raw time.
+      for(const ev of entriesFor(md,n)){
+        const t=ev.ts*1000;
+        if(t>=s && t<=e && passFilter(ev)) out.push(ev);
+      }
     }
   }
   return out;
 }
+// Ordering of the shows *inside* one day. Popularity is the default because a
+// dense cell should lead with what most people came for; airing order and A–Z
+// are the two habits people ask for instead.
+function daySorter(){
+  switch(state.daySort){
+    case "time":  return (a,b)=>a.ts-b.ts;
+    case "alpha": return (a,b)=>title(a.media).localeCompare(title(b.media));
+    case "score": return (a,b)=>(b.media.averageScore||0)-(a.media.averageScore||0);
+    default:      return (a,b)=>(b.media.popularity||0)-(a.media.popularity||0);
+  }
+}
 function mapByDay(evs){
-  const m=new Map();
+  const m=new Map(), cmp=daySorter();
   for(const e of evs){ const k=dayKeyTs(e.ts); if(!m.has(k)) m.set(k,[]); m.get(k).push(e); }
-  for(const arr of m.values()) arr.sort((a,b)=>(b.media.popularity||0)-(a.media.popularity||0));
+  for(const arr of m.values()) arr.sort(cmp);
   return m;
 }
 
@@ -1705,8 +2329,11 @@ function cancelScheduledFor(mid){
 let swReg=null;
 const triggersSupported = ("Notification" in window) && ("showTrigger" in Notification.prototype) && ("TimestampTrigger" in window);
 function noteOptionsFor(md,n){
+  // n may carry the resolved release variant (see scheduleNotifications), so
+  // the alert says which one it is rather than just a bare time.
+  const where=n.air ? " · "+(n.air.estimated?"~":"")+AIR_LABEL[n.air.type]+(n.air.platform?" on "+n.air.platform:"") : "";
   return {
-    body:"Episode "+n.episode+" airs at "+fmtTime(n.airingAt),
+    body:"Episode "+n.episode+" airs at "+fmtTime(n.airingAt)+where,
     icon: (md.coverImage&&md.coverImage.medium)||"/og-image.png",
     badge:"/favicon.svg",
     tag:"anical-"+md.id+"-"+n.episode,
@@ -1752,18 +2379,28 @@ async function syncPushSubscription(){
     }
     if(!sub) sub=await swReg.pushManager.subscribe({userVisibleOnly:true, applicationServerKey:urlBase64ToUint8Array(VAPID_PUBLIC_KEY)});
     await fetch("/api/push/subscribe",{method:"POST",headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({subscription:sub.toJSON(), mediaIds:[...state.notify], lead:state.notifyLead})});
+      body:JSON.stringify({subscription:sub.toJSON(), mediaIds:[...state.notify], lead:state.notifyLead, airType:primaryAirType()})});
   }catch(e){ console.error("push subscription sync failed",e); }
 }
 async function scheduleNotifications(){
   if(!("Notification" in window) || Notification.permission!=="granted") return;
   const now=Date.now();
+  // Alert on the release the viewer tracks, not the JP broadcast — and never
+  // on an episode marked as a break, which resolves to no variant at all.
+  const alertNodes=md=>{
+    const out=[];
+    for(const n of (md.airingSchedule&&md.airingSchedule.nodes)||[]){
+      const v=preferredVariant(variantsFor(md,n).variants);
+      if(v) out.push({episode:n.episode, airingAt:v.ts, air:v});
+    }
+    return out;
+  };
   if(triggersSupported && swReg){
     // Schedule with a timestamp trigger → fires even when Tsuzuki is closed.
     // Re-issuing with the same tag just updates an existing scheduled alert.
     for(const md of state.media){
       if(!isFollowed(md.id)) continue;
-      for(const n of (md.airingSchedule&&md.airingSchedule.nodes)||[]){
+      for(const n of alertNodes(md)){
         const fireAt=n.airingAt*1000-state.notifyLead*60000;
         if(fireAt<=now) continue;                       // moment already passed
         if(fireAt-now>30*24*3600*1000) continue;        // >30d out; roll in later
@@ -1776,7 +2413,7 @@ async function scheduleNotifications(){
   // Fallback: in-page timers (only while the tab stays open).
   for(const md of state.media){
     if(!isFollowed(md.id)) continue;
-    for(const n of (md.airingSchedule&&md.airingSchedule.nodes)||[]){
+    for(const n of alertNodes(md)){
       const air=n.airingAt*1000;
       if(air<=now) continue;
       const fireAt=air-state.notifyLead*60000, delay=fireAt-now;
@@ -1802,7 +2439,7 @@ function dayCell(date, evs, opts){
   cell.appendChild(num);
   if(isToday && opts.nowline){
     const nl=document.createElement("div"); nl.className="nowline";
-    nl.innerHTML="● now "+new Date().toLocaleTimeString([], {hour:"numeric",minute:"2-digit"});
+    nl.innerHTML="● now "+new Date().toLocaleTimeString([], timeOpts({hour:"numeric",minute:"2-digit"}));
     cell.appendChild(nl);
   }
   const show = opts.max ? evs.slice(0,opts.max) : evs;
@@ -1819,14 +2456,16 @@ function dayCell(date, evs, opts){
   return cell;
 }
 function eventEl(e){
-  const md=e.media, prem=e.episode===1, fin=isFinale(md,e.episode);
+  const md=e.media, prem=e.episode===1&&!e.brk, fin=isFinale(md,e.episode)&&!e.brk;
   const el=document.createElement("div");
-  el.className="ev"+(prem?" prem":fin?" fin":"")+(isWatched(md.id)?" mine":"");
+  el.className="ev"+(prem?" prem":fin?" fin":"")+(isWatched(md.id)?" mine":"")+(e.brk?" brk":"");
   if(md.coverImage&&md.coverImage.color&&!prem&&!fin) el.style.borderLeftColor=md.coverImage.color;
   el.innerHTML=(md.coverImage&&md.coverImage.medium?`<img src="${md.coverImage.medium}" alt="" loading="lazy" width="20" height="26">`:"")+
-    `<span class="t">${esc(title(md))}</span><span class="epn">${prem?"★EP1":fin?"🏁FIN":"E"+e.episode}</span>`;
-  el.title=title(md)+" · Ep "+e.episode+(fin?" (Season finale)":"")+" · "+fmtTime(e.ts);
-  kbdButton(el, title(md)+", episode "+e.episode+(prem?" premiere":fin?" finale":"")+", "+fmtTime(e.ts));
+    `<span class="t">${esc(title(md))}</span>${airTagHTML(e)}<span class="epn">${e.brk?"⏸":prem?"★EP1":fin?"🏁FIN":"E"+e.episode}</span>`;
+  const what=e.brk ? "No episode — "+(e.status&&e.status.reason||"broadcast break")
+    : (e.air?AIR_LONG[e.air.type]+(e.air.estimated?" (estimated)":"")+" · ":"")+fmtTime(e.ts);
+  el.title=title(md)+" · Ep "+e.episode+(fin?" (Season finale)":"")+" · "+what;
+  kbdButton(el, title(md)+", episode "+e.episode+(prem?" premiere":fin?" finale":"")+", "+what);
   el.onclick=(ev)=>{ ev.stopPropagation(); openDetail(md,e.episode); };
   return el;
 }
@@ -1838,15 +2477,23 @@ function kbdButton(el, label){
   el.setAttribute("tabindex","0");
   if(label) el.setAttribute("aria-label",label);
 }
-function dowHeader(){
+function dowHeader(forMonth){
   const h=document.createElement("div"); h.className="dow";
-  for(const d of DOW){ const c=document.createElement("div"); c.textContent=d; h.appendChild(c); }
+  for(const d of dowLabels(forMonth)){ const c=document.createElement("div"); c.textContent=d; h.appendChild(c); }
   return h;
+}
+// A grid of empty cells doesn't say why it's empty; this does.
+function emptyNotice(wrap,map){
+  if(map.size) return;
+  const n=document.createElement("div"); n.className="empty";
+  n.innerHTML="No releases match your filters in this range."+airEmptyHint();
+  wrap.appendChild(n);
 }
 function renderMonth(wrap){
   const {start}=visibleRange();
   const map=mapByDay(rangeEvents());
-  wrap.appendChild(dowHeader());
+  emptyNotice(wrap,map);
+  wrap.appendChild(dowHeader(true));
   const grid=document.createElement("div"); grid.className="grid";
   for(let i=0;i<42;i++){
     const d=new Date(start.getFullYear(),start.getMonth(),start.getDate()+i);
@@ -1857,6 +2504,7 @@ function renderMonth(wrap){
 function renderWeek(wrap){
   const {start}=visibleRange();
   const map=mapByDay(rangeEvents());
+  emptyNotice(wrap,map);
   wrap.appendChild(dowHeader());
   const grid=document.createElement("div"); grid.className="grid week";
   let todayCell=null;
@@ -1870,17 +2518,37 @@ function renderWeek(wrap){
   if(todayCell) requestAnimationFrame(()=>todayCell.scrollIntoView({block:"nearest",inline:"nearest"}));
 }
 function renderAgenda(wrap){
-  const evs=rangeEvents().sort((a,b)=>a.ts-b.ts);
+  // The agenda is a timeline, so days stay in date order — but within a day it
+  // honours the same ordering as the grid views.
+  const byDay=mapByDay(rangeEvents());
+  const evs=[...byDay.values()].flat().sort((a,b)=>{
+    const d=new Date(a.ts*1000), e=new Date(b.ts*1000);
+    const da=new Date(d.getFullYear(),d.getMonth(),d.getDate()).getTime();
+    const db=new Date(e.getFullYear(),e.getMonth(),e.getDate()).getTime();
+    return da-db;   // stable sort keeps mapByDay's within-day order intact
+  });
   const cont=document.createElement("div"); cont.className="agenda";
-  if(!evs.length){ cont.innerHTML="<div class='empty'>No releases match your filters in this range.</div>"; wrap.appendChild(cont); return; }
+  if(!evs.length){ cont.innerHTML="<div class='empty'>No releases match your filters in this range."+airEmptyHint()+"</div>"; wrap.appendChild(cont); return; }
   const now=Date.now()/1000;
+  // Where the NOW line goes. Under chronological ordering it belongs before the
+  // first unaired row. Under any other ordering rows inside a day aren't in
+  // time order, so a mid-day NOW would have aired episodes below it — put it at
+  // the head of the first day that isn't finished instead.
+  const byDayMarker=state.daySort!=="time";
+  const todayKey=keyOf(new Date());
   let lastDay=null, nowDiv=null, nowInserted=false;
+  const insertNow=()=>{ const dv=document.createElement("div"); dv.className="adiv"; dv.textContent="NOW"; cont.appendChild(dv); nowDiv=dv; nowInserted=true; };
   for(const e of evs){
-    if(!nowInserted && e.ts>now){ const dv=document.createElement("div"); dv.className="adiv"; dv.textContent="NOW"; cont.appendChild(dv); nowDiv=dv; nowInserted=true; }
+    const d=new Date(e.ts*1000);
     const dk=dayKeyTs(e.ts);
-    if(dk!==lastDay){
-      const d=new Date(e.ts*1000);
-      const isToday=keyOf(d)===keyOf(new Date());
+    const newDay=dk!==lastDay;
+    // "Still has something unaired" is the whole test — a day in the past can't
+    // satisfy it, so no separate date comparison is needed (and a string
+    // compare on keyOf's "YYYY-M-D" would be wrong anyway: "2026-7-4" > "2026-7-15").
+    if(!nowInserted && byDayMarker && newDay && (byDay.get(dk)||[e]).some(x=>x.ts>now)) insertNow();
+    if(!nowInserted && !byDayMarker && e.ts>now) insertNow();
+    if(newDay){
+      const isToday=keyOf(d)===todayKey;
       const h=document.createElement("div"); h.className="aday"+(isToday?" istoday":"");
       h.textContent=d.toLocaleDateString([], {weekday:"long",month:"long",day:"numeric"})+(isToday?"  ·  TODAY":"");
       cont.appendChild(h); lastDay=dk;
@@ -1892,21 +2560,23 @@ function renderAgenda(wrap){
   if(nowDiv) requestAnimationFrame(()=>nowDiv.scrollIntoView({block:"center"}));
 }
 function agendaRow(e,now){
-  const md=e.media, prem=e.episode===1, fin=isFinale(md,e.episode), past=e.ts<=now;
+  const md=e.media, prem=e.episode===1&&!e.brk, fin=isFinale(md,e.episode)&&!e.brk, past=e.ts<=now;
   const row=document.createElement("div");
-  row.className="arow"+(prem?" prem":fin?" fin":"")+(past?" past":"")+(isWatched(md.id)?" mine":"");
-  kbdButton(row, title(md)+", episode "+e.episode+(prem?" premiere":fin?" finale":"")+", "+fmtTime(e.ts));
+  row.className="arow"+(prem?" prem":fin?" fin":"")+(past?" past":"")+(isWatched(md.id)?" mine":"")+(e.brk?" brk":"");
+  const what=e.brk?"no episode this week":fmtTime(e.ts);
+  kbdButton(row, title(md)+", episode "+e.episode+(prem?" premiere":fin?" finale":"")+", "+what);
   row.innerHTML=
-    `<span class="atime">${fmtTime(e.ts)}</span>`+
+    `<span class="atime">${e.brk?"—":fmtTime(e.ts)}</span>`+
     (md.coverImage&&md.coverImage.medium?`<img src="${md.coverImage.medium}" alt="" loading="lazy" width="40" height="54">`:"")+
     `<div class="ainfo"><div class="at">${esc(title(md))}</div>
       <div class="ameta">
+        ${airPillHTML(e)}${statusPillHTML(e)}
         ${prem?'<span class="pill prem">PREMIERE</span>':`<span class="pill">Ep ${e.episode}</span>`}
         ${fin?'<span class="pill fin">🏁 FINALE</span>':''}
         <span class="pill">${FMT_LABEL[md.format]||md.format||"?"}</span>
         ${md.averageScore?`<span class="pill score">★ ${md.averageScore}</span>`:""}
         ${myMarks(md.id)}
-        ${past?"":`<span class="pill cd">in ${cdLive(e.ts)}</span>`}
+        ${(past||e.brk)?"":`<span class="pill cd">in ${cdLive(e.ts)}</span>`}
         ${starSpan(md.id)}${bellSpan(md.id)}
       </div></div>`;
   row.onclick=(ev)=>{ if(ev.target.closest("[data-bell]")||ev.target.closest("[data-watch]"))return; openDetail(md,e.episode); };
@@ -1934,9 +2604,14 @@ function renderSidebars(){
   // premieres within visible range
   const prem=[];
   for(const md of state.media){
-    if(nsfwHidden(md)||isHidden(md.id)) continue;
+    if(excluded(md)) continue;
     const ep1=((md.airingSchedule&&md.airingSchedule.nodes)||[]).find(n=>n.episode===1);
-    if(ep1){ const t=ep1.airingAt*1000; if(t>=s&&t<=e) prem.push({md,ts:ep1.airingAt}); }
+    if(ep1){
+      // Date the premiere by the release being tracked — a dub premiere is
+      // weeks off the broadcast, and the rail should agree with the calendar.
+      const v=preferredVariant(variantsFor(md,ep1).variants);
+      if(v){ const t=v.ts*1000; if(t>=s&&t<=e) prem.push({md,ts:v.ts}); }
+    }
   }
   prem.sort((a,b)=>a.ts-b.ts);
   $("premieres").innerHTML = prem.length
@@ -2085,13 +2760,18 @@ function openDetail(md,episode){
   const cover=md.coverImage?(md.coverImage.large||md.coverImage.medium):"";
   const on=isFollowed(md.id);
   const na=nextAir(md);
+  const naAir = na&&na.air
+    ? `<span class="pill air air-${na.air.type}${na.air.estimated?" est":""}" title="${esc(AIR_LONG[na.air.type]+(na.air.platform?" · "+na.air.platform:"")+(na.air.estimated?" — estimated from the broadcast time, not confirmed":""))}">${na.air.estimated?"~":""}${AIR_LABEL[na.air.type]}${na.air.platform?" · "+esc(na.air.platform):""}</span>`
+    : "";
   const nextBlock = na
     ? `<div class="nextair">🕒 <span>Next episode</span>
-        <span class="na-when">Ep ${na.episode} · ${new Date(na.airingAt*1000).toLocaleString([], {weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})}</span>
+        <span class="na-when">Ep ${na.episode} · ${new Date(na.airingAt*1000).toLocaleString([], timeOpts({weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"}))}</span>
+        ${naAir}
         <span class="tznote">${TZ_SHORT?"("+esc(TZ_SHORT)+" · your time)":"(your local time)"}</span>
         <span class="pill cd">in ${cdLive(na.airingAt)}</span>
         ${calButtonsHTML({k:"ep",mid:md.id,ep:na.episode,ts:na.airingAt})}</div>`
     : "";
+  const notices=scheduleNoticesHTML(md);
   const sched=renderScheduleList(md);
   $("modalBody").innerHTML=`
     <div class="detail-grid${sched?"":" no-side"}">
@@ -2116,10 +2796,12 @@ function openDetail(md,episode){
           <button data-watch="${md.id}">${isWatched(md.id)?"★ In My List":"☆ Add to My List"}</button>
           <button class="bellbtn ${on?'on':''}" data-bell="${md.id}">${on?"🔔 Alerts on":"🔕 Notify me"}</button>
           <button data-share="${md.id}" title="Copy a shareable link to this show">🔗 Share</button>
+          <button data-report="${md.id}" title="Tell us an air time, delay or dub date is wrong">⚠ Report a wrong time</button>
           <button data-hide="${md.id}" title="Hide this show everywhere">${isHidden(md.id)?"✓ Unhide":"🚫 Not interested"}</button>
           <a href="${md.siteUrl||"#"}" target="_blank" rel="noopener">AniList →</a>
           <a href="${nyaaUrl}" target="_blank" rel="noopener">Nyaa →</a>
         </div>
+        ${notices}
         ${nextBlock}
         ${streamChipsHTML(md)}
         <div class="st-row">
@@ -2156,18 +2838,51 @@ function openDetail(md,episode){
   $("overlay").classList.add("on");
   loadModalExtras(md.id);
 }
+// Delays, breaks and notes for this show, surfaced at the top of the modal so
+// "why is there no episode this week" is answered before the schedule is read.
+function scheduleNoticesHTML(md){
+  const ov=showOverride(md.id);
+  if(!ov||!ov.episodes) return "";
+  const now=Date.now()/1000;
+  const out=[];
+  for(const [ep,e] of Object.entries(ov.episodes)){
+    const st=e&&e.status; if(!st||!st.kind||st.kind==="note"&&!st.reason) continue;
+    // Only what's still relevant: this episode's slot hasn't passed by a week.
+    const node=((md.airingSchedule&&md.airingSchedule.nodes)||[]).find(n=>String(n.episode)===String(ep));
+    if(node && node.airingAt < now-7*86400) continue;
+    const icon=st.kind==="break"?"⏸":st.kind==="early"?"⚡":st.kind==="delay"?"⚠":"ℹ";
+    const head=st.kind==="break"?`No episode ${ep}`:st.kind==="delay"?`Episode ${ep} delayed`:st.kind==="early"?`Episode ${ep} released early`:`Episode ${ep}`;
+    const src=st.source?` <a href="${esc(st.source)}" target="_blank" rel="noopener">source</a>`:"";
+    out.push(`<div class="schednote${st.kind==="break"?" brk":""}"><span>${icon}</span><span><b>${esc(head)}</b>${st.reason?" — "+esc(st.reason):""}${src}</span></div>`);
+  }
+  return out.join("");
+}
 function renderScheduleList(md){
   const nodes=(md.airingSchedule&&md.airingSchedule.nodes)||[];
   if(!nodes.length) return "";
   const now=Date.now()/1000, prog=getProgress(md.id);
+  const on=enabledTypes();
   const rows=nodes.slice().sort((a,b)=>a.airingAt-b.airingAt).map(n=>{
-    const up=n.airingAt>now, watched=!up && n.episode<=prog;
-    const mark = up ? `<span style="width:18px;flex:none"></span>`
+    const {status,variants}=variantsFor(md,n);
+    const brk=!variants.length;
+    // The row's own clock is the release the viewer tracks; other known
+    // releases for the same episode are listed under it rather than as
+    // separate rows, so the episode list stays one-line-per-episode.
+    const primary=preferredVariant(variants);
+    const ts=primary?primary.ts:n.airingAt;
+    const up=!brk&&ts>now, watched=!up&&!brk&&n.episode<=prog;
+    const mark = (up||brk) ? `<span style="width:18px;flex:none"></span>`
       : `<span class="mark ${watched?'on':''}" role="button" tabindex="0" aria-label="${watched?'Watched — mark unwatched':'Mark watched up to episode '+n.episode}" data-mark="${md.id}|${n.episode}" title="${watched?'Watched — click to unmark':'Mark watched (this & earlier)'}">${watched?'✓':''}</span>`;
-    return `<div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid var(--line);${up?"":(watched?"":"opacity:.6")}">
+    const others=variants.filter(v=>v!==primary&&on.has(v.type)).map(v=>
+      `<span class="pill air air-${v.type}${v.estimated?" est":""}" title="${esc(AIR_LONG[v.type]+(v.platform?" · "+v.platform:""))}">${v.estimated?"~":""}${AIR_LABEL[v.type]} ${new Date(v.ts*1000).toLocaleString([], timeOpts({month:"short",day:"numeric",hour:"numeric",minute:"2-digit"}))}</span>`).join(" ");
+    const statusTag = brk ? `<span class="pill brk" title="${esc((status&&status.reason)||"Broadcast break")}">⏸ BREAK</span>`
+      : status&&status.kind==="delay" ? `<span class="pill warn" title="${esc(status.reason||"Delayed")}">⚠</span>`
+      : status&&status.kind==="early" ? `<span class="pill warn" title="${esc(status.reason||"Early")}">⚡</span>` : "";
+    const primaryTag = (!brk&&primary&&on.size>1) ? ` <span class="pill air air-${primary.type}${primary.estimated?" est":""}" title="${esc(AIR_LONG[primary.type]+(primary.platform?" · "+primary.platform:""))}">${primary.estimated?"~":""}${AIR_LABEL[primary.type]}</span>` : "";
+    return `<div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid var(--line);${(up&&!brk)?"":(watched?"":"opacity:.6")}">
       ${mark}
-      <span style="flex:1">Episode ${n.episode}${isFinale(md,n.episode)?' <span class="pill fin">🏁 FINALE</span>':""}${up?` <span class="pill cd">in ${cdLive(n.airingAt)}</span>`:""}</span>
-      <span style="color:${up?"var(--accent2)":"var(--muted)"}">${new Date(n.airingAt*1000).toLocaleString([], {month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})}</span>
+      <span style="flex:1">Episode ${n.episode}${statusTag}${primaryTag}${isFinale(md,n.episode)?' <span class="pill fin">🏁 FINALE</span>':""}${up?` <span class="pill cd">in ${cdLive(ts)}</span>`:""}${others?`<div style="margin-top:3px;display:flex;gap:5px;flex-wrap:wrap">${others}</div>`:""}</span>
+      <span style="color:${up?"var(--accent2)":"var(--muted)"}">${brk?"—":new Date(ts*1000).toLocaleString([], timeOpts({month:"short",day:"numeric",hour:"numeric",minute:"2-digit"}))}</span>
     </div>`;
   }).join("");
   const watchedN=prog>0?`<span class="tznote"> · ${Math.min(prog,maxAiredEp(md))} watched</span>`:"";
@@ -2176,16 +2891,19 @@ function renderScheduleList(md){
 function openDay(d,evs){
   $("modalTitle").textContent=d.toLocaleDateString([], {weekday:"long",month:"long",day:"numeric",year:"numeric"});
   const now=Date.now()/1000;
-  $("modalBody").innerHTML=evs.slice().sort((a,b)=>a.ts-b.ts).map(e=>{
-    const md=e.media,prem=e.episode===1,fin=isFinale(md,e.episode),up=e.ts>now;
-    return `<div class="prow" role="button" tabindex="0" aria-label="${esc(title(md))}, episode ${e.episode}" data-mid2="${md.id}">
+  // Sorted once and indexed by position: a show can appear twice in a day (its
+  // sub and its dub), so the media id is no longer a unique handle for a row.
+  const sorted=evs.slice().sort((a,b)=>a.ts-b.ts);
+  $("modalBody").innerHTML=sorted.map((e,i)=>{
+    const md=e.media,prem=e.episode===1&&!e.brk,fin=isFinale(md,e.episode)&&!e.brk,up=e.ts>now&&!e.brk;
+    return `<div class="prow" role="button" tabindex="0" aria-label="${esc(title(md))}, episode ${e.episode}" data-evi="${i}">
       <img src="${md.coverImage&&md.coverImage.medium?md.coverImage.medium:""}" alt="" width="44" height="60">
       <div class="info"><div class="pt">${esc(title(md))}</div>
-        <div class="meta">${prem?'<span class="pill prem">PREMIERE</span>':''}${fin?'<span class="pill fin">🏁 FINALE</span>':''}<span class="pill">Ep ${e.episode}</span><span class="pill">${fmtTime(e.ts)}</span>${md.averageScore?`<span class="pill score">★ ${md.averageScore}</span>`:""}${myMarks(md.id)}${up?`<span class="pill cd">in ${cdLive(e.ts)}</span>`:""}${bellSpan(md.id)}</div>
+        <div class="meta">${airPillHTML(e)}${statusPillHTML(e)}${prem?'<span class="pill prem">PREMIERE</span>':''}${fin?'<span class="pill fin">🏁 FINALE</span>':''}<span class="pill">Ep ${e.episode}</span>${e.brk?"":`<span class="pill">${fmtTime(e.ts)}</span>`}${md.averageScore?`<span class="pill score">★ ${md.averageScore}</span>`:""}${myMarks(md.id)}${up?`<span class="pill cd">in ${cdLive(e.ts)}</span>`:""}${bellSpan(md.id)}</div>
       </div></div>`;
   }).join("");
-  $("modalBody").querySelectorAll("[data-mid2]").forEach(el=>{
-    el.onclick=(ev)=>{ if(ev.target.closest("[data-bell]"))return; const e=evs.find(x=>x.media.id==el.dataset.mid2); if(e) openDetail(e.media,e.episode); };
+  $("modalBody").querySelectorAll("[data-evi]").forEach(el=>{
+    el.onclick=(ev)=>{ if(ev.target.closest("[data-bell]"))return; const e=sorted[+el.dataset.evi]; if(e) openDetail(e.media,e.episode); };
   });
   $("overlay").classList.add("on");
 }
@@ -2223,6 +2941,155 @@ function openEmbed(){
   $("overlay").classList.add("on");
 }
 
+/* ---------- air types: which release you're tracking ---------- */
+// Label the toolbar button with the live selection, so the setting is visible
+// without opening anything — a calendar silently filtered to dubs would be
+// indistinguishable from a broken one.
+function airBtnLabel(){
+  const b=$("airBtn"); if(!b) return;
+  const on=[...enabledTypes()];
+  const order={sub:0,raw:1,dub:2};
+  on.sort((a,c)=>order[a]-order[c]);
+  const names={raw:"Raw",sub:"Sub",dub:"Dub"};
+  b.textContent="🎧 "+(on.length===3?"All":on.map(t=>names[t]).join(" · "));
+  b.classList.toggle("narrowed", !(on.length===2&&on.includes("raw")&&on.includes("sub")));
+  b.title="Which release to show: "+on.map(t=>AIR_LONG[t]).join(", ");
+}
+function saveAirPrefs(){
+  localStorage.setItem("anical.airTypes", JSON.stringify([...state.airTypes]));
+  localStorage.setItem("anical.hideRules", JSON.stringify(state.hideRules));
+  airBtnLabel();
+  syncURL(false);
+  renderView();
+  syncPushSubscription();   // the server alerts on the release you track
+  setStatus(false,`Live · ${state.media.length} titles · ${rangeEvents().length} episodes shown`);
+}
+function openAirPanel(){
+  $("modalTitle").textContent="🎧 Which release are you tracking?";
+  const opt=(attr,val,on,label,tip)=>`<span class="opt ${on?"on":""}" role="button" tabindex="0" data-${attr}="${val}" title="${esc(tip||"")}">${esc(label)}</span>`;
+  const t=state.airTypes, r=state.hideRules;
+  $("modalBody").innerHTML=`
+    <div class="airpanel">
+      <p class="hint" style="margin:0">AniList publishes the <b>Japanese broadcast</b> time. That's rarely the time you watch — so Tsuzuki also tracks the subtitled simulcast and, where we have the data, the English dub. Times we derived rather than confirmed are shown with a <b>~</b>.</p>
+      <div class="grp">
+        <span class="lbl">Show these releases</span>
+        <div class="row">
+          ${opt("air","raw",t.has("raw"),"RAW · Japanese broadcast","The time it airs on Japanese TV")}
+          ${opt("air","sub",t.has("sub"),"SUB · Subtitled","Simulcast on Crunchyroll, HIDIVE, Netflix and friends")}
+          ${opt("air","dub",t.has("dub"),"DUB · English dub","Only shown for shows we have confirmed dub dates for")}
+        </div>
+      </div>
+      <div class="grp">
+        <span class="lbl">Hide the broadcast when…</span>
+        <div class="row">
+          ${opt("hr","rawWhenSub",r.rawWhenSub,"a sub exists","Don't list the JP broadcast separately once there's a subtitled time")}
+          ${opt("hr","rawWhenDub",r.rawWhenDub,"a dub exists")}
+        </div>
+      </div>
+      <div class="grp">
+        <span class="lbl">Hide the sub when…</span>
+        <div class="row">
+          ${opt("hr","subWhenDub",r.subWhenDub,"a dub exists","For dub-only viewers")}
+          ${opt("hr","subWhenRaw",r.subWhenRaw,"the broadcast exists")}
+        </div>
+      </div>
+      <div class="grp">
+        <span class="lbl">Hide the dub when…</span>
+        <div class="row">
+          ${opt("hr","dubWhenSub",r.dubWhenSub,"a sub exists")}
+          ${opt("hr","dubWhenRaw",r.dubWhenRaw,"the broadcast exists")}
+        </div>
+      </div>
+      <p class="hint" style="margin:0">Missing a dub date or spotted a wrong time? Open the show and use <b>⚠ Report a wrong time</b> — corrections go live without waiting for a new release of the site.</p>
+      <div class="row"><button id="airReset">↺ Reset to defaults</button></div>
+    </div>`;
+  const rerender=()=>{ saveAirPrefs(); openAirPanel(); };
+  $("modalBody").querySelectorAll("[data-air]").forEach(el=>{
+    el.onclick=()=>{
+      const v=el.dataset.air;
+      if(state.airTypes.has(v)){ if(state.airTypes.size>1) state.airTypes.delete(v); }   // never leave nothing selected
+      else state.airTypes.add(v);
+      rerender();
+    };
+  });
+  $("modalBody").querySelectorAll("[data-hr]").forEach(el=>{
+    el.onclick=()=>{ const k=el.dataset.hr; state.hideRules[k]=!state.hideRules[k]; rerender(); };
+  });
+  $("airReset").onclick=()=>{
+    state.airTypes=new Set(["raw","sub"]);
+    state.hideRules={rawWhenSub:true,rawWhenDub:false,subWhenDub:false,subWhenRaw:false,dubWhenSub:false,dubWhenRaw:false};
+    rerender();
+  };
+  $("overlay").classList.add("on");
+}
+
+/* ---------- "this time is wrong" ---------- */
+// The intake half of the correction layer. One maintainer can't notice every
+// timeslot change; readers can, and this is how what they notice gets in.
+function openReport(md, episode){
+  const na=nextAir(md);
+  const ep=episode||(na&&na.episode)||1;
+  $("modalTitle").textContent="⚠ Report a wrong time";
+  $("modalBody").innerHTML=`
+    <form class="repform" id="repForm">
+      <p style="color:var(--muted);margin:0;font-size:13px">
+        <b>${esc(title(md))}</b> — tell us what's off and we'll correct it for everyone.
+        Air times come from AniList's Japanese broadcast schedule, so simulcast and dub times are the ones most likely to need fixing.
+      </p>
+      <div class="rf-row">
+        <label>Episode<input type="number" id="repEp" min="0" max="9999" value="${ep}"></label>
+        <label>Which release?
+          <select id="repAir">
+            <option value="sub">Sub / simulcast</option>
+            <option value="dub">English dub</option>
+            <option value="raw">Japanese broadcast</option>
+          </select>
+        </label>
+        <label>What's wrong?
+          <select id="repKind">
+            <option value="wrong-time">Listed time is wrong</option>
+            <option value="delay">Episode is delayed / pre-empted</option>
+            <option value="missing">Episode or show is missing</option>
+            <option value="wrong-episode">Wrong episode number</option>
+            <option value="dub-time">Dub date is missing or wrong</option>
+            <option value="other">Something else</option>
+          </select>
+        </label>
+      </div>
+      <div class="rf-row">
+        <label>Correct time (if you know it)<input type="text" id="repExpected" placeholder="e.g. 2026-08-11 18:00 CEST, or 1h later"></label>
+        <label>Platform<input type="text" id="repPlatform" placeholder="Crunchyroll, HIDIVE…"></label>
+      </div>
+      <label>Details<textarea id="repDetail" maxlength="1000" placeholder="What did you see, and where? The more specific the faster it gets fixed." required></textarea></label>
+      <label>Source link (optional)<input type="url" id="repSource" placeholder="https://…"></label>
+      <div class="rf-row" style="align-items:center">
+        <button class="primary" type="submit" id="repSend">Send report</button>
+        <span class="tznote" id="repState"></span>
+      </div>
+      <p class="tznote" style="margin:0">Nothing personal is sent — just the show, what you typed, and a hashed marker so one person can't flood the queue.</p>
+    </form>`;
+  $("repForm").onsubmit=async ev=>{
+    ev.preventDefault();
+    const detail=$("repDetail").value.trim();
+    if(!detail){ $("repState").textContent="Please say what's wrong."; return; }
+    $("repSend").disabled=true; $("repState").textContent="Sending…";
+    try{
+      const res=await fetch("/api/report",{method:"POST",headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({mediaId:String(md.id), title:title(md), episode:+$("repEp").value||0,
+          airType:$("repAir").value, kind:$("repKind").value, expected:$("repExpected").value,
+          platform:$("repPlatform").value, source:$("repSource").value, detail})});
+      const j=await res.json().catch(()=>({}));
+      // Drop back to the show, but only if the dialog is still the one we left.
+      if(res.ok&&j.ok){ $("repState").textContent="✓ Thanks — sent."; setTimeout(()=>{ if($("overlay").classList.contains("on")&&$("repForm")) openDetail(md,ep); },900); }
+      else { $("repSend").disabled=false; $("repState").textContent=(j&&j.error)||"Couldn't send — try the Discord?"; }
+    }catch(e){
+      $("repSend").disabled=false;
+      $("repState").innerHTML=`Couldn't reach the server — <a href="https://discord.gg/YxphmhYga7" target="_blank" rel="noopener">tell us on Discord</a>.`;
+    }
+  };
+  $("overlay").classList.add("on");
+}
+
 /* ---------- appearance (theme / accent / density) ---------- */
 const ACCENTS=[["Purple","#8b5cf6","#22d3ee"],["Blue","#3b82f6","#22d3ee"],["Emerald","#10b981","#34d399"],["Rose","#f43f5e","#fb7185"],["Amber","#f59e0b","#fbbf24"],["Cyan","#06b6d4","#67e8f9"]];
 function effectiveTheme(){
@@ -2233,6 +3100,7 @@ function applyAppearance(){
   const eff=effectiveTheme();
   document.body.classList.toggle("theme-light", eff==="light");
   document.body.classList.toggle("dense", state.density==="dense");
+  document.body.classList.toggle("no-covers", !state.showImages);
   const parts=(state.accent||"#8b5cf6|#22d3ee").split("|");
   document.documentElement.style.setProperty("--accent", parts[0]);
   document.documentElement.style.setProperty("--accent2", parts[1]||"#22d3ee");
@@ -2240,22 +3108,101 @@ function applyAppearance(){
 }
 // keep "Auto" in sync with the OS theme while it's selected
 if(window.matchMedia){ try{ window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{ if(state.theme==="auto") applyAppearance(); }); }catch(e){} }
+// The AniList block of the settings panel has three shapes: not set up at all,
+// set up but signed out, and connected.
+function alSettingsHTML(){
+  if(!alConfigured()){
+    return `<span class="num-hint" style="flex-basis:100%">Two-way sync isn't switched on for this deployment. It needs an AniList
+      application id — register one at <a href="https://anilist.co/settings/developer" target="_blank" rel="noopener">anilist.co/settings/developer</a>
+      with this site's URL as the redirect, then set <code>ANILIST_CLIENT_ID</code> in <code>site/index.html</code>.
+      Until then the public-list import below still works.</span>`;
+  }
+  if(!alConnected()){
+    return `<button class="primary" id="alConnect">🔗 Connect AniList</button>
+      <span class="num-hint" style="flex-basis:100%">Signs in through AniList so your <em>private</em> entries come across too, and so
+      status, score and episode progress you change here go back to your list automatically. The sign-in stays in this
+      browser — Tsuzuki has no server to send it to.</span>`;
+  }
+  const u=alState.user||{};
+  return `<span style="display:flex;align-items:center;gap:8px;font-weight:600">
+      ${u.avatar&&u.avatar.medium?`<img src="${esc(u.avatar.medium)}" alt="" width="24" height="24" style="border-radius:50%">`:""}
+      ${esc(u.name||"Connected")}</span>
+    <button id="alPull">⬇ Pull from AniList</button>
+    <button id="alPush">⬆ Push everything</button>
+    <button id="alAuto" class="${alAutoSync()?"primary":""}">${alAutoSync()?"⇅ Auto-sync on":"⇅ Auto-sync off"}</button>
+    <button id="alOut">Disconnect</button>
+    <span id="alQueueState" class="num-hint" style="flex-basis:100%">${alState.queue.length?`Syncing… ${alState.queue.length} left`:"All changes synced."}</span>
+    <span class="num-hint">Pull replaces local statuses, scores and progress with AniList's. Auto-sync pushes each change back as you make it.
+    Removing a show here never deletes it on AniList — do that on AniList.</span>`;
+}
+function wireAlSettings(){
+  if($("alConnect")) $("alConnect").onclick=alBeginConnect;
+  if($("alOut")) $("alOut").onclick=()=>{ alDisconnect(); openSettings(); };
+  if($("alAuto")) $("alAuto").onclick=()=>{
+    localStorage.setItem(AL_AUTO_KEY, alAutoSync()?"0":"1");
+    openSettings();
+  };
+  if($("alPull")) $("alPull").onclick=async()=>{
+    const b=$("alPull"), s=$("alQueueState");
+    b.disabled=true; s.textContent="Pulling…";
+    try{ const r=await alPull(); s.textContent=`Pulled ${r.total} entries — +${r.added} to ⭐ My List, ${r.progressed} with progress, ${r.rated} rated.`; }
+    catch(e){ s.textContent=(e&&e.message)||"Pull failed."; }
+    finally{ b.disabled=false; }
+  };
+  if($("alPush")) $("alPush").onclick=()=>{
+    const n=alPushAll();
+    const s=$("alQueueState"); if(s) s.textContent=`Queued ${n} show${n===1?"":"s"} — this takes a moment, AniList is rate-limited.`;
+  };
+}
+// Segmented control for a `state` key that persists under `anical.<key>`.
+function prefSeg(key, opts){
+  return `<div class="seg2">`+opts.map(([val,label,tip])=>
+    `<button data-pref="${key}|${esc(String(val))}" class="${String(state[key])===String(val)?"on":""}"${tip?` title="${esc(tip)}"`:""}>${esc(label)}</button>`).join("")+`</div>`;
+}
 function openSettings(){
-  $("modalTitle").textContent="⚙ Appearance";
+  $("modalTitle").textContent="⚙ Settings";
   const sw=ACCENTS.map(([name,a,b])=>`<button class="swatch${state.accent===a+"|"+b?" sel":""}" data-accent="${a}|${b}" title="${name}" style="background:linear-gradient(135deg,${a},${b})"></button>`).join("");
+  const f=state.filters;
+  const num=(id,val,ph)=>`<input type="number" min="0" max="9999" id="${id}" value="${val||""}" placeholder="${esc(ph)}" class="num-in">`;
   $("modalBody").innerHTML=`
+    <h4 class="set-head">Appearance</h4>
     <div class="set-row"><div class="set-label">Theme</div>
       <div class="seg2"><button data-theme="dark" class="${state.theme==="dark"?"on":""}">🌙 Dark</button><button data-theme="light" class="${state.theme==="light"?"on":""}">☀️ Light</button><button data-theme="auto" class="${state.theme==="auto"?"on":""}">🌗 Auto</button></div></div>
     <div class="set-row"><div class="set-label">Accent</div><div class="swatches">${sw}</div></div>
     <div class="set-row"><div class="set-label">Density</div>
       <div class="seg2"><button data-density="normal" class="${state.density!=="dense"?"on":""}">Comfortable</button><button data-density="dense" class="${state.density==="dense"?"on":""}">Compact</button></div></div>
+    <div class="set-row"><div class="set-label">Cover art</div>
+      ${prefSeg("showImages",[[true,"Show"],[false,"Hide","Text-only rows fit far more on screen"]])}</div>
+
+    <h4 class="set-head">Timetable</h4>
+    <div class="set-row"><div class="set-label">Week starts</div>
+      ${prefSeg("weekStart",[["0","Sunday"],["1","Monday"],["6","Saturday"],["rot","Rotating","Week view starts on today. The month grid keeps a fixed first column."]])}</div>
+    <div class="set-row"><div class="set-label">Time format</div>
+      ${prefSeg("timeFormat",[["auto","Auto","Follow your device's locale"],["12","12h"],["24","24h"]])}</div>
+    <div class="set-row"><div class="set-label">Order within a day</div>
+      ${prefSeg("daySort",[["popularity","Popularity"],["time","Air time"],["alpha","A–Z"],["score","Score"]])}</div>
+    <div class="set-row"><div class="set-label">Donghua</div>
+      ${prefSeg("showDonghua",[[true,"Show"],[false,"Hide","Hide Chinese productions"]])}</div>
+
+    <h4 class="set-head">Episode filters</h4>
+    <div class="set-row"><div class="set-label">Season length</div>
+      <div class="num-row">${num("fEpsMin",f.epsMin,"min")}<span class="num-sep">–</span>${num("fEpsMax",f.epsMax,"max")}
+        <span class="num-hint">total episodes. Leave blank for any; shows with no announced count are only dropped by a minimum.</span></div></div>
+    <div class="set-row"><div class="set-label">Episode number</div>
+      <div class="num-row">${num("fAirMin",f.airedMin,"from")}<span class="num-sep">–</span>${num("fAirMax",f.airedMax,"to")}
+        <span class="num-hint">which episodes to list — e.g. 1–3 to catch shows that just started.</span></div></div>
+
+    <h4 class="set-head">Your data</h4>
     <div class="set-row"><div class="set-label">Hidden</div>
       <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span style="color:var(--muted);font-size:13px">${state.hidden.size} hidden show${state.hidden.size===1?"":"s"}</span>${state.hidden.size?`<button id="setUnhide">Unhide all</button>`:""}</div></div>
     <div class="set-row"><div class="set-label">AniList</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">${alSettingsHTML()}</div></div>
+    <div class="set-row"><div class="set-label">${alConnected()?"One-off import":"Import"}</div>
       <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
         <input id="aniUser" placeholder="AniList username" autocomplete="off" spellcheck="false" style="flex:1;min-width:150px;padding:7px 10px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--fg)">
-        <button id="aniImport">⬇ Import my list</button>
+        <button id="aniImport">⬇ Import public list</button>
         <span id="aniStatus" style="color:var(--muted);font-size:12px;flex-basis:100%"></span>
+        <span class="num-hint">Reads any <em>public</em> list without signing in. One direction only — nothing goes back.</span>
       </div></div>
     <div class="set-row"><div class="set-label">Backup</div>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
@@ -2263,6 +3210,35 @@ function openSettings(){
         <button id="setCopyCode">📋 Copy sync code</button><button id="setPasteCode">📥 Paste code</button>
       </div></div>
     <p style="color:var(--muted);font-size:12px;margin-bottom:0">Your board, lists, ratings, private notes, watch-bells, hidden shows and reminders are saved on this device — nothing is uploaded. Use Export or a sync code to copy them to another device. Import pulls your public AniList list into ⭐ My List with its statuses, watch progress and scores.</p>`;
+  wireAlSettings();
+  // Timetable prefs: store, re-apply, re-render, and rebuild the panel so the
+  // segmented control shows the new selection.
+  $("modalBody").querySelectorAll("[data-pref]").forEach(el=>{
+    el.onclick=()=>{
+      const [key,raw]=el.dataset.pref.split("|");
+      const val = raw==="true" ? true : raw==="false" ? false : raw;
+      state[key]=val;
+      localStorage.setItem("anical."+key, val===true?"1":val===false?"0":String(val));
+      applyAppearance();
+      renderView();
+      openSettings();
+    };
+  });
+  // Episode-count filters live with the other filters (URL + localStorage), not
+  // with the appearance prefs, so a shared link carries them.
+  const numHandlers=[["fEpsMin","epsMin"],["fEpsMax","epsMax"],["fAirMin","airedMin"],["fAirMax","airedMax"]];
+  for(const [id,key] of numHandlers){
+    const el=$(id); if(!el) continue;
+    el.onchange=()=>{
+      const n=Math.max(0,Math.min(9999,parseInt(el.value,10)||0));
+      if(n) state.filters[key]=n; else delete state.filters[key];
+      el.value=n||"";
+      localStorage.setItem("anical.filters",JSON.stringify(state.filters));
+      syncURL(false);
+      renderView();
+      setStatus(false,`Live · ${state.media.length} titles · ${rangeEvents().length} episodes shown`);
+    };
+  }
   if($("setUnhide")) $("setUnhide").onclick=()=>{ state.hidden.clear(); localStorage.removeItem("anical.hidden"); renderView(); openSettings(); };
   if($("aniImport")){
     const run=async()=>{
@@ -2286,7 +3262,7 @@ function openSettings(){
   $("overlay").classList.add("on");
 }
 /* ---- settings backup / sync (export, import, share-code) ---- */
-const NO_BACKUP=new Set(["anical.cache.v1","anical.seenIds","anical.lastVisit"]);   // derived/per-device caches, not worth syncing
+const NO_BACKUP=new Set(["anical.cache.v1","anical.seenIds","anical.lastVisit","anical.overrides"]);   // derived/per-device caches, not worth syncing
 function collectSettings(){ const d={}; for(let i=0;i<localStorage.length;i++){ const k=localStorage.key(i); if(k&&k.indexOf("anical.")===0&&!NO_BACKUP.has(k)) d[k]=localStorage.getItem(k); } return d; }
 function applySettings(data){ let n=0; for(const k in data){ if(k.indexOf("anical.")===0){ try{ localStorage.setItem(k,data[k]); n++; }catch(_){} } } return n; }
 function exportSettings(){ downloadFile("tsuzuki-settings.json", JSON.stringify({type:"anical-settings",version:1,exported:new Date().toISOString(),data:collectSettings()},null,2), "application/json"); }
@@ -2323,9 +3299,13 @@ function myShowsIcs(){
   for(const md of state.media){
     if(!isWatched(md.id)) continue;
     for(const n of (md.airingSchedule&&md.airingSchedule.nodes)||[]){
-      if(n.airingAt < now-7*86400) continue;   // keep a little history + everything upcoming
-      const start=new Date(n.airingAt*1000), end=new Date(n.airingAt*1000+30*60000);
-      ev.push(["BEGIN:VEVENT","UID:tsuzuki-"+md.id+"-"+n.episode+"@tsuzuki.netlify.app","DTSTAMP:"+icsStamp(start),"DTSTART:"+icsStamp(start),"DTEND:"+icsStamp(end),"SUMMARY:"+icsEsc(title(md)+" — Episode "+n.episode), md.siteUrl?"URL:"+icsEsc(md.siteUrl):null,"END:VEVENT"].filter(Boolean).join("\r\n"));
+      // Export the release being tracked, and skip break weeks entirely — a
+      // phantom event in someone's real calendar is worse than a missing one.
+      const v=preferredVariant(variantsFor(md,n).variants);
+      if(!v || v.ts < now-7*86400) continue;   // keep a little history + everything upcoming
+      const start=new Date(v.ts*1000), end=new Date(v.ts*1000+30*60000);
+      const suffix=v.type==="raw"?"":" ("+AIR_LABEL[v.type]+(v.platform?" · "+v.platform:"")+")";
+      ev.push(["BEGIN:VEVENT","UID:tsuzuki-"+md.id+"-"+n.episode+"-"+v.type+"@tsuzuki.netlify.app","DTSTAMP:"+icsStamp(start),"DTSTART:"+icsStamp(start),"DTEND:"+icsStamp(end),"SUMMARY:"+icsEsc(title(md)+" — Episode "+n.episode+suffix), md.siteUrl?"URL:"+icsEsc(md.siteUrl):null,"END:VEVENT"].filter(Boolean).join("\r\n"));
     }
   }
   return ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Tsuzuki//tsuzuki.netlify.app//EN","CALSCALE:GREGORIAN","METHOD:PUBLISH","X-WR-CALNAME:Tsuzuki — My Shows",...ev,"END:VCALENDAR"].join("\r\n")+"\r\n";
@@ -2387,7 +3367,7 @@ function computeDashStats(){
   // episode airings that fall inside the season window
   const events=[];
   for(const md of state.media){
-    if(nsfwHidden(md)||isHidden(md.id)) continue;
+    if(excluded(md)) continue;
     for(const n of (md.airingSchedule&&md.airingSchedule.nodes)||[]){
       const t=n.airingAt*1000;
       if(t>=s&&t<=e) events.push({media:md,episode:n.episode,ts:n.airingAt});
@@ -2975,7 +3955,9 @@ async function load(){
   setStatus(true,"Pulling latest releases from AniList…");
   try{
     const {start,end}=visibleRange();
-    const res=await loadDataForRange(start,end);
+    // Corrections load alongside the schedule — they change what every row
+    // says, so the first paint should already have them.
+    const [res]=await Promise.all([loadDataForRange(start,end), loadOverrides()]);
     state.media=res.media;
     showLoadWarning(res.partial ? "partial" : null);
     buildGenreOptions();
@@ -2986,7 +3968,7 @@ async function load(){
     renderWhatsNew();
     if(!otdDone){ otdDone=true; loadOnThisDay(); }
     const total=rangeEvents().length;
-    setStatus(false,`Live · ${state.media.length} titles · ${total} episodes shown · updated ${new Date().toLocaleTimeString([], {hour:"numeric",minute:"2-digit"})}`);
+    setStatus(false,`Live · ${state.media.length} titles · ${total} episodes shown · updated ${new Date().toLocaleTimeString([], timeOpts({hour:"numeric",minute:"2-digit"}))}`);
     persistMedia();   // cache for an instant paint on the next launch
     $("footer").innerHTML=`Data: <a href="https://anilist.co" target="_blank" rel="noopener">AniList</a> + <a href="https://www.animenewsnetwork.com" target="_blank" rel="noopener">Anime News Network</a> · refreshed on every launch. Times in your local timezone. Desktop alerts fire only while Tsuzuki is open.`;
   }catch(err){
@@ -3022,14 +4004,14 @@ function buildGenreOptions(){
 function renderGenreChips(){
   const box=$("genreChips"); if(!box) return;
   const counts={};
-  for(const md of state.media){ if(nsfwHidden(md)||isHidden(md.id))continue; for(const g of md.genres||[]) counts[g]=(counts[g]||0)+1; }
+  for(const md of state.media){ if(excluded(md))continue; for(const g of md.genres||[]) counts[g]=(counts[g]||0)+1; }
   const top=Object.entries(counts).sort((a,b)=>b[1]-a[1]).slice(0,12).map(e=>e[0]);
   const cur=state.filters.genre;
   box.innerHTML=top.map(g=>`<span class="chip ${cur===g?'on':''}" data-chip="${esc(g)}">${esc(g)}</span>`).join("");
 }
 function buildStreamOptions(){
   const counts={};
-  for(const md of state.media){ if(nsfwHidden(md)||isHidden(md.id))continue; const seen=new Set();
+  for(const md of state.media){ if(excluded(md))continue; const seen=new Set();
     for(const l of md.externalLinks||[]) if(l&&l.type==="STREAMING"&&l.site&&!seen.has(l.site)){ seen.add(l.site); counts[l.site]=(counts[l.site]||0)+1; } }
   const sites=Object.entries(counts).filter(([,c])=>c>=2).sort((a,b)=>b[1]-a[1]).slice(0,15).map(e=>e[0]);
   const sel=$("fStream"), cur=state.filters.stream||"";
@@ -3041,7 +4023,7 @@ function buildStreamOptions(){
 const MIN_TAG_RANK=50;
 function buildTagOptions(){
   const counts={};
-  for(const md of state.media){ if(nsfwHidden(md)||isHidden(md.id))continue;
+  for(const md of state.media){ if(excluded(md))continue;
     for(const t of md.tags||[]){ if(!t||t.isMediaSpoiler||(t.rank||0)<MIN_TAG_RANK) continue;
       if(t.isAdult && state.hideNSFW) continue; counts[t.name]=(counts[t.name]||0)+1; } }
   const tags=Object.entries(counts).filter(([,c])=>c>=2).sort((a,b)=>b[1]-a[1]).slice(0,30).map(e=>e[0]).sort();
@@ -3078,6 +4060,14 @@ function stateToParams(){
   if(f.minScore) p.set("score",String(f.minScore));
   if(f.premieresOnly) p.set("prem","1");
   if(f.mine) p.set("mine","1");
+  if(f.epsMin) p.set("epsmin",String(f.epsMin));
+  if(f.epsMax) p.set("epsmax",String(f.epsMax));
+  if(f.airedMin) p.set("epmin",String(f.airedMin));
+  if(f.airedMax) p.set("epmax",String(f.airedMax));
+  // Only when it differs from the default raw+sub, so a shared link of a
+  // dub-only calendar arrives as a dub-only calendar.
+  const air=[...enabledTypes()].sort().join(",");
+  if(air!=="raw,sub") p.set("air",air);
   return p;
 }
 // push=true adds a history entry (view/date changes → Back works); push=false
@@ -3098,6 +4088,7 @@ function syncControlsFromState(){
   if($("fScore")) $("fScore").value=String(f.minScore||0);
   if($("fPrem")) $("fPrem").checked=!!f.premieresOnly;
   if($("fMine")) $("fMine").checked=!!f.mine;
+  airBtnLabel();
 }
 // Apply URL params onto state. reset=true (popstate) restores any *absent* key
 // to its default; reset=false (initial load) only applies keys that are present,
@@ -3117,6 +4108,14 @@ function applyParamsToState(params, reset){
   if(params.has("score")) f.minScore=+params.get("score")||0; else if(reset) f.minScore=0;
   if(params.has("prem")) f.premieresOnly=params.get("prem")==="1"; else if(reset) f.premieresOnly=false;
   if(params.has("mine")) f.mine=params.get("mine")==="1"; else if(reset) f.mine=false;
+  for(const [q,key] of [["epsmin","epsMin"],["epsmax","epsMax"],["epmin","airedMin"],["epmax","airedMax"]]){
+    if(params.has(q)){ const n=Math.max(0,Math.min(9999,parseInt(params.get(q),10)||0)); if(n) f[key]=n; else delete f[key]; }
+    else if(reset) delete f[key];
+  }
+  if(params.has("air")){
+    const s=new Set(String(params.get("air")).split(",").filter(t=>AIR_TYPES.includes(t)));
+    if(s.size) state.airTypes=s;
+  } else if(reset) state.airTypes=new Set(["raw","sub"]);
   syncControlsFromState();
 }
 // Browser Back/Forward: restore the state that URL encodes and reload.
@@ -3169,6 +4168,8 @@ document.querySelectorAll("#viewSeg button").forEach(b=>b.onclick=()=>setView(b.
 $("embedLink").onclick=e=>{ e.preventDefault(); openEmbed(); };
 $("subscribeLink").onclick=e=>{ e.preventDefault(); openSubscribe(); };
 $("settingsBtn").onclick=()=>openSettings();
+$("airBtn").onclick=()=>openAirPanel();
+airBtnLabel();
 function surpriseMe(){
   let pool=state.media.filter(md=>!nsfwHidden(md)&&!isHidden(md.id)&&(md.averageScore||0)>=70);
   if(!pool.length) pool=state.media.filter(md=>!nsfwHidden(md)&&!isHidden(md.id));
@@ -3434,6 +4435,20 @@ document.addEventListener("click",e=>{
   else window.prompt("Copy this link:",link);
 });
 
+// the "you're showing dubs only" empty-state link opens the air-type panel
+document.addEventListener("click",e=>{
+  const a=e.target.closest("[data-open-air]"); if(!a) return;
+  e.preventDefault(); e.stopPropagation();
+  openAirPanel();
+});
+
+// "this time is wrong": open the report form for the show in the modal
+document.addEventListener("click",e=>{
+  const r=e.target.closest("[data-report]"); if(!r) return;
+  e.preventDefault(); e.stopPropagation();
+  const md=findMediaById(r.dataset.report); if(md) openReport(md,null);
+});
+
 // related-anime navigation: open the clicked relation in the detail modal
 document.addEventListener("click",e=>{
   const r=e.target.closest("[data-rel]"); if(!r) return;
@@ -3495,14 +4510,25 @@ $("fNSFW").onchange=()=>{
 /* search — queries ALL of AniList (not just loaded seasons). Typing shows
    instant local matches, then replaces them with global results; picking one
    jumps the calendar to that show's next episode and opens its details.      */
+// Next episode, in the release the viewer is actually tracking (see
+// primaryAirType). Break weeks are skipped — there is nothing to wait for.
+// Keeps the {episode, airingAt} shape older callers expect and adds the
+// resolved variant + any delay note alongside it.
 function nextAir(md){
   const now=Date.now()/1000;
-  return ((md.airingSchedule&&md.airingSchedule.nodes)||[]).filter(n=>n.airingAt>now).sort((a,b)=>a.airingAt-b.airingAt)[0]||null;
+  let best=null;
+  for(const n of (md.airingSchedule&&md.airingSchedule.nodes)||[]){
+    const {status,variants}=variantsFor(md,n);
+    const v=preferredVariant(variants);
+    if(!v||v.ts<=now) continue;
+    if(!best||v.ts<best.airingAt) best={episode:n.episode, airingAt:v.ts, air:v, status};
+  }
+  return best;
 }
 function hideSearchResults(){ $("searchResults").classList.remove("on"); srIndex=-1; }
 function localMatches(q){
   const seen=new Set(), out=[];
-  for(const md of state.media){ if(seen.has(md.id))continue; if(nsfwHidden(md)||isHidden(md.id))continue; if(matchTitle(md,q)){ seen.add(md.id); out.push(md); } }
+  for(const md of state.media){ if(seen.has(md.id))continue; if(excluded(md))continue; if(matchTitle(md,q)){ seen.add(md.id); out.push(md); } }
   out.sort((a,b)=>(b.popularity||0)-(a.popularity||0));
   return out;
 }
@@ -3553,11 +4579,18 @@ function srMove(delta){
   return true;
 }
 function pickTargetTs(md){
-  const nodes=((md.airingSchedule&&md.airingSchedule.nodes)||[]).map(n=>n.airingAt).sort((a,b)=>a-b);
+  // Jump to the release the viewer tracks — landing on the JP broadcast day
+  // when they follow dubs would scroll them to a day with nothing on it.
+  const times=[];
+  for(const n of (md.airingSchedule&&md.airingSchedule.nodes)||[]){
+    const v=preferredVariant(variantsFor(md,n).variants);
+    if(v) times.push(v.ts);
+  }
+  times.sort((a,b)=>a-b);
   const now=Date.now()/1000;
-  const up=nodes.find(t=>t>now);
+  const up=times.find(t=>t>now);
   if(up) return up;
-  if(nodes.length) return nodes[nodes.length-1];   // last aired
+  if(times.length) return times[times.length-1];   // last aired
   return sdTs(md.startDate);                        // may be null
 }
 function selectSearchResult(id){
@@ -3672,6 +4705,10 @@ if("serviceWorker" in navigator){
 const CF_TOKEN="";
 if(CF_TOKEN){ const s=document.createElement("script"); s.defer=true; s.src="https://static.cloudflareinsights.com/beacon.min.js"; s.setAttribute("data-cf-beacon", JSON.stringify({token:CF_TOKEN})); document.head.appendChild(s); }
 
+// An AniList sign-in comes back as a URL fragment. Consume it before anything
+// reads the URL, so the token is out of the address bar immediately.
+const _alFresh=alCaptureToken();
+
 // deep links: ?view=<mode>, ?date=YYYY-MM-DD, ?format/genre/stream/tag/score/prem/mine, ?show=<id>
 const _params=new URLSearchParams(location.search);
 applyParamsToState(_params, false);   // reset=false: only apply keys present in the URL
@@ -3693,10 +4730,233 @@ async function openShowById(id){
     }
   }
   await load();
+
+  // AniList: identify the signed-in user, drain anything the last session left
+  // queued, and on a fresh sign-in pull the list straight away — the whole
+  // point of connecting is not having to press a second button.
+  if(alTokenValid()){
+    try{
+      if(!alState.user) await alFetchViewer();
+      if(_alFresh){ await alPull(); toast("AniList list imported."); openSettings(); }
+      else if(alState.queue.length) alRunQueue();
+    }catch(e){ console.warn("AniList sync on boot failed", e); }
+  }
+
   const qs=_params.get("show");
   if(qs) openShowById(qs);
-  else maybeShowChangelog();   // greet returning visitors with release notes (once)
+  else if(!_alFresh) maybeShowChangelog();   // greet returning visitors with release notes (once)
 })();
+
+/* ============================================================
+   Chat widget
+   ------------------------------------------------------------
+   Talks to /api/chat, which streams Server-Sent Events. EventSource
+   can't be used because the transcript is sent in a POST body, so the
+   frames are parsed by hand off the fetch stream.
+
+   The browser holds nothing but plain user/assistant text: tool calls
+   and the model's reasoning stay server-side, so a tampered localStorage
+   can only change what the user appears to have typed.
+   ============================================================ */
+const CHAT_LS   = "anical.chat";
+const CHAT_MAX  = 8;               // turns kept — must match MAX_TURNS in chat.mjs
+const CHAT_SUGG = [
+  "What airs today?",
+  "When does the next episode of Frieren drop?",
+  "What's worth watching next season?",
+  "Any news on a One Punch Man season 4?",
+];
+
+const chat = { msgs:[], busy:false, open:false };
+
+try{ const raw=localStorage.getItem(CHAT_LS); if(raw) chat.msgs=JSON.parse(raw).slice(-CHAT_MAX); }catch(e){ chat.msgs=[]; }
+function chatSave(){ try{ localStorage.setItem(CHAT_LS, JSON.stringify(chat.msgs.slice(-CHAT_MAX))); }catch(e){} }
+
+/* Markdown-lite. Everything is escaped first and only a fixed set of
+   inline patterns is re-introduced, so model output can never inject
+   markup. Links are forced to http(s) — a javascript: URL in a citation
+   would otherwise be one click from running. */
+function chatMd(src){
+  const lines=String(src||"").split("\n");
+  const out=[]; let list=null;
+  const inline=s=>esc(s)
+    .replace(/`([^`]+)`/g,(m,c)=>`<code>${c}</code>`)
+    .replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>")            // non-greedy: bold often wraps an italic span
+    .replace(/(^|[^*])\*([^*\n]+)\*(?!\*)/g,"$1<em>$2</em>")   // after bold, so ** is already gone
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,(m,t,u)=>`<a href="${u}" target="_blank" rel="noopener nofollow">${t}</a>`);
+  for(const ln of lines){
+    const li=ln.match(/^\s*[-*]\s+(.*)$/);
+    if(li){ if(!list){ list=[]; } list.push(`<li>${inline(li[1])}</li>`); continue; }
+    if(list){ out.push(`<ul>${list.join("")}</ul>`); list=null; }
+    if(ln.trim()) out.push(`<p>${inline(ln)}</p>`);
+  }
+  if(list) out.push(`<ul>${list.join("")}</ul>`);
+  return out.join("");
+}
+
+function chatScroll(){ const l=$("chatLog"); l.scrollTop=l.scrollHeight; }
+
+function chatBubble(role, html){
+  const d=document.createElement("div");
+  d.className="chat-msg "+role;
+  d.innerHTML=html;
+  $("chatLog").appendChild(d);
+  chatScroll();
+  return d;
+}
+
+function chatRenderIntro(){
+  const d=document.createElement("div");
+  d.className="chat-intro";
+  d.innerHTML="Ask anything about anime. Release times come from this calendar — including the corrections you won't find on AniList — and anything else gets looked up on the web."
+    +`<div class="chat-sugg">${CHAT_SUGG.map(s=>`<button type="button" data-q="${esc(s)}">${esc(s)}</button>`).join("")}</div>`;
+  d.querySelectorAll("button").forEach(b=>{
+    b.onclick=()=>{ $("chatInput").value=b.dataset.q; chatSubmit(); };
+  });
+  $("chatLog").appendChild(d);
+}
+
+function chatRender(){
+  const log=$("chatLog");
+  log.innerHTML="";
+  if(!chat.msgs.length){ chatRenderIntro(); return; }
+  for(const m of chat.msgs){
+    if(m.role==="user") chatBubble("me", esc(m.text).replace(/\n/g,"<br>"));
+    else{
+      const b=chatBubble("bot", chatMd(m.text));
+      if(m.sources&&m.sources.length) b.appendChild(chatSourceRow(m.sources));
+    }
+  }
+  chatScroll();
+}
+
+function chatSourceRow(items){
+  const row=document.createElement("div");
+  row.className="chat-src";
+  row.innerHTML=items.map(s=>{
+    if(!/^https?:\/\//i.test(s.url||"")) return "";
+    let host=s.url; try{ host=new URL(s.url).hostname.replace(/^www\./,""); }catch(e){}
+    return `<a href="${esc(s.url)}" target="_blank" rel="noopener nofollow" title="${esc(s.title||host)}">${esc(host)}</a>`;
+  }).join("");
+  return row;
+}
+
+function chatOpen(on){
+  chat.open=on;
+  $("chatPanel").classList.toggle("on",on);
+  $("chatFab").classList.toggle("open",on);
+  $("chatFab").setAttribute("aria-expanded", on?"true":"false");
+  $("chatFab").setAttribute("aria-label", on?"Close anime chat":"Open anime chat");
+  if(on){
+    $("chatFab").classList.remove("unread");
+    if(!$("chatLog").childElementCount) chatRender();
+    chatScroll();
+    if(window.innerWidth>700) setTimeout(()=>$("chatInput").focus(),40);
+  }
+}
+
+async function chatSubmit(){
+  if(chat.busy) return;
+  const box=$("chatInput");
+  const text=box.value.trim();
+  if(!text) return;
+
+  box.value=""; box.style.height="auto";
+  chat.msgs.push({role:"user",text});
+  if(chat.msgs.length===1) $("chatLog").innerHTML="";
+  chatBubble("me", esc(text).replace(/\n/g,"<br>"));
+  chatSave();
+
+  chat.busy=true;
+  $("chatSend").disabled=true;
+
+  const status=document.createElement("div");
+  status.className="chat-status";
+  status.innerHTML='<span class="spin"></span><span class="cs-t">Thinking…</span>';
+  $("chatLog").appendChild(status);
+  chatScroll();
+
+  let bubble=null, answer="", sources=[];
+  const paint=()=>{ bubble.innerHTML=chatMd(answer)+'<span class="chat-caret"></span>'; chatScroll(); };
+
+  try{
+    const res=await fetch("/api/chat",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({messages:chat.msgs.slice(-CHAT_MAX).map(m=>({role:m.role,text:m.text}))}),
+    });
+
+    if(!res.ok||!res.body){
+      let msg="Chat is unavailable right now.";
+      try{ const j=await res.json(); if(j&&j.error) msg=j.error; }catch(e){}
+      throw new Error(msg);
+    }
+
+    const reader=res.body.getReader(), dec=new TextDecoder();
+    let buf="";
+    for(;;){
+      const {value,done}=await reader.read();
+      if(done) break;
+      buf+=dec.decode(value,{stream:true});
+      const frames=buf.split("\n\n");
+      buf=frames.pop()||"";
+      for(const frame of frames){
+        const ev=(frame.match(/^event:\s*(.+)$/m)||[])[1];
+        const dl=(frame.match(/^data:\s*(.+)$/m)||[])[1];
+        if(!ev||!dl) continue;
+        let data; try{ data=JSON.parse(dl); }catch(e){ continue; }
+
+        if(ev==="status"&&!bubble){ status.querySelector(".cs-t").textContent=data.text+"…"; }
+        else if(ev==="delta"){
+          if(!bubble){ status.remove(); bubble=chatBubble("bot",""); }
+          answer+=data.text; paint();
+        }
+        else if(ev==="sources"){ sources=data.items||[]; }
+        else if(ev==="error"){ throw new Error(data.message); }
+      }
+    }
+    if(!answer) throw new Error("No answer came back. Try again.");
+  }catch(err){
+    status.remove();
+    if(bubble&&answer) bubble.innerHTML=chatMd(answer);   // keep the partial answer
+    else if(bubble) bubble.remove();
+    chatBubble("err", esc(err.message||"Something went wrong."));
+    chat.busy=false; $("chatSend").disabled=false;
+    if(!chat.open) $("chatFab").classList.add("unread");
+    return;
+  }
+
+  status.remove();
+  bubble.innerHTML=chatMd(answer);
+  if(sources.length) bubble.appendChild(chatSourceRow(sources));
+  chat.msgs.push({role:"assistant",text:answer,sources});
+  chat.msgs=chat.msgs.slice(-CHAT_MAX);
+  chatSave();
+  chatScroll();
+
+  chat.busy=false;
+  $("chatSend").disabled=false;
+  if(!chat.open) $("chatFab").classList.add("unread");
+}
+
+$("chatFab").onclick=()=>chatOpen(!chat.open);
+$("chatClose").onclick=()=>{ chatOpen(false); $("chatFab").focus(); };
+$("chatClear").onclick=()=>{ chat.msgs=[]; chatSave(); chatRender(); $("chatInput").focus(); };
+$("chatForm").onsubmit=e=>{ e.preventDefault(); chatSubmit(); };
+
+$("chatInput").addEventListener("input",e=>{
+  e.target.style.height="auto";
+  e.target.style.height=Math.min(e.target.scrollHeight,110)+"px";
+});
+$("chatInput").addEventListener("keydown",e=>{
+  if(e.key==="Enter"&&!e.shiftKey){ e.preventDefault(); chatSubmit(); }
+});
+
+// Capture phase so Esc closes the chat before the page-level handler decides
+// what Esc means — otherwise a chat opened over a show dialog can't be closed.
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape"&&chat.open){ e.stopPropagation(); chatOpen(false); $("chatFab").focus(); }
+},true);
 </script>
 </body>
 </html>

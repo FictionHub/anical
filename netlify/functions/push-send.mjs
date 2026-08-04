@@ -2,10 +2,16 @@
 // schedules for every show any subscriber follows, and sends a Web Push
 // notification ~`lead` minutes before episodes air.
 //
+// Air times go through the same correction layer the app uses
+// (_lib/schedule-overrides.mjs), so a subscriber is alerted for the release
+// they actually watch — the simulcast by default, the dub if they asked for it
+// — and an episode marked as a broadcast break never fires an alert at all.
+//
 // Manual test (requires CRON_SECRET env var to be set):
 //   curl "https://<site>/.netlify/functions/push-send?secret=$CRON_SECRET"
 import { getStore } from "@netlify/blobs";
 import webpush from "web-push";
+import { variantsFor, preferredVariant, showOverride, mergeOverrides, loadSeed } from "./_lib/schedule-overrides.mjs";
 
 export const config = { schedule: "*/15 * * * *" };
 
@@ -14,8 +20,22 @@ const SITE = "https://tsuzuki.netlify.app";
 const RUN_WINDOW_MS = 16 * 60 * 1000; // slightly more than the 15-min cadence
 const QUERY = `query($ids:[Int]){ Page(perPage:50){ media(id_in:$ids, type:ANIME){
   id title{romaji english} coverImage{medium}
+  externalLinks{ site type }
   airingSchedule(notYetAired:true, perPage:25){ nodes{ episode airingAt } }
 } } }`;
+
+const AIR_LABEL = { raw: "JP broadcast", sub: "Sub", dub: "Dub" };
+
+// Same two layers the client reads: the committed seed, then the live store
+// on top. Either can be missing without stopping the run.
+async function loadOverrides() {
+  const seed = await loadSeed(SITE);
+  let live = null;
+  try {
+    live = await getStore("schedule-overrides").get("live", { type: "json" });
+  } catch (e) { console.error("overrides store read failed", e); }
+  return mergeOverrides(seed, live);
+}
 
 async function fetchSchedules(ids) {
   const out = new Map();
@@ -64,27 +84,43 @@ export default async (req) => {
   if (!allIds.size) return new Response(JSON.stringify({ ok: true, subscriptions: subs.length, sent: 0 }), { headers: { "Content-Type": "application/json" } });
 
   const schedules = await fetchSchedules([...allIds]);
+  const overrides = await loadOverrides();
   const now = Date.now();
   let sent = 0, removed = 0;
 
   for (const { key, data } of subs) {
     const sentSet = new Set(data.sent || []);
     const lead = data.lead || 10;
+    const airType = data.airType || "sub";
     let gone = false;
 
     for (const id of data.mediaIds || []) {
       const md = schedules.get(+id);
       if (!md) continue;
+      const ov = showOverride(overrides, md.id);
       for (const n of (md.airingSchedule && md.airingSchedule.nodes) || []) {
-        const tag = id + "-" + n.episode;
+        // Resolve the release this subscriber is waiting for. A break yields no
+        // variants at all, so it silently produces no alert.
+        const { status, variants } = variantsFor(md, n, ov);
+        const v = preferredVariant(variants, airType);
+        if (!v) continue;
+
+        // The tag carries the air type: switching from sub to dub should be
+        // able to alert for the same episode again.
+        const tag = id + "-" + n.episode + "-" + v.type;
         if (sentSet.has(tag)) continue;
-        const fireAt = n.airingAt * 1000 - lead * 60000;
+        const fireAt = v.ts * 1000 - lead * 60000;
         if (fireAt > now || fireAt <= now - RUN_WINDOW_MS) continue; // not due this run
 
         const t = md.title.english || md.title.romaji || "Anime";
+        const where = v.platform ? " on " + v.platform : "";
+        const label = v.type === "sub" && v.estimated ? "Simulcast (approx.)" : AIR_LABEL[v.type];
+        const bodyText = "Airs in ~" + lead + " min · " + label + where +
+          " (" + new Date(v.ts * 1000).toUTCString().slice(0, -4) + " UTC)" +
+          (status && status.reason ? " · " + status.reason : "");
         const payload = JSON.stringify({
           title: t + " — Episode " + n.episode,
-          body: "Airs in ~" + lead + " min (" + new Date(n.airingAt * 1000).toUTCString().slice(0, -4) + " UTC)",
+          body: bodyText,
           icon: (md.coverImage && md.coverImage.medium) || SITE + "/og-image.png",
           tag: "anical-" + md.id + "-" + n.episode,
           url: SITE + "/?show=" + md.id,

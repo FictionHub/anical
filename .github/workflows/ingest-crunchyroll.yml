@@ -1,0 +1,107 @@
+name: Ingest simulcast & dub offsets
+
+# Measures how far each show's Crunchyroll release runs behind its Japanese
+# broadcast, and publishes the result to the live correction store.
+#
+# WHY THIS RUNS HERE AND NOT IN A NETLIFY FUNCTION
+# crunchyroll.com answers non-browser clients with 403, so this needs a real
+# browser. Netlify Functions can't run one; GitHub Actions can, on the same free
+# minutes that already build the SEO pages.
+#
+# WHY IT COSTS NO NETLIFY CREDITS
+# The commit only touches data/derived-offsets.json at the repo root — nothing
+# under site/. netlify.toml skips the deploy when site/ is unchanged, so this
+# job never eats into the ~20 deploys/month budget (see refresh-pages.yml).
+# Corrections reach users through POST /api/overrides instead, which is the blob
+# store and needs no deploy at all.
+#
+# WHY DAILY
+# Crunchyroll only publishes firm times a day or two ahead, so each run captures
+# a fresh slice. Offsets accumulate; a show measured once stays measured.
+#
+# SETUP: add ADMIN_SECRET to the repo's Actions secrets (same value as the
+# Netlify env var). Without it the job still derives and commits, but publishes
+# nothing — so a fork or a misconfigured repo degrades quietly instead of failing.
+
+on:
+  schedule:
+    - cron: "40 6 * * *" # 06:40 UTC daily
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Derive and print, but write and publish nothing"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ingest-crunchyroll
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # --no-save deliberately: this repo has no root package.json, and adding
+      # one would make Netlify think the site needs a build step.
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright@^1.49
+          npx playwright install --with-deps chromium
+
+      - name: Derive offsets
+        env:
+          ADMIN_SECRET: ${{ secrets.ADMIN_SECRET }}
+          SITE_URL: ${{ vars.SITE_URL || 'https://tsuzuki.netlify.app' }}
+        run: |
+          node scripts/ingest-crunchyroll.mjs ${{ inputs.dry_run && '--dry-run' || '' }}
+
+      - name: Commit the audit trail
+        if: ${{ !inputs.dry_run }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/derived-offsets.json
+          if git diff --cached --quiet; then
+            echo "No change in derived offsets."
+          else
+            git commit -m "chore: refresh derived simulcast/dub offsets [skip ci]"
+            git push
+            echo "Committed. No Netlify deploy: nothing under site/ changed."
+          fi
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo "### Simulcast / dub offset ingestion"
+            if [ -f data/derived-offsets.json ]; then
+              node -e '
+                const d = require("./data/derived-offsets.json");
+                console.log(`Derived **${d.findings.length}** offsets, skipped **${d.skipped.length}** rows.`);
+                console.log("");
+                if (d.findings.length) {
+                  console.log("| offset (min) | release | show |");
+                  console.log("|---:|:---|:---|");
+                  for (const f of d.findings) console.log(`| ${f.offsetMin} | ${f.kind} | ${f.title} |`);
+                }
+                const needsHuman = d.skipped.filter(s => /conflicting|outside the plausible/.test(s.why));
+                if (needsHuman.length) {
+                  console.log("");
+                  console.log("**Needs a human:**");
+                  for (const s of needsHuman) console.log(`- ${s.title || s.key} — ${s.why}`);
+                }
+              '
+            else
+              echo "No output produced."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"

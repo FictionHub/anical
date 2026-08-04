@@ -152,6 +152,17 @@ footer{margin-top:34px;color:#8b97a7;font-size:12.5px;border-top:1px solid #2a31
 .hub-link{background:#161b22;border:1px solid #2a3140;border-radius:10px;padding:9px 14px;font-weight:600;color:#e6edf3}
 .hub-link:hover{border-color:#8b5cf6;text-decoration:none}
 .hub-n{color:#8b97a7;font-weight:400;font-size:12px;margin-left:5px}
+h2{font-size:20px;margin:32px 0 2px}
+h2:first-of-type{margin-top:24px}
+.sub{color:#8b97a7;font-size:13.5px;margin:4px 0 0}
+.rank{counter-reset:r;margin-top:18px}
+.rank .card{position:relative;padding-left:44px}
+.rank .card::before{counter-increment:r;content:counter(r);position:absolute;left:12px;top:12px;
+  font-weight:800;font-size:15px;color:#8b5cf6;font-variant-numeric:tabular-nums}
+.plat-nav{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.plat-nav a{background:#161b22;border:1px solid #2a3140;border-radius:20px;padding:6px 13px;font-size:13px;font-weight:600;color:#e6edf3}
+.plat-nav a:hover{border-color:#8b5cf6;text-decoration:none}
+.plat{scroll-margin-top:14px}
 `;
 
 function shell({ titleTag, desc, canonical, h1, lede, body, jsonld, ogImage, ogLarge, crumbs }) {
@@ -193,7 +204,7 @@ ${jsonld ? `<script type="application/ld+json">${jsonld}</script>` : ""}
   <a class="cta" href="/">Open the live calendar →</a>
   ${body}
   <footer>
-    Browse: <a href="/genres/">all genres</a> · <a href="/studios/">all studios</a> · <a href="/today/">airing today</a><br>
+    Browse: <a href="/best/">top anime</a> · <a href="/genres/">all genres</a> · <a href="/studios/">all studios</a> · <a href="/where-to-watch/">where to watch</a> · <a href="/today/">airing today</a><br>
     Data from <a href="https://anilist.co" target="_blank" rel="noopener">AniList</a>.
     Air times listed in UTC; the <a href="/">live calendar</a> converts to your local timezone,
     shows live countdowns, and lets you add episodes to your calendar.
@@ -569,6 +580,123 @@ async function buildBestPage(media, season, year, allSlugs) {
   return slug;
 }
 
+/* ---------------- /best/ — the rankings hub ----------------
+   The per-season "best of" pages existed but nothing linked to /best/ itself,
+   so every one of them was an orphan two clicks from nowhere. This is both the
+   index for them and a real cross-season ranking in its own right — the page
+   that answers "top anime" rather than "top anime of one specific season". */
+const POP_FLOOR = 2000;   // votes needed before a score counts — one 10/10 rating isn't a ranking
+async function buildBestHubPage(union, bestSlugs, allSlugs) {
+  const rated = union.filter(md => md.averageScore && (md.popularity || 0) >= POP_FLOOR);
+  const topRated = rated.slice().sort((a, b) => (b.averageScore - a.averageScore) || ((b.popularity || 0) - (a.popularity || 0))).slice(0, 50);
+  const mostPopular = union.slice().sort((a, b) => (b.popularity || 0) - (a.popularity || 0)).slice(0, 25);
+  if (topRated.length < 5) return null;
+
+  const top = topRated[0];
+  const names = topRated.slice(0, 4).map(title);
+  const desc = `The top-rated anime Tsuzuki is tracking — ${names.slice(0, 3).join(", ")} and more. Ranked by community score, with air dates, episode counts and where to watch.`.slice(0, 300);
+  const lede = `The highest-rated anime across every season Tsuzuki tracks, ranked by AniList community score. Only titles with at least ${POP_FLOOR.toLocaleString("en-US")} members are ranked, so a single glowing review can't top the list.`;
+  const crumbs = `<div class="crumbs"><a href="/">Home</a> › Top anime</div>`;
+
+  const seasonLinks = bestSlugs.length
+    ? `<h2>Best of each season</h2>
+       <p class="sub">The same ranking, narrowed to one season at a time.</p>
+       <div class="hub">${bestSlugs.map(s => {
+         const label = (allSlugs.find(a => a.slug === s) || {}).label || s;
+         return `<a class="hub-link" href="/best/${s}/">Best of ${esc(label)}</a>`;
+       }).join("")}</div>`
+    : "";
+
+  const body = seasonNav(allSlugs, null) +
+    `<h2>Top rated</h2><p class="sub">${topRated.length} titles, highest community score first.</p>
+     <div class="grid rank">${topRated.map(md => cardHTML(md, `★ ${md.averageScore} · ${(md.popularity || 0).toLocaleString("en-US")} members`, {})).join("")}</div>` +
+    `<h2>Most popular</h2><p class="sub">Ranked by how many people are tracking them, regardless of score.</p>
+     <div class="grid rank">${mostPopular.map(md => cardHTML(md, `${(md.popularity || 0).toLocaleString("en-US")} members${md.averageScore ? ` · ★ ${md.averageScore}` : ""}`, {})).join("")}</div>` +
+    seasonLinks;
+
+  const jsonld = JSON.stringify({
+    "@context": "https://schema.org", "@type": "ItemList", name: "Top Anime", numberOfItems: topRated.length,
+    itemListElement: topRated.map((md, i) => ({ "@type": "ListItem", position: i + 1, name: title(md), url: `${SITE}/anime/${animeSlug(md)}/` })),
+  });
+  const html = shell({
+    titleTag: "Top Anime — Best Rated & Most Popular | Tsuzuki",
+    desc, canonical: `${SITE}/best/`, h1: "Top Anime", lede, body, jsonld, crumbs,
+    ogImage: ogFor(top), ogLarge: !!(top && top.bannerImage),
+  });
+  await writePage("best", html);
+  return "best";
+}
+
+/* ---------------- /where-to-watch/ — the streaming hub ----------------
+   Same orphan problem as /best/: hundreds of /where-to-watch/<title>/ pages
+   with no index above them. Grouping by platform is what the query behind them
+   actually looks like ("what's on HIDIVE") and it can't collide with a title
+   slug, since it's one page rather than a /where-to-watch/<platform>/ tier. */
+const PLATFORM_MAX = 24;    // shows listed per platform before "see all"
+async function buildWatchHubPage(union, allSlugs) {
+  const byPlatform = new Map();
+  for (const md of union) {
+    if (!(md.externalLinks || []).some(l => l && l.type === "STREAMING" && l.url)) continue;
+    const seen = new Set();
+    for (const l of md.externalLinks) {
+      if (!l || l.type !== "STREAMING" || !l.site || seen.has(l.site)) continue;
+      seen.add(l.site);
+      if (!byPlatform.has(l.site)) byPlatform.set(l.site, []);
+      byPlatform.get(l.site).push(md);
+    }
+  }
+  // A platform carrying one show is noise, not a section.
+  const platforms = [...byPlatform.entries()].filter(([, list]) => list.length >= 2)
+    .sort((a, b) => b[1].length - a[1].length);
+  if (!platforms.length) return null;
+
+  const total = new Set(platforms.flatMap(([, list]) => list.map(md => md.id))).size;
+  const topNames = platforms.slice(0, 4).map(([name]) => name);
+  const desc = `Where to watch anime legally — ${total} shows across ${platforms.length} services including ${topNames.slice(0, 3).join(", ")}. Streaming links, air dates and episode counts.`.slice(0, 300);
+  const lede = `Which service carries what, for every anime Tsuzuki tracks. Open a title for its streaming links, air dates and a reminder you can add to your calendar.`;
+  const crumbs = `<div class="crumbs"><a href="/">Home</a> › Where to watch</div>`;
+
+  const nav = `<nav class="plat-nav">${platforms.map(([name, list]) =>
+    `<a href="#${esc(slugify(name))}">${esc(name)}<span class="hub-n">${list.length}</span></a>`).join("")}</nav>`;
+
+  const sections = platforms.map(([name, list]) => {
+    const sorted = list.slice().sort((a, b) => (b.popularity || 0) - (a.popularity || 0));
+    const shown = sorted.slice(0, PLATFORM_MAX);
+    const cards = shown.map(md => {
+      const sd = md.startDate || {};
+      // Link at the "where to watch <title>" page, which is the whole point of
+      // this hub — the generic /anime/ page is one click further down.
+      const link = `/where-to-watch/${animeSlug(md)}/`;
+      const score = md.averageScore ? `<span class="pill score">★ ${md.averageScore}</span>` : "";
+      const img = md.coverImage && md.coverImage.medium
+        ? `<img src="${esc(md.coverImage.medium)}" alt="${esc(title(md))} cover" loading="lazy" width="56" height="78">` : "";
+      return `<div class="card">${img}<div class="info">
+        <div class="ct"><a href="${esc(link)}">${esc(title(md))}</a></div>
+        <div class="meta"><span class="pill">${esc(FMT_LABEL[md.format] || md.format || "?")}</span>${md.episodes ? `<span class="pill">${md.episodes} eps</span>` : ""}${score}</div>
+        ${sd.year ? `<div class="when">${esc(fmtDate(sd.year, sd.month, sd.day))}</div>` : ""}
+      </div></div>`;
+    }).join("");
+    const more = sorted.length > shown.length
+      ? `<p class="sub">+ ${sorted.length - shown.length} more on ${esc(name)} — <a href="/">search the live calendar</a> and filter by platform.</p>` : "";
+    return `<h2 id="${esc(slugify(name))}" class="plat">${esc(name)}</h2>
+      <p class="sub">${sorted.length} anime on ${esc(name)}.</p>
+      <div class="grid">${cards}</div>${more}`;
+  }).join("");
+
+  const jsonld = JSON.stringify({
+    "@context": "https://schema.org", "@type": "CollectionPage", name: "Where to Watch Anime", url: `${SITE}/where-to-watch/`,
+    mainEntity: { "@type": "ItemList", numberOfItems: platforms.length,
+      itemListElement: platforms.map(([name], i) => ({ "@type": "ListItem", position: i + 1, name })) },
+  });
+  const html = shell({
+    titleTag: "Where to Watch Anime — Every Streaming Service | Tsuzuki",
+    desc, canonical: `${SITE}/where-to-watch/`, h1: "Where to Watch Anime", lede,
+    body: seasonNav(allSlugs, null) + nav + sections, jsonld, crumbs,
+  });
+  await writePage("where-to-watch", html);
+  return "where-to-watch";
+}
+
 /* ---------------- season + today pages ---------------- */
 async function buildSeasonPage(media, season, year, allSlugs, bestSet) {
   const label = labelOf(season, year);
@@ -656,6 +784,8 @@ async function writeSitemap(seasonSlugs, animeSlugs, genreSlugs = [], studioSlug
   const mainUrls = [
     { loc: `${SITE}/`, freq: "daily", pri: "1.0" },
     { loc: `${SITE}/today/`, freq: "daily", pri: "0.9" },
+    // Hand-written, not generated — it would otherwise never reach the sitemap.
+    { loc: `${SITE}/api/`, freq: "monthly", pri: "0.6" },
     ...hubPaths.map(p => ({ loc: `${SITE}/${p}/`, freq: "weekly", pri: "0.7" })),
     ...seasonSlugs.map(s => ({ loc: `${SITE}/${s.slug}/`, freq: "weekly", pri: "0.8" })),
     ...bestSlugs.map(s => ({ loc: `${SITE}/best/${s}/`, freq: "weekly", pri: "0.7" })),
@@ -774,6 +904,13 @@ ${children.map(c => `  <sitemap>\n    <loc>${SITE}/${c}</loc>\n    <lastmod>${to
     await buildHubPage("studio", studiosToBuild.map(([name, list]) => ({ name, count: list.length, slug: slugify(name) })), allSlugs); hubPaths.push("studios");
     console.log(`✅ ${hubPaths.length} hub pages (/genres/, /studios/)`);
   } catch (e) { console.warn("⚠ hub pages: " + e.message); }
+
+  // Indexes for the two page sets that had leaves but no root. Each failure is
+  // isolated: a broken hub must never cost us the pages under it.
+  try { const p = await buildBestHubPage(union, bestSlugs, allSlugs); if (p) { hubPaths.push(p); console.log("✅ /best/ (rankings hub)"); } }
+  catch (e) { console.warn("⚠ /best/ hub: " + e.message); }
+  try { const p = await buildWatchHubPage(union, allSlugs); if (p) { hubPaths.push(p); console.log("✅ /where-to-watch/ (streaming hub)"); } }
+  catch (e) { console.warn("⚠ /where-to-watch/ hub: " + e.message); }
 
   try { const f = await buildFeeds(union); console.log(`✅ /feeds/ premieres(${f.prem}) finales(${f.fin}) all(${f.all})`); }
   catch (e) { console.warn("⚠ feeds: " + e.message); }

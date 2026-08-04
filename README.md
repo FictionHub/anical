@@ -146,6 +146,224 @@ canonical records this worker writes.
   nothing in `site/` consumes `ingest-canonical` until a later milestone wires
   it up as the app's actual data source.
 
+## Release variants + the correction layer
+AniList publishes the **Japanese TV broadcast** time and nothing else. That is
+the wrong number for nearly every viewer: a simulcast watcher wants the
+Crunchyroll/HIDIVE drop, a dub watcher wants a date AniList doesn't carry at
+all, and neither reflects the week a broadcast is pre-empted. So one AniList
+airing node fans out into the **variants** that actually exist for that episode
+— `raw` / `sub` / `dub` — with human corrections layered on top.
+
+- **Client**: the "release variants" section of `site/index.html`.
+- **Server**: `netlify/functions/_lib/schedule-overrides.mjs` — the mirror of the
+  same logic, used by `push-send.mjs`. The client can't import it (no build
+  step), so **change one, change the other**; the shapes and resolution order
+  are the contract.
+
+**What's exact and what isn't.** `raw` comes straight from AniList and is
+always exact. `sub` is exact when there's override data, otherwise it falls back
+to the broadcast time flagged **estimated** (rendered with a `~`) for shows on a
+known simulcast platform. `dub` is *never* estimated — no data means no dub row,
+because an invented dub date is worse than none.
+
+### The maintainer console (`/admin/`)
+`site/admin/index.html` — noindex, `Disallow`ed in robots.txt, and useless
+without `ADMIN_SECRET` (which it keeps in `sessionStorage`, never in the URL,
+because URLs leak through history and `Referer`). It lists the reader-report
+queue and turns a report into a correction in one click: pick *exact time /
+delay / break / show-wide offset rule*, preview the JSON patch, apply. Applying
+writes the live store and marks the report `applied` in the same action.
+
+The datetime field self-seeds from `/api/v1/anime/{id}`, so a maintainer adjusts
+the real current value instead of typing one from memory.
+
+Without this the report intake was a suggestion box with no back wall — reports
+accumulated in a blob store nobody read.
+
+### Seed data and how it was measured
+The seed is **not** guesswork. Crunchyroll publishes its release calendar with
+machine-readable `<time datetime>` values carrying an explicit UTC offset; each
+`offsetMin` below is that published release time minus AniList's published
+broadcast time for the same episode.
+
+Measured 2026-08-04, and the spread is the whole argument for this feature:
+
+| Show | sub offset | dub offset |
+|---|---|---|
+| Young Ladies Don't Play Fighting Games | 0 | — |
+| Skeleton Knight in Another World S2 | 0 | 0 (same slot) |
+| Love Unseen Beneath the Clear Night Sky | +30 | — |
+| Oh Boy, Was I Wrong About Her | +30 | — |
+| Grand Blue Dreaming S3 | +30 | — |
+| A Livid Lady's Guide to Getting Even | +60 | — |
+| LIAR GAME | +60 | +20220 (2 weeks + 1h) |
+| The Insipid Prince's Furtive Grab for the Throne | +63 | — |
+
+**0 to 63 minutes.** The estimated-sub fallback (which assumes the simulcast
+lands with the broadcast) is therefore wrong for most shows — usually by half an
+hour, which is exactly long enough to make someone miss it. The 63 is not a typo:
+that broadcast starts at `:57` and Crunchyroll publishes on the hour.
+
+The one derived figure is LIAR GAME's dub, and it was checked rather than
+assumed: Crunchyroll listed dub ep16 at the same instant as subtitled ep18, and
+the broadcast cadence was confirmed at exactly 7 days across 17 episodes. The
+resolved output lands on 2026-08-03T16:00Z — the exact instant Crunchyroll lists.
+
+### Automated ingestion
+`scripts/ingest-crunchyroll.mjs`, run daily by
+`.github/workflows/ingest-crunchyroll.yml`, measures those offsets continuously
+instead of by hand.
+
+**Why Actions and not a scheduled function**: crunchyroll.com answers
+non-browser clients with `403`. A Netlify Function can't get past that and can't
+run a browser; Actions can, on the same free minutes that already build the SEO
+pages.
+
+**Why it costs no Netlify credits**: the commit only touches
+`data/derived-offsets.json` at the *repo root* — nothing under `site/`. The
+`ignore` rule in netlify.toml (`git diff --quiet … -- site`) exits 0 and Netlify
+cancels the build. Verified: a data-only commit exits 0, a `site/` commit exits
+1. Corrections reach users through `POST /api/overrides` — the blob store, no
+deploy. **git is the audit trail; the blob store is what serves.**
+
+Crunchyroll only publishes firm times a day or two ahead, so each run captures a
+slice and offsets accumulate. A show measured once stays measured.
+
+**What it refuses to do** — it writes to a store every visitor and every API
+consumer reads, so the guards matter more than the happy path:
+
+| Guard | Behaviour |
+|---|---|
+| Title match | Needs high confidence *and* a clear margin over the runner-up. A set-identical title bypasses the margin (unambiguous by definition) unless two titles are identical, which is refused outright. |
+| Episode placement | Extrapolates a dub's episode only from a cadence confirmed uniform; an irregular schedule is skipped, not guessed. |
+| Plausibility band | Sub −10 min…12 h, dub 0…120 days. Outside that it's likelier a mismatch than a real value — reported, never written. |
+| Disagreement | Two observations of the same show that conflict cancel each other out and get flagged for a human. |
+| `"pinned": true` | Never touched. The escape hatch for a human decision the scraper would otherwise keep reverting. |
+| Unchanged values | Skipped, so the store doesn't churn. |
+
+Every written rule carries `source` and `verifiedAt`, and cadence-derived
+figures say so in the source string.
+
+The run summary posts a table of what it derived plus a **"Needs a human"**
+section for conflicts and out-of-band values.
+
+```bash
+node scripts/ingest-crunchyroll.mjs --dry-run            # derive and print only
+node scripts/ingest-crunchyroll.mjs --rows rows.json     # skip the browser (tests)
+```
+
+**Setup**: add `ADMIN_SECRET` to the repo's Actions secrets, same value as the
+Netlify env var. Without it the job still derives and commits but publishes
+nothing, so a fork degrades quietly instead of failing.
+
+Verified against the hand-measured sample: the automated pipeline reproduces all
+ten offsets exactly, including LIAR GAME's cadence-derived dub. Its safety rails
+have 36 tests.
+
+**Other sources still open**: TMDB episode data via the existing
+`_lib/ingest-sources/tmdb.mjs` stub (also brings per-region watch providers), and
+reader reports through `/admin/`.
+
+**Two override layers**, merged in this order:
+1. `site/data/overrides.json` — committed, reviewable, cached, works offline.
+   Its `_readme` key documents the full schema. Permanent facts (a season's dub
+   cadence, a fixed simulcast offset) belong here.
+2. `/api/overrides` (`netlify/functions/overrides.mjs`, Netlify Blobs) — the
+   fast lane. A wrong time gets fixed in minutes instead of costing one of the
+   ~20 monthly deploys. One-off weekly delays can live here only.
+
+Both fail soft: with neither reachable the app behaves as it always did, plus
+the estimated simulcast row, and a cached copy covers an offline launch.
+
+```bash
+# a one-week delay, merged into whatever is already live
+curl -X POST "https://<site>/api/overrides?secret=$ADMIN_SECRET" \
+     -H 'Content-Type: application/json' \
+     -d '{"shows":{"170942":{"episodes":{"5":{"status":{"kind":"delay","shiftMin":10080,"reason":"Pre-empted"}}}}}}'
+
+# replace the whole document
+curl -X POST "https://<site>/api/overrides?secret=$ADMIN_SECRET&mode=replace" -d @overrides.json
+
+# read the reader-report queue
+curl "https://<site>/api/report?secret=$ADMIN_SECRET"
+```
+
+Set `ADMIN_SECRET` in **Netlify → Site configuration → Environment variables**
+(it falls back to `CRON_SECRET` if unset). Reports come in from the
+**⚠ Report a wrong time** button in every show's details
+(`netlify/functions/report.mjs`); they're length-capped and keyed by show +
+episode + a hash of the reporter's IP, so one person can't flood the queue.
+
+Episode alerts follow the same resolution: `push-subscribe.mjs` stores the
+subscriber's `airType`, and `push-send.mjs` alerts on that release — and never
+on an episode marked as a break.
+
+## Public API (`/api/v1`)
+`netlify/functions/api.mjs` serves a free, keyless, CORS-open read API; the docs
+live at `site/api/index.html` (`/api/`, hand-written and in the sitemap).
+
+The reason it exists rather than pointing people at AniList: **every response
+carries the release variants and the correction layer**. AniList has one time
+per episode, no dub dates and no way to express a pre-empted week — that gap is
+the entire product.
+
+| Endpoint | Returns |
+|---|---|
+| `GET /api/v1` | Service description + machine-readable endpoint list |
+| `GET /api/v1/schedule` | Corrected schedule for a window (`start`, `days`, `airType`, `platform`, `format`, `includeAdult`) |
+| `GET /api/v1/anime/<anilistId>` | One title, full variant schedule, break weeks, and its raw corrections record |
+| `GET /api/v1/seasons/<season>/<year>` | A season's lineup, each with `nextEpisode` resolved through the correction layer |
+| `GET /api/v1/overrides` | The raw correction document |
+
+**Cost control matters here more than politeness.** A `/schedule` request spans
+three seasons at up to three pages each — nine upstream calls — and AniList rate
+limits *us*, not the caller. So seasons are cached per instance for 10 minutes
+and shared across every request and parameter combination, concurrent misses are
+collapsed into one upstream fetch, and a stale copy is served in preference to a
+503 when AniList is down. Responses are CDN-cached for 5 minutes on top of that.
+The per-client 60/min limiter is a spike damper, not a quota — it resets on every
+cold start, by design.
+
+## AniList account sync (two-way)
+Two separate things, both in `site/index.html`:
+
+- **Public import** (unchanged): type a username, read their *public* list. No
+  sign-in, one direction.
+- **Connected sync** (new): OAuth **implicit grant**, so private entries come
+  across and local changes go back. The code flow was rejected deliberately — it
+  needs a client secret, a secret needs a server, and this app doesn't have one.
+  The token lives in the browser and reaches nothing but AniList.
+
+**Already configured** — `ANILIST_CLIENT_ID = "47767"` in `site/index.html`. The
+client id is public by design (it travels in the authorize URL on every sign-in),
+so it is committed like the VAPID public key; the implicit flow has no secret to
+protect. Left empty, the settings panel says so instead of half-working.
+
+**One thing must match**: the *Redirect URL* on the app registration at
+[anilist.co/settings/developer](https://anilist.co/settings/developer) has to be
+`https://tsuzuki.netlify.app` (or wherever the site actually lives). The code
+deliberately does **not** send a `redirect_uri` — AniList matches it exactly, so
+a trailing slash or a leftover query string turns sign-in into an error page.
+Omitting it makes AniList use the registered URL, which is the only one that can
+be right. Consequence worth knowing: signing in from a local dev server bounces
+you to the production site.
+
+Behaviour worth knowing before changing any of it:
+
+- **Pull is AniList-wins, push is local-wins.** Pull is an explicit button, so
+  rebuilding the local copy is the only non-surprising policy.
+- **Nothing is ever deleted remotely.** Un-starring a show, clearing a status or
+  clearing a score are local-only. Deleting someone's AniList entry — and its
+  score and progress with it — because they tidied a Tsuzuki board is not
+  recoverable.
+- **Private notes never sync.** Ratings do, because "sync my list" is understood
+  to include scores. Notes aren't.
+- **Scores go out as `scoreRaw`** (0–100), so the account's own scoring scale
+  doesn't matter.
+- **The push queue survives a reload** (`anical.al.queue`) and runs one write per
+  ~2.2s with 429 backoff. A permanent failure on one show drops that show rather
+  than wedging the queue.
+
 ## Embed widget — free backlinks
 `site/embed/` is a self-contained `<iframe>` widget showing the next few days of airing anime.
 It fetches AniList client-side (always live, no rebuild) and links back to the main site —

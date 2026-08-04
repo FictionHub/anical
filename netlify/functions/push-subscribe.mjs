@@ -2,7 +2,13 @@
 // ids and notify lead time, so push-send.mjs can later notify them about
 // upcoming episodes — even when Tsuzuki isn't open.
 //
-// POST /api/push/subscribe   { subscription, mediaIds: ["123", ...], lead: 10 }
+// POST /api/push/subscribe
+//   { subscription, mediaIds: ["123", ...], lead: 10, airType: "sub" }
+//
+// airType is which release the subscriber is actually waiting for — the JP
+// broadcast ("raw"), the simulcast ("sub", the default) or the dub. push-send
+// resolves it against the schedule-override layer so a dub follower is alerted
+// for the dub drop and not for a broadcast they can't watch.
 import { getStore } from "@netlify/blobs";
 import { keyFor } from "./_lib/subs.mjs";
 
@@ -12,7 +18,7 @@ export default async (req) => {
   let body;
   try { body = await req.json(); } catch { return new Response("Bad JSON", { status: 400 }); }
 
-  const { subscription, mediaIds, lead } = body || {};
+  const { subscription, mediaIds, lead, airType } = body || {};
   if (!subscription || !subscription.endpoint || !subscription.keys) {
     return new Response("Missing subscription", { status: 400 });
   }
@@ -26,6 +32,7 @@ export default async (req) => {
     subscription,
     mediaIds: ids,
     lead: Math.min(Math.max(+lead || 10, 1), 120),
+    airType: ["raw", "sub", "dub"].includes(airType) ? airType : "sub",
     sent: (existing && existing.sent) || [],
     updatedAt: Date.now(),
   });

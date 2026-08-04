@@ -10,7 +10,11 @@ import { readFile, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
-const MAJOR_MINOR = "2.5";
+// Bump this by hand when a release earns it, and keep it equal to the `v:` of
+// the newest CHANGELOG entry in site/index.html — the footer build number and
+// the "What's new" heading are the same version to a reader, and they had
+// silently drifted apart (2.5.x stamped under a v2.8 changelog) before 3.0.
+const MAJOR_MINOR = "3.0";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const INDEX = join(__dirname, "..", "site", "index.html");
 
