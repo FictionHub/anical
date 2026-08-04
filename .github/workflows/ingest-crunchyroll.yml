@@ -51,11 +51,14 @@ jobs:
         with:
           node-version: "20"
 
-      # --no-save deliberately: this repo has no root package.json, and adding
-      # one would make Netlify think the site needs a build step.
+      # Playwright is a CI-only dependency: it is never imported by the site or
+      # the functions, so it stays out of package.json. --no-save and
+      # --no-package-lock keep the install from editing either manifest, which
+      # matters because the commit step below pushes — an incidentally-modified
+      # lockfile must not ride along with the audit trail.
       - name: Install Playwright
         run: |
-          npm install --no-save playwright@^1.49
+          npm install --no-save --no-package-lock playwright@^1.49
           npx playwright install --with-deps chromium
 
       - name: Derive offsets

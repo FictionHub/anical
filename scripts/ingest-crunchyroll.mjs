@@ -301,6 +301,27 @@ async function main() {
   const rowsFile = opt("--rows");
   const outFile = opt("--out") || OUT_DEFAULT;
 
+  // Preflight the write path BEFORE spending five minutes in a browser. A
+  // wrong secret or a down site used to surface as a throw at the very end,
+  // after the summary had already been written — which reads like "the ingest
+  // worked but the job failed" and is the hardest kind of failure to diagnose.
+  // An empty patch is a valid no-op write, so this costs nothing but proves
+  // both reachability and authorisation.
+  if (!dryRun && process.env.ADMIN_SECRET) {
+    const r = await fetch(`${SITE}/api/overrides`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "x-tsuzuki-secret": process.env.ADMIN_SECRET },
+      body: JSON.stringify({ shows: {} }),
+    }).catch(e => { throw new Error(`Preflight: cannot reach ${SITE} — ${e.message}`); });
+    if (r.status === 403) {
+      throw new Error(`Preflight: ${SITE} rejected the secret (403). The ADMIN_SECRET in this repo's Actions secrets must match the ADMIN_SECRET environment variable on Netlify.`);
+    }
+    if (!r.ok) {
+      throw new Error(`Preflight: ${SITE}/api/overrides returned ${r.status}. ${(await r.text().catch(() => "")).slice(0, 200)}`);
+    }
+    console.log("Preflight OK — the live store is reachable and the secret is accepted.");
+  }
+
   const rows = rowsFile
     ? JSON.parse(await readFile(rowsFile, "utf8"))
     : await scrapeCalendar();
@@ -350,8 +371,15 @@ async function main() {
     headers: { "Content-Type": "application/json", "x-tsuzuki-secret": secret },
     body: JSON.stringify(patch),
   });
-  const body = await res.json().catch(() => ({}));
-  if (!res.ok || body.ok === false) throw new Error(`Publish failed: ${res.status} ${body.error || ""}`);
+  // Read the body as text first: a 5xx from the platform is an HTML error page,
+  // and parsing it as JSON silently swallowed the only evidence of what went
+  // wrong, leaving a bare "Publish failed: 502".
+  const raw = await res.text();
+  let body = {};
+  try { body = JSON.parse(raw); } catch { /* not JSON — the raw text is the message */ }
+  if (!res.ok || body.ok === false) {
+    throw new Error(`Publish failed: ${res.status} ${body.error || raw.slice(0, 300) || "(empty response)"}`);
+  }
   console.log(`Published: ${body.shows} shows now in the live store.`);
 }
 
