@@ -15,17 +15,27 @@ name: Ingest simulcast & dub offsets
 # Corrections reach users through POST /api/overrides instead, which is the blob
 # store and needs no deploy at all.
 #
-# WHY DAILY
-# Crunchyroll only publishes firm times a day or two ahead, so each run captures
-# a fresh slice. Offsets accumulate; a show measured once stays measured.
+# THE DAILY SCHEDULE IS OFF, AND THE SCRAPE HERE CANNOT WORK
+# Crunchyroll sits behind a Cloudflare challenge that answers headless Chromium
+# with "Just a moment..." and a 267-character body. Verified from a GitHub
+# runner AND from a residential connection, twice each — so it is headless
+# detection, not IP reputation, and no timeout or retry fixes it. Passing that
+# check means faking what it measures, which this project does not do.
+#
+# The working path is scripts/capture-rows.mjs: capture the calendar by hand in
+# a real browser, then feed it to the same script with --rows. Everything after
+# the fetch — AniList matching, offset derivation, validation, publishing — is
+# unchanged and still automated.
+#
+# The job is kept, on workflow_dispatch only, because everything except the
+# fetch is sound: point it at a self-hosted runner on a real desktop session and
+# it works as written. Re-enable the cron only alongside such a runner.
 #
 # SETUP: add ADMIN_SECRET to the repo's Actions secrets (same value as the
 # Netlify env var). Without it the job still derives and commits, but publishes
 # nothing — so a fork or a misconfigured repo degrades quietly instead of failing.
 
 on:
-  schedule:
-    - cron: "40 6 * * *" # 06:40 UTC daily
   workflow_dispatch:
     inputs:
       dry_run:

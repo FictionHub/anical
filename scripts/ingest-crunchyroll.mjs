@@ -42,6 +42,22 @@ import { fileURLToPath } from "node:url";
 
 const APP_DIR = dirname(fileURLToPath(import.meta.url));
 const REPO = join(APP_DIR, "..");
+
+// Read .env for local runs. Since the scrape has to happen on a real machine
+// rather than in CI, the secret has to come from somewhere other than Actions
+// secrets — and a gitignored .env beats typing it into a shell (or a scheduled
+// task's arguments, where it would sit in plain text in the task definition).
+// Anything already in the environment wins, so CI is unaffected.
+try {
+  const env = await readFile(join(REPO, ".env"), "utf8");
+  for (const line of env.split("\n")) {
+    const m = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*?)\s*$/);
+    if (m && m[2] && process.env[m[1]] === undefined) {
+      process.env[m[1]] = m[2].replace(/^["']|["']$/g, "");
+    }
+  }
+} catch { /* no .env — CI supplies the environment directly */ }
+
 const SITE = process.env.SITE_URL || "https://tsuzuki.netlify.app";
 const CALENDAR = "https://www.crunchyroll.com/simulcastcalendar";
 const OUT_DEFAULT = join(REPO, "data", "derived-offsets.json");
@@ -236,6 +252,51 @@ export function buildPatch(findings, existingShows = {}) {
   return { patch: { shows }, pinned };
 }
 
+/* ---------------- row extraction ----------------
+   Runs inside the page, so it must be self-contained: no imports, no closure
+   over module scope. Exported because it is the single source of truth for two
+   callers — the Playwright scrape below, and the devtools snippet printed by
+   scripts/capture-rows.mjs. Keeping one copy is the point; the two paths
+   drifting apart would silently change what the offsets mean.
+
+   Crunchyroll geo-redirects by IP, so the page language is not ours to choose:
+   a German visitor gets "Folge 5", a French one "Épisode 5". The episode label
+   is therefore matched against a word list, with a positional fallback, rather
+   than assuming English. Language SUFFIXES stay untouched — parseLang already
+   knows "(Englisch)" as well as "(English Dub)". */
+export function extractRows() {
+  const EP_WORDS = /\b(?:episode|episodio|épisode|episódio|folge|odcinek|エピソード|第)\s*#?\s*(\d+)/i;
+  const out = new Set();
+  document.querySelectorAll("time.available-time").forEach(t => {
+    const scope = t.closest("article") || t.parentElement?.parentElement;
+    if (!scope) return;
+    const timeText = (t.textContent || "").trim();
+    const lines = (scope.innerText || "").split("\n").map(s => s.trim()).filter(Boolean);
+
+    let ep = null;
+    let epLineIdx = -1;
+    lines.forEach((l, i) => {
+      const m = l.match(EP_WORDS);
+      if (m && ep === null) { ep = +m[1]; epLineIdx = i; }
+    });
+    // Fallback for locales the word list doesn't cover: a short line that is
+    // mostly a bare number, and isn't the timestamp.
+    if (ep === null) {
+      lines.forEach((l, i) => {
+        if (ep !== null || l === timeText) return;
+        const m = l.match(/^\D{0,12}(\d{1,4})\D{0,3}$/);
+        if (m) { ep = +m[1]; epLineIdx = i; }
+      });
+    }
+
+    const titleLine = lines.find((l, i) => l !== timeText && i !== epLineIdx) || "";
+    const iso = t.getAttribute("datetime");
+    if (!iso || !titleLine) return;
+    out.add(JSON.stringify({ iso, ep, title: titleLine }));
+  });
+  return [...out].map(s => JSON.parse(s));
+}
+
 /* ---------------- scraping (the only impure part) ---------------- */
 async function scrapeCalendar() {
   let chromium;
@@ -276,21 +337,7 @@ async function scrapeCalendar() {
         `DOM counts: ${JSON.stringify(counts)} | original: ${e.message.split("\n")[0]}`
       );
     }
-    return await page.evaluate(() => {
-      const out = new Set();
-      document.querySelectorAll("time.available-time").forEach(t => {
-        const scope = t.closest("article") || t.parentElement?.parentElement;
-        if (!scope) return;
-        const lines = (scope.innerText || "").split("\n").map(s => s.trim()).filter(Boolean);
-        const titleLine = lines.find(l => l !== t.textContent.trim() && !/episode/i.test(l)) || "";
-        const epLine = lines.find(l => /episode/i.test(l)) || "";
-        const ep = (epLine.match(/(\d+)/) || [])[1];
-        const iso = t.getAttribute("datetime");
-        if (!iso || !titleLine) return;
-        out.add(JSON.stringify({ iso, ep: ep ? +ep : null, title: titleLine }));
-      });
-      return [...out].map(s => JSON.parse(s));
-    });
+    return await page.evaluate(extractRows);
   } finally { await browser.close(); }
 }
 

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-04T13:11:26.457Z",
+  "generatedAt": "2026-08-04T21:59:52.116Z",
   "source": "https://www.crunchyroll.com/simulcastcalendar",
   "note": "Machine-derived. Audit trail only — the live store at /api/overrides is what serves. Lives outside site/ so committing it costs no Netlify deploy.",
   "findings": [
@@ -91,9 +91,9 @@
       "mediaId": 197754,
       "title": "LIAR GAME",
       "crTitle": "LIAR GAME STAFFEL 1",
-      "kind": "sub",
-      "episode": 18,
-      "offsetMin": 60,
+      "kind": "dub",
+      "episode": 16,
+      "offsetMin": 20220,
       "cadenceDerived": false,
       "confidence": 1,
       "observedAt": "2026-08-03T09:00:00-07:00",
@@ -103,9 +103,9 @@
       "mediaId": 197754,
       "title": "LIAR GAME",
       "crTitle": "LIAR GAME STAFFEL 1",
-      "kind": "dub",
-      "episode": 16,
-      "offsetMin": 20220,
+      "kind": "sub",
+      "episode": 18,
+      "offsetMin": 60,
       "cadenceDerived": false,
       "confidence": 1,
       "observedAt": "2026-08-03T09:00:00-07:00",
@@ -121,6 +121,54 @@
       "cadenceDerived": false,
       "confidence": 1,
       "observedAt": "2026-08-04T04:30:00-07:00",
+      "observations": 1
+    },
+    {
+      "mediaId": 187260,
+      "title": "I Want to Love You Till Your Dying Day",
+      "crTitle": "I WANT TO LOVE YOU TILL YOUR DYING DAY STAFFEL 1",
+      "kind": "sub",
+      "episode": 5,
+      "offsetMin": 0,
+      "cadenceDerived": false,
+      "confidence": 1,
+      "observedAt": "2026-08-04T05:30:00-07:00",
+      "observations": 1
+    },
+    {
+      "mediaId": 196219,
+      "title": "The Oblivious Saint Can't Contain Her Power",
+      "crTitle": "THE OBLIVIOUS SAINT CAN'T CONTAIN HER POWER SEASON 1",
+      "kind": "sub",
+      "episode": 6,
+      "offsetMin": 30,
+      "cadenceDerived": false,
+      "confidence": 1,
+      "observedAt": "2026-08-04T06:30:00-07:00",
+      "observations": 1
+    },
+    {
+      "mediaId": 198709,
+      "title": "Victoria of Many Faces",
+      "crTitle": "VICTORIA OF MANY FACES STAFFEL 1",
+      "kind": "sub",
+      "episode": 5,
+      "offsetMin": 0,
+      "cadenceDerived": false,
+      "confidence": 1,
+      "observedAt": "2026-08-04T08:00:00-07:00",
+      "observations": 1
+    },
+    {
+      "mediaId": 207809,
+      "title": "Red River",
+      "crTitle": "RED RIVER STAFFEL 1",
+      "kind": "sub",
+      "episode": 5,
+      "offsetMin": 55,
+      "cadenceDerived": false,
+      "confidence": 1,
+      "observedAt": "2026-08-04T10:30:00-07:00",
       "observations": 1
     }
   ],
@@ -144,6 +192,36 @@
       "why": "ignored language: ไทย"
     },
     {
+      "iso": "2026-08-03T09:00:00-07:00",
+      "ep": 15,
+      "title": "LIAR GAME STAFFEL 1 (ไทย)",
+      "why": "ignored language: ไทย"
+    },
+    {
+      "iso": "2026-08-03T09:00:00-07:00",
+      "ep": 15,
+      "title": "LIAR GAME STAFFEL 1 (தமிழ்)",
+      "why": "ignored language: தமிழ்"
+    },
+    {
+      "iso": "2026-08-03T09:00:00-07:00",
+      "ep": 15,
+      "title": "LIAR GAME STAFFEL 1 (हिंदी)",
+      "why": "ignored language: हिंदी"
+    },
+    {
+      "iso": "2026-08-03T09:00:00-07:00",
+      "ep": 15,
+      "title": "LIAR GAME STAFFEL 1 (తెలుగు)",
+      "why": "ignored language: తెలుగు"
+    },
+    {
+      "iso": "2026-08-03T09:00:00-07:00",
+      "ep": 15,
+      "title": "LIAR GAME STAFFEL 1 (BAHASA INDONESIA)",
+      "why": "ignored language: BAHASA INDONESIA"
+    },
+    {
       "iso": "2026-08-03T21:00:00-07:00",
       "ep": 13,
       "title": "CROWNED IN A HUNDRED DAYS STAFFEL 1 (中文 (普通话))",
@@ -154,6 +232,30 @@
       "ep": 2,
       "title": "YOUNG LADIES DON'T PLAY FIGHTING GAMES STAFFEL 1 (ไทย)",
       "why": "ignored language: ไทย"
+    },
+    {
+      "iso": "2026-08-04T06:30:00-07:00",
+      "ep": 3,
+      "title": "THE OBLIVIOUS SAINT CAN'T CONTAIN HER POWER SEASON 1 (ไทย)",
+      "why": "ignored language: ไทย"
+    },
+    {
+      "iso": "2026-08-04T08:00:00-07:00",
+      "ep": 13,
+      "title": "OSHI NO KO SEASON 2 (PORTUGUÊS (BRASIL))",
+      "why": "no confident AniList match"
+    },
+    {
+      "iso": "2026-08-04T08:00:00-07:00",
+      "ep": 13,
+      "title": "OSHI NO KO SEASON 2 (ESPAÑOL (AMÉRICA LATINA))",
+      "why": "no confident AniList match"
+    },
+    {
+      "iso": "2026-08-04T08:00:00-07:00",
+      "ep": 17,
+      "title": "YOROI-SHINDEN SAMURAI TROOPERS STAFFEL 1",
+      "why": "offset -120930min outside the plausible sub band — likely a mismatch"
     }
   ]
 }
