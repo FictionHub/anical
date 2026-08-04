@@ -2,13 +2,22 @@ name: Refresh SEO pages & events
 
 # Regenerates the static SEO landing pages (/today/, /<season>-<year>/) +
 # sitemap.xml from AniList, AND the Events page data (site/events.json, scraped
-# from AnimeCons.com), then commits them. The commit triggers a normal Netlify
-# STATIC deploy (no Netlify build command -> no build credits consumed). All the
-# work runs here on GitHub Actions' own free minutes.
+# from AnimeCons.com), then commits them. The work here runs on GitHub Actions'
+# own free minutes (unlimited on a public repo) — but the commit it pushes
+# triggers a Netlify deploy, and THAT is metered.
+#
+# COST: ~15 Netlify credits per deploy, 300 credits/month on the free tier
+# => a hard ceiling of ~20 deploys/month across the WHOLE site, shared with
+# feature ships and hotfixes. Deploys bill per push, not per commit.
+#
+# Hence weekly, not hourly: this job is for Google's crawler, and the app
+# itself reads AniList live client-side, so real users see fresh data
+# regardless of how often this runs. Raising the frequency here spends the
+# budget you need for shipping features.
 
 on:
   schedule:
-    - cron: "5 * * * *" # hourly, offset off :00 so it doesn't stack on AniList alongside push-send (*/15) and ingest (0 */6 * * *)
+    - cron: "30 8 * * 1" # 08:30 UTC Mondays (~4-5 deploys/month)
   workflow_dispatch: {}
 
 permissions:

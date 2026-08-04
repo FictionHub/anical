@@ -1,5 +1,10 @@
 # The website lives in /site and is served as PURE STATIC files — there is no
-# build step, so deploys don't consume Netlify build credits.
+# build step. That makes deploys FAST, but NOT free: every deploy costs ~15
+# Netlify credits regardless of whether a build command runs. At 300 credits/
+# month on the free tier that is a hard ceiling of ~20 deploys/month, shared
+# between content refreshes, feature ships and hotfixes. Deploys are billed per
+# PUSH, not per commit — so batching several commits into one push is the
+# cheapest way to ship.
 #
 # The SEO landing pages (/today/, /<season>-<year>/) and sitemap.xml are
 # generated and committed by GitHub Actions (.github/workflows/refresh-pages.yml,
@@ -7,6 +12,11 @@
 # uploads whatever is in /site.
 [build]
   publish = "site"
+  # Skip the deploy entirely when a push didn't touch /site — docs, workflow
+  # edits and bot scripts change nothing users can see, so they shouldn't cost
+  # a deploy. Netlify cancels the build when this command exits 0, and
+  # `git diff --quiet` exits 0 precisely when /site is unchanged.
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- site"
 
 [functions]
   directory = "netlify/functions"
