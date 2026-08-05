@@ -22,12 +22,12 @@
   {
     "iso": "2026-08-03T06:00:00-07:00",
     "ep": 5,
-    "title": "SKELETON KNIGHT IN ANOTHER WORLD STAFFEL 2 (DEUTSCH)"
+    "title": "SKELETON KNIGHT IN ANOTHER WORLD STAFFEL 2 (ENGLISH)"
   },
   {
     "iso": "2026-08-03T06:00:00-07:00",
     "ep": 5,
-    "title": "SKELETON KNIGHT IN ANOTHER WORLD STAFFEL 2 (ENGLISH)"
+    "title": "SKELETON KNIGHT IN ANOTHER WORLD STAFFEL 2 (DEUTSCH)"
   },
   {
     "iso": "2026-08-03T07:30:00-07:00",
@@ -162,31 +162,6 @@
   {
     "iso": "2026-08-05T05:00:00-07:00",
     "ep": 5,
-    "title": "CLEVATESS STAFFEL 2 (தமிழ்)"
-  },
-  {
-    "iso": "2026-08-05T05:00:00-07:00",
-    "ep": 5,
-    "title": "CLEVATESS STAFFEL 2 (हिंदी)"
-  },
-  {
-    "iso": "2026-08-05T05:00:00-07:00",
-    "ep": 5,
-    "title": "CLEVATESS STAFFEL 2 (العربية)"
-  },
-  {
-    "iso": "2026-08-05T05:00:00-07:00",
-    "ep": 5,
-    "title": "CLEVATESS STAFFEL 2 (తెలుగు)"
-  },
-  {
-    "iso": "2026-08-05T05:00:00-07:00",
-    "ep": 5,
-    "title": "CLEVATESS STAFFEL 2 (ENGLISH)"
-  },
-  {
-    "iso": "2026-08-05T05:00:00-07:00",
-    "ep": 5,
     "title": "CLEVATESS STAFFEL 2 (ESPAÑOL (AMÉRICA LATINA))"
   },
   {
@@ -197,22 +172,42 @@
   {
     "iso": "2026-08-05T05:00:00-07:00",
     "ep": 5,
+    "title": "CLEVATESS STAFFEL 2"
+  },
+  {
+    "iso": "2026-08-05T05:00:00-07:00",
+    "ep": 5,
+    "title": "CLEVATESS STAFFEL 2 (తెలుగు)"
+  },
+  {
+    "iso": "2026-08-05T05:00:00-07:00",
+    "ep": 5,
     "title": "CLEVATESS STAFFEL 2 (FRANÇAIS)"
   },
   {
     "iso": "2026-08-05T05:00:00-07:00",
     "ep": 5,
-    "title": "CLEVATESS STAFFEL 2"
+    "title": "CLEVATESS STAFFEL 2 (ENGLISH)"
+  },
+  {
+    "iso": "2026-08-05T05:00:00-07:00",
+    "ep": 5,
+    "title": "CLEVATESS STAFFEL 2 (العربية)"
+  },
+  {
+    "iso": "2026-08-05T05:00:00-07:00",
+    "ep": 5,
+    "title": "CLEVATESS STAFFEL 2 (हिंदी)"
+  },
+  {
+    "iso": "2026-08-05T05:00:00-07:00",
+    "ep": 5,
+    "title": "CLEVATESS STAFFEL 2 (தமிழ்)"
   },
   {
     "iso": "2026-08-05T06:00:00-07:00",
     "ep": 13,
     "title": "FIRE FORCE STAFFEL 3 (ESPAÑOL (ESPAÑA))"
-  },
-  {
-    "iso": "2026-08-05T06:30:00-07:00",
-    "ep": 2,
-    "title": "SAGA OF TANYA THE EVIL STAFFEL 2 (ESPAÑOL (AMÉRICA LATINA))"
   },
   {
     "iso": "2026-08-05T06:30:00-07:00",
@@ -223,6 +218,11 @@
     "iso": "2026-08-05T06:30:00-07:00",
     "ep": 2,
     "title": "SAGA OF TANYA THE EVIL STAFFEL 2 (PORTUGUÊS (BRASIL))"
+  },
+  {
+    "iso": "2026-08-05T06:30:00-07:00",
+    "ep": 2,
+    "title": "SAGA OF TANYA THE EVIL STAFFEL 2 (ESPAÑOL (AMÉRICA LATINA))"
   },
   {
     "iso": "2026-08-05T06:30:00-07:00",
@@ -262,12 +262,12 @@
   {
     "iso": "2026-08-05T08:30:00-07:00",
     "ep": 2,
-    "title": "TRAPPED IN A DATING SIM: THE WORLD OF OTOME GAMES IS TOUGH FOR MOBS STAFFEL 2 (हिंदी)"
+    "title": "TRAPPED IN A DATING SIM: THE WORLD OF OTOME GAMES IS TOUGH FOR MOBS STAFFEL 2 (PORTUGUÊS (BRASIL))"
   },
   {
     "iso": "2026-08-05T08:30:00-07:00",
     "ep": 2,
-    "title": "TRAPPED IN A DATING SIM: THE WORLD OF OTOME GAMES IS TOUGH FOR MOBS STAFFEL 2 (PORTUGUÊS (BRASIL))"
+    "title": "TRAPPED IN A DATING SIM: THE WORLD OF OTOME GAMES IS TOUGH FOR MOBS STAFFEL 2 (हिंदी)"
   },
   {
     "iso": "2026-08-05T08:30:00-07:00",
@@ -318,5 +318,55 @@
     "iso": "2026-08-05T09:00:00-07:00",
     "ep": 7,
     "title": "HANA-KIMI STAFFEL 2"
+  },
+  {
+    "iso": "2026-08-05T10:15:00-07:00",
+    "ep": 3,
+    "title": "TOMB RAIDER KING STAFFEL 1 (ENGLISH)"
+  },
+  {
+    "iso": "2026-08-05T10:15:00-07:00",
+    "ep": 5,
+    "title": "TOMB RAIDER KING STAFFEL 1 (한국어)"
+  },
+  {
+    "iso": "2026-08-05T10:15:00-07:00",
+    "ep": 5,
+    "title": "TOMB RAIDER KING STAFFEL 1"
+  },
+  {
+    "iso": "2026-08-05T10:20:00-07:00",
+    "ep": 2,
+    "title": "TOMB RAIDER KING STAFFEL 1 (తెలుగు)"
+  },
+  {
+    "iso": "2026-08-05T10:20:00-07:00",
+    "ep": 2,
+    "title": "TOMB RAIDER KING STAFFEL 1 (हिंदी)"
+  },
+  {
+    "iso": "2026-08-05T10:20:00-07:00",
+    "ep": 2,
+    "title": "TOMB RAIDER KING STAFFEL 1 (ESPAÑOL (AMÉRICA LATINA))"
+  },
+  {
+    "iso": "2026-08-05T10:20:00-07:00",
+    "ep": 2,
+    "title": "TOMB RAIDER KING STAFFEL 1 (FRANÇAIS)"
+  },
+  {
+    "iso": "2026-08-05T10:20:00-07:00",
+    "ep": 2,
+    "title": "TOMB RAIDER KING STAFFEL 1 (DEUTSCH)"
+  },
+  {
+    "iso": "2026-08-05T10:20:00-07:00",
+    "ep": 2,
+    "title": "TOMB RAIDER KING STAFFEL 1 (PORTUGUÊS (BRASIL))"
+  },
+  {
+    "iso": "2026-08-05T10:20:00-07:00",
+    "ep": 2,
+    "title": "TOMB RAIDER KING STAFFEL 1 (தமிழ்)"
   }
 ]
