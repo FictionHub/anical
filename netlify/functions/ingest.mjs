@@ -38,6 +38,8 @@ import {
   putSeason, putSeasonless, getSeasonless, fetchSeasonlessFromAniList,
   catalogHealth, seasonOf, shiftSeason, SEASONS,
 } from "./_lib/catalog.mjs";
+import { deriveOffset, buildRegionPatch, groupKey } from "./_lib/observations.mjs";
+import { mergeOverrides, validateOverrides, OVERRIDES_VERSION } from "./_lib/schedule-overrides.mjs";
 
 export const config = { schedule: "0 */2 * * *" };   // every 2 hours, one season each
 
@@ -170,6 +172,57 @@ export default async (req) => {
   } catch (err) {
     log.sources.seasonless = { ok: false, error: String((err && err.message) || err) };
     console.error("ingest: seasonless failed", err);
+  }
+
+  // Reader observations -> per-region offsets. The one source nobody else can
+  // copy: viewers reporting when an episode actually appeared where they are.
+  // See _lib/observations.mjs for why this exists and what stops it being a
+  // vandalism surface.
+  try {
+    const obsStore = getStore("release-observations");
+    const { blobs } = await obsStore.list();
+    const groups = new Map();
+    for (const b of blobs) {
+      const o = await obsStore.get(b.key, { type: "json" }).catch(() => null);
+      if (!o || !o.mediaId) continue;
+      const k = groupKey(o.mediaId, o.airType, o.region);
+      if (!groups.has(k)) groups.set(k, []);
+      groups.get(k).push(o);
+    }
+
+    const derivations = [];
+    for (const [k, list] of groups) {
+      const [mediaId, airType, region] = k.split("|");
+      derivations.push({ mediaId, airType, region, result: deriveOffset(list) });
+    }
+
+    const overridesStore = getStore("schedule-overrides");
+    const live = await overridesStore.get("live", { type: "json" }).catch(() => null);
+    const { patch, skipped } = buildRegionPatch(derivations, (live && live.shows) || {});
+    const changed = Object.keys(patch.shows).length;
+
+    if (changed) {
+      const next = mergeOverrides(live || { version: OVERRIDES_VERSION, shows: {} }, patch);
+      const problem = validateOverrides(next);
+      if (problem) throw new Error(`refusing to write an invalid overrides document — ${problem}`);
+      next.version = OVERRIDES_VERSION;
+      next.updatedAt = new Date().toISOString();
+      await overridesStore.setJSON("live", next);
+    }
+
+    log.sources.observations = {
+      ok: true,
+      groups: groups.size,
+      published: changed,
+      // Surfaced deliberately: a group stuck at "conflicting" is the signal that
+      // a region genuinely staggers its release, or that someone is gaming it.
+      pending: derivations.filter(d => d.result.status === "pending").length,
+      conflicting: derivations.filter(d => d.result.status === "conflicting").map(d => `${d.mediaId} ${d.airType} ${d.region}`),
+      skipped: skipped.length,
+    };
+  } catch (err) {
+    log.sources.observations = { ok: false, error: String((err && err.message) || err) };
+    console.error("ingest: observations failed", err);
   }
 
   // Stub sources: run each, record whatever they return, never fail the whole

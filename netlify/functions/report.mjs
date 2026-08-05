@@ -14,9 +14,27 @@
 // report instead of growing the queue.
 import { getStore } from "@netlify/blobs";
 import { createHash } from "node:crypto";
+import { getMediaById } from "./_lib/catalog.mjs";
+import { observationKey, inBand } from "./_lib/observations.mjs";
 
 const MAX_BODY = 4000;
-const KINDS = ["wrong-time", "delay", "missing", "wrong-episode", "dub-time", "other"];
+// "released" is not a complaint — it is a measurement. A viewer tapping "it's
+// out now" is the only source we have for when an episode actually lands in
+// their region, so it is stored separately from the report queue and never
+// reaches a maintainer's inbox. See _lib/observations.mjs.
+const KINDS = ["wrong-time", "delay", "missing", "wrong-episode", "dub-time", "released", "other"];
+
+// Netlify Functions v2 hands geo in the second argument, resolved at the edge —
+// no lookup, no dependency, no extra latency. A client may state a region
+// instead (VPN, travelling, or someone who set it by hand); an explicit choice
+// beats an inferred one.
+function regionOf(req, context, body) {
+  const claimed = String((body && body.region) || "").toUpperCase();
+  if (/^[A-Z]{2}$/.test(claimed)) return claimed;
+  const geo = (context && context.geo) || {};
+  const code = (geo.country && geo.country.code) || "";
+  return /^[A-Z]{2}$/.test(code) ? code : null;
+}
 
 const json = (body, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { "Content-Type": "application/json" } });
@@ -37,7 +55,7 @@ function isAdmin(req) {
   return given === secret;
 }
 
-export default async (req) => {
+export default async (req, context) => {
   const store = getStore("schedule-reports");
 
   if (req.method === "GET") {
@@ -102,6 +120,40 @@ export default async (req) => {
 
   const episode = Number.isFinite(+body.episode) ? Math.max(0, Math.min(9999, +body.episode | 0)) : 0;
   const kind = KINDS.includes(body.kind) ? body.kind : "other";
+
+  // A release observation takes a different path: no free text, no maintainer
+  // queue, and the offset is computed here rather than accepted from the
+  // client — a browser clock is not evidence, and neither is a number a caller
+  // can choose. The only thing taken on trust is *that* it arrived, now.
+  if (kind === "released") {
+    const region = regionOf(req, context, body);
+    if (!region) return json({ ok: false, error: "Could not determine your region" }, 400);
+    const airType = ["raw", "sub", "dub"].includes(body.airType) ? body.airType : "sub";
+    if (!episode) return json({ ok: false, error: "episode is required" }, 400);
+
+    const md = await getMediaById(mediaId).catch(() => null);
+    const node = md && ((md.airingSchedule && md.airingSchedule.nodes) || []).find(n => n.episode === episode);
+    if (!node) return json({ ok: false, error: "No broadcast time known for that episode" }, 400);
+
+    // Server receipt time, not a client timestamp. Someone tapping late skews
+    // their own vote high, which the agreement check and the median absorb;
+    // someone forging a timestamp would not be absorbed at all.
+    const observedAt = Math.floor(Date.now() / 1000);
+    const offsetMin = Math.round((observedAt - node.airingAt) / 60);
+    if (!inBand(airType, offsetMin)) {
+      return json({ ok: false, error: "That is too far from the broadcast to be this episode's release", offsetMin }, 422);
+    }
+
+    const obs = getStore("release-observations");
+    const reporter = reporterHash(req);
+    await obs.setJSON(observationKey(mediaId, episode, airType, region, reporter), {
+      mediaId, episode, airType, region, reporter,
+      offsetMin, observedAt, broadcastAt: node.airingAt,
+      createdAt: Date.now(),
+    });
+    return json({ ok: true, recorded: true, region, offsetMin });
+  }
+
   const detail = clip(body.detail, 1000).trim();
   if (!detail) return json({ ok: false, error: "Tell us what's wrong" }, 400);
 

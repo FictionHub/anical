@@ -368,8 +368,23 @@ cancels the build. Verified: a data-only commit exits 0, a `site/` commit exits
 1. Corrections reach users through `POST /api/overrides` — the blob store, no
 deploy. **git is the audit trail; the blob store is what serves.**
 
-Crunchyroll only publishes firm times a day or two ahead, so each run captures a
-slice and offsets accumulate. A show measured once stays measured.
+**A capture only ever contains releases that have already happened.** This was
+written the other way round — "Crunchyroll publishes firm times a day or two
+ahead" — and that is wrong in the way that matters. Verified 2026-08-05: a
+capture taken at 16:11Z contained nothing dated after 16:00Z, so an episode due
+at 16:15Z was simply absent, and the ingest could not measure it however many
+times it was re-run. The calendar exposes the past, not the schedule.
+
+The consequence is a timing rule: **capture *after* the slot you care about, not
+before.** Each run still captures a slice and offsets accumulate, and a show
+measured once stays measured — but a show whose episode has not aired yet cannot
+be measured at all. `--rows` now prints the window a capture covers and how old
+its newest row is, so "the show isn't on the calendar" stops looking identical to
+"you captured too early".
+
+This limit is also the argument for the observation network below: the moment a
+release is worth measuring is the moment it lands, and there is always someone
+watching who knows.
 
 **What it refuses to do** — it writes to a store every visitor and every API
 consumer reads, so the guards matter more than the happy path:
@@ -405,6 +420,57 @@ have 36 tests.
 **Other sources still open**: TMDB episode data via the existing
 `_lib/ingest-sources/tmdb.mjs` stub (also brings per-region watch providers), and
 reader reports through `/admin/`.
+
+## Release observations — per-region times, measured by the people watching
+An offset is not one number. The Japanese broadcast is global; the time a viewer
+actually gets the episode differs by region, and no source we can reach publishes
+that. The Crunchyroll calendar has it and is region-localised — a German capture
+comes back full of `STAFFEL` — but it is behind a bot challenge, and it only
+shows the past. Their private API (`beta-api.crunchyroll.com`) answers a plain
+server request with a real `401` rather than a challenge, so it is reachable, but
+the only way in is a client credential that is not ours to hold. A competitor's
+API would just relocate the dependency.
+
+So the source is the audience. `POST /api/report` with `kind: "released"` records
+that an episode has appeared, tagged with the reporter's country from Netlify's
+edge geo (`context.geo`), and the offset is computed **server-side** from the
+known broadcast time — a browser clock is not evidence, and neither is a number
+the caller picks. `netlify/functions/_lib/observations.mjs` holds the rules:
+
+| Guard | Behaviour |
+|---|---|
+| One vote each | Keyed by show + episode + air type + region + hashed IP. Re-reporting replaces your own vote. |
+| `MIN_OBSERVERS` | 3 distinct reporters before anything is derived. |
+| `AGREEMENT_MIN` | They must fall within 15 minutes of each other, or the group is conflicting and derives nothing. |
+| Median, not mean | One wild value cannot drag the result. |
+| Plausibility band | The same band the scraper uses. Outside it, nothing is written. |
+| `pinned` | Never touched, exactly as in the scraper. |
+
+The scheduled ingest worker runs the consensus pass every two hours and writes
+the survivors as region rules. Conflicting groups are reported rather than
+published — a region that genuinely staggers its release and someone gaming the
+input look identical at this layer, and both are questions for a human.
+
+Why this is worth building rather than scraping harder: an offset is stable for a
+season, so this needs roughly *one* confirmed observation per show per region —
+not a crawl. It is also the only part of the dataset a competitor cannot copy.
+
+**Overrides schema v2.** Region rules live alongside the global ones and resolve
+most-specific-first — an exact per-episode time, then the region rule, then the
+global rule, then the simulcast estimate. A region with no rule falls through to
+the global behaviour rather than guessing.
+
+```json
+"184356": {
+  "sub": { "offsetMin": 0 },
+  "regions": { "DE": { "sub": { "offsetMin": 60, "source": "observations (3 reporters, spread 4m)" } } }
+}
+```
+
+v1 documents are still valid and resolve identically. The client resolves the
+viewer's region **in the browser**, from its own timezone, never from server
+geo — every `/api/v1` response is CDN-cached by URL, so a geo-varying body would
+serve one visitor's region to the next.
 
 **Two override layers**, merged in this order:
 1. `site/data/overrides.json` — committed, reviewable, cached, works offline.

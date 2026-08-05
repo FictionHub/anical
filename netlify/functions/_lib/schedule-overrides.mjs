@@ -41,8 +41,32 @@
 //   "early" — released ahead of the listed time (same fields as "delay").
 //   "note"  — informational only; times are unchanged.
 
-export const OVERRIDES_VERSION = 1;
+// v2 adds the `regions` dimension below. v1 documents stay valid and resolve
+// identically — a document with no `regions` key behaves exactly as before.
+export const OVERRIDES_VERSION = 2;
 export const AIR_TYPES = ["raw", "sub", "dub"];
+
+// Per-region rules (v2). AniList's time is the Japanese broadcast; what a
+// viewer actually gets is that plus an offset that differs by region, which no
+// reachable upstream publishes. `_lib/observations.mjs` derives these from
+// reader observations.
+//
+//   "184356": {
+//     "sub": { "offsetMin": 0 },                    // global default, still honoured
+//     "regions": {
+//       "DE": { "sub": { "offsetMin": 60, "source": "observations (3 reporters…)" } }
+//     }
+//   }
+//
+// Resolution is most-specific-first: an exact per-episode time beats a regional
+// rule, which beats the global rule, which beats the simulcast estimate. A
+// region we have never measured falls back to the global behaviour rather than
+// guessing, because a wrong regional time is worse than an honest global one.
+export function regionRule(override, region, type) {
+  if (!override || !region || !override.regions) return null;
+  const r = override.regions[String(region).toUpperCase()];
+  return (r && r[type]) || null;
+}
 
 const MIN = 60;
 
@@ -101,7 +125,7 @@ function streamingSites(media) {
 // Returns { status, variants: [{ type, ts, exact, platform, estimated }] }.
 // A "break" yields an empty variants array — callers should render the status
 // instead of an episode row.
-export function variantsFor(media, node, override) {
+export function variantsFor(media, node, override, region) {
   const ov = override || null;
   const ep = node.episode;
   const epOv = (ov && ov.episodes && ov.episodes[String(ep)]) || null;
@@ -119,11 +143,19 @@ export function variantsFor(media, node, override) {
   const rawTs = (epOv && epOv.raw && epOv.raw.airingAt) || node.airingAt + shift;
   variants.push({ type: "raw", ts: rawTs, exact: true, estimated: false, platform: null });
 
-  // sub — exact override, then show-level rule, then a simulcast estimate.
+  // sub — exact override, then a regional rule, then the global rule, then a
+  // simulcast estimate. Most specific wins.
+  const subRegion = regionRule(ov, region, "sub");
   if (epOv && epOv.sub && epOv.sub.airingAt) {
     variants.push({
       type: "sub", ts: epOv.sub.airingAt, exact: true, estimated: false,
       platform: epOv.sub.platform || (ov.sub && ov.sub.platform) || null,
+    });
+  } else if (subRegion && inRange(subRegion, ep)) {
+    variants.push({
+      type: "sub", ts: rawTs + (subRegion.offsetMin || 0) * MIN, exact: true, estimated: false,
+      platform: subRegion.platform || (ov.sub && ov.sub.platform) || null,
+      region: String(region).toUpperCase(),
     });
   } else if (ov && inRange(ov.sub, ep)) {
     variants.push({
@@ -136,10 +168,17 @@ export function variantsFor(media, node, override) {
   }
 
   // dub — override data only. There is no honest way to estimate a dub date.
+  const dubRegion = regionRule(ov, region, "dub");
   if (epOv && epOv.dub && epOv.dub.airingAt) {
     variants.push({
       type: "dub", ts: epOv.dub.airingAt, exact: true, estimated: false,
       platform: epOv.dub.platform || (ov.dub && ov.dub.platform) || null,
+    });
+  } else if (dubRegion && inRange(dubRegion, ep)) {
+    variants.push({
+      type: "dub", ts: rawTs + (dubRegion.offsetMin || 0) * MIN, exact: true, estimated: false,
+      platform: dubRegion.platform || (ov.dub && ov.dub.platform) || null,
+      region: String(region).toUpperCase(),
     });
   } else if (ov && inRange(ov.dub, ep)) {
     variants.push({
@@ -169,8 +208,19 @@ export function mergeOverrides(seed, live) {
   const out = { version: OVERRIDES_VERSION, shows: { ...((seed && seed.shows) || {}) } };
   for (const [id, rec] of Object.entries((live && live.shows) || {})) {
     const base = out.shows[id];
+    // `regions` merges per country for the same reason `episodes` merges per
+    // episode: a patch that measured DE must not wipe the FR rule beside it.
+    // One level deeper than episodes, so the country blocks merge too.
+    const regions = { ...((base && base.regions) || {}) };
+    for (const [code, block] of Object.entries((rec && rec.regions) || {})) {
+      regions[code] = { ...(regions[code] || {}), ...block };
+    }
     out.shows[id] = base
-      ? { ...base, ...rec, episodes: { ...(base.episodes || {}), ...(rec.episodes || {}) } }
+      ? {
+          ...base, ...rec,
+          episodes: { ...(base.episodes || {}), ...(rec.episodes || {}) },
+          ...(Object.keys(regions).length ? { regions } : {}),
+        }
       : rec;
   }
   out.updatedAt = (live && live.updatedAt) || (seed && seed.updatedAt) || null;
@@ -193,6 +243,20 @@ export function validateOverrides(doc) {
       if (r == null) continue;
       if (typeof r !== "object") return `show ${id}.${t} is not an object`;
       if (r.offsetMin != null && !Number.isFinite(r.offsetMin)) return `show ${id}.${t}.offsetMin is not a number`;
+    }
+    // v2: per-region rules. Same shape as the global ones, one level deeper.
+    if (rec.regions != null) {
+      if (typeof rec.regions !== "object") return `show ${id}.regions is not an object`;
+      for (const [code, block] of Object.entries(rec.regions)) {
+        if (!/^[A-Z]{2}$/.test(code)) return `show ${id}.regions key "${code}" is not a 2-letter country code`;
+        if (!block || typeof block !== "object") return `show ${id}.regions.${code} is not an object`;
+        for (const t of ["sub", "dub"]) {
+          const r = block[t];
+          if (r == null) continue;
+          if (typeof r !== "object") return `show ${id}.regions.${code}.${t} is not an object`;
+          if (r.offsetMin != null && !Number.isFinite(r.offsetMin)) return `show ${id}.regions.${code}.${t}.offsetMin is not a number`;
+        }
+      }
     }
     for (const [ep, e] of Object.entries(rec.episodes || {})) {
       if (!/^\d+$/.test(ep)) return `show ${id} episode key "${ep}" is not a number`;

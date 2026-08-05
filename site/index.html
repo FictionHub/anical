@@ -420,6 +420,12 @@
   .pill.prem{background:rgba(245,158,11,.15);border-color:var(--premiere);color:var(--premiere)}
   .pill.score{color:var(--good)}
   .pill.cd{background:rgba(34,211,238,.12);border-color:var(--accent2);color:var(--accent2)}
+  /* "It's out now" — an offer, not a call to action. It sits next to an
+     estimated time and should read as quieter than the data around it. */
+  .obsbtn{font-size:11px;padding:2px 7px;border-radius:999px;border:1px solid var(--line);
+    background:transparent;color:var(--muted);cursor:pointer;white-space:nowrap}
+  .obsbtn:hover{border-color:var(--accent2);color:var(--accent2)}
+  .obsbtn[disabled]{cursor:default;border-color:var(--good);color:var(--good);opacity:1}
   .pill.fin{background:rgba(239,68,68,.15);border-color:var(--finale);color:#fca5a5}
   /* your own rating / notes, told apart from AniList's ★ average at a glance */
   .pill.myscore{font-weight:800;background:rgba(139,92,246,.14);border-color:var(--accent);color:#c4b5fd}
@@ -1077,7 +1083,7 @@
 
 // Build number auto-stamped from the git commit count by scripts/stamp-version.mjs
 // (run via the .githooks/pre-commit hook). Do not edit by hand — it changes every commit.
-const APP_VERSION = "3.1.85";
+const APP_VERSION = "3.1.86";
 
 // Tsuzuki's own read API. It serves the same AniList payload out of a shared
 // server-side catalog (netlify/functions/_lib/catalog.mjs), so the schedule a
@@ -2267,6 +2273,59 @@ const AIR_LONG={raw:"Japanese broadcast", sub:"Subtitled release", dub:"English 
 const SIMULCAST_SITES=new Set(["Crunchyroll","HIDIVE","Netflix","Amazon Prime Video","Hulu","Disney Plus","Bilibili TV","Muse Asia","Ani-One Asia","YouTube"]);
 
 function showOverride(id){ return (state.overrides&&state.overrides.shows&&state.overrides.shows[String(id)])||null; }
+/* ---- per-region offsets (overrides v2) ----
+   The mirror of regionRule() in netlify/functions/_lib/schedule-overrides.mjs.
+   No build step here, so change one and change the other — the shapes and the
+   resolution order are the contract.
+
+   The region is the user's, not the server's: the timezone the browser already
+   reports is enough to place someone without asking, and an explicit choice in
+   Settings beats it. A region we have no rule for falls through to the global
+   behaviour rather than guessing — a wrong regional time is worse than an
+   honest global one. */
+// Resolved in the browser, deliberately, and NOT from the server's geo. Every
+// /api/v1 response is CDN-cached by URL, so a body that varied by caller
+// country would serve one visitor's region to the next — a cache-poisoning bug
+// dressed as a feature. The timezone the browser already reports is enough.
+const TZ_COUNTRY={
+  "Europe/Berlin":"DE","Europe/Vienna":"AT","Europe/Zurich":"CH","Europe/London":"GB",
+  "Europe/Dublin":"IE","Europe/Paris":"FR","Europe/Madrid":"ES","Europe/Lisbon":"PT",
+  "Europe/Rome":"IT","Europe/Amsterdam":"NL","Europe/Brussels":"BE","Europe/Copenhagen":"DK",
+  "Europe/Oslo":"NO","Europe/Stockholm":"SE","Europe/Helsinki":"FI","Europe/Warsaw":"PL",
+  "Europe/Prague":"CZ","Europe/Budapest":"HU","Europe/Bucharest":"RO","Europe/Athens":"GR",
+  "Europe/Istanbul":"TR","Europe/Moscow":"RU","Europe/Kyiv":"UA",
+  "America/New_York":"US","America/Chicago":"US","America/Denver":"US","America/Phoenix":"US",
+  "America/Los_Angeles":"US","America/Anchorage":"US","Pacific/Honolulu":"US",
+  "America/Toronto":"CA","America/Vancouver":"CA","America/Edmonton":"CA","America/Winnipeg":"CA",
+  "America/Mexico_City":"MX","America/Sao_Paulo":"BR","America/Argentina/Buenos_Aires":"AR",
+  "America/Santiago":"CL","America/Bogota":"CO","America/Lima":"PE",
+  "Asia/Tokyo":"JP","Asia/Seoul":"KR","Asia/Shanghai":"CN","Asia/Hong_Kong":"HK",
+  "Asia/Taipei":"TW","Asia/Singapore":"SG","Asia/Bangkok":"TH","Asia/Jakarta":"ID",
+  "Asia/Manila":"PH","Asia/Kuala_Lumpur":"MY","Asia/Kolkata":"IN","Asia/Calcutta":"IN",
+  "Asia/Dubai":"AE","Asia/Riyadh":"SA","Asia/Jerusalem":"IL",
+  "Australia/Sydney":"AU","Australia/Melbourne":"AU","Australia/Brisbane":"AU",
+  "Australia/Perth":"AU","Pacific/Auckland":"NZ","Africa/Johannesburg":"ZA",
+  "Africa/Lagos":"NG","Africa/Cairo":"EG",
+};
+function userRegion(){
+  // An explicit choice always wins over an inferred one.
+  try{
+    const set=String(localStorage.getItem("anical.region")||"").toUpperCase();
+    if(/^[A-Z]{2}$/.test(set)) return set;
+  }catch(e){}
+  try{
+    const tz=Intl.DateTimeFormat().resolvedOptions().timeZone||"";
+    // An unmapped timezone returns null, which falls through to the global
+    // rule. Partial coverage is fine; a wrong country would not be.
+    return TZ_COUNTRY[tz]||null;
+  }catch(e){ return null; }
+}
+function regionRule(ov,type){
+  const r=userRegion();
+  if(!ov||!r||!ov.regions) return null;
+  const block=ov.regions[r];
+  return (block&&block[type])||null;
+}
 function ruleInRange(rule, episode){
   if(!rule) return false;
   if(rule.fromEpisode!=null && episode<rule.fromEpisode) return false;
@@ -2288,8 +2347,11 @@ function variantsFor(md,node){
   const out=[];
   const rawTs=(epOv&&epOv.raw&&epOv.raw.airingAt)||node.airingAt+shift;
   out.push({type:"raw", ts:rawTs, exact:true, estimated:false, platform:null});
+  const subRegion=regionRule(ov,"sub"), dubRegion=regionRule(ov,"dub");
   if(epOv&&epOv.sub&&epOv.sub.airingAt)
     out.push({type:"sub", ts:epOv.sub.airingAt, exact:true, estimated:false, platform:epOv.sub.platform||(ov.sub&&ov.sub.platform)||null});
+  else if(subRegion&&ruleInRange(subRegion,ep))
+    out.push({type:"sub", ts:rawTs+(subRegion.offsetMin||0)*60, exact:true, estimated:false, platform:subRegion.platform||(ov.sub&&ov.sub.platform)||null, region:userRegion()});
   else if(ov&&ruleInRange(ov.sub,ep))
     out.push({type:"sub", ts:rawTs+(ov.sub.offsetMin||0)*60, exact:true, estimated:false, platform:ov.sub.platform||null});
   else{
@@ -2299,6 +2361,8 @@ function variantsFor(md,node){
   // No dub without data — an invented dub date is worse than no dub row.
   if(epOv&&epOv.dub&&epOv.dub.airingAt)
     out.push({type:"dub", ts:epOv.dub.airingAt, exact:true, estimated:false, platform:epOv.dub.platform||(ov.dub&&ov.dub.platform)||null});
+  else if(dubRegion&&ruleInRange(dubRegion,ep))
+    out.push({type:"dub", ts:rawTs+(dubRegion.offsetMin||0)*60, exact:true, estimated:false, platform:dubRegion.platform||(ov.dub&&ov.dub.platform)||null, region:userRegion()});
   else if(ov&&ruleInRange(ov.dub,ep))
     out.push({type:"dub", ts:rawTs+(ov.dub.offsetMin||0)*60, exact:true, estimated:false, platform:ov.dub.platform||null});
   return {status, variants:out};
@@ -3317,9 +3381,19 @@ function renderScheduleList(md){
       : status&&status.kind==="delay" ? `<span class="pill warn" title="${esc(status.reason||"Delayed")}">⚠</span>`
       : status&&status.kind==="early" ? `<span class="pill warn" title="${esc(status.reason||"Early")}">⚡</span>` : "";
     const primaryTag = (!brk&&primary&&on.size>1) ? ` <span class="pill air air-${primary.type}${primary.estimated?" est":""}" title="${esc(AIR_LONG[primary.type]+(primary.platform?" · "+primary.platform:""))}">${primary.estimated?"~":""}${AIR_LABEL[primary.type]}</span>` : "";
+    // "It's out now" — only where it can actually teach us something. The time
+    // has to be an estimate (an exact one needs no confirming), the slot has to
+    // have passed, and it has to be recent enough that the answer is still
+    // about this episode. 12h matches the server's plausibility band for a sub,
+    // so the button never appears where the report would be rejected anyway.
+    const obsAgeMin = (now - ts) / 60;
+    const canObserve = !brk && primary && primary.estimated && !up && obsAgeMin <= 12 * 60;
+    const obsBtn = canObserve
+      ? ` <button class="obsbtn" data-released="${md.id}|${n.episode}|${primary.type}" title="Tell us it has actually appeared where you are. Three people agreeing replaces the estimate with a measured time.">📍 It's out now</button>`
+      : "";
     return `<div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid var(--line);${(up&&!brk)?"":(watched?"":"opacity:.6")}">
       ${mark}
-      <span style="flex:1">Episode ${n.episode}${statusTag}${primaryTag}${isFinale(md,n.episode)?' <span class="pill fin">🏁 FINALE</span>':""}${up?` <span class="pill cd">in ${cdLive(ts)}</span>`:""}${others?`<div style="margin-top:3px;display:flex;gap:5px;flex-wrap:wrap">${others}</div>`:""}</span>
+      <span style="flex:1">Episode ${n.episode}${statusTag}${primaryTag}${isFinale(md,n.episode)?' <span class="pill fin">🏁 FINALE</span>':""}${up?` <span class="pill cd">in ${cdLive(ts)}</span>`:""}${obsBtn}${others?`<div style="margin-top:3px;display:flex;gap:5px;flex-wrap:wrap">${others}</div>`:""}</span>
       <span style="color:${up?"var(--accent2)":"var(--muted)"}">${brk?"—":new Date(ts*1000).toLocaleString([], timeOpts({month:"short",day:"numeric",hour:"numeric",minute:"2-digit"}))}</span>
     </div>`;
   }).join("");
@@ -3886,6 +3960,11 @@ function openSettings(){
     <div class="set-row"><div class="set-label">Cover art</div>
       ${prefSeg("showImages",[[true,"Show"],[false,"Hide","Text-only rows fit far more on screen"]])}</div>
 
+    <div class="set-row"><div class="set-label">Region
+      <div class="set-hint">Where you watch. Release times differ by country, so this picks which measured time you get — it is not your timezone, which is detected separately. Blank means we guess from your timezone and fall back to the shared time when we have not measured yours.</div></div>
+      <input id="setRegion" type="text" maxlength="2" spellcheck="false" placeholder="${esc(userRegion()||"auto")}" value="${esc((localStorage.getItem("anical.region")||"").toUpperCase())}"
+        style="width:70px;text-transform:uppercase;font-family:inherit" aria-label="Two-letter country code" /></div>
+
     <h4 class="set-head">Timetable</h4>
     <div class="set-row"><div class="set-label">Week starts</div>
       ${prefSeg("weekStart",[["0","Sunday"],["1","Monday"],["6","Saturday"],["rot","Rotating","Week view starts on today. The month grid keeps a fixed first column."]])}</div>
@@ -3968,6 +4047,16 @@ function openSettings(){
     const last=localStorage.getItem("anical.aniUser"); if(last) $("aniUser").value=last;
     $("aniUser").onchange=()=>localStorage.setItem("anical.aniUser",$("aniUser").value.trim());
   }
+  // Region: two letters or nothing. An invalid entry clears rather than sticks,
+  // because a bad code silently selects the global time and looks like a bug.
+  const rg=$("setRegion");
+  if(rg) rg.onchange=()=>{
+    const v=rg.value.trim().toUpperCase();
+    if(/^[A-Z]{2}$/.test(v)) localStorage.setItem("anical.region",v);
+    else { localStorage.removeItem("anical.region"); rg.value=""; }
+    rg.placeholder=userRegion()||"auto";
+    renderView();   // times can change immediately: a region rule may now apply
+  };
   if($("setExport")) $("setExport").onclick=exportSettings;
   if($("setImport")) $("setImport").onclick=pickImport;
   if($("setCopyCode")) $("setCopyCode").onclick=copySyncCode;
@@ -5160,6 +5249,39 @@ document.addEventListener("click",e=>{
   const r=e.target.closest("[data-report]"); if(!r) return;
   e.preventDefault(); e.stopPropagation();
   const md=findMediaById(r.dataset.report); if(md) openReport(md,null);
+});
+
+// "It's out now" — a measurement, not a complaint. The offset is computed on
+// the server from its own clock and the known broadcast time; all this sends is
+// the show, the episode, the release type and (where we know it) the region, so
+// recording and rendering agree for someone who has set one by hand. No region
+// means the server falls back to its edge geo, which is right far more often
+// than a browser guess.
+document.addEventListener("click",async e=>{
+  const b=e.target.closest("[data-released]"); if(!b) return;
+  e.preventDefault(); e.stopPropagation();
+  if(b.disabled) return;
+  const [mediaId,episode,airType]=b.dataset.released.split("|");
+  const original=b.textContent;
+  b.disabled=true; b.textContent="Sending…";
+  try{
+    const res=await fetch("/api/report",{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({kind:"released",mediaId,episode:+episode,airType,region:userRegion()||undefined})});
+    const j=await res.json().catch(()=>({}));
+    if(res.ok&&j.ok){
+      b.textContent="✓ Thanks — recorded";
+      b.title="Recorded"+(j.region?" for "+j.region:"")+". Once three people agree, the estimate becomes a measured time.";
+    }else{
+      // Say which guard rejected it. "Failed" teaches nobody anything, and the
+      // usual cause is a real one: tapping long after the episode landed.
+      b.disabled=false; b.textContent=original;
+      b.title=(j&&j.error)?j.error:"Could not record that right now — try again later.";
+      toast((j&&j.error)||"Could not record that right now.");
+    }
+  }catch(err){
+    b.disabled=false; b.textContent=original;
+    toast("Could not reach the server — check your connection.");
+  }
 });
 
 // related-anime navigation: open the clicked relation in the detail modal
