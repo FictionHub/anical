@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-05T16:37:06.950Z",
+  "generatedAt": "2026-08-05T16:37:49.592Z",
   "source": "https://www.crunchyroll.com/simulcastcalendar",
   "note": "Machine-derived. Audit trail only — the live store at /api/overrides is what serves. Lives outside site/ so committing it costs no Netlify deploy.",
   "findings": [
