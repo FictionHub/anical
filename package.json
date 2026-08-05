@@ -6,6 +6,12 @@
   "engines": {
     "node": ">=20"
   },
+  "scripts": {
+    "//dev": "Local stack: static site + the /api/* functions + a sandboxed Netlify Blobs store. --offline skips looking up a linked Netlify site, so env comes from .env only. Reads .env at startup — restart after editing it.",
+    "dev": "npx netlify dev --offline --port 8888",
+    "themes": "node scripts/build-themes.mjs",
+    "themes:check": "node scripts/build-themes.mjs --check"
+  },
   "dependencies": {
     "@netlify/blobs": "^8.1.0",
     "web-push": "^3.6.7"

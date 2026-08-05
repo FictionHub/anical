@@ -1,0 +1,786 @@
+{
+  "version": 1,
+  "generatedAt": "2026-08-05T06:55:24.709Z",
+  "themes": {
+    "one-piece": {
+      "id": "one-piece",
+      "name": "ONE PIECE",
+      "series": "ONE PIECE",
+      "mediaId": 21,
+      "mode": "dark",
+      "colors": {
+        "bg": "#100d0a",
+        "bg2": "#181510",
+        "bg3": "#241f19",
+        "line": "#3b342b",
+        "txt": "#f2f0ee",
+        "muted": "#a99f93",
+        "accent": "#e69a42",
+        "accent2": "#64bee2",
+        "premiere": "#f1a427",
+        "today": "#da8b2f",
+        "good": "#39d047",
+        "now": "#f859dd",
+        "finale": "#e95049"
+      },
+      "glow": "#e69a42",
+      "font": {
+        "family": "\"Bangers\",Impact,cursive",
+        "css": "https://fonts.googleapis.com/css2?family=Bangers&display=swap",
+        "scale": 1.2
+      },
+      "shape": {
+        "radius": 20,
+        "chipRadius": 28,
+        "border": 2,
+        "cardBlur": 12
+      },
+      "effects": {
+        "vignette": 0,
+        "grain": 0,
+        "scanlines": 0,
+        "glowStrength": 0.6
+      },
+      "backdrop": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/21-wf37VakJmZqs.jpg",
+        "opacity": 0.34,
+        "blur": 4,
+        "position": "center 20%"
+      },
+      "header": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/21-wf37VakJmZqs.jpg",
+        "opacity": 0.62,
+        "position": "center 38%"
+      },
+      "cutout": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21-ELSYx3yMPcKM.jpg",
+        "corner": "bottom-right",
+        "width": 380,
+        "opacity": 0.5,
+        "offsetX": -8,
+        "offsetY": -8,
+        "fade": 0.62,
+        "flip": false
+      },
+      "watermark": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21-ELSYx3yMPcKM.jpg",
+        "opacity": 0.08
+      },
+      "pattern": {
+        "url": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2280%22%20height%3D%2240%22%20viewBox%3D%220%200%2080%2040%22%3E%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%23e69a42%22%20stroke-width%3D%221.6%22%20opacity%3D%220.8%22%3E%20%3Cpath%20d%3D%22M0%2040%20a40%2040%200%200%201%2080%200%22%2F%3E%3Cpath%20d%3D%22M0%2040%20a28%2028%200%200%201%2056%200%22%20transform%3D%22translate%2812%200%29%22%2F%3E%20%3Cpath%20d%3D%22M0%2040%20a16%2016%200%200%201%2032%200%22%20transform%3D%22translate%2824%200%29%22%2F%3E%20%3Cpath%20d%3D%22M-40%2040%20a40%2040%200%200%201%2080%200%22%20transform%3D%22translate%280%20-20%29%22%2F%3E%20%3Cpath%20d%3D%22M40%2040%20a40%2040%200%200%201%2080%200%22%20transform%3D%22translate%280%20-20%29%22%2F%3E%20%3C%2Fg%3E%3C%2Fsvg%3E",
+        "opacity": 0.07,
+        "size": 160
+      },
+      "ornament": {
+        "url": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22240%22%20viewBox%3D%220%200%20240%20240%22%3E%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%2364bee2%22%20stroke-linecap%3D%22round%22%3E%20%3Cpath%20d%3D%22M0%20236%20L0%20120%20a120%20120%200%200%201%20120%20-120%20L236%200%22%20stroke-width%3D%222%22%20opacity%3D%220.55%22%2F%3E%20%3Cpath%20d%3D%22M0%20200%20L0%20132%20a132%20132%200%200%201%20132%20-132%20L200%200%22%20stroke-width%3D%221%22%20opacity%3D%220.35%22%2F%3E%20%3Cpath%20d%3D%22M0%2096%20L0%2060%20a60%2060%200%200%201%2060%20-60%20L96%200%22%20stroke-width%3D%223%22%20opacity%3D%220.7%22%2F%3E%20%3C%2Fg%3E%3C%2Fsvg%3E",
+        "corner": "top-left",
+        "width": 260,
+        "opacity": 0.35,
+        "offsetX": 0,
+        "offsetY": 0
+      }
+    },
+    "hunter-x-hunter-2011": {
+      "id": "hunter-x-hunter-2011",
+      "name": "Hunter x Hunter (2011)",
+      "series": "Hunter x Hunter (2011)",
+      "mediaId": 11061,
+      "mode": "dark",
+      "colors": {
+        "bg": "#100f0a",
+        "bg2": "#181710",
+        "bg3": "#242219",
+        "line": "#3b382b",
+        "txt": "#f2f1ee",
+        "muted": "#a9a593",
+        "accent": "#f1d65d",
+        "accent2": "#5e9ae8",
+        "premiere": "#f1ae27",
+        "today": "#dabb2f",
+        "good": "#39d04d",
+        "now": "#f859d8",
+        "finale": "#e95449"
+      },
+      "glow": "#f1d65d",
+      "font": {
+        "family": "\"Titan One\",Impact,cursive",
+        "css": "https://fonts.googleapis.com/css2?family=Titan+One&display=swap",
+        "scale": 1.06
+      },
+      "shape": {
+        "radius": 10,
+        "chipRadius": 18,
+        "border": 1,
+        "cardBlur": 10
+      },
+      "effects": {
+        "vignette": 0,
+        "grain": 0,
+        "scanlines": 0,
+        "glowStrength": 0.45
+      },
+      "backdrop": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/11061-8WkkTZ6duKpq.jpg",
+        "opacity": 0.34,
+        "blur": 4,
+        "position": "center 20%"
+      },
+      "header": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/11061-8WkkTZ6duKpq.jpg",
+        "opacity": 0.62,
+        "position": "center 38%"
+      },
+      "cutout": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx11061-y5gsT1hoHuHw.png",
+        "corner": "bottom-right",
+        "width": 380,
+        "opacity": 0.5,
+        "offsetX": -8,
+        "offsetY": -8,
+        "fade": 0.62,
+        "flip": false
+      },
+      "watermark": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx11061-y5gsT1hoHuHw.png",
+        "opacity": 0.08
+      },
+      "pattern": {
+        "url": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%20%3Cg%20stroke%3D%22%23f1d65d%22%20stroke-width%3D%221%22%20opacity%3D%220.7%22%3E%20%3Cpath%20d%3D%22M-4%204%20L4%20-4%20M-4%2016%20L16%20-4%20M-4%2028%20L28%20-4%20M8%2028%20L28%208%20M20%2028%20L28%2020%22%2F%3E%20%3C%2Fg%3E%3C%2Fsvg%3E",
+        "opacity": 0.07,
+        "size": 160
+      },
+      "ornament": {
+        "url": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22240%22%20viewBox%3D%220%200%20240%20240%22%3E%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%235e9ae8%22%20stroke-linecap%3D%22round%22%3E%20%3Cpath%20d%3D%22M0%20236%20L0%20120%20a120%20120%200%200%201%20120%20-120%20L236%200%22%20stroke-width%3D%222%22%20opacity%3D%220.55%22%2F%3E%20%3Cpath%20d%3D%22M0%20200%20L0%20132%20a132%20132%200%200%201%20132%20-132%20L200%200%22%20stroke-width%3D%221%22%20opacity%3D%220.35%22%2F%3E%20%3Cpath%20d%3D%22M0%2096%20L0%2060%20a60%2060%200%200%201%2060%20-60%20L96%200%22%20stroke-width%3D%223%22%20opacity%3D%220.7%22%2F%3E%20%3C%2Fg%3E%3C%2Fsvg%3E",
+        "corner": "top-left",
+        "width": 260,
+        "opacity": 0.35,
+        "offsetX": 0,
+        "offsetY": 0
+      }
+    },
+    "tokyo-ghoul": {
+      "id": "tokyo-ghoul",
+      "name": "Tokyo Ghoul",
+      "series": "Tokyo Ghoul",
+      "mediaId": 20605,
+      "mode": "dark",
+      "colors": {
+        "bg": "#100b0a",
+        "bg2": "#181310",
+        "bg3": "#241c19",
+        "line": "#3b2f2b",
+        "txt": "#f2efee",
+        "muted": "#a99993",
+        "accent": "#f07244",
+        "accent2": "#5e73e8",
+        "premiere": "#f19a27",
+        "today": "#da5d2f",
+        "good": "#39d041",
+        "now": "#f859e2",
+        "finale": "#e94d49"
+      },
+      "glow": "#f07244",
+      "font": {
+        "family": "\"Oswald\",Impact,sans-serif",
+        "css": "https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=swap",
+        "scale": 1.1
+      },
+      "shape": {
+        "radius": 0,
+        "chipRadius": 2,
+        "border": 2,
+        "cardBlur": 6
+      },
+      "effects": {
+        "vignette": 0.5,
+        "grain": 0.55,
+        "scanlines": 0,
+        "glowStrength": 0.45
+      },
+      "backdrop": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/20605-RCJ7M71zLmrh.jpg",
+        "opacity": 0.34,
+        "blur": 4,
+        "position": "center 20%"
+      },
+      "header": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/20605-RCJ7M71zLmrh.jpg",
+        "opacity": 0.62,
+        "position": "center 38%"
+      },
+      "cutout": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b20605-k665mVkSug8D.jpg",
+        "corner": "bottom-right",
+        "width": 380,
+        "opacity": 0.5,
+        "offsetX": -8,
+        "offsetY": -8,
+        "fade": 0.62,
+        "flip": false
+      },
+      "watermark": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b20605-k665mVkSug8D.jpg",
+        "opacity": 0.08
+      },
+      "pattern": {
+        "url": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22120%22%20height%3D%22120%22%20viewBox%3D%220%200%20120%20120%22%3E%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%23f07244%22%20stroke-width%3D%221.3%22%20opacity%3D%220.75%22%20stroke-linecap%3D%22round%22%3E%20%3Cpath%20d%3D%22M10%204%20L34%2038%20L22%2066%20L48%2096%20L40%20118%22%2F%3E%20%3Cpath%20d%3D%22M34%2038%20L64%2030%20L92%2052%22%2F%3E%3Cpath%20d%3D%22M48%2096%20L84%2088%20L116%20104%22%2F%3E%20%3Cpath%20d%3D%22M92%2052%20L104%2024%20M92%2052%20L118%2060%22%2F%3E%3Cpath%20d%3D%22M22%2066%20L0%2082%22%2F%3E%20%3C%2Fg%3E%3C%2Fsvg%3E",
+        "opacity": 0.07,
+        "size": 160
+      },
+      "ornament": {
+        "url": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22240%22%20viewBox%3D%220%200%20240%20240%22%3E%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%235e73e8%22%20stroke-linecap%3D%22round%22%3E%20%3Cpath%20d%3D%22M0%20236%20L0%20120%20a120%20120%200%200%201%20120%20-120%20L236%200%22%20stroke-width%3D%222%22%20opacity%3D%220.55%22%2F%3E%20%3Cpath%20d%3D%22M0%20200%20L0%20132%20a132%20132%200%200%201%20132%20-132%20L200%200%22%20stroke-width%3D%221%22%20opacity%3D%220.35%22%2F%3E%20%3Cpath%20d%3D%22M0%2096%20L0%2060%20a60%2060%200%200%201%2060%20-60%20L96%200%22%20stroke-width%3D%223%22%20opacity%3D%220.7%22%2F%3E%20%3C%2Fg%3E%3C%2Fsvg%3E",
+        "corner": "top-left",
+        "width": 260,
+        "opacity": 0.35,
+        "offsetX": 0,
+        "offsetY": 0
+      }
+    },
+    "your-name": {
+      "id": "your-name",
+      "name": "Your Name.",
+      "series": "Your Name.",
+      "mediaId": 21519,
+      "mode": "dark",
+      "colors": {
+        "bg": "#0a0e10",
+        "bg2": "#101618",
+        "bg3": "#192124",
+        "line": "#2b363b",
+        "txt": "#eef1f2",
+        "muted": "#93a2a9",
+        "accent": "#39b6ef",
+        "accent2": "#e8675e",
+        "premiere": "#daf127",
+        "today": "#2fa5da",
+        "good": "#39d086",
+        "now": "#f859a8",
+        "finale": "#e97449"
+      },
+      "glow": "#39b6ef",
+      "font": {
+        "family": "\"Sawarabi Mincho\",Georgia,serif",
+        "css": "https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap",
+        "scale": 1.05
+      },
+      "shape": {
+        "radius": 16,
+        "chipRadius": 24,
+        "border": 1,
+        "cardBlur": 14
+      },
+      "effects": {
+        "vignette": 0.45,
+        "grain": 0,
+        "scanlines": 0,
+        "glowStrength": 0.45
+      },
+      "backdrop": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/21519-1ayMXgNlmByb.jpg",
+        "opacity": 0.34,
+        "blur": 4,
+        "position": "center 20%"
+      },
+      "header": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/21519-1ayMXgNlmByb.jpg",
+        "opacity": 0.62,
+        "position": "center 38%"
+      },
+      "cutout": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21519-SUo3ZQuCbYhJ.png",
+        "corner": "bottom-right",
+        "width": 380,
+        "opacity": 0.5,
+        "offsetX": -8,
+        "offsetY": -8,
+        "fade": 0.62,
+        "flip": false
+      },
+      "watermark": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21519-SUo3ZQuCbYhJ.png",
+        "opacity": 0.08
+      },
+      "pattern": {
+        "url": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%22%20height%3D%22100%22%20viewBox%3D%220%200%20100%20100%22%3E%20%3Cg%20fill%3D%22%2339b6ef%22%20opacity%3D%220.85%22%3E%20%3Ccircle%20cx%3D%2214%22%20cy%3D%2218%22%20r%3D%221.5%22%2F%3E%3Ccircle%20cx%3D%2262%22%20cy%3D%2210%22%20r%3D%221%22%2F%3E%3Ccircle%20cx%3D%2288%22%20cy%3D%2234%22%20r%3D%221.6%22%2F%3E%20%3Ccircle%20cx%3D%2234%22%20cy%3D%2254%22%20r%3D%221%22%2F%3E%3Ccircle%20cx%3D%2270%22%20cy%3D%2272%22%20r%3D%221.4%22%2F%3E%3Ccircle%20cx%3D%2218%22%20cy%3D%2286%22%20r%3D%221.1%22%2F%3E%20%3Cpath%20d%3D%22M44%2026%20l1.6%204.6%204.6%201.6%20-4.6%201.6%20-1.6%204.6%20-1.6%20-4.6%20-4.6%20-1.6%204.6%20-1.6%20z%22%2F%3E%20%3C%2Fg%3E%20%3Cpath%20d%3D%22M78%2052%20L94%2044%22%20stroke%3D%22%2339b6ef%22%20stroke-width%3D%221.2%22%20opacity%3D%220.6%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E",
+        "opacity": 0.07,
+        "size": 160
+      },
+      "ornament": {
+        "url": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22240%22%20viewBox%3D%220%200%20240%20240%22%3E%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%23e8675e%22%20stroke-linecap%3D%22round%22%3E%20%3Cpath%20d%3D%22M0%20236%20L0%20120%20a120%20120%200%200%201%20120%20-120%20L236%200%22%20stroke-width%3D%222%22%20opacity%3D%220.55%22%2F%3E%20%3Cpath%20d%3D%22M0%20200%20L0%20132%20a132%20132%200%200%201%20132%20-132%20L200%200%22%20stroke-width%3D%221%22%20opacity%3D%220.35%22%2F%3E%20%3Cpath%20d%3D%22M0%2096%20L0%2060%20a60%2060%200%200%201%2060%20-60%20L96%200%22%20stroke-width%3D%223%22%20opacity%3D%220.7%22%2F%3E%20%3C%2Fg%3E%3C%2Fsvg%3E",
+        "corner": "top-left",
+        "width": 260,
+        "opacity": 0.35,
+        "offsetX": 0,
+        "offsetY": 0
+      }
+    },
+    "demon-slayer-kimetsu-no-yaiba": {
+      "id": "demon-slayer-kimetsu-no-yaiba",
+      "name": "Demon Slayer: Kimetsu no Yaiba",
+      "series": "Demon Slayer: Kimetsu no Yaiba",
+      "mediaId": 101922,
+      "mode": "dark",
+      "colors": {
+        "bg": "#100c0a",
+        "bg2": "#181410",
+        "bg3": "#241e19",
+        "line": "#3b312b",
+        "txt": "#f2efee",
+        "muted": "#a99c93",
+        "accent": "#e8a87d",
+        "accent2": "#6acbdd",
+        "premiere": "#f19f27",
+        "today": "#da742f",
+        "good": "#39d044",
+        "now": "#f859e0",
+        "finale": "#e94f49"
+      },
+      "glow": "#e8a87d",
+      "font": {
+        "family": "\"Shippori Mincho\",Georgia,serif",
+        "css": "https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700&display=swap",
+        "scale": 1.05
+      },
+      "shape": {
+        "radius": 10,
+        "chipRadius": 18,
+        "border": 1,
+        "cardBlur": 10
+      },
+      "effects": {
+        "vignette": 0.35,
+        "grain": 0,
+        "scanlines": 0,
+        "glowStrength": 0.45
+      },
+      "backdrop": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/101922-33MtJGsUSxga.jpg",
+        "opacity": 0.34,
+        "blur": 4,
+        "position": "center 20%"
+      },
+      "header": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/101922-33MtJGsUSxga.jpg",
+        "opacity": 0.62,
+        "position": "center 38%"
+      },
+      "cutout": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx101922-WBsBl0ClmgYL.jpg",
+        "corner": "bottom-right",
+        "width": 380,
+        "opacity": 0.5,
+        "offsetX": -8,
+        "offsetY": -8,
+        "fade": 0.62,
+        "flip": false
+      },
+      "watermark": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx101922-WBsBl0ClmgYL.jpg",
+        "opacity": 0.08
+      },
+      "pattern": {
+        "url": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2260%22%20height%3D%22104%22%20viewBox%3D%220%200%2060%20104%22%3E%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%23e8a87d%22%20stroke-width%3D%221.1%22%20opacity%3D%220.85%22%3E%20%3Cpath%20d%3D%22M30%200%20L60%2017%20L60%2052%20L30%2069%20L0%2052%20L0%2017%20Z%22%2F%3E%20%3Cpath%20d%3D%22M30%200%20L30%2069%20M0%2017%20L60%2052%20M60%2017%20L0%2052%22%2F%3E%20%3Cpath%20d%3D%22M30%2035%20L0%2017%20M30%2035%20L60%2017%20M30%2035%20L0%2052%20M30%2035%20L60%2052%22%2F%3E%20%3C%2Fg%3E%3C%2Fsvg%3E",
+        "opacity": 0.07,
+        "size": 160
+      },
+      "ornament": {
+        "url": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22240%22%20viewBox%3D%220%200%20240%20240%22%3E%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%236acbdd%22%20stroke-linecap%3D%22round%22%3E%20%3Cpath%20d%3D%22M0%20236%20L0%20120%20a120%20120%200%200%201%20120%20-120%20L236%200%22%20stroke-width%3D%222%22%20opacity%3D%220.55%22%2F%3E%20%3Cpath%20d%3D%22M0%20200%20L0%20132%20a132%20132%200%200%201%20132%20-132%20L200%200%22%20stroke-width%3D%221%22%20opacity%3D%220.35%22%2F%3E%20%3Cpath%20d%3D%22M0%2096%20L0%2060%20a60%2060%200%200%201%2060%20-60%20L96%200%22%20stroke-width%3D%223%22%20opacity%3D%220.7%22%2F%3E%20%3C%2Fg%3E%3C%2Fsvg%3E",
+        "corner": "top-left",
+        "width": 260,
+        "opacity": 0.35,
+        "offsetX": 0,
+        "offsetY": 0
+      }
+    },
+    "jujutsu-kaisen": {
+      "id": "jujutsu-kaisen",
+      "name": "JUJUTSU KAISEN",
+      "series": "JUJUTSU KAISEN",
+      "mediaId": 113415,
+      "mode": "dark",
+      "colors": {
+        "bg": "#100a0a",
+        "bg2": "#181010",
+        "bg3": "#241919",
+        "line": "#3b2b2b",
+        "txt": "#f2eeee",
+        "muted": "#a99393",
+        "accent": "#e45d5d",
+        "accent2": "#6999dd",
+        "premiere": "#f19027",
+        "today": "#da2f2f",
+        "good": "#39d03a",
+        "now": "#f859e7",
+        "finale": "#e94949"
+      },
+      "glow": "#e45d5d",
+      "font": {
+        "family": "\"Bebas Neue\",Impact,sans-serif",
+        "css": "https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap",
+        "scale": 1.22
+      },
+      "shape": {
+        "radius": 3,
+        "chipRadius": 4,
+        "border": 2,
+        "cardBlur": 8
+      },
+      "effects": {
+        "vignette": 0,
+        "grain": 0.35,
+        "scanlines": 0,
+        "glowStrength": 0.8
+      },
+      "backdrop": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/113415-jQBSkxWAAk83.jpg",
+        "opacity": 0.34,
+        "blur": 4,
+        "position": "center 20%"
+      },
+      "header": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/113415-jQBSkxWAAk83.jpg",
+        "opacity": 0.62,
+        "position": "center 38%"
+      },
+      "cutout": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx113415-LHBAeoZDIsnF.jpg",
+        "corner": "bottom-right",
+        "width": 380,
+        "opacity": 0.5,
+        "offsetX": -8,
+        "offsetY": -8,
+        "fade": 0.62,
+        "flip": false
+      },
+      "watermark": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx113415-LHBAeoZDIsnF.jpg",
+        "opacity": 0.08
+      },
+      "pattern": {
+        "url": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2290%22%20height%3D%2290%22%20viewBox%3D%220%200%2090%2090%22%3E%20%3Cg%20stroke%3D%22%23e45d5d%22%20stroke-width%3D%222.2%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.85%22%3E%20%3Cpath%20d%3D%22M8%2078%20L34%2020%22%2F%3E%3Cpath%20d%3D%22M40%2082%20L70%2014%22%2F%3E%3Cpath%20d%3D%22M62%2070%20L86%2030%22%2F%3E%20%3Cpath%20d%3D%22M14%2042%20L28%2012%22%2F%3E%20%3C%2Fg%3E%3C%2Fsvg%3E",
+        "opacity": 0.07,
+        "size": 160
+      },
+      "ornament": {
+        "url": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22240%22%20viewBox%3D%220%200%20240%20240%22%3E%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%236999dd%22%20stroke-linecap%3D%22round%22%3E%20%3Cpath%20d%3D%22M0%20236%20L0%20120%20a120%20120%200%200%201%20120%20-120%20L236%200%22%20stroke-width%3D%222%22%20opacity%3D%220.55%22%2F%3E%20%3Cpath%20d%3D%22M0%20200%20L0%20132%20a132%20132%200%200%201%20132%20-132%20L200%200%22%20stroke-width%3D%221%22%20opacity%3D%220.35%22%2F%3E%20%3Cpath%20d%3D%22M0%2096%20L0%2060%20a60%2060%200%200%201%2060%20-60%20L96%200%22%20stroke-width%3D%223%22%20opacity%3D%220.7%22%2F%3E%20%3C%2Fg%3E%3C%2Fsvg%3E",
+        "corner": "top-left",
+        "width": 260,
+        "opacity": 0.35,
+        "offsetX": 0,
+        "offsetY": 0
+      }
+    },
+    "chainsaw-man": {
+      "id": "chainsaw-man",
+      "name": "Chainsaw Man",
+      "series": "Chainsaw Man",
+      "mediaId": 127230,
+      "mode": "dark",
+      "colors": {
+        "bg": "#100a0a",
+        "bg2": "#181010",
+        "bg3": "#241919",
+        "line": "#3b2b2b",
+        "txt": "#f2eeee",
+        "muted": "#a99393",
+        "accent": "#d55353",
+        "accent2": "#739bd4",
+        "premiere": "#f19027",
+        "today": "#cf3a3a",
+        "good": "#39d03a",
+        "now": "#f859e7",
+        "finale": "#e94949"
+      },
+      "glow": "#d55353",
+      "font": {
+        "family": "\"Anton\",Impact,sans-serif",
+        "css": "https://fonts.googleapis.com/css2?family=Anton&display=swap",
+        "scale": 1.12
+      },
+      "shape": {
+        "radius": 0,
+        "chipRadius": 2,
+        "border": 2,
+        "cardBlur": 6
+      },
+      "effects": {
+        "vignette": 0,
+        "grain": 0.5,
+        "scanlines": 0,
+        "glowStrength": 0.45
+      },
+      "backdrop": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/127230-o8IRwCGVr9KW.jpg",
+        "opacity": 0.34,
+        "blur": 4,
+        "position": "center 20%"
+      },
+      "header": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/127230-o8IRwCGVr9KW.jpg",
+        "opacity": 0.62,
+        "position": "center 38%"
+      },
+      "cutout": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx127230-DdP4vAdssLoz.png",
+        "corner": "bottom-right",
+        "width": 380,
+        "opacity": 0.5,
+        "offsetX": -8,
+        "offsetY": -8,
+        "fade": 0.62,
+        "flip": false
+      },
+      "watermark": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx127230-DdP4vAdssLoz.png",
+        "opacity": 0.08
+      },
+      "pattern": {
+        "url": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2264%22%20height%3D%2232%22%20viewBox%3D%220%200%2064%2032%22%3E%20%3Cg%20fill%3D%22%23d55353%22%20opacity%3D%220.85%22%3E%20%3Cpath%20d%3D%22M0%2022%20L10%206%20L20%2022%20Z%22%2F%3E%3Cpath%20d%3D%22M22%2022%20L32%206%20L42%2022%20Z%22%2F%3E%3Cpath%20d%3D%22M44%2022%20L54%206%20L64%2022%20Z%22%2F%3E%20%3Crect%20x%3D%220%22%20y%3D%2224%22%20width%3D%2264%22%20height%3D%223%22%2F%3E%20%3C%2Fg%3E%3C%2Fsvg%3E",
+        "opacity": 0.07,
+        "size": 160
+      },
+      "ornament": {
+        "url": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22240%22%20viewBox%3D%220%200%20240%20240%22%3E%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%23739bd4%22%20stroke-linecap%3D%22round%22%3E%20%3Cpath%20d%3D%22M0%20236%20L0%20120%20a120%20120%200%200%201%20120%20-120%20L236%200%22%20stroke-width%3D%222%22%20opacity%3D%220.55%22%2F%3E%20%3Cpath%20d%3D%22M0%20200%20L0%20132%20a132%20132%200%200%201%20132%20-132%20L200%200%22%20stroke-width%3D%221%22%20opacity%3D%220.35%22%2F%3E%20%3Cpath%20d%3D%22M0%2096%20L0%2060%20a60%2060%200%200%201%2060%20-60%20L96%200%22%20stroke-width%3D%223%22%20opacity%3D%220.7%22%2F%3E%20%3C%2Fg%3E%3C%2Fsvg%3E",
+        "corner": "top-left",
+        "width": 260,
+        "opacity": 0.35,
+        "offsetX": 0,
+        "offsetY": 0
+      }
+    },
+    "spy-x-family": {
+      "id": "spy-x-family",
+      "name": "SPY x FAMILY",
+      "series": "SPY x FAMILY",
+      "mediaId": 140960,
+      "mode": "dark",
+      "colors": {
+        "bg": "#0a1010",
+        "bg2": "#101818",
+        "bg3": "#192424",
+        "line": "#2b3b3b",
+        "txt": "#eef2f2",
+        "muted": "#93a9a9",
+        "accent": "#85e0e0",
+        "accent2": "#d2758c",
+        "premiere": "#e5f127",
+        "today": "#3dcdcd",
+        "good": "#39d07f",
+        "now": "#f859ae",
+        "finale": "#e97049"
+      },
+      "glow": "#85e0e0",
+      "font": {
+        "family": "\"Baloo 2\",Verdana,sans-serif",
+        "css": "https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&display=swap",
+        "scale": 1.08
+      },
+      "shape": {
+        "radius": 20,
+        "chipRadius": 28,
+        "border": 2,
+        "cardBlur": 12
+      },
+      "effects": {
+        "vignette": 0.2,
+        "grain": 0,
+        "scanlines": 0,
+        "glowStrength": 0.45
+      },
+      "backdrop": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/140960-Z7xSvkRxHKfj.jpg",
+        "opacity": 0.34,
+        "blur": 4,
+        "position": "center 20%"
+      },
+      "header": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/140960-Z7xSvkRxHKfj.jpg",
+        "opacity": 0.62,
+        "position": "center 38%"
+      },
+      "cutout": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx140960-Kb6R5nYQfjmP.jpg",
+        "corner": "bottom-right",
+        "width": 380,
+        "opacity": 0.5,
+        "offsetX": -8,
+        "offsetY": -8,
+        "fade": 0.62,
+        "flip": false
+      },
+      "watermark": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx140960-Kb6R5nYQfjmP.jpg",
+        "opacity": 0.08
+      },
+      "pattern": {
+        "url": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2272%22%20height%3D%2272%22%20viewBox%3D%220%200%2072%2072%22%3E%20%3Cg%20fill%3D%22%2385e0e0%22%20opacity%3D%220.8%22%3E%20%3Cpath%20d%3D%22M18%2030%20c-7-8%202-17%209-11%207-6%2016%203%209%2011%20l-9%209%20z%22%2F%3E%20%3Ccircle%20cx%3D%2256%22%20cy%3D%2220%22%20r%3D%222.6%22%2F%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%2252%22%20r%3D%222.6%22%2F%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2260%22%20r%3D%222.6%22%2F%3E%20%3Ccircle%20cx%3D%2264%22%20cy%3D%2262%22%20r%3D%221.6%22%2F%3E%20%3C%2Fg%3E%3C%2Fsvg%3E",
+        "opacity": 0.07,
+        "size": 160
+      },
+      "ornament": {
+        "url": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22240%22%20viewBox%3D%220%200%20240%20240%22%3E%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%23d2758c%22%20stroke-linecap%3D%22round%22%3E%20%3Cpath%20d%3D%22M0%20236%20L0%20120%20a120%20120%200%200%201%20120%20-120%20L236%200%22%20stroke-width%3D%222%22%20opacity%3D%220.55%22%2F%3E%20%3Cpath%20d%3D%22M0%20200%20L0%20132%20a132%20132%200%200%201%20132%20-132%20L200%200%22%20stroke-width%3D%221%22%20opacity%3D%220.35%22%2F%3E%20%3Cpath%20d%3D%22M0%2096%20L0%2060%20a60%2060%200%200%201%2060%20-60%20L96%200%22%20stroke-width%3D%223%22%20opacity%3D%220.7%22%2F%3E%20%3C%2Fg%3E%3C%2Fsvg%3E",
+        "corner": "top-left",
+        "width": 260,
+        "opacity": 0.35,
+        "offsetX": 0,
+        "offsetY": 0
+      }
+    },
+    "solo-leveling": {
+      "id": "solo-leveling",
+      "name": "Solo Leveling",
+      "series": "Solo Leveling",
+      "mediaId": 151807,
+      "mode": "dark",
+      "colors": {
+        "bg": "#0a0e10",
+        "bg2": "#101618",
+        "bg3": "#192124",
+        "line": "#2b363b",
+        "txt": "#eef1f2",
+        "muted": "#93a3a9",
+        "accent": "#39bbef",
+        "accent2": "#e8635e",
+        "premiere": "#dbf127",
+        "today": "#2fa9da",
+        "good": "#39d085",
+        "now": "#f859a9",
+        "finale": "#e97349"
+      },
+      "glow": "#39bbef",
+      "font": {
+        "family": "\"Orbitron\",Verdana,sans-serif",
+        "css": "https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap",
+        "scale": 1
+      },
+      "shape": {
+        "radius": 4,
+        "chipRadius": 6,
+        "border": 1,
+        "cardBlur": 16
+      },
+      "effects": {
+        "vignette": 0,
+        "grain": 0,
+        "scanlines": 0.35,
+        "glowStrength": 0.9
+      },
+      "backdrop": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/151807-37yfQA3ym8PA.jpg",
+        "opacity": 0.34,
+        "blur": 4,
+        "position": "center 20%"
+      },
+      "header": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/151807-37yfQA3ym8PA.jpg",
+        "opacity": 0.62,
+        "position": "center 38%"
+      },
+      "cutout": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx151807-it355ZgzquUd.png",
+        "corner": "bottom-right",
+        "width": 380,
+        "opacity": 0.5,
+        "offsetX": -8,
+        "offsetY": -8,
+        "fade": 0.62,
+        "flip": false
+      },
+      "watermark": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx151807-it355ZgzquUd.png",
+        "opacity": 0.08
+      },
+      "pattern": {
+        "url": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2256%22%20height%3D%2296%22%20viewBox%3D%220%200%2056%2096%22%3E%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%2339bbef%22%20stroke-width%3D%221.2%22%20opacity%3D%220.8%22%3E%20%3Cpath%20d%3D%22M28%202%20L54%2017%20L54%2047%20L28%2062%20L2%2047%20L2%2017%20Z%22%2F%3E%20%3Cpath%20d%3D%22M28%2050%20L54%2065%20L54%2095%20L28%20110%20L2%2095%20L2%2065%20Z%22%2F%3E%20%3C%2Fg%3E%3C%2Fsvg%3E",
+        "opacity": 0.07,
+        "size": 160
+      },
+      "ornament": {
+        "url": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22240%22%20viewBox%3D%220%200%20240%20240%22%3E%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%23e8635e%22%20stroke-linecap%3D%22round%22%3E%20%3Cpath%20d%3D%22M0%20236%20L0%20120%20a120%20120%200%200%201%20120%20-120%20L236%200%22%20stroke-width%3D%222%22%20opacity%3D%220.55%22%2F%3E%20%3Cpath%20d%3D%22M0%20200%20L0%20132%20a132%20132%200%200%201%20132%20-132%20L200%200%22%20stroke-width%3D%221%22%20opacity%3D%220.35%22%2F%3E%20%3Cpath%20d%3D%22M0%2096%20L0%2060%20a60%2060%200%200%201%2060%20-60%20L96%200%22%20stroke-width%3D%223%22%20opacity%3D%220.7%22%2F%3E%20%3C%2Fg%3E%3C%2Fsvg%3E",
+        "corner": "top-left",
+        "width": 260,
+        "opacity": 0.35,
+        "offsetX": 0,
+        "offsetY": 0
+      }
+    },
+    "frieren-beyond-journeys-end": {
+      "id": "frieren-beyond-journeys-end",
+      "name": "Frieren: Beyond Journey’s End",
+      "series": "Frieren: Beyond Journey’s End",
+      "mediaId": 154587,
+      "mode": "dark",
+      "colors": {
+        "bg": "#0c100a",
+        "bg2": "#131810",
+        "bg3": "#1d2419",
+        "line": "#303b2b",
+        "txt": "#eff2ee",
+        "muted": "#9aa993",
+        "accent": "#9feb7a",
+        "accent2": "#9a67e0",
+        "premiere": "#f1cd27",
+        "today": "#67da2f",
+        "good": "#39d061",
+        "now": "#f859c7",
+        "finale": "#e95f49"
+      },
+      "glow": "#9feb7a",
+      "font": {
+        "family": "\"Cormorant Garamond\",Georgia,serif",
+        "css": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&display=swap",
+        "scale": 1.18
+      },
+      "shape": {
+        "radius": 16,
+        "chipRadius": 24,
+        "border": 1,
+        "cardBlur": 14
+      },
+      "effects": {
+        "vignette": 0.5,
+        "grain": 0,
+        "scanlines": 0,
+        "glowStrength": 0.45
+      },
+      "backdrop": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/154587-ivXNJ23SM1xB.jpg",
+        "opacity": 0.34,
+        "blur": 4,
+        "position": "center 20%"
+      },
+      "header": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/154587-ivXNJ23SM1xB.jpg",
+        "opacity": 0.62,
+        "position": "center 38%"
+      },
+      "cutout": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+        "corner": "bottom-right",
+        "width": 380,
+        "opacity": 0.5,
+        "offsetX": -8,
+        "offsetY": -8,
+        "fade": 0.62,
+        "flip": false
+      },
+      "watermark": {
+        "url": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+        "opacity": 0.08
+      },
+      "pattern": {
+        "url": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2280%22%20height%3D%2280%22%20viewBox%3D%220%200%2080%2080%22%3E%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%239feb7a%22%20stroke-width%3D%221.1%22%20opacity%3D%220.9%22%3E%20%3Cpath%20d%3D%22M40%206%20L74%2040%20L40%2074%20L6%2040%20Z%22%2F%3E%20%3Cpath%20d%3D%22M40%2022%20L58%2040%20L40%2058%20L22%2040%20Z%22%2F%3E%20%3Cpath%20d%3D%22M40%2034%20v12%20M34%2040%20h12%22%2F%3E%20%3C%2Fg%3E%3C%2Fsvg%3E",
+        "opacity": 0.07,
+        "size": 160
+      },
+      "ornament": {
+        "url": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22240%22%20viewBox%3D%220%200%20240%20240%22%3E%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%239a67e0%22%20stroke-linecap%3D%22round%22%3E%20%3Cpath%20d%3D%22M0%20236%20L0%20120%20a120%20120%200%200%201%20120%20-120%20L236%200%22%20stroke-width%3D%222%22%20opacity%3D%220.55%22%2F%3E%20%3Cpath%20d%3D%22M0%20200%20L0%20132%20a132%20132%200%200%201%20132%20-132%20L200%200%22%20stroke-width%3D%221%22%20opacity%3D%220.35%22%2F%3E%20%3Cpath%20d%3D%22M0%2096%20L0%2060%20a60%2060%200%200%201%2060%20-60%20L96%200%22%20stroke-width%3D%223%22%20opacity%3D%220.7%22%2F%3E%20%3C%2Fg%3E%3C%2Fsvg%3E",
+        "corner": "top-left",
+        "width": 260,
+        "opacity": 0.35,
+        "offsetX": 0,
+        "offsetY": 0
+      }
+    }
+  }
+}

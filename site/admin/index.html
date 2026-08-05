@@ -53,6 +53,24 @@ pre{background:#12171f;border:1px solid #2a3140;border-radius:10px;padding:12px;
 textarea.json{width:100%;min-height:340px;font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace}
 .gate{max-width:420px;margin:12vh auto;background:#161b22;border:1px solid #2a3140;border-radius:14px;padding:22px}
 .gate h1{margin-bottom:10px}
+/* themes + grants */
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:11px;margin-bottom:14px}
+.tcard{background:#161b22;border:1px solid #2a3140;border-radius:12px;padding:11px 12px}
+.tcard.sel{border-color:#8b5cf6}
+.tcard h4{margin:0 0 3px;font-size:13.5px;display:flex;align-items:center;gap:7px}
+.tcard .dot2{width:12px;height:12px;border-radius:50%;flex:none}
+.tcard .sub2{color:#8b97a7;font-size:11.5px;margin-bottom:7px}
+.swatchrow{display:flex;gap:3px;margin-bottom:8px}
+.swatchrow span{width:15px;height:15px;border-radius:3px;border:1px solid rgba(255,255,255,.08)}
+.tcard .art{height:52px;border-radius:7px;background:#0d1117 center/cover no-repeat;margin-bottom:7px}
+.tcard .no-art{display:flex;align-items:center;justify-content:center;color:#5c6675;font-size:11px}
+.grow2{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+table.g{width:100%;border-collapse:collapse;font-size:13px}
+table.g th{text-align:left;color:#8b97a7;font-size:11.5px;font-weight:700;padding:5px 8px;border-bottom:1px solid #2a3140}
+table.g td{padding:7px 8px;border-bottom:1px solid #1c2230;vertical-align:middle}
+table.g tr:hover td{background:#12171f}
+table.g img{border-radius:50%;vertical-align:middle;margin-right:7px}
+code.id{font:11.5px ui-monospace,Menlo,monospace;color:#8b97a7}
 </style>
 </head>
 <body>
@@ -67,8 +85,10 @@ textarea.json{width:100%;min-height:340px;font:12px/1.5 ui-monospace,SFMono-Regu
 const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const SECRET_KEY="tsuzuki.admin.secret";
+const PREVIEW_KEY="anical.previewSkin";   // read by site/index.html to try a skin on
 let secret=sessionStorage.getItem(SECRET_KEY)||"";
 let tab="open", reports=[], overrides={shows:{}}, busy=false;
+let themes={}, grants=[], dirUsers=[], loadError="";
 
 const hdr=()=>({"Content-Type":"application/json","x-tsuzuki-secret":secret});
 async function api(path,opts){
@@ -99,24 +119,29 @@ function renderGate(msg){
 function renderShell(){
   const openN=reports.filter(r=>(r.status||"open")==="open").length;
   $("app").innerHTML=`
-    <h1><span class="dot"></span> Correction queue</h1>
-    <p class="sub">Reader reports on the left of each card; the fix you apply goes straight into the live
-      override store, so it reaches every visitor and every API consumer within minutes. No deploy.</p>
+    <h1><span class="dot"></span> Tsuzuki console</h1>
+    <p class="sub">Corrections and skins. Everything here writes to a live store, so it reaches every visitor
+      within minutes and costs no deploy.</p>
     <div class="bar">
       <button id="reload">↻ Reload</button>
-      <span class="hint grow" id="status">${openN} open · ${reports.length} total</span>
+      <span class="hint grow ${loadError?"err":""}" id="status">${loadError?esc("Some data didn't load: "+loadError):`${openN} open report${openN===1?"":"s"} · ${Object.keys(themes).length} skins · ${grants.length} granted`}</span>
       <button id="lock">Lock</button>
     </div>
     <div class="tabs">
       <button data-tab="open" class="${tab==="open"?"on":""}">Open (${openN})</button>
       <button data-tab="all" class="${tab==="all"?"on":""}">All reports</button>
       <button data-tab="raw" class="${tab==="raw"?"on":""}">Raw overrides</button>
+      <button data-tab="skins" class="${tab==="skins"?"on":""}">Skins (${Object.keys(themes).length})</button>
+      <button data-tab="grants" class="${tab==="grants"?"on":""}">Grants (${grants.length})</button>
     </div>
     <div id="body"></div>`;
   $("reload").onclick=boot;
   $("lock").onclick=()=>{ sessionStorage.removeItem(SECRET_KEY); secret=""; renderGate(""); };
   document.querySelectorAll("[data-tab]").forEach(b=>b.onclick=()=>{ tab=b.dataset.tab; renderShell(); });
-  if(tab==="raw") renderRaw(); else renderReports();
+  if(tab==="raw") renderRaw();
+  else if(tab==="skins") renderSkins();
+  else if(tab==="grants") renderGrants();
+  else renderReports();
 }
 
 /* ---------- reports ---------- */
@@ -306,18 +331,190 @@ function renderRaw(){
   };
 }
 
+/* ---------- skins ----------
+   A skin is a full site theme tied to a character or a series: the whole colour
+   palette plus up to four image layers (page backdrop, header band, corner
+   cutout, empty-state watermark). Images are external https URLs — the shipped
+   set points at AniList's CDN, which the site already loads every cover from —
+   so a skin is pure JSON and adding one costs no deploy and no upload.
+
+   The editor is deliberately the raw document, same as Raw overrides: the
+   schema is small, and a form would be a worse version of a text editor with
+   the field list right there in front of you. Preview renders it on the real
+   site rather than in a swatch, because the whole point of a skin is what the
+   calendar looks like wearing it. */
+const THEME_TEMPLATE={
+  id:"my-skin", name:"My Skin", series:"Series name", mode:"dark",
+  // All thirteen are required — a partial palette leaves half the UI on the
+  // default purple, which reads as a bug rather than a theme.
+  colors:{bg:"#0d0b11",bg2:"#141019",bg3:"#1c1726",line:"#2e2740",txt:"#ece9f3",muted:"#9b93ad",
+    accent:"#a78bfa",accent2:"#67e8f9",premiere:"#f5a524",today:"#7c5cf0",good:"#4ade80",now:"#fb7185",finale:"#f05252"},
+  glow:"#a78bfa",
+  // Display face, headings only. Any Google Fonts stylesheet URL.
+  font:{family:'"Bebas Neue",Impact,sans-serif',css:"https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap",scale:1.2},
+  // radius 0-28, chipRadius 0-30, border 1-3, cardBlur 0-24. This is what makes
+  // a skin feel like a different product rather than a re-tint.
+  shape:{radius:12,chipRadius:20,border:1,cardBlur:10},
+  // All 0-1.
+  effects:{vignette:0.3,grain:0,scanlines:0,glowStrength:0.5},
+  backdrop:{url:"https://…",opacity:0.34,blur:4,position:"center 20%"},
+  header:{url:"https://…",opacity:0.62,position:"center 38%"},
+  // fade dissolves the edges into the page — without it a poster in the corner
+  // reads as a screenshot pasted on top.
+  cutout:{url:"https://…",corner:"bottom-right",width:380,opacity:0.5,offsetX:-8,offsetY:-8,fade:0.62,flip:false},
+  watermark:{url:"https://…",opacity:0.08},
+  // pattern and ornament also accept data:image/svg+xml URIs — that's how the
+  // generated set ships its textures, so they can't 404.
+  pattern:{url:"https://…",opacity:0.07,size:160},
+  ornament:{url:"https://…",corner:"top-left",width:260,opacity:0.35,offsetX:0,offsetY:0},
+};
+
+function skinCardHTML(id,t){
+  const c=t.colors||{};
+  const art=(t.backdrop&&t.backdrop.url)||(t.header&&t.header.url)||(t.watermark&&t.watermark.url)||"";
+  const granted=grants.filter(g=>g.themeId===id).length;
+  return `<div class="tcard">
+    <div class="art ${art?"":"no-art"}" ${art?`style="background-image:url('${esc(art)}')"`:""}>${art?"":"no art"}</div>
+    <h4><span class="dot2" style="background:linear-gradient(135deg,${esc(c.accent||"#888")},${esc(c.accent2||"#888")})"></span>${esc(t.name||id)}</h4>
+    <div class="sub2"><code class="id">${esc(id)}</code>${granted?` · ${granted} granted`:""}</div>
+    <div class="sub2">${esc(((t.font&&t.font.family)||"system").replace(/^"|",.*$/g,""))} · r${(t.shape&&t.shape.radius)??12} · ${["backdrop","header","cutout","pattern","ornament","watermark"].filter(k=>t[k]&&t[k].url).length} layers</div>
+    <div class="swatchrow">${["bg","bg2","accent","accent2","premiere","now"].map(k=>`<span title="${k}: ${esc(c[k]||"")}" style="background:${esc(c[k]||"#000")}"></span>`).join("")}</div>
+    <div class="grow2">
+      <button data-preview="${esc(id)}">👁 Preview</button>
+      <button data-edit="${esc(id)}">Edit</button>
+    </div>
+  </div>`;
+}
+
+function renderSkins(){
+  const ids=Object.keys(themes).sort();
+  $("body").innerHTML=`
+    <p class="hint">Skins are granted to individual accounts in the <b>Grants</b> tab. The set below is the committed
+      seed (<code>site/data/themes.json</code>, generated by <code>scripts/build-themes.mjs</code>) with anything saved
+      here merged on top. Saving replaces a whole theme by id — a partial palette would leave half the UI on the
+      default purple.</p>
+    ${ids.length?`<div class="tgrid">${ids.map(id=>skinCardHTML(id,themes[id])).join("")}</div>`:`<div class="empty">No skins yet.</div>`}
+    <div class="row"><button id="skNew">+ New skin from template</button>
+      <span class="hint">Preview opens the real site wearing it. Nobody else sees a preview.</span></div>
+    <textarea class="json" id="skJson" placeholder="Pick Edit or New — the theme document shows up here."></textarea>
+    <div class="row"><button class="primary" id="skSave">Save skin</button>
+      <button id="skReload">Discard changes</button><span class="hint" id="skMsg"></span></div>`;
+
+  $("skReload").onclick=boot;
+  $("skNew").onclick=()=>{ $("skJson").value=JSON.stringify(THEME_TEMPLATE,null,2); $("skJson").focus(); };
+  document.querySelectorAll("[data-edit]").forEach(b=>b.onclick=()=>{
+    const id=b.dataset.edit;
+    $("skJson").value=JSON.stringify({id, ...themes[id]},null,2);
+    $("skJson").scrollIntoView({behavior:"smooth",block:"center"});
+  });
+  document.querySelectorAll("[data-preview]").forEach(b=>b.onclick=()=>{
+    // Handed over in localStorage, not a URL parameter: a ?theme= link would let
+    // anyone wear an event skin, and exclusivity is the whole product here.
+    localStorage.setItem(PREVIEW_KEY, b.dataset.preview);
+    window.open("/","_blank","noopener");
+  });
+  $("skSave").onclick=async()=>{
+    const m=$("skMsg");
+    let doc;
+    try{ doc=JSON.parse($("skJson").value); }catch(e){ m.textContent="Invalid JSON: "+e.message; m.className="hint err"; return; }
+    const id=String(doc.id||"").trim();
+    if(!id){ m.textContent='Needs an "id" (lowercase letters, digits, dashes).'; m.className="hint err"; return; }
+    const {id:_drop, ...theme}=doc;
+    m.textContent="Saving…"; m.className="hint";
+    try{
+      const j=await api("/api/themes",{method:"POST",body:JSON.stringify({themes:{[id]:theme}})});
+      m.textContent=`Saved — ${j.themes} skins live.`; m.className="hint ok";
+      await boot();
+    }catch(e){ m.textContent=e.message; m.className="hint err"; }
+  };
+}
+
+/* ---------- grants ----------
+   Who wears what. Permanent: no expiry and nothing the client re-checks for a
+   lapse. Remove exists to undo a mistyped id and to honour a request to be
+   forgotten — it drops the stored directory row too. */
+function renderGrants(){
+  const opts=Object.keys(themes).sort().map(id=>`<option value="${esc(id)}">${esc(themes[id].name||id)}</option>`).join("");
+  const seen=new Set(grants.map(g=>g.discordId));
+  const ungranted=dirUsers.filter(u=>!seen.has(u.id));
+  const who=u=>{
+    if(!u) return `<span class="hint">hasn't signed in yet</span>`;
+    const av=u.avatar?`https://cdn.discordapp.com/avatars/${encodeURIComponent(u.id)}/${encodeURIComponent(u.avatar)}.png?size=32`:"";
+    return `${av?`<img src="${esc(av)}" alt="" width="22" height="22">`:""}${esc(u.globalName||u.username||u.id)}`;
+  };
+  $("body").innerHTML=`
+    <p class="hint">A grant is permanent — there's no expiry and the wearer can only turn it off for themselves.
+      To find someone's id: Discord → Settings → Advanced → Developer Mode, then right-click them → Copy User ID.
+      They can also just sign in once and appear in the list below.</p>
+    <div class="bar">
+      <label class="hint">Discord user id <input id="gId" placeholder="e.g. 216783729166680001" style="width:210px" inputmode="numeric"></label>
+      <label class="hint">Skin <select id="gTheme">${opts}</select></label>
+      <label class="hint grow">Note <input id="gNote" placeholder="why (optional)" style="width:100%"></label>
+      <button class="primary" id="gAdd">Grant</button>
+    </div>
+    <span class="hint" id="gMsg"></span>
+    ${grants.length?`<table class="g"><tr><th>Who</th><th>Skin</th><th>Granted</th><th>Note</th><th></th></tr>
+      ${grants.map(g=>`<tr>
+        <td>${who(g.user)}<br><code class="id">${esc(g.discordId)}</code></td>
+        <td>${esc((themes[g.themeId]&&themes[g.themeId].name)||g.themeId)}${themes[g.themeId]?"":' <span class="err">(missing!)</span>'}</td>
+        <td class="hint">${g.grantedAt?esc(new Date(g.grantedAt).toLocaleDateString()):""}</td>
+        <td class="hint">${esc(g.note||"")}</td>
+        <td><button class="danger" data-revoke="${esc(g.discordId)}">Remove</button></td>
+      </tr>`).join("")}</table>`:`<div class="empty">Nothing granted yet.</div>`}
+    ${ungranted.length?`<h3 style="font-size:14px;margin:20px 0 6px">Signed in, no skin (${ungranted.length})</h3>
+      <table class="g">${ungranted.slice(0,60).map(u=>`<tr>
+        <td>${who(u)}<br><code class="id">${esc(u.id)}</code></td>
+        <td class="hint">last seen ${u.lastSeen?esc(new Date(u.lastSeen).toLocaleDateString()):"?"}</td>
+        <td style="text-align:right"><button data-pick="${esc(u.id)}">Use this id</button></td>
+      </tr>`).join("")}</table>`:""}`;
+
+  document.querySelectorAll("[data-pick]").forEach(b=>b.onclick=()=>{
+    $("gId").value=b.dataset.pick;
+    $("gId").scrollIntoView({behavior:"smooth",block:"center"});
+  });
+  $("gAdd").onclick=async()=>{
+    const m=$("gMsg");
+    const discordId=$("gId").value.trim();
+    if(!/^\d{17,20}$/.test(discordId)){ m.textContent="That isn't a Discord user id (17–20 digits)."; m.className="hint err"; return; }
+    if(busy) return; busy=true;
+    m.textContent="Granting…"; m.className="hint";
+    try{
+      await api("/api/grants",{method:"POST",body:JSON.stringify({discordId, themeId:$("gTheme").value, note:$("gNote").value.trim()})});
+      await boot();
+    }catch(e){ m.textContent=e.message; m.className="hint err"; }
+    finally{ busy=false; }
+  };
+  document.querySelectorAll("[data-revoke]").forEach(b=>b.onclick=async()=>{
+    if(!confirm("Remove this grant? Their stored Discord name and avatar go too.")) return;
+    if(busy) return; busy=true;
+    try{ await api("/api/grants",{method:"POST",body:JSON.stringify({discordId:b.dataset.revoke, action:"remove"})}); await boot(); }
+    catch(e){ const m=$("gMsg"); m.textContent=e.message; m.className="hint err"; }
+    finally{ busy=false; }
+  });
+}
+
 /* ---------- boot ---------- */
 async function boot(){
   if(!secret) return renderGate("");
-  try{
-    const [rep,ov]=await Promise.all([
-      api("/api/report?status=all"),
-      fetch("/api/overrides").then(r=>r.json()),
-    ]);
-    reports=rep.reports||[];
-    overrides={version:ov.version||1, updatedAt:ov.updatedAt||null, shows:ov.shows||{}};
-    renderShell();
-  }catch(e){ renderGate(e.message); }
+  // One probe decides whether the secret is right; everything after it is
+  // allowed to fail on its own. A console that refuses to open because the
+  // report store hiccuped would also take the skins and grants down with it,
+  // and those have nothing to do with each other.
+  try{ const rep=await api("/api/report?status=all"); reports=rep.reports||[]; }
+  catch(e){
+    if(/403|secret/i.test(e.message)) return renderGate(e.message);
+    reports=[]; loadError=e.message;
+  }
+  const [ov,th,gr]=await Promise.all([
+    fetch("/api/overrides").then(r=>r.json()).catch(()=>null),
+    fetch("/api/themes").then(r=>r.json()).catch(()=>null),
+    api("/api/grants").catch(()=>null),
+  ]);
+  overrides={version:(ov&&ov.version)||1, updatedAt:(ov&&ov.updatedAt)||null, shows:(ov&&ov.shows)||{}};
+  themes=(th&&th.themes)||{};
+  grants=(gr&&gr.grants)||[];
+  dirUsers=(gr&&gr.users)||[];
+  renderShell();
 }
 boot();
 </script>

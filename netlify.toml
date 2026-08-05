@@ -64,6 +64,27 @@
   to = "/.netlify/functions/report"
   status = 200
 
+# Discord sign-in. Identity only — it exists so a skin granted in /admin can
+# find the account it was granted to. /api/auth/callback is the URI that has to
+# be registered on the Discord application.
+[[redirects]]
+  from = "/api/auth/*"
+  to = "/.netlify/functions/auth"
+  status = 200
+
+# The skin catalog: public to read (the client applies it), maintainer-only to
+# write. Like /api/overrides, a change here reaches everyone without a deploy.
+[[redirects]]
+  from = "/api/themes"
+  to = "/.netlify/functions/themes"
+  status = 200
+
+# Which account has which skin. Maintainer-only in both directions.
+[[redirects]]
+  from = "/api/grants"
+  to = "/.netlify/functions/grants"
+  status = 200
+
 # Grounded anime chat (SSE). Answers from the corrected schedule via tool calls,
 # and falls back to Google Search for anything the calendar doesn't hold — see
 # netlify/functions/chat.mjs. Needs GEMINI_API_KEY in the site environment.

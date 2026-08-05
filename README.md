@@ -140,6 +140,104 @@ Subscriptions (push endpoint + followed-show ids + lead time) are stored in Netl
 keyed by push endpoint, and pruned automatically when a subscription expires (404/410 from
 the push service).
 
+## Discord sign-in + skins
+Skins are full site themes tied to a character or a series — the entire colour
+palette plus art layered into the UI (page backdrop, header band, a corner
+cutout, an empty-state watermark). They're handed out to individual people at
+events, which is the only reason sign-in exists: something has to know which
+account you are so a grant can find you.
+
+**Sign-in is identity and nothing else.** Your list, ratings, notes and
+collections are still never uploaded, and the settings panel says so where you
+sign in. What is stored server-side is your Discord id, name and avatar hash, so
+the admin panel can grant a skin by name instead of by snowflake.
+
+Setup (one-time):
+1. Discord Developer Portal → your app → **OAuth2 → Redirects**, add
+   `https://<site>/api/auth/callback`. Add one per origin you sign in from —
+   Discord only accepts redirect URIs registered on the app.
+2. Netlify → *Site configuration → Environment variables*:
+   - `DISCORD_CLIENT_ID` — the application id (same app the bot uses)
+   - `DISCORD_CLIENT_SECRET` — OAuth2 → Client secret
+   - `SESSION_SECRET` — any long random string (`openssl rand -base64 48`)
+3. Deploy. Without these, sign-in is *off* rather than broken: the settings panel
+   explains which variables are missing and the rest of the site is unaffected.
+
+Sessions are a signed cookie, not a stored row — HMAC-SHA256 over the payload
+with `SESSION_SECRET`, `HttpOnly; Secure; SameSite=Lax`, 90 days. The grant is
+deliberately **not** in the token, so a skin granted five minutes ago reaches
+someone who signed in last month without them having to sign out and back in.
+
+### What a skin actually is
+Not a recolour. Recolouring alone gives you the same site in different paint —
+which is what the first version of this did, and it read as exactly that. What
+makes a skin feel like a different product is **structure**, so a theme carries
+all of it:
+
+| field | what it changes |
+| --- | --- |
+| `colors` | the full 13-variable palette |
+| `font` | a display face for headings only — body copy and the calendar keep the system stack, because a decorative face at 12px across a grid of air times is a skin that made the product worse |
+| `shape` | corner radii, border weight, surface blur. `--radius` already drives most of the page, so this reshapes it wholesale |
+| `effects` | vignette / grain / scanlines / glow strength |
+| `backdrop` | the show's banner behind everything |
+| `header` | the same art as a band behind the toolbar |
+| `cutout` | the poster in a corner, edges dissolved via a mask so it reads as part of the layout rather than a screenshot pasted on top |
+| `watermark` | art on empty days and empty lists |
+| `pattern` | a tiling motif drawn from the palette |
+| `ornament` | a corner flourish, likewise drawn |
+
+Every art layer lives in one fixed `#skinLayers` container at `z-index:-1` —
+behind all content, above the page background, in explicit paint order. One
+stacking context for the whole system means nothing else has to be re-stacked
+and no layer can end up on top of a dialog.
+
+`pattern` and `ornament` are generated SVG inlined as `data:` URIs rather than
+fetched: no host to go down, no dead link in six months, and a texture actually
+made of the theme's own colours. They're safe as CSS backgrounds specifically —
+an SVG referenced by `background-image` renders in the browser's secure static
+mode, where script is inert — and both the server and the client hold them to a
+character class that can't break out of `url()`.
+
+### Making a skin
+`site/data/themes.json` is the committed set, generated from each show's own art
+and its AniList dominant colour:
+
+    node scripts/build-themes.mjs                    # regenerate the shipped set
+    node scripts/build-themes.mjs --add 21519        # add a title by AniList id
+    node scripts/build-themes.mjs --check            # verify every image URL still resolves
+
+Images are external `https://` URLs — the shipped set points at AniList's CDN,
+which the site already loads every cover from. So a theme is pure JSON: nothing
+binary in the repo, no upload endpoint, and **a new skin costs no deploy**. The
+tradeoff is that a skin is only as available as its image host, hence `--check`.
+
+Each title in `SEED` pairs an AniList id with a *recipe* — which motif, which
+display face, how sharp the whole UI is, what sits over the top:
+
+    154587: { motif: "runes",  font: "cormorant", shape: "soft",   effects: { vignette: 0.5 } },
+    113415: { motif: "slash",  font: "bebas",     shape: "sharp",  effects: { grain: 0.35, glowStrength: 0.8 } },
+
+Ten motifs ship (asanoha for Demon Slayer, seigaiha for One Piece, cursed
+slashes for Jujutsu Kaisen, a hex grid for Solo Leveling…). Add a row, re-run,
+and refine in `/admin` afterwards — a title added with `--add` and no recipe
+gets a sane default rather than nothing.
+
+If you have real transparent character PNGs, point `cutout.url` at one and it
+beats the poster fallback outright — that layer was built for exactly that, the
+poster is just the honest best available without an art source.
+
+### Granting one
+`/admin` → **Skins** to edit or preview (preview renders on the real site and is
+visible only to you — it's handed over in `localStorage`, not a URL, because a
+`?theme=` link would let anyone wear an event skin). **Grants** to assign one to
+a Discord user id.
+
+A grant is permanent: no expiry, and nothing the client re-checks for a lapse.
+The wearer can toggle it off for themselves in Settings. **Remove** exists to
+undo a mistyped id and to delete someone's stored row on request — it is not a
+timed revoke.
+
 ## The catalog (how data reaches the app)
 `netlify/functions/_lib/catalog.mjs` is the read path everything else goes
 through. A lookup resolves in three tiers — per-instance memory, then a Netlify

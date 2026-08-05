@@ -134,6 +134,107 @@
   body.dense .card .body{padding:7px 9px}
   body.dense .prow{padding:6px 5px}
   body.dense .arow{padding:6px 14px}
+
+  /* ---------- skins ----------
+     A skin is not a recolour. Recolouring alone gives you the same site in
+     different paint; what reads as a different product is structure — the shape
+     of every corner, the weight of every border, the typeface on every heading,
+     and a texture running under the whole page. So a theme drives all of it,
+     through the variables set inline on <body> and the per-theme rules injected
+     into #skinCss at runtime. What's below is the part shared by every skin.
+
+     Palette variables go on <body>, not :root, because body.theme-light also
+     defines --bg and friends and would otherwise win as the closer ancestor.
+
+     Every art layer lives in one fixed #skinLayers container at z-index -1:
+     behind all content, above the page background, in explicit paint order. One
+     stacking context for the whole system means nothing else has to be
+     re-stacked and no layer can ever end up on top of a dialog. */
+  body.skinned{background-image:none;background:var(--bg)}
+  #skinLayers{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;display:none;contain:strict}
+  body.skinned #skinLayers{display:block}
+  #skinLayers i{position:absolute;display:block;background-repeat:no-repeat}
+  /* Blur samples past the edges and leaves them translucent; the scale-up
+     pushes that seam off-screen. */
+  #skinLayers .sl-backdrop{inset:0;background-size:cover;transform:scale(1.08)}
+  #skinLayers .sl-pattern{inset:-10px;background-repeat:repeat}
+  #skinLayers .sl-ornament,#skinLayers .sl-cutout{background-size:contain}
+  #skinLayers .sl-vignette{inset:0;background:radial-gradient(125% 95% at 50% 38%,transparent 42%,#000 100%)}
+  /* Static film grain — one generated noise tile, identical for every skin, so
+     it costs nothing per theme. */
+  #skinLayers .sl-grain{inset:0;background-size:190px;background-repeat:repeat;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='190' height='190'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='190' height='190' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E")}
+  #skinLayers .sl-scan{inset:0;background-image:repeating-linear-gradient(180deg,rgba(255,255,255,.055) 0 1px,transparent 1px 3px)}
+
+  /* Surfaces go translucent so the art reads as part of the page rather than a
+     picture stuck behind a wall of opaque cards. */
+  body.skinned .card,body.skinned .board-col,body.skinned .modal,body.skinned .chat-panel{
+    background:color-mix(in srgb,var(--bg2) 82%,transparent);backdrop-filter:blur(var(--skin-card-blur,10px))}
+  /* The calendar is the biggest opaque surface on the page — left solid it hides
+     the backdrop entirely and the skin reads as a recoloured toolbar. */
+  body.skinned .cal{background:color-mix(in srgb,var(--bg2) 66%,transparent);backdrop-filter:blur(var(--skin-card-blur,10px))}
+  body.skinned .dow{background:color-mix(in srgb,var(--bg3) 55%,transparent)}
+  body.skinned .card h3{background:color-mix(in srgb,var(--bg3) 62%,transparent)}
+  body.skinned .toolbar{background:color-mix(in srgb,var(--bg2) 48%,transparent)}
+  body.skinned .aday,body.skinned .modal .mh{background:color-mix(in srgb,var(--bg2) 88%,transparent)}
+  body.skinned header{background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 24%,transparent),transparent)}
+  body.skinned header::before{content:"";position:absolute;inset:0;z-index:-1;background-size:cover;background-repeat:no-repeat;
+    -webkit-mask-image:linear-gradient(180deg,#000 22%,transparent);mask-image:linear-gradient(180deg,#000 22%,transparent)}
+  /* Scrim over the header art. It has to be its own pseudo-element: within the
+     header's stacking context the element's own background paints *below* a
+     z-index:-1 ::before, so the art would sit on top of any scrim put there.
+     ::after is in the same negative layer but later in paint order, which is
+     the only place a scrim can actually land on top of the art. Without it a
+     pale banner makes the status text unreadable. */
+  body.skinned header::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+    background:linear-gradient(180deg,color-mix(in srgb,var(--bg) 22%,transparent),color-mix(in srgb,var(--bg) 76%,transparent))}
+  body.skinned .empty{position:relative}
+  body.skinned .empty::before{content:"";position:absolute;inset:2px;background-size:contain;background-repeat:no-repeat;
+    background-position:center;pointer-events:none;border-radius:8px}
+
+  /* Shape. --radius already drives .card/.cal/.board-col, so overriding it
+     reshapes most of the page for free; the rest is the small stuff that
+     carries just as much of the feel. */
+  body.skinned .pill,body.skinned .chip,body.skinned button,body.skinned .airtag,body.skinned .stream-chip,
+  body.skinned input,body.skinned select,body.skinned .seg,body.skinned .seg2{border-radius:var(--skin-chip-radius,20px)}
+  body.skinned .card,body.skinned .cal,body.skinned .board-col,body.skinned .modal,body.skinned .ev-card{
+    border-width:var(--skin-border,1px)}
+  body.skinned .ev{border-left-width:calc(var(--skin-border,1px) + 2px)}
+
+  /* Type. Display face on headings only — body copy and the calendar keep the
+     system stack, because a decorative face at 12px across a grid of air times
+     is a skin that made the product worse. */
+  body.skinned .brand,body.skinned #monthTitle,body.skinned h2,body.skinned h3,body.skinned h4,
+  body.skinned .set-head,body.skinned .aday,body.skinned .dow div,body.skinned .ev-head h2{
+    font-family:var(--skin-font,inherit);letter-spacing:.4px}
+  body.skinned .brand,body.skinned #monthTitle{font-size:calc(20px * var(--skin-font-scale,1))}
+  body.skinned .dow div{font-size:calc(12px * var(--skin-font-scale,1))}
+
+  /* Glow, scaled by the theme. Enough to feel lit; never enough to smear text. */
+  body.skinned .card,body.skinned .cal,body.skinned .board-col{
+    box-shadow:var(--shadow),0 0 0 1px color-mix(in srgb,var(--skin-glow,var(--accent)) calc(var(--skin-glow-strength,.4) * 26%),transparent)}
+  body.skinned .brand .dot{box-shadow:0 0 calc(14px + var(--skin-glow-strength,.4) * 20px) var(--skin-glow,var(--accent))}
+  body.skinned button.primary{box-shadow:0 0 calc(var(--skin-glow-strength,.4) * 18px) color-mix(in srgb,var(--skin-glow,var(--accent)) 55%,transparent)}
+
+  /* A 380px poster pinned to the corner of a 360px phone is in the way at any
+     z-index. The backdrop, pattern and header band still carry the skin there. */
+  @media(max-width:820px){#skinLayers .sl-cutout,#skinLayers .sl-ornament{display:none}}
+  @media(prefers-reduced-motion:reduce){#skinLayers .sl-backdrop{transform:none}}
+  .skin-note{display:flex;align-items:center;gap:9px;flex-wrap:wrap;background:var(--bg3);border:1px solid var(--accent);
+    border-radius:10px;padding:8px 12px;font-size:13px;margin-bottom:12px}
+  .skin-chip{display:inline-flex;align-items:center;gap:7px;font-weight:700}
+  .skin-chip i{width:13px;height:13px;border-radius:50%;display:inline-block;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 0 9px var(--accent)}
+  .dc-user{display:flex;align-items:center;gap:8px;font-weight:600}
+  .dc-user img{border-radius:50%}
+  .dc-chip{display:inline-flex!important;align-items:center;gap:7px;padding:4px 11px 4px 5px;font-size:12.5px;font-weight:700}
+  .dc-chip img{width:22px;height:22px;border-radius:50%;flex:none;background:var(--bg3)}
+  .dc-chip .dc-init{width:22px;height:22px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:11px;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff}
+  .dc-chip .dc-skin{width:9px;height:9px;border-radius:50%;flex:none;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 0 7px var(--accent)}
+  @media(max-width:820px){.dc-chip .dc-name{display:none}}
+  .err-hint{color:#fca5a5!important}
   /* settings modal */
   .set-row{display:flex;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap}
   .set-label{width:84px;color:var(--muted);font-size:13px;font-weight:600}
@@ -786,6 +887,10 @@
   </select>
   <button id="notifyBtn" title="Enable desktop alerts for shows you follow">🔔 Enable alerts</button>
   <button class="icon" id="settingsBtn" title="Appearance settings">⚙</button>
+  <!-- Shown only once signed in. The only persistent "yes, it worked" on the
+       page — before this existed the sole evidence was a row inside Settings,
+       which is not somewhere you look to find out whether a login took. -->
+  <button id="dcChip" class="dc-chip" style="display:none" title="Your Discord account"></button>
   <button id="installBtn" style="display:none" title="Install Tsuzuki as an app">⤓ Install</button>
   <a class="discord-btn" href="https://discord.gg/YxphmhYga7" target="_blank" rel="noopener" title="Join the Tsuzuki Discord">
     <svg viewBox="0 0 127.14 96.36" aria-hidden="true"><path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/></svg>
@@ -972,7 +1077,7 @@
 
 // Build number auto-stamped from the git commit count by scripts/stamp-version.mjs
 // (run via the .githooks/pre-commit hook). Do not edit by hand — it changes every commit.
-const APP_VERSION = "3.0.77";
+const APP_VERSION = "3.0.78";
 
 // Tsuzuki's own read API. It serves the same AniList payload out of a shared
 // server-side catalog (netlify/functions/_lib/catalog.mjs), so the schedule a
@@ -1080,6 +1185,14 @@ const state = {
     dubWhenSub:false, dubWhenRaw:false,
   },
   overrides: {shows:{}},         // human corrections layered over AniList
+  // Skins + the Discord identity they hang off. All optional: every one of
+  // these staying null is the site exactly as it was before sign-in existed.
+  skin: null,                    // the granted skin, applied when skinOn()
+  skinGrant: null,               // {themeId, grantedAt, note}
+  skinPreview: null,             // /admin trying a theme on, beats the grant
+  discord: null,                 // {id, username, globalName, avatar} — nothing else
+  discordConfigured: true,       // until /api/auth/me says the keys aren't set
+  loginProblem: null,            // last sign-in failure, kept visible in Settings
 };
 try{ Object.assign(state.filters, JSON.parse(localStorage.getItem("anical.filters")||"{}")); }catch(e){}
 try{ state.notify = new Set(JSON.parse(localStorage.getItem("anical.notify")||"[]")); }catch(e){}
@@ -1106,7 +1219,36 @@ try{ Object.assign(state.hideRules, JSON.parse(localStorage.getItem("anical.hide
 // loadOverrides() refreshes them right after.
 try{ const c=JSON.parse(localStorage.getItem("anical.overrides")||"null"); if(c&&c.shows) state.overrides=c; }catch(e){}
 state.notifyLead = +(localStorage.getItem("anical.lead")||10);
-applyAppearance();   // theme / accent / density before first paint
+
+/* Skin constants live here, above the first applyAppearance(), rather than in
+   the skin section further down. That call happens before the first paint, and
+   a `const` declared later would still be in its temporal dead zone when it
+   runs — which throws, and takes the rest of the script with it. The functions
+   that use these are hoisted and can stay where they belong. */
+const SKIN_VARS=["bg","bg2","bg3","line","txt","muted","accent","accent2","premiere","today","good","now","finale"];
+// Shape and type reach the page as variables the static skin rules consume.
+const SKIN_SHAPE_VARS=["--radius","--skin-chip-radius","--skin-border","--skin-card-blur","--skin-font","--skin-font-scale","--skin-glow","--skin-glow-strength"];
+const SKIN_CACHE_KEY="anical.skin";            // last known grant, for an instant first paint
+const SKIN_ON_KEY="anical.skinOn";             // the wearer's own on/off switch
+const SKIN_PREVIEW_KEY="anical.previewSkin";   // set by /admin to try one on
+// Paint order of the art layers, back to front. Also the DOM order inside
+// #skinLayers, so "later in this list" literally means "painted on top".
+const SKIN_LAYER_ORDER=["backdrop","pattern","ornament","cutout","vignette","grain","scan"];
+// A theme is admin-written and validated server-side, but its image URL is
+// about to be interpolated into a CSS url(). Anything that could close the
+// url() and start a new declaration never gets that far. data: is allowed for
+// the drawn layers (generated SVG textures) — an SVG referenced as a CSS
+// background renders in secure static mode, where script is inert, and the same
+// character class applies either way.
+const safeUrl=u=>(typeof u==="string" &&
+  (/^https:\/\/[^"'\\\s()]+$/i.test(u) || /^data:image\/svg\+xml,[A-Za-z0-9%._~!$&*+,;:@/=-]+$/.test(u))) ? u : null;
+const skinOn=()=>localStorage.getItem(SKIN_ON_KEY)!=="0";
+
+// Last known skin, painted before the first frame. Waiting for /api/auth/me
+// would mean a visible flash of the stock purple on every single load, which is
+// the one thing guaranteed to make a skin feel bolted on.
+try{ const c=JSON.parse(localStorage.getItem(SKIN_CACHE_KEY)||"null"); if(c&&c.colors) state.skin=c; }catch(e){}
+applyAppearance();   // theme / accent / density / skin before first paint
 
 const $ = id => document.getElementById(id);
 const title = md => {
@@ -1373,13 +1515,14 @@ function refreshCollectionPickers(id){
     el.outerHTML=collectionPickerHtml(id);
   });
 }
-/* transient confirmation, with a one-click Undo for status changes */
+/* transient confirmation, with a one-click action — Undo for status changes,
+   and anything else the caller names (the skin preview uses "Stop preview"). */
 let toastTimer=null, toastUndo=null;
-function toast(msg, undo){
+function toast(msg, undo, label){
   let el=$("toast");
   if(!el){ el=document.createElement("div"); el.id="toast"; el.className="toast"; el.setAttribute("role","status"); document.body.appendChild(el); }
   toastUndo=undo||null;
-  el.innerHTML=`<span>${esc(msg)}</span>`+(undo?`<button type="button" id="toastUndo">↩ Undo</button>`:"");
+  el.innerHTML=`<span>${esc(msg)}</span>`+(undo?`<button type="button" id="toastUndo">${esc(label||"↩ Undo")}</button>`:"");
   el.classList.add("on");
   if(undo) $("toastUndo").onclick=()=>{ const u=toastUndo; hideToast(); if(u) u(); };
   clearTimeout(toastTimer);
@@ -3349,6 +3492,230 @@ function applyAppearance(){
   document.documentElement.style.setProperty("--accent", parts[0]);
   document.documentElement.style.setProperty("--accent2", parts[1]||"#22d3ee");
   const m=document.querySelector('meta[name=theme-color]'); if(m) m.setAttribute("content", eff==="light"?"#f5f7fb":"#0d1117");
+  applySkin();   // last: a skin owns the whole palette, including light/dark
+}
+
+/* ---------- skins ----------
+   A skin is a full site theme tied to a character or a series: the complete
+   colour palette plus up to four image layers. You get one by being granted it
+   in /admin against your Discord account — see refreshIdentity() below.
+
+   The catalog (/api/themes) is public and the grant (/api/auth/me) is not, which
+   is the whole access model: knowing what a skin looks like is harmless, having
+   one is the thing that's earned.
+
+   Everything here degrades to "the site as it was". No sign-in, no grant, a
+   failed fetch, sign-in not configured on this deployment — all of them end at
+   clearSkin(). */
+// SKIN_VARS and the rest of this section's constants are declared up by the
+// first applyAppearance() call, not here — that call runs before the first
+// paint, and a `const` down here would still be in its temporal dead zone when
+// it fires. Function declarations hoist; these don't.
+
+// document.getElementById directly, not the $ helper: these run from the
+// pre-first-paint applyAppearance(), which is earlier in the script than $ is
+// declared. Same temporal-dead-zone trap as the constants above.
+function skinStyleEl(){
+  let el=document.getElementById("skinCss");
+  if(!el){ el=document.createElement("style"); el.id="skinCss"; document.head.appendChild(el); }
+  return el;
+}
+// One fixed container holding every art layer, in explicit paint order. Built
+// once and reused — rebuilding it per theme change would restart every image
+// download and flash the page.
+function skinLayersEl(){
+  let el=document.getElementById("skinLayers");
+  if(!el){
+    el=document.createElement("div");
+    el.id="skinLayers";
+    el.setAttribute("aria-hidden","true");
+    el.innerHTML=SKIN_LAYER_ORDER.map(n=>`<i class="sl-${n}"></i>`).join("");
+    document.body.appendChild(el);
+  }
+  return el;
+}
+function clearSkin(){
+  document.body.classList.remove("skinned");
+  SKIN_VARS.forEach(k=>document.body.style.removeProperty("--"+k));
+  SKIN_SHAPE_VARS.forEach(k=>document.body.style.removeProperty(k));
+  const el=document.getElementById("skinCss"); if(el) el.textContent="";
+  const f=document.getElementById("skinFont"); if(f) f.remove();
+}
+// The theme's display face, loaded only while that theme is worn. Swapped by
+// href so re-applying the same skin doesn't re-request it.
+function skinFont(theme){
+  const href=theme&&theme.font&&theme.font.css;
+  let link=document.getElementById("skinFont");
+  if(!href){ if(link) link.remove(); return; }
+  if(!/^https:\/\/fonts\.googleapis\.com\//.test(href)) return;   // the server checks this too
+  if(link&&link.href===href) return;
+  if(!link){
+    link=document.createElement("link");
+    link.id="skinFont"; link.rel="stylesheet";
+    document.head.appendChild(link);
+  }
+  link.href=href;
+}
+// The per-theme half of the CSS. Written out rather than driven by custom
+// properties because the corner layers need real arithmetic (insets, a height
+// derived from the width, a mask sized to a fade amount) and calc() chains
+// through six variables are harder to read than the rule they produce.
+function skinCss(t){
+  const out=[];
+  const layer=(sel,l,extra)=>{
+    const u=l&&safeUrl(l.url);
+    if(!u) return out.push(`${sel}{display:none}`);
+    out.push(`${sel}{background-image:url("${u}");${extra||""}}`);
+  };
+
+  layer("#skinLayers .sl-backdrop", t.backdrop,
+    t.backdrop&&`background-position:${t.backdrop.position||"center"};opacity:${t.backdrop.opacity};filter:blur(${t.backdrop.blur||0}px)`);
+
+  layer("#skinLayers .sl-pattern", t.pattern,
+    t.pattern&&`background-size:${Math.round(t.pattern.size||160)}px;opacity:${t.pattern.opacity}`);
+
+  // Corner layers: the ornament frames the page, the cutout is the character.
+  // Both anchor to a corner, and the cutout dissolves its edges into the page
+  // — without that mask a poster in the corner reads as a screenshot pasted on
+  // top rather than part of the layout.
+  for(const [name,l] of [["ornament",t.ornament],["cutout",t.cutout]]){
+    const u=l&&safeUrl(l.url);
+    const sel=`#skinLayers .sl-${name}`;
+    if(!u){ out.push(`${sel}{display:none}`); continue; }
+    const corner=String(l.corner||"bottom-right");
+    const w=Math.round(l.width||300);
+    const h=Math.round(w*(name==="cutout"?1.45:1));
+    const vert=corner.startsWith("top")?`top:${Math.round(l.offsetY||0)}px`:`bottom:${Math.round(l.offsetY||0)}px`;
+    const horz=corner.endsWith("left")?`left:${Math.round(l.offsetX||0)}px`:`right:${Math.round(l.offsetX||0)}px`;
+    // Rotate the ornament so one drawn quarter-frame serves all four corners.
+    const spin={"top-left":0,"top-right":90,"bottom-right":180,"bottom-left":270}[corner]||0;
+    const rot=name==="ornament"&&spin?`rotate(${spin}deg)`:"";
+    const flip=l.flip?"scaleX(-1)":"";
+    const fade=+l.fade||0;
+    const mask=fade>0
+      ? `--m:linear-gradient(to top,#000 ${Math.round((1-fade)*55)}%,transparent 100%),linear-gradient(to ${corner.endsWith("left")?"right":"left"},#000 ${Math.round((1-fade)*55)}%,transparent 100%);`
+        +`-webkit-mask-image:var(--m);mask-image:var(--m);-webkit-mask-composite:source-in;mask-composite:intersect;`
+      : "";
+    out.push(`${sel}{background-image:url("${u}");background-position:${corner.replace("-"," ")};width:${w}px;height:${h}px;max-height:82vh;`
+      +`opacity:${l.opacity};${vert};${horz};${rot||flip?`transform:${[rot,flip].filter(Boolean).join(" ")};`:""}${mask}}`);
+  }
+
+  const fx=t.effects||{};
+  for(const [name,val] of [["vignette",fx.vignette],["grain",fx.grain],["scan",fx.scanlines]]){
+    out.push(+val>0 ? `#skinLayers .sl-${name}{opacity:${+val}}` : `#skinLayers .sl-${name}{display:none}`);
+  }
+
+  layer("body.skinned .empty::before", t.watermark, t.watermark&&`opacity:${t.watermark.opacity}`);
+
+  const hd=t.header&&safeUrl(t.header.url);
+  out.push(hd
+    ? `body.skinned header::before{background-image:url("${hd}");background-position:${t.header.position||"center"};opacity:${t.header.opacity}}`
+    : `body.skinned header::before{display:none}`);
+  return out.join("\n");
+}
+// SKIN_SHAPE_VARS is declared up with SKIN_VARS, for the temporal-dead-zone
+// reason documented there.
+function applySkin(){
+  const t=activeSkin();
+  if(!t) return clearSkin();
+  const b=document.body;
+  for(const k of SKIN_VARS){ const v=t.colors&&t.colors[k]; if(v) b.style.setProperty("--"+k,v); }
+
+  const sh=t.shape||{}, fx=t.effects||{}, ft=t.font||{};
+  b.style.setProperty("--radius",(sh.radius??12)+"px");
+  b.style.setProperty("--skin-chip-radius",(sh.chipRadius??20)+"px");
+  b.style.setProperty("--skin-border",(sh.border??1)+"px");
+  b.style.setProperty("--skin-card-blur",(sh.cardBlur??10)+"px");
+  b.style.setProperty("--skin-glow",t.glow||(t.colors&&t.colors.accent)||"#8b5cf6");
+  b.style.setProperty("--skin-glow-strength",String(fx.glowStrength??0.4));
+  // The family string is validated server-side (no ; { } < >) before it can
+  // reach a style declaration.
+  if(ft.family) b.style.setProperty("--skin-font",ft.family);
+  b.style.setProperty("--skin-font-scale",String(ft.scale??1));
+
+  b.classList.add("skinned");
+  // The skin decides light or dark. Its palette was built as one or the other,
+  // and half of it under the wrong body class is unreadable.
+  b.classList.toggle("theme-light", t.mode==="light");
+  skinLayersEl();
+  skinFont(t);
+  skinStyleEl().textContent=skinCss(t);
+  const mt=document.querySelector('meta[name=theme-color]'); if(mt&&t.colors&&t.colors.bg) mt.setAttribute("content",t.colors.bg);
+}
+// Preview beats grant beats nothing. Preview is how /admin tries a theme on
+// without granting it to anyone.
+function activeSkin(){
+  if(state.skinPreview) return state.skinPreview;
+  return (state.skin && skinOn()) ? state.skin : null;
+}
+function setGrantedSkin(theme){
+  state.skin=theme||null;
+  try{
+    if(theme) localStorage.setItem(SKIN_CACHE_KEY, JSON.stringify(theme));
+    else localStorage.removeItem(SKIN_CACHE_KEY);
+  }catch(e){}
+  applyAppearance();
+}
+
+let themeCatalog=null;
+async function loadThemeCatalog(){
+  if(themeCatalog) return themeCatalog;
+  try{
+    const r=await fetch("/api/themes",{headers:{Accept:"application/json"}});
+    if(!r.ok) return null;
+    const j=await r.json();
+    if(j&&j.ok&&j.themes){ themeCatalog=j.themes; return themeCatalog; }
+  }catch(e){}
+  return null;
+}
+
+/* ---------- Discord identity ----------
+   Sign-in exists for one reason: so a skin granted in /admin can find the
+   account it was granted to. Nothing from this browser is uploaded — the list,
+   ratings, notes and collections stay exactly as local as they have always
+   been, and the settings copy says so out loud. */
+async function refreshIdentity(){
+  let j=null;
+  try{
+    const r=await fetch("/api/auth/me",{headers:{Accept:"application/json"}});
+    if(r.ok) j=await r.json();
+  }catch(e){ return null; }        // offline: keep whatever the cache painted
+  if(!j||!j.ok) return null;
+  state.discordConfigured=!!j.configured;
+  state.discord=j.user||null;
+  state.skinGrant=(j.user&&j.grant)||null;
+  if(j.user) state.loginProblem=null;   // whatever went wrong last time, it's resolved
+  if(!j.user||!j.grant||!j.grant.themeId){ setGrantedSkin(null); renderDiscordChip(); return j; }
+  const cat=await loadThemeCatalog();
+  setGrantedSkin((cat&&cat[j.grant.themeId])||null);
+  renderDiscordChip();
+  return j;
+}
+// The header's signed-in indicator. Hidden entirely when signed out, so the
+// toolbar looks exactly as it always did for the people who never sign in.
+function renderDiscordChip(){
+  const el=$("dcChip"); if(!el) return;
+  const u=state.discord;
+  if(!u){ el.style.display="none"; el.innerHTML=""; return; }
+  const name=u.globalName||u.username||"Signed in";
+  const av=u.avatar
+    ? `<img src="https://cdn.discordapp.com/avatars/${encodeURIComponent(u.id)}/${encodeURIComponent(u.avatar)}.png?size=64" alt="">`
+    : `<span class="dc-init">${esc(name.slice(0,1).toUpperCase())}</span>`;
+  const wearing=state.skin&&skinOn();
+  el.innerHTML=av+`<span class="dc-name">${esc(name)}</span>`+(wearing?`<span class="dc-skin" title="${esc(state.skin.name||"")} active"></span>`:"");
+  el.title=`Signed in as ${name}`+(wearing?` — ${state.skin.name||"granted appearance"} active`:"")+". Click for account settings.";
+  el.style.display="";
+  el.onclick=openSettings;
+}
+function discordSignIn(){
+  location.href="/api/auth/login?returnTo="+encodeURIComponent(location.pathname+location.search);
+}
+async function discordSignOut(){
+  try{ await fetch("/api/auth/logout",{method:"POST"}); }catch(e){}
+  state.discord=null; state.skinGrant=null; state.loginProblem=null;
+  setGrantedSkin(null);
+  renderDiscordChip();
+  openSettings();
 }
 // keep "Auto" in sync with the OS theme while it's selected
 if(window.matchMedia){ try{ window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{ if(state.theme==="auto") applyAppearance(); }); }catch(e){} }
@@ -3398,6 +3765,50 @@ function wireAlSettings(){
     const s=$("alQueueState"); if(s) s.textContent=`Queued ${n} show${n===1?"":"s"} — this takes a moment, AniList is rate-limited.`;
   };
 }
+/* The Discord block of the settings panel. Four shapes: sign-in not set up on
+   this deployment, signed out, signed in with nothing granted, and signed in
+   wearing a skin. */
+function discordSettingsHTML(){
+  if(!state.discordConfigured){
+    return `<span class="num-hint" style="flex-basis:100%">Discord sign-in isn't switched on for this deployment. It needs
+      <code>DISCORD_CLIENT_ID</code>, <code>DISCORD_CLIENT_SECRET</code> and <code>SESSION_SECRET</code> in the site
+      environment, and <code>/api/auth/callback</code> registered as a redirect on the Discord application.</span>`;
+  }
+  const problem=state.loginProblem
+    ? `<span class="num-hint err-hint" style="flex-basis:100%">⚠ ${esc(state.loginProblem)}</span>` : "";
+  const privacy=problem+`<span class="num-hint" style="flex-basis:100%">Signing in tells Tsuzuki which Discord account you are, and
+    that is the entire purpose — it's how something handed out at an event finds you. Your list, ratings, notes and
+    collections are <b>never uploaded</b> and signing in doesn't change that. Stored: your Discord id, name and avatar.</span>`;
+  if(!state.discord){
+    return `<button class="primary" id="dcIn">🎮 Sign in with Discord</button>${privacy}`;
+  }
+  const u=state.discord;
+  const av=u.avatar
+    ? `https://cdn.discordapp.com/avatars/${encodeURIComponent(u.id)}/${encodeURIComponent(u.avatar)}.png?size=64`
+    : null;
+  const who=`<span class="dc-user">${av?`<img src="${esc(av)}" alt="" width="24" height="24">`:""}${esc(u.globalName||u.username||"Signed in")}</span>`;
+  if(!state.skin){
+    return `${who}<button id="dcOut">Sign out</button>
+      <span class="num-hint" style="flex-basis:100%">Nothing on this account yet. Handed out at events — if you were
+      given one and it isn't here, sign out and back in.</span>${privacy}`;
+  }
+  return `${who}
+    <span class="skin-chip"><i></i>${esc(state.skin.name||state.skin.id)}</span>
+    <button id="dcSkin" class="${skinOn()?"primary":""}">${skinOn()?"✓ On":"Off"}</button>
+    <button id="dcOut">Sign out</button>
+    <span class="num-hint" style="flex-basis:100%">${esc(state.skin.series||state.skin.name||"")} — yours permanently.
+      Turning it off keeps it on the account; it just goes back to your own theme and accent above.</span>${privacy}`;
+}
+function wireDiscordSettings(){
+  if($("dcIn")) $("dcIn").onclick=discordSignIn;
+  if($("dcOut")) $("dcOut").onclick=discordSignOut;
+  if($("dcSkin")) $("dcSkin").onclick=()=>{
+    localStorage.setItem(SKIN_ON_KEY, skinOn()?"0":"1");
+    applyAppearance();
+    renderDiscordChip();
+    openSettings();
+  };
+}
 // Segmented control for a `state` key that persists under `anical.<key>`.
 function prefSeg(key, opts){
   return `<div class="seg2">`+opts.map(([val,label,tip])=>
@@ -3409,6 +3820,12 @@ function openSettings(){
   const f=state.filters;
   const num=(id,val,ph)=>`<input type="number" min="0" max="9999" id="${id}" value="${val||""}" placeholder="${esc(ph)}" class="num-in">`;
   $("modalBody").innerHTML=`
+    ${state.skin&&skinOn()?`<div class="skin-note"><span class="skin-chip"><i></i>${esc(state.skin.name||state.skin.id)}</span>
+      <span class="num-hint" style="margin:0">active — overriding the theme and accent below.</span></div>`:""}
+    <h4 class="set-head">Account</h4>
+    <div class="set-row"><div class="set-label">Discord</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">${discordSettingsHTML()}</div></div>
+
     <h4 class="set-head">Appearance</h4>
     <div class="set-row"><div class="set-label">Theme</div>
       <div class="seg2"><button data-theme="dark" class="${state.theme==="dark"?"on":""}">🌙 Dark</button><button data-theme="light" class="${state.theme==="light"?"on":""}">☀️ Light</button><button data-theme="auto" class="${state.theme==="auto"?"on":""}">🌗 Auto</button></div></div>
@@ -3455,6 +3872,7 @@ function openSettings(){
       </div></div>
     <p style="color:var(--muted);font-size:12px;margin-bottom:0">Your board, lists, ratings, private notes, watch-bells, hidden shows and reminders are saved on this device — nothing is uploaded. Use Export or a sync code to copy them to another device. Import pulls your public AniList list into ⭐ My List with its statuses, watch progress and scores.</p>`;
   wireAlSettings();
+  wireDiscordSettings();
   // Timetable prefs: store, re-apply, re-render, and rebuild the panel so the
   // segmented control shows the new selection.
   $("modalBody").querySelectorAll("[data-pref]").forEach(el=>{
@@ -4969,8 +5387,60 @@ async function openShowById(id){
   if(md) openDetail(md,(nextAir(md)||{}).episode||1);
 }
 
+/* Skin preview for /admin. The theme id is handed over in localStorage rather
+   than a URL parameter on purpose: a ?theme= link would let anyone wear an
+   event skin, and being the only one wearing it is the entire point. */
+async function applySkinPreview(){
+  let id=null;
+  try{ id=localStorage.getItem(SKIN_PREVIEW_KEY); }catch(e){}
+  if(!id) return;
+  const cat=await loadThemeCatalog();
+  const t=cat&&cat[id];
+  if(!t){ try{ localStorage.removeItem(SKIN_PREVIEW_KEY); }catch(e){} return; }
+  state.skinPreview=t;
+  applyAppearance();
+  toast(`Previewing "${t.name||id}" — nobody else sees this.`, ()=>{
+    try{ localStorage.removeItem(SKIN_PREVIEW_KEY); }catch(e){}
+    state.skinPreview=null; applyAppearance();
+  }, "Stop preview");
+}
+
 // initial pull (on every launch), then honor ?show=
 (async function boot(){
+  // Identity + skin. Not awaited in the normal case — the calendar must not
+  // wait on a cosmetic lookup, and the cached skin has already painted.
+  const arriving=_params.get("login");
+  const identity=refreshIdentity().catch(()=>null);
+  if(!arriving) identity.then(()=>{});
+  applySkinPreview().catch(()=>{});
+
+  // Coming back from Discord. `ok` is the success case and has to *say* so:
+  // without it a completed sign-in looks identical to a page reload, which is
+  // how you end up unsure whether it worked.
+  if(arriving){
+    // Strip it before anything else, so a reload can't replay the message.
+    history.replaceState(null,"",location.pathname+location.search.replace(/([?&])login=[^&]*(&|$)/,"$1").replace(/[?&]$/,"")+location.hash);
+    if(arriving==="ok"){
+      identity.then(j=>{
+        const u=j&&j.user;
+        if(!u){ state.loginProblem="The sign-in came back but the session didn't stick. If you're on http://localhost, check the server log."; toast(state.loginProblem); return openSettings(); }
+        const name=u.globalName||u.username||"you";
+        if(state.skin) toast(`Signed in as ${name} — ${state.skin.name} applied.`);
+        else toast(`Signed in as ${name}.`);
+      });
+    } else {
+      const said={cancelled:"Discord sign-in cancelled.",
+        expired:"That sign-in link expired — start it again from Settings.",
+        unconfigured:"Discord sign-in isn't set up on this deployment yet.",
+        failed:"Discord sign-in failed. Check the redirect URI and client secret."}[arriving]||"Discord sign-in didn't complete.";
+      // Also parked in state so Settings can still show it after the toast has
+      // gone. A two-second flash is not how you report a failed login.
+      state.loginProblem=said;
+      toast(said);
+      openSettings();
+    }
+  }
+
   // instant paint from the last cached schedule (then load() refreshes in the background)
   if(["month","week","agenda"].includes(state.viewMode)){
     const cached=readCache(3*24*3600*1000);
