@@ -177,6 +177,18 @@ footer{margin-top:44px;color:#8b97a7;font-size:12.5px;border-top:1px solid #2a31
   </p>
 <pre><code>curl "https://tsuzuki.netlify.app/api/v1/seasons/summer/2026"</code></pre>
 
+  <h3>GET /api/v1/airing</h3>
+  <p>
+    Currently-airing titles that AniList never assigned a season to — Korean and Chinese
+    productions, and long-running ONAs that don't map onto a Japanese broadcast season.
+    A season query cannot reach these by construction, so if you build a calendar the way
+    everyone does (three <code>seasons</code> calls around the date you care about) you will
+    silently miss them. They are already folded into <code>/schedule</code>; this endpoint
+    exists for consumers that page season by season. <code>?full=1</code> behaves as it does
+    on <code>seasons</code>.
+  </p>
+<pre><code>curl "https://tsuzuki.netlify.app/api/v1/airing"</code></pre>
+
   <h3>GET /api/v1/franchise/{anilistId}</h3>
   <p>
     Every anime in the same franchise, in release order. Upstream only ever gives a title its

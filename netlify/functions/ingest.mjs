@@ -34,7 +34,10 @@ import { ingestANN } from "./_lib/ingest-sources/ann.mjs";
 import { ingestTMDB } from "./_lib/ingest-sources/tmdb.mjs";
 import { ingestStudios } from "./_lib/ingest-sources/studio.mjs";
 import { normalizeAniList, mergeRecord, SCHEMA_VERSION } from "./_lib/ingest-schema.mjs";
-import { putSeason, catalogHealth, seasonOf, shiftSeason, SEASONS } from "./_lib/catalog.mjs";
+import {
+  putSeason, putSeasonless, getSeasonless, fetchSeasonlessFromAniList,
+  catalogHealth, seasonOf, shiftSeason, SEASONS,
+} from "./_lib/catalog.mjs";
 
 export const config = { schedule: "0 */2 * * *" };   // every 2 hours, one season each
 
@@ -42,6 +45,11 @@ export const config = { schedule: "0 */2 * * *" };   // every 2 hours, one seaso
 // those are the parts whose absence makes a run invisible.
 const FETCH_BUDGET_MS = 6_000;
 const CANONICAL_BUDGET_MS = 12_000;
+// The seasonless set is refreshed opportunistically, after the season work this
+// run actually owes. Its own TTL in the read path is 6h; refreshing at 4h means
+// a normal run keeps it warm without ever letting a reader pay for the fetch.
+const SEASONLESS_MAX_AGE_S = 4 * 3600;
+const SEASONLESS_BUDGET_MS = 14_000;
 
 // Previous + current + next season: covers shows still airing late, this
 // season's full lineup, and next season's early announcements.
@@ -124,6 +132,30 @@ export default async (req) => {
     log.ok = false;
     log.sources.anilist = { ok: false, error: String((err && err.message) || err) };
     console.error("ingest: anilist failed", err);
+  }
+
+  // The seasonless set — currently-airing titles AniList assigned no season, so
+  // no season query can reach them (see _lib/catalog.mjs). Deliberately *not* a
+  // fourth rotation target: four targets on a 2-hour cadence would refresh each
+  // one every 8 hours, pushing all three real seasons past their 6-hour TTL. It
+  // is refreshed here only when its own snapshot has aged out and the run has
+  // time left, so the season cadence is untouched and a slow AniList can only
+  // cost this step, never the season above it.
+  try {
+    const snap = await getSeasonless({ allowNetwork: false });
+    const ageSeconds = snap ? (Date.now() - (snap.fetchedAt || 0)) / 1000 : Infinity;
+    const stale = ageSeconds > SEASONLESS_MAX_AGE_S;
+    const timeLeft = Date.now() - startedAt < SEASONLESS_BUDGET_MS;
+    if (stale && timeLeft) {
+      const media = await fetchSeasonlessFromAniList();
+      await putSeasonless(media, "ingest");
+      log.sources.seasonless = { ok: true, refreshed: true, shows: media.length, previousAgeSeconds: ageSeconds === Infinity ? null : Math.round(ageSeconds) };
+    } else {
+      log.sources.seasonless = { ok: true, refreshed: false, reason: stale ? "out of time this run" : "still fresh", ageSeconds: ageSeconds === Infinity ? null : Math.round(ageSeconds) };
+    }
+  } catch (err) {
+    log.sources.seasonless = { ok: false, error: String((err && err.message) || err) };
+    console.error("ingest: seasonless failed", err);
   }
 
   // Stub sources: run each, record whatever they return, never fail the whole

@@ -455,6 +455,7 @@ the entire product.
 | `GET /api/v1/schedule` | Corrected schedule for a window (`start`, `days`, `airType`, `platform`, `format`, `includeAdult`) |
 | `GET /api/v1/anime/<anilistId>` | One title, full variant schedule, break weeks, and its raw corrections record |
 | `GET /api/v1/seasons/<season>/<year>` | A season's lineup, each with `nextEpisode` resolved through the correction layer |
+| `GET /api/v1/airing` | Currently-airing titles AniList assigned **no season** — unreachable by any season query, already folded into `/schedule` |
 | `GET /api/v1/overrides` | The raw correction document |
 
 **Cost control matters here more than politeness.** A `/schedule` request spans

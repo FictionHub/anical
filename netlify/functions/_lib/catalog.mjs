@@ -46,6 +46,10 @@ export const MEDIA_FIELDS = `
 
 const SEASON_QUERY = `query($season:MediaSeason,$seasonYear:Int,$page:Int){
   Page(page:$page,perPage:50){ pageInfo{ hasNextPage } media(season:$season,seasonYear:$seasonYear,type:ANIME,sort:POPULARITY_DESC){ ${MEDIA_FIELDS} } } }`;
+// The supplementary pull for what the season queries structurally cannot see —
+// see fetchSeasonlessFromAniList below.
+const AIRING_QUERY = `query($page:Int){
+  Page(page:$page,perPage:50){ pageInfo{ hasNextPage } media(status:RELEASING,type:ANIME,sort:POPULARITY_DESC){ ${MEDIA_FIELDS} } } }`;
 const ID_QUERY = `query($id:Int){ Media(id:$id,type:ANIME){ ${MEDIA_FIELDS} } }`;
 const IDS_QUERY = `query($ids:[Int]){ Page(perPage:50){ media(id_in:$ids,type:ANIME){ ${MEDIA_FIELDS} } } }`;
 
@@ -61,6 +65,9 @@ export const seasonKey = (season, year) => `${String(season).toUpperCase()}-${ye
 
 export const SEASON_STORE = "catalog-seasons";
 export const MEDIA_STORE = "catalog-media";
+// Reserved key in SEASON_STORE for the seasonless set. Not a real season, but it
+// is cached, aged and served exactly like one, so it shares the store.
+export const SEASONLESS_KEY = "SEASONLESS";
 
 const MEM_TTL_MS = 10 * 60_000;
 const SNAPSHOT_TTL_MS = 6 * 3600_000;    // matches the ingest worker's cadence
@@ -133,6 +140,70 @@ export async function fetchSeasonFromAniList(season, year, maxPages = MAX_PAGES)
   return out;
 }
 
+/* ---------- seasonless-but-airing ---------- */
+
+// AniList leaves `season`/`seasonYear` null on a slice of what is genuinely
+// airing — Korean and Chinese productions, and continuously-running ONAs that
+// don't map onto a Japanese broadcast season. Every read path in this module is
+// season-shaped, so those titles were invisible in *every* view: absent from
+// each season snapshot, from the three-season window, and from the browser's
+// own AniList fallback, which asks the same season-filtered question.
+//
+// Found through "Tomb Raider King" (id 184356): RELEASING, an episode due that
+// evening, `season: null` — and therefore in no query the app has ever made.
+// It is not a filter bug; the show never entered the dataset at all.
+//
+// The fix is one extra pull of the most popular RELEASING titles, keeping only
+// those AniList gave no season *and* that actually carry airing episodes. That
+// second condition is load-bearing: the seasonless set is otherwise full of
+// promo collections ("Fate/Grand Order CMs", "Arknights Animation PVs") which
+// have no schedule, would render nothing, and would only bloat every consumer's
+// payload and the browser's genre/search indexes.
+export async function fetchSeasonlessFromAniList(maxPages = MAX_PAGES) {
+  let out = [], page = 1, more = true;
+  while (more && page <= maxPages) {
+    const d = await anilist(AIRING_QUERY, { page });
+    out = out.concat((d.Page && d.Page.media) || []);
+    more = !!(d.Page && d.Page.pageInfo && d.Page.pageInfo.hasNextPage);
+    page++;
+  }
+  return out.filter(md =>
+    (!md.season || !md.seasonYear) &&
+    ((md.airingSchedule && md.airingSchedule.nodes) || []).length > 0);
+}
+
+// Store the seasonless snapshot. Called by the ingest worker and by whichever
+// request paid for a cold fetch — the mirror of putSeason.
+export async function putSeasonless(media, source = "anilist") {
+  const snapshot = { season: null, year: null, seasonless: true, fetchedAt: Date.now(), source, count: media.length, media };
+  memSet(`season:${SEASONLESS_KEY}`, snapshot);
+  await blobPut(SEASON_STORE, SEASONLESS_KEY, snapshot);
+  return snapshot;
+}
+
+// Cached exactly like a season, so it inherits the same snapshot TTL, the same
+// collapse-concurrent-misses behaviour and the same stale-beats-broken fallback.
+// `allowNetwork:false` returns whatever is stored regardless of age (or null) —
+// that is how the ingest worker checks whether this set owes a refresh.
+export async function getSeasonless({ allowNetwork = true, maxAgeMs = SNAPSHOT_TTL_MS } = {}) {
+  const memKey = `season:${SEASONLESS_KEY}`;
+  const hit = memGet(memKey);
+  if (hit) return hit;
+
+  return once(memKey, async () => {
+    const snap = await blobGet(SEASON_STORE, SEASONLESS_KEY);
+    if (snap && snap.media && Date.now() - (snap.fetchedAt || 0) < maxAgeMs) return memSet(memKey, snap);
+    if (!allowNetwork) return snap && snap.media ? memSet(memKey, snap) : null;
+
+    try {
+      return await putSeasonless(await fetchSeasonlessFromAniList(), "anilist");
+    } catch (err) {
+      if (snap && snap.media) { console.warn(`catalog: serving stale ${SEASONLESS_KEY} — ${err.message}`); return memSet(memKey, snap); }
+      throw err;
+    }
+  });
+}
+
 /* ---------- season reads ---------- */
 
 // Store a season snapshot. Called by the ingest worker and by whichever request
@@ -200,6 +271,22 @@ export async function getSeasonWindow(season, year, opts = {}) {
       media.push(md);
     }
   }
+
+  // A seasonless title with episodes in this window belongs in it by definition
+  // — the window is a date range, and the show is airing inside it. Never fatal:
+  // if this set can't be reached the window is still correct for everything
+  // AniList did assign a season to, which is how it behaved before.
+  try {
+    const extra = await getSeasonless(opts);
+    for (const md of (extra && extra.media) || []) {
+      if (seen.has(md.id)) continue;
+      seen.add(md.id);
+      media.push(md);
+    }
+  } catch (err) {
+    console.warn(`catalog: seasonless set unavailable — ${err.message}`);
+  }
+
   return media;
 }
 

@@ -23,7 +23,7 @@
 import { getStore } from "@netlify/blobs";
 import { variantsFor, mergeOverrides, showOverride, loadSeed } from "./_lib/schedule-overrides.mjs";
 import {
-  MEDIA_FIELDS, anilist, getSeason, getSeasonWindow, getMediaById, getFranchise,
+  MEDIA_FIELDS, anilist, getSeason, getSeasonWindow, getSeasonless, getMediaById, getFranchise,
   getExtras, getStudio, getOnThisDay,
   catalogHealth, seasonOf, shiftSeason, SEASONS,
 } from "./_lib/catalog.mjs";
@@ -152,6 +152,7 @@ async function describe() {
       { path: "/api/v1/schedule", params: { start: "YYYY-MM-DD (default today)", days: `1-${MAX_DAYS} (default 7)`, airType: "raw|sub|dub — omit for all", platform: "e.g. Crunchyroll", format: "TV|TV_SHORT|MOVIE|ONA|OVA|SPECIAL", includeAdult: "1 to include (default off)" } },
       { path: "/api/v1/anime/{anilistId}", params: { full: "1 to return the full media record instead of the summary shape" } },
       { path: "/api/v1/seasons/{season}/{year}", params: { season: "winter|spring|summer|fall", full: "1 to return the full media records instead of the summary shape" } },
+      { path: "/api/v1/airing", params: { full: "1 to return the full media records instead of the summary shape" }, describes: "Currently-airing titles AniList assigned no season — Korean and Chinese productions and long-running ONAs. Already folded into /schedule; exposed separately because a season query cannot reach them." },
       { path: "/api/v1/franchise/{anilistId}", describes: "Every anime in the same franchise, walked across the relation graph and returned in release order." },
       { path: "/api/v1/anime/{anilistId}/extras", describes: "Characters + voice cast, recommendations and the main studio." },
       { path: "/api/v1/studio/{anilistStudioId}", describes: "A studio's most popular titles." },
@@ -266,6 +267,39 @@ async function season(name, year, url) {
   return json({
     ok: true,
     season: s.toLowerCase(), year: y, count: media.length,
+    anime: media.map(md => {
+      const ov = showOverride(overrides, md.id);
+      const next = ((md.airingSchedule && md.airingSchedule.nodes) || [])
+        .flatMap(n => episodeEntries(md, n, ov))
+        .filter(e => !e.isBreak && e.airingAt > Date.now() / 1000)
+        .sort((a, b) => a.airingAt - b.airingAt)[0] || null;
+      return { ...shapeMedia(md), nextEpisode: next };
+    }),
+    attribution: "Data from AniList, corrected by Tsuzuki.",
+  });
+}
+
+// Currently-airing titles AniList never assigned a season to. They are already
+// merged into /schedule (getSeasonWindow folds them in), so this endpoint exists
+// for the one consumer that asks season by season rather than by date — the app
+// itself, whose launch path is three `/seasons/…` calls and would otherwise keep
+// the same blind spot the season queries have.
+async function airing(url) {
+  const snap = await getSeasonless();
+  const media = (snap && snap.media) || [];
+
+  if (url.searchParams.get("full") === "1") {
+    return json({
+      ok: true, seasonless: true, count: media.length,
+      fetchedAt: snap ? snap.fetchedAt : null,
+      media,
+      attribution: "Data from AniList, corrected by Tsuzuki.",
+    }, { maxAge: 900, pretty: false });
+  }
+
+  const overrides = await loadOverrides();
+  return json({
+    ok: true, seasonless: true, count: media.length,
     anime: media.map(md => {
       const ov = showOverride(overrides, md.id);
       const next = ((md.airingSchedule && md.airingSchedule.nodes) || [])
@@ -426,6 +460,7 @@ export default async (req) => {
     if (route[0] === "studio" && route.length === 2) return await studio(route[1]);
     if (route[0] === "on-this-day" && route.length === 1) return await onThisDay(url);
     if (route[0] === "seasons" && route.length === 3) return await season(route[1], route[2], url);
+    if (route[0] === "airing" && route.length === 1) return await airing(url);
     if (route[0] === "franchise" && route.length === 2) return await franchise(route[1]);
     if (route[0] === "search" && route.length === 1) return await search(url);
     if (route[0] === "overrides" && route.length === 1) return json({ ok: true, ...(await loadOverrides()) });

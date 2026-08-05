@@ -1077,7 +1077,7 @@
 
 // Build number auto-stamped from the git commit count by scripts/stamp-version.mjs
 // (run via the .githooks/pre-commit hook). Do not edit by hand — it changes every commit.
-const APP_VERSION = "3.1.79";
+const APP_VERSION = "3.1.80";
 
 // Tsuzuki's own read API. It serves the same AniList payload out of a shared
 // server-side catalog (netlify/functions/_lib/catalog.mjs), so the schedule a
@@ -1574,12 +1574,23 @@ query ($season: MediaSeason, $seasonYear: Int, $page: Int) {
       externalLinks { site url type color icon }
       coverImage { medium large color }
       startDate { year month day }
+      season seasonYear
       studios(isMain: true) { nodes { name } }
       relations { edges { relationType(version: 2) node { id type format title { romaji english native } coverImage { medium } startDate { year month day } } } }
       airingSchedule { nodes { airingAt episode } }
     }
   }
 }`;
+
+// AniList leaves season/seasonYear null on a slice of what is actually airing —
+// Korean and Chinese productions, and long-running ONAs with no Japanese
+// broadcast season. QUERY above filters *by* season, so those shows match none
+// of the three seasons a range loads and were missing from every view. This is
+// the same supplementary pull the server does (_lib/catalog.mjs), kept here so
+// the AniList fallback path has no blind spot the API path doesn't.
+const AIRING_QUERY = QUERY
+  .replace("query ($season: MediaSeason, $seasonYear: Int, $page: Int)", "query ($page: Int)")
+  .replace("media(season: $season, seasonYear: $seasonYear, type: ANIME, sort: POPULARITY_DESC)", "media(status: RELEASING, type: ANIME, sort: POPULARITY_DESC)");
 
 // Global title search — covers ALL of AniList, not just the loaded seasons.
 const SEARCH_QUERY = `
@@ -2039,13 +2050,48 @@ async function fetchSeason(season,year,report){
   else if(report) report.rateLimited=true;       // signal the caller that data is incomplete
   return all;
 }
+// The seasonless-but-airing set. Cached for the session like a season, and
+// never allowed to fail the load: it is a supplement, so if it can't be fetched
+// the calendar is exactly as complete as it was before this existed.
+async function fetchSeasonless(){
+  const key="SEASONLESS";
+  if(state.seasonCache.has(key)) return state.seasonCache.get(key);
+
+  const ours=await apiGet("/airing?full=1",{timeout:9000});
+  if(ours&&Array.isArray(ours.media)){ state.seasonCache.set(key,ours.media); return ours.media; }
+
+  // AniList fallback, same shape as fetchSeason's. Keep only what AniList gave
+  // no season *and* that actually has episodes — the seasonless set is full of
+  // CM/PV collections which would render nothing and bloat search and genres.
+  let all=[],page=1,more=true;
+  while(more && page<=3){
+    const res=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},
+      body:JSON.stringify({query:AIRING_QUERY,variables:{page}})});
+    if(res.status===429) break;                  // supplementary — never worth a retry budget
+    if(!res.ok) throw new Error("AniList HTTP "+res.status);
+    const json=await res.json();
+    if(json.errors) throw new Error(json.errors[0].message);
+    all=all.concat(json.data.Page.media); more=json.data.Page.pageInfo.hasNextPage; page++;
+  }
+  const out=all.filter(md=>(!md.season||!md.seasonYear)&&((md.airingSchedule&&md.airingSchedule.nodes)||[]).length>0);
+  state.seasonCache.set(key,out);
+  return out;
+}
 async function loadDataForRange(start,end){
   const seasons=seasonsForRange(start,end);
   const report={rateLimited:false};
-  const results=await Promise.allSettled(seasons.map(s=>fetchSeason(s.season,s.year,report)));
+  const results=await Promise.allSettled([
+    ...seasons.map(s=>fetchSeason(s.season,s.year,report)),
+    fetchSeasonless(),
+  ]);
+  // The seasonless pull is the last entry and is deliberately not counted in
+  // `failed`: it must never mark the range partial or, on its own, throw.
+  const seasonResults=results.slice(0,seasons.length), extra=results[results.length-1];
   let media=[],ok=false,failed=0;
-  for(const r of results){ if(r.status==="fulfilled"){ media=media.concat(r.value); ok=true; } else failed++; }
+  for(const r of seasonResults){ if(r.status==="fulfilled"){ media=media.concat(r.value); ok=true; } else failed++; }
   if(!ok) throw new Error("All season fetches failed");
+  if(extra.status==="fulfilled") media=media.concat(extra.value);
+  else console.warn("seasonless set unavailable —", extra.reason && extra.reason.message);
   const seen=new Set(),out=[];
   for(const md of media){ if(!seen.has(md.id)){ seen.add(md.id); out.push(md); } }
   // partial = at least one season is missing/incomplete (hard failure or rate-limited)
