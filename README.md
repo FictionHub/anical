@@ -119,20 +119,63 @@ Setup (one-time):
 4. Deploy. `@netlify/blobs` and `web-push` (declared in `netlify/functions/package.json`)
    are installed automatically by Netlify — no local `npm install` needed.
 
+**Rotating keys** replaces a pair, and the pair has to move together: put the new public key
+in `site/index.html`, in `VAPID_PUBLIC_DEFAULT` at the top of `push-send.mjs`, and set the new
+`VAPID_PRIVATE_KEY`. (`VAPID_PUBLIC_KEY` also works as an environment variable and wins over the
+committed default — handy for testing a new pair before committing it. It is not required:
+requiring it is what made every scheduled run answer 500 for weeks, since nothing above ever
+told you to set it.)
+
+If push alerts go quiet, ask the function itself rather than reading the run log:
+
+    curl "https://<site>/.netlify/functions/push-send?secret=$CRON_SECRET&dry=1"
+
+`dry=1` resolves and counts the notifications that are due without sending any. A scheduled run
+never answers 500 any more — a configuration or upstream problem comes back as `ok:false` with a
+`reason` (`vapid-private-key-missing`, `vapid-invalid`, `store-unavailable`,
+`schedule-unavailable`), because a 500 every 15 minutes is an alarm that teaches you to ignore
+alarms.
+
 Subscriptions (push endpoint + followed-show ids + lead time) are stored in Netlify Blobs,
 keyed by push endpoint, and pruned automatically when a subscription expires (404/410 from
 the push service).
 
+## The catalog (how data reaches the app)
+`netlify/functions/_lib/catalog.mjs` is the read path everything else goes
+through. A lookup resolves in three tiers — per-instance memory, then a Netlify
+Blobs snapshot shared by every instance and every visitor, then AniList, whose
+answer is written back into tier 2. So one cold request pays for a season and
+every request after it is free, and an AniList outage degrades to slightly stale
+data instead of an error.
+
+`netlify/functions/api.mjs` reads from it, `push-send.mjs` reads from it, and the
+app itself reads from it: `site/index.html` calls `/api/v1/seasons/...?full=1`,
+`/api/v1/anime/<id>?full=1` and `/api/v1/search` before touching AniList. Every
+one of those calls still falls back to AniList directly if our API can't answer,
+so the site is never *dependent* on its own backend.
+
+What still goes upstream: a season nobody has requested in six hours, a title
+outside the cached seasons, a search for something not currently airing, and the
+scheduled worker below. What no longer does: an ordinary page load.
+
 ## Ingestion backbone (data platform)
-`netlify/functions/ingest.mjs` is a Netlify **scheduled function** (runs every 6
-hours) that pulls the previous/current/next anime season from AniList through a
-shared retry + rate-limit budget (`_lib/ingest-http.mjs`), normalizes each show
-into a versioned canonical schema (`_lib/ingest-schema.mjs`), and archives every
-raw API payload it fetched — all in Netlify Blobs, so there's no separate
-database to provision. `_lib/ingest-sources/` also has stub adapters for ANN,
-TMDB and studio feeds (each returns `{skipped:true, reason:"..."}` today) so
-those sources have a place to land the moment they're implemented, without
-changing the orchestrator's shape.
+`netlify/functions/ingest.mjs` is a Netlify **scheduled function** (every 2
+hours) that refreshes **one season per run — whichever the catalog holds the
+stalest copy of** — through a shared retry + rate-limit budget
+(`_lib/ingest-http.mjs`), writes it into the catalog, normalizes each show into a
+versioned canonical schema (`_lib/ingest-schema.mjs`), and archives the raw API
+payload — all in Netlify Blobs, so there's no separate database to provision.
+`_lib/ingest-sources/` also has stub adapters for ANN, TMDB and studio feeds
+(each returns `{skipped:true, reason:"..."}` today) so those sources have a place
+to land the moment they're implemented, without changing the orchestrator's
+shape.
+
+It used to crawl all three seasons in one invocation — up to 18 paginated
+requests behind a 25/min limiter, comfortably over a minute — inside a function
+whose execution limit is a few seconds. Every run was killed before it wrote its
+log, which is why `/api/ingest/status` reported "no ingestion run yet" for weeks
+while the schedule fired on time. One season per run finishes inside the budget,
+and running more often covers the same ground.
 
 This is the first milestone (2026·08) of the 10-year roadmap's "Own the Data"
 year — entity resolution across sources, conflict resolution when they
@@ -142,9 +185,10 @@ canonical records this worker writes.
 - Check the latest run: `curl https://<site>/api/ingest/status`
 - Manually trigger a run (uses the same `CRON_SECRET` as push-send.mjs):
   `curl "https://<site>/.netlify/functions/ingest?secret=$CRON_SECRET"`
-- No client-facing behavior changes yet — the app still reads AniList directly;
-  nothing in `site/` consumes `ingest-canonical` until a later milestone wires
-  it up as the app's actual data source.
+- Force a specific season (fastest way to warm the catalog after an outage):
+  `curl "https://<site>/.netlify/functions/ingest?secret=$CRON_SECRET&season=SUMMER&year=2026"`
+- See what the catalog can answer without going upstream: `curl https://<site>/api/v1`
+  and read the `catalog` block.
 
 ## Release variants + the correction layer
 AniList publishes the **Japanese TV broadcast** time and nothing else. That is

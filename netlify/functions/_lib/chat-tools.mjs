@@ -10,14 +10,18 @@
 // anonymous public lookup — the same data /api/v1 already serves — so a prompt
 // injection in a chat message can, at worst, make the model look something up.
 //
-// The AniList plumbing deliberately mirrors netlify/functions/api.mjs rather
-// than importing it: api.mjs is a request handler with its own response shapes
-// and rate limiter, and reaching into it would couple the public API's contract
-// to the chatbot's. The duplicated part is ~40 lines of fetch + cache.
+// Schedule data comes from _lib/catalog.mjs, the same read path api.mjs and the
+// push worker use. It used to be a private copy of that plumbing, on the
+// argument that importing api.mjs would couple the public API's contract to the
+// chatbot's — true, but the fix was to share the data layer rather than the
+// request handler. Response shaping below stays entirely local, which is the
+// part that actually differs.
 import { variantsFor, mergeOverrides, showOverride, loadSeed } from "./schedule-overrides.mjs";
+// Aliased: `getSeason` and `getAnime` are the names of this module's own tool
+// handlers, which is what the model calls them.
+import { anilist, getSeason as catalogSeason, getMediaById as catalogMedia, MEDIA_FIELDS } from "./catalog.mjs";
 import { getStore } from "@netlify/blobs";
 
-const ANILIST = "https://graphql.anilist.co";
 const SITE = "https://tsuzuki.netlify.app";
 
 // Tool results are model input, so every field costs tokens on every subsequent
@@ -39,38 +43,20 @@ const NEXT_EPISODES = 8;
 // didn't ask for and the model pays for.
 const SYNOPSIS_CHARS = 400;
 
-const MEDIA_FIELDS = `
-  id title { romaji english native } format episodes duration status season seasonYear
-  genres averageScore popularity siteUrl description(asHtml:false)
-  startDate { year month day } endDate { year month day }
-  studios(isMain: true) { nodes { name } }
-  externalLinks { site url type }
-  airingSchedule { nodes { airingAt episode } }`;
-
+// Title search is the one lookup the catalog can't answer from a season
+// snapshot — the model asks about titles that aren't currently airing. It still
+// goes out through the catalog's shared client so error handling matches.
 const SEARCH_QUERY = `query($q:String,$page:Int,$perPage:Int){
   Page(page:$page,perPage:$perPage){ media(search:$q,type:ANIME,sort:SEARCH_MATCH){ ${MEDIA_FIELDS} } } }`;
-const ID_QUERY = `query($id:Int){ Media(id:$id,type:ANIME){ ${MEDIA_FIELDS} } }`;
-const SEASON_QUERY = `query($season:MediaSeason,$seasonYear:Int,$page:Int){
-  Page(page:$page,perPage:50){ pageInfo{ hasNextPage } media(season:$season,seasonYear:$seasonYear,type:ANIME,sort:POPULARITY_DESC){ ${MEDIA_FIELDS} } } }`;
 
 const SEASONS = ["WINTER", "SPRING", "SUMMER", "FALL"];
 const seasonOf = m => (m <= 2 ? "WINTER" : m <= 5 ? "SPRING" : m <= 8 ? "SUMMER" : "FALL");
 
-async function anilist(query, variables) {
-  const res = await fetch(ANILIST, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Accept: "application/json" },
-    body: JSON.stringify({ query, variables }),
-  });
-  if (!res.ok) throw new Error(`AniList HTTP ${res.status}`);
-  const j = await res.json();
-  if (j.errors) throw new Error(j.errors[0].message);
-  return j.data;
-}
-
-// Per-instance caches. A chat turn can fire three tool calls that all want the
-// same season, and a warm instance serves many turns, so this is the difference
-// between one upstream call and thirty.
+// Season and single-title reads go through _lib/catalog.mjs, which already
+// holds them in memory, in a shared Blobs snapshot, and only then upstream — so
+// three tool calls in one chat turn that all want the same season cost one
+// lookup, and usually zero upstream calls. Overrides keep their own small cache
+// here because they are cheap and change on a different clock.
 let overridesCache = null, overridesAt = 0;
 async function loadOverrides() {
   if (overridesCache && Date.now() - overridesAt < 60_000) return overridesCache;
@@ -82,33 +68,9 @@ async function loadOverrides() {
   return overridesCache;
 }
 
-const SEASON_TTL_MS = 10 * 60_000;
-const seasonCache = new Map();
-const inflight = new Map();
 async function fetchSeason(season, year) {
-  const key = `${season}-${year}`;
-  const hit = seasonCache.get(key);
-  if (hit && Date.now() - hit.at < SEASON_TTL_MS) return hit.media;
-  if (inflight.has(key)) return inflight.get(key);
-
-  const p = (async () => {
-    try {
-      let out = [], page = 1, more = true;
-      while (more && page <= 3) {
-        const d = await anilist(SEASON_QUERY, { season, seasonYear: year, page });
-        out = out.concat(d.Page.media);
-        more = d.Page.pageInfo.hasNextPage;
-        page++;
-      }
-      seasonCache.set(key, { at: Date.now(), media: out });
-      return out;
-    } catch (err) {
-      if (hit) return hit.media;      // stale beats failing the tool call
-      throw err;
-    } finally { inflight.delete(key); }
-  })();
-  inflight.set(key, p);
-  return p;
+  const snap = await catalogSeason(season, year);
+  return (snap && snap.media) || [];
 }
 
 /* ---------- shaping ----------
@@ -282,8 +244,7 @@ async function searchAnime({ query, limit }) {
 async function getAnime({ anilistId, airType }) {
   const id = Number(anilistId);
   if (!Number.isFinite(id)) return { error: "anilistId must be a number" };
-  const d = await anilist(ID_QUERY, { id });
-  const md = d.Media;
+  const md = await catalogMedia(id).catch(() => null);
   if (!md) return { error: "No anime with that id" };
 
   const overrides = await loadOverrides();

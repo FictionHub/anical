@@ -411,13 +411,13 @@
   .modal .mh{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg2)}
   .modal .mh h2{margin:0;font-size:17px}
   .modal .mb{padding:14px 18px}
-  /* Show-detail modal: 3-column layout (poster | meta+description | airing schedule).
-     Scoped via :has() so it only widens the modal when detail content is present.
-     Middle + schedule columns share the remaining width equally. */
+  /* Show-detail modal: poster | meta+description. The airing schedule used to be
+     a third column here and is now its own sub-menu tab, where it has the width
+     to show every episode's releases instead of one squeezed line each.
+     Scoped via :has() so it only widens the modal when detail content is present. */
   .modal:has(.detail-grid){max-width:1100px;width:95vw}
   .mh h2 .mtitle-sub{display:block;font-size:12px;color:var(--muted);font-style:italic;font-weight:400;margin-top:3px;line-height:1.3}
-  .detail-grid{display:grid;grid-template-columns:260px minmax(0,1fr) minmax(220px,1fr);gap:24px;align-items:start;margin-bottom:2px}
-  .detail-grid.no-side{grid-template-columns:260px minmax(0,1fr)}
+  .detail-grid{display:grid;grid-template-columns:260px minmax(0,1fr);gap:24px;align-items:start;margin-bottom:2px}
   .detail-poster img{width:100%;height:auto;aspect-ratio:2/3;border-radius:12px;display:block;object-fit:cover}
   .detail-main{min-width:0;display:flex;flex-direction:column;gap:12px}
   .detail-main .desc{color:var(--muted);font-size:13.5px;margin:2px 0 0;line-height:1.55}
@@ -426,9 +426,6 @@
     background:color-mix(in srgb,var(--accent) 26%,var(--bg3));
     color:color-mix(in srgb,var(--accent) 55%,var(--txt));
     border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
-  .detail-side{min-width:0}
-  .detail-side h4:first-child{margin-top:0}
-  .detail-side .sched-scroll{max-height:none;overflow:visible}
   .sched-scroll{max-height:200px;overflow:auto}
   /* Bigger cover art in the modal's recommendation/studio rails (the homepage
      "What's new" rail keeps the compact size). */
@@ -437,9 +434,8 @@
   #modalBody .wn-cover:hover{transform:translateY(-3px)}
   @media(max-width:820px){
     .modal:has(.detail-grid){width:100%}
-    .detail-grid,.detail-grid.no-side{grid-template-columns:1fr}
+    .detail-grid{grid-template-columns:1fr}
     .detail-poster{max-width:190px}
-    .detail-side .sched-scroll{max-height:240px;overflow:auto}
   }
   .x{background:transparent;border:none;font-size:20px;color:var(--muted);padding:4px 8px}
   .x:hover{color:#fff;background:transparent;transform:none}
@@ -488,14 +484,36 @@
   .rel-chip span.rc{display:flex;flex-direction:column;min-width:0}
   .rel-kind{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
   .rel-title{font-size:12.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:170px}
-  /* franchise timeline */
-  .ftl{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch}
-  .ftl-item{flex:none;width:132px;text-align:left;padding:7px;border:1px solid var(--line);border-radius:10px;background:var(--bg3);cursor:pointer}
+  /* franchise timeline — a wrapping grid, not a rail: a full franchise runs to
+     dozens of entries and horizontal scrolling hides the end of the story. */
+  .ftl{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:10px}
+  /* display:flex, not the button default: a <button> lays its children out in a
+     centred inline row, which turns the cover + caption into a side-by-side mess
+     the moment the item is a grid child rather than a fixed-width flex child. */
+  .ftl-item{position:relative;display:flex;flex-direction:column;align-items:stretch;width:100%;
+    text-align:left;padding:7px;border:1px solid var(--line);border-radius:10px;background:var(--bg3);cursor:pointer}
   .ftl-item:hover{border-color:var(--accent)}
   .ftl-item.cur{border-color:var(--premiere);background:rgba(245,158,11,.08);cursor:default}
   .ftl-item img{width:100%;height:78px;object-fit:cover;border-radius:6px;background:#000;display:block}
+  .ftl-n{position:absolute;top:11px;left:11px;min-width:19px;height:19px;padding:0 5px;border-radius:10px;
+    background:rgba(2,6,15,.78);color:#e6edf3;font:700 11px/19px ui-monospace,Consolas,monospace;text-align:center}
   .ftl-y{display:block;font-size:11px;color:var(--muted);margin-top:5px}
   .ftl-t{display:block;font-size:12px;font-weight:600;line-height:1.25;max-height:30px;overflow:hidden}
+  .ftl-k{display:block;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-top:3px;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ftl-empty{color:var(--muted);font-size:13px;padding:6px 0}
+
+  /* show-modal sub-menus */
+  .mtabs{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid var(--line);margin:0 0 14px}
+  .mtab{background:none;border:0;border-bottom:2px solid transparent;border-radius:8px 8px 0 0;
+    padding:8px 13px;margin-bottom:-1px;font-size:13.5px;font-weight:700;color:var(--muted);cursor:pointer}
+  .mtab:hover{color:var(--txt);background:var(--bg3)}
+  .mtab.on{color:var(--txt);border-bottom-color:var(--accent)}
+  .mtab .mtab-n{font-size:11px;font-weight:600;opacity:.75;margin-left:5px}
+  .mpanel h4:first-child{margin-top:0}
+  .mpanel[data-panel="schedule"] .sched-scroll{max-height:none;overflow:visible}
+  .mpanel[hidden],.mtab[hidden]{display:none}
+  .slot-loading{color:var(--muted);font-size:13px;padding:6px 0}
 
   /* dashboard */
   .dashboard{max-width:1500px;margin:0 auto;padding:18px 22px}
@@ -954,9 +972,31 @@
 
 // Build number auto-stamped from the git commit count by scripts/stamp-version.mjs
 // (run via the .githooks/pre-commit hook). Do not edit by hand — it changes every commit.
-const APP_VERSION = "3.0.76";
+const APP_VERSION = "3.0.77";
 
+// Tsuzuki's own read API. It serves the same AniList payload out of a shared
+// server-side catalog (netlify/functions/_lib/catalog.mjs), so the schedule a
+// visitor loads has usually already been fetched once for everyone rather than
+// once per browser. Every call through it falls back to AniList directly, so
+// the app is never *dependent* on our own backend being up.
+const TSUZUKI_API = "/api/v1";
 const API = "https://graphql.anilist.co";
+// Every call to our own API is an optimisation, never a dependency: a null here
+// means "ask AniList instead". The timeout matters as much as the try/catch —
+// a cold function that takes eight seconds to answer is worse for the reader
+// than going straight upstream, and without an abort the launch would wait for
+// it before even starting the fallback.
+async function apiGet(path, {timeout=6000}={}){
+  const ac=typeof AbortController!=="undefined"?new AbortController():null;
+  const t=ac?setTimeout(()=>ac.abort(),timeout):null;
+  try{
+    const r=await fetch(TSUZUKI_API+path,{headers:{Accept:"application/json"}, signal:ac?ac.signal:undefined});
+    if(!r.ok) return null;
+    const j=await r.json();
+    return (j&&j.ok)?j:null;
+  }catch(e){ return null; }
+  finally{ if(t) clearTimeout(t); }
+}
 // Public VAPID key for Web Push (server-driven alerts that work even when
 // Tsuzuki is closed). Generated with scripts/generate-vapid-keys.mjs — not secret.
 const VAPID_PUBLIC_KEY = "BG_oPd3dWly-EeNDo5mgU4wyWZAyuIk5uYJuzGAd2RsKAfL3pJsm6QaNJw1CRZ0kQPod_B5JaJVr6NMtT6ja48s";
@@ -1392,7 +1432,7 @@ query ($season: MediaSeason, $seasonYear: Int, $page: Int) {
       coverImage { medium large color }
       startDate { year month day }
       studios(isMain: true) { nodes { name } }
-      relations { edges { relationType(version: 2) node { id type format title { romaji english native } coverImage { medium } startDate { year } } } }
+      relations { edges { relationType(version: 2) node { id type format title { romaji english native } coverImage { medium } startDate { year month day } } } }
       airingSchedule { nodes { airingAt episode } }
     }
   }
@@ -1409,7 +1449,7 @@ query ($search: String) {
       coverImage { medium large color }
       startDate { year month day }
       studios(isMain: true) { nodes { name } }
-      relations { edges { relationType(version: 2) node { id type format title { romaji english native } coverImage { medium } startDate { year } } } }
+      relations { edges { relationType(version: 2) node { id type format title { romaji english native } coverImage { medium } startDate { year month day } } } }
       airingSchedule { nodes { airingAt episode } }
     }
   }
@@ -1426,11 +1466,14 @@ query ($id: Int) {
     coverImage { medium large color }
     startDate { year month day }
     studios(isMain: true) { nodes { name } }
-    relations { edges { relationType(version: 2) node { id type format title { romaji english native } coverImage { medium } startDate { year } } } }
+    relations { edges { relationType(version: 2) node { id type format title { romaji english native } coverImage { medium } startDate { year month day } } } }
     airingSchedule { nodes { airingAt episode } }
   }
 }`;
 async function fetchMediaById(id){
+  // Our catalog first (see TSUZUKI_API), AniList only if it can't answer.
+  const ours=await apiGet(`/anime/${encodeURIComponent(id)}?full=1`);
+  if(ours&&ours.media) return ours.media;
   const res=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},
     body:JSON.stringify({query:ID_QUERY,variables:{id:+id}})});
   if(!res.ok) throw new Error("AniList HTTP "+res.status);
@@ -1731,10 +1774,16 @@ async function loadOnThisDay(){
   const card=$("otdCard"); if(!card) return;
   const now=new Date(), mm=String(now.getMonth()+1).padStart(2,"0"), dd=String(now.getDate()).padStart(2,"0");
   let media;
-  try{
-    const res=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify({query:OTD_QUERY,variables:{d:"%"+mm+dd}})});
-    const j=await res.json(); if(j.errors) throw 0; media=j.data.Page.media;
-  }catch(e){ card.style.display="none"; return; }
+  // Same list for every visitor on a given day, so it is served from our cache
+  // rather than queried per browser; AniList stays the fallback.
+  const ours=await apiGet(`/on-this-day?d=${mm}${dd}`);
+  if(ours&&Array.isArray(ours.media)) media=ours.media;
+  if(!media){
+    try{
+      const res=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify({query:OTD_QUERY,variables:{d:"%"+mm+dd}})});
+      const j=await res.json(); if(j.errors) throw 0; media=j.data.Page.media;
+    }catch(e){ card.style.display="none"; return; }
+  }
   const curY=now.getFullYear();
   const items=(media||[]).filter(m=>m.startDate&&m.startDate.year&&m.startDate.year<curY&&m.startDate.month===now.getMonth()+1&&m.startDate.day===now.getDate()&&!(state.hideNSFW&&m.isAdult)&&!isHidden(m.id)).slice(0,8);
   if(!items.length){ card.style.display="none"; return; }
@@ -1748,6 +1797,8 @@ const extrasCache=new Map();
 async function fetchModalExtras(id){
   id=String(id);
   if(extrasCache.has(id)) return extrasCache.get(id);
+  const ours=await apiGet(`/anime/${encodeURIComponent(id)}/extras`);
+  if(ours&&ours.media){ extrasCache.set(id,ours.media); return ours.media; }
   const res=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},
     body:JSON.stringify({query:EXTRAS_QUERY,variables:{id:+id}})});
   if(!res.ok) throw new Error("AniList HTTP "+res.status);
@@ -1763,6 +1814,8 @@ function recCoversHTML(nodes){
 const studioCache=new Map();
 async function fetchStudioMedia(studioId){
   if(studioCache.has(studioId)) return studioCache.get(studioId);
+  const ours=await apiGet(`/studio/${encodeURIComponent(studioId)}`);
+  if(ours&&ours.studio){ studioCache.set(studioId,ours.studio); return ours.studio; }
   const res=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},
     body:JSON.stringify({query:STUDIO_QUERY,variables:{id:+studioId}})});
   if(!res.ok) throw new Error("AniList HTTP "+res.status);
@@ -1776,22 +1829,52 @@ function studioCoversHTML(studio, excludeId){
     items.slice(0,10).map(m=>`<img class="wn-cover" role="button" tabindex="0" data-rec="${m.id}" src="${esc((m.coverImage&&m.coverImage.medium)||"")}" alt="${esc(title(m))}" title="${esc(title(m))}" loading="lazy" width="84" height="118">`).join("")+`</div>`;
 }
 async function loadModalExtras(id){
-  let data; try{ data=await fetchModalExtras(id); }catch(e){ return; }
-  if(String(state._modalId)!==String(id) || !$("overlay").classList.contains("on")) return;
-  const cast=$("castSlot"); if(cast&&data&&data.characters) cast.innerHTML=castHTML(data.characters);
-  const slot=$("recsSlot"); if(slot&&data&&data.recommendations) slot.innerHTML=recCoversHTML(data.recommendations.nodes);
+  const stillOpen=()=>String(state._modalId)===String(id) && $("overlay").classList.contains("on");
+  let data;
+  try{ data=await fetchModalExtras(id); }
+  catch(e){ if(stillOpen()){ setModalTabEmpty("cast",true); setModalTabEmpty("related",true); } return; }
+  if(!stillOpen()) return;
+  const cast=$("castSlot");
+  if(cast){
+    const html=(data&&data.characters)?castHTML(data.characters):"";
+    cast.className=""; cast.innerHTML=html;
+    setModalTabEmpty("cast",!html);
+  }
+  const slot=$("recsSlot");
+  let anyRelated=false;
+  if(slot){
+    const html=(data&&data.recommendations)?recCoversHTML(data.recommendations.nodes):"";
+    slot.className=""; slot.innerHTML=html;
+    anyRelated=!!html;
+  }
   const studioNode=data&&data.studios&&data.studios.nodes&&data.studios.nodes[0];
   const studioSlot=$("studioSlot");
   if(studioSlot&&studioNode){
     try{
       const studio=await fetchStudioMedia(studioNode.id);
-      if(String(state._modalId)===String(id) && $("overlay").classList.contains("on")) studioSlot.innerHTML=studioCoversHTML(studio,id);
+      if(stillOpen()){
+        const html=studioCoversHTML(studio,id);
+        studioSlot.innerHTML=html;
+        anyRelated=anyRelated||!!html;
+      }
     }catch(e){}
   }
+  if(stillOpen()) setModalTabEmpty("related",!anyRelated);
 }
 async function fetchSeason(season,year,report){
   const key=season+"-"+year;
   if(state.seasonCache.has(key)) return state.seasonCache.get(key);
+
+  // Our own API first (netlify/functions/api.mjs -> _lib/catalog.mjs). It holds
+  // the identical AniList payload, shared by every visitor and refreshed by one
+  // scheduled worker, so a launch normally costs AniList nothing at all and
+  // isn't affected when their public API is rate-limiting or down. AniList
+  // stays as the fallback below: if our catalog is cold, or this build is
+  // running somewhere the functions aren't (a local file://, a fork), the app
+  // must still work exactly as it always did.
+  const ours=await apiGet(`/seasons/${season.toLowerCase()}/${year}?full=1`,{timeout:9000});
+  if(ours&&Array.isArray(ours.media)&&ours.media.length){ state.seasonCache.set(key,ours.media); return ours.media; }
+
   // 3 pages (150) fully covers a normal season; bounded so a month view (≤3
   // seasons) stays well under AniList's ~30 requests/min and never gets locked out.
   let all=[],page=1,more=true,aborted=false;
@@ -1855,6 +1938,13 @@ function renderWhatsNew(){
    update. Returning visitors see every entry newer than the one they last
    saw, once, in a modal they close manually. Trim old entries freely. */
 const CHANGELOG=[
+  { id:10, v:"3.1", date:"August 2026", items:[
+    "A show's details are now split into sub-menus — Overview, Schedule, Franchise, Cast and More like this — instead of one long scroll. The full airing schedule gets the whole width rather than a squeezed side column.",
+    "Franchise timeline rebuilt. It used to show only the entries a show linked to directly, so opening season 3 never showed you season 1. It now walks the whole franchise — every season, movie, OVA, special and spin-off — in true release order, numbered.",
+    "Fixed: the modal could announce a Japanese broadcast for an episode the calendar had shown as a simulcast. The episode list, “next episode”, alerts and calendar exports now all pick the same release the grid does.",
+    "The schedule now loads from Tsuzuki's own servers instead of every visitor querying AniList directly — faster to open, and it keeps working when AniList is having a bad day.",
+    "Fixed: server-sent episode alerts had been failing silently since launch.",
+  ]},
   { id:9, v:"3.0", date:"August 2026", items:[
     "✨ New: ask Tsuzuki anything. The button in the bottom-right corner opens a chat that reads this calendar directly — air dates, what's on tonight, which season a show belongs to — and searches the web for everything the calendar doesn't hold, like staff, plot, sequel rumours and what a series is actually about.",
     "It answers with the corrected times, says which release it means (sub, dub or broadcast), and flags an estimate as an estimate instead of pretending to know. Speculation is always labelled as speculation.",
@@ -2061,6 +2151,13 @@ function preferredVariant(variants, want){
   for(const t of [want||primaryAirType(),"sub","raw","dub"]){ const v=variants.find(x=>x.type===t); if(v) return v; }
   return variants[0];
 }
+// The single release a viewer is tracking for one episode — picked from the
+// variants the calendar actually renders, hide rules included. Everything that
+// has to agree with the grid goes through here: the show modal, alerts, the
+// .ics export, the premiere rail, "jump to this show". Choosing from the raw
+// variant list instead is how the calendar ended up showing a condensed "~S"
+// chip while the modal it opened announced a RAW broadcast.
+function trackedVariant(md,node){ return preferredVariant(visibleVariants(variantsFor(md,node).variants)); }
 // Every displayable entry for one show in one time window: an entry per visible
 // variant, plus a break marker where an episode was cancelled for that slot.
 function entriesFor(md,node){
@@ -2390,7 +2487,7 @@ async function scheduleNotifications(){
   const alertNodes=md=>{
     const out=[];
     for(const n of (md.airingSchedule&&md.airingSchedule.nodes)||[]){
-      const v=preferredVariant(variantsFor(md,n).variants);
+      const v=trackedVariant(md,n);
       if(v) out.push({episode:n.episode, airingAt:v.ts, air:v});
     }
     return out;
@@ -2609,7 +2706,7 @@ function renderSidebars(){
     if(ep1){
       // Date the premiere by the release being tracked — a dub premiere is
       // weeks off the broadcast, and the rail should agree with the calendar.
-      const v=preferredVariant(variantsFor(md,ep1).variants);
+      const v=trackedVariant(md,ep1);
       if(v){ const t=v.ts*1000; if(t>=s&&t<=e) prem.push({md,ts:v.ts}); }
     }
   }
@@ -2714,21 +2811,101 @@ function trailerEmbedHTML(md){
     <span class="tplay">▶</span><span class="tlabel">▶ Play trailer</span>
   </div>`;
 }
-// Related anime (sequels/prequels/side stories) — click jumps to that title.
-const REL_LABEL={PREQUEL:"Prequel",SEQUEL:"Sequel",PARENT:"Parent story",SIDE_STORY:"Side story",SPIN_OFF:"Spin-off",ALTERNATIVE:"Alternative",SUMMARY:"Summary",OTHER:"Related"};
-const REL_ORDER={PREQUEL:0,SEQUEL:1,PARENT:2,SIDE_STORY:3,SPIN_OFF:4,ALTERNATIVE:5,SUMMARY:6,OTHER:7};
-function relationsHTML(md){
-  const edges=((md.relations&&md.relations.edges)||[]).filter(e=>e&&e.node&&e.node.type==="ANIME"&&REL_LABEL[e.relationType]);
-  if(!edges.length) return "";
-  // chronological "franchise timeline": this show + its direct relations, by year
+/* ---------- franchise timeline ----------
+   AniList hands a title its *direct* relations and nothing else, so a timeline
+   built from md.relations alone is only ever one hop wide: open season 3 and
+   you get seasons 2 and 4, never season 1, never the movie that hangs off it.
+   And sorting on the year alone leaves two entries from the same year in
+   whatever order the edges happened to arrive in — which for a split-cour show
+   plus its recap movie is exactly the pair you most want ordered.
+
+   So this renders twice. The first pass, from what the media record already
+   carries, paints instantly. Then /api/v1/franchise/<id> walks the whole
+   relation graph server-side (cached and shared between visitors) and replaces
+   it with the complete list. If that call fails, the first pass stays. */
+const REL_LABEL={PREQUEL:"Prequel",SEQUEL:"Sequel",PARENT:"Parent story",SIDE_STORY:"Side story",SPIN_OFF:"Spin-off",ALTERNATIVE:"Alternative",SUMMARY:"Summary",COMPILATION:"Compilation",CONTAINS:"Contains",OTHER:"Related"};
+const FTL_FMT={TV:"TV",TV_SHORT:"Short",MOVIE:"Movie",ONA:"ONA",OVA:"OVA",SPECIAL:"Special",MUSIC:"Music"};
+// Release order. An entry known only to the year sorts after everything
+// precisely dated in that year — "sometime in 2027" is later than 2027-01-12,
+// not earlier — and an entry with no date at all sorts last, under TBA.
+function ftlKey(n){
+  const d=n.startDate||{};
+  return d.year ? [d.year, d.month||99, d.day||99, +n.id] : [Infinity,0,0,+n.id];
+}
+function ftlCompare(a,b){
+  const ka=ftlKey(a), kb=ftlKey(b);
+  for(let i=0;i<ka.length;i++) if(ka[i]!==kb[i]) return ka[i]-kb[i];
+  return 0;
+}
+function ftlWhen(n){
+  const d=n.startDate||{};
+  if(!d.year) return "TBA";
+  return d.month ? `${MONTHS[d.month-1].slice(0,3)} ${d.year}` : String(d.year);
+}
+// Direct relations only — what we can draw before the graph walk comes back.
+function franchiseSeed(md){
   const seen=new Set([String(md.id)]);
-  const entries=[{id:String(md.id), t:title(md), img:(md.coverImage&&md.coverImage.medium)||"", y:(md.startDate&&md.startDate.year)||null, cur:true}];
-  for(const e of edges){ const n=e.node; if(seen.has(String(n.id))) continue; seen.add(String(n.id));
-    entries.push({id:String(n.id), t:title(n), img:(n.coverImage&&n.coverImage.medium)||"", y:(n.startDate&&n.startDate.year)||null, cur:false}); }
-  entries.sort((a,b)=>(a.y||9999)-(b.y||9999));
-  const items=entries.map(en=>`<button class="ftl-item ${en.cur?'cur':''}" ${en.cur?'':`data-rel="${en.id}"`} title="${esc(en.t)}">
-    <img src="${esc(en.img)}" alt="" loading="lazy"><span class="ftl-y">${en.y||"TBA"}${en.cur?" · this":""}</span><span class="ftl-t">${esc(en.t)}</span></button>`).join("");
-  return `<h4 style="margin:16px 0 6px">Franchise timeline</h4><div class="ftl">${items}</div>`;
+  const out=[{id:String(md.id), title:md.title, startDate:md.startDate, format:md.format, relationLabel:null, isRoot:true}];
+  for(const e of (md.relations&&md.relations.edges)||[]){
+    const n=e&&e.node;
+    if(!n||n.type!=="ANIME"||!REL_LABEL[e.relationType]||seen.has(String(n.id))) continue;
+    seen.add(String(n.id));
+    out.push({id:String(n.id), title:n.title, startDate:n.startDate, format:n.format,
+      coverImage:n.coverImage, relationLabel:REL_LABEL[e.relationType], isRoot:false});
+  }
+  return out;
+}
+function franchiseCoverOf(en){
+  if(en.coverImage&&en.coverImage.medium) return en.coverImage.medium;
+  const known=findMediaById(en.id);
+  return (known&&known.coverImage&&known.coverImage.medium)||"";
+}
+function franchiseListHTML(entries,{partial=false,truncated=false}={}){
+  const list=entries.slice().sort(ftlCompare);
+  const items=list.map((en,i)=>{
+    const t=title(en);
+    const badge=[FTL_FMT[en.format]||en.format||"", en.isRoot?"this":en.relationLabel||""].filter(Boolean).join(" · ");
+    return `<button class="ftl-item ${en.isRoot?'cur':''}" ${en.isRoot?'':`data-rel="${esc(String(en.id))}"`} title="${esc(t+(badge?" — "+badge:""))}">
+      <span class="ftl-n">${i+1}</span>
+      <img src="${esc(franchiseCoverOf(en))}" alt="" loading="lazy">
+      <span class="ftl-y">${esc(ftlWhen(en))}</span>
+      <span class="ftl-t">${esc(t)}</span>
+      ${badge?`<span class="ftl-k">${esc(badge)}</span>`:""}
+    </button>`;
+  }).join("");
+  const note = partial ? `<span class="tznote">· direct relations — loading the rest…</span>`
+    : truncated ? `<span class="tznote">· ${list.length} entries (largest franchises are capped)</span>`
+    : `<span class="tznote">· ${list.length} ${list.length===1?"entry":"entries"}, in release order</span>`;
+  return `<h4 style="margin:0 0 6px">Franchise timeline ${note}</h4><div class="ftl">${items}</div>`;
+}
+function relationsHTML(md){
+  const seed=franchiseSeed(md);
+  // A show with no known relations still gets the slot: the graph walk may find
+  // entries this record never linked to.
+  return `<div id="franchiseSlot" data-fid="${esc(String(md.id))}" data-seeded="${seed.length>1?1:0}">${seed.length>1?franchiseListHTML(seed,{partial:true}):`<div class="ftl-empty">Looking for other entries in this franchise…</div>`}</div>`;
+}
+const franchiseCache=new Map();
+async function loadFranchise(id){
+  id=String(id);
+  // The graph walk didn't answer. Leave a seeded list alone — direct relations
+  // are still a real timeline — but don't leave "looking…" on screen forever.
+  const giveUp=()=>{
+    const s=$("franchiseSlot");
+    if(!s||s.dataset.fid!==id||s.dataset.seeded==="1") return;
+    s.innerHTML=`<div class="ftl-empty">No other entries in this franchise.</div>`;
+    setModalTabEmpty("franchise",true);
+  };
+  let data=franchiseCache.get(id);
+  if(!data){
+    const ours=await apiGet(`/franchise/${encodeURIComponent(id)}`,{timeout:9000});
+    if(!ours||!Array.isArray(ours.entries)) return giveUp();
+    data=ours; franchiseCache.set(id,data);
+  }
+  const slot=$("franchiseSlot");
+  if(!slot||slot.dataset.fid!==id||String(state._modalId)!==id) return;   // modal moved on
+  const entries=data.entries.filter(en=>!(state.hideNSFW&&en.isAdult===true));
+  if(entries.length>1){ slot.innerHTML=franchiseListHTML(entries,{truncated:data.truncated}); }
+  else { slot.innerHTML=`<div class="ftl-empty">No other entries in this franchise.</div>`; setModalTabEmpty("franchise",true); }
 }
 // Streaming "where to watch" links (AniList externalLinks, type STREAMING).
 function streamChipsHTML(md){
@@ -2773,8 +2950,17 @@ function openDetail(md,episode){
     : "";
   const notices=scheduleNoticesHTML(md);
   const sched=renderScheduleList(md);
+  const epCount=((md.airingSchedule&&md.airingSchedule.nodes)||[]).length;
   $("modalBody").innerHTML=`
-    <div class="detail-grid${sched?"":" no-side"}">
+    <div class="mtabs" role="tablist" aria-label="Show details">
+      ${mtabHTML("overview","Overview")}
+      ${sched?mtabHTML("schedule","Schedule",epCount):""}
+      ${mtabHTML("franchise","Franchise")}
+      ${mtabHTML("cast","Cast")}
+      ${mtabHTML("related","More like this")}
+    </div>
+    <div class="mpanel" id="mpanel-overview" data-panel="overview" role="tabpanel">
+    <div class="detail-grid">
       <div class="detail-poster">
         ${cover?`<img src="${cover}" alt="" width="300" height="450">`:""}
       </div>
@@ -2829,14 +3015,66 @@ function openDetail(md,episode){
         ${trailerEmbedHTML(md)}
         ${desc?`<p class="desc">${esc(desc)}</p>`:""}
       </div>
-      ${sched?`<div class="detail-side">${sched}</div>`:""}
     </div>
-    ${relationsHTML(md)}
-    <div id="castSlot"></div>
-    <div id="recsSlot"></div>
-    <div id="studioSlot"></div>`;
+    </div>
+    ${sched?`<div class="mpanel" id="mpanel-schedule" data-panel="schedule" role="tabpanel" hidden>${sched}</div>`:""}
+    <div class="mpanel" id="mpanel-franchise" data-panel="franchise" role="tabpanel" hidden>${relationsHTML(md)}</div>
+    <div class="mpanel" id="mpanel-cast" data-panel="cast" role="tabpanel" hidden><div id="castSlot" class="slot-loading">Loading cast…</div></div>
+    <div class="mpanel" id="mpanel-related" data-panel="related" role="tabpanel" hidden>
+      <div id="recsSlot" class="slot-loading">Loading recommendations…</div>
+      <div id="studioSlot"></div>
+    </div>`;
+  wireModalTabs();
   $("overlay").classList.add("on");
   loadModalExtras(md.id);
+  loadFranchise(md.id);
+}
+/* ---------- show-modal sub-menus ----------
+   The detail modal had grown into one long scroll: meta, actions, ratings,
+   notes, collections, trailer, synopsis, the whole airing schedule, the
+   franchise, the cast and two recommendation rails, in that order. Splitting it
+   into tabs means the schedule and the franchise get room to be complete
+   instead of being squeezed into a side column, and the parts that need a
+   network round trip (cast, recommendations) load without pushing anything
+   the reader is looking at further down the page. */
+const MTAB_DEFAULT="overview";
+function mtabHTML(key,label,count){
+  const on=key===MTAB_DEFAULT;
+  return `<button class="mtab${on?" on":""}" role="tab" data-mtab="${key}" aria-selected="${on}" aria-controls="mpanel-${key}">${esc(label)}${count?`<span class="mtab-n">${count}</span>`:""}</button>`;
+}
+function showModalTab(key){
+  const body=$("modalBody");
+  const tabs=[...body.querySelectorAll(".mtab")].filter(t=>!t.hidden);
+  if(!tabs.some(t=>t.dataset.mtab===key)) key=MTAB_DEFAULT;
+  state._modalTab=key;
+  tabs.forEach(t=>{ const on=t.dataset.mtab===key; t.classList.toggle("on",on); t.setAttribute("aria-selected",on?"true":"false"); });
+  body.querySelectorAll(".mpanel").forEach(p=>{ p.hidden = p.dataset.panel!==key; });
+}
+function wireModalTabs(){
+  const body=$("modalBody");
+  const tabs=[...body.querySelectorAll(".mtab")];
+  tabs.forEach(t=>{
+    t.onclick=()=>showModalTab(t.dataset.mtab);
+    // Arrow keys walk the tab strip, the way a tablist is expected to behave.
+    t.onkeydown=e=>{
+      if(e.key!=="ArrowRight"&&e.key!=="ArrowLeft") return;
+      e.preventDefault();
+      const live=tabs.filter(x=>!x.hidden);
+      const i=live.indexOf(t);
+      const next=live[(i+(e.key==="ArrowRight"?1:live.length-1))%live.length];
+      next.focus(); showModalTab(next.dataset.mtab);
+    };
+  });
+  // Reopening a show keeps you where you were, unless that tab isn't on this
+  // one (a show with no schedule has no Schedule tab).
+  showModalTab(state._modalTab||MTAB_DEFAULT);
+}
+// A lazily-filled tab that came back with nothing shouldn't stay clickable.
+function setModalTabEmpty(key,empty){
+  const body=$("modalBody"), tab=body.querySelector(`.mtab[data-mtab="${key}"]`);
+  if(!tab) return;
+  tab.hidden=!!empty;
+  if(empty&&state._modalTab===key) showModalTab(MTAB_DEFAULT);
 }
 // Delays, breaks and notes for this show, surfaced at the top of the modal so
 // "why is there no episode this week" is answered before the schedule is read.
@@ -2865,15 +3103,21 @@ function renderScheduleList(md){
   const rows=nodes.slice().sort((a,b)=>a.airingAt-b.airingAt).map(n=>{
     const {status,variants}=variantsFor(md,n);
     const brk=!variants.length;
+    // Exactly the releases the calendar shows for this episode. This list used
+    // to be built from the raw variants, which ignored the hide rules — so a
+    // simulcast row the grid had condensed to a single "~S" chip re-appeared in
+    // here as a SUB *and* a RAW line, and the modal contradicted the calendar
+    // that opened it.
+    const shown=visibleVariants(variants);
     // The row's own clock is the release the viewer tracks; other known
     // releases for the same episode are listed under it rather than as
     // separate rows, so the episode list stays one-line-per-episode.
-    const primary=preferredVariant(variants);
+    const primary=preferredVariant(shown);
     const ts=primary?primary.ts:n.airingAt;
     const up=!brk&&ts>now, watched=!up&&!brk&&n.episode<=prog;
     const mark = (up||brk) ? `<span style="width:18px;flex:none"></span>`
       : `<span class="mark ${watched?'on':''}" role="button" tabindex="0" aria-label="${watched?'Watched — mark unwatched':'Mark watched up to episode '+n.episode}" data-mark="${md.id}|${n.episode}" title="${watched?'Watched — click to unmark':'Mark watched (this & earlier)'}">${watched?'✓':''}</span>`;
-    const others=variants.filter(v=>v!==primary&&on.has(v.type)).map(v=>
+    const others=shown.filter(v=>v!==primary).map(v=>
       `<span class="pill air air-${v.type}${v.estimated?" est":""}" title="${esc(AIR_LONG[v.type]+(v.platform?" · "+v.platform:""))}">${v.estimated?"~":""}${AIR_LABEL[v.type]} ${new Date(v.ts*1000).toLocaleString([], timeOpts({month:"short",day:"numeric",hour:"numeric",minute:"2-digit"}))}</span>`).join(" ");
     const statusTag = brk ? `<span class="pill brk" title="${esc((status&&status.reason)||"Broadcast break")}">⏸ BREAK</span>`
       : status&&status.kind==="delay" ? `<span class="pill warn" title="${esc(status.reason||"Delayed")}">⚠</span>`
@@ -3301,7 +3545,7 @@ function myShowsIcs(){
     for(const n of (md.airingSchedule&&md.airingSchedule.nodes)||[]){
       // Export the release being tracked, and skip break weeks entirely — a
       // phantom event in someone's real calendar is worse than a missing one.
-      const v=preferredVariant(variantsFor(md,n).variants);
+      const v=trackedVariant(md,n);
       if(!v || v.ts < now-7*86400) continue;   // keep a little history + everything upcoming
       const start=new Date(v.ts*1000), end=new Date(v.ts*1000+30*60000);
       const suffix=v.type==="raw"?"":" ("+AIR_LABEL[v.type]+(v.platform?" · "+v.platform:"")+")";
@@ -4519,7 +4763,9 @@ function nextAir(md){
   let best=null;
   for(const n of (md.airingSchedule&&md.airingSchedule.nodes)||[]){
     const {status,variants}=variantsFor(md,n);
-    const v=preferredVariant(variants);
+    // visibleVariants, not the raw list: "next episode" has to name the same
+    // release the calendar is showing, or the modal disagrees with the grid.
+    const v=preferredVariant(visibleVariants(variants));
     if(!v||v.ts<=now) continue;
     if(!best||v.ts<best.airingAt) best={episode:n.episode, airingAt:v.ts, air:v, status};
   }
@@ -4533,6 +4779,11 @@ function localMatches(q){
   return out;
 }
 async function searchAniList(q){
+  // Our search answers from the cached seasons first and only reaches upstream
+  // for titles it doesn't hold — so typing in the box usually costs AniList
+  // nothing. Still falls back to AniList directly if our API can't answer.
+  const ours=await apiGet(`/search?full=1&q=${encodeURIComponent(q)}${state.hideNSFW?"":"&includeAdult=1"}`);
+  if(ours&&Array.isArray(ours.media)) return ours.media;
   const res=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},
     body:JSON.stringify({query:SEARCH_QUERY,variables:{search:q}})});
   if(!res.ok) throw new Error("AniList HTTP "+res.status);
@@ -4583,7 +4834,7 @@ function pickTargetTs(md){
   // when they follow dubs would scroll them to a day with nothing on it.
   const times=[];
   for(const n of (md.airingSchedule&&md.airingSchedule.nodes)||[]){
-    const v=preferredVariant(variantsFor(md,n).variants);
+    const v=trackedVariant(md,n);
     if(v) times.push(v.ts);
   }
   times.sort((a,b)=>a-b);

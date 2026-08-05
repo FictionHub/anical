@@ -93,6 +93,7 @@ footer{margin-top:44px;color:#8b97a7;font-size:12.5px;border-top:1px solid #2a31
     <tr><td>Caching</td><td>Responses are CDN-cached for 5 minutes. Cache on your side too; do not poll faster than the data changes.</td></tr>
     <tr><td>Rate limit</td><td>Roughly 60 requests/minute per client. Over it you get <code>429</code> with <code>Retry-After</code>.</td></tr>
     <tr><td>Adult titles</td><td>Excluded by default. Pass <code>includeAdult=1</code> on <code>/schedule</code> if you need them.</td></tr>
+    <tr><td>Freshness</td><td>Answers come from a server-side catalog refreshed every few hours, not from a live upstream call per request. <code>GET /api/v1</code> reports each cached season's age under <code>catalog</code>.</td></tr>
   </table>
 
   <div class="note warn">
@@ -163,6 +164,7 @@ footer{margin-top:44px;color:#8b97a7;font-size:12.5px;border-top:1px solid #2a31
   <p>
     One title with its full per-episode variant schedule, plus the raw
     <code>corrections</code> record if one exists. Break weeks <em>are</em> included here.
+    Add <code>?full=1</code> for the untouched media record instead of the summary shape.
   </p>
 <pre><code>curl "https://tsuzuki.netlify.app/api/v1/anime/128757"</code></pre>
 
@@ -170,9 +172,34 @@ footer{margin-top:44px;color:#8b97a7;font-size:12.5px;border-top:1px solid #2a31
   <p>
     A season's lineup, each title with its <code>nextEpisode</code> already resolved through
     the correction layer. <code>season</code> is <code>winter</code>, <code>spring</code>,
-    <code>summer</code> or <code>fall</code>.
+    <code>summer</code> or <code>fall</code>. <code>?full=1</code> returns the complete media
+    records — that is what the Tsuzuki app itself loads.
   </p>
 <pre><code>curl "https://tsuzuki.netlify.app/api/v1/seasons/summer/2026"</code></pre>
+
+  <h3>GET /api/v1/franchise/{anilistId}</h3>
+  <p>
+    Every anime in the same franchise, in release order. Upstream only ever gives a title its
+    <em>direct</em> relations, so asking season 3 what it belongs to gets you seasons 2 and 4 and
+    nothing else. This walks the whole relation graph and returns the lot — seasons, movies, OVAs,
+    specials, spin-offs — each with the <code>relationLabel</code> that placed it there and
+    <code>isRoot</code> on the title you asked about.
+  </p>
+  <p>
+    Entries are sorted by start date. One known only to the year sorts after everything precisely
+    dated in that year, and one with no date at all sorts last. Very large franchises are capped;
+    <code>truncated</code> tells you when that happened.
+  </p>
+<pre><code>curl "https://tsuzuki.netlify.app/api/v1/franchise/16498"</code></pre>
+
+  <h3>GET /api/v1/search</h3>
+  <p>
+    Title search. <code>q</code> is a fragment of any title (English, romaji or native),
+    <code>limit</code> is 1–25 and defaults to 12. Answers from the seasons already cached
+    where it can and reaches upstream only for titles outside them — <code>source</code> in the
+    response says which happened. <code>?full=1</code> returns complete media records.
+  </p>
+<pre><code>curl "https://tsuzuki.netlify.app/api/v1/search?q=frieren"</code></pre>
 
   <h3>GET /api/v1/overrides</h3>
   <p>
