@@ -4,19 +4,23 @@
 
 Three hundred sixty-five days, three hundred sixty-five features.
 
-A shippable feature every single day — the hands-on companion to the strategic 10-year roadmap. None of these are already in Tsuzuki, and none are the big backend milestones; they're the consumer-facing wins you build day to day while the platform work runs underneath.
+A shippable feature every single day — the hands-on companion to the strategic 10-year roadmap. None of these are the big backend milestones; they're the consumer-facing wins you build day to day while the platform work runs underneath.
+
+**Revised Aug 2026.** The first version of this document was written on the assumption that nothing in it existed yet. A month of building broke that: push, theming, release variants, corrections and reporting all landed early, so the days that overlap them have been rewritten to the part that is actually left. Those entries carry a status marker (see below). September 2026 is untouched by this revision.
 
 ## Picking This Up Cold
 
 Everything below assumes these invariants. Check them before starting a day; they are the things that are expensive to rediscover.
 
-- **The client is one file.** `site/index.html` (~3,700 lines) holds the entire app — markup, CSS and JS, all inline. Most days land there. Find the neighbouring feature and match its idiom rather than introducing a new pattern.
-- **There is no build step.** `site/` is uploaded as-is (`netlify.toml` sets `publish = "site"` with no build command). Do not add a bundler, framework or npm dependency to the client without a deliberate decision — it changes the deploy story for every day after it.
+- **The client is one file.** `site/index.html` (~5,700 lines) holds the entire app — markup, CSS and JS, all inline. Most days land there. Find the neighbouring feature and match its idiom rather than introducing a new pattern. It has grown ~2,000 lines in a month; that is the file's normal, not a problem to fix mid-day.
+- **There is no build step.** `site/` is uploaded as-is (`netlify.toml` sets `publish = "site"` with no build command). The SEO pages are generated and committed by GitHub Actions, not built on Netlify. Do not add a bundler, framework or npm dependency to the client without a deliberate decision — it changes the deploy story for every day after it.
 - **Storage is `localStorage`, namespaced `anical.*`** — `anical.collections`, `anical.notes`, `anical.filters`, `anical.hidden`, and so on. The prefix is pre-rebrand and deliberately unchanged: renaming it to `tsuzuki.*` would orphan every existing user's data. New keys keep the `anical.` prefix. Migrations are additive — never drop or repurpose a key an earlier version wrote.
-- **The version is stamped, not typed.** `.githooks/pre-commit` runs `scripts/stamp-version.mjs`, which rewrites `APP_VERSION` from the commit count. Never hand-edit it; bump `MAJOR_MINOR` in the script when a month's theme lands.
-- **Schedule data is live, not built.** The client queries `graphql.anilist.co` directly, so airing times and scores are never stale regardless of deploys. Only the SEO pages, `.ics` feeds and app code itself are deploy-bound.
-- **Where non-client work lives.** `netlify/functions/` for scheduled and server work (`push-send.mjs`, `ingest.mjs`); `scripts/` for static generation (`build-seo.mjs`, `build-events.mjs`); `bot/` for the Discord and social posts; `.github/workflows/` for the schedules that drive them.
-- **AniList is rate-limited** to roughly 30 requests/minute and currently degraded. `netlify/functions/_lib/ingest-http.mjs` has the shared limiter and retry helper — reuse it rather than writing a bare `fetch` loop.
+- **Sign-in exists, and holds nothing.** Discord OAuth + a signed session cookie ship (`netlify/functions/auth.mjs`, `_lib/session.mjs`), but only so an event skin can find the account it was granted to. The server stores a Discord id, name and avatar hash — no list, no ratings, no notes. Every day below is still a local-first feature; **do not** reach for the session as a place to put user data without a deliberate decision, because the settings panel currently promises the opposite.
+- **The version is derived, not typed.** `.githooks/pre-commit` runs `scripts/stamp-version.mjs`, which rewrites `APP_VERSION` in `site/index.html` as `<major.minor>.<commit count>` — and reads the major.minor from the newest CHANGELOG entry in that same file. So **adding the changelog entry is the whole release procedure**; never hand-edit `APP_VERSION`, and there is no longer a constant in the script to bump. The app is on **v3.1** as of Aug 2026. Three other version numbers live nearby and are all independent of it — the public API's (`VERSION` in `api.mjs`, currently `1.1`, matching the `/api/v1` route) and the data-format ones (`SCHEMA_VERSION`, `OVERRIDES_VERSION`, `THEMES_VERSION`, all `1`). None of them move when the app version does.
+- **Schedule data comes from our own API first.** The client calls `/api/v1/seasons/...?full=1`, `/api/v1/anime/<id>?full=1` and `/api/v1/search` before touching AniList, and falls back to AniList directly whenever our API can't answer — so the site is never *dependent* on its own backend. Data is still never stale for deploy reasons; it is now also corrected before it arrives. Only the SEO pages, `.ics` feeds and app code are deploy-bound.
+- **The correction layer is mirrored by hand.** `site/index.html` resolves release variants (`raw`/`sub`/`dub`) client-side; `netlify/functions/_lib/schedule-overrides.mjs` is the same logic again for `push-send.mjs`, because the client can't import it without a build step. **Change one, change the other** — the shapes and resolution order are the contract. Any day that touches air times touches both.
+- **Where non-client work lives.** `netlify/functions/` for server and scheduled work — `api.mjs` (public read API), `ingest.mjs` (scheduled, every 2h), `push-send.mjs` (scheduled, every 15m), `auth.mjs`, `themes.mjs`, `grants.mjs`, `chat.mjs`, `overrides.mjs`, `report.mjs`, with shared code in `_lib/` (`catalog.mjs` is the read path everything goes through). `scripts/` for static generation and tooling (`build-seo.mjs`, `build-events.mjs`, `build-themes.mjs`, `ingest-crunchyroll.mjs`); `bot/` for Discord and social posts; `.github/workflows/` for the schedules that drive them.
+- **AniList is rate-limited** to roughly 30 requests/minute and currently degraded. `netlify/functions/_lib/ingest-http.mjs` has the shared limiter and retry helper — reuse it rather than writing a bare `fetch` loop. Server-side, prefer `_lib/catalog.mjs`: memory → Blobs snapshot → AniList, so one cold request pays for a whole season.
 
 ### Reading a day
 
@@ -33,6 +37,15 @@ Each entry carries a layer, an acceptance line, and sometimes a prerequisite:
 | `infra` | Functions, workflows, configuration | No |
 
 **Done when** is the acceptance condition — observable in the running app, not a description of the code. **Needs** names a day that must land first.
+
+Some days also carry a status:
+
+| Marker | Means |
+|---|---|
+| ✅ shipped | Built. Kept for the record, with the commit where it landed. |
+| ◐ | Something in the codebase already covers part of this. The entry has been rewritten to the remaining half, and says what exists first. |
+
+A `◐` day is usually *smaller* than it looks and occasionally larger — inheriting a working implementation means inheriting its assumptions too. Read what exists before estimating.
 
 ## Daily Build, Batched Deploy
 
@@ -51,7 +64,9 @@ Read this before planning against the dates below, because the deploy budget doe
 | Hotfix reserve | 4 | 60 |
 | **Total** | **20** | **300** |
 
-**What is already fresh without a deploy.** The app reads AniList live from the client, so schedule data, scores and airing times are never stale for real users no matter when you last deployed. Deploy frequency only governs three things: new app code, the static SEO pages Google crawls, and the `.ics` feeds. Of those, only the feeds are both user-facing and time-sensitive — moving them to a Netlify Function would decouple them from deploys entirely, since function invocations bill against a separate 125k/month quota you have barely touched.
+**Not every push costs 15 credits any more.** `netlify.toml` carries an `ignore` rule — `git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- site netlify package.json package-lock.json` — so a push touching only docs, `bot/`, `.github/`, `scripts/` or `data/` exits 0 and Netlify cancels the build. This is verified, not theoretical: the daily Crunchyroll ingest commits to `data/derived-offsets.json` at the repo root every day and has never cost a credit. **Editing this backlog is free. Shipping a feature is not.**
+
+**What is already fresh without a deploy.** Schedule data reaches users through `/api/v1` (Netlify Blobs, refreshed by the scheduled ingest) with a live AniList fallback, so it is never stale for real users no matter when you last deployed. Corrections go out through `POST /api/overrides` and skins through `/api/themes` — both blob-backed, both instant, neither costing a deploy. Deploy frequency now governs only three things: new app code, the static SEO pages Google crawls, and the `.ics` feeds. Of those, only the feeds are both user-facing and time-sensitive — moving them to a Netlify Function would decouple them entirely, since invocations bill against a separate 125k/month quota you have barely touched.
 
 Shipping weekly was never a development limit. It is a deploy-budget limit, and the way past it is batching, not frequency.
 
@@ -59,10 +74,13 @@ Shipping weekly was never a development limit. It is a deploy-budget limit, and 
 - **365** daily features
 - **12** monthly themes
 - **1** build every day, **1** drop every 2–3
+- **35** days carrying a status marker — 9 shipped, 26 partly built
 
 ## How This Sits with the Roadmap
 
 The **10-year roadmap** is the strategic spine (a hard system per year — data platform, sync, ML, native…). This backlog is the **daily delight layer** that keeps users happy and the app growing while that deeper work lands. A few themes rhyme with roadmap years (recs, streaming, stats) — here they're the light, client-side versions you can ship now; the roadmap later rebuilds them as the heavy, backend-powered versions.
+
+That division held for exactly one month. Twelve roadmap slots were overtaken by work that shipped early — the public API, the theming engine, release variants, web push, a grounded assistant — and were rescoped in place rather than deleted. The knock-on for *this* document is the `◐` days: where the heavy version arrived first, the light version below is no longer the thing to build, so the entry now describes the user-facing half that the backend shipped without.
 
 ## How This Maps to the Old Weekly Backlog
 
@@ -96,9 +114,9 @@ Shift-click a range of cards, then set status or collection for all of them at o
 Every destructive list action gets a six-second "Undo" instead of a confirm dialog.
 > `ui` — **Done when** removing a show or deleting a collection is reversible from a toast, and no destructive action prompts a modal confirm.
 
-### Day 07 · Aug 7 | Episode progress
-A per-show "watched up to ep N" counter with +1 and "caught up" buttons.
-> `data` — **Done when** progress persists per show, cannot exceed the episode count, and "caught up" sets it to the latest aired episode.
+### Day 07 · Aug 7 | Episode progress ◐
+Most of this exists already: `anical.progress` with `getProgress`/`setProgress`, and click-to-mark in the detail modal's schedule list — click an episode to mark watched up to there, click it again to unwatch from there. `setProgress` already enqueues an AniList push. What has no version is the fast path: a visible "watched up to ep N" counter with +1 and "caught up", instead of having to open a modal and find the right row.
+> `ui` — **Done when** +1 and "caught up" write through the existing `setProgress` rather than a second code path, progress cannot exceed the episode count, "caught up" sets it to the latest *aired* episode, and the AniList queue picks the change up exactly as marking a row does today.
 
 ### Day 08 · Aug 8 | Auto-progress from airing
 Mark episodes watched as they air, opt-in per show.
@@ -108,9 +126,9 @@ Mark episodes watched as they air, opt-in per show.
 A thin fill under each cover showing watched versus total.
 > `surface` — **Done when** every card with progress shows a proportional bar, and shows without an episode count degrade gracefully. **Needs** Day 07.
 
-### Day 10 · Aug 10 | "Next up" rail
-The single next unwatched episode across everything you're watching.
-> `surface` — **Done when** the rail lists one entry per Watching show, ordered by air date, and an item disappears once marked watched. **Needs** Day 07.
+### Day 10 · Aug 10 | "Next up" rail ◐
+The Continue Watching card already renders one row per started show with a newer aired episode (`▶ Next: Episode N`, top ten). Two things stop it being this feature: it ranks by AniList popularity rather than by when the episode aired, and it only sees `state.media` — the fetched seasons — so a show you fell behind on last season is invisible in it.
+> `surface` — **Done when** the rail orders by air date, covers every Watching show rather than only the loaded seasons, and an item disappears once marked watched. **Needs** Day 07.
 
 ### Day 11 · Aug 11 | Rewatch counter
 A rewatch tally per show that survives resetting progress.
@@ -180,9 +198,9 @@ Pin up to five shows to the top of every view.
 Hide finished shows from the main views without deleting them.
 > `ui` — **Done when** archived shows vanish from default views, remain findable through a filter, and keep all their data.
 
-### Day 28 · Aug 28 | List density
-Compact, comfortable and grid toggles for every list view.
-> `ui` — **Done when** the choice applies to every list view and persists across reloads.
+### Day 28 · Aug 28 | List density ◐
+Comfortable and Compact already ship as one global appearance toggle (`anical.density` → a `dense` class on `body`). Missing: the grid option, and per-view memory — density is currently one setting for the entire app.
+> `ui` — **Done when** grid joins the existing two, the choice applies to every list view, and each view remembers its own rather than sharing one.
 
 ### Day 29 · Aug 29 | Sort builder
 Multi-key sorting — status, then score, then title — that you can save.
@@ -578,13 +596,13 @@ What you shared, and who imported it.
 
 ## Month 05: December 2026 · Notifications & reminders
 
-### Day 123 · Dec 1 | Reminder lead times
-One-day, one-hour and at-air alerts, each chosen independently. `[W21]`
-> `infra` — **Done when** the three leads can be enabled independently and each fires once at the right offset. Touches `netlify/functions/push-send.mjs`.
+### Day 123 · Dec 1 | Reminder lead times ◐
+`push-send.mjs` already fires at `v.ts − lead` with a per-subscription `lead` in minutes (default 10), and dedupes on an `id-episode-airType` tag so nothing double-fires. What it cannot do is *more than one*: a subscriber gets exactly one lead, so "warn me the day before and again at air" is unrepresentable. `[W21]`
+> `infra` — **Done when** one-day, one-hour and at-air leads can be enabled independently and each fires once at the right offset. **Watch the `sent` tag**: a second lead for the same episode hashes to the tag the first one already wrote, so it would be skipped as already-sent — the tag format has to carry the lead. Touches `netlify/functions/push-send.mjs`.
 
 ### Day 124 · Dec 2 | Per-show lead override
 A different lead time for the shows you actually care about. `[W21]`
-> `ui` — **Done when** a per-show lead overrides the global default and reverts cleanly. **Needs** Day 123.
+> `ui` — **Done when** a per-show lead overrides the subscription-wide default (`data.lead`) and reverts cleanly. The store currently holds a flat `mediaIds` array per endpoint — this is the day it becomes a map. **Needs** Day 123.
 
 ### Day 125 · Dec 3 | Reminder preview
 See the exact notification text before you commit to it.
@@ -638,25 +656,25 @@ Why a notification didn't arrive, explained in plain language.
 A graceful path back after a denied notification permission.
 > `ui` — **Done when** a denied state explains how to re-enable it in the browser rather than silently failing.
 
-### Day 138 · Dec 16 | Multi-device push
-The same subscription across devices, without duplicate alerts.
-> `infra` — **Done when** two devices each receive one copy, not two. Touches `netlify/functions/_lib/subs.mjs`.
+### Day 138 · Dec 16 | Multi-device push ◐
+Already true in the narrow sense: subscriptions are keyed by push endpoint (`_lib/subs.mjs` → `keyFor`), so two devices are two rows and each receives exactly one copy. The real gap runs the other way — each device carries its own `mediaIds`, `lead` and `airType`, so following a show on your phone doesn't follow it on your laptop, and nothing ties the two rows to one person.
+> `infra` — **Done when** one person's devices share a follow list, each device still receives exactly one copy, and removing one device leaves the others working. This is the first day that genuinely wants `_lib/session.mjs` — re-read the sign-in invariant before reaching for it, because the settings panel currently promises nothing of yours is uploaded. Touches `netlify/functions/_lib/subs.mjs`.
 
-### Day 139 · Dec 17 | Delayed-episode handling
-Reschedule the alert automatically when AniList moves an air time.
-> `infra` — **Done when** a moved air time reschedules rather than firing at the stale time. **Needs** Day 123.
+### Day 139 · Dec 17 | Delayed-episode handling ◐
+Air times already resolve through the correction layer on every run, so a moved time is simply read correctly — there is no stored fire time to go stale, and nothing to "reschedule". Two real gaps remain: a run only fires inside a ~16-minute window (`RUN_WINDOW_MS`), so an episode moved *into* a window that has already passed is missed in silence; and an alert already sent against the old time is never followed by a correction.
+> `infra` — **Done when** an episode whose time moves past its window still alerts, and a move that happens after the alert went out sends a correction instead of leaving the wrong time standing. **Needs** Day 123.
 
-### Day 140 · Dec 18 | Break & hiatus alerts
-Tell me when a show I follow goes on break.
-> `infra` — **Done when** a gap beyond the normal cadence notifies once, not weekly. **Needs** Day 123.
+### Day 140 · Dec 18 | Break & hiatus alerts ◐
+Breaks are already modelled and already *suppress* alerts — `variantsFor` returns no variants for a break week, so the run produces nothing at all. The missing half is telling the follower, because silence is indistinguishable from a show that quietly stopped.
+> `infra` — **Done when** a break notifies once carrying the reason the override record already stores, never weekly, and the resumption is announced too. **Needs** Day 123.
 
 ### Day 141 · Dec 19 | Batch alerts
 Group same-hour episodes into one notification instead of five.
 > `infra` — **Done when** episodes sharing an hour arrive as one grouped notification. **Needs** Day 123.
 
-### Day 142 · Dec 20 | Rich notifications
-Cover art and episode number in the notification body.
-> `polish` — **Done when** artwork renders in the notification and a missing image degrades to text. **Needs** Day 123.
+### Day 142 · Dec 20 | Rich notifications ◐
+The payload already carries cover art as `icon`, the episode number in the title, the platform and resolved time in the body, and a per-episode `tag` so the OS collapses duplicates. What's missing is `image` — the large banner some platforms render — and the fallback when art fails to load rather than merely being absent.
+> `polish` — **Done when** a large image renders where the platform supports it and a failed image degrades to the current icon-plus-text form. **Needs** Day 123.
 
 ### Day 143 · Dec 21 | Notification actions
 "Mark watched" and "snooze" straight from the notification.
@@ -670,9 +688,9 @@ Push any reminder forward by an hour or a day.
 An .ics alarm option for people who live inside their calendar.
 > `content` — **Done when** the feed carries VALARM entries that a real calendar client honours.
 
-### Day 146 · Dec 24 | Streaming-release lead
-Alert on the streaming drop, not the Japanese broadcast.
-> `infra` — **Done when** the alert uses the streaming time where known and falls back to broadcast where not. **Needs** Day 123.
+### Day 146 · Dec 24 | Streaming-release lead ✅ shipped
+Landed Aug 2026 with release variants. `push-subscribe.mjs` stores the subscriber's `airType`; `push-send.mjs` resolves through `preferredVariant`, so alerts land on the simulcast by default and the dub only if asked, falling back to the broadcast time flagged approximate where no override exists. The body names which release it is — `Simulcast (approx.)` / `Dub` / `JP broadcast` — and the platform.
+> `infra` — Nothing left in this day. If it comes up, spend it on Day 147, which is still entirely open.
 
 ### Day 147 · Dec 25 | Region-aware timing
 Reminders in your timezone, with the source time shown alongside.
@@ -834,32 +852,32 @@ January in numbers.
 
 ## Month 07: February 2027 · Theming & delight
 
-### Day 185 · Feb 1 | Palette engine
-Themes as data, not hardcoded CSS. `[W29]`
-> `data` — **Done when** every colour resolves through a token and no component hardcodes a hex. Current accent key is `anical.accent`.
+### Day 185 · Feb 1 | Palette engine ◐
+The engine exists, and went further than this day asked: `SKIN_VARS` resolves a thirteen-variable palette (`bg`, `bg2`, `bg3`, `line`, `txt`, `muted`, `accent`, `accent2`, `premiere`, `today`, `good`, `now`, `finale`) plus eight shape and type variables, applied to `body` in one pass by `applySkin()`. The acceptance line is still unmet, though: **73 six-digit hex literals remain hardcoded in `site/index.html`**, so a skin repaints most of the page and leaves the rest — which is exactly why some surfaces don't move when you wear one. `[W29]`
+> `data` — **Done when** every colour resolves through a token, the hex count outside the token definitions is zero, and wearing a skin visibly repaints every surface. Current accent key is `anical.accent` — a `"#a|#b"` pair set on `:root` one layer *above* the skin, which is why it survives `applySkin()`.
 
-### Day 186 · Feb 2 | Theme gallery
-Save, name and switch between multiple palettes. `[W29]`
-> `ui` — **Done when** palettes save, switch instantly, and the active one survives a reload. **Needs** Day 185.
+### Day 186 · Feb 2 | Theme gallery ◐
+`site/data/themes.json` is a gallery already: a curated set served through `/api/themes`, cached in `anical.skin` for an instant first paint, with `anical.skinOn` as the wearer's own switch. But a skin is *granted*, not chosen — handed out per Discord account, and the only user control is turning yours off. This day is the user-owned half: palettes you make and keep locally, sitting alongside a granted skin rather than fighting it. `[W29]`
+> `ui` — **Done when** a user-made palette saves, names, switches instantly and survives a reload, and the precedence between a granted skin and a self-made one is a stated rule rather than whichever call ran last. **Needs** Day 185.
 
-### Day 187 · Feb 3 | Theme import & export
-Palettes as a shareable string. `[W29]`
-> `surface` — **Done when** a palette round-trips through the string and a malformed one is rejected with a reason. **Needs** Day 186.
+### Day 187 · Feb 3 | Theme import & export ◐
+A theme is already pure JSON — nothing binary in the repo, no upload endpoint, generated by `scripts/build-themes.mjs` and served from `/api/themes` — so the shareable format exists. Missing is the user-facing round trip. `[W29]`
+> `surface` — **Done when** a palette round-trips through a paste-able string losslessly and a malformed one is rejected with a reason. Reuse the server's character class for `pattern` and `ornament`: an imported theme is untrusted input that ends up inside a CSS `url()`. **Needs** Day 186.
 
-### Day 188 · Feb 4 | Community palettes
-A bundled set of good starting themes.
-> `polish` — **Done when** each bundled palette passes the contrast guard in both themes. **Needs** Day 186.
+### Day 188 · Feb 4 | Community palettes ✅ shipped early
+The bundled set ships — ten motifs generated from each show's own art and its AniList dominant colour (asanoha for Demon Slayer, seigaiha for One Piece, cursed slashes for Jujutsu Kaisen, a hex grid for Solo Leveling), regenerated with `node scripts/build-themes.mjs` and URL-verified with `--check`.
+> `polish` — **What's left**: not one of them has been through a contrast guard, because there isn't one yet. Audit the shipped set the day Day 190 lands and fix what fails. **Needs** Day 190.
 
-### Day 189 · Feb 5 | Live palette editor
-Edit colours with the app updating underneath you.
+### Day 189 · Feb 5 | Live palette editor ◐
+`/admin` → **Skins** already edits and previews against the real running site, handed over in `localStorage` (`anical.previewSkin`) rather than a `?theme=` URL — deliberately, because a link would let anyone wear an event skin. That is the maintainer's editor. This day is the same capability pointed at a user's own palette.
 > `ui` — **Done when** edits apply live and can be abandoned without saving. **Needs** Day 186.
 
 ### Day 190 · Feb 6 | Contrast guard
 Warn when a palette breaks readable contrast.
-> `a11y` — **Done when** any token pair below WCAG AA warns before the palette can be saved. **Needs** Day 189.
+> `a11y` — **Done when** any token pair below WCAG AA warns before the palette can be saved, **and** the shipped `themes.json` set is audited against the same rule — those palettes were derived from cover art with no contrast check anywhere in the pipeline. **Needs** Day 189.
 
-### Day 191 · Feb 7 | Cover-art theming
-The accent adapts to the artwork of the show you're viewing. `[W31]`
+### Day 191 · Feb 7 | Cover-art theming ◐
+`build-themes.mjs` already derives a palette from a show's art and its AniList dominant colour — but at build time, for the curated set only. This day is the runtime version: the accent adapting to whatever show you happen to be looking at. `[W31]`
 > `polish` — **Done when** the extracted accent passes the contrast guard or falls back to the default. **Needs** Day 190.
 
 ### Day 192 · Feb 8 | Per-show accent memory
@@ -934,9 +952,9 @@ A consistent icon family across the whole app.
 A proper type scale with tighter headings.
 > `polish` — **Done when** every text size resolves to a scale step and body copy sits near 65 characters.
 
-### Day 210 · Feb 26 | Density & radius controls
-Sharp or soft, tight or airy, as user settings.
-> `ui` — **Done when** both controls apply app-wide through tokens and persist. **Needs** Days 28, 185.
+### Day 210 · Feb 26 | Density & radius controls ◐
+The tokens already exist and already reshape the page wholesale — `--radius`, `--skin-chip-radius`, `--skin-border`, `--skin-card-blur`, all set by `applySkin()` from a theme's `shape` block. They are simply not user controls.
+> `ui` — **Done when** both controls apply app-wide through those existing tokens and persist, and a self-made setting is not silently overwritten the next time a skin applies. **Needs** Days 28, 185.
 
 ### Day 211 · Feb 27 | App icon variants
 Pick the PWA icon that matches your theme.
@@ -1114,29 +1132,29 @@ One-click deep links to the exact show on each service. `[W40]`
 Straight to the next episode, wherever the service allows it. `[W40]`
 > `surface` — **Done when** services supporting episode links use them and the rest fall back to the show page. **Needs** Days 07, 251.
 
-### Day 253 · Apr 10 | Dub availability
-Dub badges, driven from the data. `[W39]`
-> `data` — **Done when** dub availability is distinguished from sub, with unknown as its own state. **Needs** Day 244.
+### Day 253 · Apr 10 | Dub availability ◐
+Dub is already a first-class release type rather than a badge: `variantsFor` fans one AniList airing node into `raw` / `sub` / `dub`, and dub is *never* estimated — no override data means no dub row at all, because an invented dub date is worse than none. "Unknown" is therefore already its own state, expressed as absence. What's missing is availability as distinct from *timing*: knowing a dub exists on a service without knowing when its next episode drops. `[W39]`
+> `data` — **Done when** dub availability is distinguished from dub scheduling, and a show with a known dub but no dated episode says so rather than showing nothing at all. **Needs** Day 244.
 
-### Day 254 · Apr 11 | Dub calendar track
-A separate calendar lane for dub releases. `[W39]`
-> `ui` — **Done when** dub episodes render in their own lane and can be toggled off. **Needs** Day 253.
+### Day 254 · Apr 11 | Dub calendar track ◐
+Dub releases already render as their own variant chips and can already be turned off — `anical.airTypes` through `enabledTypes()`, plus the condensing rules in `anical.hideRules`. What doesn't exist is the *lane*: dub sits interleaved with everything else instead of reading as a separate track. `[W39]`
+> `ui` — **Done when** dub releases render as their own lane and the existing toggle still turns them off — one control, not a second one that disagrees with the first. **Needs** Day 253.
 
-### Day 255 · Apr 12 | Dub lead time
-Dubs lag; show the expected gap instead of hiding it.
-> `surface` — **Done when** the expected gap displays and unknown gaps say so. **Needs** Day 253.
+### Day 255 · Apr 12 | Dub lead time ◐
+The gap is already measured rather than guessed. `scripts/ingest-crunchyroll.mjs` derives dub offsets daily inside a 0–120 day plausibility band and extrapolates an episode only from a cadence confirmed uniform — LIAR GAME's dub sits two weeks and an hour behind its sub, verified across 17 episodes. The figure is sitting in `data/derived-offsets.json`; nobody is ever shown it.
+> `surface` — **Done when** the expected gap displays from the derived offset, cadence-derived figures say so in the UI as they already do in the `source` string, and an unmeasured show reads as unknown rather than zero. **Needs** Day 253.
 
-### Day 256 · Apr 13 | Sub versus dub preference
-A global default, with per-show overrides.
-> `ui` — **Done when** the preference drives which track shows by default and overrides stick. **Needs** Day 254.
+### Day 256 · Apr 13 | Sub versus dub preference ◐
+The global default exists twice over, in two stores that don't know about each other: `anical.airTypes` decides which releases the calendar renders, and each push subscription carries its own `airType` for alerts. Neither has per-show overrides.
+> `ui` — **Done when** a per-show override beats the global default in the calendar *and* in the alert — which means reconciling those two stores, not adding a third. **Needs** Day 254.
 
-### Day 257 · Apr 14 | Simulcast timing
-The streaming drop time versus the Japanese broadcast.
-> `surface` — **Done when** both times display where known. **Needs** Day 244.
+### Day 257 · Apr 14 | Simulcast timing ✅ shipped
+The feature the whole correction layer was built for. The modal's schedule list renders every known variant for an episode with its own clock — broadcast, simulcast and dub together — with `~` marking an estimated simulcast and the platform named. Offsets are measured from Crunchyroll's published `<time datetime>` values rather than assumed.
+> `surface` — Nothing left. Worth carrying forward: the measured spread was **0 to 63 minutes**, which is the entire reason Days 258 and 146 exist.
 
-### Day 258 · Apr 15 | Streaming countdown
-The countdown that matters is your service's, not the broadcast's.
-> `surface` — **Done when** the countdown targets your service's drop when known. **Needs** Day 257.
+### Day 258 · Apr 15 | Streaming countdown ◐
+The corrected sub time already resolves and already displays. The countdown still ticks against whichever release the row is for rather than against the service *you* use — and where no override exists it falls back to the broadcast time flagged `~`, which the measurements say is wrong by about half an hour for most shows. Half an hour is exactly long enough to make someone miss it.
+> `surface` — **Done when** the countdown targets your service's drop wherever an override exists, and visibly refuses to imply precision where only the estimate is available. **Needs** Day 257.
 
 ### Day 259 · Apr 16 | Free versus paid
 Mark what's watchable without a subscription.
@@ -1178,9 +1196,9 @@ Where a show exists on disc, for the shows that warrant it.
 A setting that hides anything without a legitimate source.
 > `ui` — **Done when** the mode hides unlicensed titles and explains why they are hidden. **Needs** Day 244.
 
-### Day 269 · Apr 26 | Missing availability reports
-A one-tap "this link is wrong" that queues a correction.
-> `ui` — **Done when** a report captures the show, service and problem, and confirms receipt.
+### Day 269 · Apr 26 | Missing availability reports ◐
+The intake exists and works: `netlify/functions/report.mjs`, reached from **⚠ Report a wrong time** in every show's details, length-capped and keyed by show + episode + a hash of the reporter's IP so one person can't flood it, cleared by a maintainer in `/admin`. It accepts times and nothing else.
+> `ui` — **Done when** the same path accepts a wrong or missing service link, capturing show, service and problem, and confirms receipt — without handing the queue a second schema that `/admin` doesn't know how to apply.
 
 ### Day 270 · Apr 27 | Availability change alerts
 Tell me when something on my list gains or loses a service.
@@ -1378,17 +1396,17 @@ The existing per-show images, upgraded with score and dates. `[W46]`
 Shared lists get a real preview image.
 > `content` — **Done when** a shared list URL previews with a generated image. **Needs** Days 98, 313.
 
-### Day 317 · Jun 13 | Add to Google Calendar
-A direct link, not just an .ics download. `[W47]`
-> `surface` — **Done when** the link opens Google Calendar pre-filled with the correct time.
+### Day 317 · Jun 13 | Add to Google Calendar ✅ shipped
+`subRow()` already renders a Google Calendar link per feed — `calendar.google.com/calendar/u/0/r?cid=<https feed url>` — next to a copy-URL button. `[W47]`
+> `surface` — Nothing left.
 
-### Day 318 · Jun 14 | Add to Apple Calendar
-The webcal path, done properly. `[W47]`
-> `surface` — **Done when** the webcal URL subscribes rather than downloading a one-off file. **Needs** Day 317.
+### Day 318 · Jun 14 | Add to Apple Calendar ✅ shipped
+Done properly: the same row builds a `webcal:` URL by scheme-swapping the https feed, so it subscribes rather than downloading a one-off file. `netlify.toml` serves `/feeds/*` as `text/calendar; charset=utf-8` — which is load-bearing, because `nosniff` is on and a wrong Content-Type makes calendar clients reject the feed outright. `[W47]`
+> `surface` — Nothing left.
 
-### Day 319 · Jun 15 | Add to Outlook
-The Microsoft variant. `[W47]`
-> `surface` — **Done when** the Outlook link pre-fills correctly. **Needs** Day 317.
+### Day 319 · Jun 15 | Add to Outlook ◐
+Outlook is currently served by the same `webcal:` link as Apple. It works, but it isn't the Microsoft path — and the button reading "＋ Apple / Outlook" is the tell. `[W47]`
+> `surface` — **Done when** Outlook has its own pre-filled link and one button stops standing in for two products. **Needs** Day 317.
 
 ### Day 320 · Jun 16 | Add to Yahoo
 Completing the set. `[W47]`
@@ -1490,9 +1508,9 @@ Jump between saved views from the command palette.
 Every show with status, score and dates. `[W50]`
 > `surface` — **Done when** the CSV opens correctly in a spreadsheet with commas and quotes escaped.
 
-### Day 344 · Jul 10 | Export — full JSON
-Everything, including notes and settings. `[W50]`
-> `surface` — **Done when** the export contains every `anical.*` key and re-imports losslessly. **Needs** Day 343.
+### Day 344 · Jul 10 | Export — full JSON ✅ shipped
+`exportSettings()` writes `tsuzuki-settings.json` — `{type:"anical-settings", version:1, exported, data}` — carrying every `anical.*` key except the four derived caches in `NO_BACKUP` (`cache.v1`, `seenIds`, `lastVisit`, `overrides`). `pickImport()` reads it back and `applySettings()` restores it, so the round trip works today. `[W50]`
+> `surface` — **What's left**: import is a blind overwrite ending in `location.reload()` — no diff, no conflict handling. That's Days 346 and 350, and they inherit this format rather than inventing a second one.
 
 ### Day 345 · Jul 11 | Export — stats bundle
 The computed numbers as their own file. `[W50]`
@@ -1526,29 +1544,29 @@ A gentle nudge when your last export has gone stale. `[W50]`
 A periodic download you can turn on and forget about.
 > `surface` — **Done when** the download fires on schedule without stealing focus. **Needs** Day 344.
 
-### Day 353 · Jul 19 | Report wrong data
-A one-tap correction on any field. `[W51]`
-> `ui` — **Done when** any displayed field can be reported with its current and proposed value.
+### Day 353 · Jul 19 | Report wrong data ◐
+Exactly one field already has this: **⚠ Report a wrong time** posts to `netlify/functions/report.mjs`, length-capped and keyed by show + episode + a hash of the reporter's IP. Every other displayed field has nothing. `[W51]`
+> `ui` — **Done when** any displayed field can be reported with its current and proposed value, through the existing endpoint rather than a second one.
 
-### Day 354 · Jul 20 | Correction queue
-Where reports go — visible, so it doesn't feel like a void. `[W51]`
-> `infra` — **Done when** submitted reports are listed back to the reporter. **Needs** Day 353.
+### Day 354 · Jul 20 | Correction queue ◐
+The queue exists — `GET /api/report?secret=…`, listed and cleared in `/admin`, where one click turns a report into a live correction with the JSON patch previewed first. What doesn't exist is the reporter's view of it: from outside, it is still a suggestion box with no back wall. `[W51]`
+> `infra` — **Done when** submitted reports are listed back to the person who filed them. **Needs** Day 353.
 
-### Day 355 · Jul 21 | Correction status
-Tell the reporter what actually happened to their report. `[W51]`
-> `surface` — **Done when** each report carries a status the reporter can see. **Needs** Day 354.
+### Day 355 · Jul 21 | Correction status ◐
+The status is already tracked: applying a correction marks the report `applied` in the same action that writes the live store. It is simply never shown to whoever filed it. `[W51]`
+> `surface` — **Done when** each report carries a status its reporter can see — including "read and rejected", which the store currently has no way to express at all. **Needs** Day 354.
 
 ### Day 356 · Jul 22 | Local overrides
 Fix a wrong air time for yourself immediately, while upstream catches up.
-> `data` — **Done when** a local override wins over upstream and is clearly marked as yours. **Needs** Day 353.
+> `data` — **Done when** a local override wins over upstream and is clearly marked as yours. **Mind the key**: `anical.overrides` is already taken — it is the read-through cache of the *remote* correction document, and it sits in `NO_BACKUP` precisely because it's derived. Your own overrides need their own key, and that one belongs *in* the backup. **Needs** Day 353.
 
-### Day 357 · Jul 23 | Data provenance
-Show which source each field came from.
-> `surface` — **Done when** every displayed field can name its source. **Needs** Day 356.
+### Day 357 · Jul 23 | Data provenance ◐
+Server-side this exists: every rule the Crunchyroll ingest writes carries `source` and `verifiedAt`, and cadence-derived figures say so in the source string. None of it survives the trip to the client.
+> `surface` — **Done when** every displayed field can name its source, using the provenance already stored rather than inventing a parallel one. **Needs** Day 356.
 
-### Day 358 · Jul 24 | Sync code v2
-A cleaner multi-device pairing flow. `[W52]`
-> `infra` — **Done when** pairing completes in under a minute and the code expires.
+### Day 358 · Jul 24 | Sync code v2 ◐
+v1 ships and the "v2" in this title was more accurate than it knew: `copySyncCode()` base64-encodes `collectSettings()` to the clipboard, `pasteSyncCode()` reads it back through a `window.prompt()`. It works, and it is exactly as crude as that sounds — the code never expires, has no size bound, and travels through a browser prompt. `[W52]`
+> `infra` — **Done when** pairing completes in under a minute and the code expires. Note that a code which expires needs somewhere to expire *on*: this is the second day (with Day 138) that wants server-held state. Decide those two together rather than twice.
 
 ### Day 359 · Jul 25 | Sync conflict prompts
 A readable diff when two devices disagree. `[W52]`
@@ -1590,6 +1608,10 @@ Pick one a day and build it. Reorder freely — the only rule is a **visible imp
 
 **On deploys.** Build daily, deploy every 2–3 days, ~12 feature drops a month. See *Daily Build, Batched Deploy* above — the 20-deploy ceiling is the real constraint on this backlog, and pushing more often buys nothing users can see while costing you the budget for hotfixes.
 
+**On the days that got overtaken.** Thirty-five entries now carry a marker because the code arrived before the plan did. Two things are worth taking from that. First, **read the codebase before estimating a day** — a third of the ones checked turned out to be half-built, and one (Day 344) was simply finished. Second, an overtaken day is rarely free: what shipped was usually the engine, and what's left is the part where a user can reach it. Day 185 is the clearest case — the palette engine exists and is good, and 73 hardcoded hex literals mean it still doesn't repaint the whole page.
+
+**Keeping this honest.** When a feature lands early, mark its day the same session, with the commit. The cost of not doing that is not embarrassment — it's the day you spend re-building something, or the acceptance line you write against an app that no longer works that way.
+
 ---
 
-*Tsuzuki · 365 daily features · Aug 2026 → Jul 2027*
+*Tsuzuki · 365 daily features · Aug 2026 → Jul 2027 · revised Aug 2026*

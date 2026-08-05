@@ -1,5 +1,6 @@
 {
   "name": "tsuzuki",
+  "//version": "NOT the app version — that is APP_VERSION in site/index.html, derived from the newest CHANGELOG entry by scripts/stamp-version.mjs. This field is inert: the package is private and never published, and nothing reads it. Deliberately not stamped per-commit, because package.json is in netlify.toml's `ignore` list — writing to it on every commit would make every push deploy, including docs-only ones, and burn the ~20/month credit budget.",
   "version": "1.0.0",
   "private": true,
   "description": "Tsuzuki — anime release calendar. This root manifest exists so Netlify installs the serverless functions' dependencies; the site itself is static and has no build step.",
