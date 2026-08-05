@@ -54,19 +54,36 @@ const ORDER=["WINTER","SPRING","SUMMER","FALL"];
 const seasonOf=m=>m<=2?"WINTER":m<=5?"SPRING":m<=8?"SUMMER":"FALL";
 function shift(s,y,d){let i=ORDER.indexOf(s)+d;y+=Math.floor(i/4);i=((i%4)+4)%4;return{season:ORDER[i],year:y};}
 
-const QUERY=`query($season:MediaSeason,$seasonYear:Int){Page(page:1,perPage:50){media(season:$season,seasonYear:$seasonYear,type:ANIME,sort:POPULARITY_DESC){id title{romaji english} format episodes coverImage{medium} airingSchedule{nodes{airingAt episode}}}}}`;
+const FIELDS=`id title{romaji english} format episodes season seasonYear coverImage{medium} airingSchedule{nodes{airingAt episode}}`;
+const QUERY=`query($season:MediaSeason,$seasonYear:Int){Page(page:1,perPage:50){media(season:$season,seasonYear:$seasonYear,type:ANIME,sort:POPULARITY_DESC){${FIELDS}}}}`;
+// Airing titles AniList assigned no season — a season query cannot reach them,
+// so without this the widget silently omits them. Mirrors
+// netlify/functions/_lib/seasonless.mjs; this file has no build step and can't
+// import it, so change one and change the other.
+const SEASONLESS_QUERY=`query($page:Int){Page(page:$page,perPage:50){pageInfo{hasNextPage}media(status:RELEASING,type:ANIME,sort:POPULARITY_DESC){${FIELDS}}}}`;
 async function fetchSeason(season,year){
   const r=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({query:QUERY,variables:{season,seasonYear:year}})});
   if(!r.ok) throw new Error("HTTP "+r.status);
   const j=await r.json(); if(j.errors) throw new Error(j.errors[0].message);
   return j.data.Page.media;
 }
+async function fetchSeasonless(){
+  const out=[];
+  for(let page=1;page<=8;page++){
+    const r=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({query:SEASONLESS_QUERY,variables:{page}})});
+    if(!r.ok) throw new Error("HTTP "+r.status);
+    const j=await r.json(); if(j.errors) throw new Error(j.errors[0].message);
+    out.push(...j.data.Page.media);
+    if(!j.data.Page.pageInfo.hasNextPage) break;
+  }
+  return out.filter(md=>(!md.season||!md.seasonYear)&&((md.airingSchedule&&md.airingSchedule.nodes)||[]).length>0);
+}
 
 (async()=>{
   try{
     const now=new Date(), cs=seasonOf(now.getMonth()), cy=now.getFullYear();
     const prev=shift(cs,cy,-1);
-    const sets=await Promise.allSettled([fetchSeason(cs,cy),fetchSeason(prev.season,prev.year)]);
+    const sets=await Promise.allSettled([fetchSeason(cs,cy),fetchSeason(prev.season,prev.year),fetchSeasonless()]);
     const seen=new Set(),media=[];
     for(const r of sets) if(r.status==="fulfilled") for(const md of r.value) if(!seen.has(md.id)){seen.add(md.id);media.push(md);}
     const t0=Date.now()/1000, t1=t0+DAYS*86400;

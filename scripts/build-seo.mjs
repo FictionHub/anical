@@ -22,6 +22,9 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+// Dependency-free by design, so importing it here keeps this generator's
+// "zero npm deps" promise intact even though it lives under netlify/.
+import { collectSeasonless } from "../netlify/functions/_lib/seasonless.mjs";
 
 const SITE = "https://tsuzuki.netlify.app";
 const APP_DIR = dirname(fileURLToPath(import.meta.url));
@@ -35,11 +38,9 @@ const CF_BEACON = CF_TOKEN ? `<script defer src="https://static.cloudflareinsigh
 
 /* ---------------- AniList ---------------- */
 const ANILIST = "https://graphql.anilist.co";
-const QUERY = `
-query ($season: MediaSeason, $seasonYear: Int, $page: Int) {
-  Page(page: $page, perPage: 50) {
-    pageInfo { hasNextPage }
-    media(season: $season, seasonYear: $seasonYear, type: ANIME, sort: POPULARITY_DESC) {
+// One field list, shared by the season query and the seasonless one below, so a
+// field added for one page type can't go missing on the other.
+const SEO_MEDIA_FIELDS = `
       id title { romaji english native } format episodes duration genres averageScore popularity
       status source isAdult season seasonYear siteUrl
       description(asHtml: false)
@@ -48,8 +49,12 @@ query ($season: MediaSeason, $seasonYear: Int, $page: Int) {
       studios(isMain: true) { nodes { name } }
       trailer { id site }
       externalLinks { site url type color }
-      airingSchedule { nodes { airingAt episode } }
-    }
+      airingSchedule { nodes { airingAt episode } }`;
+const QUERY = `
+query ($season: MediaSeason, $seasonYear: Int, $page: Int) {
+  Page(page: $page, perPage: 50) {
+    pageInfo { hasNextPage }
+    media(season: $season, seasonYear: $seasonYear, type: ANIME, sort: POPULARITY_DESC) { ${SEO_MEDIA_FIELDS} }
   }
 }`;
 
@@ -101,6 +106,31 @@ async function fetchSeason(season, year, maxPages = 2) {
     page++;
   }
   return all.filter(md => !isAdultMedia(md));   // SFW public pages
+}
+
+// Titles AniList assigned no season — see netlify/functions/_lib/seasonless.mjs.
+// They belong on /today/, the union pages and the feeds (they are airing), but
+// NOT on a /<season>-<year>/ page, which is a season listing by definition.
+// Never fatal: this generator must always exit 0, so a failure here costs the
+// extra titles and nothing else.
+async function fetchSeasonlessMedia() {
+  try {
+    const media = await collectSeasonless(async (query, variables) => {
+      const res = await fetch(ANILIST, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ query, variables }),
+      });
+      if (!res.ok) throw new Error("AniList HTTP " + res.status);
+      const j = await res.json();
+      if (j.errors) throw new Error(j.errors[0].message);
+      return j;
+    }, SEO_MEDIA_FIELDS);
+    return media.filter(md => !isAdultMedia(md));
+  } catch (e) {
+    console.warn("⚠ seasonless fetch failed: " + e.message);
+    return [];
+  }
 }
 
 /* ---------------- shared HTML shell ---------------- */
@@ -840,10 +870,17 @@ ${children.map(c => `  <sitemap>\n    <loc>${SITE}/${c}</loc>\n    <lastmod>${to
     catch (e) { console.warn(`⚠ skipped ${slugOf(sm.season, sm.year)}: ${e.message}`); }
   }
 
-  // /today/ from current + previous season (carry-over shows still airing)
+  // Airing now, but with no season for a season page to have caught them.
+  const seasonlessMedia = await fetchSeasonlessMedia();
+  if (seasonlessMedia.length) console.log(`✅ ${seasonlessMedia.length} seasonless airing titles`);
+
+  // /today/ from current + previous season (carry-over shows still airing),
+  // plus the seasonless set — "what's airing today" is a date question, and
+  // these are airing today.
   try {
     const seen = new Set(), media = [];
     for (const sm of seasonMedia) if (sm.year === curYear || true) for (const md of sm.media) if (!seen.has(md.id)) { seen.add(md.id); media.push(md); }
+    for (const md of seasonlessMedia) if (!seen.has(md.id)) { seen.add(md.id); media.push(md); }
     await buildTodayPage(media, allSlugs);
     console.log("✅ /today/");
   } catch (e) { console.warn("⚠ skipped /today/: " + e.message); }
@@ -851,6 +888,7 @@ ${children.map(c => `  <sitemap>\n    <loc>${SITE}/${c}</loc>\n    <lastmod>${to
   // De-duplicated union of all fetched seasons (drives anime + genre + studio pages, feeds)
   const seen = new Set(), union = [];
   for (const sm of seasonMedia) for (const md of sm.media) if (!seen.has(md.id)) { seen.add(md.id); union.push(md); }
+  for (const md of seasonlessMedia) if (!seen.has(md.id)) { seen.add(md.id); union.push(md); }
   union.sort((a, b) => (b.popularity || 0) - (a.popularity || 0));
 
   // Group by genre and by main studio. Only build studio pages with >=2 titles

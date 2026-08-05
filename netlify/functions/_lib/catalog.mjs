@@ -24,6 +24,7 @@
 // — normalizing here would mean translating back at every call site.
 
 import { getStore } from "@netlify/blobs";
+import { collectSeasonless } from "./seasonless.mjs";
 
 export const ANILIST = "https://graphql.anilist.co";
 
@@ -46,10 +47,6 @@ export const MEDIA_FIELDS = `
 
 const SEASON_QUERY = `query($season:MediaSeason,$seasonYear:Int,$page:Int){
   Page(page:$page,perPage:50){ pageInfo{ hasNextPage } media(season:$season,seasonYear:$seasonYear,type:ANIME,sort:POPULARITY_DESC){ ${MEDIA_FIELDS} } } }`;
-// The supplementary pull for what the season queries structurally cannot see —
-// see fetchSeasonlessFromAniList below.
-const AIRING_QUERY = `query($page:Int){
-  Page(page:$page,perPage:50){ pageInfo{ hasNextPage } media(status:RELEASING,type:ANIME,sort:POPULARITY_DESC){ ${MEDIA_FIELDS} } } }`;
 const ID_QUERY = `query($id:Int){ Media(id:$id,type:ANIME){ ${MEDIA_FIELDS} } }`;
 const IDS_QUERY = `query($ids:[Int]){ Page(perPage:50){ media(id_in:$ids,type:ANIME){ ${MEDIA_FIELDS} } } }`;
 
@@ -142,34 +139,16 @@ export async function fetchSeasonFromAniList(season, year, maxPages = MAX_PAGES)
 
 /* ---------- seasonless-but-airing ---------- */
 
-// AniList leaves `season`/`seasonYear` null on a slice of what is genuinely
-// airing — Korean and Chinese productions, and continuously-running ONAs that
-// don't map onto a Japanese broadcast season. Every read path in this module is
-// season-shaped, so those titles were invisible in *every* view: absent from
-// each season snapshot, from the three-season window, and from the browser's
-// own AniList fallback, which asks the same season-filtered question.
-//
-// Found through "Tomb Raider King" (id 184356): RELEASING, an episode due that
-// evening, `season: null` — and therefore in no query the app has ever made.
-// It is not a filter bug; the show never entered the dataset at all.
-//
-// The fix is one extra pull of the most popular RELEASING titles, keeping only
-// those AniList gave no season *and* that actually carry airing episodes. That
-// second condition is load-bearing: the seasonless set is otherwise full of
-// promo collections ("Fate/Grand Order CMs", "Arknights Animation PVs") which
-// have no schedule, would render nothing, and would only bloat every consumer's
-// payload and the browser's genre/search indexes.
-export async function fetchSeasonlessFromAniList(maxPages = MAX_PAGES) {
-  let out = [], page = 1, more = true;
-  while (more && page <= maxPages) {
-    const d = await anilist(AIRING_QUERY, { page });
-    out = out.concat((d.Page && d.Page.media) || []);
-    more = !!(d.Page && d.Page.pageInfo && d.Page.pageInfo.hasNextPage);
-    page++;
-  }
-  return out.filter(md =>
-    (!md.season || !md.seasonYear) &&
-    ((md.airingSchedule && md.airingSchedule.nodes) || []).length > 0);
+// Titles AniList assigned no season, which no season query can reach. The query,
+// the filter and the page budget live in _lib/seasonless.mjs so the API, the
+// ingest worker, the SEO build, the bots and the offset scraper all share one
+// definition — see that file for why this exists.
+export async function fetchSeasonlessFromAniList(maxPages) {
+  return collectSeasonless(
+    async (query, variables) => ({ data: await anilist(query, variables) }),
+    MEDIA_FIELDS,
+    maxPages ? { maxPages } : {},
+  );
 }
 
 // Store the seasonless snapshot. Called by the ingest worker and by whichever

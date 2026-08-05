@@ -39,6 +39,7 @@
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { collectSeasonless } from "../netlify/functions/_lib/seasonless.mjs";
 
 const APP_DIR = dirname(fileURLToPath(import.meta.url));
 const REPO = join(APP_DIR, "..");
@@ -345,9 +346,10 @@ async function fetchAniList() {
   const now = new Date();
   const cur = seasonOf(now.getMonth()), yr = now.getFullYear();
   const targets = [shiftSeason(cur, yr, -1), { season: cur, year: yr }, shiftSeason(cur, yr, 1)];
+  const FIELDS = `
+      id title{romaji english} synonyms season seasonYear externalLinks{site type} airingSchedule{nodes{episode airingAt}}`;
   const q = `query($season:MediaSeason,$seasonYear:Int,$page:Int){
-    Page(page:$page,perPage:50){ pageInfo{hasNextPage} media(season:$season,seasonYear:$seasonYear,type:ANIME,sort:POPULARITY_DESC){
-      id title{romaji english} synonyms externalLinks{site type} airingSchedule{nodes{episode airingAt}} } } }`;
+    Page(page:$page,perPage:50){ pageInfo{hasNextPage} media(season:$season,seasonYear:$seasonYear,type:ANIME,sort:POPULARITY_DESC){ ${FIELDS} } } }`;
   const seen = new Set(), all = [];
   for (const t of targets) {
     for (let page = 1; page <= 3; page++) {
@@ -363,6 +365,27 @@ async function fetchAniList() {
       await new Promise(r => setTimeout(r, 800));   // stay well inside AniList's ~30/min
     }
   }
+
+  // Titles AniList gave no season. Without these the scraper can never *measure*
+  // a simulcast offset for them, so a seasonless show on Crunchyroll would show
+  // its estimated broadcast time forever — the exact inaccuracy this whole
+  // pipeline exists to remove. See netlify/functions/_lib/seasonless.mjs.
+  try {
+    const extra = await collectSeasonless(async (query, variables) => {
+      const res = await fetch(ANILIST, {
+        method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ query, variables }),
+      });
+      if (!res.ok) throw new Error("AniList HTTP " + res.status);
+      const j = await res.json();
+      if (j.errors) throw new Error(j.errors[0].message);
+      return j;
+    }, FIELDS, { onPage: () => new Promise(r => setTimeout(r, 800)) });
+    for (const md of extra) if (!seen.has(md.id)) { seen.add(md.id); all.push(md); }
+  } catch (e) {
+    console.warn("⚠ seasonless fetch failed: " + e.message);
+  }
+
   return all;
 }
 

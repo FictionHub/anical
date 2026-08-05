@@ -1077,7 +1077,7 @@
 
 // Build number auto-stamped from the git commit count by scripts/stamp-version.mjs
 // (run via the .githooks/pre-commit hook). Do not edit by hand — it changes every commit.
-const APP_VERSION = "3.1.80";
+const APP_VERSION = "3.1.81";
 
 // Tsuzuki's own read API. It serves the same AniList payload out of a shared
 // server-side catalog (netlify/functions/_lib/catalog.mjs), so the schedule a
@@ -2063,8 +2063,13 @@ async function fetchSeasonless(){
   // AniList fallback, same shape as fetchSeason's. Keep only what AniList gave
   // no season *and* that actually has episodes — the seasonless set is full of
   // CM/PV collections which would render nothing and bloat search and genres.
+  //
+  // 8 pages, not the 3 a season uses: these titles sit far down a popularity
+  // sort of everything airing, and the filter throws almost all of it away.
+  // Mirrors SEASONLESS_MAX_PAGES in netlify/functions/_lib/seasonless.mjs —
+  // no build step here, so change one and change the other.
   let all=[],page=1,more=true;
-  while(more && page<=3){
+  while(more && page<=8){
     const res=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},
       body:JSON.stringify({query:AIRING_QUERY,variables:{page}})});
     if(res.status===429) break;                  // supplementary — never worth a retry budget

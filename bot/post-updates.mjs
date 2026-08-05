@@ -47,6 +47,8 @@ async function rest(method, path, body) {
 }
 
 /* ---------------- AniList (mirrors the website) ---------------- */
+import { collectSeasonless } from "../netlify/functions/_lib/seasonless.mjs";
+
 const ANILIST = "https://graphql.anilist.co";
 const QUERY = `
 query ($season: MediaSeason, $seasonYear: Int, $page: Int) {
@@ -54,11 +56,18 @@ query ($season: MediaSeason, $seasonYear: Int, $page: Int) {
     pageInfo { hasNextPage }
     media(season: $season, seasonYear: $seasonYear, type: ANIME, sort: POPULARITY_DESC) {
       id title { romaji english } format episodes status popularity averageScore siteUrl isAdult genres
+      season seasonYear
       coverImage { medium }
       airingSchedule { nodes { airingAt episode } }
     }
   }
 }`;
+// Same field list, no season filter — see netlify/functions/_lib/seasonless.mjs.
+const SEASONLESS_FIELDS = `
+      id title { romaji english } format episodes status popularity averageScore siteUrl isAdult genres
+      season seasonYear
+      coverImage { medium }
+      airingSchedule { nodes { airingAt episode } }`;
 const seasonCache = new Map();
 function seasonOf(m){ return m<=2?"WINTER":m<=5?"SPRING":m<=8?"SUMMER":"FALL"; }
 function prevSeason(s,y){ const o=["WINTER","SPRING","SUMMER","FALL"],i=o.indexOf(s); return i===0?{season:"FALL",year:y-1}:{season:o[i-1],year:y}; }
@@ -88,10 +97,23 @@ async function fetchSeason(season,year){
   }
   seasonCache.set(key,all); return all;
 }
+// Airing shows AniList gave no season — invisible to every query above.
+// Failure is never fatal: the post goes out with the season data alone.
+async function fetchSeasonlessMedia(){
+  try{
+    return await collectSeasonless(async (query,variables)=>{
+      const res=await fetch(ANILIST,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},
+        body:JSON.stringify({query,variables})});
+      if(!res.ok) throw new Error("AniList HTTP "+res.status);
+      const j=await res.json(); if(j.errors) throw new Error(j.errors[0].message);
+      return j;
+    }, SEASONLESS_FIELDS);
+  }catch(e){ console.warn("seasonless fetch failed:",e.message); return []; }
+}
 async function loadEvents(){
   const now=Math.floor(Date.now()/1000), end=now+Math.max(DAYS,LOOKAHEAD)*86400;
   const seasons=seasonsForRange(new Date(now*1000),new Date(end*1000));
-  const results=await Promise.allSettled(seasons.map(s=>fetchSeason(s.season,s.year)));
+  const results=await Promise.allSettled([...seasons.map(s=>fetchSeason(s.season,s.year)), fetchSeasonlessMedia()]);
   const seen=new Set(),media=[];
   for(const r of results) if(r.status==="fulfilled") for(const md of r.value) if(!seen.has(md.id)){ seen.add(md.id); media.push(md); }
   const events=[];

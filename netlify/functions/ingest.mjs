@@ -149,7 +149,21 @@ export default async (req) => {
     if (stale && timeLeft) {
       const media = await fetchSeasonlessFromAniList();
       await putSeasonless(media, "ingest");
-      log.sources.seasonless = { ok: true, refreshed: true, shows: media.length, previousAgeSeconds: ageSeconds === Infinity ? null : Math.round(ageSeconds) };
+
+      // Canonical records too. Without these, a title that is invisible to every
+      // season query is also absent from the canonical store — so entity
+      // resolution (2026·09) would be built on a dataset with the same hole.
+      let upserts = 0;
+      const canonicalStore = getStore("ingest-canonical");
+      for (const md of media) {
+        if (Date.now() - startedAt > SEASONLESS_BUDGET_MS) break;
+        const key = `anilist:${md.id}`;
+        const existing = await canonicalStore.get(key, { type: "json" }).catch(() => null);
+        await canonicalStore.setJSON(key, mergeRecord(existing, normalizeAniList(md)));
+        upserts++;
+      }
+
+      log.sources.seasonless = { ok: true, refreshed: true, shows: media.length, upserts, previousAgeSeconds: ageSeconds === Infinity ? null : Math.round(ageSeconds) };
     } else {
       log.sources.seasonless = { ok: true, refreshed: false, reason: stale ? "out of time this run" : "still fresh", ageSeconds: ageSeconds === Infinity ? null : Math.round(ageSeconds) };
     }

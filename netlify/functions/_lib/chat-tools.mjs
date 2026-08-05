@@ -19,7 +19,7 @@
 import { variantsFor, mergeOverrides, showOverride, loadSeed } from "./schedule-overrides.mjs";
 // Aliased: `getSeason` and `getAnime` are the names of this module's own tool
 // handlers, which is what the model calls them.
-import { anilist, getSeason as catalogSeason, getMediaById as catalogMedia, MEDIA_FIELDS } from "./catalog.mjs";
+import { anilist, getSeason as catalogSeason, getSeasonless as catalogSeasonless, getMediaById as catalogMedia, MEDIA_FIELDS } from "./catalog.mjs";
 import { getStore } from "@netlify/blobs";
 
 const SITE = "https://tsuzuki.netlify.app";
@@ -71,6 +71,17 @@ async function loadOverrides() {
 async function fetchSeason(season, year) {
   const snap = await catalogSeason(season, year);
   return (snap && snap.media) || [];
+}
+
+// Titles AniList gave no season. They belong in a *date* window but not in a
+// "SUMMER 2026" listing, so this feeds get_schedule only — get_season stays a
+// genuine season listing. Without it the assistant confidently reports that a
+// show airing tonight isn't airing, which is worse than declining to answer.
+async function fetchSeasonlessMedia() {
+  try {
+    const snap = await catalogSeasonless();
+    return (snap && snap.media) || [];
+  } catch { return []; }
 }
 
 /* ---------- shaping ----------
@@ -304,10 +315,13 @@ async function getSchedule({ startDate, days, airType }) {
   }
 
   const overrides = await loadOverrides();
-  const seasons = await Promise.all([...wanted].map(k => {
-    const [s, y] = k.split("|");
-    return fetchSeason(s, Number(y)).catch(() => []);
-  }));
+  const seasons = await Promise.all([
+    ...[...wanted].map(k => {
+      const [s, y] = k.split("|");
+      return fetchSeason(s, Number(y)).catch(() => []);
+    }),
+    fetchSeasonlessMedia(),
+  ]);
 
   const out = [];
   const seen = new Set();
