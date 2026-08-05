@@ -390,6 +390,47 @@ async function fetchAniList() {
 }
 
 /* ---------------- run ---------------- */
+// Read a capture file, failing with something a person can act on. Passing the
+// directory instead of the file is the obvious slip (`--rows data`), and the
+// bare Node error for it — "EISDIR: illegal operation on a directory, read" —
+// names neither the path nor the flag that caused it.
+async function readRows(file) {
+  let text;
+  try {
+    text = await readFile(file, "utf8");
+  } catch (err) {
+    if (err.code === "EISDIR") {
+      throw new Error(`--rows ${file} is a directory, not a file. Did you mean --rows ${join(file, "crunchyroll-rows.json")}?`);
+    }
+    if (err.code === "ENOENT") {
+      throw new Error(`--rows ${file} does not exist. Capture one first: node scripts/capture-rows.mjs`);
+    }
+    throw new Error(`--rows ${file} could not be read — ${err.message}`);
+  }
+
+  let rows;
+  try {
+    rows = JSON.parse(text);
+  } catch {
+    throw new Error(`--rows ${file} is not valid JSON. It should be the array the capture snippet copies to your clipboard.`);
+  }
+  if (!Array.isArray(rows)) throw new Error(`--rows ${file} should contain a JSON array of rows, got ${typeof rows}.`);
+  if (!rows.length) throw new Error(`--rows ${file} is empty — the capture snippet found no rows on the page.`);
+
+  // A capture only ever contains releases that have already happened, so the
+  // newest row is effectively "when this was captured". Saying so up front is
+  // what distinguishes "the show isn't on the calendar" from "you captured
+  // before it aired", which look identical in the output otherwise.
+  const times = rows.map(r => Date.parse(r.iso)).filter(Number.isFinite).sort((a, b) => a - b);
+  if (times.length) {
+    const newest = times[times.length - 1];
+    const ageMin = Math.round((Date.now() - newest) / 60000);
+    console.log(`Capture covers ${new Date(times[0]).toISOString()} → ${new Date(newest).toISOString()} (newest row ${ageMin} min old).`);
+    console.log("Anything released after that instant is not in this file — recapture to measure it.");
+  }
+  return rows;
+}
+
 async function main() {
   const argv = process.argv.slice(2);
   const flag = n => argv.includes(n);
@@ -432,9 +473,7 @@ async function main() {
     console.log("Preflight OK — the live store is reachable and the secret is accepted.");
   }
 
-  const rows = rowsFile
-    ? JSON.parse(await readFile(rowsFile, "utf8"))
-    : await scrapeCalendar();
+  const rows = rowsFile ? await readRows(rowsFile) : await scrapeCalendar();
   console.log(`Crunchyroll calendar: ${rows.length} release rows`);
   if (!rows.length) { console.log("Nothing published right now — exiting cleanly."); return; }
 

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-05T16:20:55.312Z",
+  "generatedAt": "2026-08-05T16:37:06.950Z",
   "source": "https://www.crunchyroll.com/simulcastcalendar",
   "note": "Machine-derived. Audit trail only — the live store at /api/overrides is what serves. Lives outside site/ so committing it costs no Netlify deploy.",
   "findings": [
@@ -392,14 +392,14 @@
     {
       "iso": "2026-08-05T05:00:00-07:00",
       "ep": 5,
-      "title": "CLEVATESS STAFFEL 2 (தமிழ்)",
-      "why": "ignored language: தமிழ்"
+      "title": "CLEVATESS STAFFEL 2 (PORTUGUÊS (BRASIL))",
+      "why": "no confident AniList match"
     },
     {
       "iso": "2026-08-05T05:00:00-07:00",
       "ep": 5,
-      "title": "CLEVATESS STAFFEL 2 (PORTUGUÊS (BRASIL))",
-      "why": "no confident AniList match"
+      "title": "CLEVATESS STAFFEL 2 (தமிழ்)",
+      "why": "ignored language: தமிழ்"
     },
     {
       "iso": "2026-08-05T05:00:00-07:00",
@@ -428,14 +428,14 @@
     {
       "iso": "2026-08-05T05:00:00-07:00",
       "ep": 5,
-      "title": "CLEVATESS STAFFEL 2 (FRANÇAIS)",
-      "why": "ignored language: FRANÇAIS"
+      "title": "CLEVATESS STAFFEL 2 (DEUTSCH)",
+      "why": "ignored language: DEUTSCH"
     },
     {
       "iso": "2026-08-05T05:00:00-07:00",
       "ep": 5,
-      "title": "CLEVATESS STAFFEL 2 (DEUTSCH)",
-      "why": "ignored language: DEUTSCH"
+      "title": "CLEVATESS STAFFEL 2 (FRANÇAIS)",
+      "why": "ignored language: FRANÇAIS"
     },
     {
       "iso": "2026-08-05T06:00:00-07:00",
@@ -482,26 +482,14 @@
     {
       "iso": "2026-08-05T08:30:00-07:00",
       "ep": 2,
-      "title": "TRAPPED IN A DATING SIM: THE WORLD OF OTOME GAMES IS TOUGH FOR MOBS STAFFEL 2 (DEUTSCH)",
-      "why": "ignored language: DEUTSCH"
-    },
-    {
-      "iso": "2026-08-05T08:30:00-07:00",
-      "ep": 2,
       "title": "TRAPPED IN A DATING SIM: THE WORLD OF OTOME GAMES IS TOUGH FOR MOBS STAFFEL 2 (తెలుగు)",
       "why": "ignored language: తెలుగు"
     },
     {
       "iso": "2026-08-05T08:30:00-07:00",
       "ep": 2,
-      "title": "TRAPPED IN A DATING SIM: THE WORLD OF OTOME GAMES IS TOUGH FOR MOBS STAFFEL 2 (தமிழ்)",
-      "why": "ignored language: தமிழ்"
-    },
-    {
-      "iso": "2026-08-05T08:30:00-07:00",
-      "ep": 2,
-      "title": "TRAPPED IN A DATING SIM: THE WORLD OF OTOME GAMES IS TOUGH FOR MOBS STAFFEL 2 (PORTUGUÊS (BRASIL))",
-      "why": "offset 30300min outside the plausible sub band — likely a mismatch"
+      "title": "TRAPPED IN A DATING SIM: THE WORLD OF OTOME GAMES IS TOUGH FOR MOBS STAFFEL 2 (DEUTSCH)",
+      "why": "ignored language: DEUTSCH"
     },
     {
       "iso": "2026-08-05T08:30:00-07:00",
@@ -512,8 +500,20 @@
     {
       "iso": "2026-08-05T08:30:00-07:00",
       "ep": 2,
+      "title": "TRAPPED IN A DATING SIM: THE WORLD OF OTOME GAMES IS TOUGH FOR MOBS STAFFEL 2 (PORTUGUÊS (BRASIL))",
+      "why": "offset 30300min outside the plausible sub band — likely a mismatch"
+    },
+    {
+      "iso": "2026-08-05T08:30:00-07:00",
+      "ep": 2,
       "title": "TRAPPED IN A DATING SIM: THE WORLD OF OTOME GAMES IS TOUGH FOR MOBS STAFFEL 2 (ESPAÑOL (AMÉRICA LATINA))",
       "why": "no confident AniList match"
+    },
+    {
+      "iso": "2026-08-05T08:30:00-07:00",
+      "ep": 2,
+      "title": "TRAPPED IN A DATING SIM: THE WORLD OF OTOME GAMES IS TOUGH FOR MOBS STAFFEL 2 (தமிழ்)",
+      "why": "ignored language: தமிழ்"
     },
     {
       "iso": "2026-08-05T09:00:00-07:00",
