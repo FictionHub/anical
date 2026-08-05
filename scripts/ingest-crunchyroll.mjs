@@ -411,7 +411,20 @@ async function main() {
       body: JSON.stringify({ shows: {} }),
     }).catch(e => { throw new Error(`Preflight: cannot reach ${SITE} — ${e.message}`); });
     if (r.status === 403) {
-      throw new Error(`Preflight: ${SITE} rejected the secret (403). The ADMIN_SECRET in this repo's Actions secrets must match the ADMIN_SECRET environment variable on Netlify.`);
+      // Name the source the secret actually came from. This used to say "this
+      // repo's Actions secrets" unconditionally, which sends anyone running it
+      // locally to fix the wrong copy of the value.
+      const from = process.env.GITHUB_ACTIONS
+        ? "the ADMIN_SECRET in this repo's Actions secrets"
+        : "the ADMIN_SECRET in your local .env";
+      throw new Error(
+        `Preflight: ${SITE} rejected the secret (403).\n` +
+        `  ${from} does not match what the site accepts.\n` +
+        `  The site compares against ADMIN_SECRET, or CRON_SECRET if ADMIN_SECRET is unset — so\n` +
+        `  check both in Netlify → Site configuration → Environment variables. A value set only\n` +
+        `  in one place, or one with a trailing newline or quote, fails exactly like this.\n` +
+        `  Verify without writing:  curl -o /dev/null -w '%{http_code}\\n' "${SITE}/api/report?secret=$ADMIN_SECRET"`,
+      );
     }
     if (!r.ok) {
       throw new Error(`Preflight: ${SITE}/api/overrides returned ${r.status}. ${(await r.text().catch(() => "")).slice(0, 200)}`);
@@ -482,5 +495,11 @@ async function main() {
 
 // Only run when invoked directly, so the pure helpers above stay importable.
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
-  main().catch(e => { console.error("ingest-crunchyroll failed:", e.message); process.exit(1); });
+  // `process.exitCode`, not `process.exit()`. A hard exit tears the event loop
+  // down while fetch's keep-alive sockets are still open, and on Windows libuv
+  // aborts the process instead of exiting:
+  //   Assertion failed: !(handle->flags & UV_HANDLE_CLOSING), src\win\async.c
+  // That noise landed on top of the real error and looked like a second bug.
+  // Setting the code lets Node drain and exit 1 on its own.
+  main().catch(e => { console.error("ingest-crunchyroll failed:", e.message); process.exitCode = 1; });
 }

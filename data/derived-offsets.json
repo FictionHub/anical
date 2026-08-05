@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-04T21:59:52.116Z",
+  "generatedAt": "2026-08-05T16:20:55.312Z",
   "source": "https://www.crunchyroll.com/simulcastcalendar",
   "note": "Machine-derived. Audit trail only — the live store at /api/overrides is what serves. Lives outside site/ so committing it costs no Netlify deploy.",
   "findings": [
@@ -112,6 +112,18 @@
       "observations": 1
     },
     {
+      "mediaId": 213484,
+      "title": "Crowned in a Hundred Days",
+      "crTitle": "CROWNED IN A HUNDRED DAYS STAFFEL 1 (中文 (普通话))",
+      "kind": "sub",
+      "episode": 13,
+      "offsetMin": 0,
+      "cadenceDerived": false,
+      "confidence": 1,
+      "observedAt": "2026-08-03T21:00:00-07:00",
+      "observations": 1
+    },
+    {
       "mediaId": 128757,
       "title": "Young Ladies Don't Play Fighting Games",
       "crTitle": "YOUNG LADIES DON'T PLAY FIGHTING GAMES STAFFEL 1",
@@ -170,6 +182,114 @@
       "confidence": 1,
       "observedAt": "2026-08-04T10:30:00-07:00",
       "observations": 1
+    },
+    {
+      "mediaId": 198946,
+      "title": "Clevatess Season 2",
+      "crTitle": "CLEVATESS STAFFEL 2",
+      "kind": "dub",
+      "episode": 5,
+      "offsetMin": 0,
+      "cadenceDerived": false,
+      "confidence": 1,
+      "observedAt": "2026-08-05T05:00:00-07:00",
+      "observations": 1
+    },
+    {
+      "mediaId": 198946,
+      "title": "Clevatess Season 2",
+      "crTitle": "CLEVATESS STAFFEL 2",
+      "kind": "sub",
+      "episode": 5,
+      "offsetMin": 0,
+      "cadenceDerived": false,
+      "confidence": 1,
+      "observedAt": "2026-08-05T05:00:00-07:00",
+      "observations": 1
+    },
+    {
+      "mediaId": 135865,
+      "title": "Saga of Tanya the Evil Season 2",
+      "crTitle": "SAGA OF TANYA THE EVIL STAFFEL 2",
+      "kind": "sub",
+      "episode": 5,
+      "offsetMin": 60,
+      "cadenceDerived": false,
+      "confidence": 1,
+      "observedAt": "2026-08-05T06:30:00-07:00",
+      "observations": 1
+    },
+    {
+      "mediaId": 192800,
+      "title": "Heroine? Saint? No, I’m an All-Works Maid (And Proud of It)!",
+      "crTitle": "HEROINE? SAINT? NO, I'M AN ALL-WORKS MAID (AND PROUD OF IT)! STAFFEL 1",
+      "kind": "sub",
+      "episode": 7,
+      "offsetMin": 60,
+      "cadenceDerived": false,
+      "confidence": 1,
+      "observedAt": "2026-08-05T07:30:00-07:00",
+      "observations": 1
+    },
+    {
+      "mediaId": 159309,
+      "title": "Trapped in a Dating Sim: The World of Otome Games is Tough for Mobs Season 2",
+      "crTitle": "TRAPPED IN A DATING SIM: THE WORLD OF OTOME GAMES IS TOUGH FOR MOBS STAFFEL 2",
+      "kind": "dub",
+      "episode": 3,
+      "offsetMin": 20220,
+      "cadenceDerived": false,
+      "confidence": 1,
+      "observedAt": "2026-08-05T08:30:00-07:00",
+      "observations": 1
+    },
+    {
+      "mediaId": 159309,
+      "title": "Trapped in a Dating Sim: The World of Otome Games is Tough for Mobs Season 2",
+      "crTitle": "TRAPPED IN A DATING SIM: THE WORLD OF OTOME GAMES IS TOUGH FOR MOBS STAFFEL 2",
+      "kind": "sub",
+      "episode": 5,
+      "offsetMin": 60,
+      "cadenceDerived": false,
+      "confidence": 1,
+      "observedAt": "2026-08-05T08:30:00-07:00",
+      "observations": 1
+    },
+    {
+      "mediaId": 197715,
+      "title": "The Villager of Level 999",
+      "crTitle": "THE VILLAGER OF LEVEL 999 STAFFEL 1",
+      "kind": "sub",
+      "episode": 7,
+      "offsetMin": 60,
+      "cadenceDerived": false,
+      "confidence": 1,
+      "observedAt": "2026-08-05T09:00:00-07:00",
+      "observations": 1
+    },
+    {
+      "mediaId": 209669,
+      "title": "Hana-Kimi Season 2",
+      "crTitle": "HANA-KIMI STAFFEL 2",
+      "kind": "dub",
+      "episode": 5,
+      "offsetMin": 20160,
+      "cadenceDerived": false,
+      "confidence": 1,
+      "observedAt": "2026-08-05T09:00:00-07:00",
+      "observations": 1
+    },
+    {
+      "mediaId": 209669,
+      "title": "Hana-Kimi Season 2",
+      "crTitle": "HANA-KIMI STAFFEL 2",
+      "kind": "sub",
+      "episode": 7,
+      "offsetMin": 0,
+      "cadenceDerived": false,
+      "confidence": 1,
+      "observedAt": "2026-08-05T09:00:00-07:00",
+      "observations": 1
     }
   ],
   "skipped": [
@@ -194,14 +314,14 @@
     {
       "iso": "2026-08-03T09:00:00-07:00",
       "ep": 15,
-      "title": "LIAR GAME STAFFEL 1 (ไทย)",
-      "why": "ignored language: ไทย"
+      "title": "LIAR GAME STAFFEL 1 (BAHASA INDONESIA)",
+      "why": "ignored language: BAHASA INDONESIA"
     },
     {
       "iso": "2026-08-03T09:00:00-07:00",
       "ep": 15,
-      "title": "LIAR GAME STAFFEL 1 (தமிழ்)",
-      "why": "ignored language: தமிழ்"
+      "title": "LIAR GAME STAFFEL 1 (ไทย)",
+      "why": "ignored language: ไทย"
     },
     {
       "iso": "2026-08-03T09:00:00-07:00",
@@ -212,20 +332,14 @@
     {
       "iso": "2026-08-03T09:00:00-07:00",
       "ep": 15,
-      "title": "LIAR GAME STAFFEL 1 (తెలుగు)",
-      "why": "ignored language: తెలుగు"
+      "title": "LIAR GAME STAFFEL 1 (தமிழ்)",
+      "why": "ignored language: தமிழ்"
     },
     {
       "iso": "2026-08-03T09:00:00-07:00",
       "ep": 15,
-      "title": "LIAR GAME STAFFEL 1 (BAHASA INDONESIA)",
-      "why": "ignored language: BAHASA INDONESIA"
-    },
-    {
-      "iso": "2026-08-03T21:00:00-07:00",
-      "ep": 13,
-      "title": "CROWNED IN A HUNDRED DAYS STAFFEL 1 (中文 (普通话))",
-      "why": "no confident AniList match"
+      "title": "LIAR GAME STAFFEL 1 (తెలుగు)",
+      "why": "ignored language: తెలుగు"
     },
     {
       "iso": "2026-08-04T04:30:00-07:00",
@@ -241,21 +355,183 @@
     },
     {
       "iso": "2026-08-04T08:00:00-07:00",
-      "ep": 13,
+      "ep": null,
       "title": "OSHI NO KO SEASON 2 (PORTUGUÊS (BRASIL))",
-      "why": "no confident AniList match"
+      "why": "missing time or episode"
     },
     {
       "iso": "2026-08-04T08:00:00-07:00",
-      "ep": 13,
+      "ep": null,
       "title": "OSHI NO KO SEASON 2 (ESPAÑOL (AMÉRICA LATINA))",
-      "why": "no confident AniList match"
+      "why": "missing time or episode"
     },
     {
       "iso": "2026-08-04T08:00:00-07:00",
       "ep": 17,
       "title": "YOROI-SHINDEN SAMURAI TROOPERS STAFFEL 1",
       "why": "offset -120930min outside the plausible sub band — likely a mismatch"
+    },
+    {
+      "iso": "2026-08-04T15:00:00-07:00",
+      "ep": null,
+      "title": "BLUE EXORCIST -THE BLUE NIGHT SAGA-",
+      "why": "missing time or episode"
+    },
+    {
+      "iso": "2026-08-04T15:00:00-07:00",
+      "ep": null,
+      "title": "THE DAILY LIFE OF A MIDDLE-AGED ONLINE SHOPPER IN ANOTHER WORLD",
+      "why": "missing time or episode"
+    },
+    {
+      "iso": "2026-08-04T19:30:00-07:00",
+      "ep": 12,
+      "title": "VERSATILE MAGE SEASON 7 (中文 (普通话))",
+      "why": "no confident AniList match"
+    },
+    {
+      "iso": "2026-08-05T05:00:00-07:00",
+      "ep": 5,
+      "title": "CLEVATESS STAFFEL 2 (தமிழ்)",
+      "why": "ignored language: தமிழ்"
+    },
+    {
+      "iso": "2026-08-05T05:00:00-07:00",
+      "ep": 5,
+      "title": "CLEVATESS STAFFEL 2 (PORTUGUÊS (BRASIL))",
+      "why": "no confident AniList match"
+    },
+    {
+      "iso": "2026-08-05T05:00:00-07:00",
+      "ep": 5,
+      "title": "CLEVATESS STAFFEL 2 (हिंदी)",
+      "why": "ignored language: हिंदी"
+    },
+    {
+      "iso": "2026-08-05T05:00:00-07:00",
+      "ep": 5,
+      "title": "CLEVATESS STAFFEL 2 (العربية)",
+      "why": "ignored language: العربية"
+    },
+    {
+      "iso": "2026-08-05T05:00:00-07:00",
+      "ep": 5,
+      "title": "CLEVATESS STAFFEL 2 (తెలుగు)",
+      "why": "ignored language: తెలుగు"
+    },
+    {
+      "iso": "2026-08-05T05:00:00-07:00",
+      "ep": 5,
+      "title": "CLEVATESS STAFFEL 2 (ESPAÑOL (AMÉRICA LATINA))",
+      "why": "no confident AniList match"
+    },
+    {
+      "iso": "2026-08-05T05:00:00-07:00",
+      "ep": 5,
+      "title": "CLEVATESS STAFFEL 2 (FRANÇAIS)",
+      "why": "ignored language: FRANÇAIS"
+    },
+    {
+      "iso": "2026-08-05T05:00:00-07:00",
+      "ep": 5,
+      "title": "CLEVATESS STAFFEL 2 (DEUTSCH)",
+      "why": "ignored language: DEUTSCH"
+    },
+    {
+      "iso": "2026-08-05T06:00:00-07:00",
+      "ep": 13,
+      "title": "FIRE FORCE STAFFEL 3 (ESPAÑOL (ESPAÑA))",
+      "why": "no confident AniList match"
+    },
+    {
+      "iso": "2026-08-05T06:30:00-07:00",
+      "ep": 2,
+      "title": "SAGA OF TANYA THE EVIL STAFFEL 2 (ESPAÑOL (AMÉRICA LATINA))",
+      "why": "no confident AniList match"
+    },
+    {
+      "iso": "2026-08-05T06:30:00-07:00",
+      "ep": 2,
+      "title": "SAGA OF TANYA THE EVIL STAFFEL 2 (DEUTSCH)",
+      "why": "ignored language: DEUTSCH"
+    },
+    {
+      "iso": "2026-08-05T06:30:00-07:00",
+      "ep": 2,
+      "title": "SAGA OF TANYA THE EVIL STAFFEL 2 (PORTUGUÊS (BRASIL))",
+      "why": "no confident AniList match"
+    },
+    {
+      "iso": "2026-08-05T07:30:00-07:00",
+      "ep": 4,
+      "title": "HEROINE? SAINT? NO, I'M AN ALL-WORKS MAID (AND PROUD OF IT)! STAFFEL 1 (ไทย)",
+      "why": "ignored language: ไทย"
+    },
+    {
+      "iso": "2026-08-05T08:00:00-07:00",
+      "ep": 50,
+      "title": "SPY X FAMILY STAFFEL 3",
+      "why": "no confident AniList match"
+    },
+    {
+      "iso": "2026-08-05T08:00:00-07:00",
+      "ep": 48,
+      "title": "DIE TAGEBÜCHER DER APOTHEKERIN THE APOTHECARY DIARIES SEASON 2 (POLISH DUB) (POLSKI)",
+      "why": "ignored language: POLSKI"
+    },
+    {
+      "iso": "2026-08-05T08:30:00-07:00",
+      "ep": 2,
+      "title": "TRAPPED IN A DATING SIM: THE WORLD OF OTOME GAMES IS TOUGH FOR MOBS STAFFEL 2 (DEUTSCH)",
+      "why": "ignored language: DEUTSCH"
+    },
+    {
+      "iso": "2026-08-05T08:30:00-07:00",
+      "ep": 2,
+      "title": "TRAPPED IN A DATING SIM: THE WORLD OF OTOME GAMES IS TOUGH FOR MOBS STAFFEL 2 (తెలుగు)",
+      "why": "ignored language: తెలుగు"
+    },
+    {
+      "iso": "2026-08-05T08:30:00-07:00",
+      "ep": 2,
+      "title": "TRAPPED IN A DATING SIM: THE WORLD OF OTOME GAMES IS TOUGH FOR MOBS STAFFEL 2 (தமிழ்)",
+      "why": "ignored language: தமிழ்"
+    },
+    {
+      "iso": "2026-08-05T08:30:00-07:00",
+      "ep": 2,
+      "title": "TRAPPED IN A DATING SIM: THE WORLD OF OTOME GAMES IS TOUGH FOR MOBS STAFFEL 2 (PORTUGUÊS (BRASIL))",
+      "why": "offset 30300min outside the plausible sub band — likely a mismatch"
+    },
+    {
+      "iso": "2026-08-05T08:30:00-07:00",
+      "ep": 2,
+      "title": "TRAPPED IN A DATING SIM: THE WORLD OF OTOME GAMES IS TOUGH FOR MOBS STAFFEL 2 (हिंदी)",
+      "why": "ignored language: हिंदी"
+    },
+    {
+      "iso": "2026-08-05T08:30:00-07:00",
+      "ep": 2,
+      "title": "TRAPPED IN A DATING SIM: THE WORLD OF OTOME GAMES IS TOUGH FOR MOBS STAFFEL 2 (ESPAÑOL (AMÉRICA LATINA))",
+      "why": "no confident AniList match"
+    },
+    {
+      "iso": "2026-08-05T09:00:00-07:00",
+      "ep": 4,
+      "title": "HANA-KIMI STAFFEL 2 (ESPAÑOL (AMÉRICA LATINA))",
+      "why": "no confident AniList match"
+    },
+    {
+      "iso": "2026-08-05T09:00:00-07:00",
+      "ep": 4,
+      "title": "HANA-KIMI STAFFEL 2 (PORTUGUÊS (BRASIL))",
+      "why": "no confident AniList match"
+    },
+    {
+      "iso": "2026-08-05T09:00:00-07:00",
+      "ep": 4,
+      "title": "HANA-KIMI STAFFEL 2 (DEUTSCH)",
+      "why": "ignored language: DEUTSCH"
     }
   ]
 }
