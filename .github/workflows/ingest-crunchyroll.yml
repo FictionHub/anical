@@ -75,7 +75,7 @@ jobs:
         id: derive
         env:
           ADMIN_SECRET: ${{ secrets.ADMIN_SECRET }}
-          SITE_URL: ${{ vars.SITE_URL || 'https://tsuzuki.netlify.app' }}
+          SITE_URL: ${{ vars.SITE_URL || 'https://tsuzuki.top' }}
         run: |
           # pipefail so a failing node still fails the step through the tee.
           set -o pipefail

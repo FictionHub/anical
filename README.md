@@ -33,7 +33,7 @@ git push -u origin main
 
 ### B. Auto-deploy the site (Netlify ↔ GitHub)
 In Netlify, link this repo to your site and rename it to **tsuzuki** (Site configuration →
-Site details → Change site name) so it serves from `https://tsuzuki.netlify.app`. Set up the
+Site details → Change site name) so it serves from `https://tsuzuki.top`. Set up the
 link under **Site configuration → Build & deploy → Link repository** (or *Add new site →
 Import an existing project* if starting fresh). Netlify reads `netlify.toml`, so just confirm
 the **publish directory is `site`** and leave the build command empty. Every push now deploys
@@ -77,7 +77,7 @@ can also run `DRY_RUN=1 node bot/post-social.mjs`.
 The site ships with `sitemap.xml`, a `Sitemap:` line in `robots.txt`, Open Graph + Twitter
 card tags (with `og-image.png`), and JSON-LD structured data (`WebSite` + `WebApplication`).
 After deploy, submit the site once in [Google Search Console](https://search.google.com/search-console)
-(add the property, then **Sitemaps → submit `https://tsuzuki.netlify.app/sitemap.xml`**)
+(add the property, then **Sitemaps → submit `https://tsuzuki.top/sitemap.xml`**)
 to start getting indexed.
 
 ### Programmatic SEO landing pages
@@ -550,7 +550,7 @@ protect. Left empty, the settings panel says so instead of half-working.
 
 **One thing must match**: the *Redirect URL* on the app registration at
 [anilist.co/settings/developer](https://anilist.co/settings/developer) has to be
-`https://tsuzuki.netlify.app` (or wherever the site actually lives). The code
+`https://tsuzuki.top` (or wherever the site actually lives). The code
 deliberately does **not** send a `redirect_uri` — AniList matches it exactly, so
 a trailing slash or a leftover query string turns sign-in into an error page.
 Omitting it makes AniList use the registered URL, which is the only one that can
@@ -579,7 +579,7 @@ It fetches AniList client-side (always live, no rebuild) and links back to the m
 so every place someone embeds it becomes a backlink. Grab the snippet from the app footer's
 **⧉ Embed this calendar** link (with a live preview + copy button), or use directly:
 ```html
-<iframe src="https://tsuzuki.netlify.app/embed/?days=7" width="360" height="520"
+<iframe src="https://tsuzuki.top/embed/?days=7" width="360" height="520"
         style="border:1px solid #2a3140;border-radius:12px" title="Tsuzuki — anime airing schedule"></iframe>
 ```
 Query params: `days` (1–31, default 7) and `limit` (max rows, default 25).

@@ -22,7 +22,7 @@ import { variantsFor, mergeOverrides, showOverride, loadSeed } from "./schedule-
 import { anilist, getSeason as catalogSeason, getSeasonless as catalogSeasonless, getMediaById as catalogMedia, MEDIA_FIELDS } from "./catalog.mjs";
 import { getStore } from "@netlify/blobs";
 
-const SITE = "https://tsuzuki.netlify.app";
+const SITE = "https://tsuzuki.top";
 
 // Tool results are model input, so every field costs tokens on every subsequent
 // turn of the loop. These caps keep a "what's airing this week" answer from

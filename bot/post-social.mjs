@@ -1,6 +1,6 @@
 /* ============================================================
    Tsuzuki — daily social auto-poster
-   Pulls the SAME AniList data as https://tsuzuki.netlify.app and
+   Pulls the SAME AniList data as https://tsuzuki.top and
    posts a short "today / this week in anime" blurb to:
      • Bluesky   (AT Protocol)
      • Mastodon  (any instance)
@@ -36,7 +36,7 @@
 import crypto from "node:crypto";
 import { collectSeasonless } from "../netlify/functions/_lib/seasonless.mjs";
 
-const SITE = "https://tsuzuki.netlify.app";
+const SITE = "https://tsuzuki.top";
 const DAYS = +(process.env.DAYS || 7);
 const DRY  = process.env.DRY_RUN === "1";
 

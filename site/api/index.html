@@ -7,16 +7,16 @@
 <meta name="description" content="A free REST API for anime airing schedules that returns sub, dub and Japanese broadcast times separately, with delays and broadcast breaks already corrected. No key required." />
 <meta name="robots" content="index, follow, max-image-preview:large" />
 <meta name="theme-color" content="#0d1117" />
-<link rel="canonical" href="https://tsuzuki.netlify.app/api/" />
+<link rel="canonical" href="https://tsuzuki.top/api/" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Tsuzuki" />
-<meta property="og:url" content="https://tsuzuki.netlify.app/api/" />
+<meta property="og:url" content="https://tsuzuki.top/api/" />
 <meta property="og:title" content="Tsuzuki API — Anime Schedules with Sub, Dub &amp; Broadcast Times" />
 <meta property="og:description" content="A free REST API for anime airing schedules that returns sub, dub and Japanese broadcast times separately, with delays and broadcast breaks already corrected." />
-<meta property="og:image" content="https://tsuzuki.netlify.app/og-image.png" />
+<meta property="og:image" content="https://tsuzuki.top/og-image.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebAPI","name":"Tsuzuki API","description":"Anime airing schedules with sub, dub and Japanese broadcast release times, and human corrections for delays and broadcast breaks.","url":"https://tsuzuki.netlify.app/api/","documentation":"https://tsuzuki.netlify.app/api/","provider":{"@type":"Organization","name":"Tsuzuki","url":"https://tsuzuki.netlify.app/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebAPI","name":"Tsuzuki API","description":"Anime airing schedules with sub, dub and Japanese broadcast release times, and human corrections for delays and broadcast breaks.","url":"https://tsuzuki.top/api/","documentation":"https://tsuzuki.top/api/","provider":{"@type":"Organization","name":"Tsuzuki","url":"https://tsuzuki.top/"}}</script>
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#0d1117;color:#e6edf3;
@@ -85,7 +85,7 @@ footer{margin-top:44px;color:#8b97a7;font-size:12.5px;border-top:1px solid #2a31
   <h2>Conventions</h2>
   <table>
     <tr><th>Item</th><th>Detail</th></tr>
-    <tr><td>Base URL</td><td><code>https://tsuzuki.netlify.app/api/v1</code></td></tr>
+    <tr><td>Base URL</td><td><code>https://tsuzuki.top/api/v1</code></td></tr>
     <tr><td>Auth</td><td>None. No key, no signup.</td></tr>
     <tr><td>Format</td><td>JSON. Every response has an <code>ok</code> boolean; errors add <code>error</code> and sometimes <code>hint</code>.</td></tr>
     <tr><td>Times</td><td>Unix seconds in <code>airingAt</code>, plus an ISO-8601 UTC string in <code>airingAtIso</code>. Convert to your own timezone.</td></tr>
@@ -136,7 +136,7 @@ footer{margin-top:44px;color:#8b97a7;font-size:12.5px;border-top:1px solid #2a31
     <tr><td><code>format</code></td><td>—</td><td><code>TV</code>, <code>TV_SHORT</code>, <code>MOVIE</code>, <code>ONA</code>, <code>OVA</code>, <code>SPECIAL</code>.</td></tr>
     <tr><td><code>includeAdult</code></td><td>off</td><td><code>1</code> to include adult titles.</td></tr>
   </table>
-<pre><code>curl "https://tsuzuki.netlify.app/api/v1/schedule?days=1&amp;airType=sub&amp;platform=Crunchyroll"</code></pre>
+<pre><code>curl "https://tsuzuki.top/api/v1/schedule?days=1&amp;airType=sub&amp;platform=Crunchyroll"</code></pre>
 <pre><code>{
   "ok": true,
   "query": { "start": "2026-08-04", "days": 1, "airType": "sub", "platform": "Crunchyroll" },
@@ -166,7 +166,7 @@ footer{margin-top:44px;color:#8b97a7;font-size:12.5px;border-top:1px solid #2a31
     <code>corrections</code> record if one exists. Break weeks <em>are</em> included here.
     Add <code>?full=1</code> for the untouched media record instead of the summary shape.
   </p>
-<pre><code>curl "https://tsuzuki.netlify.app/api/v1/anime/128757"</code></pre>
+<pre><code>curl "https://tsuzuki.top/api/v1/anime/128757"</code></pre>
 
   <h3>GET /api/v1/seasons/{season}/{year}</h3>
   <p>
@@ -175,7 +175,7 @@ footer{margin-top:44px;color:#8b97a7;font-size:12.5px;border-top:1px solid #2a31
     <code>summer</code> or <code>fall</code>. <code>?full=1</code> returns the complete media
     records — that is what the Tsuzuki app itself loads.
   </p>
-<pre><code>curl "https://tsuzuki.netlify.app/api/v1/seasons/summer/2026"</code></pre>
+<pre><code>curl "https://tsuzuki.top/api/v1/seasons/summer/2026"</code></pre>
 
   <h3>GET /api/v1/airing</h3>
   <p>
@@ -187,7 +187,7 @@ footer{margin-top:44px;color:#8b97a7;font-size:12.5px;border-top:1px solid #2a31
     exists for consumers that page season by season. <code>?full=1</code> behaves as it does
     on <code>seasons</code>.
   </p>
-<pre><code>curl "https://tsuzuki.netlify.app/api/v1/airing"</code></pre>
+<pre><code>curl "https://tsuzuki.top/api/v1/airing"</code></pre>
 
   <h3>GET /api/v1/franchise/{anilistId}</h3>
   <p>
@@ -202,7 +202,7 @@ footer{margin-top:44px;color:#8b97a7;font-size:12.5px;border-top:1px solid #2a31
     dated in that year, and one with no date at all sorts last. Very large franchises are capped;
     <code>truncated</code> tells you when that happened.
   </p>
-<pre><code>curl "https://tsuzuki.netlify.app/api/v1/franchise/16498"</code></pre>
+<pre><code>curl "https://tsuzuki.top/api/v1/franchise/16498"</code></pre>
 
   <h3>GET /api/v1/search</h3>
   <p>
@@ -211,7 +211,7 @@ footer{margin-top:44px;color:#8b97a7;font-size:12.5px;border-top:1px solid #2a31
     where it can and reaches upstream only for titles outside them — <code>source</code> in the
     response says which happened. <code>?full=1</code> returns complete media records.
   </p>
-<pre><code>curl "https://tsuzuki.netlify.app/api/v1/search?q=frieren"</code></pre>
+<pre><code>curl "https://tsuzuki.top/api/v1/search?q=frieren"</code></pre>
 
   <h3>GET /api/v1/overrides</h3>
   <p>

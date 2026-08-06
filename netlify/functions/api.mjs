@@ -28,7 +28,7 @@ import {
   catalogHealth, seasonOf, shiftSeason, SEASONS,
 } from "./_lib/catalog.mjs";
 
-const SITE = "https://tsuzuki.netlify.app";
+const SITE = "https://tsuzuki.top";
 const VERSION = "1.1";
 
 const MAX_DAYS = 31;

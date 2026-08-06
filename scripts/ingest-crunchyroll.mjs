@@ -59,7 +59,7 @@ try {
   }
 } catch { /* no .env — CI supplies the environment directly */ }
 
-const SITE = process.env.SITE_URL || "https://tsuzuki.netlify.app";
+const SITE = process.env.SITE_URL || "https://tsuzuki.top";
 const CALENDAR = "https://www.crunchyroll.com/simulcastcalendar";
 const OUT_DEFAULT = join(REPO, "data", "derived-offsets.json");
 

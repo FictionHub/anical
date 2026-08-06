@@ -4,4 +4,4 @@ Allow: /
 # being crawled or indexed.
 Disallow: /admin/
 
-Sitemap: https://tsuzuki.netlify.app/sitemap.xml
+Sitemap: https://tsuzuki.top/sitemap.xml

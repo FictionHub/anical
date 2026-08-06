@@ -25,7 +25,7 @@ import { getManyById } from "./_lib/catalog.mjs";
 
 export const config = { schedule: "*/15 * * * *" };
 
-const SITE = "https://tsuzuki.netlify.app";
+const SITE = "https://tsuzuki.top";
 const RUN_WINDOW_MS = 16 * 60 * 1000; // slightly more than the 15-min cadence
 // Netlify kills a function that overruns its execution limit, and a killed run
 // is indistinguishable from a crash in the logs. Stop cleanly before that and
@@ -65,7 +65,7 @@ async function run({ dry }) {
     return ok({ ok: false, reason: "vapid-private-key-missing", sent: 0 });
   }
   try {
-    webpush.setVapidDetails(process.env.VAPID_SUBJECT || "mailto:admin@tsuzuki.netlify.app", pub, priv);
+    webpush.setVapidDetails(process.env.VAPID_SUBJECT || "mailto:admin@tsuzuki.top", pub, priv);
   } catch (err) {
     // Malformed keys throw here rather than at send time — a bad paste in the
     // dashboard would otherwise look like every push failing for no reason.

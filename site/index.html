@@ -12,7 +12,7 @@
 <meta name="author" content="Tsuzuki" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
 <meta name="theme-color" content="#0d1117" />
-<link rel="canonical" href="https://tsuzuki.netlify.app/" />
+<link rel="canonical" href="https://tsuzuki.top/" />
 
 <!-- Performance: warm up connections to the data + image origins -->
 <link rel="preconnect" href="https://graphql.anilist.co" crossorigin />
@@ -32,10 +32,10 @@
 <!-- Open Graph (Facebook, Discord, etc.) -->
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Tsuzuki" />
-<meta property="og:url" content="https://tsuzuki.netlify.app/" />
+<meta property="og:url" content="https://tsuzuki.top/" />
 <meta property="og:title" content="Tsuzuki — Anime Release Calendar" />
 <meta property="og:description" content="Live upcoming anime episodes, new-season premieres, season finales, and the latest Anime News Network headlines, in a calendar. Month / Week / Agenda views, filters, and episode alerts." />
-<meta property="og:image" content="https://tsuzuki.netlify.app/og-image.png" />
+<meta property="og:image" content="https://tsuzuki.top/og-image.png" />
 <meta property="og:image:width" content="1024" />
 <meta property="og:image:height" content="1024" />
 <meta property="og:image:alt" content="Tsuzuki — anime release calendar" />
@@ -45,7 +45,7 @@
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Tsuzuki — Anime Release Calendar" />
 <meta name="twitter:description" content="Live upcoming anime episodes, premieres, finales, and ANN headlines, in a calendar. Free, no signup." />
-<meta name="twitter:image" content="https://tsuzuki.netlify.app/og-image.png" />
+<meta name="twitter:image" content="https://tsuzuki.top/og-image.png" />
 <meta name="twitter:image:alt" content="Tsuzuki — anime release calendar" />
 
 <!-- Structured data: helps Google understand & show the site -->
@@ -55,8 +55,8 @@
   "@graph": [
     {
       "@type": "WebSite",
-      "@id": "https://tsuzuki.netlify.app/#website",
-      "url": "https://tsuzuki.netlify.app/",
+      "@id": "https://tsuzuki.top/#website",
+      "url": "https://tsuzuki.top/",
       "name": "Tsuzuki",
       "description": "A live anime release calendar with upcoming episodes, premieres, finales, and anime news.",
       "inLanguage": "en"
@@ -64,12 +64,12 @@
     {
       "@type": "WebApplication",
       "name": "Tsuzuki — Anime Release Calendar",
-      "url": "https://tsuzuki.netlify.app/",
+      "url": "https://tsuzuki.top/",
       "applicationCategory": "EntertainmentApplication",
       "operatingSystem": "Web browser",
       "browserRequirements": "Requires JavaScript",
       "description": "A live anime release calendar: upcoming episodes, new-season premieres, season finales, and Anime News Network headlines. Month, Week, and Agenda views with filters, countdowns, and opt-in episode alerts.",
-      "image": "https://tsuzuki.netlify.app/og-image.png",
+      "image": "https://tsuzuki.top/og-image.png",
       "isAccessibleForFree": true,
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
       "featureList": [
@@ -1109,7 +1109,7 @@
 
 // Build number auto-stamped from the git commit count by scripts/stamp-version.mjs
 // (run via the .githooks/pre-commit hook). Do not edit by hand — it changes every commit.
-const APP_VERSION = "3.2.88";
+const APP_VERSION = "3.3.89";
 
 // Tsuzuki's own read API. It serves the same AniList payload out of a shared
 // server-side catalog (netlify/functions/_lib/catalog.mjs), so the schedule a
@@ -2164,6 +2164,10 @@ function renderWhatsNew(){
    update. Returning visitors see every entry newer than the one they last
    saw, once, in a modal they close manually. Trim old entries freely. */
 const CHANGELOG=[
+  { id:12, v:"3.3", date:"August 2026", items:[
+    "New home: tsuzuki.top. Every old link still works — tsuzuki.netlify.app redirects here, and so does www.",
+    "Calendar subscriptions are unaffected: your existing feeds keep working and won't re-add events you already have.",
+  ]},
   { id:11, v:"3.2", date:"August 2026", items:[
     "Your lists have cover art now — a mosaic of the first four shows in each one, so you can tell them apart at a glance instead of reading the names.",
     "Shift-click a run of cards on your board or in your lists to select them all, then set one status or file the whole lot into a list in a single click. Ctrl/⌘-click picks out individual shows; Esc clears the selection.",
@@ -2620,7 +2624,7 @@ function icsDate(d){ return d.getUTCFullYear()+pad2(d.getUTCMonth()+1)+pad2(d.ge
 function icsEsc(s){ return String(s==null?"":s).replace(/\\/g,"\\\\").replace(/\n/g,"\\n").replace(/[,;]/g,m=>"\\"+m); }
 function slugFile(s){ return String(s||"event").toLowerCase().replace(/[^\w]+/g,"-").replace(/^-+|-+$/g,"").slice(0,50)||"event"; }
 function buildICS(cd){
-  const L=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Tsuzuki//tsuzuki.netlify.app//EN","CALSCALE:GREGORIAN","METHOD:PUBLISH","BEGIN:VEVENT","UID:"+cd.uid,"DTSTAMP:"+icsStamp(new Date())];
+  const L=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Tsuzuki//tsuzuki.top//EN","CALSCALE:GREGORIAN","METHOD:PUBLISH","BEGIN:VEVENT","UID:"+cd.uid,"DTSTAMP:"+icsStamp(new Date())];
   if(cd.allDay){ L.push("DTSTART;VALUE=DATE:"+icsDate(cd.start)); L.push("DTEND;VALUE=DATE:"+icsDate(cd.end)); }
   else { L.push("DTSTART:"+icsStamp(cd.start)); L.push("DTEND:"+icsStamp(cd.end)); }
   L.push("SUMMARY:"+icsEsc(cd.title));
@@ -4153,7 +4157,7 @@ function myShowsIcs(){
       ev.push(["BEGIN:VEVENT","UID:tsuzuki-"+md.id+"-"+n.episode+"-"+v.type+"@tsuzuki.netlify.app","DTSTAMP:"+icsStamp(start),"DTSTART:"+icsStamp(start),"DTEND:"+icsStamp(end),"SUMMARY:"+icsEsc(title(md)+" — Episode "+n.episode+suffix), md.siteUrl?"URL:"+icsEsc(md.siteUrl):null,"END:VEVENT"].filter(Boolean).join("\r\n"));
     }
   }
-  return ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Tsuzuki//tsuzuki.netlify.app//EN","CALSCALE:GREGORIAN","METHOD:PUBLISH","X-WR-CALNAME:Tsuzuki — My Shows",...ev,"END:VCALENDAR"].join("\r\n")+"\r\n";
+  return ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Tsuzuki//tsuzuki.top//EN","CALSCALE:GREGORIAN","METHOD:PUBLISH","X-WR-CALNAME:Tsuzuki — My Shows",...ev,"END:VCALENDAR"].join("\r\n")+"\r\n";
 }
 function downloadMyShows(){
   if(!state.watch.size){ alert("Star some shows (⭐ Add to My List) first, then download your calendar."); return; }

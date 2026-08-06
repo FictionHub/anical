@@ -18,7 +18,7 @@ import { loadThemeSeed, mergeThemes, THEME_STORE } from "./_lib/themes.mjs";
 
 const GRANT_STORE = "user-themes";
 const DIRECTORY_STORE = "user-directory";
-const SITE = "https://tsuzuki.netlify.app";
+const SITE = "https://tsuzuki.top";
 
 const json = (body, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { "Content-Type": "application/json", "Cache-Control": "no-store" } });

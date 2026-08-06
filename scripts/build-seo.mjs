@@ -26,7 +26,7 @@ import { fileURLToPath } from "node:url";
 // "zero npm deps" promise intact even though it lives under netlify/.
 import { collectSeasonless } from "../netlify/functions/_lib/seasonless.mjs";
 
-const SITE = "https://tsuzuki.netlify.app";
+const SITE = "https://tsuzuki.top";
 const APP_DIR = dirname(fileURLToPath(import.meta.url));
 const SITE_DIR = join(APP_DIR, "..", "site");
 const DEFAULT_OG = `${SITE}/og-image.png`;
@@ -285,7 +285,7 @@ function vevent(uid, start, summary, desc, url) {
     "SUMMARY:" + icsEsc(summary), desc ? "DESCRIPTION:" + icsEsc(desc) : null, url ? "URL:" + icsEsc(url) : null, "END:VEVENT"].filter(Boolean).join("\r\n");
 }
 function calWrap(name, events) {
-  return ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Tsuzuki//tsuzuki.netlify.app//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH",
+  return ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Tsuzuki//tsuzuki.top//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH",
     "X-WR-CALNAME:" + icsEsc(name), "X-WR-TIMEZONE:UTC", "NAME:" + icsEsc(name), "REFRESH-INTERVAL;VALUE=DURATION:PT12H", "X-PUBLISHED-TTL:PT12H",
     ...events, "END:VCALENDAR"].join("\r\n") + "\r\n";
 }
