@@ -12,11 +12,11 @@ A shippable feature every single day — the hands-on companion to the strategic
 
 Everything below assumes these invariants. Check them before starting a day; they are the things that are expensive to rediscover.
 
-- **The client is one file.** `site/index.html` (~5,700 lines) holds the entire app — markup, CSS and JS, all inline. Most days land there. Find the neighbouring feature and match its idiom rather than introducing a new pattern. It has grown ~2,000 lines in a month; that is the file's normal, not a problem to fix mid-day.
+- **The client is one file.** `site/index.html` (~6,000 lines) holds the entire app — markup, CSS and JS, all inline. Most days land there. Find the neighbouring feature and match its idiom rather than introducing a new pattern. It has grown ~2,000 lines in a month; that is the file's normal, not a problem to fix mid-day.
 - **There is no build step.** `site/` is uploaded as-is (`netlify.toml` sets `publish = "site"` with no build command). The SEO pages are generated and committed by GitHub Actions, not built on Netlify. Do not add a bundler, framework or npm dependency to the client without a deliberate decision — it changes the deploy story for every day after it.
 - **Storage is `localStorage`, namespaced `anical.*`** — `anical.collections`, `anical.notes`, `anical.filters`, `anical.hidden`, and so on. The prefix is pre-rebrand and deliberately unchanged: renaming it to `tsuzuki.*` would orphan every existing user's data. New keys keep the `anical.` prefix. Migrations are additive — never drop or repurpose a key an earlier version wrote.
 - **Sign-in exists, and holds nothing.** Discord OAuth + a signed session cookie ship (`netlify/functions/auth.mjs`, `_lib/session.mjs`), but only so an event skin can find the account it was granted to. The server stores a Discord id, name and avatar hash — no list, no ratings, no notes. Every day below is still a local-first feature; **do not** reach for the session as a place to put user data without a deliberate decision, because the settings panel currently promises the opposite.
-- **The version is derived, not typed.** `.githooks/pre-commit` runs `scripts/stamp-version.mjs`, which rewrites `APP_VERSION` in `site/index.html` as `<major.minor>.<commit count>` — and reads the major.minor from the newest CHANGELOG entry in that same file. So **adding the changelog entry is the whole release procedure**; never hand-edit `APP_VERSION`, and there is no longer a constant in the script to bump. The app is on **v3.1** as of Aug 2026. Three other version numbers live nearby and are all independent of it — the public API's (`VERSION` in `api.mjs`, currently `1.1`, matching the `/api/v1` route) and the data-format ones (`SCHEMA_VERSION`, `OVERRIDES_VERSION`, `THEMES_VERSION`, all `1`). None of them move when the app version does.
+- **The version is derived, not typed.** `.githooks/pre-commit` runs `scripts/stamp-version.mjs`, which rewrites `APP_VERSION` in `site/index.html` as `<major.minor>.<commit count>` — and reads the major.minor from the newest CHANGELOG entry in that same file. So **adding the changelog entry is the whole release procedure**; never hand-edit `APP_VERSION`, and there is no longer a constant in the script to bump. The app is on **v3.2** as of Aug 2026. Three other version numbers live nearby and are all independent of it — the public API's (`VERSION` in `api.mjs`, currently `1.1`, matching the `/api/v1` route) and the data-format ones (`SCHEMA_VERSION`, `OVERRIDES_VERSION`, `THEMES_VERSION`, all `1`). None of them move when the app version does.
 - **Schedule data comes from our own API first.** The client calls `/api/v1/seasons/...?full=1`, `/api/v1/anime/<id>?full=1` and `/api/v1/search` before touching AniList, and falls back to AniList directly whenever our API can't answer — so the site is never *dependent* on its own backend. Data is still never stale for deploy reasons; it is now also corrected before it arrives. Only the SEO pages, `.ics` feeds and app code are deploy-bound.
 - **The correction layer is mirrored by hand.** `site/index.html` resolves release variants (`raw`/`sub`/`dub`) client-side; `netlify/functions/_lib/schedule-overrides.mjs` is the same logic again for `push-send.mjs`, because the client can't import it without a build step. **Change one, change the other** — the shapes and resolution order are the contract. Any day that touches air times touches both.
 - **Where non-client work lives.** `netlify/functions/` for server and scheduled work — `api.mjs` (public read API), `ingest.mjs` (scheduled, every 2h), `push-send.mjs` (scheduled, every 15m), `auth.mjs`, `themes.mjs`, `grants.mjs`, `chat.mjs`, `overrides.mjs`, `report.mjs`, with shared code in `_lib/` (`catalog.mjs` is the read path everything goes through). `scripts/` for static generation and tooling (`build-seo.mjs`, `build-events.mjs`, `build-themes.mjs`, `ingest-crunchyroll.mjs`); `bot/` for Discord and social posts; `.github/workflows/` for the schedules that drive them.
@@ -74,7 +74,7 @@ Shipping weekly was never a development limit. It is a deploy-budget limit, and 
 - **365** daily features
 - **12** monthly themes
 - **1** build every day, **1** drop every 2–3
-- **35** days carrying a status marker — 9 shipped, 26 partly built
+- **38** days carrying a status marker — 12 shipped, 26 partly built
 
 ## How This Sits with the Roadmap
 
@@ -102,16 +102,18 @@ A 1–10 personal score and free-text notes per show, surfaced on cards and in t
 Make your own lists, rename them, and drag shows between them. `[W03]` — `0108f174`
 > `ui` — **Done when** a user-made list can be created, renamed, deleted and reordered, and a show can belong to several at once.
 
-### Day 04 · Aug 4 | Collection covers
-Auto-pick a mosaic of the first four shows as each list's cover art.
+### Day 04 · Aug 4 | Collection covers ✅ shipped
+Auto-pick a mosaic of the first four shows as each list's cover art. `collectionCoverHtml` tiles up to four covers into the 30px square in every list's column header: one show fills it, two split it, three give the first the left half, four make a 2×2. An empty list — or one whose art hasn't been fetched yet — gets a 📚 placeholder of the same size, and the "Not in a list" column gets a matching 📥 one so the headers stay on one line. List columns went 252px → 274px to pay for the tile.
 > `polish` — **Done when** a collection holding at least one show renders a four-up mosaic wherever collections are listed, and an empty one falls back to a placeholder. **Needs** Day 03.
 
-### Day 05 · Aug 5 | Bulk select
-Shift-click a range of cards, then set status or collection for all of them at once.
+### Day 05 · Aug 5 | Bulk select ✅ shipped
+Shift-click a range of cards, then set status or collection for all of them at once. Works in both card views (board and 📚 Lists): shift-click extends a run from the last card touched, in layout order and across columns; ctrl/⌘-click toggles one; a plain click still opens the show. A bar appears with the five statuses, a "take it off the board" chip, and an "Add to list…" picker that can also make the list. Every bulk action is one Undo, not N.
 > `ui` — **Done when** a shift-click range selects contiguous cards and one action applies to the whole selection.
 
-### Day 06 · Aug 6 | Undo toast
-Every destructive list action gets a six-second "Undo" instead of a confirm dialog.
+**Two things worth knowing before touching this.** The selection is *ids*, not elements — the same show appears in several list columns and both instances light up, which is right, but it means a three-card range can highlight six cards. And the selection handler is registered *above* the open-a-show handler on purpose: it calls `stopImmediatePropagation`, which only stops listeners added after it, so moving the block down the file would make every shift-click also open a modal.
+
+### Day 06 · Aug 6 | Undo toast ✅ shipped
+Every destructive list action gets a six-second "Undo" instead of a confirm dialog. Half of this already existed — status changes, ratings, list membership, moves and list deletion all toasted, and the app has never had a `confirm()` in it. What was missing was the actions that quietly threw work away: un-starring a show (which drops it off the board *and* forgets its status), hiding a show (which removes it from every view and closes the modal you'd undo from), and "Unhide all" in settings (which discards a list built one show at a time). All three now hand back exactly what they took, and the undo window went 5.5s → 6s.
 > `ui` — **Done when** removing a show or deleting a collection is reversible from a toast, and no destructive action prompts a modal confirm.
 
 ### Day 07 · Aug 7 | Episode progress ◐

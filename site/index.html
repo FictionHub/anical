@@ -683,9 +683,18 @@
   /* custom collections ("Lists") — a kanban of your own making. Reuses the
      board's card/column look; columns scroll sideways since there can be many. */
   .lists-cols{display:flex;gap:14px;margin-top:16px;overflow-x:auto;padding-bottom:10px;align-items:flex-start}
-  .lists-cols .board-col{flex:0 0 252px;max-width:252px}
-  .col-head{display:flex;align-items:center;gap:6px;margin:0 0 10px}
+  .lists-cols .board-col{flex:0 0 274px;max-width:274px}   /* the cover tile's worth wider than the card it holds */
+  .col-head{display:flex;align-items:center;gap:5px;margin:0 0 10px}
   .col-name{font-size:13.5px;font-weight:700;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  /* a list's cover: up to four of its own shows, tiled. One show fills the
+     tile, two split it, three give the first the left half. */
+  .col-cover{flex:none;width:30px;height:30px;border-radius:7px;overflow:hidden;background:var(--bg3);
+    border:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:1px}
+  .col-cover img{width:100%;height:100%;object-fit:cover;display:block;background:#000}
+  .col-cover.n1 img{grid-column:1/3;grid-row:1/3}
+  .col-cover.n2 img{grid-row:1/3}
+  .col-cover.n3 img:first-child{grid-row:1/3}
+  .col-cover.empty{display:flex;align-items:center;justify-content:center;font-size:15px;opacity:.5}
   .col-btn{padding:2px 5px;font-size:11px;border-radius:6px;background:transparent;border:1px solid transparent;color:var(--muted)}
   .col-btn:hover{background:var(--bg3);border-color:var(--line);color:var(--txt);transform:none}
   .col-btn:disabled{opacity:.3}
@@ -752,6 +761,23 @@
   .toast.on{opacity:1;pointer-events:auto;transform:translateX(-50%)}
   .toast span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .toast button{padding:5px 11px;font-size:12.5px;flex:none}
+
+  /* bulk select (board & lists): selected cards, and the action bar that acts
+     on all of them at once. The bar sits above the toast so an Undo raised by a
+     bulk action isn't hidden behind it. */
+  .board-card.sel{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 16%,var(--bg3))}
+  .board-card.sel::after{content:"✓";position:absolute;top:4px;right:6px;font-size:11px;font-weight:800;color:var(--accent)}
+  .board-card.sel .board-card-title{padding-right:12px}   /* clear of the tick */
+  .board-card{position:relative}
+  body.bulk-on .board-card{user-select:none}
+  .bulkbar{position:fixed;left:50%;bottom:78px;z-index:210;display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    max-width:min(94vw,620px);background:var(--bg2);border:1px solid var(--accent);border-radius:12px;
+    padding:9px 12px;box-shadow:var(--shadow);
+    opacity:0;pointer-events:none;transform:translateX(-50%) translateY(14px);transition:.18s}
+  .bulkbar.on{opacity:1;pointer-events:auto;transform:translateX(-50%)}
+  .bulk-n{font-size:13px;font-weight:700;white-space:nowrap}
+  .bulk-x{padding:3px 8px;font-size:12px;background:transparent;border:1px solid var(--line);color:var(--muted)}
+  @media(max-width:640px){.bulkbar{bottom:86px;gap:7px;padding:8px 10px}.bulk-n{flex-basis:100%}}
 
   /* ============ mobile / phone optimizations ============ */
   @media(max-width:640px){
@@ -1083,7 +1109,7 @@
 
 // Build number auto-stamped from the git commit count by scripts/stamp-version.mjs
 // (run via the .githooks/pre-commit hook). Do not edit by hand — it changes every commit.
-const APP_VERSION = "3.1.87";
+const APP_VERSION = "3.2.88";
 
 // Tsuzuki's own read API. It serves the same AniList payload out of a shared
 // server-side catalog (netlify/functions/_lib/catalog.mjs), so the schedule a
@@ -1532,7 +1558,7 @@ function toast(msg, undo, label){
   el.classList.add("on");
   if(undo) $("toastUndo").onclick=()=>{ const u=toastUndo; hideToast(); if(u) u(); };
   clearTimeout(toastTimer);
-  toastTimer=setTimeout(hideToast, undo?5500:2600);
+  toastTimer=setTimeout(hideToast, undo?6000:2600);   // six seconds to change your mind
 }
 function hideToast(){ const el=$("toast"); if(el) el.classList.remove("on"); toastUndo=null; }
 /* Send the user to the one place shows are added from. */
@@ -2138,6 +2164,11 @@ function renderWhatsNew(){
    update. Returning visitors see every entry newer than the one they last
    saw, once, in a modal they close manually. Trim old entries freely. */
 const CHANGELOG=[
+  { id:11, v:"3.2", date:"August 2026", items:[
+    "Your lists have cover art now — a mosaic of the first four shows in each one, so you can tell them apart at a glance instead of reading the names.",
+    "Shift-click a run of cards on your board or in your lists to select them all, then set one status or file the whole lot into a list in a single click. Ctrl/⌘-click picks out individual shows; Esc clears the selection.",
+    "Every destructive action now has a six-second Undo instead of a confirmation dialog — including taking a show off My List, hiding a show and unhiding all of them at once.",
+  ]},
   { id:10, v:"3.1", date:"August 2026", items:[
     "A show's details are now split into sub-menus — Overview, Schedule, Franchise, Cast and More like this — instead of one long scroll. The full airing schedule gets the whole width rather than a squeezed side column.",
     "Franchise timeline rebuilt. It used to show only the entries a show linked to directly, so opening season 3 never showed you season 1. It now walks the whole franchise — every season, movie, OVA, special and spin-off — in true release order, numbered.",
@@ -2938,6 +2969,8 @@ function agendaRow(e,now){
   return row;
 }
 function renderView(){
+  // a selection belongs to the view it was made in — leaving that view drops it
+  if(bulkView && bulkView!==state.viewMode) bulkClear();
   if(state.viewMode==="dashboard"){ hideEvents(); hideBoard(); hideLists(); renderDashboard(); return; }
   if(state.viewMode==="events"){ hideDashboard(); hideBoard(); hideLists(); renderEvents(); return; }
   if(state.viewMode==="board"){ hideDashboard(); hideEvents(); hideLists(); renderBoard(); return; }
@@ -4031,7 +4064,17 @@ function openSettings(){
       setStatus(false,`Live · ${state.media.length} titles · ${rangeEvents().length} episodes shown`);
     };
   }
-  if($("setUnhide")) $("setUnhide").onclick=()=>{ state.hidden.clear(); localStorage.removeItem("anical.hidden"); renderView(); openSettings(); };
+  // "Unhide all" throws away a list built one show at a time, so it hands back
+  // a copy of it rather than a confirm dialog.
+  if($("setUnhide")) $("setUnhide").onclick=()=>{
+    const was=[...state.hidden];
+    state.hidden.clear(); localStorage.removeItem("anical.hidden"); renderView(); openSettings();
+    if(!was.length) return;
+    toast(`Unhid ${was.length} show${was.length===1?"":"s"}`,
+          ()=>{ was.forEach(id=>state.hidden.add(id));
+                localStorage.setItem("anical.hidden", JSON.stringify([...state.hidden]));
+                renderView(); openSettings(); });
+  };
   if($("aniImport")){
     const run=async()=>{
       const u=$("aniUser").value, st=$("aniStatus"), btn=$("aniImport");
@@ -4365,7 +4408,7 @@ async function renderBoard(){
   const cols=STATUS_DEFS.map(sd=>({...sd, shows: shows.filter(md=>boardStatusOf(md.id)===sd.key)}));
 
   wrap.innerHTML=`<div class="board-top">
-      <div class="board-head"><h2>🗂️ My Board</h2><div class="ev-sub">${shows.length} tracked show${shows.length===1?"":"s"}. Click a card's status icon to move it between columns — click the highlighted one to take it off the board.</div></div>
+      <div class="board-head"><h2>🗂️ My Board</h2><div class="ev-sub">${shows.length} tracked show${shows.length===1?"":"s"}. Click a card's status icon to move it between columns — click the highlighted one to take it off the board. Shift-click cards to select a run of them and change the lot at once.</div></div>
       ${boardAddBtn}
     </div>
     <div class="board-cols">
@@ -4375,6 +4418,7 @@ async function renderBoard(){
           ${c.shows.length ? c.shows.map(boardCardHtml).join("") : '<div class="board-empty">Nothing here</div>'}
         </div>`).join("")}
     </div>`;
+  paintSelection();
 }
 function hideBoard(){
   document.querySelector("main").style.display="";
@@ -4405,11 +4449,24 @@ function listCardHtml(md, fromId){
     </div>
   </div>`;
 }
+/* A list's cover art: a mosaic of the first four shows in it, so a list is
+   recognisable by the same art its shows are. An empty list — or one whose art
+   hasn't been fetched yet — falls back to a placeholder tile of the same size,
+   so the column headers stay on one line either way. */
+function collectionCoverHtml(shows){
+  const covers=shows.map(md=>md&&md.coverImage?(md.coverImage.large||md.coverImage.medium):"")
+    .filter(Boolean).slice(0,4);
+  if(!covers.length) return `<span class="col-cover empty" aria-hidden="true">📚</span>`;
+  return `<span class="col-cover n${covers.length}" aria-hidden="true">`
+    + covers.map(u=>`<img src="${esc(u)}" alt="" loading="lazy" draggable="false">`).join("")
+    + `</span>`;
+}
 function listColumnHtml(col, shows, idx, total){
   const cid=esc(col.id);
   return `<div class="board-col" data-ldrop="${cid}">
     <div class="col-head">
-      <span class="col-name" title="${esc(col.name)}">📚 ${esc(col.name)}</span>
+      ${collectionCoverHtml(shows)}
+      <span class="col-name" title="${esc(col.name)}">${esc(col.name)}</span>
       <span class="board-count">${shows.length}</span>
       <button type="button" class="col-btn" data-col-move="${cid}|-1" title="Move list left" aria-label="Move ${esc(col.name)} left"${idx===0?" disabled":""}>‹</button>
       <button type="button" class="col-btn" data-col-move="${cid}|1" title="Move list right" aria-label="Move ${esc(col.name)} right"${idx===total-1?" disabled":""}>›</button>
@@ -4453,20 +4510,129 @@ async function renderLists(){
   wrap.innerHTML=head+`<div class="lists-cols">
       <div class="board-col" data-ldrop="">
         <div class="col-head">
-          <span class="col-name" title="Tracked shows that aren't in any list">📥 Not in a list</span>
+          <span class="col-cover empty" aria-hidden="true">📥</span>
+          <span class="col-name" title="Tracked shows that aren't in any list">Not in a list</span>
           <span class="board-count">${unsorted.length}</span>
         </div>
         ${unsorted.length ? unsorted.map(md=>listCardHtml(md,"")).join("") : '<div class="board-empty">Everything is filed</div>'}
       </div>
       ${state.collections.map((c,i)=>listColumnHtml(c, c.ids.map(id=>findMediaById(id)).filter(Boolean), i, total)).join("")}
     </div>
-    <div class="lists-hint">Drag a card between columns, or use its “Move to…” picker. You can also add a show to any list from its detail pop-up.</div>`;
+    <div class="lists-hint">Drag a card between columns, or use its “Move to…” picker. Shift-click cards to select a run of them and file the lot at once. You can also add a show to any list from its detail pop-up.</div>`;
+  paintSelection();
 }
 function hideLists(){
   document.querySelector("main").style.display="";
   const w=$("listsWrap"); if(w) w.style.display="none";
   document.body.classList.remove("lists-mode");
 }
+
+/* ---------- bulk select (board & lists) ----------
+   Shift-click extends a run from the last card you touched to the one you just
+   clicked, in the order the cards are laid out — across columns, the way a file
+   manager does it. Ctrl/⌘-click toggles a single card. A plain click still
+   opens the show, so nothing about the one-card path changes.
+
+   The selection is ids, not elements: the same show can appear in several list
+   columns, and re-rendering throws every card away. It is deliberately not
+   persisted — it lasts as long as you're looking at it. */
+let bulkSel=new Set(), bulkAnchor=null, bulkView=null;
+function bulkCards(){ return [...document.querySelectorAll(".board-col [data-openshow]")]; }
+function paintSelection(){
+  const cards=bulkCards();
+  cards.forEach(el=>el.classList.toggle("sel", bulkSel.has(el.dataset.openshow)));
+  // ids can outlive their cards (a bulk status change empties a column), so the
+  // count the bar shows is what's still on screen.
+  const live=new Set(cards.filter(el=>bulkSel.has(el.dataset.openshow)).map(el=>el.dataset.openshow));
+  if(live.size!==bulkSel.size) bulkSel=live;
+  document.body.classList.toggle("bulk-on", bulkSel.size>0);
+  renderBulkBar();
+}
+function bulkClear(){
+  if(!bulkSel.size && bulkAnchor===null) return;
+  bulkSel=new Set(); bulkAnchor=null; bulkView=null;
+  paintSelection();
+}
+function renderBulkBar(){
+  let el=$("bulkBar");
+  if(!bulkSel.size){ if(el) el.classList.remove("on"); return; }
+  if(!el){
+    el=document.createElement("div"); el.id="bulkBar"; el.className="bulkbar";
+    el.setAttribute("role","group"); el.setAttribute("aria-label","Actions for the selected shows");
+    document.body.appendChild(el);
+  }
+  const n=bulkSel.size, plural=`${n} show${n===1?"":"s"}`;
+  const lists=state.collections.map(c=>`<option value="${esc(c.id)}">${esc(c.name)}</option>`).join("");
+  el.innerHTML=`<span class="bulk-n">${n} selected</span>
+    <div class="st-pick sm" role="group" aria-label="Set a status for the selection">
+      ${STATUS_DEFS.map(s=>`<button type="button" class="st-chip" data-bulk-st="${s.key}" title="${esc(s.label)} · ${plural}" aria-label="${esc(s.label)} · ${plural}"><span>${s.emoji}</span></button>`).join("")}
+      <button type="button" class="st-chip" data-bulk-st="" title="Take ${plural} off the board" aria-label="Take ${plural} off the board"><span>🚫</span></button>
+    </div>
+    <select class="card-sel" data-bulk-col aria-label="Add the selection to a list">
+      <option value="" selected disabled>Add to list…</option>${lists}
+      <option value="__new">＋ New list…</option>
+    </select>
+    <button type="button" class="bulk-x" data-bulk-clear title="Clear the selection (Esc)" aria-label="Clear the selection">✕</button>`;
+  el.classList.add("on");
+}
+// Selecting cards. Registered before the open-a-show handler below so a
+// modified click can stop it — a shift-click should never also open a modal.
+document.addEventListener("click",e=>{
+  if(!(e.shiftKey||e.ctrlKey||e.metaKey)) return;
+  const card=e.target.closest(".board-col [data-openshow]"); if(!card) return;
+  if(e.target.closest("select,button,[data-st],[data-rt]")) return;   // a control on the card wins
+  e.preventDefault(); e.stopImmediatePropagation();
+  const ids=bulkCards().map(el=>el.dataset.openshow), id=card.dataset.openshow;
+  const a=bulkAnchor===null?-1:ids.indexOf(bulkAnchor), b=ids.indexOf(id);
+  if(e.shiftKey && a>=0 && b>=0){
+    for(let i=Math.min(a,b);i<=Math.max(a,b);i++) bulkSel.add(ids[i]);
+  } else if(bulkSel.has(id)) bulkSel.delete(id);
+  else bulkSel.add(id);
+  bulkAnchor=id; bulkView=state.viewMode;
+  const s=window.getSelection(); if(s) s.removeAllRanges();   // shift-click also drags text
+  paintSelection();
+});
+// One status for the whole selection, undoable as a single step.
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-bulk-st]"); if(!b) return;
+  e.preventDefault(); e.stopPropagation();
+  const key=b.dataset.bulkSt, ids=[...bulkSel];
+  if(!ids.length) return;
+  const prev=ids.map(id=>[id, getStatusOf(id)]);
+  ids.forEach(id=>setStatusOf(id, key));
+  bulkClear();
+  renderView();
+  toast(key ? `${statusLabel(key)} · ${ids.length} show${ids.length===1?"":"s"}`
+            : `Removed from board · ${ids.length} show${ids.length===1?"":"s"}`,
+        ()=>{ prev.forEach(([id,st])=>setStatusOf(id, st)); renderView(); });
+});
+// One list for the whole selection. Shows already in it are left alone, so the
+// Undo only takes back what this actually added.
+document.addEventListener("change",e=>{
+  const sel=e.target.closest("[data-bulk-col]"); if(!sel) return;
+  const ids=[...bulkSel];
+  let colId=sel.value;
+  sel.value="";
+  if(!ids.length || !colId) return;
+  if(colId==="__new"){
+    const name=window.prompt("Name your new list:", "");
+    if(name===null) return;
+    const made=createCollection(name);
+    if(!made){ if(name.trim()!=="") alert("That name can't be used."); return; }
+    colId=made.id;
+  }
+  const col=collectionById(colId); if(!col) return;
+  const added=ids.filter(id=>addToCollection(colId, id));
+  bulkClear();
+  if(state.viewMode==="lists") renderLists();
+  ids.forEach(id=>refreshCollectionPickers(id));
+  if(!added.length){ toast(`Already in ${col.name} · ${ids.length} show${ids.length===1?"":"s"}`); return; }
+  toast(`Added to ${col.name} · ${added.length} show${added.length===1?"":"s"}`,
+        ()=>{ added.forEach(id=>removeFromCollection(colId, id));
+              if(state.viewMode==="lists") renderLists();
+              added.forEach(id=>refreshCollectionPickers(id)); });
+});
+document.addEventListener("click",e=>{ if(e.target.closest("[data-bulk-clear]")) bulkClear(); });
 function listsStatusText(){
   const n=state.collections.length;
   const filed=new Set(state.collections.flatMap(c=>c.ids)).size;
@@ -4965,7 +5131,7 @@ $("overlay").onclick=e=>{ if(e.target===$("overlay")) closeModal(); };
     else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
   });
 })();
-document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeModal(); });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ closeModal(); bulkClear(); } });
 document.querySelectorAll("#viewSeg button").forEach(b=>b.onclick=()=>setView(b.dataset.view));
 $("embedLink").onclick=e=>{ e.preventDefault(); openEmbed(); };
 $("subscribeLink").onclick=e=>{ e.preventDefault(); openSubscribe(); };
@@ -5058,8 +5224,19 @@ document.addEventListener("keydown",e=>{
 document.addEventListener("click",e=>{ const b=e.target.closest("[data-bell]"); if(b){ e.preventDefault(); e.stopPropagation(); toggleNotify(b.dataset.bell); } });
 // event-reminder bell delegation (event cards + event modal)
 document.addEventListener("click",e=>{ const b=e.target.closest("[data-evbell]"); if(b){ e.preventDefault(); e.stopPropagation(); toggleEventNotify(b.dataset.evbell); } });
-// watchlist star delegation (modal + agenda + sidebars)
-document.addEventListener("click",e=>{ const w=e.target.closest("[data-watch]"); if(w){ e.preventDefault(); e.stopPropagation(); toggleWatch(w.dataset.watch); } });
+// watchlist star delegation (modal + agenda + sidebars). Un-starring drops the
+// show off the board and forgets its status, so it gets an Undo like every
+// other destructive list action does.
+document.addEventListener("click",e=>{
+  const w=e.target.closest("[data-watch]"); if(!w) return;
+  e.preventDefault(); e.stopPropagation();
+  const id=w.dataset.watch, prev=getStatusOf(id), was=isWatched(id);
+  toggleWatch(id);
+  if(!was) return;                     // adding needs no apology
+  const md=findMediaById(id), name=md?title(md):"Show";
+  toast(`Removed from My List · ${name}`,
+        ()=>{ toggleWatch(id); if(prev) setStatusOf(id, prev); renderView(); });
+});
 // one-click status delegation (detail pop-up · board cards · search results).
 // Picking a status tracks the show; picking the one it already has removes it.
 document.addEventListener("click",e=>{
@@ -5220,11 +5397,17 @@ document.addEventListener("click",e=>{
   renderSidebars();                                                       // refresh Continue Watching
 });
 
-// hide / "not interested": toggle and refresh
+// hide / "not interested": toggle and refresh. Hiding takes a show out of every
+// view at once, and the modal it was hidden from closes with it — an Undo is
+// the only way back that doesn't involve hunting through settings.
 document.addEventListener("click",e=>{
   const h=e.target.closest("[data-hide]"); if(!h) return;
   e.preventDefault(); e.stopPropagation();
-  toggleHidden(h.dataset.hide); closeModal(); renderView();
+  const id=h.dataset.hide, wasHidden=state.hidden.has(String(id));
+  toggleHidden(id); closeModal(); renderView();
+  const md=findMediaById(id), name=md?title(md):"Show";
+  toast(wasHidden ? `Unhidden · ${name}` : `Hidden · ${name}`,
+        ()=>{ toggleHidden(id); renderView(); });
 });
 
 // share: copy a deep link (?show=<id>) to the clipboard
