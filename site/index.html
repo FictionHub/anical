@@ -1109,7 +1109,7 @@
 
 // Build number auto-stamped from the git commit count by scripts/stamp-version.mjs
 // (run via the .githooks/pre-commit hook). Do not edit by hand — it changes every commit.
-const APP_VERSION = "3.3.89";
+const APP_VERSION = "3.3.90";
 
 // Tsuzuki's own read API. It serves the same AniList payload out of a shared
 // server-side catalog (netlify/functions/_lib/catalog.mjs), so the schedule a
@@ -1136,7 +1136,7 @@ async function apiGet(path, {timeout=6000}={}){
 }
 // Public VAPID key for Web Push (server-driven alerts that work even when
 // Tsuzuki is closed). Generated with scripts/generate-vapid-keys.mjs — not secret.
-const VAPID_PUBLIC_KEY = "BG_oPd3dWly-EeNDo5mgU4wyWZAyuIk5uYJuzGAd2RsKAfL3pJsm6QaNJw1CRZ0kQPod_B5JaJVr6NMtT6ja48s";
+const VAPID_PUBLIC_KEY = "BB594h_5VV0438lXEg0dGtENsi1yC7uKOXSovJR6D_tLDVQ2fok4ZwdAKGKCc0wjURvkA9nWAyHMSubn0N5jMCU";
 const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 const DOW = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 

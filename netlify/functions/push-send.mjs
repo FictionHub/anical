@@ -37,7 +37,10 @@ const TIME_BUDGET_MS = 20_000;
 // a deploy where only the private key was set — the only one the setup notes
 // ever told you to set — returned 500 on every scheduled run. Keep the env var
 // as an override for anyone rotating keys, and fall back to the committed one.
-const VAPID_PUBLIC_DEFAULT = "BG_oPd3dWly-EeNDo5mgU4wyWZAyuIk5uYJuzGAd2RsKAfL3pJsm6QaNJw1CRZ0kQPod_B5JaJVr6NMtT6ja48s";
+// Rotated Aug 2026: the original pair's private half was never set anywhere, so
+// nothing could ever be signed. The subscription store was empty at the time of
+// rotation, so no existing subscriber was invalidated by the change.
+const VAPID_PUBLIC_DEFAULT = "BB594h_5VV0438lXEg0dGtENsi1yC7uKOXSovJR6D_tLDVQ2fok4ZwdAKGKCc0wjURvkA9nWAyHMSubn0N5jMCU";
 
 const AIR_LABEL = { raw: "JP broadcast", sub: "Sub", dub: "Dub" };
 
