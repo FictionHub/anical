@@ -7,8 +7,11 @@
      • cross-origin (AniList, ANN, Open-Meteo, images) -> untouched (network)
    Live anime data is always fetched fresh; the cache only guarantees the app
    still opens with offline/sample data when there's no connection. */
-const CACHE = "tsuzuki-v2";
-const SHELL = ["/", "/index.html", "/favicon.svg", "/manifest.webmanifest", "/og-image.png"];
+/* v3: rebrand. Static assets are served cache-first, so the icon and share card
+   only reach existing installs when the cache name changes and activate drops
+   the old one. */
+const CACHE = "tsuzuki-v3";
+const SHELL = ["/", "/index.html", "/favicon.svg?v=3", "/manifest.webmanifest", "/og-image.png", "/icon-192.png"];
 
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()).catch(() => {}));

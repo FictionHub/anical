@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="google-site-verification" content="Xy8DlJTMVqZurXBsQmqBrfTbcmc4OhxqgOIAUgurw2Q" />
 <title>Tsuzuki — Anime Release Calendar</title>
-<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3" />
 <link rel="alternate" type="application/rss+xml" title="Tsuzuki — Premieres &amp; Finales" href="/feed.xml" />
 <meta name="description" content="A live anime release calendar: upcoming episodes, new-season premieres, season finales, and Anime News Network headlines — refreshed on every visit. Follow shows for episode alerts. Free, no signup." />
 <meta name="keywords" content="anime calendar, anime release schedule, upcoming anime, anime episode schedule, new anime season, anime premieres, anime finales, when does anime air, anime airing dates, seasonal anime" />
@@ -27,7 +27,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="Tsuzuki" />
-<link rel="apple-touch-icon" href="/og-image.png" />
+<link rel="apple-touch-icon" href="/icon-192.png" />
 
 <!-- Open Graph (Facebook, Discord, etc.) -->
 <meta property="og:type" content="website" />
@@ -111,17 +111,32 @@
 }
 </script>
 <style>
+  /* One hot accent instead of three. Vermilion is the flag colour: the brand,
+     primary actions, and today's cell. Cyan stays, but only for links, focus
+     rings and the now-line — it is cool, so it never competes with the flag,
+     and gradients no longer run between the two.
+
+     --finale was #ef4444 and quietly did two unrelated jobs: the last episode of
+     a show, and every error state. A red accent left it a few degrees from the
+     brand hue, so it split — --finale is the semantic marker, --danger is the
+     error colour and keeps the old red.
+
+     --now is the current-time divider and is deliberately cool: an ordinary
+     episode already carries the accent, so a warm now-line put the same swatch
+     in the legend twice. A cool playhead over warm content also reads the way
+     a cursor should. */
   :root{
     --bg:#0d1117; --bg2:#161b22; --bg3:#1c2230; --line:#2a3140;
-    --txt:#e6edf3; --muted:#8b97a7; --accent:#8b5cf6; --accent2:#22d3ee;
-    --premiere:#f59e0b; --today:#7c3aed; --good:#22c55e; --now:#ff4d6d; --finale:#ef4444;
+    --txt:#e6edf3; --muted:#8b97a7; --accent:#ff4a2e; --accent-dk:#c2331b; --accent2:#22d3ee;
+    --premiere:#f59e0b; --today:#ff4a2e; --good:#22c55e; --now:#22d3ee;
+    --finale:#a78bfa; --danger:#ef4444;
     --radius:12px; --shadow:0 8px 30px rgba(0,0,0,.45);
   }
   /* light theme */
   body.theme-light{
     --bg:#f5f7fb; --bg2:#ffffff; --bg3:#eef1f6; --line:#d9deea; --txt:#1b2330; --muted:#5c6675;
     --shadow:0 8px 30px rgba(30,40,70,.10);
-    background:radial-gradient(1200px 600px at 80% -10%,#ece8ff 0,transparent 60%),
+    background:radial-gradient(1200px 600px at 80% -10%,#ffe7e0 0,transparent 60%),
                radial-gradient(900px 500px at -10% 110%,#dff2f7 0,transparent 55%),
                var(--bg);
   }
@@ -213,7 +228,9 @@
   /* Glow, scaled by the theme. Enough to feel lit; never enough to smear text. */
   body.skinned .card,body.skinned .cal,body.skinned .board-col{
     box-shadow:var(--shadow),0 0 0 1px color-mix(in srgb,var(--skin-glow,var(--accent)) calc(var(--skin-glow-strength,.4) * 26%),transparent)}
-  body.skinned .brand .dot{box-shadow:0 0 calc(14px + var(--skin-glow-strength,.4) * 20px) var(--skin-glow,var(--accent))}
+  /* drop-shadow, not box-shadow: the mark is an SVG stroke, so a box-shadow
+     would glow the element's rectangle instead of the letterform. */
+  body.skinned .brand .mark{filter:drop-shadow(0 0 calc(4px + var(--skin-glow-strength,.4) * 9px) var(--skin-glow,var(--accent)))}
   body.skinned button.primary{box-shadow:0 0 calc(var(--skin-glow-strength,.4) * 18px) color-mix(in srgb,var(--skin-glow,var(--accent)) 55%,transparent)}
 
   /* A 380px poster pinned to the corner of a 360px phone is in the way at any
@@ -224,15 +241,15 @@
     border-radius:10px;padding:8px 12px;font-size:13px;margin-bottom:12px}
   .skin-chip{display:inline-flex;align-items:center;gap:7px;font-weight:700}
   .skin-chip i{width:13px;height:13px;border-radius:50%;display:inline-block;
-    background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 0 9px var(--accent)}
+    background:linear-gradient(135deg,var(--accent),var(--accent-dk));box-shadow:0 0 9px var(--accent)}
   .dc-user{display:flex;align-items:center;gap:8px;font-weight:600}
   .dc-user img{border-radius:50%}
   .dc-chip{display:inline-flex!important;align-items:center;gap:7px;padding:4px 11px 4px 5px;font-size:12.5px;font-weight:700}
   .dc-chip img{width:22px;height:22px;border-radius:50%;flex:none;background:var(--bg3)}
   .dc-chip .dc-init{width:22px;height:22px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:11px;
-    background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff}
+    background:linear-gradient(135deg,var(--accent),var(--accent-dk));color:#fff}
   .dc-chip .dc-skin{width:9px;height:9px;border-radius:50%;flex:none;
-    background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 0 7px var(--accent)}
+    background:linear-gradient(135deg,var(--accent),var(--accent-dk));box-shadow:0 0 7px var(--accent)}
   @media(max-width:820px){.dc-chip .dc-name{display:none}}
   .err-hint{color:#fca5a5!important}
   /* settings modal */
@@ -241,7 +258,7 @@
   .seg2{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden}
   .seg2 button{border:none;border-radius:0;background:transparent}
   .seg2 button:hover{transform:none}
-  .seg2 button.on{background:linear-gradient(135deg,var(--accent),#6d28d9);color:#fff}
+  .seg2 button.on{background:linear-gradient(135deg,var(--accent),var(--accent-dk));color:#fff}
   .swatches{display:flex;gap:9px;flex-wrap:wrap}
   .swatch{width:30px;height:30px;border-radius:50%;border:2px solid transparent;cursor:pointer;padding:0}
   .swatch:hover{transform:translateY(-1px)}
@@ -254,8 +271,8 @@
   .skip-link{position:absolute;left:-9999px;top:0;background:var(--accent);color:#fff;padding:9px 15px;border-radius:0 0 9px 0;z-index:100;font-weight:700}
   .skip-link:focus{left:0}
   body{
-    background:radial-gradient(1200px 600px at 80% -10%,#1b1235 0,transparent 60%),
-               radial-gradient(900px 500px at -10% 110%,#08323a 0,transparent 55%),
+    background:radial-gradient(1200px 600px at 80% -10%,#26100a 0,transparent 60%),
+               radial-gradient(900px 500px at -10% 110%,#08262e 0,transparent 55%),
                var(--bg);
     color:var(--txt);
     font:15px/1.45 "Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
@@ -268,10 +285,12 @@
     background:linear-gradient(180deg,rgba(139,92,246,.12),transparent);
     position:sticky;top:0;z-index:20;backdrop-filter:blur(8px);
   }
-  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:.3px}
-  .brand .dot{width:12px;height:12px;border-radius:50%;
-    background:conic-gradient(from 0deg,var(--accent),var(--accent2),var(--premiere),var(--accent));
-    box-shadow:0 0 14px var(--accent)}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:20px;letter-spacing:.3px}
+  /* つ — the first character of つづく, "to be continued", which is what the
+     name means. Stroked in currentColor rather than a fixed hue: one asset
+     that stays correct in the dark theme, the light theme, and under every
+     user skin, none of which we control the background of. */
+  .brand .mark{width:26px;height:26px;flex:none}
   .spacer{flex:1}
   .nav{display:flex;align-items:center;gap:6px}
   button{
@@ -280,7 +299,7 @@
     transition:.15s;display:inline-flex;align-items:center;gap:7px
   }
   button:hover{border-color:var(--accent);background:#222b3d;transform:translateY(-1px)}
-  button.primary{background:linear-gradient(135deg,var(--accent),#6d28d9);border-color:transparent}
+  button.primary{background:linear-gradient(135deg,var(--accent),var(--accent-dk));border-color:transparent}
   .discord-btn{display:inline-flex;align-items:center;gap:7px;background:#5865F2;color:#fff;border:1px solid transparent;
     padding:8px 12px;border-radius:9px;font-size:14px;font-weight:600;text-decoration:none;transition:.15s;cursor:pointer}
   .discord-btn:hover{background:#4752c4;transform:translateY(-1px)}
@@ -314,7 +333,7 @@
   .seg{display:inline-flex;background:var(--bg3);border:1px solid var(--line);border-radius:10px;overflow:hidden}
   .seg button{border:none;border-radius:0;background:transparent;padding:8px 16px}
   .seg button:hover{transform:none;background:#222b3d}
-  .seg button.active{background:linear-gradient(135deg,var(--accent),#6d28d9);color:#fff}
+  .seg button.active{background:linear-gradient(135deg,var(--accent),var(--accent-dk));color:#fff}
   .filters{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
   .filters label{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);cursor:pointer}
   .filters input[type=checkbox]{accent-color:var(--accent);width:15px;height:15px}
@@ -334,7 +353,7 @@
   .changelog .cl-entry{padding:2px 0 6px}
   .changelog .cl-entry+.cl-entry{margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
   .changelog .cl-head{display:flex;align-items:baseline;gap:10px;margin-bottom:8px}
-  .changelog .cl-v{font-weight:800;font-size:16px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .changelog .cl-v{font-weight:800;font-size:16px;background:linear-gradient(135deg,var(--accent),var(--premiere));-webkit-background-clip:text;background-clip:text;color:transparent}
   .changelog .cl-date{color:var(--muted);font-size:12.5px}
   .changelog .cl-list{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:7px}
   .changelog .cl-list li{font-size:13.5px;line-height:1.5;color:var(--txt)}
@@ -350,7 +369,7 @@
   .chips:empty{display:none}
   .chip{font-size:12.5px;font-weight:600;padding:5px 11px;border-radius:20px;background:var(--bg3);border:1px solid var(--line);color:var(--muted);cursor:pointer;transition:.12s;white-space:nowrap}
   .chip:hover{border-color:var(--accent);color:var(--txt)}
-  .chip.on{background:linear-gradient(135deg,var(--accent),#6d28d9);border-color:transparent;color:#fff}
+  .chip.on{background:linear-gradient(135deg,var(--accent),var(--accent-dk));border-color:transparent;color:#fff}
   /* character / voice cast rail */
   .cast{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch}
   .cast-c{flex:none;width:84px;text-align:center;color:var(--txt)}
@@ -383,7 +402,7 @@
   .ev .t{font-size:11.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1}
   .ev .epn{font-size:10px;color:var(--muted);flex:none}
   .ev.prem .epn{color:var(--premiere);font-weight:700}
-  .ev.fin{border-left-color:var(--finale);background:linear-gradient(90deg,rgba(239,68,68,.16),var(--bg3))}
+  .ev.fin{border-left-color:var(--finale);background:linear-gradient(90deg,rgba(167,139,250,.16),var(--bg3))}
   .ev.fin .epn{color:var(--finale);font-weight:700}
   .more{font-size:11px;color:var(--accent2);font-weight:700;cursor:pointer;padding:2px}
   .more:hover{text-decoration:underline}
@@ -426,13 +445,13 @@
     background:transparent;color:var(--muted);cursor:pointer;white-space:nowrap}
   .obsbtn:hover{border-color:var(--accent2);color:var(--accent2)}
   .obsbtn[disabled]{cursor:default;border-color:var(--good);color:var(--good);opacity:1}
-  .pill.fin{background:rgba(239,68,68,.15);border-color:var(--finale);color:#fca5a5}
+  .pill.fin{background:rgba(167,139,250,.15);border-color:var(--finale);color:#c4b5fd}
   /* your own rating / notes, told apart from AniList's ★ average at a glance */
   .pill.myscore{font-weight:800;background:rgba(139,92,246,.14);border-color:var(--accent);color:#c4b5fd}
   .pill.myscore.great{background:rgba(139,92,246,.2);border-color:var(--accent);color:#c4b5fd}
   .pill.myscore.good{background:rgba(34,197,94,.15);border-color:var(--good);color:#86efac}
   .pill.myscore.ok{background:rgba(245,158,11,.15);border-color:var(--premiere);color:#fcd34d}
-  .pill.myscore.bad{background:rgba(239,68,68,.15);border-color:var(--finale);color:#fca5a5}
+  .pill.myscore.bad{background:rgba(239,68,68,.15);border-color:var(--danger);color:#fca5a5}
   .pill.notepill{cursor:help}
   /* Which release a row is: the JP broadcast, the simulcast, or the dub.
      `.est` marks a time we derived rather than one a human confirmed. */
@@ -463,7 +482,7 @@
   .airpanel .opt{cursor:pointer;font-size:12.5px;padding:6px 12px;border-radius:20px;border:1px solid var(--line);
     background:var(--bg3);color:var(--muted);user-select:none;transition:.12s}
   .airpanel .opt:hover{border-color:var(--accent)}
-  .airpanel .opt.on{background:linear-gradient(135deg,var(--accent),#6d28d9);border-color:transparent;color:#fff}
+  .airpanel .opt.on{background:linear-gradient(135deg,var(--accent),var(--accent-dk));border-color:transparent;color:#fff}
   .airpanel .hint{font-size:12px;color:var(--muted);line-height:1.5}
   #airBtn.narrowed{border-color:var(--accent2)}
   /* Settings panel sections */
@@ -627,7 +646,7 @@
   .dash-tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px;margin-bottom:22px}
   .dash-tile{background:var(--bg2);border:1px solid var(--line);border-radius:var(--radius);padding:18px 14px;text-align:center;box-shadow:var(--shadow);transition:.15s}
   .dash-tile:hover{border-color:var(--accent);transform:translateY(-2px)}
-  .dash-tile .dt-val{font-size:30px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .dash-tile .dt-val{font-size:30px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--premiere));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
   .dash-tile .dt-label{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-top:6px;font-weight:600}
   .dash-charts{display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:18px}
   .dash-chart{background:var(--bg2);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;overflow:hidden}
@@ -679,6 +698,9 @@
   .board-card-info{min-width:0;display:flex;flex-direction:column;gap:5px;justify-content:center}
   .board-card-title{font-size:12.5px;font-weight:700;line-height:1.25;max-height:32px;overflow:hidden}
   .board-card-marks{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+  /* cover + the progress fill under it, as one column, so the bar is exactly
+     the width of the art rather than the width of the card */
+  .bc-cover{flex:none;width:42px;display:flex;flex-direction:column;gap:3px}
 
   /* custom collections ("Lists") — a kanban of your own making. Reuses the
      board's card/column look; columns scroll sideways since there can be many. */
@@ -718,7 +740,7 @@
   .st-chip{background:var(--bg3);color:var(--muted);border:1px solid var(--line);
     padding:6px 10px;border-radius:8px;font-size:12.5px;font-weight:600;gap:6px;line-height:1;white-space:nowrap}
   .st-chip:hover{color:var(--txt)}
-  .st-chip.on{background:linear-gradient(135deg,var(--accent),#6d28d9);border-color:transparent;color:#fff}
+  .st-chip.on{background:linear-gradient(135deg,var(--accent),var(--accent-dk));border-color:transparent;color:#fff}
   .st-pick.sm{gap:4px}
   .st-pick.sm .st-chip{padding:4px 6px;font-size:12.5px;gap:0;border-radius:7px}
   .st-pick.sm .st-lab{display:none}
@@ -737,13 +759,34 @@
     width:31px;justify-content:center;gap:0}
   .rt-chip:hover{color:var(--txt)}
   .rt-chip.on{color:#fff;border-color:transparent}
-  .rt-chip.on.great{background:linear-gradient(135deg,var(--accent),#6d28d9)}
+  .rt-chip.on.great{background:linear-gradient(135deg,var(--accent),var(--accent-dk))}
   .rt-chip.on.good{background:linear-gradient(135deg,var(--good),#15803d)}
   .rt-chip.on.ok{background:linear-gradient(135deg,var(--premiere),#b45309)}
-  .rt-chip.on.bad{background:linear-gradient(135deg,var(--finale),#b91c1c)}
+  .rt-chip.on.bad{background:linear-gradient(135deg,var(--danger),#b91c1c)}
   .rt-out{font-size:12.5px;font-weight:800;color:var(--muted)}
   .rt-out.great{color:#c4b5fd} .rt-out.good{color:#86efac}
   .rt-out.ok{color:#fcd34d}    .rt-out.bad{color:#fca5a5}
+  /* episode progress: the counter row in the detail pop-up, and the fill that
+     rides under every card. One bar element, two sizes. */
+  .pg-ctl{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+  .pg-btn{background:var(--bg);color:var(--muted);border:1px solid var(--line);
+    padding:5px 9px;border-radius:8px;font-size:12.5px;font-weight:700;line-height:1;min-width:31px;justify-content:center}
+  .pg-btn:hover:not(:disabled){color:var(--txt);border-color:var(--accent)}
+  .pg-btn:disabled{opacity:.35;cursor:default;transform:none}
+  .pg-btn.wide{min-width:0}
+  .pg-count{font-size:12.5px;font-weight:800;padding:0 4px;white-space:nowrap}
+  .pg-count small{color:var(--muted);font-weight:600}
+  .pg-auto{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);cursor:pointer}
+  .pg-auto input{accent-color:var(--accent)}
+  .pg-bar{display:block;height:4px;border-radius:3px;background:var(--line);overflow:hidden}
+  .pg-bar i{display:block;height:100%;width:var(--pct,0%);border-radius:3px;
+    background:linear-gradient(90deg,var(--accent),var(--premiere));transition:width .2s}
+  .pg-bar.wide{flex-basis:100%;height:6px}
+  /* no episode count anywhere — the number, rather than a fill against a
+     denominator we'd have had to invent */
+  .pg-bar.na{height:auto;background:var(--bg);border:1px solid var(--line);
+    text-align:center;font-size:9.5px;font-weight:800;color:var(--muted);line-height:1.4;overflow:visible}
+  .pg-bar.na.wide{flex-basis:100%;font-size:11px;padding:2px 0}
   .nt-row{margin-top:4px}
   .note-box{display:block;width:100%;margin-top:6px;background:var(--bg3);color:var(--txt);
     border:1px solid var(--line);border-radius:11px;padding:9px 11px;font:inherit;font-size:13px;
@@ -785,6 +828,7 @@
     header{padding:9px 12px;gap:8px}
     .spacer{display:none}
     .brand{font-size:17px}
+    .brand .mark{width:22px;height:22px}
     .nav{gap:4px;order:2;width:100%}
     #monthTitle{min-width:0;flex:1;text-align:left;font-size:15px}
     .status{display:none}
@@ -826,7 +870,7 @@
   }
   @media(max-width:400px){
     .seg button{padding:8px 11px}
-    .brand .dot{width:10px;height:10px}
+    .brand .mark{width:20px;height:20px}
   }
 
   /* ---- chat widget ----
@@ -834,9 +878,9 @@
      dialog, and below nothing else. */
   .chat-fab{position:fixed;right:20px;bottom:20px;z-index:60;width:56px;height:56px;border-radius:50%;
     display:flex;align-items:center;justify-content:center;padding:0;font-size:23px;line-height:1;
-    background:linear-gradient(135deg,var(--accent),#6d28d9);border:1px solid transparent;color:#fff;
+    background:linear-gradient(135deg,var(--accent),var(--accent-dk));border:1px solid transparent;color:#fff;
     box-shadow:0 8px 24px rgba(139,92,246,.42);transition:transform .15s,box-shadow .15s}
-  .chat-fab:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 12px 30px rgba(139,92,246,.55);background:linear-gradient(135deg,var(--accent),#6d28d9)}
+  .chat-fab:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 12px 30px rgba(255,74,46,.5);background:linear-gradient(135deg,var(--accent),var(--accent-dk))}
   .chat-fab.open{transform:scale(.92);opacity:.85}
   .chat-fab .cf-dot{position:absolute;top:-2px;right:-2px;width:13px;height:13px;border-radius:50%;
     background:var(--accent2);border:2px solid var(--bg);display:none}
@@ -856,9 +900,9 @@
 
   .chat-log{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:14px;display:flex;flex-direction:column;gap:11px}
   .chat-msg{max-width:88%;padding:9px 12px;border-radius:13px;font-size:13.5px;line-height:1.55;word-wrap:break-word;overflow-wrap:anywhere}
-  .chat-msg.me{align-self:flex-end;background:linear-gradient(135deg,var(--accent),#6d28d9);color:#fff;border-bottom-right-radius:4px}
+  .chat-msg.me{align-self:flex-end;background:linear-gradient(135deg,var(--accent),var(--accent-dk));color:#fff;border-bottom-right-radius:4px}
   .chat-msg.bot{align-self:flex-start;background:var(--bg3);border:1px solid var(--line);border-bottom-left-radius:4px}
-  .chat-msg.err{align-self:stretch;max-width:100%;background:rgba(239,68,68,.13);border:1px solid var(--finale);color:var(--txt);font-size:12.5px}
+  .chat-msg.err{align-self:stretch;max-width:100%;background:rgba(239,68,68,.13);border:1px solid var(--danger);color:var(--txt);font-size:12.5px}
   .chat-msg p{margin:0 0 7px}
   .chat-msg p:last-child{margin-bottom:0}
   .chat-msg ul{margin:5px 0;padding-left:19px}
@@ -902,7 +946,7 @@
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
 <header>
-  <div class="brand"><span class="dot"></span> Tsuzuki</div>
+  <div class="brand"><svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><path d="M11 23 C26 18.5 42 19.5 48 24 C54.5 29 53 38 45 44 C37 49.5 25 50.5 15 45.5" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"/></svg> Tsuzuki</div>
   <div class="nav">
     <button class="icon" id="prev" title="Previous">‹</button>
     <button class="icon" id="today" title="Jump to today">Today</button>
@@ -1109,7 +1153,7 @@
 
 // Build number auto-stamped from the git commit count by scripts/stamp-version.mjs
 // (run via the .githooks/pre-commit hook). Do not edit by hand — it changes every commit.
-const APP_VERSION = "3.3.90";
+const APP_VERSION = "3.4.91";
 
 // Tsuzuki's own read API. It serves the same AniList payload out of a shared
 // server-side catalog (netlify/functions/_lib/catalog.mjs), so the schedule a
@@ -1183,7 +1227,12 @@ const state = {
   hideNSFW: localStorage.getItem("anical.hideNSFW")!=="0",   // hide adult/hentai by default; persisted
   titleLang: localStorage.getItem("anical.titleLang")||"english",   // english | romaji | native
   theme: localStorage.getItem("anical.theme")||"dark",              // dark | light
-  accent: localStorage.getItem("anical.accent")||"#8b5cf6|#22d3ee", // "<accent>|<accent2>"
+  // "<accent>|<accent2>". Everyone who never opened the accent picker has the
+  // old violet default sitting in localStorage, and a stored value is
+  // indistinguishable from a deliberate one — so the old default specifically
+  // is migrated to the new brand colour. Violet is still in the picker for
+  // anyone who actually wanted it.
+  accent: (a=>a==="#8b5cf6|#22d3ee"?"#ff4a2e|#22d3ee":a)(localStorage.getItem("anical.accent")||"#ff4a2e|#22d3ee"),
   density: localStorage.getItem("anical.density")||"normal",        // normal | dense
   // Timetable preferences (see the "timetable preferences" section below).
   weekStart: localStorage.getItem("anical.weekStart")||"0",         // "0" Sun | "1" Mon | "6" Sat | "rot" (today first)
@@ -1207,6 +1256,7 @@ const state = {
   collections: [],               // your own lists: [{id, name, ids:[mediaId…]}], in your order
   recent: [],                    // recently viewed show ids (most-recent first)
   progress: {},                  // mediaId -> highest watched episode number
+  autoProg: {},                  // mediaId -> last aired episode auto-marked (key present = opted in)
   notifyLead: 10,
   scheduled: new Map(),         // "id-ep" -> timeout id
   // Release-type preferences (see the "release variants" section below).
@@ -1242,6 +1292,7 @@ try{
 }catch(e){}
 try{ state.recent = JSON.parse(localStorage.getItem("anical.recent")||"[]"); }catch(e){}
 try{ state.progress = JSON.parse(localStorage.getItem("anical.progress")||"{}")||{}; }catch(e){}
+try{ state.autoProg = JSON.parse(localStorage.getItem("anical.autoprog")||"{}")||{}; }catch(e){}
 try{
   const raw=JSON.parse(localStorage.getItem("anical.airTypes")||"null");
   if(Array.isArray(raw)){ const s=new Set(raw.filter(t=>t==="raw"||t==="sub"||t==="dub")); if(s.size) state.airTypes=s; }
@@ -1569,8 +1620,106 @@ function focusSearch(){
 }
 /* episode progress ("mark watched" + Continue Watching) */
 function getProgress(id){ return state.progress[String(id)]||0; }
-function setProgress(id,ep){ id=String(id); ep=Math.max(0,ep|0); if(ep) state.progress[id]=ep; else delete state.progress[id]; localStorage.setItem("anical.progress", JSON.stringify(state.progress)); if(ep) alEnqueue(id); }
+/* The only writer of anical.progress outside a full-list import. Everything that
+   moves progress — the schedule rows, the +1 / caught-up counter, the airing
+   sweep — comes through here, so the AniList queue and the ceiling below are
+   impossible to route around. */
+function setProgress(id,ep){
+  id=String(id); ep=Math.max(0,ep|0);
+  const total=epTotal(findMediaById(id));
+  if(total) ep=Math.min(ep,total);   // never past the last episode
+  if(ep) state.progress[id]=ep; else delete state.progress[id];
+  localStorage.setItem("anical.progress", JSON.stringify(state.progress));
+  if(ep) alEnqueue(id);
+}
 function maxAiredEp(md){ const now=Date.now()/1000; let m=0; for(const n of (md.airingSchedule&&md.airingSchedule.nodes)||[]) if(n.airingAt<=now && n.episode>m) m=n.episode; return m; }
+/* How many episodes a show has, or 0 when nobody knows yet. AniList leaves
+   `episodes` null on anything still airing without an announced count, so the
+   schedule's own highest episode is the fallback — and a currently-airing show
+   that has neither is genuinely uncountable, which the callers handle. */
+function epTotal(md){
+  if(!md) return 0;
+  if(md.episodes>0) return md.episodes;
+  let m=0; for(const n of (md.airingSchedule&&md.airingSchedule.nodes)||[]) if(n.episode>m) m=n.episode;
+  return m;
+}
+
+/* ---------- auto-progress from airing (opt-in, per show) ----------
+   A show is opted in when its id is a key in state.autoProg; the value is the
+   highest *aired* episode the sweep has already accounted for. Storing that,
+   rather than simply pushing progress up to whatever has aired, is what lets a
+   manual correction stick: unmark episode 8 and the sweep leaves it alone until
+   episode 9 actually airs.
+
+   Opting in stamps the current aired episode instead of marking the back
+   catalogue watched — this feature is "mark them as they air", and retroactively
+   completing a show nobody has watched would be the opposite of that. */
+function autoProgOn(id){ return Object.prototype.hasOwnProperty.call(state.autoProg, String(id)); }
+function saveAutoProg(){ try{ localStorage.setItem("anical.autoprog", JSON.stringify(state.autoProg)); }catch(e){} }
+function setAutoProg(id,on){
+  id=String(id);
+  if(on) state.autoProg[id]=maxAiredEp(findMediaById(id)||{});
+  else delete state.autoProg[id];   // freezes where it is; progress is untouched
+  saveAutoProg();
+}
+// Runs before every render. Cheap: it walks the opted-in shows only, and writes
+// nothing unless an episode has aired since the last pass.
+function sweepAutoProgress(){
+  const moved=[];
+  for(const id of Object.keys(state.autoProg)){
+    const md=findMediaById(id); if(!md) continue;               // not loaded yet — try again next render
+    const aired=maxAiredEp(md), seen=+state.autoProg[id]||0;
+    if(aired<=seen) continue;
+    state.autoProg[id]=aired;
+    if(aired>getProgress(id)){ setProgress(id,aired); moved.push({md,ep:getProgress(id)}); }
+  }
+  if(!moved.length) return false;
+  saveAutoProg();
+  const first=moved[0];
+  toast(moved.length===1
+    ? `Marked watched · ${title(first.md)} ep ${first.ep}`
+    : `Marked watched · ${moved.length} shows caught up automatically`);
+  return true;
+}
+
+/* The counter itself, in the detail pop-up's Overview — the fast path that the
+   schedule list isn't. Marking a run of episodes used to mean opening the
+   Schedule tab and finding the right row; this is the same write, one click
+   away from where the show opens. */
+function progressRowHtml(md){
+  const id=String(md.id), p=getProgress(id), total=epTotal(md), aired=maxAiredEp(md);
+  if(!total && !p && !aired) return "";   // nothing aired, no count — nothing to count against
+  const auto=autoProgOn(id);
+  const atEnd=!!total && p>=total;
+  const caught=aired>0 && p>=aired;
+  return `<div class="st-row pg-row">
+    <span class="st-row-label">▶ Watched up to:</span>
+    <div class="pg-ctl">
+      <button type="button" class="pg-btn" data-prog="${id}|dec" title="Back one episode" aria-label="One episode back"${p<=0?" disabled":""}>−</button>
+      <span class="pg-count" aria-live="polite">${p?`Ep ${p}${total?` <small>of ${total}</small>`:""}`:`Not started${total?` <small>· ${total} episodes</small>`:""}`}</span>
+      <button type="button" class="pg-btn" data-prog="${id}|inc" title="Mark the next episode watched" aria-label="One episode forward"${atEnd?" disabled":""}>+1</button>
+      <button type="button" class="pg-btn wide" data-prog="${id}|max" title="Mark everything that has aired as watched"${(!aired||caught)?" disabled":""}>✓ Caught up${aired?` (ep ${aired})`:""}</button>
+      ${p?`<button type="button" class="pg-btn" data-prog="${id}|zero" title="Clear progress for this show">Reset</button>`:""}
+    </div>
+    ${progressBarHtml(md,true)}
+    <label class="pg-auto"><input type="checkbox" data-autoprog="${id}"${auto?" checked":""}> Mark episodes watched as they air</label>
+    <span class="st-hint">${auto
+      ? "On: each new episode marks itself watched once it airs. Turning this off freezes the counter where it is — nothing you've already watched is lost."
+      : "Counts up to the last episode that has actually aired, never past it. Syncs to AniList when your account is connected."}</span>
+  </div>`;
+}
+/* The same progress, as a fill — under every card (Day 09) and inside the
+   counter row. A show whose episode count nobody knows yet gets the number
+   instead of a bar: a fill needs a denominator, and inventing one would read as
+   "nearly finished" on a show that has fifty episodes left. */
+function progressBarHtml(md,wide){
+  const p=getProgress(md.id); if(!p) return "";
+  const total=epTotal(md);
+  const cls="pg-bar"+(wide?" wide":"")+(total?"":" na");
+  if(!total) return `<span class="${cls}" role="img" aria-label="${p} episodes watched, total unknown" title="${p} watched · total episode count unknown"><b>${p}</b></span>`;
+  const pct=Math.max(0,Math.min(100,Math.round(p/total*100)));
+  return `<span class="${cls}" role="img" aria-label="${p} of ${total} episodes watched" title="${p} of ${total} watched" style="--pct:${pct}%"><i></i></span>`;
+}
 /* recently viewed */
 function pushRecent(md){
   const id=String(md.id);
@@ -2164,6 +2313,11 @@ function renderWhatsNew(){
    update. Returning visitors see every entry newer than the one they last
    saw, once, in a modal they close manually. Trim old entries freely. */
 const CHANGELOG=[
+  { id:13, v:"3.4", date:"August 2026", items:[
+    "Episode progress has a counter of its own: −, +1, ✓ Caught up and a running “Ep 5 of 14”, right under Where to watch in every show. Marking three episodes no longer means opening the schedule and finding the right row.",
+    "New per-show switch: “mark episodes watched as they air”. Turn it on for the shows you never miss and the count keeps itself up to date. Turning it off freezes it where it is — nothing you've already watched is lost, and a correction you make by hand sticks until the next episode actually airs.",
+    "Every card on your board and in your lists now carries a thin progress bar under the cover, so you can see how far into each show you are without opening any of them.",
+  ]},
   { id:12, v:"3.3", date:"August 2026", items:[
     "New home: tsuzuki.top. Every old link still works — tsuzuki.netlify.app redirects here, and so does www.",
     "Calendar subscriptions are unaffected: your existing feeds keep working and won't re-add events you already have.",
@@ -2724,7 +2878,7 @@ function noteOptionsFor(md,n){
   const where=n.air ? " · "+(n.air.estimated?"~":"")+AIR_LABEL[n.air.type]+(n.air.platform?" on "+n.air.platform:"") : "";
   return {
     body:"Episode "+n.episode+" airs at "+fmtTime(n.airingAt)+where,
-    icon: (md.coverImage&&md.coverImage.medium)||"/og-image.png",
+    icon: (md.coverImage&&md.coverImage.medium)||"/icon-192.png",
     badge:"/favicon.svg",
     tag:"anical-"+md.id+"-"+n.episode,
     data:{ url: location.origin+location.pathname+"?show="+md.id }
@@ -2975,6 +3129,7 @@ function agendaRow(e,now){
 function renderView(){
   // a selection belongs to the view it was made in — leaving that view drops it
   if(bulkView && bulkView!==state.viewMode) bulkClear();
+  sweepAutoProgress();   // before the paint, so the counters below are already current
   if(state.viewMode==="dashboard"){ hideEvents(); hideBoard(); hideLists(); renderDashboard(); return; }
   if(state.viewMode==="events"){ hideDashboard(); hideBoard(); hideLists(); renderEvents(); return; }
   if(state.viewMode==="board"){ hideDashboard(); hideEvents(); hideLists(); renderBoard(); return; }
@@ -3285,6 +3440,7 @@ function openDetail(md,episode){
         ${notices}
         ${nextBlock}
         ${streamChipsHTML(md)}
+        ${progressRowHtml(md)}
         <div class="st-row">
           <span class="st-row-label">⭐ Your rating:</span>
           ${ratingPickerHtml(md.id)}
@@ -3640,7 +3796,7 @@ function openReport(md, episode){
 }
 
 /* ---------- appearance (theme / accent / density) ---------- */
-const ACCENTS=[["Purple","#8b5cf6","#22d3ee"],["Blue","#3b82f6","#22d3ee"],["Emerald","#10b981","#34d399"],["Rose","#f43f5e","#fb7185"],["Amber","#f59e0b","#fbbf24"],["Cyan","#06b6d4","#67e8f9"]];
+const ACCENTS=[["Vermilion","#ff4a2e","#22d3ee"],["Purple","#8b5cf6","#22d3ee"],["Blue","#3b82f6","#22d3ee"],["Emerald","#10b981","#34d399"],["Rose","#f43f5e","#fb7185"],["Amber","#f59e0b","#fbbf24"],["Cyan","#06b6d4","#67e8f9"]];
 function effectiveTheme(){
   if(state.theme==="auto") return (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) ? "light" : "dark";
   return state.theme;
@@ -3650,7 +3806,7 @@ function applyAppearance(){
   document.body.classList.toggle("theme-light", eff==="light");
   document.body.classList.toggle("dense", state.density==="dense");
   document.body.classList.toggle("no-covers", !state.showImages);
-  const parts=(state.accent||"#8b5cf6|#22d3ee").split("|");
+  const parts=(state.accent||"#ff4a2e|#22d3ee").split("|");
   document.documentElement.style.setProperty("--accent", parts[0]);
   document.documentElement.style.setProperty("--accent2", parts[1]||"#22d3ee");
   const m=document.querySelector('meta[name=theme-color]'); if(m) m.setAttribute("content", eff==="light"?"#f5f7fb":"#0d1117");
@@ -3788,7 +3944,7 @@ function applySkin(){
   b.style.setProperty("--skin-chip-radius",(sh.chipRadius??20)+"px");
   b.style.setProperty("--skin-border",(sh.border??1)+"px");
   b.style.setProperty("--skin-card-blur",(sh.cardBlur??10)+"px");
-  b.style.setProperty("--skin-glow",t.glow||(t.colors&&t.colors.accent)||"#8b5cf6");
+  b.style.setProperty("--skin-glow",t.glow||(t.colors&&t.colors.accent)||"#ff4a2e");
   b.style.setProperty("--skin-glow-strength",String(fx.glowStrength??0.4));
   // The family string is validated server-side (no ; { } < >) before it can
   // reach a style declaration.
@@ -4183,7 +4339,9 @@ function openSubscribe(){
 let chartJsReady=false;
 const dashCharts=[];
 const SOURCE_LABEL={ORIGINAL:"Original",MANGA:"Manga",LIGHT_NOVEL:"Light Novel",VISUAL_NOVEL:"Visual Novel",VIDEO_GAME:"Video Game",OTHER:"Other",NOVEL:"Novel",DOUJINSHI:"Doujinshi",ANIME:"Anime",WEB_NOVEL:"Web Novel",LIVE_ACTION:"Live Action",GAME:"Game",COMIC:"Comic",MULTIMEDIA_PROJECT:"Multimedia",PICTURE_BOOK:"Picture Book"};
-const CHART_COLORS=["#8b5cf6","#22d3ee","#f59e0b","#22c55e","#ef4444","#ec4899","#3b82f6","#a855f7","#14b8a6","#f97316","#6366f1","#84cc16"];
+// Categorical, so it stays multi-hue — but it leads on the brand colour, and
+// the old #ef4444 slot moved to violet to keep two reds from sitting together.
+const CHART_COLORS=["#ff4a2e","#22d3ee","#f59e0b","#22c55e","#a78bfa","#ec4899","#3b82f6","#a855f7","#14b8a6","#f97316","#6366f1","#84cc16"];
 
 function loadChartJs(){
   if(chartJsReady) return Promise.resolve();
@@ -4322,7 +4480,7 @@ async function renderDashboard(){
   // Starting vs Ending (show counts — a show can both start & end in one cour,
   // so these aren't mutually exclusive; a bar chart shows each honestly)
   dashCharts.push(new Chart($("chStartEnd"),{type:"bar",
-    data:{labels:["Premiering","Ending (Finale)"],datasets:[{label:"Shows",data:[st.premieres,st.finales],backgroundColor:["#f59e0b","#ef4444"],borderRadius:6}]},
+    data:{labels:["Premiering","Ending (Finale)"],datasets:[{label:"Shows",data:[st.premieres,st.finales],backgroundColor:["#f59e0b","#a78bfa"],borderRadius:6}]},
     options:{responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{grid:{color:GRID},ticks:{precision:0}}}}
   }));
 
@@ -4374,10 +4532,18 @@ function hideDashboard(){
 }
 
 /* ---------- board (watch statuses) ---------- */
-function boardCardHtml(md){
+/* A card's cover art, with the progress fill under it (Day 09). Both card
+   builders go through this, so the bar can't end up on the board and not in
+   Lists — they are the same card in two views. */
+function cardCoverHtml(md,drag){
   const cover=md.coverImage?(md.coverImage.large||md.coverImage.medium):"";
+  const bar=progressBarHtml(md);
+  if(!cover&&!bar) return "";
+  return `<div class="bc-cover">${cover?`<img src="${cover}" alt="" loading="lazy"${drag?' draggable="false"':""}>`:""}${bar}</div>`;
+}
+function boardCardHtml(md){
   return `<div class="board-card" data-openshow="${esc(String(md.id))}">
-    ${cover?`<img src="${cover}" alt="" loading="lazy">`:""}
+    ${cardCoverHtml(md)}
     <div class="board-card-info">
       <div class="board-card-title">${esc(title(md))}</div>
       ${(getRating(md.id)||hasNote(md.id))?`<div class="board-card-marks">${myMarks(md.id)}</div>`:""}
@@ -4436,7 +4602,6 @@ function hideBoard(){
    a mouse; the per-card "Move to…" picker does the same job on touch and by
    keyboard, so nothing is drag-only. */
 function listCardHtml(md, fromId){
-  const cover=md.coverImage?(md.coverImage.large||md.coverImage.medium):"";
   const mid=esc(String(md.id));
   const opts=[
     fromId?`<option value="">📥 Not in a list</option>`:"",
@@ -4445,7 +4610,7 @@ function listCardHtml(md, fromId){
   // img/select are draggable="false" so the card itself is what gets dragged
   // (otherwise the browser drags the cover art, and Firefox eats clicks on the select)
   return `<div class="board-card" draggable="true" data-openshow="${mid}" data-lcard="${mid}" data-lfrom="${esc(fromId||"")}">
-    ${cover?`<img src="${cover}" alt="" loading="lazy" draggable="false">`:""}
+    ${cardCoverHtml(md,true)}
     <div class="board-card-info">
       <div class="board-card-title">${esc(title(md))}</div>
       ${(getRating(md.id)||hasNote(md.id))?`<div class="board-card-marks">${myMarks(md.id)}</div>`:""}
@@ -4644,8 +4809,8 @@ function listsStatusText(){
 }
 
 /* ---------- events (real-life conventions / showcases where anime news breaks) ---------- */
-const EV_COLOR = { "Convention":"#8b5cf6", "Online Showcase":"#22d3ee", "Awards":"#f59e0b", "Doujin":"#ec4899", "Industry":"#22c55e", "Broadcast":"#14b8a6" };
-const evColor = t => EV_COLOR[t] || "#8b5cf6";
+const EV_COLOR = { "Convention":"#ff4a2e", "Online Showcase":"#22d3ee", "Awards":"#f59e0b", "Doujin":"#ec4899", "Industry":"#22c55e", "Broadcast":"#14b8a6" };
+const evColor = t => EV_COLOR[t] || "#ff4a2e";
 function evRangeLabel(e){
   const s=new Date(e.ts*1000);
   if(e.end && e.end!==e.start){ const en=new Date(e.tsEnd*1000);
@@ -4865,11 +5030,11 @@ async function scheduleEventNotifications(){
     const tag="anical-ev-"+e.id, url=location.origin+location.pathname+"?view=events";
     if(triggersSupported && swReg){
       if(fireAt<=now || fireAt-now>60*24*3600*1000) continue;
-      try{ await swReg.showNotification("🎟️ "+(e.title||"Anime event"), { body:"Starts "+evRangeLabel(e), icon:"/og-image.png", badge:"/favicon.svg", tag, data:{url}, showTrigger:new TimestampTrigger(fireAt) }); }catch(_){}
+      try{ await swReg.showNotification("🎟️ "+(e.title||"Anime event"), { body:"Starts "+evRangeLabel(e), icon:"/icon-192.png", badge:"/favicon.svg", tag, data:{url}, showTrigger:new TimestampTrigger(fireAt) }); }catch(_){}
     }else{
       const delay=fireAt-now, key="ev-"+e.id;
       if(delay<=0 || delay>24*3600*1000 || state.scheduled.has(key)) continue;
-      state.scheduled.set(key, setTimeout(()=>{ showNote("🎟️ "+(e.title||"Anime event"), {body:"Starts "+evRangeLabel(e), icon:"/og-image.png", tag, data:{url}}); state.scheduled.delete(key); }, delay));
+      state.scheduled.set(key, setTimeout(()=>{ showNote("🎟️ "+(e.title||"Anime event"), {body:"Starts "+evRangeLabel(e), icon:"/icon-192.png", tag, data:{url}}); state.scheduled.delete(key); }, delay));
     }
   }
 }
@@ -5009,7 +5174,7 @@ function useFallback(){
   const v=state.anchor, y=v.getFullYear(), m=v.getMonth();
   const mk=(name,day,ep,score,fmt)=>({id:name,title:{romaji:name,english:name},format:fmt,episodes:12,genres:["Action"],
     status:"RELEASING",popularity:1,averageScore:score,siteUrl:"https://anilist.co",description:"Offline sample entry.",
-    coverImage:{medium:"",large:"",color:"#8b5cf6"},startDate:{year:y,month:m+1,day},trailer:null,
+    coverImage:{medium:"",large:"",color:"#ff4a2e"},startDate:{year:y,month:m+1,day},trailer:null,
     studios:{nodes:[]},airingSchedule:{nodes:[{airingAt:Math.floor(new Date(y,m,day,18,0).getTime()/1000),episode:ep}]}});
   state.media=[mk("Sample: A New Season Begins",3,1,82,"TV"),mk("Sample: Returning Hit S2",4,1,88,"TV"),
     mk("Sample: Ongoing Adventure",10,5,75,"TV"),mk("Sample: Weekend Movie",14,1,79,"MOVIE"),mk("Sample: Late-night ONA",21,3,71,"ONA")];
@@ -5397,9 +5562,66 @@ document.addEventListener("click",e=>{
   const m=e.target.closest("[data-mark]"); if(!m) return; e.preventDefault(); e.stopPropagation();
   const parts=m.dataset.mark.split("|"), id=parts[0], ep=+parts[1], cur=getProgress(id);
   setProgress(id, ep<=cur ? ep-1 : ep);
-  const md=findMediaById(id); if(md) openDetail(md, maxAiredEp(md)||1);   // refresh marks
-  renderSidebars();                                                       // refresh Continue Watching
+  refreshProgressUI(id);
 });
+/* The counter's own buttons (Overview tab). Every one of them lands in
+   setProgress, which is what keeps the AniList queue and the episode ceiling
+   from having a second, subtly different implementation here. */
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-prog]"); if(!b||b.disabled) return;
+  e.preventDefault(); e.stopPropagation();
+  const [id,op]=b.dataset.prog.split("|");
+  const md=findMediaById(id), before=getProgress(id);
+  let next=before;
+  if(op==="inc") next=before+1;
+  else if(op==="dec") next=before-1;
+  else if(op==="max") next=Math.max(before, maxAiredEp(md||{}));   // the latest *aired* episode, not the last one announced
+  else if(op==="zero") next=0;
+  if(next===before) return;
+  setProgress(id,next);
+  refreshProgressUI(id, b.dataset.prog);
+  // Clearing a show's progress is the one move here that throws work away.
+  // Toasted after the repaint: the repaint can raise a toast of its own.
+  if(op==="zero") toast(`Progress cleared · ${md?title(md):"Show"}`, ()=>{ setProgress(id,before); refreshProgressUI(id); });
+});
+// auto-progress opt-in (Day 08). Off freezes the counter; it never rewinds it.
+document.addEventListener("change",e=>{
+  const c=e.target.closest("[data-autoprog]"); if(!c) return;
+  const id=c.dataset.autoprog, md=findMediaById(id), name=md?title(md):"Show";
+  setAutoProg(id,c.checked);
+  refreshProgressUI(id);
+  toast(c.checked ? `Marking episodes as they air · ${name}` : `Auto-marking off · ${name}`);
+});
+/* Repaint everything progress touches: the counter row and the schedule ticks
+   in the open pop-up, then the views behind it (cards, Continue Watching).
+   In place rather than a full openDetail() — that rebuilt the modal and threw
+   away scroll position and focus on every single +1. */
+function refreshProgressUI(id, focusKey){
+  const md=findMediaById(id);
+  if(md && String(state._modalId)===String(id)){
+    const row=document.querySelector(".pg-row");
+    if(row){
+      const tmp=document.createElement("div"); tmp.innerHTML=progressRowHtml(md);
+      const fresh=tmp.firstElementChild;
+      if(fresh){
+        row.replaceWith(fresh);
+        // Keep the keyboard where it was — unless the click just disabled the
+        // button it was on ("caught up" twice), in which case let it go.
+        const again=focusKey&&fresh.querySelector(`[data-prog="${CSS.escape(focusKey)}"]`);
+        if(again && !again.disabled) again.focus();
+      }
+    }
+    const panel=$("mpanel-schedule");
+    if(panel){
+      const keep=panel.querySelector(".sched-scroll");
+      const top=keep?keep.scrollTop:0;
+      panel.innerHTML=renderScheduleList(md);
+      const back=panel.querySelector(".sched-scroll");
+      if(back) back.scrollTop=top;
+    }
+  }
+  renderView();   // board/list bars and the Continue Watching rail
+}
 
 // hide / "not interested": toggle and refresh. Hiding takes a show out of every
 // view at once, and the modal it was hidden from closes with it — an Undo is

@@ -8,13 +8,13 @@
 <meta name="robots" content="noindex, follow" />
 <meta name="description" content="Embeddable live anime airing schedule widget by Tsuzuki." />
 <style>
-  :root{--bg:#0d1117;--bg2:#161b22;--bg3:#1c2230;--line:#2a3140;--txt:#e6edf3;--muted:#8b97a7;--accent:#8b5cf6;--accent2:#22d3ee;--prem:#f59e0b;--fin:#ef4444}
+  :root{--bg:#0d1117;--bg2:#161b22;--bg3:#1c2230;--line:#2a3140;--txt:#e6edf3;--muted:#8b97a7;--accent:#ff4a2e;--accent2:#22d3ee;--prem:#f59e0b;--fin:#a78bfa}
   *{box-sizing:border-box}
   html,body{margin:0;height:100%}
   body{background:var(--bg);color:var(--txt);font:13px/1.45 "Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;display:flex;flex-direction:column}
   a{color:var(--accent2);text-decoration:none}
-  .hd{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,rgba(139,92,246,.14),transparent);flex:none}
-  .hd .dot{width:11px;height:11px;border-radius:50%;background:conic-gradient(from 0deg,var(--accent),var(--accent2),var(--prem),var(--accent));box-shadow:0 0 10px var(--accent)}
+  .hd{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,rgba(255,74,46,.14),transparent);flex:none}
+  .hd .mark{width:19px;height:19px;flex:none}
   .hd .nm{font-weight:800;font-size:14px}
   .hd .sub{color:var(--muted);font-size:11px;margin-left:auto}
   .list{flex:1;overflow:auto;padding:4px 0}
@@ -36,7 +36,7 @@
 </style>
 </head>
 <body>
-<div class="hd"><span class="dot"></span><span class="nm">Tsuzuki</span><span class="sub" id="sub">Loading…</span></div>
+<div class="hd"><svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><path d="M11 23 C26 18.5 42 19.5 48 24 C54.5 29 53 38 45 44 C37 49.5 25 50.5 15 45.5" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"/></svg><span class="nm">Tsuzuki</span><span class="sub" id="sub">Loading…</span></div>
 <div class="list" id="list"><div class="msg"><span class="spin"></span> Loading anime schedule…</div></div>
 <div class="ft">📅 <a href="https://tsuzuki.top/" target="_blank" rel="noopener">Full anime calendar on Tsuzuki →</a></div>
 <script>

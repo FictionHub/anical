@@ -8,7 +8,7 @@
 <meta name="robots" content="index, follow, max-image-preview:large" />
 <meta name="theme-color" content="#0d1117" />
 <link rel="canonical" href="https://tsuzuki.top/api/" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Tsuzuki" />
 <meta property="og:url" content="https://tsuzuki.top/api/" />
@@ -21,18 +21,18 @@
 *{box-sizing:border-box}
 body{margin:0;background:#0d1117;color:#e6edf3;
   font:15px/1.6 "Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
-  background-image:radial-gradient(1200px 600px at 80% -10%,#1b1235 0,transparent 60%),radial-gradient(900px 500px at -10% 110%,#08323a 0,transparent 55%)}
+  background-image:radial-gradient(1200px 600px at 80% -10%,#26100a 0,transparent 60%),radial-gradient(900px 500px at -10% 110%,#08262e 0,transparent 55%)}
 a{color:#22d3ee;text-decoration:none}a:hover{text-decoration:underline}
 .wrap{max-width:900px;margin:0 auto;padding:26px 20px 70px}
-header.top{display:flex;align-items:center;gap:10px;font-weight:800;font-size:22px;margin-bottom:6px}
+header.top{display:flex;align-items:center;gap:9px;font-weight:800;font-size:22px;margin-bottom:6px}
 header.top a{color:inherit}
-header.top .dot{width:13px;height:13px;border-radius:50%;background:conic-gradient(from 0deg,#8b5cf6,#22d3ee,#f59e0b,#8b5cf6);box-shadow:0 0 14px #8b5cf6}
+header.top .mark{width:28px;height:28px;flex:none}
 .crumbs{font-size:13px;color:#8b97a7;margin:6px 0 2px}.crumbs a{color:#8b97a7}
 h1{font-size:29px;margin:14px 0 8px;line-height:1.2}
 h2{font-size:20px;margin:36px 0 6px;border-bottom:1px solid #2a3140;padding-bottom:7px}
 h3{font-size:15px;margin:24px 0 4px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#c4b5fd}
 .lede{color:#aeb9c7;max-width:720px;font-size:16px}
-.cta{display:inline-block;margin:16px 8px 6px 0;background:linear-gradient(135deg,#8b5cf6,#6d28d9);color:#fff;font-weight:700;padding:11px 18px;border-radius:10px}
+.cta{display:inline-block;margin:16px 8px 6px 0;background:linear-gradient(135deg,#ff4a2e,#c2331b);color:#fff;font-weight:700;padding:11px 18px;border-radius:10px}
 .cta:hover{text-decoration:none;filter:brightness(1.08)}
 .cta.alt{background:#1c2230;border:1px solid #2a3140}
 pre{background:#12171f;border:1px solid #2a3140;border-radius:10px;padding:13px 15px;overflow-x:auto;
@@ -44,7 +44,7 @@ table{width:100%;border-collapse:collapse;margin-top:10px;font-size:14px}
 th,td{text-align:left;padding:8px 10px;border-bottom:1px solid #2a3140;vertical-align:top}
 th{color:#8b97a7;font-size:12px;text-transform:uppercase;letter-spacing:.5px}
 td code{white-space:nowrap}
-.note{background:#161b22;border:1px solid #2a3140;border-left:3px solid #8b5cf6;border-radius:0 10px 10px 0;
+.note{background:#161b22;border:1px solid #2a3140;border-left:3px solid #ff4a2e;border-radius:0 10px 10px 0;
   padding:12px 15px;margin:18px 0;color:#c4cdd9;font-size:14px}
 .note.warn{border-left-color:#f59e0b}
 footer{margin-top:44px;color:#8b97a7;font-size:12.5px;border-top:1px solid #2a3140;padding-top:16px}
@@ -56,7 +56,7 @@ footer{margin-top:44px;color:#8b97a7;font-size:12.5px;border-top:1px solid #2a31
 </head>
 <body>
 <div class="wrap">
-  <header class="top"><span class="dot"></span> <a href="/">Tsuzuki</a></header>
+  <header class="top"><svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><path d="M11 23 C26 18.5 42 19.5 48 24 C54.5 29 53 38 45 44 C37 49.5 25 50.5 15 45.5" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"/></svg> <a href="/">Tsuzuki</a></header>
   <div class="crumbs"><a href="/">Home</a> › API</div>
 
   <h1>Tsuzuki API <span class="tag">v1 · FREE · NO KEY</span></h1>
