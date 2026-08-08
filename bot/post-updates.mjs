@@ -147,7 +147,7 @@ function weekEmbed({events}){
     lines.push(`${T(e.ts)} **${decode(title(e.md))}** · Ep ${e.ep}${tag?" "+tag:""}`);
   }
   return {
-    title:`🗓️ This Week in Anime`, url:SITE, color:0x8b5cf6,
+    title:`🗓️ This Week in Anime`, url:SITE, color:0xff4a2e,
     description: events.length?clamp(lines):"No episodes scheduled in the next "+DAYS+" days.",
     footer:{text:`AniList · next ${DAYS} days · 🆕 premiere  🏁 finale`}, timestamp:new Date().toISOString(),
   };
@@ -167,7 +167,7 @@ function newsEmbed(items){
     const ts=Math.floor(new Date(i.pubDate.replace(" ","T")+"Z").getTime()/1000);
     return `• [${decode(i.title)}](${i.link}) · ${T(ts,"R")}`;
   });
-  return { title:`📰 Latest Anime News`, url:"https://www.animenewsnetwork.com/news/", color:0x1abc9c,
+  return { title:`📰 Latest Anime News`, url:"https://www.animenewsnetwork.com/news/", color:0x22d3ee,
     description: lines.length?clamp(lines):"Couldn't load news right now.",
     footer:{text:"Anime News Network"}, timestamp:new Date().toISOString() };
 }
@@ -205,7 +205,7 @@ async function post(channelId, embed, pingRoleId){
     ["premieres",  listEmbed(premieres,{emoji:"🌸",name:"New Premieres",color:0xf59e0b,
         line:e=>`${T(e.ts,"f")} · **${decode(title(e.md))}** · ${e.md.format||"?"}${e.md.averageScore?` · ★${e.md.averageScore}`:""}`}),
         role("🔔 Premiere Pings")],
-    ["finales",    listEmbed(finales,{emoji:"🏁",name:"Season Finales",color:0xef4444,
+    ["finales",    listEmbed(finales,{emoji:"🏁",name:"Season Finales",color:0xa78bfa,
         line:e=>`${T(e.ts,"f")} · **${decode(title(e.md))}** · Ep ${e.ep}${e.md.averageScore?` · ★${e.md.averageScore}`:""}`}),
         null],
     ["anime-news", newsEmbed(news), role("📰 News Pings")],

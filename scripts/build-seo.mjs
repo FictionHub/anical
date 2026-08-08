@@ -29,7 +29,7 @@ import { collectSeasonless } from "../netlify/functions/_lib/seasonless.mjs";
 const SITE = "https://tsuzuki.top";
 const APP_DIR = dirname(fileURLToPath(import.meta.url));
 const SITE_DIR = join(APP_DIR, "..", "site");
-const DEFAULT_OG = `${SITE}/og-image.png`;
+const DEFAULT_OG = `${SITE}/og-image-v2.png`;
 const MAX_ANIME_PAGES = 600;   // safety bound on per-show pages
 // Cloudflare Web Analytics token (privacy-friendly, no cookies, nothing to host).
 // Paste your token from dash.cloudflare.com → Web Analytics to enable it on all generated pages.

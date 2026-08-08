@@ -10,8 +10,8 @@
 /* v3: rebrand. Static assets are served cache-first, so the icon and share card
    only reach existing installs when the cache name changes and activate drops
    the old one. */
-const CACHE = "tsuzuki-v3";
-const SHELL = ["/", "/index.html", "/favicon.svg?v=3", "/manifest.webmanifest", "/og-image.png", "/icon-192.png"];
+const CACHE = "tsuzuki-v4";
+const SHELL = ["/", "/index.html", "/favicon.svg?v=3", "/manifest.webmanifest", "/og-image-v2.png", "/icon-192.png"];
 
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()).catch(() => {}));

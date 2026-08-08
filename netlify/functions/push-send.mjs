@@ -143,7 +143,7 @@ async function run({ dry }) {
         const payload = JSON.stringify({
           title: t + " — Episode " + n.episode,
           body: bodyText,
-          icon: (md.coverImage && md.coverImage.medium) || SITE + "/og-image.png",
+          icon: (md.coverImage && md.coverImage.medium) || SITE + "/icon-192.png",
           tag: "anical-" + md.id + "-" + n.episode,
           url: SITE + "/?show=" + md.id,
         });
