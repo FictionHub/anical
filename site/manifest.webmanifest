@@ -6,8 +6,8 @@
   "scope": "/",
   "display": "standalone",
   "orientation": "any",
-  "background_color": "#0d1117",
-  "theme_color": "#0d1117",
+  "background_color": "#0e0908",
+  "theme_color": "#ff4a2e",
   "categories": ["entertainment", "lifestyle", "utilities"],
   "icons": [
     { "src": "/favicon.svg?v=3", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },

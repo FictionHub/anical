@@ -11,7 +11,7 @@
 <meta name="keywords" content="anime calendar, anime release schedule, upcoming anime, anime episode schedule, new anime season, anime premieres, anime finales, when does anime air, anime airing dates, seasonal anime" />
 <meta name="author" content="Tsuzuki" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
-<meta name="theme-color" content="#0d1117" />
+<meta name="theme-color" content="#0e0908" />
 <link rel="canonical" href="https://tsuzuki.top/" />
 
 <!-- Performance: warm up connections to the data + image origins -->
@@ -125,19 +125,25 @@
      episode already carries the accent, so a warm now-line put the same swatch
      in the legend twice. A cool playhead over warm content also reads the way
      a cursor should. */
+  /* The neutrals are the logo's black, not GitHub's. Every grey here is pulled
+     a few degrees toward the mark's #12060a instead of the blue-biased ramp
+     that was here before — the same reason the mark reads as belonging to the
+     page rather than sitting on it. --on-accent is the mark's own black, used
+     for anything printed ON vermilion. */
   :root{
-    --bg:#0d1117; --bg2:#161b22; --bg3:#1c2230; --line:#2a3140;
-    --txt:#e6edf3; --muted:#8b97a7; --accent:#ff4a2e; --accent-dk:#c2331b; --accent2:#22d3ee;
+    --bg:#0e0908; --bg2:#171110; --bg3:#221917; --line:#342825;
+    --txt:#f4ece9; --muted:#a1908b; --accent:#ff4a2e; --accent-dk:#c2331b; --accent2:#22d3ee;
+    --on-accent:#12060a;
     --premiere:#f59e0b; --today:#ff4a2e; --good:#22c55e; --now:#22d3ee;
     --finale:#a78bfa; --danger:#ef4444;
-    --radius:12px; --shadow:0 8px 30px rgba(0,0,0,.45);
+    --radius:16px; --shadow:0 8px 30px rgba(0,0,0,.5);
   }
   /* light theme */
   body.theme-light{
-    --bg:#f5f7fb; --bg2:#ffffff; --bg3:#eef1f6; --line:#d9deea; --txt:#1b2330; --muted:#5c6675;
-    --shadow:0 8px 30px rgba(30,40,70,.10);
-    background:radial-gradient(1200px 600px at 80% -10%,#ffe7e0 0,transparent 60%),
-               radial-gradient(900px 500px at -10% 110%,#dff2f7 0,transparent 55%),
+    --bg:#faf6f4; --bg2:#ffffff; --bg3:#f3ebe8; --line:#e6d9d4; --txt:#1b1210; --muted:#6b5b56;
+    --shadow:0 8px 30px rgba(60,30,20,.10);
+    background:radial-gradient(1200px 600px at 80% -10%,#ffe4db 0,transparent 60%),
+               radial-gradient(900px 500px at -10% 110%,#fdf0ea 0,transparent 55%),
                var(--bg);
   }
   /* compact density */
@@ -241,15 +247,15 @@
     border-radius:10px;padding:8px 12px;font-size:13px;margin-bottom:12px}
   .skin-chip{display:inline-flex;align-items:center;gap:7px;font-weight:700}
   .skin-chip i{width:13px;height:13px;border-radius:50%;display:inline-block;
-    background:linear-gradient(135deg,var(--accent),var(--accent-dk));box-shadow:0 0 9px var(--accent)}
+    background:var(--accent);box-shadow:0 0 9px var(--accent)}
   .dc-user{display:flex;align-items:center;gap:8px;font-weight:600}
   .dc-user img{border-radius:50%}
   .dc-chip{display:inline-flex!important;align-items:center;gap:7px;padding:4px 11px 4px 5px;font-size:12.5px;font-weight:700}
   .dc-chip img{width:22px;height:22px;border-radius:50%;flex:none;background:var(--bg3)}
   .dc-chip .dc-init{width:22px;height:22px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:11px;
-    background:linear-gradient(135deg,var(--accent),var(--accent-dk));color:#fff}
+    background:var(--accent);color:var(--on-accent)}
   .dc-chip .dc-skin{width:9px;height:9px;border-radius:50%;flex:none;
-    background:linear-gradient(135deg,var(--accent),var(--accent-dk));box-shadow:0 0 7px var(--accent)}
+    background:var(--accent);box-shadow:0 0 7px var(--accent)}
   @media(max-width:820px){.dc-chip .dc-name{display:none}}
   .err-hint{color:#fca5a5!important}
   /* settings modal */
@@ -258,7 +264,7 @@
   .seg2{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden}
   .seg2 button{border:none;border-radius:0;background:transparent}
   .seg2 button:hover{transform:none}
-  .seg2 button.on{background:linear-gradient(135deg,var(--accent),var(--accent-dk));color:#fff}
+  .seg2 button.on{background:var(--accent);color:var(--on-accent)}
   .swatches{display:flex;gap:9px;flex-wrap:wrap}
   .swatch{width:30px;height:30px;border-radius:50%;border:2px solid transparent;cursor:pointer;padding:0}
   .swatch:hover{transform:translateY(-1px)}
@@ -268,29 +274,35 @@
   /* accessibility */
   @media (prefers-reduced-motion: reduce){ *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important} }
   :focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
-  .skip-link{position:absolute;left:-9999px;top:0;background:var(--accent);color:#fff;padding:9px 15px;border-radius:0 0 9px 0;z-index:100;font-weight:700}
+  .skip-link{position:absolute;left:-9999px;top:0;background:var(--accent);color:var(--on-accent);padding:9px 15px;border-radius:0 0 9px 0;z-index:100;font-weight:700}
   .skip-link:focus{left:0}
   body{
-    background:radial-gradient(1200px 600px at 80% -10%,#26100a 0,transparent 60%),
-               radial-gradient(900px 500px at -10% 110%,#08262e 0,transparent 55%),
+    /* Ember at both corners rather than the old warm/cool pair — a cool
+       counterweight pulled the ground back toward the palette we just left. */
+    background:radial-gradient(1200px 600px at 80% -10%,#31130b 0,transparent 60%),
+               radial-gradient(900px 500px at -10% 110%,#1c0a06 0,transparent 55%),
                var(--bg);
     color:var(--txt);
     font:15px/1.45 "Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
     -webkit-font-smoothing:antialiased;
   }
   a{color:var(--accent2);text-decoration:none}
+  /* A full-bleed vermilion band was fatiguing to sit under, and it hid the
+     logo: with the mark in near-black and every control in near-black too, the
+     brand had nothing to distinguish it. So the field goes dark and the tile
+     comes back — the logo is now the only saturated thing in the header, which
+     is what makes it read. The accent survives as a 2px rule along the bottom. */
   header{
     display:flex;align-items:center;gap:14px;flex-wrap:wrap;
-    padding:14px 22px;border-bottom:1px solid var(--line);
-    background:linear-gradient(180deg,rgba(139,92,246,.12),transparent);
-    position:sticky;top:0;z-index:20;backdrop-filter:blur(8px);
+    padding:12px 22px;border-bottom:2px solid var(--accent);
+    background:color-mix(in srgb,var(--bg2) 90%,transparent);
+    position:sticky;top:0;z-index:20;backdrop-filter:blur(10px);
   }
+  /* The brand lockup is the app icon itself — same tile, same inset transform
+     as site/favicon.svg. It carries its own ground, so it stays correct on the
+     light theme and under every user skin without a currentColor dance. */
+  .brand .mark{width:29px;height:29px;flex:none;border-radius:7px}
   .brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:20px;letter-spacing:.3px}
-  /* つ — the first character of つづく, "to be continued", which is what the
-     name means. Stroked in currentColor rather than a fixed hue: one asset
-     that stays correct in the dark theme, the light theme, and under every
-     user skin, none of which we control the background of. */
-  .brand .mark{width:26px;height:26px;flex:none}
   .spacer{flex:1}
   .nav{display:flex;align-items:center;gap:6px}
   button{
@@ -298,8 +310,8 @@
     padding:8px 12px;border-radius:9px;cursor:pointer;font-size:14px;font-weight:600;
     transition:.15s;display:inline-flex;align-items:center;gap:7px
   }
-  button:hover{border-color:var(--accent);background:#222b3d;transform:translateY(-1px)}
-  button.primary{background:linear-gradient(135deg,var(--accent),var(--accent-dk));border-color:transparent}
+  button:hover{border-color:var(--accent);background:var(--bg3);transform:translateY(-1px)}
+  button.primary{background:var(--accent);border-color:transparent;color:var(--on-accent)}
   .discord-btn{display:inline-flex;align-items:center;gap:7px;background:#5865F2;color:#fff;border:1px solid transparent;
     padding:8px 12px;border-radius:9px;font-size:14px;font-weight:600;text-decoration:none;transition:.15s;cursor:pointer}
   .discord-btn:hover{background:#4752c4;transform:translateY(-1px)}
@@ -310,7 +322,7 @@
   /* search */
   .search-wrap{position:relative}
   #fSearch{background:var(--bg3);color:var(--txt);border:1px solid var(--line);border-radius:9px;padding:7px 11px;font-size:13px;font-weight:600;min-width:190px;width:200px}
-  #fSearch:focus{outline:none;border-color:var(--accent);background:#222b3d}
+  #fSearch:focus{outline:none;border-color:var(--accent);background:var(--bg3)}
   #fSearch::placeholder{color:var(--muted);font-weight:500}
   .search-results{position:absolute;top:calc(100% + 5px);left:0;min-width:280px;max-width:340px;background:var(--bg2);border:1px solid var(--line);border-radius:11px;box-shadow:var(--shadow);max-height:360px;overflow:auto;z-index:40;display:none}
   .search-results.on{display:block}
@@ -329,12 +341,23 @@
   @keyframes s{to{transform:rotate(360deg)}}
 
   /* toolbar: view switch + filters */
-  .toolbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:12px 22px;border-bottom:1px solid var(--line);background:rgba(28,34,48,.4)}
+  .toolbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:12px 22px;border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--bg3) 55%,transparent)}
   .seg{display:inline-flex;background:var(--bg3);border:1px solid var(--line);border-radius:10px;overflow:hidden}
   .seg button{border:none;border-radius:0;background:transparent;padding:8px 16px}
-  .seg button:hover{transform:none;background:#222b3d}
-  .seg button.active{background:linear-gradient(135deg,var(--accent),var(--accent-dk));color:#fff}
+  .seg button:hover{transform:none;background:var(--bg3)}
+  .seg button.active{background:var(--accent);color:var(--on-accent)}
   .filters{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  /* Eight identical dropdowns, two checkbox rows and a legend pushed the first
+     episode ~370px down the page, and gave "All tags" the same visual weight as
+     search. Collapsed by default behind one control, using the same
+     `.filters>*:not(.search-wrap)` pattern lists- and board-mode already use,
+     so every existing id and handler stays exactly where it was. */
+  body:not(.filters-open) .filters>*:not(.search-wrap){display:none}
+  #filtersBtn.on{background:var(--accent);border-color:transparent;color:var(--on-accent)}
+  .fcount{font-size:11px;font-weight:800;background:var(--accent);color:var(--on-accent);
+    border-radius:20px;padding:1px 6px;margin-left:2px}
+  .fcount:empty{display:none}
+  #filtersBtn.on .fcount{background:var(--on-accent);color:var(--accent)}
   .filters label{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);cursor:pointer}
   .filters input[type=checkbox]{accent-color:var(--accent);width:15px;height:15px}
   .legend{display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-size:12px;color:var(--muted)}
@@ -344,7 +367,7 @@
   main{display:grid;grid-template-columns:1fr 330px;gap:18px;padding:18px 22px;max-width:1500px;margin:0 auto}
   @media(max-width:1080px){main{grid-template-columns:minmax(0,1fr)}}
   /* what's new since last visit */
-  .whatsnew{display:flex;align-items:center;gap:10px;background:linear-gradient(90deg,rgba(139,92,246,.16),var(--bg2));border:1px solid var(--line);border-radius:12px;padding:8px 12px;margin-bottom:12px;box-shadow:var(--shadow)}
+  .whatsnew{display:flex;align-items:center;gap:10px;background:linear-gradient(90deg,rgba(255,74,46,.16),var(--bg2));border:1px solid var(--line);border-radius:12px;padding:8px 12px;margin-bottom:12px;box-shadow:var(--shadow)}
   .loadwarn{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:linear-gradient(90deg,rgba(245,158,11,.16),var(--bg2));border:1px solid var(--premiere);border-radius:12px;padding:8px 12px;margin-bottom:12px;font-size:13px}
   .loadwarn span{flex:1;min-width:180px;color:var(--txt)}
   .loadwarn button{font-size:12px;padding:5px 10px}
@@ -369,7 +392,7 @@
   .chips:empty{display:none}
   .chip{font-size:12.5px;font-weight:600;padding:5px 11px;border-radius:20px;background:var(--bg3);border:1px solid var(--line);color:var(--muted);cursor:pointer;transition:.12s;white-space:nowrap}
   .chip:hover{border-color:var(--accent);color:var(--txt)}
-  .chip.on{background:linear-gradient(135deg,var(--accent),var(--accent-dk));border-color:transparent;color:#fff}
+  .chip.on{background:var(--accent);border-color:transparent;color:var(--on-accent)}
   /* character / voice cast rail */
   .cast{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch}
   .cast-c{flex:none;width:84px;text-align:center;color:var(--txt)}
@@ -382,30 +405,69 @@
   .cal{background:var(--bg2);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
   .dow{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));background:var(--bg3);border-bottom:1px solid var(--line)}
   .dow div{padding:9px 10px;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
-  .grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));grid-auto-rows:minmax(118px,auto)}
+  .grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));grid-auto-rows:minmax(156px,auto)}
+  /* Week has one row of seven cells rather than six, so each day gets roughly
+     five times the height a month cell does. It used to spend that on the same
+     cramped chip; here it buys a bigger cover, a third line of title and type
+     large enough to read at a glance. */
   .grid.week{grid-auto-rows:minmax(64vh,64vh)}
+  /* A week column is exactly as wide as a month column — same seven-column
+     grid — so the extra room here is vertical only. Measured: the text column
+     next to the cover is ~78px, and time + air tag + episode need ~95px, so
+     scaling the meta up just forced it onto two lines. The meta therefore keeps
+     the month's type size and the height goes into the title instead, which is
+     the part that was actually unreadable. */
+  .grid.week .ev{gap:2px 6px;padding:6px 7px}
+  .grid.week .ev img{width:24px;height:32px}
+  .grid.week .ev .t{font-size:12px;-webkit-line-clamp:3}
+  .grid.week .ev .epn{margin-left:0}
   .cell{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:6px 7px;position:relative;overflow:hidden;cursor:default;min-width:0}
   .grid.week .cell{overflow:auto}
   .cell:nth-child(7n){border-right:none}
   .cell.out{background:repeating-linear-gradient(135deg,transparent,transparent 8px,rgba(255,255,255,.012) 8px,rgba(255,255,255,.012) 16px);opacity:.5}
-  .cell.today{background:linear-gradient(180deg,rgba(124,58,237,.18),transparent)}
+  .cell.today{background:linear-gradient(180deg,rgba(255,74,46,.16),transparent)}
   .cell .num{font-size:12.5px;font-weight:700;color:var(--muted);margin-bottom:4px;display:flex;justify-content:space-between;align-items:center}
   .cell.today .num{color:#fff}
-  .cell.today .num .badge{background:var(--today);color:#fff;border-radius:6px;padding:1px 7px;font-size:10.5px;animation:pulse 2s infinite}
-  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(124,58,237,.5)}50%{box-shadow:0 0 0 5px rgba(124,58,237,0)}}
+  .cell.today .num .badge{background:var(--today);color:var(--on-accent);border-radius:6px;padding:1px 7px;font-size:10.5px;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,74,46,.5)}50%{box-shadow:0 0 0 5px rgba(255,74,46,0)}}
   .nowline{display:flex;align-items:center;gap:6px;color:var(--now);font-size:11px;font-weight:700;margin:2px 0 6px;border-top:2px solid var(--now);padding-top:4px}
-  .ev{display:flex;align-items:center;gap:6px;background:var(--bg3);border:1px solid var(--line);border-left:3px solid var(--accent);
-    border-radius:7px;padding:3px 5px;margin-bottom:4px;cursor:pointer;transition:.12s}
+  /* Two rows, not one. On a single line the title got whatever was left after
+     the cover, the air tag and the episode number — about 70px in a month cell,
+     which truncated nearly every show to "Mushok…". Now the top row carries the
+     things that are short and fixed-width (time, air type, episode) and the
+     title gets the full width underneath, over two lines. The air TIME is the
+     point of this product, so it leads. */
+  .ev{display:grid;grid-template-columns:auto minmax(0,1fr);gap:1px 6px;align-items:center;
+    background:var(--bg3);border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:7px;padding:4px 6px;margin-bottom:4px;cursor:pointer;transition:.12s}
   .ev:hover{transform:translateX(2px);border-color:var(--accent)}
   .ev.prem{border-left-color:var(--premiere);background:linear-gradient(90deg,rgba(245,158,11,.16),var(--bg3))}
-  .ev img{width:20px;height:26px;object-fit:cover;border-radius:3px;flex:none;background:#000}
-  .ev .t{font-size:11.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1}
-  .ev .epn{font-size:10px;color:var(--muted);flex:none}
+  .ev img{grid-column:1;grid-row:1/3;width:22px;height:30px;object-fit:cover;border-radius:3px;background:#000}
+  /* Wraps rather than clips: the column is a fixed seventh of the calendar, so
+     a long time + "~SUB" + "Ep 17" can outrun it at the larger week sizes. */
+  /* gap is 3px, not 5px, and the air tag is trimmed below, because measuring
+     showed the row needs ~95px and a month column gives 91px at 1440w — four
+     pixels short, which wrapped 72% of chips. It wraps rather than clips, so
+     narrower viewports still degrade gracefully. */
+  .ev .ev-top{grid-column:2;display:flex;align-items:baseline;gap:3px;min-width:0;flex-wrap:wrap}
+  .ev .ev-time{font-size:11px;font-weight:800;letter-spacing:.2px;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .ev.brk .ev-time{color:var(--muted)}
+  .ev .t{grid-column:2;font-size:11px;font-weight:600;line-height:1.25;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .ev .epn{font-size:9.5px;color:var(--muted);margin-left:auto;flex:none;white-space:nowrap}
   .ev.prem .epn{color:var(--premiere);font-weight:700}
   .ev.fin{border-left-color:var(--finale);background:linear-gradient(90deg,rgba(167,139,250,.16),var(--bg3))}
   .ev.fin .epn{color:var(--finale);font-weight:700}
-  .more{font-size:11px;color:var(--accent2);font-weight:700;cursor:pointer;padding:2px}
-  .more:hover{text-decoration:underline}
+  /* Below ~1400px the sidebar squeezes a calendar column under 70px of text,
+     which wraps the meta row on every single chip. The cover is the cheapest
+     thing to give up: dropping it returns ~28px, which is enough to put the
+     time, air type and episode back on one line and widen the title. */
+  @media(max-width:1400px){ .grid .ev img{display:none} }
+  /* Now load-bearing rather than decorative — it is how every capped day gets
+     to the rest of its episodes, so it reads as a control, not a footnote. */
+  .more{font-size:11px;color:var(--accent);font-weight:800;cursor:pointer;padding:3px 5px;
+    border-radius:6px;display:inline-block;transition:.12s}
+  .more:hover{background:rgba(255,74,46,.14);text-decoration:none}
 
   /* agenda */
   .agenda{padding:6px 0}
@@ -427,11 +489,23 @@
   /* sidebar */
   .side{display:flex;flex-direction:column;gap:16px}
   .card{background:var(--bg2);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
-  .card h3{margin:0;padding:13px 16px;font-size:14px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px;background:var(--bg3)}
-  .card .body{padding:10px 12px;max-height:430px;overflow:auto}
-  .prow{display:flex;gap:10px;padding:8px 6px;border-radius:9px;cursor:pointer;transition:.12s}
+  /* Seven rail cards at 430px of scroll each made the page about 3,400px tall
+     on its own. Each one now shows a shorter window and collapses from its
+     header, so the rail is something you tune rather than something you scroll
+     past. The caret is the affordance; state persists per card. */
+  .card h3{margin:0;padding:11px 14px;font-size:13.5px;border-bottom:1px solid var(--line);
+    display:flex;align-items:center;gap:8px;background:var(--bg3);cursor:pointer;user-select:none}
+  .card h3:hover{background:color-mix(in srgb,var(--accent) 12%,var(--bg3))}
+  .card h3::after{content:"";margin-left:auto;width:7px;height:7px;flex:none;
+    border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);
+    transform:rotate(45deg) translate(-2px,-2px);transition:transform .15s}
+  .card.collapsed h3{border-bottom:none}
+  .card.collapsed h3::after{transform:rotate(-135deg) translate(-3px,-3px)}
+  .card.collapsed .body{display:none}
+  .card .body{padding:8px 10px;max-height:264px;overflow:auto}
+  .prow{display:flex;gap:9px;padding:6px 5px;border-radius:9px;cursor:pointer;transition:.12s}
   .prow:hover{background:var(--bg3)}
-  .prow img{width:44px;height:60px;object-fit:cover;border-radius:6px;flex:none;background:#000}
+  .prow img{width:34px;height:46px;object-fit:cover;border-radius:5px;flex:none;background:#000}
   .prow .info{min-width:0;flex:1}
   .prow .pt{font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .prow .meta{font-size:11.5px;color:var(--muted);margin-top:2px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
@@ -447,8 +521,8 @@
   .obsbtn[disabled]{cursor:default;border-color:var(--good);color:var(--good);opacity:1}
   .pill.fin{background:rgba(167,139,250,.15);border-color:var(--finale);color:#c4b5fd}
   /* your own rating / notes, told apart from AniList's ★ average at a glance */
-  .pill.myscore{font-weight:800;background:rgba(139,92,246,.14);border-color:var(--accent);color:#c4b5fd}
-  .pill.myscore.great{background:rgba(139,92,246,.2);border-color:var(--accent);color:#c4b5fd}
+  .pill.myscore{font-weight:800;background:rgba(255,74,46,.14);border-color:var(--accent);color:#ffb4a3}
+  .pill.myscore.great{background:rgba(255,74,46,.2);border-color:var(--accent);color:#ffb4a3}
   .pill.myscore.good{background:rgba(34,197,94,.15);border-color:var(--good);color:#86efac}
   .pill.myscore.ok{background:rgba(245,158,11,.15);border-color:var(--premiere);color:#fcd34d}
   .pill.myscore.bad{background:rgba(239,68,68,.15);border-color:var(--danger);color:#fca5a5}
@@ -462,7 +536,7 @@
   .pill.air.est{border-style:dashed;opacity:.85}
   .pill.warn{background:rgba(245,158,11,.16);border-color:var(--premiere);color:#fcd34d;font-weight:700}
   .pill.brk{background:rgba(148,163,184,.12);border-color:#64748b;color:#94a3b8;font-weight:700}
-  .ev .airtag{font-size:8.5px;font-weight:800;letter-spacing:.3px;padding:0 3px;border-radius:4px;flex:none;
+  .ev .airtag{font-size:8.5px;font-weight:800;letter-spacing:.2px;padding:1px 3px;border-radius:4px;flex:none;
     background:rgba(34,211,238,.16);color:var(--accent2)}
   .ev .airtag.air-raw{background:rgba(148,163,184,.16);color:#cbd5e1}
   .ev .airtag.air-dub{background:rgba(168,85,247,.18);color:#d8b4fe}
@@ -482,7 +556,7 @@
   .airpanel .opt{cursor:pointer;font-size:12.5px;padding:6px 12px;border-radius:20px;border:1px solid var(--line);
     background:var(--bg3);color:var(--muted);user-select:none;transition:.12s}
   .airpanel .opt:hover{border-color:var(--accent)}
-  .airpanel .opt.on{background:linear-gradient(135deg,var(--accent),var(--accent-dk));border-color:transparent;color:#fff}
+  .airpanel .opt.on{background:var(--accent);border-color:transparent;color:var(--on-accent)}
   .airpanel .hint{font-size:12px;color:var(--muted);line-height:1.5}
   #airBtn.narrowed{border-color:var(--accent2)}
   /* Settings panel sections */
@@ -529,7 +603,7 @@
   .evremind.on{background:linear-gradient(135deg,var(--premiere),#d97706);border-color:transparent;color:#1a1205}
 
   /* modal */
-  .overlay{position:fixed;inset:0;background:rgba(2,6,15,.7);backdrop-filter:blur(4px);display:none;
+  .overlay{position:fixed;inset:0;background:rgba(10,4,3,.72);backdrop-filter:blur(4px);display:none;
     align-items:center;justify-content:center;z-index:50;padding:20px}
   .overlay.on{display:flex}
   .modal{background:var(--bg2);border:1px solid var(--line);border-radius:16px;max-width:560px;width:100%;
@@ -597,7 +671,7 @@
   .trailer{position:relative;margin-top:14px;border-radius:12px;overflow:hidden;cursor:pointer;aspect-ratio:16/9;background:#000;border:1px solid var(--line)}
   .trailer img{width:100%;height:100%;object-fit:cover;display:block;opacity:.85;transition:.18s}
   .trailer:hover img{opacity:1;transform:scale(1.03)}
-  .trailer .tplay{position:absolute;inset:0;margin:auto;width:62px;height:62px;display:flex;align-items:center;justify-content:center;background:rgba(139,92,246,.92);border-radius:50%;font-size:23px;color:#fff;box-shadow:0 6px 24px rgba(0,0,0,.5);padding-left:4px}
+  .trailer .tplay{position:absolute;inset:0;margin:auto;width:62px;height:62px;display:flex;align-items:center;justify-content:center;background:rgba(255,74,46,.94);border-radius:50%;font-size:23px;color:#fff;box-shadow:0 6px 24px rgba(0,0,0,.5);padding-left:4px}
   .trailer .tlabel{position:absolute;left:12px;bottom:10px;background:rgba(0,0,0,.62);padding:3px 9px;border-radius:7px;font-size:12px;font-weight:700}
   .trailer.playing{cursor:default}
   .trailer iframe{width:100%;height:100%;display:block;border:0}
@@ -622,7 +696,7 @@
   .ftl-item.cur{border-color:var(--premiere);background:rgba(245,158,11,.08);cursor:default}
   .ftl-item img{width:100%;height:78px;object-fit:cover;border-radius:6px;background:#000;display:block}
   .ftl-n{position:absolute;top:11px;left:11px;min-width:19px;height:19px;padding:0 5px;border-radius:10px;
-    background:rgba(2,6,15,.78);color:#e6edf3;font:700 11px/19px ui-monospace,Consolas,monospace;text-align:center}
+    background:rgba(10,4,3,.8);color:#f4ece9;font:700 11px/19px ui-monospace,Consolas,monospace;text-align:center}
   .ftl-y{display:block;font-size:11px;color:var(--muted);margin-top:5px}
   .ftl-t{display:block;font-size:12px;font-weight:600;line-height:1.25;max-height:30px;overflow:hidden}
   .ftl-k{display:block;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-top:3px;
@@ -662,7 +736,7 @@
   .ev-sub{color:var(--muted);font-size:13.5px;max-width:700px;line-height:1.5}
   .ev-bar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:16px 0 10px}
   #evFilter,#evLoc{background:var(--bg3);color:var(--txt);border:1px solid var(--line);border-radius:9px;padding:8px 12px;font-size:13.5px;font-weight:600;min-width:200px;flex:1;max-width:340px}
-  #evFilter:focus,#evLoc:focus{outline:none;border-color:var(--accent);background:#222b3d}
+  #evFilter:focus,#evLoc:focus{outline:none;border-color:var(--accent);background:var(--bg3)}
   #evFilter::placeholder,#evLoc::placeholder{color:var(--muted);font-weight:500}
   .ev-loading{text-align:center;padding:50px;color:var(--muted);font-size:15px}
   .ev-now{display:flex;align-items:center;gap:10px;color:var(--now);font-weight:800;font-size:12px;letter-spacing:.5px;padding:12px 2px}
@@ -740,7 +814,7 @@
   .st-chip{background:var(--bg3);color:var(--muted);border:1px solid var(--line);
     padding:6px 10px;border-radius:8px;font-size:12.5px;font-weight:600;gap:6px;line-height:1;white-space:nowrap}
   .st-chip:hover{color:var(--txt)}
-  .st-chip.on{background:linear-gradient(135deg,var(--accent),var(--accent-dk));border-color:transparent;color:#fff}
+  .st-chip.on{background:var(--accent);border-color:transparent;color:var(--on-accent)}
   .st-pick.sm{gap:4px}
   .st-pick.sm .st-chip{padding:4px 6px;font-size:12.5px;gap:0;border-radius:7px}
   .st-pick.sm .st-lab{display:none}
@@ -759,7 +833,7 @@
     width:31px;justify-content:center;gap:0}
   .rt-chip:hover{color:var(--txt)}
   .rt-chip.on{color:#fff;border-color:transparent}
-  .rt-chip.on.great{background:linear-gradient(135deg,var(--accent),var(--accent-dk))}
+  .rt-chip.on.great{background:var(--accent)}
   .rt-chip.on.good{background:linear-gradient(135deg,var(--good),#15803d)}
   .rt-chip.on.ok{background:linear-gradient(135deg,var(--premiere),#b45309)}
   .rt-chip.on.bad{background:linear-gradient(135deg,var(--danger),#b91c1c)}
@@ -791,7 +865,7 @@
   .note-box{display:block;width:100%;margin-top:6px;background:var(--bg3);color:var(--txt);
     border:1px solid var(--line);border-radius:11px;padding:9px 11px;font:inherit;font-size:13px;
     line-height:1.45;resize:vertical;min-height:64px}
-  .note-box:focus{outline:none;border-color:var(--accent);background:#222b3d}
+  .note-box:focus{outline:none;border-color:var(--accent);background:var(--bg3)}
   .note-box::placeholder{color:var(--muted)}
   .nt-foot{display:flex;gap:10px;align-items:center;margin-top:5px}
   .nt-foot .nt-spacer{flex:1}
@@ -878,9 +952,9 @@
      dialog, and below nothing else. */
   .chat-fab{position:fixed;right:20px;bottom:20px;z-index:60;width:56px;height:56px;border-radius:50%;
     display:flex;align-items:center;justify-content:center;padding:0;font-size:23px;line-height:1;
-    background:linear-gradient(135deg,var(--accent),var(--accent-dk));border:1px solid transparent;color:#fff;
-    box-shadow:0 8px 24px rgba(139,92,246,.42);transition:transform .15s,box-shadow .15s}
-  .chat-fab:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 12px 30px rgba(255,74,46,.5);background:linear-gradient(135deg,var(--accent),var(--accent-dk))}
+    background:var(--accent);border:1px solid transparent;color:var(--on-accent);
+    box-shadow:0 8px 24px rgba(255,74,46,.42);transition:transform .15s,box-shadow .15s}
+  .chat-fab:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 12px 30px rgba(255,74,46,.5);background:var(--accent)}
   .chat-fab.open{transform:scale(.92);opacity:.85}
   .chat-fab .cf-dot{position:absolute;top:-2px;right:-2px;width:13px;height:13px;border-radius:50%;
     background:var(--accent2);border:2px solid var(--bg);display:none}
@@ -891,7 +965,7 @@
     box-shadow:var(--shadow);display:none;flex-direction:column;overflow:hidden}
   .chat-panel.on{display:flex}
   .chat-head{display:flex;align-items:center;gap:9px;padding:12px 14px;border-bottom:1px solid var(--line);
-    background:linear-gradient(90deg,rgba(139,92,246,.16),var(--bg2));flex:none}
+    background:linear-gradient(90deg,rgba(255,74,46,.16),var(--bg2));flex:none}
   .chat-head .ch-t{font-weight:800;font-size:14.5px}
   .chat-head .ch-s{font-size:11.5px;color:var(--muted)}
   .chat-head .ch-sp{margin-left:auto;display:flex;gap:4px}
@@ -900,7 +974,7 @@
 
   .chat-log{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:14px;display:flex;flex-direction:column;gap:11px}
   .chat-msg{max-width:88%;padding:9px 12px;border-radius:13px;font-size:13.5px;line-height:1.55;word-wrap:break-word;overflow-wrap:anywhere}
-  .chat-msg.me{align-self:flex-end;background:linear-gradient(135deg,var(--accent),var(--accent-dk));color:#fff;border-bottom-right-radius:4px}
+  .chat-msg.me{align-self:flex-end;background:var(--accent);color:var(--on-accent);border-bottom-right-radius:4px}
   .chat-msg.bot{align-self:flex-start;background:var(--bg3);border:1px solid var(--line);border-bottom-left-radius:4px}
   .chat-msg.err{align-self:stretch;max-width:100%;background:rgba(239,68,68,.13);border:1px solid var(--danger);color:var(--txt);font-size:12.5px}
   .chat-msg p{margin:0 0 7px}
@@ -946,7 +1020,7 @@
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
 <header>
-  <div class="brand"><svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><path d="M11 23 C26 18.5 42 19.5 48 24 C54.5 29 53 38 45 44 C37 49.5 25 50.5 15 45.5" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"/></svg> Tsuzuki</div>
+  <div class="brand"><svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="15" fill="#ff4a2e"/><g transform="translate(32.4 30) scale(.84) translate(-32 -32)"><path d="M11 23 C26 18.5 42 19.5 48 24 C54.5 29 53 38 45 44 C37 49.5 25 50.5 15 45.5" fill="none" stroke="#12060a" stroke-width="8" stroke-linecap="round"/></g></svg> Tsuzuki</div>
   <div class="nav">
     <button class="icon" id="prev" title="Previous">‹</button>
     <button class="icon" id="today" title="Jump to today">Today</button>
@@ -986,6 +1060,7 @@
     <button data-view="events">🎟️ Events</button>
   </div>
   <button id="surpriseBtn" title="Open a random highly-rated show">🎲 Surprise me</button>
+  <button id="filtersBtn" aria-expanded="false" title="Show format, genre, platform and score filters">⛃ Filters<span class="fcount" id="fCount"></span></button>
   <div class="filters">
     <div class="search-wrap">
       <input type="search" id="fSearch" placeholder="🔍 Search any anime…" autocomplete="off" spellcheck="false" />
@@ -1153,7 +1228,7 @@
 
 // Build number auto-stamped from the git commit count by scripts/stamp-version.mjs
 // (run via the .githooks/pre-commit hook). Do not edit by hand — it changes every commit.
-const APP_VERSION = "3.4.92";
+const APP_VERSION = "3.4.93";
 
 // Tsuzuki's own read API. It serves the same AniList payload out of a shared
 // server-side catalog (netlify/functions/_lib/catalog.mjs), so the schedule a
@@ -2632,7 +2707,9 @@ function statusPillHTML(e){
 function airTagHTML(e){
   if(e.brk) return `<span class="airtag air-raw" title="Break — no episode">⏸</span>`;
   if(!e.air||enabledTypes().size<2) return "";
-  return `<span class="airtag air-${e.air.type}" title="${esc(AIR_LONG[e.air.type])}">${e.air.estimated?"~":""}${AIR_LABEL[e.air.type][0]}</span>`;
+  // The full word now that the tag sits on its own row rather than competing
+  // with the title for horizontal space — "SUB" beats "S" at no extra cost.
+  return `<span class="airtag air-${e.air.type}" title="${esc(AIR_LONG[e.air.type])}">${e.air.estimated?"~":""}${AIR_LABEL[e.air.type]}</span>`;
 }
 
 const OVERRIDES_SEED="/data/overrides.json";
@@ -3004,8 +3081,10 @@ function eventEl(e){
   const el=document.createElement("div");
   el.className="ev"+(prem?" prem":fin?" fin":"")+(isWatched(md.id)?" mine":"")+(e.brk?" brk":"");
   if(md.coverImage&&md.coverImage.color&&!prem&&!fin) el.style.borderLeftColor=md.coverImage.color;
-  el.innerHTML=(md.coverImage&&md.coverImage.medium?`<img src="${md.coverImage.medium}" alt="" loading="lazy" width="20" height="26">`:"")+
-    `<span class="t">${esc(title(md))}</span>${airTagHTML(e)}<span class="epn">${e.brk?"⏸":prem?"★EP1":fin?"🏁FIN":"E"+e.episode}</span>`;
+  el.innerHTML=(md.coverImage&&md.coverImage.medium?`<img src="${md.coverImage.medium}" alt="" loading="lazy" width="22" height="30">`:"")+
+    `<span class="ev-top"><span class="ev-time">${e.brk?"—":esc(fmtTime(e.ts))}</span>${airTagHTML(e)}`+
+    `<span class="epn">${e.brk?"⏸":prem?"★EP1":fin?"🏁FIN":"Ep "+e.episode}</span></span>`+
+    `<span class="t">${esc(title(md))}</span>`;
   const what=e.brk ? "No episode — "+(e.status&&e.status.reason||"broadcast break")
     : (e.air?AIR_LONG[e.air.type]+(e.air.estimated?" (estimated)":"")+" · ":"")+fmtTime(e.ts);
   el.title=title(md)+" · Ep "+e.episode+(fin?" (Season finale)":"")+" · "+what;
@@ -3041,7 +3120,11 @@ function renderMonth(wrap){
   const grid=document.createElement("div"); grid.className="grid";
   for(let i=0;i<42;i++){
     const d=new Date(start.getFullYear(),start.getMonth(),start.getDate()+i);
-    grid.appendChild(dayCell(d, map.get(keyOf(d))||[], {dimOut:true, max:0}));
+    // Capped, not unlimited. With max:0 a busy Sunday ran to fifteen chips and
+    // every row in the grid took its height from whichever day was fullest —
+    // seven stacked lists rather than a month. Three plus a "+N more" that
+    // opens the existing day modal keeps the rows even and the month scannable.
+    grid.appendChild(dayCell(d, map.get(keyOf(d))||[], {dimOut:true, max:3}));
   }
   wrap.appendChild(grid);
 }
@@ -3617,7 +3700,7 @@ function closeModal(){ saveNoteNow(); $("overlay").classList.remove("on"); }
 /* ---------- embed widget snippet ---------- */
 function embedSnippet(days){
   const src=location.origin+"/embed/?days="+days;
-  return `<iframe src="${src}" title="Tsuzuki — anime airing schedule" width="360" height="520" style="border:1px solid #2a3140;border-radius:12px;max-width:100%" loading="lazy"></iframe>`;
+  return `<iframe src="${src}" title="Tsuzuki — anime airing schedule" width="360" height="520" style="border:1px solid #342825;border-radius:16px;max-width:100%" loading="lazy"></iframe>`;
 }
 function openEmbed(){
   $("modalTitle").textContent="Embed Tsuzuki on your site";
@@ -3809,7 +3892,7 @@ function applyAppearance(){
   const parts=(state.accent||"#ff4a2e|#22d3ee").split("|");
   document.documentElement.style.setProperty("--accent", parts[0]);
   document.documentElement.style.setProperty("--accent2", parts[1]||"#22d3ee");
-  const m=document.querySelector('meta[name=theme-color]'); if(m) m.setAttribute("content", eff==="light"?"#f5f7fb":"#0d1117");
+  const m=document.querySelector('meta[name=theme-color]'); if(m) m.setAttribute("content", eff==="light"?"#faf6f4":"#0e0908");
   applySkin();   // last: a skin owns the whole palette, including light/dark
 }
 
@@ -4350,8 +4433,8 @@ function loadChartJs(){
     s.src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js";
     s.onload=()=>{
       chartJsReady=true;
-      Chart.defaults.color="#8b97a7";
-      Chart.defaults.borderColor="#2a3140";
+      Chart.defaults.color="#a1908b";
+      Chart.defaults.borderColor="#342825";
       Chart.defaults.font.family="'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif";
       res();
     };
@@ -4466,8 +4549,8 @@ async function renderDashboard(){
   /* --- create charts --- */
   const C=CHART_COLORS;
   const light=effectiveTheme()==="light";
-  Chart.defaults.color = light ? "#5c6675" : "#8b97a7";
-  Chart.defaults.borderColor = light ? "#d9deea" : "#2a3140";
+  Chart.defaults.color = light ? "#6b5b56" : "#a1908b";
+  Chart.defaults.borderColor = light ? "#e6d9d4" : "#342825";
   const GRID = light ? "rgba(0,0,0,.09)" : "rgba(255,255,255,.07)";
 
   // Genre (horizontal bar)
@@ -5315,6 +5398,59 @@ function surpriseMe(){
   openDetail(pick,(nextAir(pick)||{}).episode||1);
 }
 $("surpriseBtn").onclick=surpriseMe;
+
+/* Collapsed filter row. The badge counts only filters that are actually
+   narrowing the list, so a hidden-but-active filter can never look inactive —
+   that is the one real risk of putting controls behind a disclosure. It opens
+   itself on load if anything is already set, for the same reason. */
+function activeFilterCount(){
+  let n=0;
+  // "" is unset for the selects, but #fScore's "any" option is the STRING "0",
+  // which is truthy — counting it made the badge read 1 on every load and
+  // auto-opened the panel forever.
+  for(const id of ["fFormat","fGenre","fStream","fTag","fScore"]){
+    const el=$(id); if(el && el.value && el.value!=="0") n++;
+  }
+  for(const id of ["fMine","fPrem"]){ const el=$(id); if(el&&el.checked) n++; }
+  return n;
+}
+function syncFilterCount(){
+  const n=activeFilterCount(), c=$("fCount");
+  if(c) c.textContent = n ? String(n) : "";
+}
+function setFiltersOpen(open){
+  document.body.classList.toggle("filters-open", open);
+  const b=$("filtersBtn");
+  if(b){ b.classList.toggle("on", open); b.setAttribute("aria-expanded", String(open)); }
+}
+$("filtersBtn").onclick=()=>setFiltersOpen(!document.body.classList.contains("filters-open"));
+
+/* Collapsible rail cards. Keyed by the card's own id where it has one and by
+   position otherwise, so the saved state survives a card being hidden (several
+   of them start display:none and only appear once there's something to show). */
+(function railCollapse(){
+  const KEY="anical.railClosed";
+  let closed;
+  try{ closed=new Set(JSON.parse(localStorage.getItem(KEY)||"[]")); }catch(_){ closed=new Set(); }
+  const cards=[...document.querySelectorAll(".side .card")];
+  cards.forEach((card,i)=>{
+    const h=card.querySelector("h3"); if(!h) return;
+    const key=card.id||("rail"+i);
+    if(closed.has(key)) card.classList.add("collapsed");
+    h.setAttribute("role","button");
+    h.setAttribute("tabindex","0");
+    h.setAttribute("aria-expanded", String(!card.classList.contains("collapsed")));
+    h.addEventListener("click",()=>{
+      const nowClosed=card.classList.toggle("collapsed");
+      h.setAttribute("aria-expanded", String(!nowClosed));
+      if(nowClosed) closed.add(key); else closed.delete(key);
+      try{ localStorage.setItem(KEY, JSON.stringify([...closed])); }catch(_){}
+    });
+  });
+})();
+$("filtersBtn").closest(".toolbar").addEventListener("change", syncFilterCount);
+syncFilterCount();
+setFiltersOpen(activeFilterCount()>0);
 // quick genre chips: toggle the genre filter
 document.addEventListener("click",e=>{
   const c=e.target.closest("[data-chip]"); if(!c) return;

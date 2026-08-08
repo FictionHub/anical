@@ -102,7 +102,7 @@ async function api(path,opts){
 /* ---------- gate ---------- */
 function renderGate(msg){
   $("app").innerHTML=`<div class="gate">
-    <h1><svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><path d="M11 23 C26 18.5 42 19.5 48 24 C54.5 29 53 38 45 44 C37 49.5 25 50.5 15 45.5" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"/></svg> Correction queue</h1>
+    <h1><svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="15" fill="#ff4a2e"/><g transform="translate(32.4 30) scale(.84) translate(-32 -32)"><path d="M11 23 C26 18.5 42 19.5 48 24 C54.5 29 53 38 45 44 C37 49.5 25 50.5 15 45.5" fill="none" stroke="#12060a" stroke-width="8" stroke-linecap="round"/></g></svg> Correction queue</h1>
     <p class="sub">Maintainers only. Paste the site's <code>ADMIN_SECRET</code>.</p>
     <div class="row"><label style="flex:1">Secret<input type="password" id="sec" autocomplete="off"></label>
       <button class="primary" id="go">Unlock</button></div>
@@ -119,7 +119,7 @@ function renderGate(msg){
 function renderShell(){
   const openN=reports.filter(r=>(r.status||"open")==="open").length;
   $("app").innerHTML=`
-    <h1><svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><path d="M11 23 C26 18.5 42 19.5 48 24 C54.5 29 53 38 45 44 C37 49.5 25 50.5 15 45.5" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"/></svg> Tsuzuki console</h1>
+    <h1><svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="15" fill="#ff4a2e"/><g transform="translate(32.4 30) scale(.84) translate(-32 -32)"><path d="M11 23 C26 18.5 42 19.5 48 24 C54.5 29 53 38 45 44 C37 49.5 25 50.5 15 45.5" fill="none" stroke="#12060a" stroke-width="8" stroke-linecap="round"/></g></svg> Tsuzuki console</h1>
     <p class="sub">Corrections and skins. Everything here writes to a live store, so it reaches every visitor
       within minutes and costs no deploy.</p>
     <div class="bar">
