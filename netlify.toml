@@ -85,6 +85,21 @@
   to = "/.netlify/functions/grants"
   status = 200
 
+# Tung Tungs: the balance, the owned skins, the daily wheel and the daily tasks.
+# Signed-in only, and the one place in this product where user state is
+# server-side rather than local — see netlify/functions/_lib/economy.mjs for why.
+# The splat carries the action (/spin, /claim, /buy, /wear) through to the
+# function, which reads it off the path.
+[[redirects]]
+  from = "/api/wallet"
+  to = "/.netlify/functions/wallet"
+  status = 200
+
+[[redirects]]
+  from = "/api/wallet/*"
+  to = "/.netlify/functions/wallet"
+  status = 200
+
 # Grounded anime chat (SSE). Answers from the corrected schedule via tool calls,
 # and falls back to Google Search for anything the calendar doesn't hold — see
 # netlify/functions/chat.mjs. Needs GEMINI_API_KEY in the site environment.

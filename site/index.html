@@ -822,6 +822,14 @@
     background:var(--bg3);border:1px solid var(--line);border-radius:11px;padding:9px 11px}
   .st-row-label{font-size:12.5px;font-weight:700;color:var(--muted)}
   .st-hint{flex-basis:100%;font-size:11.5px;color:var(--muted)}
+  /* display:flex above beats the [hidden] attribute, which the dates row uses
+     to sit dormant until the show is on the board. */
+  .st-row[hidden]{display:none}
+  /* your own started / finished dates */
+  .dt-f{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted)}
+  .dt-in{background:var(--bg);color:var(--txt);border:1px solid var(--line);
+    border-radius:8px;padding:4px 7px;font:inherit;font-size:12px}
+  .dt-in:focus{outline:none;border-color:var(--accent)}
   /* quick-add strip inside a search result row */
   .sr-add{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:5px}
   .sr-add-label{font-size:11px;font-weight:700;color:var(--muted)}
@@ -850,6 +858,14 @@
   .pg-btn.wide{min-width:0}
   .pg-count{font-size:12.5px;font-weight:800;padding:0 4px;white-space:nowrap}
   .pg-count small{color:var(--muted);font-weight:600}
+  /* the counter typed rather than stepped. The spinners are hidden: − and +1 sit
+     either side of it and do the same job with a bigger hit area. */
+  .pg-num{width:58px;background:var(--bg);color:var(--txt);border:1px solid var(--line);
+    border-radius:8px;padding:5px 6px;font:inherit;font-size:12.5px;font-weight:800;
+    text-align:center;-moz-appearance:textfield;appearance:textfield}
+  .pg-num::-webkit-outer-spin-button,.pg-num::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  .pg-num:focus{outline:none;border-color:var(--accent)}
+  .pg-rw{font-size:11px}
   .pg-auto{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);cursor:pointer}
   .pg-auto input{accent-color:var(--accent)}
   .pg-bar{display:block;height:4px;border-radius:3px;background:var(--line);overflow:hidden}
@@ -869,6 +885,99 @@
   .note-box::placeholder{color:var(--muted)}
   .nt-foot{display:flex;gap:10px;align-items:center;margin-top:5px}
   .nt-foot .nt-spacer{flex:1}
+
+  /* ---------- Tung Tungs: the balance, the wheel, the collection ----------
+     Rarity is a colour before it is a word — in a grid of fifty cards the badge
+     is read as a tint long before anybody reads "legendary". */
+  .tt-i{width:1.15em;height:1.15em;flex:none;display:inline-block;vertical-align:-.24em}
+  .tt-chip{display:inline-flex;align-items:center;gap:6px;font-weight:800;font-size:12.5px;
+    background:var(--bg3);border:1px solid var(--line);border-radius:var(--skin-chip-radius,20px);padding:6px 11px}
+  .tt-chip:hover{border-color:var(--accent);color:var(--txt)}
+  .tt-chip b{font-variant-numeric:tabular-nums}
+  .tt-chip.tt-ready{border-color:var(--accent);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 22%,transparent)}
+  .tt-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:ttPulse 1.7s ease-in-out infinite}
+  @keyframes ttPulse{0%,100%{opacity:.35;transform:scale(.8)}50%{opacity:1;transform:scale(1.15)}}
+
+  .sk-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;border-bottom:1px solid var(--line);padding-bottom:9px}
+  .sk-tab{background:transparent;color:var(--muted);border:1px solid transparent;border-radius:9px;
+    padding:6px 12px;font-size:13px;font-weight:700}
+  .sk-tab:hover{color:var(--txt)}
+  .sk-tab.on{color:var(--txt);background:var(--bg3);border-color:var(--line)}
+  .sk-tab .sk-tab-n{margin-left:6px;font-size:11px;color:var(--muted);font-weight:800}
+
+  /* the wheel */
+  /* overflow-x:clip, not hidden: the wheel is a circle in a square box, so once
+     it is rotated to anything but a right angle its overflow box grows by up to
+     √2 and pushes a horizontal scrollbar onto the whole panel. The corners it
+     spills are transparent, so clipping them costs nothing — and clip (unlike
+     hidden) leaves the vertical axis visible, which the pointer above the wheel
+     needs. */
+  .wheel-stage{display:flex;flex-direction:column;align-items:center;gap:14px;padding:6px 0 2px;overflow-x:clip}
+  .wheel-wrap{position:relative;width:min(320px,80vw);aspect-ratio:1;flex:none}
+  .wheel-pin{position:absolute;left:50%;top:-8px;transform:translateX(-50%);z-index:3;
+    width:0;height:0;border-left:11px solid transparent;border-right:11px solid transparent;
+    border-top:20px solid var(--accent);filter:drop-shadow(0 2px 4px rgba(0,0,0,.5))}
+  /* Turned by the Web Animations API in spinWheel(), deliberately NOT by a CSS
+     transition. The accessibility rule further up sets transition-duration to
+     ~0 on everything under prefers-reduced-motion — the right call for hover
+     states, and the wrong one for the single element whose entire content is
+     the movement, where it silently turned the spin into a snap. Animating in
+     JS puts that decision somewhere it can be made on purpose. */
+  .wheel{position:absolute;inset:0;border-radius:50%;border:3px solid var(--line);
+    box-shadow:0 10px 34px rgba(0,0,0,.45),inset 0 0 0 6px var(--bg2);transform:rotate(0deg)}
+  .wheel-hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;
+    width:24%;aspect-ratio:1;border-radius:50%;background:var(--bg2);border:2px solid var(--line);
+    display:flex;align-items:center;justify-content:center;font-size:32px}
+  .wl{position:absolute;inset:0;display:flex;justify-content:center;pointer-events:none}
+  .wl b{margin-top:7%;max-width:64px;text-align:center;font-size:11px;font-weight:800;line-height:1.15;
+    color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.85)}
+  .wheel-foot{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center}
+  .tt-streak{font-size:12px;color:var(--muted);font-weight:700}
+  .tt-prize{display:flex;align-items:center;gap:10px;justify-content:center;flex-wrap:wrap;
+    background:var(--bg3);border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-weight:700;font-size:13.5px}
+  .tt-prize.win{border-color:var(--accent)}
+
+  /* daily tasks */
+  .tt-task{display:flex;align-items:center;gap:11px;background:var(--bg3);border:1px solid var(--line);
+    border-radius:12px;padding:10px 13px;margin-bottom:8px}
+  .tt-task .tt-t{flex:1;min-width:0}
+  .tt-task .tt-t b{display:block;font-size:13.5px}
+  .tt-task .tt-t span{display:block;font-size:11.5px;color:var(--muted);margin-top:2px}
+  .tt-task .tt-pay{font-weight:800;font-size:12.5px;white-space:nowrap}
+  .tt-task.done{opacity:.55}
+  .tt-task.done .tt-pay{color:var(--good)}
+
+  /* the collection */
+  .sk-filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:11px}
+  .sk-f{background:var(--bg3);color:var(--muted);border:1px solid var(--line);border-radius:var(--skin-chip-radius,20px);
+    padding:5px 11px;font-size:12px;font-weight:700}
+  .sk-f.on{color:var(--txt);border-color:var(--accent)}
+  .sk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(174px,1fr));gap:11px}
+  .sk-card{position:relative;overflow:hidden;background:var(--bg3);border:1px solid var(--line);
+    border-radius:14px;padding:11px;display:flex;flex-direction:column;gap:8px;min-height:150px}
+  .sk-card::before{content:"";position:absolute;inset:0;background-image:var(--art);background-size:cover;
+    background-position:center 22%;opacity:.17;pointer-events:none}
+  .sk-card>*{position:relative}
+  .sk-card.owned{border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+  .sk-card.on{border-color:var(--accent);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 25%,transparent)}
+  .sk-name{font-size:13px;font-weight:800;line-height:1.25}
+  .sk-rar{align-self:flex-start;font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;
+    border:1px solid currentColor;border-radius:20px;padding:2px 8px}
+  .sk-rar[data-r="common"]{color:#8aa0b4}
+  .sk-rar[data-r="rare"]{color:#4ea8de}
+  .sk-rar[data-r="epic"]{color:#b06ef2}
+  .sk-rar[data-r="legendary"]{color:#f0a02c}
+  .sk-rar[data-r="exclusive"]{color:#ff4a2e}
+  .sk-sw{display:flex;gap:3px;margin-top:auto}
+  .sk-sw i{flex:1;height:11px;border-radius:3px;border:1px solid rgba(0,0,0,.25)}
+  .sk-act{display:flex;gap:6px;flex-wrap:wrap}
+  .sk-act button{font-size:12px;font-weight:700;padding:5px 10px;border-radius:9px;
+    background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+  .sk-act button:hover:not(:disabled){color:var(--txt);border-color:var(--accent)}
+  .sk-act button.primary{background:var(--accent);color:#fff;border-color:transparent}
+  .sk-act button:disabled{opacity:.4;cursor:default}
+  .sk-cost{font-size:12px;font-weight:800;color:var(--muted);white-space:nowrap;align-self:center}
+  .sk-cost.can{color:var(--txt)}
 
   /* transient confirmation (status changes) with a one-click Undo */
   .toast{position:fixed;left:50%;bottom:22px;z-index:200;display:flex;align-items:center;gap:12px;
@@ -1041,6 +1150,9 @@
        page — before this existed the sole evidence was a row inside Settings,
        which is not somewhere you look to find out whether a login took. -->
   <button id="dcChip" class="dc-chip" style="display:none" title="Your Discord account"></button>
+  <!-- Tung Tungs. Hidden until sign-in, like the chip above: the toolbar looks
+       exactly as it always did for the people who never sign in. -->
+  <button id="ttChip" class="tt-chip" style="display:none" title="Your Tung Tungs — skins, the daily wheel and today's tasks"></button>
   <button id="installBtn" style="display:none" title="Install Tsuzuki as an app">⤓ Install</button>
   <a class="discord-btn" href="https://discord.gg/YxphmhYga7" target="_blank" rel="noopener" title="Join the Tsuzuki Discord">
     <svg viewBox="0 0 127.14 96.36" aria-hidden="true"><path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/></svg>
@@ -1228,7 +1340,7 @@
 
 // Build number auto-stamped from the git commit count by scripts/stamp-version.mjs
 // (run via the .githooks/pre-commit hook). Do not edit by hand — it changes every commit.
-const APP_VERSION = "3.4.94";
+const APP_VERSION = "3.6.95";
 
 // Tsuzuki's own read API. It serves the same AniList payload out of a shared
 // server-side catalog (netlify/functions/_lib/catalog.mjs), so the schedule a
@@ -1332,6 +1444,13 @@ const state = {
   recent: [],                    // recently viewed show ids (most-recent first)
   progress: {},                  // mediaId -> highest watched episode number
   autoProg: {},                  // mediaId -> last aired episode auto-marked (key present = opted in)
+  rewatch: {},                   // mediaId -> completed runs (2 = watched once, rewatched once)
+  dates: {},                     // mediaId -> {start,end} — your own started / finished dates
+  // Watching shows the loaded seasons don't contain, fetched one at a time by
+  // hydrateWatching(). Deliberately *not* state.media: that array is replaced
+  // wholesale on every range load and is what the calendar and the cache are
+  // built from, so an old season's episodes would appear in both.
+  extra: new Map(),              // id -> media, this session only
   notifyLead: 10,
   scheduled: new Map(),         // "id-ep" -> timeout id
   // Release-type preferences (see the "release variants" section below).
@@ -1344,8 +1463,15 @@ const state = {
   overrides: {shows:{}},         // human corrections layered over AniList
   // Skins + the Discord identity they hang off. All optional: every one of
   // these staying null is the site exactly as it was before sign-in existed.
-  skin: null,                    // the granted skin, applied when skinOn()
-  skinGrant: null,               // {themeId, grantedAt, note}
+  skin: null,                    // the skin currently worn, applied when skinOn()
+  skinGrant: null,               // {themeId, grantedAt, note} — the old admin-grant path
+  // The Tung Tung economy. Server-authoritative and signed-in only: see
+  // netlify/functions/_lib/economy.mjs for why this one thing isn't local.
+  wallet: null,                  // publicWallet() from /api/wallet
+  catalog: null,                 // id -> theme, from /api/themes
+  wheel: null,                   // the segment layout, served with the wallet so the two can't disagree
+  rarityMeta: null,              // rarity -> {label, price, dust, tint}
+  walletOff: false,              // sign-in isn't configured on this deployment
   skinPreview: null,             // /admin trying a theme on, beats the grant
   discord: null,                 // {id, username, globalName, avatar} — nothing else
   discordConfigured: true,       // until /api/auth/me says the keys aren't set
@@ -1368,6 +1494,8 @@ try{
 try{ state.recent = JSON.parse(localStorage.getItem("anical.recent")||"[]"); }catch(e){}
 try{ state.progress = JSON.parse(localStorage.getItem("anical.progress")||"{}")||{}; }catch(e){}
 try{ state.autoProg = JSON.parse(localStorage.getItem("anical.autoprog")||"{}")||{}; }catch(e){}
+try{ state.rewatch = JSON.parse(localStorage.getItem("anical.rewatch")||"{}")||{}; }catch(e){}
+try{ state.dates = JSON.parse(localStorage.getItem("anical.dates")||"{}")||{}; }catch(e){}
 try{
   const raw=JSON.parse(localStorage.getItem("anical.airTypes")||"null");
   if(Array.isArray(raw)){ const s=new Set(raw.filter(t=>t==="raw"||t==="sub"||t==="dub")); if(s.size) state.airTypes=s; }
@@ -1483,10 +1611,13 @@ function statusLabel(key){ const s=STATUS_BY_KEY[key]; return s?`${s.emoji} ${s.
   for(const id of state.watch) if(!state.status[id]){ state.status[id]=DEFAULT_STATUS; changed=true; }
   if(changed) localStorage.setItem("anical.status", JSON.stringify(state.status));
 })();
-function setStatusOf(id, key){
+function setStatusOf(id, key, opts){
   id=String(id);
   if(key) state.status[id]=key; else delete state.status[id];
   localStorage.setItem("anical.status", JSON.stringify(state.status));
+  // Undo passes {stamp:false}: putting back the status you had is not the start
+  // of a new run, and the dates it would stamp were never cleared anyway.
+  if(key && (!opts || opts.stamp!==false)) stampDates(id, key);
   const before=state.watch.has(id);
   if(key) state.watch.add(id); else state.watch.delete(id);   // a status implies tracking
   if(before!==state.watch.has(id)){
@@ -1495,6 +1626,46 @@ function setStatusOf(id, key){
   }
   refreshStatusPickers(id);
   if(key) alEnqueue(id);   // clearing a status is local-only — see toggleWatch
+  if(key) tungTask("status");
+}
+/* ---------- started & finished dates ----------
+   Stamped when a show enters Watching or Completed, in *local* time — someone
+   finishing a show at 11pm means tonight, not tomorrow in UTC. Completing
+   something that was never marked Watching stamps both, because a run you can
+   see the end of had a beginning. A stamp only ever fills a blank, so an edit
+   of your own is never overwritten by a later status change. */
+function todayISO(){ const d=new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`; }
+function getDates(id){ const d=state.dates[String(id)]; return {start:(d&&d.start)||"", end:(d&&d.end)||""}; }
+function writeDates(id,d){
+  id=String(id);
+  if(d.start||d.end) state.dates[id]={...(d.start?{start:d.start}:{}), ...(d.end?{end:d.end}:{})};
+  else delete state.dates[id];   // both cleared by hand — leave no empty record behind
+  try{ localStorage.setItem("anical.dates", JSON.stringify(state.dates)); }catch(e){}
+}
+function setDate(id,which,val){
+  const d=getDates(id);
+  d[which==="end"?"end":"start"]=String(val||"").slice(0,10);
+  writeDates(id,d);
+}
+function stampDates(id,key){
+  if(key!=="watching" && key!=="completed") return;
+  const d=getDates(id); let changed=false;
+  if(!d.start){ d.start=todayISO(); changed=true; }
+  if(key==="completed" && !d.end){ d.end=todayISO(); changed=true; }
+  if(changed) writeDates(id,d);
+}
+/* Always rendered, hidden until the show is on your board or already carries a
+   date — so refreshStatusPickers() has something to replace the moment a status
+   is picked, rather than the row only appearing the next time you open the show. */
+function datesRowHtml(md){
+  const id=String(md.id), d=getDates(id);
+  const show=!!(getStatusOf(id)||d.start||d.end);
+  return `<div class="st-row dt-row" data-dates="${esc(id)}"${show?"":" hidden"}>
+    <span class="st-row-label">📅 Your dates:</span>
+    <label class="dt-f">Started <input type="date" class="dt-in" data-date="${esc(id)}|start" value="${esc(d.start)}" aria-label="Date you started this show"></label>
+    <label class="dt-f">Finished <input type="date" class="dt-in" data-date="${esc(id)}|end" value="${esc(d.end)}" aria-label="Date you finished this show"></label>
+    <span class="st-hint">Stamped for you the first time a show goes to ▶️ Watching or ✅ Completed. Change either one, or clear it, and what you set is what stays. On this device only.</span>
+  </div>`;
 }
 /* One-click status picker. size: "" = labelled (detail pop-up), "sm" = emoji-only
    (board cards, search rows). */
@@ -1518,6 +1689,13 @@ function refreshStatusPickers(id){
   document.querySelectorAll('[data-st-label="'+CSS.escape(id)+'"]').forEach(el=>{
     el.textContent = cur ? (el.dataset.onLabel||"") : (el.dataset.offLabel||"");
   });
+  // A status change is what stamps the dates, so the row that shows them is
+  // repainted on the same beat.
+  const md=findMediaById(id);
+  if(md) document.querySelectorAll('[data-dates="'+CSS.escape(id)+'"]').forEach(row=>{
+    const tmp=document.createElement("div"); tmp.innerHTML=datesRowHtml(md);
+    if(tmp.firstElementChild) row.replaceWith(tmp.firstElementChild);
+  });
 }
 /* ---------- your rating (1–10) and private notes ----------
    Notes live only in this browser and are never sent anywhere. A rating is the
@@ -1533,6 +1711,7 @@ function setRating(id, n){
   localStorage.setItem("anical.ratings", JSON.stringify(state.ratings));
   refreshRatingPickers(id);
   if(n) alEnqueue(id);   // clearing a score is local-only, same reasoning as toggleWatch
+  if(n) tungTask("rate");
 }
 function getNote(id){ return state.notes[String(id)]||""; }
 function hasNote(id){ return !!getNote(id); }
@@ -1540,6 +1719,9 @@ function setNote(id, text){
   id=String(id); text=String(text==null?"":text).slice(0,NOTE_MAX).trim();
   if(text) state.notes[id]=text; else delete state.notes[id];
   localStorage.setItem("anical.notes", JSON.stringify(state.notes));
+  // The note itself never leaves the browser — only the fact that you wrote one
+  // today, and only as "credit this task", with no id and no text attached.
+  if(text) tungTask("note");
 }
 // Score band — colours the chip, the read-out and the pill the same way.
 function ratingBand(n){ return n>=9?"great" : n>=7?"good" : n>=5?"ok" : "bad"; }
@@ -1636,7 +1818,7 @@ function collectionsOf(mediaId){ const m=String(mediaId); return state.collectio
 function addToCollection(colId, mediaId){
   const col=collectionById(colId), m=String(mediaId);
   if(!col || col.ids.indexOf(m)>=0) return false;
-  col.ids.push(m); saveCollections(); return true;
+  col.ids.push(m); saveCollections(); tungTask("list"); return true;
 }
 function removeFromCollection(colId, mediaId){
   const col=collectionById(colId), m=String(mediaId);
@@ -1703,11 +1885,52 @@ function setProgress(id,ep){
   id=String(id); ep=Math.max(0,ep|0);
   const total=epTotal(findMediaById(id));
   if(total) ep=Math.min(ep,total);   // never past the last episode
+  const before=state.progress[id]||0;
   if(ep) state.progress[id]=ep; else delete state.progress[id];
   localStorage.setItem("anical.progress", JSON.stringify(state.progress));
+  if(total && ep>=total && before<total) countRun(id);   // a run just reached the end
   if(ep) alEnqueue(id);
+  if(ep>before) tungTask("progress");   // a daily task, credited where the thing happens
 }
 function maxAiredEp(md){ const now=Date.now()/1000; let m=0; for(const n of (md.airingSchedule&&md.airingSchedule.nodes)||[]) if(n.airingAt<=now && n.episode>m) m=n.episode; return m; }
+// When one specific episode aired, read from the same node maxAiredEp reads —
+// so the thing that decides an episode is available and the thing that dates it
+// in the Next up rail can never disagree.
+function epAiredAt(md,ep){
+  for(const n of (md&&md.airingSchedule&&md.airingSchedule.nodes)||[]) if(n.episode===ep) return n.airingAt;
+  return 0;
+}
+/* How many episodes you could watch right now. Not the same question as
+   maxAiredEp: AniList drops the airingSchedule entirely on shows that finished
+   years ago, so a 2013 series you are five episodes into reports zero aired and
+   silently vanishes from the Next up rail — the exact show the rail exists for.
+   Once a broadcast is FINISHED the announced episode count *is* the aired count,
+   so the two agree wherever both are known.
+
+   Deliberately not wired into the counter row or the airing sweep. Both use
+   maxAiredEp to mean "aired, right now, on the live schedule", and opting a
+   finished show into auto-progress would mark its whole back catalogue watched
+   on the first sweep. */
+function availableEp(md){
+  const aired=maxAiredEp(md);
+  return (md&&md.status==="FINISHED") ? Math.max(aired, epTotal(md)) : aired;
+}
+
+/* ---------- rewatches ----------
+   anical.rewatch counts *completed runs*, not rewatches: 1 is "watched once", 2
+   is "watched once and rewatched once". Counting runs in a key of their own is
+   what makes Reset harmless — clearing progress throws away where you are and
+   keeps what you have finished, which is exactly the difference between the two.
+   A run is counted on the transition into the last episode, so clicking +1 again
+   at the end, or the airing sweep passing back over a finished show, cannot
+   inflate it. */
+function runsOf(id){ return +state.rewatch[String(id)]||0; }
+function rewatchCount(id){ return Math.max(0, runsOf(id)-1); }
+function countRun(id){
+  id=String(id);
+  state.rewatch[id]=runsOf(id)+1;
+  try{ localStorage.setItem("anical.rewatch", JSON.stringify(state.rewatch)); }catch(e){}
+}
 /* How many episodes a show has, or 0 when nobody knows yet. AniList leaves
    `episodes` null on anything still airing without an announced count, so the
    schedule's own highest episode is the fallback — and a currently-airing show
@@ -1767,20 +1990,26 @@ function progressRowHtml(md){
   const auto=autoProgOn(id);
   const atEnd=!!total && p>=total;
   const caught=aired>0 && p>=aired;
+  const rw=rewatchCount(id);
+  const hint = auto
+    ? "On: each new episode marks itself watched once it airs. Turning this off freezes the counter where it is — nothing you've already watched is lost."
+    : "Type an episode number and press Enter to jump straight to it, or step with the buttons. It never counts past the last episode that has aired. Syncs to AniList when your account is connected."
+      + (runsOf(id) ? " Finishing it again adds to your rewatch count, and Reset never touches that." : "");
   return `<div class="st-row pg-row">
     <span class="st-row-label">▶ Watched up to:</span>
     <div class="pg-ctl">
       <button type="button" class="pg-btn" data-prog="${id}|dec" title="Back one episode" aria-label="One episode back"${p<=0?" disabled":""}>−</button>
-      <span class="pg-count" aria-live="polite">${p?`Ep ${p}${total?` <small>of ${total}</small>`:""}`:`Not started${total?` <small>· ${total} episodes</small>`:""}`}</span>
+      <input type="number" class="pg-num" data-prognum="${id}" value="${p}" min="0"${total?` max="${total}"`:""} step="1"
+        inputmode="numeric" aria-label="Episode you have watched up to" title="Type the episode you're on, then press Enter">
+      <span class="pg-count" aria-live="polite">${total?`of ${total}`:`<small>episodes watched</small>`}</span>
       <button type="button" class="pg-btn" data-prog="${id}|inc" title="Mark the next episode watched" aria-label="One episode forward"${atEnd?" disabled":""}>+1</button>
       <button type="button" class="pg-btn wide" data-prog="${id}|max" title="Mark everything that has aired as watched"${(!aired||caught)?" disabled":""}>✓ Caught up${aired?` (ep ${aired})`:""}</button>
       ${p?`<button type="button" class="pg-btn" data-prog="${id}|zero" title="Clear progress for this show">Reset</button>`:""}
+      ${rw?`<span class="pill pg-rw" title="You've finished this show ${rw+1} times">↻ ${rw} rewatch${rw===1?"":"es"}</span>`:""}
     </div>
     ${progressBarHtml(md,true)}
     <label class="pg-auto"><input type="checkbox" data-autoprog="${id}"${auto?" checked":""}> Mark episodes watched as they air</label>
-    <span class="st-hint">${auto
-      ? "On: each new episode marks itself watched once it airs. Turning this off freezes the counter where it is — nothing you've already watched is lost."
-      : "Counts up to the last episode that has actually aired, never past it. Syncs to AniList when your account is connected."}</span>
+    <span class="st-hint">${hint}</span>
   </div>`;
 }
 /* The same progress, as a fill — under every card (Day 09) and inside the
@@ -2388,6 +2617,19 @@ function renderWhatsNew(){
    update. Returning visitors see every entry newer than the one they last
    saw, once, in a modal they close manually. Trim old entries freely. */
 const CHANGELOG=[
+  { id:15, v:"3.6", date:"August 2026", items:[
+    "🎡 Skins are yours to earn. Fifty of them — full site themes with their own palette, typeface, corner shapes, texture and art, not recolours — and two ways in: a free spin of the wheel every day, or save up Tung Tungs and buy the one you actually want.",
+    "You earn Tung Tungs by using the site: marking an episode watched, rating something, setting a status, filing a show into a list or writing a note each pay once a day, and they credit themselves the moment you do it. Nothing to collect.",
+    "Spin every day and the streak multiplies your coin prizes, up to double. A skin you already own is never drawn — and if you have cleared a whole rarity, that slice pays out in Tung Tungs instead.",
+    "You now own a collection rather than a single skin: swap between everything you have from the Skins panel, or take it off and go back to your own theme. Skins handed out at events still work exactly as before and sit in the collection alongside the rest.",
+    "One thing changed about what we store, and it's worth saying plainly: your Tung Tung balance and the skins you own live on our server against your Discord account, because a balance kept in your own browser is one that can be edited. Your list, ratings, notes, collections and episode progress are still stored only in your browser and are still never uploaded.",
+  ]},
+  { id:14, v:"3.5", date:"August 2026", items:[
+    "The episode counter is typeable. Binged eight episodes on a plane? Type the number you're on and press Enter instead of clicking +1 eight times. − and +1 are still there for one at a time.",
+    "Continue Watching is ordered by when the episode you're missing actually aired — newest first, with the date on the row — instead of by how popular the show is. It also reaches shows from seasons that aren't on screen, so the thing you fell behind on last season stops being invisible.",
+    "Shows you finish twice now keep a rewatch count, and Reset never touches it — clearing your progress forgets where you are, not what you've finished.",
+    "Started and finished dates, stamped for you the first time a show goes to Watching or Completed, and editable afterwards if the stamp is wrong.",
+  ]},
   { id:13, v:"3.4", date:"August 2026", items:[
     "Episode progress has a counter of its own: −, +1, ✓ Caught up and a running “Ep 5 of 14”, right under Where to watch in every show. Marking three episodes no longer means opening the schedule and finding the right row.",
     "New per-show switch: “mark episodes watched as they air”. Turn it on for the shows you never miss and the count keeps itself up to date. Turning it off freezes it where it is — nothing you've already watched is lost, and a correction you make by hand sticks until the next episode actually airs.",
@@ -2876,7 +3118,7 @@ function downloadFile(name,text,mime){
   const a=document.createElement("a"); a.href=url; a.download=name; document.body.appendChild(a); a.click();
   setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); },0);
 }
-function findMediaById(id){ id=String(id); return state.media.find(x=>String(x.id)===id) || (state.searchResults&&state.searchResults.get(id)) || null; }
+function findMediaById(id){ id=String(id); return state.media.find(x=>String(x.id)===id) || (state.extra&&state.extra.get(id)) || (state.searchResults&&state.searchResults.get(id)) || null; }
 // Build calendar payloads
 function episodeCalData(md,ep,ts){
   const start=new Date(ts*1000), end=new Date(ts*1000+30*60000);
@@ -3258,12 +3500,37 @@ function renderSidebars(){
     ? up.map(u=>prow(u.md, u.ts?("Starts "+new Date(u.ts*1000).toLocaleDateString([], {month:"short",day:"numeric",year:"numeric"})):"TBA")).join("")
     : "<div class='empty'>No upcoming announcements in the fetched seasons.</div>";
 
-  // continue watching — shows you've started that have a newer aired episode
-  const cw=state.media.filter(md=>!nsfwHidden(md)&&!isHidden(md.id)).map(md=>({md,p:getProgress(md.id),aired:maxAiredEp(md)}))
-    .filter(x=>x.p>0 && x.aired>x.p).sort((a,b)=>(b.md.popularity||0)-(a.md.popularity||0)).slice(0,10);
+  /* ---------- Next up ----------
+     Shows with an episode waiting, ordered by when that episode aired, newest
+     first. Ranking by AniList popularity — which this did — answered "which of
+     these is the bigger show", a question nobody standing in front of their own
+     watchlist is asking. The date is on the row, so the order is legible rather
+     than merely different.
+
+     The pool is the loaded seasons *plus* state.extra, which hydrateWatching()
+     fills with Watching shows those seasons don't contain. Falling behind on
+     something from last season used to delete it from this rail entirely, which
+     is precisely when a "continue watching" rail is worth having. */
+  const cwSeen=new Set(), cw=[];
+  for(const md of [...state.media, ...state.extra.values()]){
+    const mid=String(md.id);
+    if(cwSeen.has(mid)) continue; cwSeen.add(mid);
+    if(nsfwHidden(md)||isHidden(mid)) continue;
+    const st=getStatusOf(mid);
+    if(st==="dropped"||st==="completed") continue;   // neither is "continue watching"
+    const p=getProgress(mid), aired=availableEp(md);
+    if(aired<=p) continue;                           // nothing waiting — which is how an item leaves once marked watched
+    if(!p && st!=="watching") continue;              // never started, and never claimed to be watching it
+    cw.push({md, p, ts:epAiredAt(md,p+1)});
+  }
+  cw.sort((a,b)=>(b.ts||0)-(a.ts||0));
   const cwCard=$("cwCard");
   if(cwCard){
-    if(cw.length){ cwCard.style.display=""; $("continueWatching").innerHTML=cw.map(x=>prow(x.md,"▶ Next: Episode "+(x.p+1))).join(""); }
+    if(cw.length){
+      cwCard.style.display="";
+      $("continueWatching").innerHTML=cw.slice(0,12).map(x=>prow(x.md,
+        `▶ Next: Episode ${x.p+1}`+(x.ts?` · aired ${new Date(x.ts*1000).toLocaleDateString([], {month:"short",day:"numeric"})}`:""))).join("");
+    }
     else cwCard.style.display="none";
   }
 
@@ -3283,9 +3550,38 @@ function renderSidebars(){
   }
 
   document.querySelectorAll(".prow[data-mid]").forEach(el=>{
-    el.onclick=(ev)=>{ if(ev.target.closest("[data-bell]")||ev.target.closest("[data-watch]"))return; const md=state.media.find(x=>x.id==el.dataset.mid); if(md) openDetail(md,1); };
+    // findMediaById, not a scan of state.media: a Next up row can be a show
+    // hydrated into state.extra, which state.media has never heard of.
+    el.onclick=(ev)=>{ if(ev.target.closest("[data-bell]")||ev.target.closest("[data-watch]"))return; const md=findMediaById(el.dataset.mid); if(md) openDetail(md,1); };
   });
   document.querySelectorAll("#recentRail [data-rv]").forEach(el=>{ el.onclick=()=>openShowById(el.dataset.rv); });
+  hydrateWatching();   // fills state.extra in the background, then re-renders
+}
+/* The Watching shows no loaded season contains — you fell behind on something
+   from last season, or it is simply older than the range on screen. Fetched a
+   few at a time (AniList is rate-limited, and our own catalog answers most of
+   these), once each per session: a show that 404s must not be retried on every
+   render. Nothing here is persisted; the next load hydrates again from whatever
+   the seasons on screen are missing. */
+const cwTried=new Set();
+let cwHydrating=false;
+async function hydrateWatching(){
+  if(cwHydrating) return;
+  const missing=[...state.watch].map(String).filter(id=>
+    getStatusOf(id)==="watching" && !cwTried.has(id) && !state.extra.has(id) &&
+    !state.media.some(m=>String(m.id)===id)).slice(0,8);
+  if(!missing.length) return;
+  cwHydrating=true;
+  let got=0;
+  for(const id of missing){
+    cwTried.add(id);
+    try{ const md=await fetchMediaById(id); if(md&&md.id){ state.extra.set(String(md.id), md); got++; } }
+    catch(err){ console.warn("Next up: couldn't fetch "+id, err); }
+  }
+  cwHydrating=false;
+  // Every id in this pass is now in cwTried, so the render below can only start
+  // another pass when there are more than eight left — which terminates.
+  if(got) renderView();
 }
 function sdTs(sd){ return sd&&sd.year?Math.floor(new Date(sd.year,(sd.month||1)-1,sd.day||1).getTime()/1000):null; }
 function prow(md,sub,prem){
@@ -3455,7 +3751,7 @@ function streamChipsHTML(md){
 function openDetail(md,episode){
   saveNoteNow();   // the pop-up is about to be rebuilt — don't lose a half-typed note
   pushRecent(md);
-  state._modalId=md.id;
+  state._modalId=md.id; state._modalKind="show";
   // Title + romaji subtitle (only when it differs from the shown title).
   const primaryTitle=title(md);
   const romaji=(md.title&&md.title.romaji)||"";
@@ -3524,6 +3820,7 @@ function openDetail(md,episode){
         ${nextBlock}
         ${streamChipsHTML(md)}
         ${progressRowHtml(md)}
+        ${datesRowHtml(md)}
         <div class="st-row">
           <span class="st-row-label">⭐ Your rating:</span>
           ${ratingPickerHtml(md.id)}
@@ -3695,7 +3992,7 @@ function openDay(d,evs){
   });
   $("overlay").classList.add("on");
 }
-function closeModal(){ saveNoteNow(); $("overlay").classList.remove("on"); }
+function closeModal(){ saveNoteNow(); state._modalKind=null; $("overlay").classList.remove("on"); }
 
 /* ---------- embed widget snippet ---------- */
 function embedSnippet(days){
@@ -4065,9 +4362,369 @@ async function loadThemeCatalog(){
     const r=await fetch("/api/themes",{headers:{Accept:"application/json"}});
     if(!r.ok) return null;
     const j=await r.json();
-    if(j&&j.ok&&j.themes){ themeCatalog=j.themes; return themeCatalog; }
+    if(j&&j.ok&&j.themes){ themeCatalog=j.themes; state.catalog=j.themes; return themeCatalog; }
   }catch(e){}
   return null;
+}
+
+/* ---------- Tung Tungs ----------
+   Two ways to get a skin, neither of them "know an admin": win one on the daily
+   wheel, or save up and buy it. The balance, what you own and what you are
+   wearing all live on the server keyed to your Discord account — the single
+   deliberate exception to this app being local-first, made because a balance
+   that can be edited in devtools cannot later be sold for money. Everything
+   else is exactly as local as it always was, and the Settings copy says so.
+
+   The server decides every outcome. This file animates them. A spin posts to
+   /api/wallet/spin, is told which segment it landed on, and turns the wheel to
+   that segment — the reverse, where the browser picks a prize and reports it,
+   is a form with a spinning graphic on it. */
+/* The currency mark: Tung Tung Tung Sahur's bat, drawn rather than borrowed.
+   An emoji was a placeholder — it renders as a different picture on every
+   platform and says nothing about what the currency is. This is one inline SVG
+   with no host, no request and no licence, and it holds up against fifty skins
+   repainting the page around it because it carries its own colours. */
+const TT_ICON = `<svg class="tt-i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g transform="rotate(-14 12 12)">`
+  + `<path d="M12 1.5c3 0 5.1 2.5 5.1 6 0 2.9-1 5.2-2.1 6.7-.8 1.2-1.2 2.4-1.3 3.7l-.3 3.3h-2.8l-.3-3.3c-.1-1.3-.5-2.5-1.3-3.7C8 12.7 6.9 10.4 6.9 7.5c0-3.5 2.1-6 5.1-6Z" fill="#d7a066"/>`
+  + `<path d="M12 1.5C9 1.5 6.9 4 6.9 7.5c0 2.9 1.1 5.2 2.1 6.7.8 1.2 1.2 2.4 1.3 3.7l.3 3.3h1.6l-.3-3.3c-.1-1.3-.5-2.5-1.3-3.7-1.1-1.5-2.1-3.8-2.1-6.7 0-3 1.4-5.3 3.5-6Z" fill="#b9834a"/>`
+  + `<rect x="9" y="20.3" width="6" height="2.5" rx="1.25" fill="#9a6835"/>`
+  + `<circle cx="10.2" cy="6.8" r="1.45" fill="#2a1a0e"/><circle cx="14" cy="6.8" r="1.45" fill="#2a1a0e"/>`
+  + `<circle cx="10.7" cy="6.3" r=".5" fill="#fff"/><circle cx="14.5" cy="6.3" r=".5" fill="#fff"/>`
+  + `</g></svg>`;
+const TT = TT_ICON;          // anywhere the string lands in innerHTML
+const TT_TXT = "Tung Tungs"; // toast() escapes its message, so those say the words
+const ttNum = n => Number(n||0).toLocaleString();
+
+// Every wallet response carries the whole wallet, so there is one place that
+// takes it in and one place that repaints. No endpoint returns a delta the
+// client has to apply itself, which is how a balance and a badge drift apart.
+function takeWallet(j){
+  if(!j||!j.ok) return j;
+  if(j.wallet) state.wallet=j.wallet;
+  if(j.wheel) state.wheel=j.wheel;
+  if(j.rarity) state.rarityMeta=j.rarity;
+  renderTungChip();
+  return j;
+}
+async function walletGet(){
+  try{
+    const r=await fetch("/api/wallet",{headers:{Accept:"application/json"}});
+    if(r.status===503){ state.walletOff=true; return null; }
+    if(r.status===401) return null;             // signed out — nothing to show
+    const j=await r.json();
+    return takeWallet(j);
+  }catch(e){ return null; }
+}
+async function walletPost(action, body){
+  try{
+    const r=await fetch("/api/wallet/"+action,{
+      method:"POST", headers:{"Content-Type":"application/json",Accept:"application/json"},
+      body:JSON.stringify(body||{}),
+    });
+    const j=await r.json().catch(()=>null);
+    return takeWallet(j);
+  }catch(e){ return null; }
+}
+
+/* A daily task, credited when you actually do the thing. Fired from the feature
+   itself rather than from a "claim" button, because a reward you have to go and
+   collect is a chore attached to the thing you already did.
+
+   The server enforces once-per-UTC-day; this guard only exists so the app
+   doesn't POST on every keystroke of a note. It cannot verify that you really
+   marked an episode — progress is local by design — but every task pays once a
+   day, so a browser that lies earns exactly what an honest one earns. */
+const ttSending=new Set();
+function tungTask(id){
+  const w=state.wallet;
+  if(!w||!state.discord) return;                       // signed out: nothing to credit
+  const t=(w.tasks||[]).find(x=>x.id===id);
+  if(!t||t.done||ttSending.has(id)) return;
+  ttSending.add(id);
+  walletPost("claim",{task:id}).then(j=>{
+    ttSending.delete(id);
+    if(j&&j.ok&&j.claim&&j.claim.ok){
+      toast(`+${ttNum(j.claim.awarded)} ${TT_TXT} · ${t.label}`);
+      if(isSkinsOpen()) renderSkins();
+    }
+  }).catch(()=>ttSending.delete(id));
+}
+
+// The header badge. A dot appears when today's spin is still there — the whole
+// reason to come back tomorrow, and easy to forget without it.
+function renderTungChip(){
+  const el=$("ttChip"); if(!el) return;
+  const w=state.wallet;
+  if(!w||!state.discord){ el.style.display="none"; el.innerHTML=""; return; }
+  const ready=w.spin&&w.spin.available;
+  const undone=(w.tasks||[]).filter(t=>!t.done).length;
+  el.style.display="";
+  el.classList.toggle("tt-ready",!!ready);
+  el.innerHTML=`${TT}<b>${ttNum(w.balance)}</b>${ready?`<i class="tt-dot"></i>`:""}`;
+  // The mark is decorative SVG, so the number on its own would be read out with
+  // no unit. The label carries the whole sentence.
+  const label=`${ttNum(w.balance)} ${TT_TXT}`
+    +(ready?" · your daily spin is waiting":"")
+    +(undone?` · ${undone} task${undone===1?"":"s"} left today`:"")
+    +" — click to open your skins";
+  el.title=label;
+  el.setAttribute("aria-label",label);
+}
+
+/* ---------- the skins panel ---------- */
+const isSkinsOpen = () => state._modalKind==="skins" && $("overlay").classList.contains("on");
+
+function openSkins(tab){
+  state._modalKind="skins";
+  if(tab) state._skTab=tab;
+  $("modalTitle").textContent="🎡 Skins";
+  renderSkins();
+  $("overlay").classList.add("on");
+  // The catalog is 50 themes and only this panel needs it, so it is fetched on
+  // open rather than at boot.
+  if(!state.catalog) loadThemeCatalog().then(()=>{ if(isSkinsOpen()) renderSkins(); });
+  if(!state.wallet && state.discord) walletGet().then(()=>{ if(isSkinsOpen()) renderSkins(); });
+}
+function renderSkins(){
+  $("modalBody").innerHTML=skinsHTML();
+  wireSkins();
+}
+function skinsHTML(){
+  if(state.walletOff){
+    return `<p class="num-hint">Skins are switched off on this deployment — the wallet needs
+      <code>DISCORD_CLIENT_ID</code>, <code>DISCORD_CLIENT_SECRET</code> and <code>SESSION_SECRET</code>
+      in the site environment.</p>`;
+  }
+  if(!state.discord) return signedOutSkinsHTML();
+  const w=state.wallet;
+  if(!w) return `<div class="slot-loading">Loading your skins…</div>`;
+  const tab=state._skTab||"wheel";
+  const undone=(w.tasks||[]).filter(t=>!t.done).length;
+  const owned=Object.keys(w.owned||{}).length;
+  const total=state.catalog?Object.keys(state.catalog).length:0;
+  const t=(k,label,n)=>`<button class="sk-tab${tab===k?" on":""}" data-sktab="${k}">${label}${n?`<span class="sk-tab-n">${n}</span>`:""}</button>`;
+  return `<div class="sk-tabs">
+      ${t("wheel","🎡 Daily spin",w.spin&&w.spin.available?"1":"")}
+      ${t("tasks","✅ Today",undone?String(undone):"")}
+      ${t("collection","🎨 Collection",total?`${owned}/${total}`:"")}
+    </div>
+    ${tab==="wheel"?wheelHTML():tab==="tasks"?tasksHTML():collectionHTML()}`;
+}
+function signedOutSkinsHTML(){
+  return `<p style="margin-top:0">Fifty site skins — full palettes, typefaces, textures and corner art, not recolours.
+      Win one a day on the wheel, or save ${TT} Tung Tungs by using the site and buy the one you actually want.</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:14px 0">
+      <button class="primary" id="skIn">🎮 Sign in with Discord</button>
+    </div>
+    <p class="num-hint">Signing in is required for this one feature, and it is worth saying exactly why. A balance kept in
+      your own browser is a balance you can edit, which makes it worthless the day Tung Tungs can be bought — so the wallet,
+      what you own and what you are wearing live on our server against your Discord id. <b>Nothing else moved.</b> Your list,
+      ratings, notes, collections and episode progress are still stored only in this browser and are still never uploaded.</p>`;
+}
+
+/* ---------- the wheel ---------- */
+function wheelHTML(){
+  const w=state.wallet, segs=state.wheel||[];
+  if(!segs.length) return `<div class="slot-loading">Loading the wheel…</div>`;
+  const meta=state.rarityMeta||{};
+  const step=360/segs.length;
+  // The gradient starts half a segment before zero so segment 0 is centred on
+  // the pointer at the top — the same offset the landing arithmetic assumes.
+  const stops=segs.map((s,i)=>{
+    // Skin slices wear their rarity's colour. Coin slices alternate two tints of
+    // the accent rather than two shades of the background — against a dark page
+    // those read as gaps in the wheel rather than as segments of it.
+    const col=s.kind==="skin"
+      ? ((meta[s.rarity]&&meta[s.rarity].tint)||"#888")
+      : (i%2 ? "color-mix(in srgb,var(--accent) 26%,var(--bg2))" : "color-mix(in srgb,var(--accent) 12%,var(--bg3))");
+    return `${col} ${i*step}deg ${(i+1)*step}deg`;
+  }).join(",");
+  const labels=segs.map((s,i)=>
+    `<i class="wl" style="transform:rotate(${i*step}deg)"><b>${s.kind==="coins"?`${TT} ${s.amount}`:esc(s.label)}</b></i>`).join("");
+  const ready=w.spin&&w.spin.available;
+  const streak=(w.spin&&w.spin.streak)||0;
+  return `<div class="wheel-stage">
+      <div class="wheel-wrap">
+        <div class="wheel-pin"></div>
+        <div class="wheel" id="ttWheel" style="transform:rotate(${state._wheelAngle||0}deg);background:conic-gradient(from -${step/2}deg,${stops})">${labels}</div>
+        <div class="wheel-hub">${TT}</div>
+      </div>
+      <div id="ttPrize">${state._lastPrize||""}</div>
+      <div class="wheel-foot">
+        <button class="primary" id="ttSpin"${ready?"":" disabled"}>${ready?"🎡 Spin — free":"Spun for today"}</button>
+        ${streak?`<span class="tt-streak">🔥 ${streak}-day streak · coin prizes ×${(1+Math.min(Math.max(streak-1,0),10)*0.1).toFixed(1)}</span>`:""}
+      </div>
+      <span class="num-hint" style="text-align:center">${ready
+        ? `One spin a day. A skin you already own is never drawn — clear a tier and its slice pays ${TT} instead.`
+        : `Next spin and a fresh set of tasks in <b>${esc(hms(w.spin&&w.spin.nextInMs||w.dayEndsInMs))}</b> (00:00 UTC).`}</span>
+    </div>`;
+}
+const hms = ms => {
+  const s=Math.max(0,Math.round((+ms||0)/1000)), h=Math.floor(s/3600), m=Math.floor(s%3600/60);
+  return h?`${h}h ${m}m`:`${m}m`;
+};
+const SPIN_MS=4600, SPIN_MS_REDUCED=420;
+const wantsLessMotion = () => !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
+/* Turn the wheel from one angle to another and say how long it will take.
+
+   Honouring prefers-reduced-motion by *shortening* rather than by removing:
+   someone who asked for less motion still needs to see which slice the pointer
+   ended on, and a wheel that teleports reads as a broken button. What they are
+   spared is five seconds of spinning. The caller uses the returned duration to
+   time everything that follows, so a reduced-motion spin doesn't sit staring at
+   a finished wheel for the four seconds the animation didn't take. */
+function turnWheelTo(el, from, to){
+  const ms=wantsLessMotion()?SPIN_MS_REDUCED:SPIN_MS;
+  if(!el) return ms;
+  el.style.transform=`rotate(${to}deg)`;   // the resting state, whatever happens below
+  if(typeof el.animate!=="function") return ms;
+  el.animate([{transform:`rotate(${from}deg)`},{transform:`rotate(${to}deg)`}],
+    {duration:ms, easing:"cubic-bezier(.13,.72,.13,1)", fill:"none"});
+  return ms;
+}
+async function spinWheel(){
+  const btn=$("ttSpin"); if(!btn||btn.disabled) return;
+  btn.disabled=true; btn.textContent="Spinning…";
+  const j=await walletPost("spin",{});
+  const res=j&&j.spin;
+  if(!res||!res.ok){
+    btn.textContent="Spun for today";
+    if(isSkinsOpen()) renderSkins();
+    return;
+  }
+  const segs=state.wheel||[], step=360/segs.length;
+  // Land the won segment under the pointer, five turns later, stopping a little
+  // off-centre so it doesn't read as snapping to a grid.
+  const want=(360-res.index*step+ (Math.random()*step*0.7-step*0.35))%360;
+  const from=state._wheelAngle||0, cur=from%360;
+  state._wheelAngle=from+360*5+((want-cur)%360+360)%360;
+  const spinMs=turnWheelTo($("ttWheel"), from, state._wheelAngle);
+
+  const p=res.prize;
+  state._lastPrize=p.kind==="skin"
+    ? `<div class="tt-prize win">🎉 <b>${esc(p.name||p.themeId)}</b> — ${esc((state.rarityMeta&&state.rarityMeta[p.rarity]&&state.rarityMeta[p.rarity].label)||p.rarity)} skin, yours.</div>`
+    : `<div class="tt-prize${p.dust?"":" win"}">${TT} <b>+${ttNum(p.amount)}</b>${p.dust
+        ? ` — you already own every ${esc(p.rarity)} skin, so that slice paid out instead.`
+        : (res.multiplier>1?` · including your ×${res.multiplier.toFixed(1)} streak bonus`:"")}</div>`;
+  // Let the wheel finish before the panel repaints under it — timed off the
+  // animation that actually ran, not off a constant.
+  setTimeout(()=>{
+    if(!isSkinsOpen()) return;
+    renderSkins();
+    if(p.kind==="skin") toast(`Won · ${p.name||p.themeId}`);
+  },spinMs+120);
+}
+
+/* ---------- today's tasks ---------- */
+function tasksHTML(){
+  const w=state.wallet;
+  const rows=(w.tasks||[]).map(t=>`<div class="tt-task${t.done?" done":""}">
+      <span style="font-size:17px">${t.done?"✅":"⬜"}</span>
+      <span class="tt-t"><b>${esc(t.label)}</b><span>${esc(t.hint)}</span></span>
+      <span class="tt-pay">${t.done?"claimed":`${TT} ${t.reward}`}</span>
+    </div>`).join("");
+  const left=(w.tasks||[]).filter(t=>!t.done).reduce((n,t)=>n+t.reward,0);
+  return `${rows}
+    <p class="num-hint">Every one pays once a day and credits itself the moment you do the thing — there is nothing to
+      collect. ${left?`<b>${TT} ${ttNum(left)}</b> still on the table today.`:`Everything claimed today.`}
+      Resets with the wheel in <b>${esc(hms(w.dayEndsInMs))}</b>, at 00:00 UTC.</p>`;
+}
+
+/* ---------- the collection ---------- */
+function collectionHTML(){
+  const w=state.wallet, cat=state.catalog;
+  if(!cat) return `<div class="slot-loading">Loading skins…</div>`;
+  const meta=state.rarityMeta||{};
+  const filter=state._skFilter||"all";
+  const order={legendary:0,epic:1,rare:2,common:3,exclusive:4};
+  const all=Object.values(cat).sort((a,b)=>
+    (order[a.rarity]??9)-(order[b.rarity]??9) || String(a.name).localeCompare(String(b.name)));
+  const list=all.filter(t=>filter==="all" ? true : filter==="owned" ? !!w.owned[t.id] : t.rarity===filter);
+  const f=(k,label)=>`<button class="sk-f${filter===k?" on":""}" data-skf="${k}">${label}</button>`;
+  const cards=list.map(t=>skinCardHTML(t,w,meta)).join("");
+  // Wearing something with the local mute on is the one state where this panel
+  // and the page disagree. Say so, rather than showing "Wearing" over a site
+  // that looks untouched.
+  const muted=w.wearing&&!skinOn()
+    ? `<div class="skin-note"><span class="num-hint" style="margin:0">Your skin is switched off on this device, so the site looks unskinned.</span>
+       <button id="skUnmute" class="primary">Turn it back on</button></div>` : "";
+  return `${muted}<div class="sk-filters">
+      ${f("all",`All ${all.length}`)}${f("owned",`Owned ${Object.keys(w.owned||{}).length}`)}
+      ${f("legendary","Legendary")}${f("epic","Epic")}${f("rare","Rare")}${f("common","Common")}
+    </div>
+    <div class="sk-grid">${cards||`<p class="num-hint">Nothing here yet.</p>`}</div>
+    <p class="num-hint">Wearing a skin repaints the whole site — palette, corner radii, display face, texture and art.
+      You can take it off any time from here or from Settings; it stays on your account either way.</p>`;
+}
+function skinCardHTML(t,w,meta){
+  const own=!!(w.owned&&w.owned[t.id]);
+  const worn=w.wearing===t.id;
+  const m=meta[t.rarity]||{};
+  const price=m.price;
+  const afford=price!=null && w.balance>=price;
+  const art=(t.cutout&&t.cutout.url)||(t.header&&t.header.url)||(t.backdrop&&t.backdrop.url)||"";
+  const c=t.colors||{};
+  const sw=["bg2","accent","accent2","premiere","txt"].map(k=>`<i style="background:${esc(c[k]||"#000")}"></i>`).join("");
+  let act;
+  if(worn) act=`<button data-skwear="">✓ Wearing — take off</button>`;
+  else if(own) act=`<button class="primary" data-skwear="${esc(t.id)}">Wear</button>`;
+  else if(price==null) act=`<span class="sk-cost">Handed out at events</span>`;
+  else act=`<button class="${afford?"primary":""}" data-skbuy="${esc(t.id)}"${afford?"":" disabled"}>${TT} ${ttNum(price)}</button>`;
+  return `<div class="sk-card${own?" owned":""}${worn?" on":""}"${art?` style="--art:url(&quot;${esc(art)}&quot;)"`:""}>
+      <span class="sk-rar" data-r="${esc(t.rarity)}">${esc(m.label||t.rarity)}</span>
+      <span class="sk-name">${esc(t.name||t.id)}</span>
+      <span class="sk-sw">${sw}</span>
+      <span class="sk-act">${act}</span>
+    </div>`;
+}
+
+function wireSkins(){
+  const body=$("modalBody");
+  if($("skIn")) $("skIn").onclick=discordSignIn;
+  if($("skUnmute")) $("skUnmute").onclick=()=>{
+    try{ localStorage.setItem(SKIN_ON_KEY,"1"); }catch(e){}
+    applyAppearance(); renderDiscordChip(); renderSkins();
+  };
+  body.querySelectorAll("[data-sktab]").forEach(b=>{ b.onclick=()=>{ state._skTab=b.dataset.sktab; renderSkins(); }; });
+  body.querySelectorAll("[data-skf]").forEach(b=>{ b.onclick=()=>{ state._skFilter=b.dataset.skf; renderSkins(); }; });
+  if($("ttSpin")) $("ttSpin").onclick=spinWheel;
+  body.querySelectorAll("[data-skwear]").forEach(b=>{
+    b.onclick=async()=>{
+      b.disabled=true;
+      // Putting a skin on is an explicit request to see it, so it also clears
+      // the local mute. Without this, anyone who had ever switched their old
+      // granted skin off would wear things that never appeared, and the card
+      // would claim "Wearing" over a site that hadn't changed.
+      if(b.dataset.skwear) try{ localStorage.setItem(SKIN_ON_KEY,"1"); }catch(e){}
+      const j=await walletPost("wear",{themeId:b.dataset.skwear||null});
+      applyWornSkin();
+      if(isSkinsOpen()) renderSkins();
+      // toast() escapes what it is given, so no esc() here — passing one would
+      // double-escape any name carrying an ampersand or a colon.
+      if(j&&j.ok&&j.wear&&j.wear.ok) toast(j.wear.wearing?`Wearing · ${(state.catalog[j.wear.wearing]||{}).name||j.wear.wearing}`:"Skin off — back to your own theme");
+    };
+  });
+  body.querySelectorAll("[data-skbuy]").forEach(b=>{
+    b.onclick=async()=>{
+      b.disabled=true;
+      const j=await walletPost("buy",{themeId:b.dataset.skbuy});
+      const r=j&&j.buy;
+      if(r&&r.ok){
+        try{ localStorage.setItem(SKIN_ON_KEY,"1"); }catch(e){}   // buying it is asking to see it
+        applyWornSkin(); toast(`Bought · ${r.name||r.themeId} — ${ttNum(r.price)} ${TT_TXT}`);
+      }
+      else if(r&&r.error==="insufficient") toast(`Not enough ${TT_TXT} — that one is ${ttNum(r.price)} and you have ${ttNum(r.balance)}`);
+      if(isSkinsOpen()) renderSkins();
+    };
+  });
+}
+
+// The worn skin, resolved through the catalog. One writer, so the cached
+// instant-paint copy and what is actually on screen can never disagree.
+function applyWornSkin(){
+  const id=state.wallet&&state.wallet.wearing;
+  setGrantedSkin((id&&state.catalog&&state.catalog[id])||null);
+  renderDiscordChip();
 }
 
 /* ---------- Discord identity ----------
@@ -4086,10 +4743,28 @@ async function refreshIdentity(){
   state.discord=j.user||null;
   state.skinGrant=(j.user&&j.grant)||null;
   if(j.user) state.loginProblem=null;   // whatever went wrong last time, it's resolved
-  if(!j.user||!j.grant||!j.grant.themeId){ setGrantedSkin(null); renderDiscordChip(); return j; }
-  const cat=await loadThemeCatalog();
-  setGrantedSkin((cat&&cat[j.grant.themeId])||null);
+  if(!j.user){
+    state.wallet=null; setGrantedSkin(null); renderDiscordChip(); renderTungChip();
+    return j;
+  }
+  // Signed in: the wallet decides what is worn, because it is what knows the
+  // whole collection rather than the single admin grant. When the wallet is
+  // unreachable (offline, cold function, sign-in half-configured) fall back to
+  // the pre-economy grant rather than stripping someone's skin off because an
+  // endpoint was slow.
+  await walletGet();
+  const wearId = state.wallet ? state.wallet.wearing : ((j.grant && j.grant.themeId) || null);
+  // The catalog is fifty themes. Fetching it on every signed-in page load for
+  // somebody who is wearing nothing is a payload spent on nothing, so it is
+  // pulled only when there is an id to resolve — the Skins panel fetches it
+  // itself when opened.
+  if(!wearId) setGrantedSkin(null);
+  else {
+    const cat=await loadThemeCatalog();
+    setGrantedSkin((cat&&cat[wearId])||null);
+  }
   renderDiscordChip();
+  renderTungChip();
   return j;
 }
 // The header's signed-in indicator. Hidden entirely when signed out, so the
@@ -4114,6 +4789,7 @@ function discordSignIn(){
 async function discordSignOut(){
   try{ await fetch("/api/auth/logout",{method:"POST"}); }catch(e){}
   state.discord=null; state.skinGrant=null; state.loginProblem=null;
+  state.wallet=null; renderTungChip();
   setGrantedSkin(null);
   renderDiscordChip();
   openSettings();
@@ -4177,32 +4853,46 @@ function discordSettingsHTML(){
   }
   const problem=state.loginProblem
     ? `<span class="num-hint err-hint" style="flex-basis:100%">⚠ ${esc(state.loginProblem)}</span>` : "";
-  const privacy=problem+`<span class="num-hint" style="flex-basis:100%">Signing in tells Tsuzuki which Discord account you are, and
-    that is the entire purpose — it's how something handed out at an event finds you. Your list, ratings, notes and
-    collections are <b>never uploaded</b> and signing in doesn't change that. Stored: your Discord id, name and avatar.</span>`;
+  // Rewritten when the wallet arrived, because the old copy — "nothing is
+  // uploaded" — stopped being true the day a balance had to be kept somewhere
+  // it couldn't be edited. Being precise about which two things live on the
+  // server is the only version of this worth printing.
+  const privacy=problem+`<span class="num-hint" style="flex-basis:100%">Signing in tells Tsuzuki which Discord account you are.
+    Stored on our side: your Discord id, name and avatar, plus <b>your Tung Tung balance and which skins you own</b> —
+    a balance kept in your own browser is one you can edit, so it lives with us instead. Your list, ratings, notes,
+    collections and episode progress are <b>never uploaded</b> and signing in doesn't change that.</span>`;
   if(!state.discord){
-    return `<button class="primary" id="dcIn">🎮 Sign in with Discord</button>${privacy}`;
+    // The Skins button is here for the signed-out too. Without it the header
+    // chip is the only way in and the header chip only exists once you have
+    // signed in — so fifty skins would be invisible to precisely the people who
+    // have not yet been given a reason to sign in.
+    return `<button class="primary" id="dcIn">🎮 Sign in with Discord</button>
+      <button id="dcSkins">🎡 Skins</button>${privacy}`;
   }
   const u=state.discord;
   const av=u.avatar
     ? `https://cdn.discordapp.com/avatars/${encodeURIComponent(u.id)}/${encodeURIComponent(u.avatar)}.png?size=64`
     : null;
   const who=`<span class="dc-user">${av?`<img src="${esc(av)}" alt="" width="24" height="24">`:""}${esc(u.globalName||u.username||"Signed in")}</span>`;
+  const w=state.wallet;
+  const purse=w?`<span class="tt-chip" style="cursor:default">${TT}<b>${ttNum(w.balance)}</b></span>`:"";
+  const skins=`<button id="dcSkins">🎡 Skins${w&&w.spin&&w.spin.available?" · spin ready":""}</button>`;
   if(!state.skin){
-    return `${who}<button id="dcOut">Sign out</button>
-      <span class="num-hint" style="flex-basis:100%">Nothing on this account yet. Handed out at events — if you were
-      given one and it isn't here, sign out and back in.</span>${privacy}`;
+    return `${who}${purse}${skins}<button id="dcOut">Sign out</button>
+      <span class="num-hint" style="flex-basis:100%">No skin on yet. Win one on the daily wheel or buy it with
+      Tung Tungs — fifty of them, and you earn by using the site.</span>${privacy}`;
   }
-  return `${who}
+  return `${who}${purse}
     <span class="skin-chip"><i></i>${esc(state.skin.name||state.skin.id)}</span>
     <button id="dcSkin" class="${skinOn()?"primary":""}">${skinOn()?"✓ On":"Off"}</button>
-    <button id="dcOut">Sign out</button>
-    <span class="num-hint" style="flex-basis:100%">${esc(state.skin.series||state.skin.name||"")} — yours permanently.
-      Turning it off keeps it on the account; it just goes back to your own theme and accent above.</span>${privacy}`;
+    ${skins}<button id="dcOut">Sign out</button>
+    <span class="num-hint" style="flex-basis:100%">${esc(state.skin.series||state.skin.name||"")} — yours, kept on the account.
+      Off just hides it on this device and goes back to your own theme and accent below; to swap to a different one, open Skins.</span>${privacy}`;
 }
 function wireDiscordSettings(){
   if($("dcIn")) $("dcIn").onclick=discordSignIn;
   if($("dcOut")) $("dcOut").onclick=discordSignOut;
+  if($("dcSkins")) $("dcSkins").onclick=()=>openSkins();
   if($("dcSkin")) $("dcSkin").onclick=()=>{
     localStorage.setItem(SKIN_ON_KEY, skinOn()?"0":"1");
     applyAppearance();
@@ -4216,6 +4906,7 @@ function prefSeg(key, opts){
     `<button data-pref="${key}|${esc(String(val))}" class="${String(state[key])===String(val)?"on":""}"${tip?` title="${esc(tip)}"`:""}>${esc(label)}</button>`).join("")+`</div>`;
 }
 function openSettings(){
+  state._modalKind="settings";
   $("modalTitle").textContent="⚙ Settings";
   const sw=ACCENTS.map(([name,a,b])=>`<button class="swatch${state.accent===a+"|"+b?" sel":""}" data-accent="${a}|${b}" title="${name}" style="background:linear-gradient(135deg,${a},${b})"></button>`).join("");
   const f=state.filters;
@@ -4856,7 +5547,7 @@ document.addEventListener("click",e=>{
   renderView();
   toast(key ? `${statusLabel(key)} · ${ids.length} show${ids.length===1?"":"s"}`
             : `Removed from board · ${ids.length} show${ids.length===1?"":"s"}`,
-        ()=>{ prev.forEach(([id,st])=>setStatusOf(id, st)); renderView(); });
+        ()=>{ prev.forEach(([id,st])=>setStatusOf(id, st, {stamp:false})); renderView(); });
 });
 // One list for the whole selection. Shows already in it are left alone, so the
 // Undo only takes back what this actually added.
@@ -5388,6 +6079,7 @@ document.querySelectorAll("#viewSeg button").forEach(b=>b.onclick=()=>setView(b.
 $("embedLink").onclick=e=>{ e.preventDefault(); openEmbed(); };
 $("subscribeLink").onclick=e=>{ e.preventDefault(); openSubscribe(); };
 $("settingsBtn").onclick=()=>openSettings();
+$("ttChip").onclick=()=>openSkins();
 $("airBtn").onclick=()=>openAirPanel();
 airBtnLabel();
 function surpriseMe(){
@@ -5540,7 +6232,7 @@ document.addEventListener("click",e=>{
   if(!was) return;                     // adding needs no apology
   const md=findMediaById(id), name=md?title(md):"Show";
   toast(`Removed from My List · ${name}`,
-        ()=>{ toggleWatch(id); if(prev) setStatusOf(id, prev); renderView(); });
+        ()=>{ toggleWatch(id); if(prev) setStatusOf(id, prev, {stamp:false}); renderView(); });
 });
 // one-click status delegation (detail pop-up · board cards · search results).
 // Picking a status tracks the show; picking the one it already has removes it.
@@ -5560,7 +6252,7 @@ document.addEventListener("click",e=>{
     else if(state.viewMode==="lists") setStatus(false, listsStatusText());
   };
   toast(next ? `${statusLabel(next)} · ${name}` : `Removed from board · ${name}`,
-        ()=>{ setStatusOf(id, prev); after(); });
+        ()=>{ setStatusOf(id, prev, {stamp:false}); after(); });
   after();
 });
 // rating delegation: 1–10 chips in the detail pop-up; the active one clears it
@@ -5715,10 +6407,53 @@ document.addEventListener("click",e=>{
   else if(op==="zero") next=0;
   if(next===before) return;
   setProgress(id,next);
-  refreshProgressUI(id, b.dataset.prog);
+  refreshProgressUI(id, `[data-prog="${CSS.escape(b.dataset.prog)}"]`);
   // Clearing a show's progress is the one move here that throws work away.
   // Toasted after the repaint: the repaint can raise a toast of its own.
   if(op==="zero") toast(`Progress cleared · ${md?title(md):"Show"}`, ()=>{ setProgress(id,before); refreshProgressUI(id); });
+});
+/* The same counter, typed. The buttons above move one episode at a time, which
+   is the wrong tool for "I got through eight of these on a plane" — this is the
+   number itself, editable in place. It lands in the same setProgress, so the
+   episode ceiling and the AniList queue are not reimplemented here either.
+   Going *backwards* throws watched episodes away, so it gets an Undo, exactly
+   like Reset does. */
+function commitProgInput(inp){
+  const id=String(inp.dataset.prognum||""), before=getProgress(id), md=findMediaById(id);
+  const raw=String(inp.value).trim();
+  const typed=raw===""?0:parseInt(raw,10);
+  // Anything that isn't a whole number ≥ 0 reverts. Reading "e" or "-3" as
+  // "clear this show's progress" is the one interpretation nobody wants.
+  setProgress(id, (Number.isFinite(typed)&&typed>=0) ? typed : before);
+  const after=getProgress(id);
+  if(after===before){ inp.value=String(before); return; }   // unchanged, or clamped straight back
+  refreshProgressUI(id, `[data-prognum="${CSS.escape(id)}"]`);
+  if(after<before) toast(after?`Watched up to ep ${after} · ${md?title(md):"Show"}`:`Progress cleared · ${md?title(md):"Show"}`,
+        ()=>{ setProgress(id,before); refreshProgressUI(id); });
+}
+document.addEventListener("change",e=>{
+  const inp=e.target.closest&&e.target.closest("[data-prognum]"); if(!inp) return;
+  commitProgInput(inp);
+});
+/* Enter commits without waiting for a blur; Escape abandons the edit and leaves
+   the show open. Registered in the CAPTURE phase deliberately: the modal's own
+   "Escape closes everything" listener sits on document too and is registered
+   further up this file, so a bubble-phase stopPropagation here would run after
+   it had already closed the show. Capture runs first regardless of order. */
+document.addEventListener("keydown",e=>{
+  const inp=e.target.closest&&e.target.closest("[data-prognum]"); if(!inp) return;
+  if(e.key==="Enter"){ e.preventDefault(); e.stopPropagation(); commitProgInput(inp); }
+  else if(e.key==="Escape"){ e.stopPropagation(); inp.value=String(getProgress(inp.dataset.prognum)); inp.blur(); }
+}, true);
+// started / finished dates: a correction to what the status change stamped.
+document.addEventListener("change",e=>{
+  const inp=e.target.closest&&e.target.closest("[data-date]"); if(!inp) return;
+  const [id,which]=String(inp.dataset.date).split("|");
+  const before=getDates(id);
+  setDate(id, which, inp.value);
+  const md=findMediaById(id), name=md?title(md):"Show", label=which==="end"?"Finished":"Started";
+  toast(inp.value?`${label} ${inp.value} · ${name}`:`${label} date cleared · ${name}`,
+        ()=>{ writeDates(id, before); refreshStatusPickers(id); });
 });
 // auto-progress opt-in (Day 08). Off freezes the counter; it never rewinds it.
 document.addEventListener("change",e=>{
@@ -5732,7 +6467,7 @@ document.addEventListener("change",e=>{
    in the open pop-up, then the views behind it (cards, Continue Watching).
    In place rather than a full openDetail() — that rebuilt the modal and threw
    away scroll position and focus on every single +1. */
-function refreshProgressUI(id, focusKey){
+function refreshProgressUI(id, focusSel){
   const md=findMediaById(id);
   if(md && String(state._modalId)===String(id)){
     const row=document.querySelector(".pg-row");
@@ -5743,8 +6478,8 @@ function refreshProgressUI(id, focusKey){
         row.replaceWith(fresh);
         // Keep the keyboard where it was — unless the click just disabled the
         // button it was on ("caught up" twice), in which case let it go.
-        const again=focusKey&&fresh.querySelector(`[data-prog="${CSS.escape(focusKey)}"]`);
-        if(again && !again.disabled) again.focus();
+        const again=focusSel&&fresh.querySelector(focusSel);
+        if(again && !again.disabled){ again.focus(); if(again.select) again.select(); }
       }
     }
     const panel=$("mpanel-schedule");

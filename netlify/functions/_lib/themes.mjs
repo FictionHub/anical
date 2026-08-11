@@ -21,6 +21,12 @@
 export const THEMES_VERSION = 1;
 export const THEME_STORE = "site-themes";
 
+// How a skin is obtained, and therefore what it costs. The table that gives
+// these numbers meaning lives in _lib/economy.mjs; this file only needs to know
+// which words are legal, and is kept free of the dependency so the catalog can
+// still be validated by a tool that has no economy in it.
+export const RARITIES = ["common", "rare", "epic", "legendary", "exclusive"];
+
 // Every colour the app themes. A skin must set all of them: a partial palette
 // leaves half the UI on the stock purple, which looks like a bug rather than a
 // theme. The generator always emits the full set.
@@ -177,6 +183,10 @@ export function validateThemes(doc) {
     if (!t || typeof t !== "object") return `theme ${id} is not an object`;
     if (t.name != null && typeof t.name !== "string") return `theme ${id}.name is not a string`;
     if (t.mode != null && !["dark", "light"].includes(t.mode)) return `theme ${id}.mode must be "dark" or "light"`;
+    // Rarity is what the wheel and the shop price against. Optional, because
+    // every theme written before the economy existed predates the field and must
+    // stay valid — rarityOf() reads an absent one as Common.
+    if (t.rarity != null && !RARITIES.includes(t.rarity)) return `theme ${id}.rarity must be one of ${RARITIES.join(", ")}`;
     if (!t.colors || typeof t.colors !== "object") return `theme ${id} has no colors{}`;
     for (const key of THEME_COLORS) {
       const v = t.colors[key];
@@ -209,6 +219,9 @@ export function publicTheme(id, t) {
     series: t.series || null,
     mediaId: t.mediaId || null,
     mode: t.mode === "light" ? "light" : "dark",
+    // The gallery renders locked skins too — you can see everything, you just
+    // can't wear what you don't own — so the rarity has to be public.
+    rarity: RARITIES.includes(t.rarity) ? t.rarity : "common",
     colors,
     glow: HEX.test(t.glow || "") ? t.glow : colors.accent || null,
   };

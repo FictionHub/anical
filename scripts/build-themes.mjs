@@ -52,19 +52,79 @@ const SCHEMA_VERSION = 1;
 
 /* ---------------- the shipped set ----------------
    Each entry pairs a title with the treatment that suits it. `motif` picks a
-   texture, `font` a display face, `shape` how sharp the whole UI is, and
-   `effects` what sits over the top. Add a row, re-run, done. */
+   texture, `font` a display face, `shape` how sharp the whole UI is, `effects`
+   what sits over the top, and `rarity` what it costs to own (see
+   netlify/functions/_lib/economy.mjs). Add a row, re-run, done.
+
+   `color` is an override for the palette's base hue. AniList publishes a
+   dominant colour per title and it is usually the right answer, but it is
+   sampled from the cover art — so a show with no colour at all falls back to
+   stock violet, and a show whose cover is mostly skin tones gets a palette that
+   says nothing about it. Death Note is not beige. Where the override is present
+   it is the show's signature colour, not its cover's average.
+
+   RARITY BUDGET, deliberately shaped rather than sprinkled: 5 legendary, 10
+   epic, 15 rare, 20 common. The legendaries are the four or five titles someone
+   would actually save four thousand Tung Tungs for; making a long tail of them
+   would make none of them feel like one. */
 const SEED = {
-  154587: { motif: "runes",    font: "cormorant", shape: "soft",    effects: { vignette: 0.5 } },
-  113415: { motif: "slash",    font: "bebas",     shape: "sharp",   effects: { grain: 0.35, glowStrength: 0.8 } },
-  127230: { motif: "teeth",    font: "anton",     shape: "brutal",  effects: { grain: 0.5 } },
-  101922: { motif: "asanoha",  font: "shippori",  shape: "classic", effects: { vignette: 0.35 } },
-  21:     { motif: "seigaiha", font: "bangers",   shape: "bouncy",  effects: { glowStrength: 0.6 } },
-  140960: { motif: "hearts",   font: "baloo",     shape: "bouncy",  effects: { vignette: 0.2 } },
-  151807: { motif: "hex",      font: "orbitron",  shape: "tech",    effects: { scanlines: 0.35, glowStrength: 0.9 } },
-  11061:  { motif: "hatch",    font: "titan",     shape: "classic", effects: {} },
-  20605:  { motif: "cracks",   font: "oswald",    shape: "brutal",  effects: { grain: 0.55, vignette: 0.5 } },
-  21519:  { motif: "stars",    font: "sawarabi",  shape: "soft",    effects: { vignette: 0.45 } },
+  /* ---- legendary (5) ---- */
+  21:     { motif: "seigaiha", font: "bangers",   shape: "bouncy",  rarity: "legendary", effects: { glowStrength: 0.6 } },
+  154587: { motif: "runes",    font: "cormorant", shape: "soft",    rarity: "legendary", effects: { vignette: 0.5 } },
+  16498:  { motif: "wings",    font: "cinzel",    shape: "brutal",  rarity: "legendary", color: "#8a1f1f", effects: { grain: 0.4, vignette: 0.5 } },
+  5114:   { motif: "alchemy",  font: "cinzel",    shape: "classic", rarity: "legendary", color: "#c8102e", effects: { vignette: 0.4 } },
+  30:     { motif: "prism",    font: "dela",      shape: "brutal",  rarity: "legendary", color: "#7a3fd6", effects: { scanlines: 0.3, grain: 0.35 } },
+
+  /* ---- epic (10) ---- */
+  113415: { motif: "slash",    font: "bebas",     shape: "sharp",   rarity: "epic", effects: { grain: 0.35, glowStrength: 0.8 } },
+  101922: { motif: "asanoha",  font: "shippori",  shape: "classic", rarity: "epic", effects: { vignette: 0.35 } },
+  127230: { motif: "teeth",    font: "anton",     shape: "brutal",  rarity: "epic", effects: { grain: 0.5 } },
+  1535:   { motif: "feather",  font: "playfair",  shape: "sharp",   rarity: "epic", color: "#b3001b", effects: { grain: 0.45, vignette: 0.6 } },
+  9253:   { motif: "circuit",  font: "rajdhani",  shape: "tech",    rarity: "epic", color: "#3f8f7a", effects: { scanlines: 0.4, grain: 0.3 } },
+  151807: { motif: "hex",      font: "orbitron",  shape: "tech",    rarity: "epic", effects: { scanlines: 0.35, glowStrength: 0.9 } },
+  101348: { motif: "runes",    font: "cinzel",    shape: "brutal",  rarity: "epic", color: "#7d4a2a", effects: { grain: 0.5, vignette: 0.45 } },
+  21519:  { motif: "stars",    font: "sawarabi",  shape: "soft",    rarity: "epic", effects: { vignette: 0.45 } },
+  199:    { motif: "spirit",   font: "yuji",      shape: "soft",    rarity: "epic", color: "#c0392b", effects: { vignette: 0.4 } },
+  120377: { motif: "glitch",   font: "zendots",   shape: "tech",    rarity: "epic", color: "#ffe600", effects: { scanlines: 0.55, glowStrength: 1 } },
+
+  /* ---- rare (15) ---- */
+  11061:  { motif: "hatch",    font: "titan",     shape: "classic", rarity: "rare", effects: {} },
+  20605:  { motif: "cracks",   font: "oswald",    shape: "brutal",  rarity: "rare", effects: { grain: 0.55, vignette: 0.5 } },
+  140960: { motif: "hearts",   font: "baloo",     shape: "bouncy",  rarity: "rare", effects: { vignette: 0.2 } },
+  21507:  { motif: "spiral",   font: "russo",     shape: "bouncy",  rarity: "rare", color: "#4fb286", effects: { glowStrength: 0.8 } },
+  21087:  { motif: "target",   font: "anton",     shape: "sharp",   rarity: "rare", color: "#f2c200", effects: { glowStrength: 0.7 } },
+  97986:  { motif: "leaf",     font: "cormorant", shape: "soft",    rarity: "rare", color: "#3f8f5a", effects: { vignette: 0.5 } },
+  21827:  { motif: "feather",  font: "playfair",  shape: "soft",    rarity: "rare", effects: { vignette: 0.3 } },
+  20954:  { motif: "bubble",   font: "fredoka",   shape: "round",   rarity: "rare", effects: { vignette: 0.25 } },
+  21355:  { motif: "clock",    font: "cormorant", shape: "classic", rarity: "rare", color: "#5b6fd6", effects: { vignette: 0.4 } },
+  150672: { motif: "starburst",font: "unbounded", shape: "neo",     rarity: "rare", color: "#ff35c9", effects: { glowStrength: 0.9 } },
+  130003: { motif: "notes",    font: "fredoka",   shape: "round",   rarity: "rare", color: "#e86ea4", effects: { glowStrength: 0.6 } },
+  171018: { motif: "spiral",   font: "dela",      shape: "bouncy",  rarity: "rare", color: "#7be04a", effects: { glowStrength: 0.85, grain: 0.25 } },
+  47:     { motif: "glitch",   font: "russo",     shape: "brutal",  rarity: "rare", color: "#d81e2f", effects: { grain: 0.5, scanlines: 0.35 } },
+  1575:   { motif: "wings",    font: "cinzel",    shape: "sharp",   rarity: "rare", color: "#8f2fd6", effects: { vignette: 0.45 } },
+  2001:   { motif: "drill",    font: "titan",     shape: "bouncy",  rarity: "rare", color: "#f1442e", effects: { glowStrength: 0.9 } },
+
+  /* ---- common (20) ---- */
+  1:      { motif: "rain",     font: "space",     shape: "classic", rarity: "common", color: "#3f7fa8", effects: { grain: 0.4, vignette: 0.4 } },
+  116674: { motif: "slash",    font: "kanit",     shape: "sharp",   rarity: "common", effects: { grain: 0.3 } },
+  21459:  { motif: "chevron",  font: "russo",     shape: "bouncy",  rarity: "common", color: "#2f7fd6", effects: { glowStrength: 0.7 } },
+  21202:  { motif: "bubble",   font: "fredoka",   shape: "round",   rarity: "common", effects: {} },
+  137822: { motif: "grid",     font: "kanit",     shape: "tech",    rarity: "common", effects: { glowStrength: 0.7 } },
+  105333: { motif: "circuit",  font: "syne",      shape: "classic", rarity: "common", color: "#8fbf3f", effects: {} },
+  20464:  { motif: "chevron",  font: "kanit",     shape: "bouncy",  rarity: "common", effects: {} },
+  101921: { motif: "hearts",   font: "playfair",  shape: "classic", rarity: "common", effects: { vignette: 0.3 } },
+  124080: { motif: "dots",     font: "fredoka",   shape: "round",   rarity: "common", effects: {} },
+  4224:   { motif: "dots",     font: "baloo",     shape: "round",   rarity: "common", effects: {} },
+  20665:  { motif: "notes",    font: "playfair",  shape: "soft",    rarity: "common", effects: { vignette: 0.35 } },
+  108465: { motif: "runes",    font: "cormorant", shape: "classic", rarity: "common", effects: {} },
+  43:     { motif: "circuit",  font: "rajdhani",  shape: "tech",    rarity: "common", color: "#2fb3a8", effects: { scanlines: 0.45 } },
+  339:    { motif: "glitch",   font: "space",     shape: "tech",    rarity: "common", color: "#a05fd6", effects: { scanlines: 0.6, grain: 0.5 } },
+  5680:   { motif: "notes",    font: "fredoka",   shape: "round",   rarity: "common", effects: {} },
+  161645: { motif: "asanoha",  font: "yuji",      shape: "soft",    rarity: "common", color: "#c0623f", effects: { vignette: 0.3 } },
+  153288: { motif: "triangle", font: "unbounded", shape: "sharp",   rarity: "common", color: "#3f6fd6", effects: { glowStrength: 0.8 } },
+  153518: { motif: "scales",   font: "cinzel",    shape: "classic", rarity: "common", color: "#c98a3f", effects: { vignette: 0.35 } },
+  11757:  { motif: "grid",     font: "orbitron",  shape: "tech",    rarity: "common", color: "#3fa8d6", effects: { glowStrength: 0.6 } },
+  164:    { motif: "leaf",     font: "yuji",      shape: "soft",    rarity: "common", color: "#4f7a4a", effects: { vignette: 0.45 } },
 };
 
 const FONTS = {
@@ -78,6 +138,18 @@ const FONTS = {
   titan:     { family: '"Titan One",Impact,cursive',         css: "https://fonts.googleapis.com/css2?family=Titan+One&display=swap", scale: 1.06 },
   oswald:    { family: '"Oswald",Impact,sans-serif',         css: "https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=swap", scale: 1.1 },
   sawarabi:  { family: '"Sawarabi Mincho",Georgia,serif',    css: "https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap", scale: 1.05 },
+  cinzel:    { family: '"Cinzel",Georgia,serif',             css: "https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap", scale: 1.06 },
+  playfair:  { family: '"Playfair Display",Georgia,serif',   css: "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&display=swap", scale: 1.08 },
+  russo:     { family: '"Russo One",Impact,sans-serif',      css: "https://fonts.googleapis.com/css2?family=Russo+One&display=swap", scale: 1.04 },
+  rajdhani:  { family: '"Rajdhani",Verdana,sans-serif',      css: "https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&display=swap", scale: 1.14 },
+  kanit:     { family: '"Kanit",Verdana,sans-serif',         css: "https://fonts.googleapis.com/css2?family=Kanit:wght@600;700&display=swap", scale: 1.06 },
+  space:     { family: '"Space Grotesk",Verdana,sans-serif', css: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&display=swap", scale: 1.02 },
+  syne:      { family: '"Syne",Verdana,sans-serif',          css: "https://fonts.googleapis.com/css2?family=Syne:wght@700;800&display=swap", scale: 1.04 },
+  unbounded: { family: '"Unbounded",Verdana,sans-serif',     css: "https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800&display=swap", scale: 1.0 },
+  zendots:   { family: '"Zen Dots",Verdana,sans-serif',      css: "https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap", scale: 0.98 },
+  dela:      { family: '"Dela Gothic One",Impact,sans-serif',css: "https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap", scale: 1.02 },
+  fredoka:   { family: '"Fredoka",Verdana,sans-serif',       css: "https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&display=swap", scale: 1.1 },
+  yuji:      { family: '"Yuji Syuku",Georgia,serif',         css: "https://fonts.googleapis.com/css2?family=Yuji+Syuku&display=swap", scale: 1.08 },
 };
 
 const SHAPES = {
@@ -87,6 +159,8 @@ const SHAPES = {
   sharp:   { radius: 3,  chipRadius: 4,  border: 2, cardBlur: 8 },
   brutal:  { radius: 0,  chipRadius: 2,  border: 2, cardBlur: 6 },
   tech:    { radius: 4,  chipRadius: 6,  border: 1, cardBlur: 16 },
+  round:   { radius: 26, chipRadius: 30, border: 1, cardBlur: 18 },
+  neo:     { radius: 24, chipRadius: 30, border: 2, cardBlur: 22 },
 };
 
 /* ---------------- drawn layers ----------------
@@ -172,6 +246,163 @@ const MOTIFS = {
       <path d="M44 26 l1.6 4.6 4.6 1.6 -4.6 1.6 -1.6 4.6 -1.6 -4.6 -4.6 -1.6 4.6 -1.6 z"/>
     </g>
     <path d="M78 52 L94 44" stroke="${c}" stroke-width="1.2" opacity="0.6" stroke-linecap="round"/>`),
+
+  /* ---- added with the skin economy ----
+     Fifty skins need more than ten textures: past about a dozen themes the
+     motif stops being decoration and becomes the thing that tells two skins
+     apart at a glance in the gallery grid. Same rules as above — tileable, no
+     apostrophes or parentheses, stroked from one palette colour. */
+
+  // Attack on Titan — the Survey Corps wings, reduced to two opposed sweeps.
+  wings: c => svgWrap(120, 80, `
+    <g fill="none" stroke="${c}" stroke-width="1.5" stroke-linecap="round" opacity="0.8">
+      <path d="M60 58 C44 52 30 40 22 22 C38 30 50 38 60 48"/>
+      <path d="M60 58 C76 52 90 40 98 22 C82 30 70 38 60 48"/>
+      <path d="M60 46 L60 68"/>
+    </g>`),
+  // Fullmetal Alchemist — a transmutation circle, quartered.
+  alchemy: c => svgWrap(120, 120, `
+    <g fill="none" stroke="${c}" stroke-width="1.2" opacity="0.75">
+      <circle cx="60" cy="60" r="44"/><circle cx="60" cy="60" r="30"/>
+      <path d="M60 16 L98 82 L22 82 Z"/>
+      <path d="M60 104 L22 38 L98 38 Z"/>
+    </g>`),
+  // Evangelion — a refracted beam, all hard angles and no curves.
+  prism: c => svgWrap(110, 110, `
+    <g fill="none" stroke="${c}" stroke-width="1.4" opacity="0.75">
+      <path d="M10 96 L48 20 L86 96 Z"/>
+      <path d="M0 62 L34 62 M62 62 L110 42 M62 70 L110 78 M62 78 L110 100"/>
+    </g>`),
+  // Death Note / Violet Evergarden — a falling quill feather.
+  feather: c => svgWrap(90, 120, `
+    <g fill="none" stroke="${c}" stroke-width="1.1" opacity="0.8">
+      <path d="M44 8 C22 40 20 76 40 112"/>
+      <path d="M44 22 L24 34 M46 38 L26 50 M48 54 L28 66 M50 70 L32 82 M52 86 L36 96"/>
+      <path d="M44 22 L62 30 M46 38 L64 46 M48 54 L66 62 M50 70 L66 78"/>
+    </g>`),
+  // Steins;Gate / Ghost in the Shell / Dr. Stone — board traces and vias.
+  circuit: c => svgWrap(96, 96, `
+    <g fill="none" stroke="${c}" stroke-width="1.1" opacity="0.75">
+      <path d="M0 24 L28 24 L28 52 L60 52 L60 20 L96 20"/>
+      <path d="M0 72 L20 72 L20 92 M44 96 L44 68 L96 68"/>
+      <path d="M68 96 L68 84 L96 84"/>
+    </g>
+    <g fill="${c}" opacity="0.8">
+      <circle cx="28" cy="24" r="2.4"/><circle cx="60" cy="52" r="2.4"/>
+      <circle cx="44" cy="68" r="2.4"/><circle cx="20" cy="72" r="2"/>
+    </g>`),
+  // Edgerunners / Akira / Lain — a signal that lost some rows.
+  glitch: c => svgWrap(100, 60, `
+    <g fill="${c}" opacity="0.7">
+      <rect x="0" y="6" width="38" height="3"/><rect x="46" y="6" width="22" height="3"/>
+      <rect x="12" y="20" width="56" height="2"/><rect x="76" y="20" width="18" height="2"/>
+      <rect x="0" y="34" width="20" height="4"/><rect x="30" y="34" width="64" height="4"/>
+      <rect x="24" y="48" width="30" height="2"/><rect x="62" y="48" width="34" height="2"/>
+    </g>`),
+  // Spirited Away — a torii gate and a soot sprite.
+  spirit: c => svgWrap(110, 110, `
+    <g fill="none" stroke="${c}" stroke-width="1.6" opacity="0.75">
+      <path d="M18 26 L92 26 M22 36 L88 36 M30 26 L30 88 M80 26 L80 88"/>
+      <path d="M14 22 L96 22"/>
+    </g>
+    <g fill="${c}" opacity="0.55">
+      <circle cx="55" cy="70" r="6"/><circle cx="52" cy="68" r="1.2"/><circle cx="58" cy="68" r="1.2"/>
+    </g>`),
+  // Mob Psycho / Dandadan — psychic spirals, off-centre on purpose.
+  spiral: c => svgWrap(100, 100, `
+    <g fill="none" stroke="${c}" stroke-width="1.3" opacity="0.75">
+      <path d="M50 20 a30 30 0 1 1 -21 51 a22 22 0 1 0 15 -37 a14 14 0 1 1 10 24"/>
+    </g>`),
+  // One Punch Man — a fist-shaped impact, drawn as a burst.
+  target: c => svgWrap(100, 100, `
+    <g fill="none" stroke="${c}" stroke-width="1.3" opacity="0.7">
+      <circle cx="50" cy="50" r="12"/><circle cx="50" cy="50" r="26"/>
+      <path d="M50 4 L50 20 M50 80 L50 96 M4 50 L20 50 M80 50 L96 50"/>
+      <path d="M18 18 L30 30 M82 18 L70 30 M18 82 L30 70 M82 82 L70 70"/>
+    </g>`),
+  // Made in Abyss / Mononoke — veins of a leaf, layered.
+  leaf: c => svgWrap(90, 110, `
+    <g fill="none" stroke="${c}" stroke-width="1.1" opacity="0.8">
+      <path d="M45 6 C18 34 18 76 45 104 C72 76 72 34 45 6 Z"/>
+      <path d="M45 10 L45 100"/>
+      <path d="M45 28 L26 38 M45 46 L22 58 M45 64 L26 76 M45 82 L32 92"/>
+      <path d="M45 28 L64 38 M45 46 L68 58 M45 64 L64 76 M45 82 L58 92"/>
+    </g>`),
+  // A Silent Voice / Konosuba — bubbles rising, unevenly.
+  bubble: c => svgWrap(90, 90, `
+    <g fill="none" stroke="${c}" stroke-width="1.2" opacity="0.75">
+      <circle cx="20" cy="24" r="9"/><circle cx="58" cy="14" r="5"/><circle cx="74" cy="44" r="11"/>
+      <circle cx="34" cy="60" r="6"/><circle cx="12" cy="76" r="4"/><circle cx="60" cy="78" r="7"/>
+    </g>`),
+  // Re:Zero — clock hands at every wrong hour.
+  clock: c => svgWrap(110, 110, `
+    <g fill="none" stroke="${c}" stroke-width="1.2" opacity="0.75">
+      <circle cx="55" cy="55" r="40"/>
+      <path d="M55 55 L55 24 M55 55 L78 66"/>
+      <path d="M55 17 L55 23 M55 87 L55 93 M17 55 L23 55 M87 55 L93 55"/>
+    </g>`),
+  // Oshi no Ko — a four-pointed idol star with its own light.
+  starburst: c => svgWrap(96, 96, `
+    <g fill="${c}" opacity="0.75">
+      <path d="M48 8 C52 34 62 44 88 48 C62 52 52 62 48 88 C44 62 34 52 8 48 C34 44 44 34 48 8 Z"/>
+    </g>
+    <g fill="${c}" opacity="0.5">
+      <path d="M16 12 C18 20 21 23 29 25 C21 27 18 30 16 38 C14 30 11 27 3 25 C11 23 14 20 16 12 Z"/>
+    </g>`),
+  // Bocchi / K-On! / Your Lie in April — beams and a rest.
+  notes: c => svgWrap(100, 80, `
+    <g fill="none" stroke="${c}" stroke-width="1.3" opacity="0.8">
+      <path d="M26 54 L26 14 L58 8 L58 46"/><path d="M26 24 L58 18"/>
+    </g>
+    <g fill="${c}" opacity="0.8">
+      <ellipse cx="19" cy="56" rx="8" ry="6" transform="rotate(-18 19 56)"/>
+      <ellipse cx="51" cy="48" rx="8" ry="6" transform="rotate(-18 51 48)"/>
+    </g>
+    <path d="M78 22 L78 62" stroke="${c}" stroke-width="1.1" opacity="0.5"/>`),
+  // Gurren Lagann — the drill, repeated as a chevron stack.
+  drill: c => svgWrap(70, 100, `
+    <g fill="none" stroke="${c}" stroke-width="1.6" stroke-linejoin="round" opacity="0.8">
+      <path d="M35 6 L58 34 L12 34 Z"/>
+      <path d="M35 34 L54 56 L16 56 Z"/>
+      <path d="M35 56 L50 74 L20 74 Z"/>
+      <path d="M35 74 L45 88 L25 88 Z"/>
+    </g>`),
+  // MHA / Haikyuu — a bold moving chevron.
+  chevron: c => svgWrap(60, 40, `
+    <g fill="none" stroke="${c}" stroke-width="3" stroke-linecap="round" opacity="0.6">
+      <path d="M4 6 L28 20 L4 34"/><path d="M32 6 L56 20 L32 34"/>
+    </g>`),
+  // Horimiya / Toradora — plain polka, the friendliest texture there is.
+  dots: c => svgWrap(48, 48, `
+    <g fill="${c}" opacity="0.75">
+      <circle cx="12" cy="12" r="3"/><circle cx="36" cy="36" r="3"/>
+      <circle cx="36" cy="12" r="1.4"/><circle cx="12" cy="36" r="1.4"/>
+    </g>`),
+  // Blue Lock / SAO — a field grid with lit intersections.
+  grid: c => svgWrap(64, 64, `
+    <g stroke="${c}" stroke-width="0.9" opacity="0.55">
+      <path d="M0 0 L64 0 M0 32 L64 32 M0 0 L0 64 M32 0 L32 64"/>
+    </g>
+    <g fill="${c}" opacity="0.8"><circle cx="32" cy="32" r="1.8"/><circle cx="0" cy="0" r="1.8"/></g>`),
+  // Kaiju No. 8 — tessellated triangles, half of them filled.
+  triangle: c => svgWrap(60, 52, `
+    <g fill="none" stroke="${c}" stroke-width="1.1" opacity="0.7">
+      <path d="M0 52 L15 0 L30 52 Z"/><path d="M30 52 L45 0 L60 52 Z"/>
+    </g>
+    <g fill="${c}" opacity="0.35"><path d="M15 0 L30 52 L45 0 Z"/></g>`),
+  // Delicious in Dungeon — dragon scales, overlapping.
+  scales: c => svgWrap(60, 34, `
+    <g fill="none" stroke="${c}" stroke-width="1.2" opacity="0.75">
+      <path d="M0 34 a15 17 0 0 1 30 0 a15 17 0 0 1 30 0"/>
+      <path d="M-15 17 a15 17 0 0 1 30 0 a15 17 0 0 1 30 0 a15 17 0 0 1 30 0"/>
+    </g>`),
+  // Cowboy Bebop — rain on a window, one direction, never even.
+  rain: c => svgWrap(80, 90, `
+    <g stroke="${c}" stroke-width="1.1" stroke-linecap="round" opacity="0.6">
+      <path d="M10 0 L2 22 M34 0 L26 26 M60 4 L52 24 M74 0 L66 18"/>
+      <path d="M20 40 L12 64 M46 36 L38 62 M68 44 L60 66"/>
+      <path d="M6 70 L0 88 M32 74 L26 90 M56 72 L48 90"/>
+    </g>`),
 };
 
 // A corner flourish — a quarter-frame that anchors the layout without
@@ -246,12 +477,22 @@ function paletteFrom(colorHex) {
   };
 }
 
+// The id is permanent: it is what a wallet stores when someone owns the skin, so
+// renaming one later orphans every ownership row pointing at it. Trimming dashes
+// happens AFTER the 40-character cut, because the cut is what creates them —
+// "Re:ZERO -Starting Life in Another World-" landed on a trailing dash.
 const slugify = s => String(s || "theme").toLowerCase().normalize("NFKD")
-  .replace(/[^\w\s-]/g, "").trim().replace(/\s+/g, "-").replace(/-+/g, "-").slice(0, 40);
+  .replace(/[^\w\s-]/g, "").trim().replace(/\s+/g, "-").replace(/-+/g, "-")
+  .slice(0, 40).replace(/^-+|-+$/g, "") || "theme";
 
 function themeFor(md, recipe) {
   const name = md.title.english || md.title.romaji;
-  const p = paletteFrom(md.coverImage && md.coverImage.color);
+  // The recipe's colour wins where it is given. AniList's dominant colour is
+  // sampled from the cover, which is the right answer for most titles and a
+  // useless one for the rest: a show with no colour at all lands on stock
+  // violet, and a cover that is mostly a face lands on a skin tone. Neither
+  // says anything about the show.
+  const p = paletteFrom(recipe.color || (md.coverImage && md.coverImage.color));
   const { glow, ...colors } = p;
   const banner = md.bannerImage || null;
   const cover = (md.coverImage && (md.coverImage.extraLarge || md.coverImage.large)) || null;
@@ -263,6 +504,10 @@ function themeFor(md, recipe) {
     series: name,
     mediaId: md.id,
     mode: "dark",
+    // What it costs to own — see netlify/functions/_lib/economy.mjs. A missing
+    // rarity reads as Common everywhere, so an --add title is buyable rather
+    // than unreachable until someone gets round to classifying it.
+    rarity: recipe.rarity || "common",
     colors,
     glow,
     font: FONTS[recipe.font] || FONTS.oswald,
@@ -345,11 +590,16 @@ const themes = {};
 for (const md of media) {
   // A title added with --add and no recipe gets a sane default rather than
   // nothing — you can refine it in /admin afterwards.
-  const recipe = SEED[md.id] || { motif: "hatch", font: "oswald", shape: "classic", effects: {} };
+  const recipe = SEED[md.id] || { motif: "hatch", font: "oswald", shape: "classic", rarity: "common", effects: {} };
+  if (!MOTIFS[recipe.motif]) console.warn(`  ! ${md.id}: no motif "${recipe.motif}" — falling back to hatch`);
+  if (!FONTS[recipe.font]) console.warn(`  ! ${md.id}: no font "${recipe.font}" — falling back to oswald`);
+  if (!SHAPES[recipe.shape]) console.warn(`  ! ${md.id}: no shape "${recipe.shape}" — falling back to classic`);
   const t = themeFor(md, recipe);
   themes[t.id] = t;
-  console.log(`${t.id.padEnd(30)} ${recipe.motif.padEnd(9)} ${recipe.font.padEnd(10)} ${recipe.shape.padEnd(8)} accent ${t.colors.accent}`);
+  console.log(`${t.id.padEnd(28)} ${String(t.rarity).padEnd(10)} ${recipe.motif.padEnd(10)} ${recipe.font.padEnd(10)} ${recipe.shape.padEnd(8)} accent ${t.colors.accent}${recipe.color ? "  (colour set by hand)" : ""}`);
 }
+const byRarity = Object.values(themes).reduce((m, t) => { m[t.rarity] = (m[t.rarity] || 0) + 1; return m; }, {});
+console.log("\nBy rarity: " + Object.entries(byRarity).map(([r, n]) => `${r} ${n}`).join(" · "));
 
 await checkUrls(themes);
 await writeFile(OUT, JSON.stringify({ version: SCHEMA_VERSION, generatedAt: new Date().toISOString(), themes }, null, 2) + "\n", "utf8");
