@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-11T20:57:20.116Z",
+  "generatedAt": "2026-08-11T21:38:35.136Z",
   "themes": {
     "cowboy-bebop": {
       "id": "cowboy-bebop",
@@ -1509,7 +1509,7 @@
       "series": "Tokyo Ghoul",
       "mediaId": 20605,
       "mode": "dark",
-      "rarity": "rare",
+      "rarity": "exclusive",
       "colors": {
         "bg": "#100b0a",
         "bg2": "#181310",

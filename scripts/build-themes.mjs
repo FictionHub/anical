@@ -64,10 +64,25 @@ const SCHEMA_VERSION = 1;
    it is the show's signature colour, not its cover's average.
 
    RARITY BUDGET, deliberately shaped rather than sprinkled: 5 legendary, 10
-   epic, 15 rare, 20 common. The legendaries are the four or five titles someone
-   would actually save four thousand Tung Tungs for; making a long tail of them
-   would make none of them feel like one. */
+   epic, 14 rare, 20 common, 1 exclusive. The legendaries are the four or five
+   titles someone would actually save four thousand Tung Tungs for; making a
+   long tail of them would make none of them feel like one.
+
+   `exclusive` is not a tier you climb to — it is the tier nothing can reach. It
+   has no price, no wheel segment and no way in but an admin grant, which is the
+   only thing that makes a skin handed out at an event still mean something a
+   year later. Never move a title INTO the buyable tiers once it has been
+   granted to somebody: that is the one edit that retroactively takes something
+   away from a person who already has it. */
 const SEED = {
+  /* ---- exclusive (1) — event grants only, never for sale, never on the wheel ----
+     Tokyo Ghoul went out at an early event and stays unique to whoever got it.
+     It is deliberately still IN this catalog rather than deleted from it: the
+     grant, /api/grants and the client all resolve a worn skin through the
+     catalog by id, so removing the entry would strip the skin off the very
+     person it was given to. */
+  20605:  { motif: "cracks",   font: "oswald",    shape: "brutal",  rarity: "exclusive", effects: { grain: 0.55, vignette: 0.5 } },
+
   /* ---- legendary (5) ---- */
   21:     { motif: "seigaiha", font: "bangers",   shape: "bouncy",  rarity: "legendary", effects: { glowStrength: 0.6 } },
   154587: { motif: "runes",    font: "cormorant", shape: "soft",    rarity: "legendary", effects: { vignette: 0.5 } },
@@ -87,9 +102,8 @@ const SEED = {
   199:    { motif: "spirit",   font: "yuji",      shape: "soft",    rarity: "epic", color: "#c0392b", effects: { vignette: 0.4 } },
   120377: { motif: "glitch",   font: "zendots",   shape: "tech",    rarity: "epic", color: "#ffe600", effects: { scanlines: 0.55, glowStrength: 1 } },
 
-  /* ---- rare (15) ---- */
+  /* ---- rare (14) ---- */
   11061:  { motif: "hatch",    font: "titan",     shape: "classic", rarity: "rare", effects: {} },
-  20605:  { motif: "cracks",   font: "oswald",    shape: "brutal",  rarity: "rare", effects: { grain: 0.55, vignette: 0.5 } },
   140960: { motif: "hearts",   font: "baloo",     shape: "bouncy",  rarity: "rare", effects: { vignette: 0.2 } },
   21507:  { motif: "spiral",   font: "russo",     shape: "bouncy",  rarity: "rare", color: "#4fb286", effects: { glowStrength: 0.8 } },
   21087:  { motif: "target",   font: "anton",     shape: "sharp",   rarity: "rare", color: "#f2c200", effects: { glowStrength: 0.7 } },
