@@ -63,8 +63,8 @@ const SCHEMA_VERSION = 1;
    says nothing about it. Death Note is not beige. Where the override is present
    it is the show's signature colour, not its cover's average.
 
-   RARITY BUDGET, deliberately shaped rather than sprinkled: 7 legendary, 15
-   epic, 22 rare, 30 common, 1 exclusive. The legendaries are the handful of
+   RARITY BUDGET, deliberately shaped rather than sprinkled: 7 legendary, 14
+   epic, 22 rare, 31 common, 1 exclusive. The legendaries are the handful of
    titles someone would actually save four thousand Tung Tungs for; making a
    long tail of them would make none of them feel like one.
 
@@ -104,7 +104,6 @@ const SEED = {
   127230: { motif: "teeth",    font: "anton",     shape: "brutal",  rarity: "epic", effects: { grain: 0.5 } },
   1535:   { motif: "feather",  font: "playfair",  shape: "sharp",   rarity: "epic", color: "#b3001b", effects: { grain: 0.45, vignette: 0.6 } },
   9253:   { motif: "circuit",  font: "rajdhani",  shape: "tech",    rarity: "epic", color: "#3f8f7a", effects: { scanlines: 0.4, grain: 0.3 } },
-  151807: { motif: "hex",      font: "orbitron",  shape: "tech",    rarity: "epic", effects: { scanlines: 0.35, glowStrength: 0.9 } },
   101348: { motif: "runes",    font: "cinzel",    shape: "brutal",  rarity: "epic", color: "#7d4a2a", effects: { grain: 0.5, vignette: 0.45 } },
   21519:  { motif: "stars",    font: "sawarabi",  shape: "soft",    rarity: "epic", effects: { vignette: 0.45 } },
   199:    { motif: "spirit",   font: "yuji",      shape: "soft",    rarity: "epic", color: "#c0392b", effects: { vignette: 0.4 } },
@@ -147,6 +146,14 @@ const SEED = {
   153518: { motif: "scales",   font: "cinzel",    shape: "classic", rarity: "common", color: "#c98a3f", effects: { vignette: 0.35 } },
   11757:  { motif: "grid",     font: "orbitron",  shape: "tech",    rarity: "common", color: "#3fa8d6", effects: { glowStrength: 0.6 } },
   164:    { motif: "leaf",     font: "yuji",      shape: "soft",    rarity: "common", color: "#4f7a4a", effects: { vignette: 0.45 } },
+  // Solo Leveling was seeded Epic and has been served as a Common since a live
+  // edit in /admin that this file never learned about — so for every user who
+  // has ever seen it, it IS a Common, and the seed was the thing that was
+  // wrong. Moved here Aug 2026 to make git agree with production. Note this is
+  // a price *cut* on a skin nobody ever paid the Epic price for, which is why
+  // it is safe: the rule this file cares about is never making an owned skin
+  // more expensive or unreachable, and neither happens here.
+  151807: { motif: "hex",      font: "orbitron",  shape: "tech",    rarity: "common", effects: { scanlines: 0.35, glowStrength: 0.9 } },
 
   /* ================ batch two: +25, Aug 2026 ================
      The first fifty were chosen for recognition. This batch was chosen for the

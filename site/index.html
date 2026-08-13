@@ -250,7 +250,12 @@
     background:var(--accent);box-shadow:0 0 9px var(--accent)}
   .dc-user{display:flex;align-items:center;gap:8px;font-weight:600}
   .dc-user img{border-radius:50%}
-  .dc-chip{display:inline-flex!important;align-items:center;gap:7px;padding:4px 11px 4px 5px;font-size:12.5px;font-weight:700}
+  /* No !important on the display: it beat the inline style="display:none" this
+     button ships with, so signed-out visitors got an empty 18px chip sitting
+     between ⚙ and Install that looked like a broken button. The class already
+     outranks the base `button` rule on specificity, so it was buying nothing —
+     .tt-chip next to it has the same declaration without it. */
+  .dc-chip{display:inline-flex;align-items:center;gap:7px;padding:4px 11px 4px 5px;font-size:12.5px;font-weight:700}
   .dc-chip img{width:22px;height:22px;border-radius:50%;flex:none;background:var(--bg3)}
   .dc-chip .dc-init{width:22px;height:22px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:11px;
     background:var(--accent);color:var(--on-accent)}
@@ -261,6 +266,11 @@
   /* settings modal */
   .set-row{display:flex;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap}
   .set-label{width:84px;color:var(--muted);font-size:13px;font-weight:600}
+  /* A label carrying an explanation cannot also be 84px wide — .set-hint had no
+     rule at all, so Region's paragraph has been wrapping one word per line. The
+     :has() falls back to exactly that if it is ever unsupported. */
+  .set-label:has(.set-hint){width:auto;flex-basis:100%}
+  .set-hint{font-weight:400;font-size:11.5px;line-height:1.45;margin-top:3px;max-width:70ch}
   .seg2{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden}
   .seg2 button{border:none;border-radius:0;background:transparent}
   .seg2 button:hover{transform:none}
@@ -848,6 +858,25 @@
   .rt-out{font-size:12.5px;font-weight:800;color:var(--muted)}
   .rt-out.great{color:#c4b5fd} .rt-out.good{color:#86efac}
   .rt-out.ok{color:#fcd34d}    .rt-out.bad{color:#fca5a5}
+
+  /* The five axes behind that one number. Collapsed until asked for — see
+     axesRowHtml for why the common case stays a single click. */
+  .ax-wrap{flex-basis:100%;margin-top:2px}
+  .ax-toggle{background:none;border:0;color:var(--muted);font-size:11.5px;font-weight:700;
+    cursor:pointer;padding:2px 0;display:inline-flex;align-items:center;gap:6px}
+  .ax-toggle:hover{color:var(--txt)}
+  .ax-toggle i{font-style:normal;font-size:9px;transition:transform .15s}
+  .ax-wrap.open .ax-toggle i{transform:rotate(90deg)}
+  .ax-body{display:none}
+  .ax-wrap.open .ax-body{display:block}
+  .ax-grid{display:grid;grid-template-columns:auto minmax(120px,1fr) auto;gap:7px 10px;
+    align-items:center;margin:7px 0 2px;max-width:430px}
+  .ax-lab{font-size:12px;font-weight:700;color:var(--muted)}
+  .ax-sl{width:100%;accent-color:var(--accent);cursor:pointer;margin:0}
+  .ax-sl:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .ax-val{font-size:12px;font-weight:800;min-width:32px;text-align:right;
+    font-variant-numeric:tabular-nums}
+  .ax-val.none{color:var(--muted);font-weight:600}
   /* episode progress: the counter row in the detail pop-up, and the fill that
      rides under every card. One bar element, two sizes. */
   .pg-ctl{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
@@ -1340,7 +1369,7 @@
 
 // Build number auto-stamped from the git commit count by scripts/stamp-version.mjs
 // (run via the .githooks/pre-commit hook). Do not edit by hand — it changes every commit.
-const APP_VERSION = "3.7.98";
+const APP_VERSION = "3.8.100";
 
 // Tsuzuki's own read API. It serves the same AniList payload out of a shared
 // server-side catalog (netlify/functions/_lib/catalog.mjs), so the schedule a
@@ -1440,6 +1469,7 @@ const state = {
   status: {},                    // mediaId -> watch status key (see STATUS_DEFS); implies watch
   ratings: {},                   // mediaId -> your own 0–10 score (the composite of the axes below)
   axes: {},                      // mediaId -> {story,art,sound,chars,enjoy} — the five numbers behind it
+  weights: {},                   // axis -> how much it counts toward the composite (Day 15)
   notes: {},                     // mediaId -> your private free-text note
   collections: [],               // your own lists: [{id, name, ids:[mediaId…]}], in your order
   recent: [],                    // recently viewed show ids (most-recent first)
@@ -1486,6 +1516,7 @@ try{ state.watch = new Set(JSON.parse(localStorage.getItem("anical.watch")||"[]"
 try{ state.status = JSON.parse(localStorage.getItem("anical.status")||"{}")||{}; }catch(e){}
 try{ state.ratings = JSON.parse(localStorage.getItem("anical.ratings")||"{}")||{}; }catch(e){}
 try{ state.axes = JSON.parse(localStorage.getItem("anical.axes")||"{}")||{}; }catch(e){}
+try{ state.weights = JSON.parse(localStorage.getItem("anical.weights")||"{}")||{}; }catch(e){}
 try{ state.notes = JSON.parse(localStorage.getItem("anical.notes")||"{}")||{}; }catch(e){}
 // Collections arrive from localStorage or a pasted sync code, so never trust the shape.
 try{
@@ -1731,10 +1762,77 @@ const AXIS_DEFS = [
   { key:"enjoy", label:"Enjoyment"  },
 ];
 const AXIS_KEYS = AXIS_DEFS.map(a=>a.key);
-/* Day 15 makes these per-user. Everything already asks axisWeights() rather
-   than reading a constant, so that day changes this one function and no other. */
+/* How much each axis counts, stored per user in `anical.weights` (Day 15).
+   Everything asks axisWeights() rather than reading a constant, which is what
+   let this arrive without touching compositeOf or any of its callers. */
 const DEFAULT_AXIS_WEIGHTS = AXIS_KEYS.reduce((m,k)=>{ m[k]=1; return m; },{});
-function axisWeights(){ return DEFAULT_AXIS_WEIGHTS; }
+const WEIGHT_MAX = 3;
+// Absent means "never set", which is 1 — not 0. Only an explicit drag to the
+// bottom turns an axis off.
+function cleanWeight(v, dflt){
+  if(v==null || v==="") return dflt==null?1:dflt;
+  const n=Math.round((+v||0)*2)/2;
+  return Number.isFinite(n) ? Math.max(0, Math.min(WEIGHT_MAX, n)) : (dflt==null?1:dflt);
+}
+/* What you set, cleaned but NOT guarded — this is what the sliders show. The
+   split matters: display has to report the setting back honestly, and only the
+   arithmetic is allowed to quietly substitute something safe for it. Showing
+   the guarded value instead would tell somebody who turned everything off that
+   everything was on. */
+function storedWeights(){
+  const w={};
+  for(const k of AXIS_KEYS) w[k]=cleanWeight(state.weights[k]);
+  return w;
+}
+const weightsAllOff = () => AXIS_KEYS.every(k=>cleanWeight(state.weights[k])===0);
+function axisWeights(){
+  const w=storedWeights(); let sum=0;
+  for(const k of AXIS_KEYS) sum+=w[k];
+  // THE GUARD THAT MATTERS. Every weight at zero makes compositeOf return 0 for
+  // every show, and a 0 composite means "unrated" — so one more drag would
+  // delete every score in the library, and the next migrateRatingAxes() would
+  // then prune the axes behind them as orphans. Equal weights is the only safe
+  // reading of "nothing counts for anything".
+  return sum>0 ? w : DEFAULT_AXIS_WEIGHTS;
+}
+function writeWeights(){
+  try{ localStorage.setItem("anical.weights", JSON.stringify(state.weights)); }catch(e){}
+}
+/* Changing one weight changes every score at once — the point of the day, and
+   also why this does not loop through setRating(): that would be one
+   localStorage write per show and, far worse, one AniList push per show. A
+   weight is a slider people drag several times while tuning; enqueueing on each
+   release would put thousands of saves through a queue that moves at one every
+   2.2 seconds. One pass, one write, and AniList is caught up by the
+   "⬆ Push everything" button that already exists for exactly this. */
+function recomputeAllComposites(){
+  let changed=0;
+  for(const id of Object.keys(state.axes)){
+    const n=compositeOf(getAxes(id));
+    if(!n) continue;                       // nothing scored — leave it alone
+    if(state.ratings[id]!==n){ state.ratings[id]=n; changed++; }
+  }
+  if(changed) localStorage.setItem("anical.ratings", JSON.stringify(state.ratings));
+  return changed;
+}
+function setAxisWeight(key, v){
+  if(!AXIS_KEYS.includes(key)) return 0;
+  state.weights[key]=cleanWeight(v);
+  writeWeights();
+  return recomputeAllComposites();
+}
+function resetAxisWeights(){
+  state.weights={...DEFAULT_AXIS_WEIGHTS};
+  writeWeights();
+  return recomputeAllComposites();
+}
+// Reads what is STORED, not what is used. Asking axisWeights() here would make
+// an all-off configuration report itself as default — which disables the reset
+// button and leaves the only way out being to drag a slider back up by hand.
+function weightsAreDefault(){
+  const w=storedWeights();
+  return AXIS_KEYS.every(k=>w[k]===1);
+}
 /* Half-points, clamped. 0 means "not scored on this axis" and is never stored —
    an absent axis and a zero one are the same thing, so there is one way to say it. */
 function cleanAxis(v){ return Math.max(0, Math.min(RATING_MAX, Math.round((+v||0)*2)/2)); }
@@ -1796,8 +1894,11 @@ function setRating(id, n, opts){
    restored the composite would hand back a flat five where five different
    numbers used to be. Same shape as setStatusOf's {stamp:false}. */
 function restoreRating(id, score, axes){
-  setRating(id, score, {axes:false});
+  // Order matters, and it did not until Day 14 put sliders on screen: setRating
+  // repaints the pickers, so the axes have to be back in place BEFORE it runs
+  // or the repaint reads the flattened record it is being asked to undo.
   writeAxes(id, axes);
+  setRating(id, score, {axes:false});
 }
 function migrateRatingAxes(){
   let changed=false;
@@ -1853,9 +1954,84 @@ function ratingOutHtml(id){
   const cur=getRating(id);
   return `<span class="rt-out${cur?" "+ratingBand(cur):""}" data-rt-out="${esc(String(id))}">${cur?cur+"/10":"Not rated"}</span>`;
 }
+/* ---------- the axes, as five sliders ----------
+   Collapsed by default, and that is the whole design decision. Nearly every
+   rating anybody gives is a number they picked in one click; five sliders held
+   permanently open would slow the common case down to serve the rare one. The
+   panel opens by itself when the axes actually disagree, because at that point
+   the single number no longer explains itself and hiding the reason for it is
+   the worse trade. */
+function axesAreFlat(id){
+  const a=getAxes(id), vals=AXIS_KEYS.map(k=>a[k]).filter(v=>v>0);
+  return vals.length<=1 || vals.every(v=>v===vals[0]);
+}
+// 0 is "not scored", not a score of zero — compositeOf() skips it rather than
+// averaging it in. The picker above has never offered a 0 either, so nothing is
+// lost: the distinction between 0/10 and 0.5/10 is one nobody needs.
+const axisValueText = v => (v ? String(v) : "—");
+const axisValueLabel = v => (v ? `${v} out of ${RATING_MAX}` : "not scored");
+function axesRowHtml(md){
+  const id=String(md.id), a=getAxes(id), sid=esc(id), open=!axesAreFlat(id);
+  const rows=AXIS_DEFS.map(ax=>{
+    const v=a[ax.key], fid=`ax-${ax.key}-${sid}`;
+    return `<label class="ax-lab" for="${fid}">${ax.label}</label>
+      <input type="range" class="ax-sl" id="${fid}" data-ax="${sid}|${ax.key}"
+        min="0" max="${RATING_MAX}" step="0.5" value="${v}"
+        aria-label="${ax.label}" aria-valuetext="${axisValueLabel(v)}">
+      <span class="ax-val${v?"":" none"}" data-axval="${sid}|${ax.key}">${axisValueText(v)}</span>`;
+  }).join("");
+  return `<div class="ax-wrap${open?" open":""}">
+    <button type="button" class="ax-toggle" data-axtoggle="${sid}" aria-expanded="${open?"true":"false"}">
+      <i>▶</i> Rate in detail
+    </button>
+    <div class="ax-body">
+      <div class="ax-grid">${rows}</div>
+      <span class="st-hint">Scored in halves. The number above is their average, and an axis left at —
+        is ignored rather than counted as a zero, so a film with no music doesn't lose points for it.
+        Picking a number above sets all five at once.</span>
+    </div>
+  </div>`;
+}
+/* Dragging repaints; releasing writes. `input` fires continuously through a
+   drag, so persisting there would mean a localStorage write and an AniList
+   enqueue per pixel travelled — it only repaints, and `change` (once, on
+   release, or on an arrow key) does the writing. Repainting is deliberately
+   surgical for the same reason Day 07 stopped rebuilding the modal: replacing
+   the row mid-gesture would tear the slider out from under the pointer. */
+function paintAxis(id, key, v){
+  id=String(id);
+  document.querySelectorAll("[data-axval]").forEach(el=>{
+    if(el.dataset.axval !== id+"|"+key) return;
+    el.textContent=axisValueText(v);
+    el.className="ax-val"+(v?"":" none");
+  });
+}
+function paintComposite(id, axes){
+  const n=compositeOf(axes);
+  document.querySelectorAll('[data-rt-out="'+CSS.escape(String(id))+'"]').forEach(el=>{
+    el.className="rt-out"+(n?" "+ratingBand(n):"");
+    el.textContent = n ? n+"/10" : "Not rated";
+  });
+}
+// The chips and the sliders are two views of one number, so a change to either
+// has to move the other or the pop-up sits there contradicting itself. Setting
+// .value from script fires no events, so this cannot loop back into the writer.
+function syncAxisSliders(id){
+  id=String(id);
+  const a=getAxes(id);
+  document.querySelectorAll("[data-ax]").forEach(sl=>{
+    const parts=String(sl.dataset.ax).split("|");
+    if(parts[0]!==id) return;
+    const v=a[parts[1]];
+    if(+sl.value!==v) sl.value=v;
+    sl.setAttribute("aria-valuetext", axisValueLabel(v));
+    paintAxis(id, parts[1], v);
+  });
+}
 function refreshRatingPickers(id){
   id=String(id);
   const cur=getRating(id);
+  syncAxisSliders(id);
   document.querySelectorAll('[data-rt-pick="'+CSS.escape(id)+'"] .rt-chip').forEach(chip=>{
     const n=+String(chip.dataset.rt||"").split("|")[1], on=ratingChipOn(cur,n);
     chip.className="rt-chip"+(on?" on "+ratingBand(n):"");
@@ -2727,6 +2903,12 @@ function renderWhatsNew(){
    update. Returning visitors see every entry newer than the one they last
    saw, once, in a modal they close manually. Trim old entries freely. */
 const CHANGELOG=[
+  { id:17, v:"3.8", date:"August 2026", items:[
+    "⭐ Ratings go deeper if you want them to. Under the 1–10 row there's now a “Rate in detail” panel with five sliders — story, art, sound, characters and enjoyment — scored in half-points, and your overall score is their average, updating as you drag.",
+    "Nothing changed for anyone who doesn't open it. Every score you've already given still reads exactly as it did; picking a number the old way still sets the whole thing in one click, and the panel stays shut until the five actually disagree.",
+    "An axis you leave blank is ignored rather than counted as a zero — a film with no music doesn't lose points for having no music.",
+    "And in Settings → Ratings, how much each axis counts is yours to set. Weight story higher than art, or switch an axis off entirely, and every score you've given is recalculated at once. It only ever rewrites the single number — the five behind it are untouched, so setting everything back to ×1 returns every score to exactly what it was.",
+  ]},
   { id:16, v:"3.7", date:"August 2026", items:[
     "🎨 Twenty-five more skins — seventy-five in total. Naruto Shippuden and Dragon Ball Z join the Legendaries; JoJo, Monster, Fate/Zero, Clannad and Psycho-Pass are Epics; Gintama, Erased, The Promised Neverland, Anohana, Howl's Moving Castle, Fire Force, Tokyo Revengers and Nichijou are Rares, with ten more below them.",
     "Twelve new textures came with them, drawn from each show rather than picked off a shelf — a shuriken, a transmutation-style summoning ring, the dango family, the menacing marks, a reticle, a maze, cogs and a mountain ridge among them.",
@@ -3872,9 +4054,6 @@ function openDetail(md,episode){
   const romaji=(md.title&&md.title.romaji)||"";
   const showRomaji=romaji && romaji!==primaryTitle;
   $("modalTitle").innerHTML=esc(primaryTitle)+(showRomaji?`<small class="mtitle-sub">${esc(romaji)}</small>`:"");
-  // Nyaa search link (uses romaji for better hit rate; sukebei for adult titles).
-  const nyaaTitle=romaji||(md.title&&md.title.english)||primaryTitle;
-  const nyaaUrl=(isAdultMedia(md)?"https://sukebei.nyaa.si/":"https://nyaa.si/")+"?f=0&c=1_2&q="+encodeURIComponent(nyaaTitle);
   const genres=(md.genres||[]).slice(0,5).map(g=>`<span class="pill">${esc(g)}</span>`).join(" ");
   const studio=(md.studios&&md.studios.nodes&&md.studios.nodes[0])?md.studios.nodes[0].name:"";
   const desc=(md.description||"").replace(/<[^>]+>/g," ").trim();
@@ -3929,7 +4108,6 @@ function openDetail(md,episode){
           <button data-report="${md.id}" title="Tell us an air time, delay or dub date is wrong">⚠ Report a wrong time</button>
           <button data-hide="${md.id}" title="Hide this show everywhere">${isHidden(md.id)?"✓ Unhide":"🚫 Not interested"}</button>
           <a href="${md.siteUrl||"#"}" target="_blank" rel="noopener">AniList →</a>
-          <a href="${nyaaUrl}" target="_blank" rel="noopener">Nyaa →</a>
         </div>
         ${notices}
         ${nextBlock}
@@ -3941,6 +4119,7 @@ function openDetail(md,episode){
           ${ratingPickerHtml(md.id)}
           ${ratingOutHtml(md.id)}
           <span class="st-hint">Your own score, separate from the community ★ average. Click the highlighted number to clear it.</span>
+          ${axesRowHtml(md)}
         </div>
         <div class="nt-row">
           <label class="st-row-label" for="noteBox">📝 Private notes</label>
@@ -5028,6 +5207,39 @@ function prefSeg(key, opts){
   return `<div class="seg2">`+opts.map(([val,label,tip])=>
     `<button data-pref="${key}|${esc(String(val))}" class="${String(state[key])===String(val)?"on":""}"${tip?` title="${esc(tip)}"`:""}>${esc(label)}</button>`).join("")+`</div>`;
 }
+/* ---------- axis weights, in Settings (Day 15) ----------
+   Global, not per show — "I care more about story than art" is a statement
+   about you, not about one anime — which is why this lives here and the axes
+   themselves live in the show pop-up. */
+const weightText = v => (v ? "×"+v : "off");
+function weightsSettingsHTML(){
+  const w=storedWeights(), rated=Object.keys(state.axes).length, allOff=weightsAllOff();
+  const rows=AXIS_DEFS.map(ax=>{
+    const v=w[ax.key];
+    return `<label class="ax-lab" for="wt-${ax.key}">${ax.label}</label>
+      <input type="range" class="ax-sl" id="wt-${ax.key}" data-wt="${ax.key}"
+        min="0" max="${WEIGHT_MAX}" step="0.5" value="${v}"
+        aria-label="How much ${ax.label} counts" aria-valuetext="${weightText(v)}">
+      <span class="ax-val${v?"":" none"}" data-wtval="${ax.key}">${weightText(v)}</span>`;
+  }).join("");
+  return `<div class="set-row"><div class="set-label">Score weighting
+      <div class="set-hint">How much each axis counts toward the single score. Applies to every show at once —
+        ${rated?`you have <b>${rated}</b> rated show${rated===1?"":"s"}`:"nothing is rated yet"}.
+        An axis set to <b>off</b> stops counting; turning them all off is ignored, since that would leave no score at all.</div></div>
+    <div style="flex-basis:100%">
+      <div class="ax-grid">${rows}</div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px">
+        <button id="wtReset"${weightsAreDefault()?" disabled":""}>↺ Equal again</button>
+        <span class="num-hint" id="wtNote" style="margin:0">${allOff
+          ? "Every axis is off — so all five are counting equally, because otherwise there would be no score at all."
+          : weightsAreDefault() ? "All five count the same."
+          : "Your scores have been recalculated."}</span>
+      </div>
+      <span class="num-hint" style="display:block;margin-top:6px">Changing these rewrites your own scores, not the axes behind them —
+        set everything back to ×1 and every score returns to exactly what it was. AniList is not re-pushed automatically
+        (it would be one upload per show); use <b>⬆ Push everything</b> under AniList if you want it to match.</span>
+    </div></div>`;
+}
 function openSettings(){
   state._modalKind="settings";
   $("modalTitle").textContent="⚙ Settings";
@@ -5072,6 +5284,9 @@ function openSettings(){
     <div class="set-row"><div class="set-label">Episode number</div>
       <div class="num-row">${num("fAirMin",f.airedMin,"from")}<span class="num-sep">–</span>${num("fAirMax",f.airedMax,"to")}
         <span class="num-hint">which episodes to list — e.g. 1–3 to catch shows that just started.</span></div></div>
+
+    <h4 class="set-head">Ratings</h4>
+    ${weightsSettingsHTML()}
 
     <h4 class="set-head">Your data</h4>
     <div class="set-row"><div class="set-label">Hidden</div>
@@ -6388,6 +6603,63 @@ document.addEventListener("click",e=>{
   const md=findMediaById(id), name=md?title(md):"Show";
   toast(next?`⭐ ${next}/10 · ${name}`:`Rating cleared · ${name}`, ()=>{ restoreRating(id, prev, prevAxes); renderView(); });
   renderView();   // the score shows up on every card for this show
+});
+// rating axes: repaint on every frame of the drag, write once on release.
+document.addEventListener("input",e=>{
+  const sl=e.target.closest("[data-ax]"); if(!sl) return;
+  const parts=String(sl.dataset.ax).split("|"), id=parts[0], key=parts[1];
+  const v=cleanAxis(sl.value);
+  sl.setAttribute("aria-valuetext", axisValueLabel(v));
+  paintAxis(id, key, v);
+  paintComposite(id, {...getAxes(id), [key]:v});   // what the score becomes if you let go now
+});
+document.addEventListener("change",e=>{
+  const sl=e.target.closest("[data-ax]"); if(!sl) return;
+  const parts=String(sl.dataset.ax).split("|");
+  setAxis(parts[0], parts[1], sl.value);
+  renderView();   // the score pill on every card for this show
+});
+// No Undo toast per drag, on purpose. A toast every time a slider is released
+// would fire five times while somebody scores one show, and the thing it would
+// protect — the previous position of one slider — is a drag away. The action
+// that genuinely destroys work is a chip click flattening all five, and that
+// one has had an Undo since Day 13.
+/* Axis weights. Same drag/release split as the axes themselves, for a stronger
+   reason: `change` here rewrites every score in the library, so doing it on
+   `input` would sweep the whole thing once per pixel. */
+document.addEventListener("input",e=>{
+  const sl=e.target.closest("[data-wt]"); if(!sl) return;
+  const v=cleanWeight(sl.value);
+  sl.setAttribute("aria-valuetext", weightText(v));
+  const lab=document.querySelector('[data-wtval="'+CSS.escape(sl.dataset.wt)+'"]');
+  if(lab){ lab.textContent=weightText(v); lab.className="ax-val"+(v?"":" none"); }
+});
+document.addEventListener("change",e=>{
+  const sl=e.target.closest("[data-wt]"); if(!sl) return;
+  const n=setAxisWeight(sl.dataset.wt, sl.value);
+  const note=$("wtNote");
+  if(note) note.textContent = weightsAllOff()
+    ? "Every axis is off — so all five are counting equally, because otherwise there would be no score at all."
+    : weightsAreDefault() ? "All five count the same."
+    : n ? `${n} score${n===1?"":"s"} recalculated.` : "No scores changed.";
+  const reset=$("wtReset"); if(reset) reset.disabled=weightsAreDefault();
+  renderView();   // every card's score pill, at once — the acceptance line
+});
+document.addEventListener("click",e=>{
+  const b=e.target.closest("#wtReset"); if(!b) return;
+  e.preventDefault();
+  const n=resetAxisWeights();
+  openSettings();   // rebuild so all five sliders show ×1
+  const note=$("wtNote"); if(note) note.textContent=`Back to equal — ${n} score${n===1?"":"s"} restored.`;
+  renderView();
+});
+document.addEventListener("click",e=>{
+  const t=e.target.closest("[data-axtoggle]"); if(!t) return;
+  e.preventDefault(); e.stopPropagation();
+  const wrap=t.closest(".ax-wrap"); if(!wrap) return;
+  const open=!wrap.classList.contains("open");
+  wrap.classList.toggle("open", open);
+  t.setAttribute("aria-expanded", open?"true":"false");
 });
 // private notes: auto-save shortly after typing stops, with a live counter
 document.addEventListener("input",e=>{
