@@ -63,10 +63,18 @@ const SCHEMA_VERSION = 1;
    says nothing about it. Death Note is not beige. Where the override is present
    it is the show's signature colour, not its cover's average.
 
-   RARITY BUDGET, deliberately shaped rather than sprinkled: 5 legendary, 10
-   epic, 14 rare, 20 common, 1 exclusive. The legendaries are the four or five
+   RARITY BUDGET, deliberately shaped rather than sprinkled: 7 legendary, 15
+   epic, 22 rare, 30 common, 1 exclusive. The legendaries are the handful of
    titles someone would actually save four thousand Tung Tungs for; making a
    long tail of them would make none of them feel like one.
+
+   That shape is what the batches have to preserve. Going 50 → 75 added 2
+   legendaries and 10 commons rather than 5 of each: the top tier stays at
+   roughly one skin in ten, so the catalogue got deeper without the thing at the
+   top of it getting cheaper. Widening the base is also what makes the wheel
+   keep working — a Common segment paying out of thirty possibilities stays a
+   prize for far longer than one paying out of twenty, because the wheel never
+   draws a skin you already own.
 
    `exclusive` is not a tier you climb to — it is the tier nothing can reach. It
    has no price, no wheel segment and no way in but an admin grant, which is the
@@ -139,6 +147,54 @@ const SEED = {
   153518: { motif: "scales",   font: "cinzel",    shape: "classic", rarity: "common", color: "#c98a3f", effects: { vignette: 0.35 } },
   11757:  { motif: "grid",     font: "orbitron",  shape: "tech",    rarity: "common", color: "#3fa8d6", effects: { glowStrength: 0.6 } },
   164:    { motif: "leaf",     font: "yuji",      shape: "soft",    rarity: "common", color: "#4f7a4a", effects: { vignette: 0.45 } },
+
+  /* ================ batch two: +25, Aug 2026 ================
+     The first fifty were chosen for recognition. This batch was chosen for the
+     gaps they left: no long-running shounen anyone over thirty grew up on, no
+     psychological seinen, no sports beyond Haikyuu and Blue Lock, nothing cosy,
+     and — the one that actually mattered — nothing for someone who has already
+     won five skins and is looking at the gallery wondering what is left. */
+
+  /* ---- legendary (+2 → 7) ----
+     Both of these are here for the same reason One Piece is: a title someone
+     will save four thousand Tung Tungs for rather than spend on the wheel. */
+  1735:   { motif: "shuriken", font: "dela",      shape: "bouncy",  rarity: "legendary", effects: { glowStrength: 0.75, grain: 0.25 } },
+  813:    { motif: "aura",     font: "bangers",   shape: "bouncy",  rarity: "legendary", effects: { glowStrength: 1 } },
+
+  /* ---- epic (+5 → 15) ---- */
+  // Stardust Crusaders has no dominant colour on AniList at all, and JoJo is
+  // the last series on earth that should fall back to stock violet.
+  20474:  { motif: "menacing", font: "anton",     shape: "brutal",  rarity: "epic", color: "#a03fbf", effects: { grain: 0.45, vignette: 0.35 } },
+  // Monster likewise has none, and it is the one show here whose palette is the
+  // point: cold, institutional, no warmth anywhere in it.
+  19:     { motif: "thread",   font: "playfair",  shape: "sharp",   rarity: "epic", color: "#3f5f7a", effects: { grain: 0.5, vignette: 0.6 } },
+  10087:  { motif: "sigil",    font: "cinzel",    shape: "sharp",   rarity: "epic", effects: { vignette: 0.5, glowStrength: 0.7 } },
+  // AniList samples Clannad at a pale yellow off the cover. The show is the sky.
+  4181:   { motif: "dango",    font: "fredoka",   shape: "round",   rarity: "epic", color: "#6fa8d6", effects: { vignette: 0.25 } },
+  13601:  { motif: "crosshair",font: "rajdhani",  shape: "tech",    rarity: "epic", effects: { scanlines: 0.45, grain: 0.3 } },
+
+  /* ---- rare (+8 → 22) ---- */
+  918:    { motif: "slash",    font: "yuji",      shape: "classic", rarity: "rare", effects: { grain: 0.2 } },
+  // Erased is a show about winding a clock back, and its cover art is orange.
+  21234:  { motif: "clock",    font: "shippori",  shape: "sharp",   rarity: "rare", color: "#4f7fb3", effects: { vignette: 0.5, grain: 0.35 } },
+  101759: { motif: "maze",     font: "cormorant", shape: "sharp",   rarity: "rare", effects: { vignette: 0.55, grain: 0.3 } },
+  9989:   { motif: "sakura",   font: "shippori",  shape: "soft",    rarity: "rare", effects: { vignette: 0.3 } },
+  431:    { motif: "gear",     font: "cormorant", shape: "soft",    rarity: "rare", effects: { vignette: 0.3, glowStrength: 0.5 } },
+  105310: { motif: "flame",    font: "bebas",     shape: "sharp",   rarity: "rare", effects: { glowStrength: 1, grain: 0.3 } },
+  120120: { motif: "cracks",   font: "oswald",    shape: "brutal",  rarity: "rare", color: "#d6323f", effects: { grain: 0.5, vignette: 0.4 } },
+  10165:  { motif: "dots",     font: "fredoka",   shape: "round",   rarity: "rare", color: "#a8d63f", effects: {} },
+
+  /* ---- common (+10 → 30) ---- */
+  20923:  { motif: "flame",    font: "titan",     shape: "bouncy",  rarity: "common", effects: { glowStrength: 0.8 } },
+  20755:  { motif: "crosshair",font: "baloo",     shape: "bouncy",  rarity: "common", effects: {} },
+  20447:  { motif: "spirit",   font: "yuji",      shape: "soft",    rarity: "common", effects: { vignette: 0.3 } },
+  97940:  { motif: "sigil",    font: "cinzel",    shape: "classic", rarity: "common", color: "#3f9f5f", effects: { glowStrength: 0.7 } },
+  20832:  { motif: "runes",    font: "cinzel",    shape: "brutal",  rarity: "common", effects: { vignette: 0.55, glowStrength: 0.6 } },
+  124153: { motif: "chevron",  font: "unbounded", shape: "neo",     rarity: "common", effects: { glowStrength: 0.9 } },
+  124845: { motif: "bubble",   font: "unbounded", shape: "round",   rarity: "common", effects: { glowStrength: 0.8, vignette: 0.2 } },
+  101291: { motif: "stars",    font: "playfair",  shape: "soft",    rarity: "common", effects: { vignette: 0.35 } },
+  98444:  { motif: "peaks",    font: "fredoka",   shape: "round",   rarity: "common", effects: { vignette: 0.2 } },
+  11771:  { motif: "target",   font: "russo",     shape: "bouncy",  rarity: "common", effects: { glowStrength: 0.8 } },
 };
 
 const FONTS = {
@@ -262,7 +318,7 @@ const MOTIFS = {
     <path d="M78 52 L94 44" stroke="${c}" stroke-width="1.2" opacity="0.6" stroke-linecap="round"/>`),
 
   /* ---- added with the skin economy ----
-     Fifty skins need more than ten textures: past about a dozen themes the
+     Fifty skins needed more than ten textures: past about a dozen themes the
      motif stops being decoration and becomes the thing that tells two skins
      apart at a glance in the gallery grid. Same rules as above — tileable, no
      apostrophes or parentheses, stroked from one palette colour. */
@@ -416,6 +472,109 @@ const MOTIFS = {
       <path d="M10 0 L2 22 M34 0 L26 26 M60 4 L52 24 M74 0 L66 18"/>
       <path d="M20 40 L12 64 M46 36 L38 62 M68 44 L60 66"/>
       <path d="M6 70 L0 88 M32 74 L26 90 M56 72 L48 90"/>
+    </g>`),
+
+  /* ---- added with the second batch of twenty-five ----
+     Same rules again. The test for a new motif is whether it says something the
+     existing twenty-two can't: a fourth circuit board would have been a fourth
+     skin nobody can tell apart in the grid, so the shows that fit an existing
+     texture reuse one and only the genuinely new shapes are drawn here. */
+
+  // Naruto — the four-bladed shuriken, nothing else in the frame.
+  shuriken: c => svgWrap(110, 110, `
+    <g fill="none" stroke="${c}" stroke-width="1.4" opacity="0.8" stroke-linejoin="round">
+      <path d="M38 38 L55 6 L72 38 L104 55 L72 72 L55 104 L38 72 L6 55 Z"/>
+      <circle cx="55" cy="55" r="7"/>
+    </g>`),
+  // Dragon Ball Z — ki leaving a body, drawn as what it does to the air.
+  aura: c => svgWrap(100, 100, `
+    <g fill="none" stroke="${c}" stroke-width="1.5" stroke-linecap="round" opacity="0.75">
+      <path d="M50 42 L50 4 M50 58 L50 96 M42 50 L4 50 M58 50 L96 50"/>
+      <path d="M42 42 L18 12 M58 42 L82 12 M42 58 L18 88 M58 58 L82 88"/>
+    </g>
+    <g fill="none" stroke="${c}" stroke-width="1" opacity="0.45">
+      <circle cx="50" cy="50" r="17"/><circle cx="50" cy="50" r="27"/>
+    </g>`),
+  // JoJo — the menacing marks, stacked the way the panels stack them.
+  menacing: c => svgWrap(76, 96, `
+    <g fill="${c}" opacity="0.7">
+      <path d="M18 4 L34 30 L26 30 L38 58 L20 32 L28 32 Z"/>
+      <path d="M54 30 L68 54 L61 54 L72 80 L57 56 L64 56 Z"/>
+      <path d="M8 52 L22 76 L15 76 L26 100 L12 78 L19 78 Z"/>
+    </g>`),
+  // Fate / Black Clover — a summoning geometry, two triangles inside a ring.
+  sigil: c => svgWrap(120, 120, `
+    <g fill="none" stroke="${c}" stroke-width="1.2" opacity="0.75">
+      <circle cx="60" cy="60" r="46"/><circle cx="60" cy="60" r="38"/>
+      <path d="M60 20 L95 80 L25 80 Z"/><path d="M60 100 L25 40 L95 40 Z"/>
+      <path d="M60 14 L60 6 M106 60 L114 60 M60 106 L60 114 M14 60 L6 60"/>
+    </g>`),
+  // Clannad — the dango family, on their stick, in a row.
+  dango: c => svgWrap(120, 60, `
+    <g fill="none" stroke="${c}" stroke-width="1.3" opacity="0.8">
+      <circle cx="24" cy="30" r="13"/><circle cx="52" cy="30" r="13"/><circle cx="80" cy="30" r="13"/>
+      <path d="M0 30 L11 30 M93 30 L120 30"/>
+    </g>
+    <g fill="${c}" opacity="0.5">
+      <circle cx="20" cy="28" r="1.5"/><circle cx="28" cy="28" r="1.5"/>
+      <circle cx="48" cy="28" r="1.5"/><circle cx="56" cy="28" r="1.5"/>
+      <circle cx="76" cy="28" r="1.5"/><circle cx="84" cy="28" r="1.5"/>
+    </g>`),
+  // Monster — one line that never resolves, folding back over itself.
+  thread: c => svgWrap(120, 120, `
+    <g fill="none" stroke="${c}" stroke-width="1.1" opacity="0.7" stroke-linecap="round">
+      <path d="M0 20 C30 20 30 60 60 60 C90 60 90 20 120 20"/>
+      <path d="M0 62 C30 62 30 102 60 102 C90 102 90 62 120 62"/>
+      <path d="M20 0 C20 30 58 30 58 60 C58 90 96 90 96 120"/>
+    </g>`),
+  // Psycho-Pass — a reticle with its brackets already closed on something.
+  crosshair: c => svgWrap(100, 100, `
+    <g fill="none" stroke="${c}" stroke-width="1.2" opacity="0.75">
+      <circle cx="50" cy="50" r="18"/>
+      <path d="M50 24 L50 34 M50 66 L50 76 M24 50 L34 50 M66 50 L76 50"/>
+      <path d="M8 22 L8 8 L22 8 M78 8 L92 8 L92 22 M92 78 L92 92 L78 92 M22 92 L8 92 L8 78"/>
+    </g>
+    <g fill="${c}" opacity="0.6"><circle cx="50" cy="50" r="2"/></g>`),
+  // Fire Force / Food Wars — tongues of flame, no two the same height.
+  flame: c => svgWrap(90, 100, `
+    <g fill="none" stroke="${c}" stroke-width="1.4" opacity="0.8" stroke-linejoin="round">
+      <path d="M24 92 C6 70 20 58 22 42 C34 54 44 60 44 74 C44 84 36 92 24 92 Z"/>
+      <path d="M66 88 C54 74 62 64 64 52 C74 62 80 66 80 76 C80 83 74 88 66 88 Z"/>
+      <path d="M46 34 C38 24 44 16 46 6 C54 16 58 20 58 28 C58 33 53 34 46 34 Z"/>
+    </g>`),
+  // Anohana / Bunny Girl Senpai — petals already on their way down.
+  sakura: c => svgWrap(100, 100, `
+    <g fill="${c}" opacity="0.55">
+      <path d="M20 14 C28 10 34 16 30 24 C26 32 16 32 14 24 C13 19 15 16 20 14 Z"/>
+      <path d="M68 40 C76 36 82 42 78 50 C74 58 64 58 62 50 C61 45 63 42 68 40 Z"/>
+      <path d="M34 70 C42 66 48 72 44 80 C40 88 30 88 28 80 C27 75 29 72 34 70 Z"/>
+    </g>
+    <g fill="none" stroke="${c}" stroke-width="0.9" opacity="0.35">
+      <path d="M0 34 C20 42 40 40 58 26"/><path d="M42 100 C60 88 76 86 100 92"/>
+    </g>`),
+  // The Promised Neverland — a wall that always turns back on itself.
+  maze: c => svgWrap(96, 96, `
+    <g fill="none" stroke="${c}" stroke-width="1.2" opacity="0.7">
+      <path d="M0 12 L60 12 L60 36 L24 36 L24 60 L84 60 L84 12"/>
+      <path d="M0 48 L12 48 L12 84 L60 84 L60 72"/>
+      <path d="M36 0 L36 24 M72 24 L72 48 L96 48 M84 72 L84 96"/>
+    </g>`),
+  // Howl's Moving Castle — cogs, caught mid-turn, one driving the next.
+  gear: c => svgWrap(110, 110, `
+    <g fill="none" stroke="${c}" stroke-width="1.3" opacity="0.75">
+      <circle cx="42" cy="42" r="22"/><circle cx="42" cy="42" r="8"/>
+      <path d="M42 14 L42 5 M42 70 L42 79 M14 42 L5 42 M70 42 L79 42"/>
+      <path d="M23 23 L16 16 M61 23 L68 16 M23 61 L16 68 M61 61 L68 68"/>
+      <circle cx="86" cy="86" r="13"/><circle cx="86" cy="86" r="5"/>
+      <path d="M86 68 L86 73 M86 99 L86 104 M68 86 L73 86 M99 86 L104 86"/>
+    </g>`),
+  // Laid-Back Camp — a ridgeline, with the tent that is looking at it.
+  peaks: c => svgWrap(120, 80, `
+    <g fill="none" stroke="${c}" stroke-width="1.3" opacity="0.75" stroke-linejoin="round">
+      <path d="M0 62 L26 22 L46 48 L64 18 L92 62"/>
+      <path d="M26 22 L34 34 M64 18 L74 32"/>
+      <path d="M0 70 L120 70"/>
+      <path d="M96 70 L104 50 L112 70 Z"/><path d="M104 50 L104 70"/>
     </g>`),
 };
 

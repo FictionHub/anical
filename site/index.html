@@ -887,7 +887,7 @@
   .nt-foot .nt-spacer{flex:1}
 
   /* ---------- Tung Tungs: the balance, the wheel, the collection ----------
-     Rarity is a colour before it is a word — in a grid of fifty cards the badge
+     Rarity is a colour before it is a word — in a grid of seventy-five cards the badge
      is read as a tint long before anybody reads "legendary". */
   .tt-i{width:1.15em;height:1.15em;flex:none;display:inline-block;vertical-align:-.24em}
   .tt-chip{display:inline-flex;align-items:center;gap:6px;font-weight:800;font-size:12.5px;
@@ -1340,7 +1340,7 @@
 
 // Build number auto-stamped from the git commit count by scripts/stamp-version.mjs
 // (run via the .githooks/pre-commit hook). Do not edit by hand — it changes every commit.
-const APP_VERSION = "3.6.96";
+const APP_VERSION = "3.7.97";
 
 // Tsuzuki's own read API. It serves the same AniList payload out of a shared
 // server-side catalog (netlify/functions/_lib/catalog.mjs), so the schedule a
@@ -1438,7 +1438,8 @@ const state = {
   hidden: new Set(),             // "not interested" shows, hidden everywhere
   watch: new Set(),              // ⭐ "My list" — followed shows
   status: {},                    // mediaId -> watch status key (see STATUS_DEFS); implies watch
-  ratings: {},                   // mediaId -> your own 1–10 score
+  ratings: {},                   // mediaId -> your own 0–10 score (the composite of the axes below)
+  axes: {},                      // mediaId -> {story,art,sound,chars,enjoy} — the five numbers behind it
   notes: {},                     // mediaId -> your private free-text note
   collections: [],               // your own lists: [{id, name, ids:[mediaId…]}], in your order
   recent: [],                    // recently viewed show ids (most-recent first)
@@ -1484,6 +1485,7 @@ try{ state.hidden = new Set(JSON.parse(localStorage.getItem("anical.hidden")||"[
 try{ state.watch = new Set(JSON.parse(localStorage.getItem("anical.watch")||"[]")); }catch(e){}
 try{ state.status = JSON.parse(localStorage.getItem("anical.status")||"{}")||{}; }catch(e){}
 try{ state.ratings = JSON.parse(localStorage.getItem("anical.ratings")||"{}")||{}; }catch(e){}
+try{ state.axes = JSON.parse(localStorage.getItem("anical.axes")||"{}")||{}; }catch(e){}
 try{ state.notes = JSON.parse(localStorage.getItem("anical.notes")||"{}")||{}; }catch(e){}
 // Collections arrive from localStorage or a pasted sync code, so never trust the shape.
 try{
@@ -1704,15 +1706,113 @@ function refreshStatusPickers(id){
    because that's what "sync my list" is understood to mean. Notes don't. */
 const RATING_MAX = 10;
 const NOTE_MAX = 2000;
+/* ---------- the five axes behind one score ----------
+   A score is five numbers, not one: story, art, sound, characters, enjoyment,
+   kept in `anical.axes`. `anical.ratings` still holds the single number — the
+   composite — because that is what every other part of the app already reads:
+   the card pill, the ⭐ filter, the detail pop-up and the AniList push are all
+   untouched by this. One key is the input, the other is the derived answer, and
+   nothing outside this block needs to know there are two.
+
+   MIGRATION IS THE PRESENCE OF THE RECORD, not a "have I run yet" flag. Every
+   score without an axes record gets all five axes set to that score, and the
+   mean of five equal numbers is the number itself — so an existing 8 reads back
+   as exactly 8, and re-running finds the record and skips it. A flag would be
+   worse in two specific ways: a settings import that restored the flag but not
+   the axes would skip a migration that was needed, and one that restored the
+   axes but not the flag would flatten edits the user had made. It also lets the
+   AniList import, which writes straight into `state.ratings`, be fixed up by
+   calling the same function afterwards rather than waiting for a reload. */
+const AXIS_DEFS = [
+  { key:"story", label:"Story"      },
+  { key:"art",   label:"Art"        },
+  { key:"sound", label:"Sound"      },
+  { key:"chars", label:"Characters" },
+  { key:"enjoy", label:"Enjoyment"  },
+];
+const AXIS_KEYS = AXIS_DEFS.map(a=>a.key);
+/* Day 15 makes these per-user. Everything already asks axisWeights() rather
+   than reading a constant, so that day changes this one function and no other. */
+const DEFAULT_AXIS_WEIGHTS = AXIS_KEYS.reduce((m,k)=>{ m[k]=1; return m; },{});
+function axisWeights(){ return DEFAULT_AXIS_WEIGHTS; }
+/* Half-points, clamped. 0 means "not scored on this axis" and is never stored —
+   an absent axis and a zero one are the same thing, so there is one way to say it. */
+function cleanAxis(v){ return Math.max(0, Math.min(RATING_MAX, Math.round((+v||0)*2)/2)); }
+function getAxes(id){
+  const rec=state.axes[String(id)]||null, out={};
+  for(const k of AXIS_KEYS) out[k]=rec?cleanAxis(rec[k]):0;
+  return out;
+}
+function hasAxes(id){ const a=getAxes(id); return AXIS_KEYS.some(k=>a[k]>0); }
+function writeAxes(id, axes){
+  id=String(id);
+  const rec={};
+  for(const k of AXIS_KEYS){ const v=cleanAxis(axes&&axes[k]); if(v) rec[k]=v; }
+  if(Object.keys(rec).length) state.axes[id]=rec; else delete state.axes[id];
+  try{ localStorage.setItem("anical.axes", JSON.stringify(state.axes)); }catch(e){}
+}
+/* The composite: a weighted mean over the axes actually scored, so leaving
+   Sound blank on a silent film doesn't drag the score to half of what you meant.
+   One decimal, because the axes move in halves and rounding to a whole number
+   would make two visibly different sets of sliders report the same score. */
+function compositeOf(axes){
+  const w=axisWeights(); let sum=0, wt=0;
+  for(const k of AXIS_KEYS){
+    const v=cleanAxis(axes&&axes[k]); if(!v) continue;
+    sum += v*(w[k]||0); wt += (w[k]||0);
+  }
+  return wt ? Math.round((sum/wt)*10)/10 : 0;
+}
+/* The axes-first write path. Day 14's sliders land here; today nothing calls it
+   from the UI, which is what makes this a `data` day. */
+function setAxis(id, key, val){
+  if(!AXIS_KEYS.includes(key)) return;
+  const axes=getAxes(id);
+  axes[key]=cleanAxis(val);
+  writeAxes(id, axes);
+  setRating(id, compositeOf(axes), {axes:false});   // the composite is the result here, not the input
+}
 function getRating(id){ return +state.ratings[String(id)] || 0; }
-function setRating(id, n){
-  id=String(id); n=Math.max(0, Math.min(RATING_MAX, n|0));
+function setRating(id, n, opts){
+  id=String(id);
+  // Still a 0–10 number and still the only score anything else reads — it just
+  // carries a decimal now that it can be a mean of five.
+  n=Math.max(0, Math.min(RATING_MAX, Math.round((+n||0)*10)/10));
   if(n) state.ratings[id]=n; else delete state.ratings[id];
   localStorage.setItem("anical.ratings", JSON.stringify(state.ratings));
+  // A single number IS all five axes agreeing. That is what the migration does
+  // to every score written before axes existed, and what clicking a chip in the
+  // 1–10 picker means: "the whole thing is a 7". setAxis passes {axes:false}
+  // because there the axes are the input and this is only recording the answer.
+  if(!opts || opts.axes!==false){
+    writeAxes(id, n ? AXIS_KEYS.reduce((m,k)=>{ m[k]=n; return m; },{}) : {});
+  }
   refreshRatingPickers(id);
   if(n) alEnqueue(id);   // clearing a score is local-only, same reasoning as toggleWatch
   if(n) tungTask("rate");
 }
+/* Undo. Putting the number back is not enough once the number is derived: the
+   1–10 picker flattens the axes to write a whole score, so an undo that only
+   restored the composite would hand back a flat five where five different
+   numbers used to be. Same shape as setStatusOf's {stamp:false}. */
+function restoreRating(id, score, axes){
+  setRating(id, score, {axes:false});
+  writeAxes(id, axes);
+}
+function migrateRatingAxes(){
+  let changed=false;
+  for(const [id, score] of Object.entries(state.ratings)){
+    const n=cleanAxis(score);
+    if(!n || state.axes[id]) continue;
+    const rec={}; for(const k of AXIS_KEYS) rec[k]=n;
+    state.axes[id]=rec; changed=true;
+  }
+  // The other direction: axes for a show whose score was cleared elsewhere (an
+  // older client, a pasted sync code) would otherwise sit there unreachable.
+  for(const id of Object.keys(state.axes)) if(!(+state.ratings[id]||0)){ delete state.axes[id]; changed=true; }
+  if(changed) try{ localStorage.setItem("anical.axes", JSON.stringify(state.axes)); }catch(e){}
+}
+migrateRatingAxes();
 function getNote(id){ return state.notes[String(id)]||""; }
 function hasNote(id){ return !!getNote(id); }
 function setNote(id, text){
@@ -1735,12 +1835,18 @@ function notePill(id){
   return n?`<span class="pill notepill" title="Your notes: ${esc(n.slice(0,140))}${n.length>140?"…":""}">📝</span>`:"";
 }
 function myMarks(id){ return myScorePill(id)+notePill(id); }
-/* 1–10 picker; clicking the highlighted number clears the rating. */
+/* 1–10 picker; clicking the highlighted number clears the rating.
+   The composite can land between two chips once the axes disagree, so the
+   nearest chip lights up rather than the picker reading as unrated — but only
+   an exact match clears, because clicking 7 on a 7.4 means "make it a flat 7". */
+function ratingChipOn(cur, n){ return cur>0 && Math.round(cur)===n; }
 function ratingPickerHtml(id){
   const cur=getRating(id), sid=esc(String(id));
   let out=`<div class="rt-pick" data-rt-pick="${sid}" role="group" aria-label="Your rating out of 10">`;
-  for(let n=1;n<=RATING_MAX;n++)
-    out+=`<button type="button" class="rt-chip${n===cur?" on "+ratingBand(n):""}" data-rt="${sid}|${n}" aria-pressed="${n===cur?"true":"false"}" title="${n===cur?"Clear your rating":"Rate "+n+" out of 10"}">${n}</button>`;
+  for(let n=1;n<=RATING_MAX;n++){
+    const on=ratingChipOn(cur,n);
+    out+=`<button type="button" class="rt-chip${on?" on "+ratingBand(n):""}" data-rt="${sid}|${n}" aria-pressed="${on?"true":"false"}" title="${cur===n?"Clear your rating":"Rate "+n+" out of 10"}">${n}</button>`;
+  }
   return out+`</div>`;
 }
 function ratingOutHtml(id){
@@ -1751,10 +1857,10 @@ function refreshRatingPickers(id){
   id=String(id);
   const cur=getRating(id);
   document.querySelectorAll('[data-rt-pick="'+CSS.escape(id)+'"] .rt-chip').forEach(chip=>{
-    const n=+String(chip.dataset.rt||"").split("|")[1], on=n===cur;
+    const n=+String(chip.dataset.rt||"").split("|")[1], on=ratingChipOn(cur,n);
     chip.className="rt-chip"+(on?" on "+ratingBand(n):"");
     chip.setAttribute("aria-pressed", on?"true":"false");
-    chip.title = on ? "Clear your rating" : "Rate "+n+" out of 10";
+    chip.title = cur===n ? "Clear your rating" : "Rate "+n+" out of 10";
   });
   document.querySelectorAll('[data-rt-out="'+CSS.escape(id)+'"]').forEach(el=>{
     el.className="rt-out"+(cur?" "+ratingBand(cur):"");
@@ -2173,6 +2279,7 @@ async function importAniList(name){
   localStorage.setItem("anical.status", JSON.stringify(state.status));
   localStorage.setItem("anical.progress", JSON.stringify(state.progress));
   localStorage.setItem("anical.ratings", JSON.stringify(state.ratings));
+  migrateRatingAxes();   // an imported score is a flat five, same as any pre-axes one
   document.querySelectorAll("[data-watch]").forEach(el=>setStar(el, state.watch.has(el.dataset.watch)));
   renderView();
   return { added, progressed, rated, total: lists.reduce((n,l)=>n+(l.entries?l.entries.length:0),0) };
@@ -2299,6 +2406,7 @@ async function alPull(){
     localStorage.setItem("anical.status", JSON.stringify(state.status));
     localStorage.setItem("anical.progress", JSON.stringify(state.progress));
     localStorage.setItem("anical.ratings", JSON.stringify(state.ratings));
+    migrateRatingAxes();   // same reasoning as importAniList
     document.querySelectorAll("[data-watch]").forEach(el=>setStar(el, state.watch.has(el.dataset.watch)));
     renderView();
     return { added, progressed, rated, total };
@@ -2331,7 +2439,9 @@ function alPayloadFor(id){
   // Only send what we actually hold. Sending status:null would clear it.
   if(st&&AL_STATUS_OUT[st]) v.status=AL_STATUS_OUT[st];
   else if(state.watch.has(key)) v.status=AL_STATUS_OUT[DEFAULT_STATUS];
-  if(rating) v.scoreRaw=rating*10;      // our 1–10 -> AniList's scale-independent 0–100
+  // Our 0–10 -> AniList's scale-independent 0–100. Rounded because the composite
+  // of five axes is a decimal, and scoreRaw is an Int.
+  if(rating) v.scoreRaw=Math.round(rating*10);
   if(prog) v.progress=prog;
   return v;
 }
@@ -2617,6 +2727,11 @@ function renderWhatsNew(){
    update. Returning visitors see every entry newer than the one they last
    saw, once, in a modal they close manually. Trim old entries freely. */
 const CHANGELOG=[
+  { id:16, v:"3.7", date:"August 2026", items:[
+    "🎨 Twenty-five more skins — seventy-five in total. Naruto Shippuden and Dragon Ball Z join the Legendaries; JoJo, Monster, Fate/Zero, Clannad and Psycho-Pass are Epics; Gintama, Erased, The Promised Neverland, Anohana, Howl's Moving Castle, Fire Force, Tokyo Revengers and Nichijou are Rares, with ten more below them.",
+    "Twelve new textures came with them, drawn from each show rather than picked off a shelf — a shuriken, a transmutation-style summoning ring, the dango family, the menacing marks, a reticle, a maze, cogs and a mountain ridge among them.",
+    "Nothing you already own changed, and nothing moved tier. The wheel gets deeper rather than stingier: a Common now pays out of thirty possibilities instead of twenty, and it still never draws a skin you already have.",
+  ]},
   { id:15, v:"3.6", date:"August 2026", items:[
     "🎡 Skins are yours to earn. Fifty of them — full site themes with their own palette, typeface, corner shapes, texture and art, not recolours — and two ways in: a free spin of the wheel every day, or save up Tung Tungs and buy the one you actually want.",
     "You earn Tung Tungs by using the site: marking an episode watched, rating something, setting a status, filing a show into a list or writing a note each pay once a day, and they credit themselves the moment you do it. Nothing to collect.",
@@ -4355,6 +4470,13 @@ function setGrantedSkin(theme){
   applyAppearance();
 }
 
+/* How many skins there are appears in the copy in two places, and hard-coding
+   it there is how "fifty" survived a batch that made it seventy-five. The
+   catalogue knows its own size, so ask it wherever it has already been fetched;
+   SKIN_COUNT is only what to say before that request lands, and the panel
+   re-renders when it does. */
+const SKIN_COUNT = 75;
+const skinTotal = () => (state.catalog ? Object.keys(state.catalog).length : SKIN_COUNT);
 let themeCatalog=null;
 async function loadThemeCatalog(){
   if(themeCatalog) return themeCatalog;
@@ -4382,7 +4504,7 @@ async function loadThemeCatalog(){
 /* The currency mark: Tung Tung Tung Sahur's bat, drawn rather than borrowed.
    An emoji was a placeholder — it renders as a different picture on every
    platform and says nothing about what the currency is. This is one inline SVG
-   with no host, no request and no licence, and it holds up against fifty skins
+   with no host, no request and no licence, and it holds up against seventy-five skins
    repainting the page around it because it carries its own colours. */
 const TT_ICON = `<svg class="tt-i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g transform="rotate(-14 12 12)">`
   + `<path d="M12 1.5c3 0 5.1 2.5 5.1 6 0 2.9-1 5.2-2.1 6.7-.8 1.2-1.2 2.4-1.3 3.7l-.3 3.3h-2.8l-.3-3.3c-.1-1.3-.5-2.5-1.3-3.7C8 12.7 6.9 10.4 6.9 7.5c0-3.5 2.1-6 5.1-6Z" fill="#d7a066"/>`
@@ -4480,8 +4602,8 @@ function openSkins(tab){
   $("modalTitle").textContent="🎡 Skins";
   renderSkins();
   $("overlay").classList.add("on");
-  // The catalog is 50 themes and only this panel needs it, so it is fetched on
-  // open rather than at boot.
+  // The catalog is seventy-five themes and only this panel needs it, so it is
+  // fetched on open rather than at boot.
   if(!state.catalog) loadThemeCatalog().then(()=>{ if(isSkinsOpen()) renderSkins(); });
   if(!state.wallet && state.discord) walletGet().then(()=>{ if(isSkinsOpen()) renderSkins(); });
 }
@@ -4511,7 +4633,7 @@ function skinsHTML(){
     ${tab==="wheel"?wheelHTML():tab==="tasks"?tasksHTML():collectionHTML()}`;
 }
 function signedOutSkinsHTML(){
-  return `<p style="margin-top:0">Fifty site skins — full palettes, typefaces, textures and corner art, not recolours.
+  return `<p style="margin-top:0">${skinTotal()} site skins — full palettes, typefaces, textures and corner art, not recolours.
       Win one a day on the wheel, or save ${TT} Tung Tungs by using the site and buy the one you actually want.
       A couple are event skins: they stay with whoever was given them and are not for sale at any price.</p>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:14px 0">
@@ -4755,8 +4877,8 @@ async function refreshIdentity(){
   // endpoint was slow.
   await walletGet();
   const wearId = state.wallet ? state.wallet.wearing : ((j.grant && j.grant.themeId) || null);
-  // The catalog is fifty themes. Fetching it on every signed-in page load for
-  // somebody who is wearing nothing is a payload spent on nothing, so it is
+  // The catalog is seventy-five themes. Fetching it on every signed-in page load
+  // for somebody who is wearing nothing is a payload spent on nothing, so it is
   // pulled only when there is an id to resolve — the Skins panel fetches it
   // itself when opened.
   if(!wearId) setGrantedSkin(null);
@@ -4865,7 +4987,7 @@ function discordSettingsHTML(){
   if(!state.discord){
     // The Skins button is here for the signed-out too. Without it the header
     // chip is the only way in and the header chip only exists once you have
-    // signed in — so fifty skins would be invisible to precisely the people who
+    // signed in — so every skin would be invisible to precisely the people who
     // have not yet been given a reason to sign in.
     return `<button class="primary" id="dcIn">🎮 Sign in with Discord</button>
       <button id="dcSkins">🎡 Skins</button>${privacy}`;
@@ -4881,7 +5003,7 @@ function discordSettingsHTML(){
   if(!state.skin){
     return `${who}${purse}${skins}<button id="dcOut">Sign out</button>
       <span class="num-hint" style="flex-basis:100%">No skin on yet. Win one on the daily wheel or buy it with
-      Tung Tungs — fifty of them, and you earn by using the site.</span>${privacy}`;
+      Tung Tungs — ${skinTotal()} of them, and you earn by using the site.</span>${privacy}`;
   }
   return `${who}${purse}
     <span class="skin-chip"><i></i>${esc(state.skin.name||state.skin.id)}</span>
@@ -6261,10 +6383,10 @@ document.addEventListener("click",e=>{
   const chip=e.target.closest("[data-rt]"); if(!chip) return;
   e.preventDefault(); e.stopPropagation();
   const parts=String(chip.dataset.rt).split("|"), id=parts[0], n=+parts[1];
-  const prev=getRating(id), next=(prev===n)?0:n;
+  const prev=getRating(id), prevAxes=getAxes(id), next=(prev===n)?0:n;
   setRating(id, next);
   const md=findMediaById(id), name=md?title(md):"Show";
-  toast(next?`⭐ ${next}/10 · ${name}`:`Rating cleared · ${name}`, ()=>{ setRating(id, prev); renderView(); });
+  toast(next?`⭐ ${next}/10 · ${name}`:`Rating cleared · ${name}`, ()=>{ restoreRating(id, prev, prevAxes); renderView(); });
   renderView();   // the score shows up on every card for this show
 });
 // private notes: auto-save shortly after typing stops, with a live counter
