@@ -6,7 +6,7 @@
     <atom:link href="https://tsuzuki.top/feed.xml" rel="self" type="application/rss+xml" />
     <description>Upcoming and recent anime premieres and season finales, updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 06 Aug 2026 21:51:43 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 13 Aug 2026 16:41:47 GMT</lastBuildDate>
     <ttl>720</ttl>
     <item>
       <title>Please Excuse My Younger Brothers — Finale (Ep 24)</title>
@@ -72,18 +72,18 @@
       <description>Premiere: Sequel to Made in Abyss: Retsujitsu no Ougonkyou.</description>
     </item>
     <item>
-      <title>Fabulous Beasts 6 — Finale (Ep 12)</title>
-      <link>https://tsuzuki.top/anime/fabulous-beasts-6-213486/</link>
-      <guid isPermaLink="false">tsuzuki-rss-213486-f12</guid>
-      <pubDate>Wed, 21 Oct 2026 02:00:00 GMT</pubDate>
-      <description>Finale: The sixth season of You Shou Yan.</description>
-    </item>
-    <item>
       <title>Rascal Does Not Dream of a Dear Friend — Premiere (Ep 1)</title>
       <link>https://tsuzuki.top/anime/rascal-does-not-dream-of-a-dear-friend-199340/</link>
       <guid isPermaLink="false">tsuzuki-rss-199340-p1</guid>
       <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
       <description>Premiere: Theatrical follow-up to Seishun Buta Yarou wa Santa Claus no Yume wo Minai . &quot;Actually, I’m Touko Kirishima.&quot; The audience erupted in excitement upon learning that the true identity of the mysterious, wildly popular internet singer was none other than the nation’s favorite…</description>
+    </item>
+    <item>
+      <title>Fabulous Beasts 6 — Finale (Ep 12)</title>
+      <link>https://tsuzuki.top/anime/fabulous-beasts-6-213486/</link>
+      <guid isPermaLink="false">tsuzuki-rss-213486-f12</guid>
+      <pubDate>Wed, 14 Oct 2026 02:00:00 GMT</pubDate>
+      <description>Finale: The sixth season of You Shou Yan.</description>
     </item>
     <item>
       <title>Toaru Anbu no ITEM — Premiere (Ep 1)</title>
@@ -128,8 +128,8 @@
       <description>Premiere: In Chinjuku, the city that never sleeps, there is a psychic senior police officer who has powers beyond human comprehension! His name is Meguru Chojo! Along with his judo expert partner Nao Ippongi, this hilarious duo will keep the streets clean by any means necessary!</description>
     </item>
     <item>
-      <title>Kyouran Reijou Nia Liston — Premiere (Ep 1)</title>
-      <link>https://tsuzuki.top/anime/kyouran-reijou-nia-liston-206949/</link>
+      <title>Nia Liston: The Merciless Maiden — Premiere (Ep 1)</title>
+      <link>https://tsuzuki.top/anime/nia-liston-the-merciless-maiden-206949/</link>
       <guid isPermaLink="false">tsuzuki-rss-206949-p1</guid>
       <pubDate>Tue, 06 Oct 2026 12:26:00 GMT</pubDate>
       <description>Premiere: A great hero lies undefeated on her deathbed, regretting that she never found a foe who could take her down. She never intended to meet her fate anywhere other than on the battlefield, and her peaceful demise has her wishing desperately that things could have been different...…</description>
@@ -161,6 +161,20 @@
       <guid isPermaLink="false">tsuzuki-rss-209872-p1</guid>
       <pubDate>Sat, 03 Oct 2026 15:56:00 GMT</pubDate>
       <description>Premiere: The third season of Ranma 1/2 (2024) .</description>
+    </item>
+    <item>
+      <title>Nezumi-kun no Chokki (TV) 2nd Season — Premiere (Ep 1)</title>
+      <link>https://tsuzuki.top/anime/nezumi-kun-no-chokki-tv-2nd-season-214968/</link>
+      <guid isPermaLink="false">tsuzuki-rss-214968-p1</guid>
+      <pubDate>Sat, 03 Oct 2026 00:30:00 GMT</pubDate>
+      <description>Premiere: Second season of Nezumi-kun no Chokki (TV)</description>
+    </item>
+    <item>
+      <title>Tokyo Revengers: Santen Sensou-hen — Premiere (Ep 1)</title>
+      <link>https://tsuzuki.top/anime/tokyo-revengers-santen-sensou-hen-178083/</link>
+      <guid isPermaLink="false">tsuzuki-rss-178083-p1</guid>
+      <pubDate>Fri, 02 Oct 2026 16:53:00 GMT</pubDate>
+      <description>Premiere: Sequel to Tokyo Revengers: Tenjiku-hen .</description>
     </item>
     <item>
       <title>The Elusive Samurai Season 2 — Finale (Ep 12)</title>
@@ -198,6 +212,13 @@
       <description>Finale: At the mysterious orphanage where Sheena lives, death is nothing new to its residents—girls who no longer have families of their own, who are raised as weapons of war, taught to kill and take the lives of others without batting an eye. Everyone, that is, except Sheena, who…</description>
     </item>
     <item>
+      <title>Hanaori-san Still Wants to Fight in the Next Life — Finale (Ep 12)</title>
+      <link>https://tsuzuki.top/anime/hanaori-san-still-wants-to-fight-in-the-next-life-199066/</link>
+      <guid isPermaLink="false">tsuzuki-rss-199066-f12</guid>
+      <pubDate>Sat, 26 Sep 2026 17:00:00 GMT</pubDate>
+      <description>Finale: Once the Demon King, now a shut-in NEET—Ryuusei Narukami’s second life is anything but peaceful! When Meteor Hanaori, the Hero who once defeated him, suddenly returns as a normal high school girl, his world is thrown into chaos. Determined to change, Ryuusei reenters society as…</description>
+    </item>
+    <item>
       <title>BLEACH: Thousand-Year Blood War - The Calamity — Finale (Ep 10)</title>
       <link>https://tsuzuki.top/anime/bleach-thousand-year-blood-war-the-calamity-185874/</link>
       <guid isPermaLink="false">tsuzuki-rss-185874-f10</guid>
@@ -205,8 +226,8 @@
       <description>Finale: The fourth and final part of BLEACH: Sennen Kessen-hen . Destruction looms at the end of the Thousand-Year Blood War between the Soul Reapers and Quincies… as the death of the Soul King mirrors the collapse of the Three Worlds, distortions and omens of destruction start to…</description>
     </item>
     <item>
-      <title>Kaijuu 8-gou: Narumi no Heijitsu — Finale (Ep 4)</title>
-      <link>https://tsuzuki.top/anime/kaijuu-8-gou-narumi-no-heijitsu-204431/</link>
+      <title>Narumi's Week at Work — Finale (Ep 4)</title>
+      <link>https://tsuzuki.top/anime/narumis-week-at-work-204431/</link>
       <guid isPermaLink="false">tsuzuki-rss-204431-f4</guid>
       <pubDate>Sat, 26 Sep 2026 11:00:00 GMT</pubDate>
       <description>Finale: Original anime shorts about Narumi's daily life at work.</description>
@@ -217,6 +238,13 @@
       <guid isPermaLink="false">tsuzuki-rss-171110-f24</guid>
       <pubDate>Sat, 26 Sep 2026 08:30:00 GMT</pubDate>
       <description>Finale: Anime adaptation of Part 3 of Honzuki no Gekokujou . Following a disastrous encounter with a noble, Myne finally resolves to say goodbye to her family and friends in the lower city, changing her name to “Rozemyne” and beginning her new life as the adopted daughter of…</description>
+    </item>
+    <item>
+      <title>Draw This, Then Die! — Finale (Ep 12)</title>
+      <link>https://tsuzuki.top/anime/draw-this-then-die-188525/</link>
+      <guid isPermaLink="false">tsuzuki-rss-188525-f12</guid>
+      <pubDate>Fri, 25 Sep 2026 14:30:00 GMT</pubDate>
+      <description>Finale: First-year high school student Ai Yasumi lives on the island of Izu Oshima and loves reading manga. But after a certain turning point, she sets her sights on creating stories of her own! As she dives into the world of manga-making, Ai faces challenges, growth, and the…</description>
     </item>
     <item>
       <title>STEEL BALL RUN JoJo's Bizarre Adventure 2nd - 3rd STAGE — Premiere (Ep 1)</title>
@@ -259,6 +287,13 @@
       <guid isPermaLink="false">tsuzuki-rss-205772-f24</guid>
       <pubDate>Wed, 23 Sep 2026 14:56:00 GMT</pubDate>
       <description>Finale: Ame is a child who loves sweets, and the tooth decay that lives in her mouth called Caries. Caries lives a carefree life inside Ame's mouth and even calls her &quot;Mama&quot;, and Ame's body is always at Caries' mercy. (Source: Anime News Network, edited)</description>
+    </item>
+    <item>
+      <title>From Old Country Bumpkin to Master Swordsman II — Finale (Ep 12)</title>
+      <link>https://tsuzuki.top/anime/from-old-country-bumpkin-to-master-swordsman-ii-194829/</link>
+      <guid isPermaLink="false">tsuzuki-rss-194829-f12</guid>
+      <pubDate>Wed, 23 Sep 2026 14:46:00 GMT</pubDate>
+      <description>Finale: The second season of Katainaka no Ossan, Kensei ni Naru .</description>
     </item>
     <item>
       <title>Trapped in a Dating Sim: The World of Otome Games is Tough for Mobs Season 2 — Finale (Ep 12)</title>
@@ -322,41 +357,6 @@
       <guid isPermaLink="false">tsuzuki-rss-199408-f12</guid>
       <pubDate>Mon, 21 Sep 2026 13:30:00 GMT</pubDate>
       <description>Finale: Elizabeth Leiston, daughter of the influential prime minister, is a picture-perfect lady on the path to becoming the future queen of the Kingdom of Haldoria. But her life takes a sudden turn for the worst when her fiancé makes a show of publicly calling off their engagement.…</description>
-    </item>
-    <item>
-      <title>Skeleton Knight in Another World Season 2 — Finale (Ep 12)</title>
-      <link>https://tsuzuki.top/anime/skeleton-knight-in-another-world-season-2-185542/</link>
-      <guid isPermaLink="false">tsuzuki-rss-185542-f12</guid>
-      <pubDate>Mon, 21 Sep 2026 13:00:00 GMT</pubDate>
-      <description>Finale: The second season of Gaikotsu Kishi-sama, Tadaima Isekai e Odekakechuu .</description>
-    </item>
-    <item>
-      <title>The Insipid Prince's Furtive Grab for the Throne — Finale (Ep 12)</title>
-      <link>https://tsuzuki.top/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/</link>
-      <guid isPermaLink="false">tsuzuki-rss-169582-f12</guid>
-      <pubDate>Mon, 21 Sep 2026 11:57:00 GMT</pubDate>
-      <description>Finale: To the empire, Prince Arnold is one big joke, a completely inept prince outshone by his more talented twin, Leonard. But in secret, Arnold operates as Silver, one of only five magic-wielding SS-rank adventurers on the continent. As the bloody battle for the throne intensifies…</description>
-    </item>
-    <item>
-      <title>Anime AzurLane: Slow Ahead! Season 2 — Finale (Ep 12)</title>
-      <link>https://tsuzuki.top/anime/anime-azurlane-slow-ahead-season-2-169080/</link>
-      <guid isPermaLink="false">tsuzuki-rss-169080-f12</guid>
-      <pubDate>Sun, 20 Sep 2026 16:00:00 GMT</pubDate>
-      <description>Finale: The second season of Azur Lane: Bisoku Zenshin!</description>
-    </item>
-    <item>
-      <title>Goodbye, Lara — Finale (Ep 12)</title>
-      <link>https://tsuzuki.top/anime/goodbye-lara-177637/</link>
-      <guid isPermaLink="false">tsuzuki-rss-177637-f12</guid>
-      <pubDate>Sun, 20 Sep 2026 15:30:00 GMT</pubDate>
-      <description>Finale: Once upon a time, a mermaid princess named Lara fell in love with a human prince. To be with him, she used a witch’s potion to become human—but the magic came at a cost: If she failed to find true love, she would vanish into sea foam forever. Now, 200 years later, Lara awakens…</description>
-    </item>
-    <item>
-      <title>Though I Am an Inept Villainess — Finale (Ep 11)</title>
-      <link>https://tsuzuki.top/anime/though-i-am-an-inept-villainess-188139/</link>
-      <guid isPermaLink="false">tsuzuki-rss-188139-f11</guid>
-      <pubDate>Sun, 20 Sep 2026 14:46:00 GMT</pubDate>
-      <description>Finale: As maidens from the Five Clans battle for the Crown Prince’s heart, jealous Keigetsu uses forbidden magic to swap bodies with the beloved Reirin. Switching places does not guarantee happiness for Keigetsu with her new body's ill health leaving her hanging on the verge of death.…</description>
     </item>
   </channel>
 </rss>

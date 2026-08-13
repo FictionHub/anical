@@ -2,595 +2,607 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://tsuzuki.top/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/today/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/api/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/genres/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studios/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/best/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/where-to-watch/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/spring-2026/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/summer-2026/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/fall-2026/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/winter-2027/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/best/spring-2026/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/best/summer-2026/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/genre/adventure/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/genre/drama/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/genre/fantasy/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/genre/ecchi/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/genre/action/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/genre/psychological/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/genre/romance/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/genre/thriller/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/genre/comedy/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/genre/supernatural/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/genre/slice-of-life/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/genre/sci-fi/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/genre/mystery/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/genre/mahou-shoujo/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/genre/mecha/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/genre/horror/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/genre/sports/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/genre/music/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/white-fox/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/bones-film/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/8-bit/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/actas/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/asahi-production/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/tms-entertainment/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/project-no9/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/studio-kai/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/pierrot-films/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/bibury-animation-studios/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/olm/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/100studio/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/felix-film/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/studio-pierrot/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/jumondou/</loc>
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://tsuzuki.top/studio/zero-g/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/kyoto-animation/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tsuzuki.top/studio/zero-g/</loc>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/science-saru/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/engi/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/studio-a-cat/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/cue/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/wit-studio/</loc>
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://tsuzuki.top/studio/mappa/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/emt-squared/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tsuzuki.top/studio/mappa/</loc>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/madhouse/</loc>
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://tsuzuki.top/studio/bandai-namco-pictures/</loc>
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://tsuzuki.top/studio/zexcs/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/lay-duce/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://tsuzuki.top/studio/kinema-citrus/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <loc>https://tsuzuki.top/studio/bandai-namco-pictures/</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tsuzuki.top/studio/zexcs/</loc>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/brains-base/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tsuzuki.top/studio/kinema-citrus/</loc>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/c2c/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/lidenfilms/</loc>
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://tsuzuki.top/studio/ashi-productions/</loc>
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://tsuzuki.top/studio/a-1-pictures/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/doga-kobo/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tsuzuki.top/studio/ashi-productions/</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tsuzuki.top/studio/a-1-pictures/</loc>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/cloverworks/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/silver-link/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/diomedea/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/maho-film/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/studio-comet/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/troyca/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/david-production/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/cypic/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/sunrise/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/arvo-animation/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/toei-animation/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/studio-deen/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/tatsunoko-production/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/satelight/</loc>
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://tsuzuki.top/studio/signalmd/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/shin-ei-animation/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tsuzuki.top/studio/signalmd/</loc>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/imagica-infos/</loc>
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://tsuzuki.top/studio/polygon-pictures/</loc>
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://tsuzuki.top/studio/synergysp/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/passione/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tsuzuki.top/studio/polygon-pictures/</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tsuzuki.top/studio/synergysp/</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tsuzuki.top/studio/nichicaline/</loc>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/jcstaff/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/eh-production/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/konami-animation/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/production-ig/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tsuzuki.top/studio/atorie/</loc>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/sparkly-key-animation/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/bridge/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/studio-puyukai/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/imageworks-studio/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/shogakukan-music-digital-entertainment/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/soyep/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/ruo-hong-culture/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/lesprit/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tsuzuki.top/studio/cg-year/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>

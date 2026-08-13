@@ -4,4 +4,64 @@ Allow: /
 # being crawled or indexed.
 Disallow: /admin/
 
+# ---------------------------------------------------------------------------
+# SEO-tool crawlers, blocked Aug 2026.
+#
+# These are not search engines. They crawl the site to build backlink and
+# keyword databases they sell to their own subscribers; nothing they fetch ever
+# sends a visitor here. On 12-13 Aug 2026 SemrushBot alone made ~180 requests
+# from ~40 IPs across 85.208.96.0/24 and 185.191.171.0/24 — sixteen times what
+# Googlebot did in the same day, and enough distinct addresses to be counted as
+# ~40 separate "unique visitors" in Netlify Analytics.
+#
+# Two reasons to turn them away. The traffic is bought with nothing, and while
+# they only touch static HTML today, a crawler that ever wanders onto /api/*
+# burns metered function invocations. Blocking them also makes the analytics
+# legible again, which is the reason this was noticed at all.
+#
+# All of these honour robots.txt. The scanners hammering /wp-admin/install.php
+# do not and never will — they are answered by a 404 on a site with no PHP,
+# which is the whole defence they need.
+# ---------------------------------------------------------------------------
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: AhrefsSiteAudit
+Disallow: /
+
+User-agent: DataForSeoBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: Barkrowler
+Disallow: /
+
+User-agent: SeekportBot
+Disallow: /
+
+User-agent: serpstatbot
+Disallow: /
+
+User-agent: ZoominfoBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+# AI crawlers are deliberately NOT blocked. GPTBot, ClaudeBot, PerplexityBot and
+# OAI-SearchBot made 22 requests in that same 24 hours, and unlike the list
+# above they are a discovery channel: an assistant asked "when does X air" can
+# cite this site. If that stops being worth it, this is where to add them.
+
 Sitemap: https://tsuzuki.top/sitemap.xml
