@@ -36,6 +36,18 @@ const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
 const MODEL = process.env.GROQ_MODEL || "openai/gpt-oss-120b";
 const SEARCH_MODEL = process.env.GROQ_SEARCH_MODEL || "groq/compound-mini";
 
+// MODEL is a reasoning model, and its default effort is "medium" — it spends
+// hidden reasoning tokens before every answer AND before every tool call. Those
+// tokens are invisible in the output but fully billed against the free tier's
+// tokens-per-minute ceiling, which is the binding limit here (see below), so
+// they cost latency twice: once generating them, once waiting out the 429 they
+// bring forward. The work this model does is routing and summarising tool
+// results, not solving anything — "low" is the right size for that.
+//
+// Set the variable to an empty string to drop the field entirely: a non-reasoning
+// GROQ_MODEL (llama-3.1-8b-instant, say) rejects the whole request over it.
+const REASONING_EFFORT = process.env.GROQ_REASONING_EFFORT ?? "low";
+
 // Abuse budget. A public LLM endpoint is a free proxy for anyone who finds it,
 // and the thing being spent is a daily quota shared by every real visitor — so
 // the caps are deliberately low enough that one script can't drain the day.
@@ -294,6 +306,7 @@ async function groundedSearch(apiKey, query) {
 async function streamRound({ apiKey, messages, emit }) {
   const res = await groqFetch(apiKey, {
     model: MODEL,
+    ...(REASONING_EFFORT ? { reasoning_effort: REASONING_EFFORT } : {}),
     stream: true,
     temperature: 0.5,
     max_tokens: MAX_OUTPUT_TOKENS,
