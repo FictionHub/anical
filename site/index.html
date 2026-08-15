@@ -1110,6 +1110,47 @@
     line-height:1;padding:0 2px;min-width:11px;cursor:pointer;border-radius:4px}
   .rc-thumb:hover{color:var(--txt);background:var(--bg);transform:none}
   .rc-pred.mine{background:var(--good);color:#04220f}
+  /* The feed. One card, centred, sized so the whole decision is on screen at
+     once — scrolling to reach a button is the thing that kills a swipe loop. */
+  .fd-wrap{max-width:620px;margin:0 auto}
+  .fd-top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    font-size:12px;color:var(--muted);margin-bottom:11px}
+  .fd-top b{color:var(--txt);font-weight:800}
+  .fd-card{display:flex;gap:15px;background:var(--bg2);border:1px solid var(--line);
+    border-radius:var(--radius);padding:15px;box-shadow:var(--shadow)}
+  .fd-cover{position:relative;flex:none;width:150px;cursor:pointer}
+  .fd-cover img,.fd-cover .vs-ph{width:150px;aspect-ratio:2/3;object-fit:cover;border-radius:10px;
+    background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:30px}
+  .fd-body{min-width:0;flex:1;display:flex;flex-direction:column}
+  .fd-body h3{margin:0 0 4px;font-size:17px;font-weight:800;line-height:1.2;cursor:pointer}
+  .fd-body h3:hover{color:var(--accent)}
+  .fd-meta{font-size:11.5px;color:var(--muted);font-weight:600}
+  .fd-genres{display:flex;gap:4px;flex-wrap:wrap;margin:7px 0 0}
+  .fd-genres span{font-size:10px;font-weight:700;color:var(--muted);background:var(--bg3);
+    border:1px solid var(--line);padding:2px 7px;border-radius:20px}
+  .fd-desc{font-size:12px;color:var(--muted);line-height:1.45;margin:8px 0 0;
+    display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+  .fd-acts{display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:6px;margin-top:auto;padding-top:12px}
+  .fd-act{font-size:12px;font-weight:700;padding:8px 6px;border-radius:9px;justify-content:center}
+  .fd-act.seen{background:var(--accent);border-color:transparent;color:var(--on-accent)}
+  .fd-act.watch:hover{border-color:var(--good)} .fd-act.plan:hover{border-color:var(--accent2)}
+  .fd-act.drop:hover,.fd-act.no:hover{border-color:var(--danger)}
+  .fd-skip{width:100%;margin-top:6px;justify-content:center;font-size:12px;font-weight:700;
+    background:var(--bg3);color:var(--muted);padding:9px}
+  .fd-skip:hover{color:var(--txt)}
+  .fd-q{font-size:14px;font-weight:800;margin:6px 0 10px}
+  .fd-scores{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+  .fd-score{flex-direction:column;gap:2px;padding:12px 6px;border-radius:11px;font-size:12px;font-weight:700;justify-content:center}
+  .fd-score b{font-size:22px;font-weight:400;line-height:1}
+  .fd-score i{font-style:normal;font-size:10.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+  .fd-score:hover{border-color:var(--accent)}
+  .fd-plain{width:100%;margin-top:7px;justify-content:center;font-size:11.5px;color:var(--muted);background:none}
+  @media(max-width:560px){
+    .fd-card{flex-direction:column;align-items:center;text-align:center}
+    .fd-cover,.fd-cover img,.fd-cover .vs-ph{width:170px}
+    .fd-body{width:100%}
+    .fd-genres{justify-content:center}
+  }
   .rc-act{display:flex;gap:5px;flex-wrap:wrap;margin-top:auto;padding-top:7px}
   .rc-act button{font-size:11px;padding:4px 8px;border-radius:7px}
   /* The prediction row in the pop-up (Days 41–42) and the badge on cards. */
@@ -1628,7 +1669,7 @@
 
 // Build number auto-stamped from the git commit count by scripts/stamp-version.mjs
 // (run via the .githooks/pre-commit hook). Do not edit by hand — it changes every commit.
-const APP_VERSION = "4.1.103";
+const APP_VERSION = "4.1.104";
 
 // Tsuzuki's own read API. It serves the same AniList payload out of a shared
 // server-side catalog (netlify/functions/_lib/catalog.mjs), so the schedule a
@@ -1746,10 +1787,14 @@ const state = {
   sorts: [],                     // saved named sorts: [{id, name, keys:[{key,dir}]}]
   activity: [],                  // append-only [type, id, YYYY-MM-DD, n?] — the only record of WHEN (Day 31)
   recNo: new Set(),              // recommendations you dismissed, permanently (Day 54)
-  recMode: "all",                // which rec lens is showing (not persisted — it is a per-visit question)
+  recMode: "feed",               // which rec lens is showing (not persisted — it is a per-visit question)
   recGenre: "",                  // rec page genre filter (Day 47)
   recAiring: false,              // …and its currently-airing filter
   tasteAdj: {},                  // "dim|value" -> manual lift delta (Day 53) — an input, never an edited output
+  feedSkip: new Set(),           // "never heard of it" — skipped in the feed, no opinion recorded
+  feedCard: null,                // the show currently on screen in the feed (session only)
+  feedAsk: null,                 // …and its pending "how was it?" question, if any
+  feedCount: 0,                  // answered this session, for the counter
   collections: [],               // your own lists: [{id, name, ids:[mediaId…]}], in your order
   recent: [],                    // recently viewed show ids (most-recent first)
   progress: {},                  // mediaId -> highest watched episode number
@@ -1809,6 +1854,7 @@ try{ state.densityBy = JSON.parse(localStorage.getItem("anical.densityBy")||"{}"
 // instead of throwing inside a comparator.
 try{ state.sort = JSON.parse(localStorage.getItem("anical.sort")||"[]")||[]; }catch(e){}
 try{ state.recNo = new Set((JSON.parse(localStorage.getItem("anical.recno")||"[]")||[]).map(String)); }catch(e){}
+try{ state.feedSkip = new Set((JSON.parse(localStorage.getItem("anical.feedskip")||"[]")||[]).map(String)); }catch(e){}
 try{
   const raw=JSON.parse(localStorage.getItem("anical.tasteadj")||"{}")||{};
   // Clamped on read as well as on write: a pasted sync code must not be able to
@@ -2154,6 +2200,7 @@ function statusLabel(key){ const s=STATUS_BY_KEY[key]; return s?`${s.emoji} ${s.
 })();
 function setStatusOf(id, key, opts){
   id=String(id);
+  bumpWeak();   // statuses feed the taste vectors as weak signal
   if(key) state.status[id]=key; else delete state.status[id];
   localStorage.setItem("anical.status", JSON.stringify(state.status));
   // Undo passes {stamp:false}: putting back the status you had is not the start
@@ -3187,6 +3234,17 @@ function revertSuggestions(undo){ for(const u of undo) restoreRating(u.id, u.sco
    overall mean in proportion to how little evidence there is — the standard
    estimator, with K=3 — so a value needs a few shows before it can say much.
    Raw means and counts are kept alongside, because the honest chart shows both. */
+/* A swipe is worth about a third of a rating — enough that a feed session
+   genuinely teaches the profile, not so much that it can outvote scores you
+   actually thought about. Each kind says this much about you relative to your
+   own average; the numbers are deliberately modest, because a status is a
+   decision about whether to watch and only indirectly about whether you liked it. */
+const WEAK_W = 0.3;
+const WEAK_DELTA = { watching:+0.7, plan:+0.5, completed:+0.3, dropped:-1.2, no:-0.8 };
+// Bumped by every writer of a status or a dismissal, so the taste cache knows
+// the weak half of its input moved. Ratings already have ratingsRev.
+let weakRev = 0;
+function bumpWeak(){ weakRev++; tasteCache=null; predCache=null; }
 const TASTE_K = 3;         // shrinkage strength: a value with 3 shows is half-trusted
 const TASTE_MIN_N = 2;     // below this a value is not charted at all
 const TASTE_THIN_N = 4;    // …and below this it is charted but marked thin
@@ -3216,62 +3274,116 @@ let tasteCache=null;
 function tasteVectors(){
   // The adjustment count is in the stamp as well as invalidating the cache
   // directly, so nothing can serve a profile from before you pushed back on it.
-  const stamp=`${ratingsRev}:${state.media.length}:${state.extra.size}:${tasteAdjCount()}`;
+  // `weakRev` is in here because statuses and dismissals now feed the vectors:
+  // without it, a feed session would swipe fifty shows and the profile would go
+  // on serving the version from before any of them.
+  const stamp=`${ratingsRev}:${weakRev}:${state.media.length}:${state.extra.size}:${tasteAdjCount()}`;
   if(tasteCache && tasteCache.stamp===stamp) return tasteCache;
 
   const rows=[];
   for(const id of Object.keys(state.ratings)){
     const mine=getRating(id); if(!mine) continue;
     const md=findMediaById(id); if(!md) continue;
-    rows.push({ id, md, mine, crowd: md.averageScore ? md.averageScore/10 : null });
+    rows.push({ id, md, mine, crowd: md.averageScore ? md.averageScore/10 : null, w:1 });
   }
   const n=rows.length;
   const myMean = n ? rows.reduce((s,r)=>s+r.mine,0)/n : 0;
   const withCrowd=rows.filter(r=>r.crowd!=null);
   const crowdMean = withCrowd.length ? withCrowd.reduce((s,r)=>s+r.crowd,0)/withCrowd.length : 0;
 
+  /* ---------- weak signals ----------
+     A status is an opinion too, and the feed collects far more of them than it
+     collects scores. Filing something under Plan to Watch is a mild yes; dropping
+     it is a firmer no; "not interested" is a no about the idea rather than the
+     execution. None of them are a number, so each becomes a pseudo-score
+     expressed RELATIVE TO YOUR OWN MEAN — an absolute value would mean something
+     different for a generous rater than a harsh one — carrying a third of a real
+     rating's weight.
+
+     Weighted, not counted, so a hundred swipes cannot drown out ten ratings you
+     actually thought about. And only for shows you have NOT scored: a real score
+     always supersedes the guess its status would have implied. */
+  const weak=[];
+  if(n){
+    const seenWeak=new Set();
+    const addWeak=(id,kind)=>{
+      id=String(id);
+      if(getRating(id) || seenWeak.has(id)) return;
+      const md=findMediaById(id); if(!md) return;
+      seenWeak.add(id);
+      // Placed relative to the mean of your REAL ratings, because that is the
+      // only scale that exists before the weak rows are counted.
+      weak.push({ id, md, mine:myMean+WEAK_DELTA[kind], crowd:null, w:WEAK_W, kind });
+    };
+    for(const id of Object.keys(state.status)) if(WEAK_DELTA[state.status[id]]!=null) addWeak(id, state.status[id]);
+    for(const id of state.recNo) addWeak(id, "no");
+  }
+  const all=rows.concat(weak);
+
+  /* THE BASELINE HAS TO INCLUDE THE WEAK ROWS, and leaving it out was a real bug
+     that a feed session made obvious. `lift` is measured against your overall
+     mean — so if the only things you ever SCORE are the ones you loved, your
+     mean is that, and the genre you love reads as exactly 0.00 above it. A
+     simulated session doing precisely what this feed encourages (score the
+     favourites, status-only everything else) produced ten 9/10 Psychological
+     ratings and a Psychological lift of zero.
+
+     The fix is a second baseline: the pseudo-scores are placed against the
+     ratings-only mean (the only scale available at that point), and then the
+     mean everything is measured against is the WEIGHTED mean across both. The
+     shows you dropped without scoring now pull the baseline down, which is what
+     restores the contrast the ratings alone had lost. Two stages, so the
+     definition never depends on itself. */
+  let baseW=0, baseSum=0;
+  for(const r of all){ baseW+=r.w; baseSum+=r.mine*r.w; }
+  const overallMean = baseW ? baseSum/baseW : myMean;
+
   const dims={};
   for(const dim of TASTE_DIMS){
     const acc=new Map();
-    for(const r of rows){
+    for(const r of all){
       for(const v of dim.values(r.md)){
         if(!v) continue;
         let a=acc.get(v);
-        if(!a){ a={value:v, n:0, sum:0, crowdSum:0, crowdN:0, ids:[]}; acc.set(v,a); }
-        a.n++; a.sum+=r.mine; a.ids.push(r.id);
+        if(!a){ a={value:v, n:0, w:0, sum:0, crowdSum:0, crowdN:0, ids:[], weak:0}; acc.set(v,a); }
+        a.w+=r.w; a.sum+=r.mine*r.w;
+        if(r.w===1){ a.n++; a.ids.push(r.id); } else a.weak++;
         if(r.crowd!=null){ a.crowdN++; a.crowdSum+=r.crowd; }
       }
     }
     const out=[];
     for(const a of acc.values()){
-      if(a.n<TASTE_MIN_N) continue;
-      const mine=a.sum/a.n;
+      // Measured in weight, not rows, so two ratings and seven swipes both clear
+      // the bar — which is the point of collecting the swipes at all.
+      if(a.w<TASTE_MIN_N) continue;
+      const mine=a.sum/a.w;
       const crowd=a.crowdN?a.crowdSum/a.crowdN:null;
       // Pulled toward your own overall mean, in proportion to how thin the
-      // evidence is. n=3 lands halfway; n=12 is essentially untouched.
-      const shrunk=(a.n*mine + TASTE_K*myMean)/(a.n+TASTE_K);
+      // evidence is. w=3 lands halfway; w=12 is essentially untouched.
+      const shrunk=(a.w*mine + TASTE_K*overallMean)/(a.w+TASTE_K);
       // Day 53's adjustment is folded in HERE, once, so every reader downstream
       // — the charts, the predictor, the badges, the recommendations — gets the
       // adjusted number without any of them knowing the feature exists.
       // `baseLift` keeps what your ratings alone said, which is what makes the
       // chart able to show both and the reset able to mean anything.
       const adj=tasteAdjOf(dim.key, a.value);
-      const baseLift=Math.round((shrunk-myMean)*100)/100;
+      const baseLift=Math.round((shrunk-overallMean)*100)/100;
       out.push({
-        value:a.value, n:a.n, ids:a.ids, adj, baseLift,
+        value:a.value, n:a.n, weak:a.weak, w:Math.round(a.w*10)/10, ids:a.ids, adj, baseLift,
         mine:Math.round(mine*100)/100,
         crowd: crowd==null?null:Math.round(crowd*100)/100,
         lift: Math.round((baseLift+adj)*100)/100,
         // Difference in differences, so neither side's overall generosity counts:
         // how far above your bar this sits, minus how far above theirs it sits.
         vsCrowd: crowd==null?null:Math.round(((shrunk-myMean)-(crowd-crowdMean))*100)/100,
-        thin: a.n<TASTE_THIN_N,
+        thin: a.w<TASTE_THIN_N,
       });
       }
     out.sort((x,y)=>y.lift-x.lift || y.n-x.n || String(x.value).localeCompare(String(y.value)));
     dims[dim.key]=out;
   }
-  tasteCache={ stamp, n, rated:rows.length, myMean:Math.round(myMean*100)/100,
+  tasteCache={ stamp, n, rated:rows.length, swipes:weak.length,
+               myMean:Math.round(myMean*100)/100, overallMean:Math.round(overallMean*100)/100,
                crowdMean:Math.round(crowdMean*100)/100, dims,
                // How many rated shows the app could not resolve to media yet —
                // the profile's own honest footnote about its sample.
@@ -3507,7 +3619,7 @@ function predictorBacktest(limit){
    hydration has fetched. So this recommends from a few hundred shows, not from
    AniList's forty thousand. Browsing more seasons genuinely widens it, and the
    panel says so instead of implying it has seen everything. */
-function saveRecDismiss(){ try{ localStorage.setItem("anical.recno", JSON.stringify([...state.recNo])); }catch(e){} }
+function saveRecDismiss(){ bumpWeak(); try{ localStorage.setItem("anical.recno", JSON.stringify([...state.recNo])); }catch(e){} }
 function dismissRec(id, why){
   state.recNo.add(String(id));
   saveRecDismiss();
@@ -3515,6 +3627,9 @@ function dismissRec(id, why){
 }
 function undismissRec(id){ state.recNo.delete(String(id)); saveRecDismiss(); }
 const REC_MODES = {
+  // The front door, and the only lens that works from a standing start — it is
+  // how the library that every other lens needs actually gets built.
+  feed:    { label:"🎞 Feed",     hint:"One at a time. Tell it what you've seen and it goes on your board.", open:true },
   all:     { label:"Everything",  hint:"Ranked by what you'd probably score it." },
   safe:    { label:"Safe bets",   hint:"High predicted score AND plenty of evidence — the ones it is least likely to be wrong about." },
   wild:    { label:"Surprise me", hint:"Deliberately outside the axes you usually watch, with the risk stated." },
@@ -3523,6 +3638,107 @@ const REC_MODES = {
   // renderRecs, which lets this mode through the gate the others sit behind.
   season:  { label:"Next season", hint:"Everything announced for next season, with an estimate attached wherever there is enough of your library to make one.", open:true },
 };
+/* ---------- the feed ----------
+   One show at a time, and every answer puts it somewhere. It exists because the
+   whole taste arc had a cold start it could not solve on its own: the profile
+   needs ratings, the ratings need a rating screen, and "go and score eight
+   things" is not a screen. This is.
+
+   IT COLLECTS TWO KINDS OF SIGNAL, deliberately. "Seen it" asks one more
+   question — loved / liked / not for me — and writes a real score, which is what
+   anchors the whole profile. Everything else writes a status, which reaches the
+   vectors as weak signal at a third of the weight. Without the first, a thousand
+   swipes would build a huge board and an empty profile; without the second, most
+   of what the feed learns would be thrown away. */
+const FEED_SCORES = [
+  { key:"loved",  label:"Loved it",    score:9, emoji:"🤩" },
+  { key:"liked",  label:"Liked it",    score:7, emoji:"🙂" },
+  { key:"meh",    label:"Not for me",  score:4, emoji:"😐" },
+];
+const FEED_SKIP_MAX = 400;   // remembered skips; a guard on the key, not a design limit
+const FEED_TILT = 0.55;      // how hard the profile is allowed to steer the sampler
+function saveFeedSkips(){
+  try{ localStorage.setItem("anical.feedskip", JSON.stringify([...state.feedSkip].slice(-FEED_SKIP_MAX))); }catch(e){}
+}
+/* Everything the feed could show: loaded, not already yours, not dismissed, not
+   already skipped, and not filtered out by your own content settings. */
+function feedPool(){
+  const out=[], seen=new Set();
+  for(const md of [...state.media, ...state.extra.values()]){
+    const id=String(md.id);
+    if(seen.has(id)) continue; seen.add(id);
+    if(state.watch.has(id) || getRating(id)) continue;   // already on your board or scored
+    if(state.recNo.has(id) || state.feedSkip.has(id)) continue;
+    if(isHidden(id) || excluded(md)) continue;
+    out.push(md);
+  }
+  return out;
+}
+/* Weighted random, not uniform — and this is the part that decides whether the
+   feed is usable at all. Uniform over a few hundred titles serves mostly obscure
+   ones, and "have you seen this?" is unanswerable about a show you have never
+   heard of, so every card would cost a skip. Popularity (square-rooted, to
+   compress a very long tail) makes the early feed recognisable; once there is a
+   profile, a predicted score above your average tilts it toward things you would
+   plausibly want. Recognisable first, personal later. */
+function feedWeight(md){
+  const pop=Math.sqrt(Math.max(1, md.popularity||1));
+  if(!tasteReady()) return pop;
+  const p=predictScore(String(md.id));
+  if(!predUsable(p)) return pop;
+  const over=Math.max(0, p.score - tasteVectors().myMean);
+  return pop * (1 + over*FEED_TILT);
+}
+function feedPick(){
+  const pool=feedPool();
+  if(!pool.length) return null;
+  let total=0; const w=pool.map(md=>{ const x=feedWeight(md); total+=x; return x; });
+  let r=Math.random()*total;
+  for(let i=0;i<pool.length;i++){ r-=w[i]; if(r<=0) return pool[i]; }
+  return pool[pool.length-1];
+}
+/* Serve the next card, and widen the pool before it runs dry rather than after.
+   fetchSeasonless() is the app's existing "everything without a season" set, so
+   this costs one cached request and no new plumbing. */
+let feedWidening=false;
+function feedServe(){
+  const pool=feedPool();
+  if(pool.length<25 && !feedWidening){
+    feedWidening=true;
+    fetchSeasonless().then(list=>{
+      for(const md of (list||[])) if(!state.extra.has(String(md.id))) state.extra.set(String(md.id), md);
+      feedWidening=false;
+      if(state.viewMode==="recs" && state.recMode==="feed" && !state.feedCard) renderRecs();
+    }).catch(()=>{ feedWidening=false; });
+  }
+  state.feedCard=feedPick();
+  state.feedAsk=null;   // a new card is never mid-question
+  return state.feedCard;
+}
+/* One place records an answer, so the undo, the activity log and the counter
+   cannot disagree about what a swipe was. Returns what it takes to reverse it. */
+function feedAnswer(id, kind, score){
+  id=String(id);
+  const before={ status: state.status[id]||null, rating:getRating(id), axes:getAxes(id),
+                 watched: state.watch.has(id), dismissed: state.recNo.has(id), skipped: state.feedSkip.has(id) };
+  if(kind==="skip"){ state.feedSkip.add(id); saveFeedSkips(); }
+  else if(kind==="no"){ dismissRec(id,"no"); }
+  else if(kind==="seen"){ setStatusOf(id,"completed"); if(score) setRating(id, score); }
+  else setStatusOf(id, kind);          // watching | plan | dropped
+  state.feedCount=(state.feedCount||0)+1;
+  return before;
+}
+function feedUndo(id, before){
+  id=String(id);
+  if(before.skipped===false) state.feedSkip.delete(id);
+  if(before.dismissed===false) state.recNo.delete(id);
+  saveFeedSkips(); saveRecDismiss();
+  restoreRating(id, before.rating, before.axes);
+  setStatusOf(id, before.status, {stamp:false});
+  if(!before.watched){ state.watch.delete(id); localStorage.setItem("anical.watch", JSON.stringify([...state.watch])); }
+  state.feedCount=Math.max(0,(state.feedCount||1)-1);
+}
+
 /* ---------- next season's lineup (Day 88) ----------
    The only page in the app that is worth opening with an empty library: it is a
    real answer to "what is coming" on its own, and it gains a predicted score per
@@ -8086,6 +8302,80 @@ function recCardHtml(r){
     </div>
   </article>`;
 }
+/* ---------- the feed, on screen ----------
+   The buttons are ordered by how much they commit you to, and the cheapest one —
+   "never heard of it" — is the largest and the last, because it is the most
+   pressed. Without it the card demands one of four commitments about a show you
+   may not recognise, and people answer that by picking whichever button makes it
+   go away, which poisons exactly the data this exists to collect. */
+function feedCardHtml(){
+  const md=state.feedCard;
+  if(!md){
+    const skipped=state.feedSkip.size;
+    return `<div class="ev-loading">Nothing left to show you from what this browser has loaded${
+      skipped?` — you have skipped ${skipped}`:""}. Browse a few seasons on the calendar and come back,
+      or <button class="afx-clear" data-feedreset>forget my skips</button>.</div>`;
+  }
+  const id=String(md.id);
+  const img=(md.coverImage&&(md.coverImage.large||md.coverImage.medium))||"";
+  const eps=epTotal(md), studio=((md.studios&&md.studios.nodes)||[])[0];
+  const p=tasteReady()?predictScore(id):null;
+  const year=yearOfMedia(md);
+  const desc=String(md.description||"").replace(/<[^>]*>/g," ").replace(/\s+/g," ").trim();
+  const genres=(md.genres||[]).slice(0,4);
+
+  // The second step: you said you have seen it, so the one thing worth asking is
+  // how it went. Three buttons, not a 1–10 picker — the picker is a decision and
+  // this has to stay a reflex.
+  if(state.feedAsk===id){
+    return `<div class="fd-card fd-ask">
+      <div class="fd-cover">${img?`<img src="${esc(img)}" alt="">`:`<span class="vs-ph">🎬</span>`}</div>
+      <div class="fd-body">
+        <h3>${esc(title(md))}</h3>
+        <p class="fd-q">How was it?</p>
+        <div class="fd-scores">${FEED_SCORES.map(s=>
+          `<button class="fd-score" data-feedscore="${esc(id)}|${s.key}"><b>${s.emoji}</b>${esc(s.label)}<i>${s.score}/10</i></button>`).join("")}</div>
+        <button class="fd-plain" data-feedscore="${esc(id)}|none">Skip the score — just mark it watched</button>
+        <p class="num-hint" style="margin:8px 0 0">A score is what teaches the profile. A status on its own
+          counts for about a third as much.</p>
+      </div></div>`;
+  }
+  return `<div class="fd-card">
+    <div class="fd-cover" role="button" tabindex="0" data-openshow="${esc(id)}">
+      ${img?`<img src="${esc(img)}" alt="" loading="lazy">`:`<span class="vs-ph">🎬</span>`}
+      ${p&&predUsable(p)?`<span class="rc-pred${p.conf<PRED_GOOD_CONF?" low":""}" title="Predicted from your taste">${p.score}</span>`:""}
+    </div>
+    <div class="fd-body">
+      <h3 role="button" tabindex="0" data-openshow="${esc(id)}">${esc(title(md))}</h3>
+      <div class="fd-meta">${FMT_LABEL[md.format]||md.format||"?"}${year?` · ${year}`:""}${eps?` · ${eps} ep`:""}${
+        studio&&studio.name?` · ${esc(studio.name)}`:""}${md.averageScore?` · ★ ${md.averageScore}`:""}</div>
+      ${genres.length?`<div class="fd-genres">${genres.map(g=>`<span>${esc(g)}</span>`).join("")}</div>`:""}
+      ${desc?`<p class="fd-desc">${esc(desc.slice(0,240))}${desc.length>240?"…":""}</p>`:""}
+      <div class="fd-acts">
+        <button class="fd-act seen"  data-feed="${esc(id)}|seen">✅ Seen it</button>
+        <button class="fd-act watch" data-feed="${esc(id)}|watching">▶️ Watching</button>
+        <button class="fd-act plan"  data-feed="${esc(id)}|plan">📋 Plan to watch</button>
+        <button class="fd-act drop"  data-feed="${esc(id)}|dropped">🗑️ Dropped it</button>
+        <button class="fd-act no"    data-feed="${esc(id)}|no">🚫 Not for me</button>
+      </div>
+      <button class="fd-skip" data-feed="${esc(id)}|skip">❓ Never heard of it — next</button>
+    </div>
+  </div>`;
+}
+function feedHtml(){
+  const v=tasteVectors();
+  const done=state.feedCount||0;
+  return `<div class="fd-wrap">
+      <div class="fd-top">
+        <span>${done?`<b>${done}</b> sorted this session`:"Tap what you have seen. Everything you answer lands on your board."}</span>
+        <span class="num-hint" style="margin:0">${v.rated
+          ? `<b>${v.rated}</b> rated${v.swipes?` · <b>${v.swipes}</b> swipes feeding the profile`:""}${
+              tasteReady()?"":` · ${TASTE_MIN_RATED-v.rated} more rating${TASTE_MIN_RATED-v.rated===1?"":"s"} and predictions switch on`}`
+          : `Rate ${TASTE_MIN_RATED} and this starts predicting what you'd score things.`}</span>
+      </div>
+      ${feedCardHtml()}
+    </div>`;
+}
 /* The season lineup, rendered with the same card as a recommendation so a
    predicted score means the same thing in both places. */
 function seasonCardHtml(r){
@@ -8136,7 +8426,7 @@ function recControlsHtml(res){
     `<button class="sk-tab${state.recMode===k?" on":""}" data-recmode="${k}">${esc(m.label)}</button>`).join("");
   // The genre and airing filters belong to the ranked lenses; a season lineup is
   // already scoped to one season, and "airing now" is a contradiction there.
-  const filters = state.recMode==="season" ? "" :
+  const filters = (state.recMode==="season"||state.recMode==="feed") ? "" :
     `<select data-recgenre><option value="">Any genre</option>${genres.map(g=>
         `<option value="${esc(g)}"${state.recGenre===g?" selected":""}>${esc(g)}</option>`).join("")}</select>
      <label class="rc-check"><input type="checkbox" data-recairing${state.recAiring?" checked":""}> Airing now</label>`;
@@ -8156,6 +8446,14 @@ function renderRecs(){
   // Day 88 is the one lens that works with an empty library, so it is offered
   // even when the rest of the page cannot say anything yet — a first-time
   // visitor gets a real page instead of a locked one.
+  // Both of these work with an empty library, so they sit outside the gate the
+  // ranked lenses are behind — the feed because it exists to fill that library,
+  // the season lineup because "what is coming" is a question anyone can ask.
+  if(state.recMode==="feed"){
+    if(!state.feedCard) feedServe();
+    wrap.innerHTML=head+recControlsHtml({rows:[]})+feedHtml();
+    return;
+  }
   if(state.recMode==="season"){ wrap.innerHTML=head+recControlsHtml({rows:[]})+seasonPreviewHtml(); return; }
   if(!tasteReady()){
     wrap.innerHTML=head+recControlsHtml({rows:[]})+`<div class="ev-loading">This needs ${TASTE_MIN_RATED} rated shows to say anything —
@@ -8923,7 +9221,11 @@ function syncControlsFromState(){
 // so it can't wipe the mobile agenda default or the user's saved filters.
 function applyParamsToState(params, reset){
   const qv=params.get("view");
-  if(qv && ["month","week","agenda","dashboard","events","board","lists"].includes(qv)) state.viewMode=qv;
+  // Kept as an allowlist rather than accepting anything, so a crafted link can't
+  // put the app in a state it has no renderer for — which means every new view
+  // has to be added here as well as to renderView(). `taste` and `recs` were
+  // linkable-looking and silently ignored until this line caught up with them.
+  if(qv && ["month","week","agenda","dashboard","events","board","lists","taste","recs"].includes(qv)) state.viewMode=qv;
   else if(reset) state.viewMode="month";
   const qd=params.get("date");
   if(qd && /^\d{4}-\d{2}-\d{2}$/.test(qd)){ const d=new Date(qd+"T12:00:00"); if(!isNaN(d)) state.anchor=d; }
@@ -9360,6 +9662,55 @@ function repaintPredictions(){
   else if(state.viewMode==="taste") renderTaste();
   else renderView();          // card badges everywhere else
 }
+/* The feed. One handler for the five commitments and the skip; "Seen it" is the
+   only one that does not advance, because it has a second question to ask. */
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-feed]"); if(!b) return;
+  e.preventDefault(); e.stopPropagation();
+  const [id,kind]=String(b.dataset.feed).split("|");
+  if(kind==="seen"){ state.feedAsk=id; renderRecs(); return; }
+  const md=findMediaById(id), name=md?title(md):"That one";
+  const before=feedAnswer(id, kind);
+  feedServe(); renderRecs();
+  const said={ watching:"▶️ Watching", plan:"📋 Plan to watch", dropped:"🗑️ Dropped",
+               no:"🚫 Won't suggest it again", skip:"Skipped" }[kind];
+  toast(`${said} · ${name}`, ()=>{ feedUndo(id, before); state.feedCard=md; state.feedAsk=null; renderRecs(); });
+});
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-feedscore]"); if(!b) return;
+  e.preventDefault(); e.stopPropagation();
+  const [id,key]=String(b.dataset.feedscore).split("|");
+  const md=findMediaById(id), name=md?title(md):"That one";
+  const s=FEED_SCORES.find(x=>x.key===key);
+  const before=feedAnswer(id, "seen", s?s.score:0);
+  feedServe(); renderRecs();
+  toast(s?`✅ ${name} · ${s.score}/10`:`✅ Watched · ${name}`,
+        ()=>{ feedUndo(id, before); state.feedCard=md; state.feedAsk=null; renderRecs(); });
+});
+document.addEventListener("click",e=>{
+  if(!e.target.closest("[data-feedreset]")) return;
+  e.preventDefault();
+  const was=[...state.feedSkip];
+  state.feedSkip=new Set(); saveFeedSkips(); feedServe(); renderRecs();
+  toast(`Forgot ${was.length} skip${was.length===1?"":"s"}`,
+        ()=>{ state.feedSkip=new Set(was); saveFeedSkips(); feedServe(); renderRecs(); });
+});
+/* Keyboard, because a feed you have to aim at is a feed you stop using. Only
+   while it is the thing on screen and nothing else has focus. */
+document.addEventListener("keydown",e=>{
+  if(state.viewMode!=="recs" || state.recMode!=="feed" || !state.feedCard) return;
+  if(e.ctrlKey||e.metaKey||e.altKey) return;
+  if($("overlay").classList.contains("on")) return;
+  const tag=(e.target&&e.target.tagName||"").toLowerCase();
+  if(tag==="input"||tag==="textarea"||tag==="select") return;
+  const id=String(state.feedCard.id);
+  const hit=({ "1":"seen", "2":"watching", "3":"plan", "4":"dropped", "5":"no",
+               " ":"skip", "ArrowRight":"skip" })[e.key];
+  if(!hit) return;
+  e.preventDefault();
+  const el=document.querySelector(`[data-feed="${CSS.escape(id)}|${hit}"]`);
+  if(el) el.click();
+});
 /* Recommendations (Days 45–49, 54). */
 document.addEventListener("click",e=>{
   const t=e.target.closest("[data-recmode]"); if(!t) return;

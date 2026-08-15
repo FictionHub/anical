@@ -115,6 +115,7 @@ const NEEDED = [
   "saveArchived", "isArchived", "toggleArchived",
   "SORT_KEYS", "SORT_BY_KEY", "DEFAULT_SORT", "saveSortState", "cleanSort", "activeSort",
   "compareBy", "librarySort", "libraryOrder", "sortSummary",
+  "WEAK_W", "WEAK_DELTA", "weakRev", "bumpWeak",
   "TASTE_K", "TASTE_MIN_N", "TASTE_THIN_N", "TAG_MIN_RANK", "LENGTH_BUCKETS", "lengthBucket",
   "yearOfMedia", "decadeOf", "TASTE_DIMS", "TASTE_BY_KEY", "tasteCache",
   "TASTE_ADJ_STEP", "TASTE_ADJ_MAX", "adjKey", "saveTasteAdj", "tasteAdjOf",
@@ -128,6 +129,7 @@ const state = {
   ratings: {}, axes: {}, weights: {}, pairs: [], normalize: false, status: {}, hidden: new Set(),
   favs: new Set(), pins: [], archived: new Set(), sort: [], sorts: [], dates: {}, progress: {}, rewatch: {}, tasteAdj: {},
   media: [], extra: new Map(), watch: new Set(), recNo: new Set(),
+  feedSkip: new Set(), feedCard: null, feedAsk: null, feedCount: 0,
 };
 // Two app-level boundaries the extracted code reaches through. Stubbing them is
 // the whole reason this file can test versusPool()/nextPair() at all: the real
@@ -681,6 +683,60 @@ section("Taste vectors & the predictor");
     const p = predictScore("9050");
     return p.why.length > 0 && p.why.every(w => w.value && typeof w.lift === "number");
   })());
+
+  /* ---------- weak signals from the feed ----------
+     The half that could silently do nothing: statuses reaching the vectors at a
+     fraction of a rating's weight. If this ever regresses, a feed session would
+     build a board and teach the profile nothing, which is exactly the failure
+     the two-signal design exists to prevent. */
+  const { WEAK_W, WEAK_DELTA } = sandbox.__api;
+  const liftOfGenre = g => (tasteDim("genre").find(r => r.value === g) || {}).lift;
+
+  buildLibrary(90, 40);
+  const baseMecha = liftOfGenre("Mecha");
+  ok("a genre nobody has rated is absent from the profile", baseMecha === undefined);
+
+  // Drop a run of shows sharing a genre: the genre should appear, and negative.
+  const mecha = [];
+  for (let i = 0; i < 8; i++) {
+    const md = { id: "m" + i, title: { english: "Mecha " + i }, format: "TV", episodes: 12, duration: 24,
+      genres: ["Mecha"], tags: [], studios: { nodes: [{ name: "Mecha Co" }] },
+      seasonYear: 2015, source: "MANGA", averageScore: 70, status: "FINISHED" };
+    catalogue.set(md.id, md); state.media.push(md); mecha.push(md.id);
+  }
+  for (const id of mecha) state.status[id] = "dropped";
+  sandbox.bumpWeak();
+  const droppedLift = liftOfGenre("Mecha");
+  ok("statuses alone put a genre on the profile", droppedLift !== undefined, `${droppedLift}`);
+  ok("…and dropping things reads as a negative", droppedLift < 0, `${droppedLift}`);
+
+  for (const id of mecha) state.status[id] = "plan";
+  sandbox.bumpWeak();
+  const planLift = liftOfGenre("Mecha");
+  ok("…while planning to watch them reads as a positive", planLift > droppedLift, `${planLift} vs ${droppedLift}`);
+
+  // A swipe must not be able to outvote a real score.
+  ok("a swipe is worth less than a rating", WEAK_W < 1 && WEAK_W > 0, `${WEAK_W}`);
+  state.ratings[mecha[0]] = 10; saveRatings();
+  const withReal = liftOfGenre("Mecha");
+  ok("one real rating moves the genre more than a swipe did",
+    Math.abs(withReal - planLift) > 0, `${planLift} -> ${withReal}`);
+  ok("…and a rated show stops counting as a weak signal too",
+    tasteVectors().swipes === mecha.length - 1, `${tasteVectors().swipes}`);
+
+  // The cache has to notice the weak half moving, or a feed session paints stale.
+  const beforeRev = liftOfGenre("Mecha");
+  for (const id of mecha.slice(1)) state.status[id] = "dropped";
+  sandbox.bumpWeak();
+  ok("the profile notices a status change without a rating change",
+    liftOfGenre("Mecha") !== beforeRev, `${beforeRev} -> ${liftOfGenre("Mecha")}`);
+
+  // With no ratings at all there is no mean to hang a pseudo-score on, so weak
+  // signals correctly contribute nothing rather than inventing a baseline.
+  buildLibrary(90, 0);
+  for (let i = 0; i < 10; i++) state.status["9" + String(i).padStart(3, "0")] = "plan";
+  sandbox.bumpWeak();
+  ok("statuses with zero ratings build no profile", tasteVectors().swipes === 0 && !tasteReady());
 }
 
 console.log(`\n${fail ? "✗" : "✓"} ${pass} passed, ${fail} failed\n`);
