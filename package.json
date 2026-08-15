@@ -13,7 +13,9 @@
     "themes": "node scripts/build-themes.mjs",
     "themes:check": "node scripts/build-themes.mjs --check",
     "//economy:test": "Pure-logic checks over the Tung Tung wheel, prices, day boundaries and the wallet's tolerance for a hostile stored record. No network, no Blobs, no clock.",
-    "economy:test": "node scripts/test-economy.mjs"
+    "economy:test": "node scripts/test-economy.mjs",
+    "//ratings:test": "Pure-logic checks over the rating maths in site/index.html — the axis composite and its all-off guard, score normalization, and the head-to-head ordering. Extracts the real functions out of the single-file client rather than copying them, so a rename fails the run instead of testing a fossil.",
+    "ratings:test": "node scripts/test-ratings.mjs"
   },
   "dependencies": {
     "@netlify/blobs": "^8.1.0",

@@ -12,12 +12,24 @@ A shippable feature every single day — the hands-on companion to the strategic
 
 Everything below assumes these invariants. Check them before starting a day; they are the things that are expensive to rediscover.
 
-- **The client is one file.** `site/index.html` (~6,000 lines) holds the entire app — markup, CSS and JS, all inline. Most days land there. Find the neighbouring feature and match its idiom rather than introducing a new pattern. It has grown ~2,000 lines in a month; that is the file's normal, not a problem to fix mid-day.
+- **The client is one file.** `site/index.html` (~8,100 lines) holds the entire app — markup, CSS and JS, all inline. Most days land there. Find the neighbouring feature and match its idiom rather than introducing a new pattern. It has roughly doubled in a month and is still growing by a few hundred lines a week; that is the file's normal, not a problem to fix mid-day.
 - **There is no build step.** `site/` is uploaded as-is (`netlify.toml` sets `publish = "site"` with no build command). The SEO pages are generated and committed by GitHub Actions, not built on Netlify. Do not add a bundler, framework or npm dependency to the client without a deliberate decision — it changes the deploy story for every day after it.
 - **Storage is `localStorage`, namespaced `anical.*`** — `anical.collections`, `anical.notes`, `anical.filters`, `anical.hidden`, and so on. The prefix is pre-rebrand and deliberately unchanged: renaming it to `tsuzuki.*` would orphan every existing user's data. New keys keep the `anical.` prefix. Migrations are additive — never drop or repurpose a key an earlier version wrote.
 - **Sign-in holds exactly two things, and this is the one place that decision was made.** Discord OAuth + a signed session cookie ship (`netlify/functions/auth.mjs`, `_lib/session.mjs`). The server stores a Discord id, name and avatar hash — and, since the skin economy landed (Aug 2026), **your Tung Tung balance and which skins you own** (`netlify/functions/wallet.mjs`, `_lib/economy.mjs`, the `user-wallet` Blobs store). That was a deliberate exception with a stated reason: a balance kept in localStorage is a balance the holder can edit, which makes it unsellable the day Tung Tungs cost money. **Nothing else moved.** List, ratings, notes, collections and progress are still local and still never uploaded, and the settings copy now says precisely that rather than "nothing is uploaded". Every day below is still a local-first feature; **do not** put anything else behind the session without the same kind of deliberate decision, and update the settings copy in the same commit if you do.
 - **The skin catalogue is generated, and its ids are permanent.** `scripts/build-themes.mjs` holds one recipe row per AniList id — a motif, a display face, a shape preset, a rarity, sometimes a colour override — and writes `site/data/themes.json`, which the live Blobs layer is merged on top of at read time. **75 skins as of Aug 2026** (1 exclusive, 7 legendary, 14 epic, 22 rare, 31 common); adding more is a row and a re-run, and `--check` verifies every remote URL still resolves before it ships. Three things bite. A theme's id is slugified from its title and is what a wallet stores when someone owns that skin, so **renaming a title later orphans every ownership row pointing at it**. An `exclusive` never moves into a buyable tier — the single edit that retroactively takes something away from a person who already has it. And **a live edit in `/admin` shadows the seed for that theme entirely**, because `mergeThemes` replaces whole themes rather than merging fields: Solo Leveling was seeded Epic and served as Common for weeks before anyone noticed, and until that live record is cleared, no future seed change to it — art, motif, palette — will reach production either. The served catalogue is 214KB raw and 13KB brotli, fetched once when the Skins panel opens.
-- **The version is derived, not typed.** `.githooks/pre-commit` runs `scripts/stamp-version.mjs`, which rewrites `APP_VERSION` in `site/index.html` as `<major.minor>.<commit count>` — and reads the major.minor from the newest CHANGELOG entry in that same file. So **adding the changelog entry is the whole release procedure**; never hand-edit `APP_VERSION`, and there is no longer a constant in the script to bump. The app is on **v3.4** as of Aug 2026. Three other version numbers live nearby and are all independent of it — the public API's (`VERSION` in `api.mjs`, currently `1.1`, matching the `/api/v1` route) and the data-format ones (`SCHEMA_VERSION`, `OVERRIDES_VERSION`, `THEMES_VERSION`, all `1`). None of them move when the app version does.
+- **The version is derived, not typed.** `.githooks/pre-commit` runs `scripts/stamp-version.mjs`, which rewrites `APP_VERSION` in `site/index.html` as `<major.minor>.<commit count>` — and reads the major.minor from the newest CHANGELOG entry in that same file. So **adding the changelog entry is the whole release procedure**; never hand-edit `APP_VERSION`, and there is no longer a constant in the script to bump. The app is on **v4.0** as of Aug 2026 (`CHANGELOG` entry `id:19`; the build number after it is the commit count, stamped at commit time, so quoting it here would be wrong within a day).
+
+Six other version numbers live nearby and every one of them is independent of the app version — **none of them move when it does, and it does not move when they do.** The public API's `VERSION` in `api.mjs` is `1.1`, matching the `/api/v1` route. The data-format ones:
+
+| Constant | Where | Value | Stamped into |
+|---|---|---|---|
+| `SCHEMA_VERSION` | `_lib/ingest-schema.mjs` | `1` | every canonical ingest record |
+| `SCHEMA_VERSION` | `scripts/build-themes.mjs` | `1` | the `version` field of `site/data/themes.json` |
+| `THEMES_VERSION` | `_lib/themes.mjs` | `1` | the merged catalogue `/api/themes` serves, and the live Blobs doc |
+| `WALLET_VERSION` | `_lib/economy.mjs` | `1` | every wallet record, as `v` |
+| `OVERRIDES_VERSION` | `_lib/schedule-overrides.mjs` | **`2`** | correction documents |
+
+Two traps in that table. **`SCHEMA_VERSION` is two unrelated constants with the same name** — grepping it finds both, and the one that versions the skin seed file has nothing to do with the one that versions ingest records. The theme seed's version and the served catalogue's version are likewise written by *different* constants (`build-themes.mjs` and `_lib/themes.mjs`); they read `1` and `1` today, which is agreement by coincidence rather than by construction, so bumping one does not bump the other. And `OVERRIDES_VERSION` is the only number here that has ever moved: v2 added the `regions` dimension, and v1 documents stay valid and resolve identically — which is the bar any future bump has to clear.
 - **Schedule data comes from our own API first.** The client calls `/api/v1/seasons/...?full=1`, `/api/v1/anime/<id>?full=1` and `/api/v1/search` before touching AniList, and falls back to AniList directly whenever our API can't answer — so the site is never *dependent* on its own backend. Data is still never stale for deploy reasons; it is now also corrected before it arrives. Only the SEO pages, `.ics` feeds and app code are deploy-bound.
 - **The correction layer is mirrored by hand.** `site/index.html` resolves release variants (`raw`/`sub`/`dub`) client-side; `netlify/functions/_lib/schedule-overrides.mjs` is the same logic again for `push-send.mjs`, because the client can't import it without a build step. **Change one, change the other** — the shapes and resolution order are the contract. Any day that touches air times touches both.
 - **Where non-client work lives.** `netlify/functions/` for server and scheduled work — `api.mjs` (public read API), `ingest.mjs` (scheduled, every 2h), `push-send.mjs` (scheduled, every 15m), `auth.mjs`, `themes.mjs`, `grants.mjs`, `chat.mjs`, `overrides.mjs`, `report.mjs`, with shared code in `_lib/` (`catalog.mjs` is the read path everything goes through). `scripts/` for static generation and tooling (`build-seo.mjs`, `build-events.mjs`, `build-themes.mjs`, `ingest-crunchyroll.mjs`); `bot/` for Discord and social posts; `.github/workflows/` for the schedules that drive them.
@@ -75,7 +87,8 @@ Shipping weekly was never a development limit. It is a deploy-budget limit, and 
 - **365** daily features
 - **12** monthly themes
 - **1** build every day, **1** drop every 2–3
-- **42** days carrying a status marker — 18 shipped, 24 partly built
+- **60** days carrying a status marker — 37 shipped, 23 partly built
+- **All of August 2026 is built.** Days 01–31 are shipped; the backlog resumes at Day 32.
 
 ## How This Sits with the Roadmap
 
@@ -189,69 +202,211 @@ Five more sliders, 0–3 in halves, in **Settings** rather than the show pop-up 
 
 **One thing fixed in passing.** `.set-hint` had no CSS rule at all, so it inherited `.set-label`'s fixed `width:84px` — the Region setting's explanation has been wrapping one word per line for as long as it has existed. A `:has(.set-hint)` rule widens any label carrying an explanation, and degrades to today's behaviour if `:has` is ever unavailable.
 
-### Day 16 · Aug 16 | Your rating distribution
-Your own score histogram, so you can see if you're a 7-out-of-10 person.
+### Day 16 · Aug 16 | Your rating distribution ✅ shipped
+Ten columns in **Settings**, directly under the weights, one per whole score, with the count above each bar and the tallest called out in words underneath — *20 rated · average 7.1 · 45% of them are 7s*. The bucket is `Math.round(composite)`, which is the rounding `ratingChipOn()` already uses to decide which chip lights, so a 7.4 lands in the column whose number the pop-up is showing it as rather than in one that agrees with nothing else on screen.
 > `surface` — **Done when** the histogram reflects the current library and updates after any rating change.
 
-### Day 17 · Aug 17 | Score normalization
-An optional "spread my scores" toggle that stretches a clustered list across the range.
+**It is drawn from `state.ratings`, not from the axes, and that is what makes it the answer to Day 15.** Five weight sliders that rewrite every score in the library had, until today, nothing on screen to show for themselves — the number they change lives on a card behind a modal. Put the chart under them and dragging Story to ×3 visibly redistributes the library. That is also the honest test of the acceptance line: a weight change moves scores without any of them being *rated*, and the chart has to follow anyway.
+
+**One hook, not seven.** `paintScoreSpread()` runs from the top of `renderView()` and returns immediately unless `#spread` is on screen — which it is only while Settings is open, so the cost is a failed `getElementById` for the entire rest of the app's life. Every path that can move a score already ends in `renderView()`: a chip click, a slider release, a weight drag, `↺ Equal again`, an Undo, and `alPull()`, which rewrites the whole library and would otherwise have left the chart showing the scores you had before the pull. Teaching each of those about this panel would have been six edits and a seventh one forgotten.
+
+**Heights are relative to the tallest column, not to the library.** Six rated shows and six hundred draw the same shape. An empty score gets no bar at all rather than a 1px sliver, because a sliver reads as "one", and a bar with a count in it is the one thing a histogram must not get wrong.
+
+**Two clamps worth their lines.** The bucket index is clamped to 1–10 because a score that arrived from somewhere else — an AniList pull off a 100-point scale, a pasted sync code — can round to 0, and a 0 column would file a rated show under *unrated*, which is the one meaning 0 already has everywhere else in this codebase. And the peak is chosen with a strict `>`, so a tie goes to the lower score: somebody split evenly between 7s and 8s is a 7 person, and arbitrary-but-stable beats a label that flips as shows come and go.
+
+**No chart library.** The dashboard's Chart.js is loaded for the dashboard; pulling it into Settings to draw ten rectangles would cost more than the feature. Bars are `<div>`s coloured by `ratingBand()`, the same four bands as the 1–10 chips, so the row reads as the picker laid out flat.
+
+### Day 17 · Aug 17 | Score normalization ✅ shipped
+"Everything I like is an 8" is a real way to rate and it makes a library unreadable — forty shows in one column and no way to see which of your 8s you actually preferred. A segmented control in **Settings**, between the weights and the histogram, stretches them apart. The transform is `mean + (score − mean) × k`: your own mean is the fixed point, so a generous rater stays generous and only the distances grow. `anical.normalize` holds one bit; nothing else was added, because the whole day is one function applied at three call sites.
 > `data` — **Done when** the toggle changes displayed scores only, never the stored ones, and is fully reversible.
 
-### Day 18 · Aug 18 | Head-to-head core (data)
-Store pairwise comparisons and derive an ordering from them. `[W05]`
+**Rescaling onto a fixed centre was the obvious version and the wrong one.** "Map everything onto 1–10" would tell somebody whose library averages 8.2 that it averages 5.5 — a statement about them that they did not make. Moving the spread and leaving the average alone is the only reading of "spread my scores" that doesn't quietly editorialise. It is also why the histogram's *average* line is unchanged by the toggle while every column moves, which is the thing to look at if you want to see the distinction on screen.
+
+**It only ever spreads.** `k` is clamped at 1 from below, so a library already using the whole range comes out untouched rather than squashed toward its mean to hit the target spread. A toggle that compressed some people's scores under the label "spread out" would be a lie, and the test asserts it.
+
+**The clamp at the edge of the scale is the bug that never shipped.** The first version stretched by whatever the target implied and clamped the result to 0.5–10. On a library topping out at 9, a ×2.5 stretch pushed both a 9 and a 9.5 past the ceiling and landed them both on 10 — a spread function *merging two scores that were never equal*, which is precisely the opposite of what it exists to do. It also dragged the average off by an eighth of a point, so the one property the design rests on quietly stopped holding. `fit` is now the largest stretch that keeps both ends inside the scale, and it is taken *before* the clamp is ever reached: no ties invented, and the mean preserved exactly rather than approximately. The clamp is still there, and should now be unreachable.
+
+**Three guards, each for a different way the statistics go wrong.** Fewer than five rated shows is noise rather than a shape. A standard deviation under 0.25 is a library with nothing to stretch — and, more to the point, a divide-by-zero one step away. And `k` is capped at ×3 regardless, so two clusters half a point apart don't become a library that reads as 1s and 10s. All three fall back to doing nothing and *say so in words* in the panel, rather than rendering an inert toggle.
+
+**Where it applies, and where it deliberately doesn't.** Card pills and the Day 16 histogram — the places where you compare shows against each other. **Not** the 1–10 picker or its read-out: the chips are the input, and a read-out showing 6 above a lit 7 makes the picker unusable. The pop-up appends `→ 6 on cards` instead of substituting, so it explains the number the cards are showing rather than contradicting it. And **not AniList**: `alPayloadFor` reads `state.ratings` directly and always did, so a stretched number cannot reach anybody's account. That was free, but only because Day 13 kept the stored score and the displayed one in different functions.
+
+**One refactor it forced.** Every write of `anical.ratings` now goes through `saveRatings()`, which bumps a revision counter the statistics cache is keyed on — four call sites, three of them in the AniList importers. A signature over the scores would have cost exactly what recomputing them costs.
+
+### Day 18 · Aug 18 | Head-to-head core (data) ✅ shipped
+`anical.pairs` holds verdicts and nothing else — `[winner, loser, when]` — and the ordering is recomputed by replaying them through Elo. Same split as Day 13's axes and composite: one key is the input, the other is the derived answer, and no stored number can drift out of agreement with what you actually said. `[W05]`
 > `data` — **Done when** recorded pairs produce a stable total ordering and contradictory pairs resolve without crashing.
 
-### Day 19 · Aug 19 | Head-to-head UI
-A two-card "which did you like more?" screen with a skip button. `[W05]`
+**Elo rather than a sort, because a sort is what breaks.** A topological sort over "A beat B" edges is the obvious implementation and it throws the first time somebody says A over B, B over C and C over A — which people do, constantly, because preference genuinely isn't transitive. Elo has no such failure mode: a cycle lands all three near each other, which is both the honest answer and one that keeps rendering. There is a test that builds a three-cycle and asserts the ratings stay finite, the order stays total, and the count of overruled verdicts is reported rather than swallowed.
+
+**Six passes with a shrinking step, not one.** Elo is gradient descent on the Bradley–Terry likelihood, so a single pass weights late answers far above early ones — the first show you ever compared would sit wherever its first two results left it. Repeated passes fix that and the decaying step is what makes them converge instead of oscillating. Six passes over a few hundred verdicts is well under a millisecond, and the whole thing is deterministic: the same log always produces the same numbers, which is what makes caching it on a revision counter safe.
+
+**One verdict per pair.** Re-answering replaces the earlier record rather than appending beside it, so changing your mind is a change of mind and not a permanent tie. What survives that rule is the interesting kind of contradiction, and `pairConflicts()` counts it — measured against `pairOrder()` rather than against the ratings behind it, so it agrees with the list on screen: two shows the replay left exactly level are separated by the tie-break, and a verdict the tie-break went against is still a verdict the list contradicts.
+
+**The pool is narrower than "rated", on purpose.** A comparison needs a show you have actually seen *and* that the app can draw. Plan to Watch is excluded — the question is which you liked more — and so is anything `findMediaById` can't resolve, because a card with no cover art is not a card. Day 10's hydration widens the pool for free as it fills `state.extra`.
+
+**Which pair to ask is the part that decides whether this is worth using.** Spread coverage before deepening it (least-compared shows first, ties shuffled so it isn't the same twenty-four every time), then inside that window ask the closest call, because comparing two shows already fifty points apart tells you nothing you don't have. All-pairs inside a 24-show window is 276 comparisons; a sweep of a 400-show library would be 80,000, on every answer.
+
+### Day 19 · Aug 19 | Head-to-head UI ✅ shipped
+Two cards, one question, `←` / `→` to answer and `S` to skip. Day 18 did the model and the pair selection, so this day added no arithmetic at all: it draws what `nextPair()` hands it and calls `recordPair()` with the answer. Reached from **Settings › Ratings › ⚔ Compare shows**, alongside a count of what has been recorded and the current top of your list. `[W05]`
 > `ui` — **Done when** each answer records a pair and serves the next, and skipping never re-serves the same pair twice in a session. **Needs** Day 18.
 
-### Day 20 · Aug 20 | Calibration run
-A guided ten-pair session that seeds the ordering from scratch. `[W05]`
+**The skip set is session-only and lives nowhere near the log.** "Not this one, ask me something else" is a statement about right now; persisting it would quietly shrink the pool for good, and a pair you refused on a Tuesday is one you would happily answer a week later. Verified the honest way rather than by reading the code: skipping repeatedly through an eight-show library serves 28 distinct pairs — exactly C(8,2) — with zero repeats, and then says it has run out instead of looping.
+
+**Which side a show lands on is a coin flip.** Always drawing the higher-ranked show on the left would be a hint, and a hint in a preference test collects your agreement rather than your opinion.
+
+**Undo puts the question back, not just the record.** The toast restores the displaced verdict *at its original index* — position in the log is an input to the replay, not decoration — and re-serves the same two shows on the same two sides. An undo that only rewound the log would leave you looking at the next pair with no way to answer the one you had just changed your mind about.
+
+**The top five sit under the cards rather than on a page of their own.** The only honest answer to "why did it just ask me that" is to show what the answers have built, and five rows is enough to recognise the list as yours. The conflict count sits next to it in words — *3 of your answers disagree with the rest and were averaged in rather than dropped* — because a list that contradicts something you explicitly said needs to admit it on the same screen.
+
+**And a test suite that reads the client rather than copying it.** `npm run ratings:test` — 36 checks over the composite and its all-off guard (Day 15's write-up claimed a test that did not exist; it does now), the normalization transform, and the head-to-head ordering. The client is one file with no build step, so there is nothing to import: the script lifts the named declarations out of the inline script by brace-matching and evaluates them against a mock `state`. A copy would pass forever while the real code drifted underneath it — this fails loudly at extraction the moment a function is renamed, which is the only version of the idea worth having in a single-file app.
+
+### Day 20 · Aug 20 | Calibration run ✅ shipped
+A mode of the head-to-head panel rather than a second panel: a progress bar replaces the preamble, ten answers end it, and what you get at the end is an ordering rather than an eleventh question. `[W05]`
 > `surface` — **Done when** ten answers produce a usable ordering from an empty comparison history. **Needs** Day 19.
 
-### Day 21 · Aug 21 | Comparison-derived scores
-Turn the pairwise ordering into suggested 1–10 scores you can accept or ignore. `[W05]`
+**The whole day is the pool, not the counter — and the naïve version fails the acceptance line exactly.** Free play spreads: `nextPair()` asks about the least-compared shows first, so from an empty history ten answers land on up to twenty different shows with one comparison each. That is twenty disconnected facts and **no ordering at all**, because nothing can be ranked against something it was never transitively compared to. Wrapping a counter around free play would have produced a run that satisfies "ten answers" and fails "a usable ordering". A run therefore fixes a working set of eight first and asks only inside it: 28 possible pairs, ten answers, a connected graph, a genuine total order over all eight. There is a test that runs both and asserts the difference — ten guided answers order all 8, the same ten free answers touch far more shows at ≤2 comparisons each.
+
+**The set is spread across your score range, not taken off the top.** Ranking your eight favourites orders eight shows you already score identically. Sampling evenly from your highest score to your lowest produces an ordering that spans your taste — and hands Day 21 anchors at both ends to map onto. Unrated shows fill the set only if the rated ones can't.
+
+**Three things the run had to be careful about.** `nextPair(skip, pool)` grew an optional pool argument and one function — `versusServe()` — decides which pool the next question comes from, so a run can't leak a question about a show outside its set and ending one can't leave the previous set's question on screen. No Undo toast fires during a run: it would appear ten times in a row over the progress bar, and the thing it protects is already free (answer the pair again and the verdict is replaced). And a run that exhausts its own 28 pairs through skipping **ends** rather than stalling — without that the panel sits on "nothing left to ask" above a bar reading 6 of 10.
+
+**Reopening never resumes a finished run.** The payoff screen is something you read once, not a state the panel gets stuck in, so `openVersus()` clears a completed run on the way in.
+
+### Day 21 · Aug 21 | Comparison-derived scores ✅ shipped
+The proposal sits under the ranking: *Your comparisons disagree with your scores on 7 shows*, then the rows — `8 → 9`, `9 → 7` — and one button. `[W05]`
 > `surface` — **Done when** suggestions appear as proposals only and nothing is written until accepted. **Needs** Day 18.
 
-### Day 22 · Aug 22 | Note templates
-Quick-insert prompts — favourite episode, best moment, who to recommend it to.
+**It redeals your own scores; it never invents new ones.** Take the shows that are both rated and compared, take the scores you gave them as a multiset, sort both, hand the k-th highest score to the k-th ranked show. The suggestion is therefore always a *permutation* of numbers you already chose — and that single decision kills every problem the obvious versions have. Mapping Elo linearly onto 1–10 forces a 1 and a 10 to exist and lets one outlier anchor the scale. Mapping onto your observed range spreads everyone evenly and quietly flattens the clustering that is genuinely how you rate. Redealing changes nothing about the shape: **same mean, same spread, the Day 16 histogram pixel-identical before and after**. Verified in the running app rather than argued — 20 rated shows, apply, and the bucket counts stay `0,0,0,0,0,0,2,5,9,4,0` with the average on 7.8 while seven shows swap numbers.
+
+**It also makes the proposal checkable.** "Frieren 8 → 9, Bocchi 9 → 8" is a swap you can hold against your own memory in a second. "Frieren 8 → 8.4" is a number you have no way to agree or disagree with, and a proposal you cannot evaluate is a proposal you either accept blindly or ignore entirely.
+
+**Proposals only, and that is enforced by shape rather than by discipline.** `suggestedScores()` is pure and `applySuggestions()` is reachable from exactly one click handler. Agreement produces silence — if your scores already match the order, there is no panel to dismiss. An unrated show sits the round out rather than being handed a number off somebody else's pile, since there is no score of its own to redeal.
+
+**The undo had to carry the axes.** `setRating` flattens all five axes to the new number, so an undo restoring only the score would hand back a flat five where five different numbers used to be — the same trap Day 13 documented, hit again by a path that writes twenty scores at once instead of one.
+
+### Day 22 · Aug 22 | Note templates ✅ shipped
+Five chips above the box — Favourite episode, Best moment, Recommend to, Where I left off, Why I dropped it. Prompts rather than boilerplate: each is the first half of a sentence you finish, so an empty box stops being the thing standing between you and writing anything down.
 > `ui` — **Done when** a template inserts at the cursor without overwriting existing note text.
 
-### Day 23 · Aug 23 | Note search
-Full-text search across your private notes.
+**`setRangeText`, not a rebuilt `.value`, and the second reason is the one a user would have found instead of me.** Splicing the string by hand and assigning it back **silently wipes the browser's own undo stack**, so ctrl-Z after an accidental insert does nothing — in a text box where it works everywhere else. `setRangeText` keeps that history intact. It also respects a selection for free: a template dropped while text is highlighted replaces exactly that highlight, where the hand-rolled version would have landed at position 0 and shoved the note sideways. Verified both: inserting at offset 12 splits the sentence and keeps the text on both sides, and inserting over a 5-character selection replaces precisely those five.
+
+**Spacing that reads as though it were typed.** A newline first when there is already a line above with something on it, nothing at all in an empty box. And the length check runs before the insert, so a template can never be the thing that pushes a note past `NOTE_MAX` and gets silently truncated.
+
+### Day 23 · Aug 23 | Note search ✅ shipped
+**Notes finally have somewhere to live.** They have existed since Day 02 and the only way to read one has always been to remember which show it was on and open that show. `📝 Your notes` (Settings › Notes) is the index: every note in one list, filtered as you type, each row showing the show it belongs to and the passage that matched, with the hit marked.
 > `surface` — **Done when** a query matches note bodies and returns the owning shows, case-insensitively.
 
-### Day 24 · Aug 24 | Spoiler-tagged notes
-Blur note text until tapped, per note.
+**The search is over the body, and the acceptance line is right to insist.** Titles are what the main search box already does. The entire reason to search notes is the opposite move: finding the show whose name you have forgotten *by way of the thing you wrote about it*. So a query hits note text first, and the title is there to tell you which show you found. Verified with a deliberately wrong-case query — `BRIDGE` finds `bridge` and highlights it.
+
+**A blank query lists everything rather than nothing.** An index that opens empty reads as broken, and "what have I written notes on" is a question worth answering on its own.
+
+**One match highlighted per row, not all of them.** The row is a preview; its job is to show you *why* it matched, and the first occurrence does that. The snippet window opens 40 characters before the hit so the match lands in the middle of the line rather than at its edge.
+
+### Day 24 · Aug 24 | Spoiler-tagged notes ✅ shipped
+A 🙈 toggle in the note footer. A marked note renders blurred with a reveal button over it, and the reveal lasts the session only.
 > `ui` — **Done when** a note marked spoiler renders blurred everywhere it appears and reveals only on explicit interaction.
 
-### Day 25 · Aug 25 | Favourites
-A one-tap heart, separate from score, with a favourites-first sort.
+**"Everywhere it appears" is three places, and the third one is the whole feature.** The box in the detail pop-up and the row in Day 23's index are the obvious two. The third is the 📝 mark on every card — whose `title` attribute has carried a 140-character preview of the note since Day 02. **A tooltip is text on screen the moment a pointer rests on it**, so leaving that preview in place would have defeated the entire feature at precisely the spot where a note is most likely to be read by accident: hovering a card in a list, not opening a show on purpose. A spoilered note's pill now carries no fragment of itself at all — just "You have a note here, hidden as a spoiler". That is the acceptance line's real content, and it is the reason this is a `ui` day that had to touch a data path.
+
+**A parallel key, not a shape change.** `anical.notes` is `id -> string`. Turning it into `id -> {text, spoiler}` means a migration, and every older client and pasted sync code writing the old shape back would keep undoing it. Additive is the invariant, so `anical.notespoiler` is a set of ids alongside it and an absent id means "not a spoiler". Clearing a note clears its flag, so the key cannot accumulate orphans.
+
+**The reveal is session-only and deliberately not stored.** "Show me" is a statement about the next ten seconds. A reveal that persisted would quietly turn the flag off forever the first time you looked at your own note — the setting would still read "spoiler" while doing nothing, which is the failure mode Day 15 already paid for once with the weights display.
+
+**And marking a note does not blur it under your own cursor.** Toggling it on reveals it for the session in the same click: you are plainly allowed to see the note you just chose to hide, and watching it smear the instant you press the button reads as a bug rather than as confirmation.
+
+Days 25–27 landed together and share one row in the detail pop-up, because they answer one question — *how should this show behave in my library* — with three different answers. They also share `librarySort()`, the only thing that reads pins and favourites for ordering, so the board and 📚 Lists cannot drift into ordering the same cards differently.
+
+### Day 25 · Aug 25 | Favourites ✅ shipped
+`♡ Favourite` in the pop-up, a ♥ pill on the card, `anical.favs`. Independent of everything: a favourite is not a 10, and conflating the two would have saved a key and lost the show you love that you would honestly rate a 6.
 > `ui` — **Done when** favouriting is independent of status and score, and the sort puts favourites first without hiding anything.
 
-### Day 26 · Aug 26 | Pinned shows
-Pin up to five shows to the top of every view.
+**"Without hiding anything" is carried by a stable sort, not by a filter.** `librarySort` returns 0 for everything that isn't pinned or favourited, and `Array#sort` is stable — so tied shows keep the order the column already had them in rather than being reshuffled on every paint. Verified on a 20-show board: the rank sequence comes out `0,0,0,0,0,1,1,1,2,2,2,…` with nothing missing from the tail.
+
+### Day 26 · Aug 26 | Pinned shows ✅ shipped
+Up to five, pinned to the top of the board and every list column, in the order you pinned them.
 > `ui` — **Done when** pins persist across views and reloads, and the sixth pin is refused with an explanation.
 
-### Day 27 · Aug 27 | Archive
-Hide finished shows from the main views without deleting them.
+**An array, not a Set.** "Pin up to five to the top" is a statement about *sequence*, and a Set would surface them in whatever order iteration happened to produce. The pin index is also what the card's tooltip shows (`Pinned to the top (#2)`), so the order is visible rather than merely present.
+
+**`togglePin` returns three things, and that is the acceptance line.** `true` pinned, `false` unpinned, and the string `"full"` refused — a bare `false` would make a refusal indistinguishable from an unpin, and the caller would report "Unpinned" for a click that did nothing. The refusal toast names the limit *and* the oldest pin, so the explanation comes with the thing to do about it.
+
+**Pins outrank favourites.** A pin is an explicit "this one, at the top, now"; a favourite is a standing preference. Somebody with thirty favourites still needs the five they pinned to be reachable, and the reverse ordering would bury them.
+
+**The cap is enforced on read as well as on write.** A sync code from a future build with a larger cap must not quietly raise this one's, so the loader slices to five.
+
+### Day 27 · Aug 27 | Archive ✅ shipped
+`🗃 Archive` takes a show off the board and out of your list columns and changes nothing else. A `🗃 Archived · N` button appears in both view headers to bring them back.
 > `ui` — **Done when** archived shows vanish from default views, remain findable through a filter, and keep all their data.
 
-### Day 28 · Aug 28 | List density ◐
-Comfortable and Compact already ship as one global appearance toggle (`anical.density` → a `dense` class on `body`). Missing: the grid option, and per-view memory — density is currently one setting for the entire app.
+**The archive is not the hidden set, and keeping them apart is the whole day.** `state.hidden` means *I am not interested in this show* and removes it from the calendar, from search results and from every sidebar. Archiving means *I am finished with this and want my board back* — the show keeps its status, score, notes, dates, progress and list membership, and **still appears in the calendar and in search**, because a series you finished and loved is not one you want the site to stop mentioning. Reusing `hidden` would have been one line and would have quietly deleted that distinction.
+
+**Nothing is findable if there is no control that shows it**, so the toggle is what makes this reversible in practice rather than only in principle. It renders only when something is actually archived, so it costs nothing to anyone who never uses the feature — and it reads `🗃 Archived · 2` when they are hidden and `🗃 Hiding · 2` when they are shown, so the button says what pressing it will do rather than what the current state is.
+
+**Archiving hides a show from its list columns, not from its list membership.** Unarchiving has to put it back exactly where it was filed, so the filter is applied at render and the collection arrays are never touched.
+
+Verified end to end on a 20-show board: 18 visible with two archived, 20 after the toggle, and both archived shows still holding their rating, status and note.
+
+### Day 28 · Aug 28 | List density ✅ shipped
+Grid joins Comfortable and Compact, and density stopped being one setting for the whole app. In grid mode the five status sections stop being columns and become full-width rows, each holding a wrapping grid of cover art — a finished board reads as a shelf rather than as a list you scroll.
 > `ui` — **Done when** grid joins the existing two, the choice applies to every list view, and each view remembers its own rather than sharing one.
 
-### Day 29 · Aug 29 | Sort builder
-Multi-key sorting — status, then score, then title — that you can save.
+**`anical.density` stays exactly as it was.** Every existing user already has a value in it, and it is now the *default* a view falls back to until that view is given one of its own. `anical.densityBy` is the additive half — `view -> density`, written only when somebody actually chooses. Nothing dropped, nothing repurposed. The calendar views share one entry (`month`, `week` and `agenda` all resolve to `month`), because they are one layout at three zoom levels and nobody wants to set that three times.
+
+**Grid is offered per view rather than everywhere, because a month calendar *is* a grid.** "A grid of grids" is not a setting anyone wants, and an option that silently does nothing is worse than an option that isn't there — so the picker is built from what the current view can actually do. A `grid` value that reaches a calendar anyway (a pasted sync code, a build that offered it) resolves to Compact rather than being honoured.
+
+**The Settings control names the view it is about.** A per-view setting presented as a global one is a setting nobody can predict, so the hint reads *Applies to **your board**, which is what you have open*, and a `↺ One setting again` button appears once anything has diverged.
+
+**Two bugs, both from the day changing when a value has to be read.**
+
+The first was a crash, and the file already documented the trap: `applyAppearance()` runs before the first paint, so anything it reaches must be initialised by then. `densityFor()` is hoisted but its `const` lookup table was declared 3,500 lines further down, still in its temporal dead zone — which throws and takes the rest of the script with it. The skin constants sit above that call for exactly this reason and say so in a comment. The density constants now sit beside them.
+
+The second was subtler and only visible as lag: `setView()` hands off to `load()`, which is network-bound, so the body class was changing whenever the fetch happened to finish. On a slow season load the old view's layout sat under the new view's name for a second or more. Density is now applied in `setView()` itself, the moment the view actually changes, and `renderView()` re-applies it for every other path.
+
+### Day 29 · Aug 29 | Sort builder ✅ shipped
+A `⇅ Sort` panel on both card views. Rows you add, reorder, reverse and remove — *Sort by Your score ↓, then by Title A–Z* — saved under a name and reapplied in one tap. Twelve keys: favourite, status, your score, title, episodes watched, episodes left, season length, date started, date finished, rewatches, community score, popularity.
 > `ui` — **Done when** a multi-key sort can be built, saved, reapplied and deleted.
 
-### Day 30 · Aug 30 | Filter chips
-Active filters shown as removable chips above every list.
+**Rows, not checkboxes, because the order of the keys *is* the sort.** A set of checkboxes can express "status and score" but not "status, *then* score", and the second is the entire feature. Each row carries its own direction, and the labels change with the key — a text key reads `A–Z`, a numeric one reads `↓ highest first`, because "ascending" is a word about the implementation.
+
+**Missing is not small, and this is the rule the day turns on.** Every key nominates what *absent* means and sinks it to the bottom **in both directions**. Sorting by score high-to-low puts your 10s first and your unrated last; sorting low-to-high puts your 1s first and *still* puts unrated last — because an unrated show is not worse than a 1, it is not on the scale at all. Letting absence sort as 0 would bury a hundred unrated shows above your worst rated one the moment you flip the arrow, which reads as the sort being broken rather than as a definition you disagree with. Same for shows with no date, no announced episode count, no community score. Both directions are asserted in the test suite.
+
+**Day 25 became the default rather than a competing rule.** Favourites-first was previously unconditional, which would have meant a custom sort by title silently fighting a hidden rule it could not see. `DEFAULT_SORT` is now literally `[{key:"fav", dir:"desc"}]` — the old behaviour written down — and `fav` is one of the twelve keys you can drop, move or invert. Nothing changed for anyone who never opens the panel.
+
+**Pins stayed outside the sort entirely.** A pin means "this one, at the top of every view"; a sort that could bury it would make the feature a suggestion. `librarySort` resolves pin order first and only then consults the rules.
+
+**Every stored sort is re-validated on every read, not just on load.** `cleanSort()` drops keys this build doesn't have, collapses a duplicated key, coerces a junk direction to `desc`, and turns a non-array into an empty sort — so a saved sort from a future build with more keys degrades to the rows this one understands instead of throwing inside a comparator on the next paint. A sort that cleans down to nothing falls back to the default rather than to no ordering at all.
+
+**Saved sorts key on an id, not a name**, so renaming one later cannot orphan anything pointing at it — the same reasoning collections have used since Day 03. Deleting one hands it back through the toast at its original index.
+
+**The header button carries the sort it will open** — `⇅ Your score +1`, with the full description in its tooltip — so the current order is legible from the view rather than only from inside the panel that sets it.
+
+### Day 30 · Aug 30 | Filter chips ✅ shipped
+A strip under the toolbar — `⭐ My list only ✕` `TV ✕` `★ 70+ ✕` `Premieres only ✕` `Clear all` — covering all twelve things that can currently narrow what you see.
 > `surface` — **Done when** every active filter has a chip, removing it updates results immediately, and clearing all restores the full list.
 
-### Day 31 · Aug 31 | Month wrap
-An end-of-month summary card of what you added, rated and finished.
+**A filter you cannot see is a filter you blame the data for.** The controls that set these live in a wide toolbar and two nested panels, and several are checkboxes whose entire state is one tick — so *"why is this show missing"* was a question you answered by auditing a row of dropdowns. Put next to "No releases match your filters in this range", the strip turns that message from a dead end into a list of things to click.
+
+**One list defines what is active, and both rendering and clearing read it.** `FILTER_CHIPS` holds, per filter, the test for whether it is on, its label, and how to reset it — including putting the *toolbar control* back, since a chip that clears the state but leaves a select showing "TV" has just made two sources of truth. A chip that appears but does not clear, and a filter that clears but leaves its chip, are the two failure modes here, and neither is reachable when the label and the reset live in the same record.
+
+**Two filters are on by default, and a chip for a default is noise.** `Hide NSFW` and `Show donghua` only earn a chip when they are set *away* from the default — `🔞 Showing NSFW`, `Donghua hidden` — so nobody gets a permanent strip above their calendar describing settings they never touched.
+
+**The strip lives outside `<main>`.** The board and 📚 Lists hide `<main>` entirely, and a filter that is invisible in the view it is filtering is precisely the problem this day exists to fix. It repaints from `renderView()`, which every path that can change a filter already ends in — the same one-hook argument as Day 16.
+
+### Day 31 · Aug 31 | Month wrap ✅ shipped
+Stat tiles you can page back through — *12 episodes watched · 1 show finished · 2 shows started · 2 shows rated · 1 note written* — each naming up to three of the shows behind it, plus the one judgement rather than count: your highest score of the month, and what got it.
 > `surface` — **Done when** the card reports real counts for the month and reads sensibly in a month with no activity.
+
+**This day was blocked and the backlog did not say so.** It asks for "what you added, rated and finished *this month*", and until today **nothing in this app recorded when anything happened**. Every user key is a snapshot of *now* — `ratings` is what you think now, `progress` is where you are now, `watch` is what you follow now. `anical.dates` was the single exception, and only for two events on two status changes. An audit of all 49 `anical.*` keys turned up no other timestamp anywhere.
+
+**So the day needed a `data` half that is not in the 365, and it got one.** `anical.activity` is an append-only log of `[type, id, YYYY-MM-DD, n?]` written from the five existing writers — `toggleWatch`, `setStatusOf`, `setRating`, `setNote`, `setProgress` — so there is no second path that can move your library without being recorded. Local dates, for the same reason `stampDates` uses them: someone finishing a show at 11pm means tonight, not tomorrow in UTC. **This should be added to the backlog as a day of its own** if the remaining months are ever renumbered; several later entries (Day 61's profile diff, Day 82's discovery streak) need it too and will otherwise rediscover the same hole.
+
+**Counted over distinct shows, except episodes.** Rating the same show four times while you make your mind up is *one show rated*, not four — a wrap that says otherwise is flattering rather than informative. Episodes are the exception and are summed, with the count carried on the row, so typing `12` into the counter records twelve episodes watched rather than one thing happening.
+
+**Undo is excluded, on the same test that excludes it from date-stamping.** `setStatusOf`'s `{stamp:false}` already means "this is a restoration, not an act", so the log reads the flag that was already there rather than inventing a second notion of what counts as real.
+
+**The honest part, and the reason this isn't just a `SELECT COUNT(*)`.** The log starts empty for everyone already using the site, so a card that simply counted rows would tell somebody who added twenty shows last week that they added none. The wrap therefore knows its own age: `activitySince()` is the first day it ever recorded, and any month that began earlier is marked partial and says so in words — *counts of what you added, rated and wrote only go back to 2026-08-15, when this started keeping track*. **Finished and started are the exception** and are read from `anical.dates` instead, which has real history back to Day 12 and is editable by hand, making it the better record of when a run actually ended. So the card is useful on day one instead of being empty for a month.
+
+**A month with no activity gets a sentence, not a grid of zeros** — and if that month predates the log it says which of the two reasons applies, because "you did nothing in July" and "I wasn't watching in July" are very different claims. Paging forward stops at the current month: a wrap of a month that hasn't happened is an empty card that looks like a bug.
 
 ---
 

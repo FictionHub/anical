@@ -877,6 +877,172 @@
   .ax-val{font-size:12px;font-weight:800;min-width:32px;text-align:right;
     font-variant-numeric:tabular-nums}
   .ax-val.none{color:var(--muted);font-weight:600}
+  /* The shape of your own scoring (Day 16). Ten columns of plain divs — the
+     dashboard's Chart.js is loaded for the dashboard, and pulling a chart
+     library into Settings to draw ten rectangles would cost more than the
+     feature does. Bars are coloured by the same bands as the 1–10 chips, so
+     the row reads as the picker laid out flat. */
+  .sp-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;max-width:430px;margin:8px 0 0}
+  .sp-col{display:flex;flex-direction:column;justify-content:flex-end;gap:3px;height:104px}
+  .sp-n{font-size:10px;font-weight:800;text-align:center;line-height:1;color:var(--muted);
+    font-variant-numeric:tabular-nums;min-height:10px}
+  .sp-bar{border-radius:3px 3px 0 0;background:var(--line);opacity:.45}
+  .sp-bar.great{background:var(--accent)}
+  .sp-bar.good{background:linear-gradient(180deg,var(--good),#15803d)}
+  .sp-bar.ok{background:linear-gradient(180deg,var(--premiere),#b45309)}
+  .sp-bar.bad{background:linear-gradient(180deg,var(--danger),#b91c1c)}
+  .sp-col.has .sp-bar{opacity:.62}
+  .sp-col.peak .sp-bar{opacity:1}
+  .sp-x{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;max-width:430px;margin-top:5px;
+    font-size:10.5px;font-weight:700;color:var(--muted);text-align:center;
+    font-variant-numeric:tabular-nums}
+  .sp-x b{color:var(--txt);font-weight:800}
+  /* A score being shown stretched (Day 17). Dashed rather than a second colour:
+     the border says "this is a view of your score, not your score" without
+     spending a word on it, and the four bands still have to read through it. */
+  .pill.myscore.norm{border-style:dashed}
+  .rt-norm{font-style:normal;font-weight:700;font-size:11.5px;color:var(--muted);margin-left:6px}
+  /* Head to head (Day 19). Two cards in one row inside a 560px modal, so each
+     card is a cover, a title and nothing else — the question is "which of these
+     two", and anything more is a second thing to read before answering. */
+  .vs-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:stretch;margin:4px 0 12px}
+  .vs-card{display:flex;flex-direction:column;align-items:center;gap:7px;padding:11px 9px;
+    background:var(--bg3);border:1px solid var(--line);border-radius:13px;cursor:pointer;
+    text-align:center;font:inherit;color:var(--txt);transition:border-color .12s,transform .12s}
+  .vs-card:hover,.vs-card:focus-visible{border-color:var(--accent);transform:translateY(-2px);outline:none}
+  .vs-card img,.vs-card .vs-ph{width:100%;max-width:132px;aspect-ratio:2/3;object-fit:cover;
+    border-radius:9px;background:var(--bg)}
+  .vs-card .vs-ph{display:flex;align-items:center;justify-content:center;font-size:26px;opacity:.5}
+  .vs-t{font-size:12.5px;font-weight:700;line-height:1.3;display:-webkit-box;-webkit-line-clamp:3;
+    -webkit-box-orient:vertical;overflow:hidden}
+  .vs-meta{font-size:11px;font-weight:600;color:var(--muted);margin-top:auto}
+  .vs-or{display:flex;align-items:center;font-size:11.5px;font-weight:800;color:var(--muted)}
+  .vs-bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .vs-rank{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:4px 9px;
+    align-items:center;margin-top:8px;font-size:12px}
+  .vs-rank b{font-weight:800;color:var(--muted);font-variant-numeric:tabular-nums}
+  .vs-rank span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .vs-rank i{font-style:normal;color:var(--muted);font-size:11px;font-variant-numeric:tabular-nums}
+  @media(max-width:420px){ .vs-card img{max-width:104px} .vs-grid{gap:6px} }
+  /* The guided run (Day 20). A bar rather than a number alone: ten questions is
+     short enough that "how much is left" is the only thing worth showing, and a
+     bar answers it without being read. */
+  .vs-prog{display:flex;align-items:center;gap:9px;margin:0 0 11px}
+  .vs-prog-bar{flex:1;height:5px;border-radius:3px;background:var(--bg3);overflow:hidden}
+  .vs-prog-bar i{display:block;height:100%;background:var(--accent);border-radius:3px;transition:width .2s}
+  .vs-prog span{font-size:11.5px;font-weight:800;color:var(--muted);font-variant-numeric:tabular-nums}
+  /* The proposal (Day 21). */
+  .vs-sug{margin-top:12px;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:var(--bg3)}
+  .vs-sug-h{font-size:12.5px;font-weight:700;margin-bottom:7px}
+  .vs-sug-l{margin-top:0}
+  .vs-sug-l b.up{color:var(--good)} .vs-sug-l b.down{color:var(--danger)}
+  .vs-sug-l i b{color:var(--txt);font-weight:800}
+  /* Note templates (Day 22) — prompts above the box, sized so five fit on a
+     phone without becoming a second paragraph to read. */
+  .nt-tpl{display:flex;gap:5px;flex-wrap:wrap;margin:5px 0 6px}
+  .nt-chip{background:var(--bg3);color:var(--muted);border:1px solid var(--line);
+    padding:4px 9px;border-radius:8px;font-size:11.5px;font-weight:700;line-height:1.2}
+  .nt-chip:hover{color:var(--txt);border-color:var(--accent)}
+  /* Spoiler notes (Day 24). The blur is on the box, the button sits over it —
+     so the text is never merely transparent, it is never legible until asked. */
+  .nt-wrap{position:relative}
+  .nt-wrap.hid .note-box{filter:blur(7px);pointer-events:none;user-select:none}
+  .nt-reveal{display:none;position:absolute;inset:0;margin:auto;width:max-content;height:max-content;
+    background:var(--bg2);border:1px solid var(--accent);color:var(--txt);
+    font-size:12px;font-weight:700;padding:7px 12px;border-radius:9px}
+  .nt-wrap.hid .nt-reveal{display:inline-flex}
+  .nt-spoil{background:none;border:1px solid var(--line);color:var(--muted);
+    font-size:11px;font-weight:700;padding:3px 8px;border-radius:7px}
+  .nt-spoil.on{border-color:var(--accent);color:var(--accent)}
+  .pill.notepill.spoil{border-style:dashed}
+  /* The notes index (Day 23). */
+  .nt-count{font-size:11.5px;font-weight:700;color:var(--muted);margin-bottom:7px}
+  .nt-res{padding:9px 11px;border:1px solid var(--line);border-radius:11px;margin-bottom:7px;
+    cursor:pointer;background:var(--bg3);transition:border-color .12s}
+  .nt-res:hover,.nt-res:focus-visible{border-color:var(--accent);outline:none}
+  .nt-res-t{font-size:12.5px;font-weight:800;margin-bottom:3px}
+  .nt-res-s{font-size:11px}
+  .nt-res-b{font-size:12px;color:var(--muted);line-height:1.45;word-break:break-word}
+  .nt-res-b mark{background:var(--accent);color:var(--on-accent);border-radius:3px;padding:0 2px}
+  .nt-hidden{color:var(--muted);font-style:italic}
+  /* Favourites, pins, archive (Days 25–27). */
+  .lib-row{gap:6px}
+  .lib-btn{background:var(--bg);color:var(--muted);border:1px solid var(--line);
+    padding:5px 10px;border-radius:8px;font-size:12px;font-weight:700;line-height:1}
+  .lib-btn:hover{color:var(--txt);border-color:var(--accent)}
+  .lib-btn.on{color:var(--txt);border-color:var(--accent);background:var(--bg3)}
+  .lib-btn.on.fav{color:#fca5a5;border-color:var(--danger)}
+  .pill.favpill{background:rgba(239,68,68,.14);border-color:var(--danger);color:#fca5a5;font-weight:800}
+  .pill.pinpill{background:rgba(245,158,11,.14);border-color:var(--premiere)}
+  .pill.archpill{background:var(--bg);border-style:dashed;color:var(--muted)}
+  /* Grid density (Day 28) — card views only. The column stops being a single
+     file of cards and becomes a wrapping grid of covers, so a finished board
+     reads as a shelf rather than as a list you have to scroll. */
+  /* The five status sections stop being columns and become full-width rows, so
+     each one can hold a wrapping grid of covers instead of a single file of
+     cards. `.board-cols` is a CSS grid and `.lists-cols` is a flex strip, so
+     each needs its own override — one flex-direction would have silently done
+     nothing to the board. */
+  body.grid-cards .board-cols{grid-template-columns:1fr}
+  body.grid-cards .lists-cols{flex-direction:column;overflow-x:visible}
+  body.grid-cards .lists-cols .board-col{flex:1 1 auto;max-width:none;width:100%}
+  body.grid-cards .board-col{display:grid;gap:9px;align-content:start;
+    grid-template-columns:repeat(auto-fill,minmax(132px,1fr))}
+  body.grid-cards .board-col>h3,body.grid-cards .board-col>.col-head,
+  body.grid-cards .board-col>.board-empty{grid-column:1/-1;margin-bottom:0}
+  body.grid-cards .board-card{flex-direction:column;gap:6px;margin-bottom:0}
+  body.grid-cards .board-card .bc-cover{width:100%}
+  body.grid-cards .board-card img{width:100%;height:auto;aspect-ratio:2/3}
+  body.grid-cards .board-card-info{width:100%}
+  body.grid-cards .board-card-title{font-size:11.5px;max-height:30px}
+  @media(max-width:900px){ body.grid-cards .board-cols{overflow-x:visible;padding-bottom:0} }
+  /* The sort builder (Day 29). Rows, because the order of the keys is the sort. */
+  .so-rows{display:flex;flex-direction:column;gap:7px}
+  .so-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+  .so-n{font-size:11.5px;font-weight:700;color:var(--muted);min-width:52px}
+  .so-key{background:var(--bg3);color:var(--txt);border:1px solid var(--line);border-radius:8px;
+    padding:6px 8px;font:inherit;font-size:12.5px;font-weight:600;flex:1;min-width:130px}
+  .so-dir{background:var(--bg);color:var(--muted);border:1px solid var(--line);
+    padding:5px 9px;border-radius:8px;font-size:11.5px;font-weight:700;white-space:nowrap}
+  .so-dir:hover{color:var(--txt);border-color:var(--accent)}
+  .so-x{background:none;border:1px solid var(--line);color:var(--muted);
+    padding:5px 8px;border-radius:8px;font-size:11.5px;line-height:1}
+  .so-x:hover:not(:disabled){color:var(--txt);border-color:var(--accent)}
+  .so-save{display:flex;gap:7px;margin-top:12px}
+  .so-save input{flex:1;min-width:0;background:var(--bg);color:var(--txt);border:1px solid var(--line);
+    border-radius:9px;padding:8px 10px;font:inherit;font-size:13px}
+  .so-save input:focus{outline:none;border-color:var(--accent)}
+  .so-saved{display:flex;gap:7px;align-items:stretch;margin-bottom:7px}
+  .so-apply{flex:1;display:flex;flex-direction:column;align-items:flex-start;gap:2px;
+    background:var(--bg3);border:1px solid var(--line);border-radius:10px;padding:8px 11px;text-align:left}
+  .so-apply b{font-size:12.5px;font-weight:800}
+  .so-apply i{font-style:normal;font-size:11px;color:var(--muted)}
+  .so-saved.on .so-apply{border-color:var(--accent)}
+  /* Active filter chips (Day 30). A strip under the toolbar, present in every
+     view because the board and lists hide <main> entirely. */
+  .afx{display:flex;gap:6px;flex-wrap:wrap;align-items:center;
+    padding:9px 22px 0;max-width:1500px;margin:0 auto}
+  .afx[hidden]{display:none}
+  .afx-chip{background:var(--bg3);color:var(--txt);border:1px solid var(--accent);
+    padding:4px 8px 4px 10px;border-radius:20px;font-size:11.5px;font-weight:700;gap:6px}
+  .afx-chip i{font-style:normal;color:var(--muted);font-size:10px}
+  .afx-chip:hover{border-color:var(--danger)}
+  .afx-chip:hover i{color:var(--danger)}
+  .afx-clear{background:none;border:0;color:var(--muted);font-size:11.5px;font-weight:700;
+    padding:4px 6px;text-decoration:underline}
+  .afx-clear:hover{color:var(--txt);transform:none}
+  @media(max-width:640px){ .afx{padding:8px 12px 0} }
+  /* Month wrap (Day 31). */
+  .mw-nav{display:flex;align-items:center;gap:10px;justify-content:center}
+  .mw-nav b{font-size:14px;font-weight:800;min-width:150px;text-align:center}
+  .mw-nav button{padding:4px 11px;font-size:14px;line-height:1}
+  .mw-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:9px;margin-top:12px}
+  .mw-stat{background:var(--bg3);border:1px solid var(--line);border-radius:11px;padding:10px 12px}
+  .mw-stat b{display:block;font-size:22px;font-weight:800;line-height:1.1;color:var(--accent);
+    font-variant-numeric:tabular-nums}
+  .mw-stat span{display:block;font-size:11.5px;font-weight:700;color:var(--muted);margin-top:1px}
+  .mw-stat i{display:block;font-style:normal;font-size:11px;color:var(--muted);margin-top:5px;
+    line-height:1.35;opacity:.85}
   /* episode progress: the counter row in the detail pop-up, and the fill that
      rides under every card. One bar element, two sizes. */
   .pg-ctl{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
@@ -1239,11 +1405,17 @@
   <div class="spacer"></div>
   <div class="legend">
     <span class="k"><span class="sw" style="background:var(--accent)"></span>Episode</span>
+
     <span class="k"><span class="sw" style="background:var(--premiere)"></span>Premiere (Ep 1)</span>
     <span class="k"><span class="sw" style="background:var(--finale)"></span>Finale (last ep)</span>
     <span class="k"><span class="sw" style="background:var(--now)"></span>Now</span>
   </div>
 </div>
+
+<!-- Active filters, as removable chips (Day 30). Outside <main> on purpose:
+     the board and 📚 Lists hide <main> entirely, and a filter that is invisible
+     in the view it is filtering is the exact problem this solves. -->
+<div class="afx" id="activeFilters" hidden></div>
 
 <main id="main" tabindex="-1">
   <section>
@@ -1369,7 +1541,7 @@
 
 // Build number auto-stamped from the git commit count by scripts/stamp-version.mjs
 // (run via the .githooks/pre-commit hook). Do not edit by hand — it changes every commit.
-const APP_VERSION = "3.8.101";
+const APP_VERSION = "4.0.102";
 
 // Tsuzuki's own read API. It serves the same AniList payload out of a shared
 // server-side catalog (netlify/functions/_lib/catalog.mjs), so the schedule a
@@ -1449,7 +1621,10 @@ const state = {
   // is migrated to the new brand colour. Violet is still in the picker for
   // anyone who actually wanted it.
   accent: (a=>a==="#8b5cf6|#22d3ee"?"#ff4a2e|#22d3ee":a)(localStorage.getItem("anical.accent")||"#ff4a2e|#22d3ee"),
-  density: localStorage.getItem("anical.density")||"normal",        // normal | dense
+  // The app-wide default (Day 28 kept this key exactly as it was — it is what
+  // every view falls back to, and every existing user already has one).
+  density: localStorage.getItem("anical.density")||"normal",        // normal | dense | grid
+  densityBy: {},                 // view -> its own density, when it has been set (Day 28)
   // Timetable preferences (see the "timetable preferences" section below).
   weekStart: localStorage.getItem("anical.weekStart")||"0",         // "0" Sun | "1" Mon | "6" Sat | "rot" (today first)
   timeFormat: localStorage.getItem("anical.timeFormat")||"auto",    // auto (your locale) | 12 | 24
@@ -1470,7 +1645,19 @@ const state = {
   ratings: {},                   // mediaId -> your own 0–10 score (the composite of the axes below)
   axes: {},                      // mediaId -> {story,art,sound,chars,enjoy} — the five numbers behind it
   weights: {},                   // axis -> how much it counts toward the composite (Day 15)
+  // Stretch a clustered set of scores across the range — for display only, and
+  // off by default. Nothing reads it except the places that *show* a score.
+  normalize: localStorage.getItem("anical.normalize")==="1",
+  pairs: [],                     // [winnerId, loserId, ts] — head-to-head verdicts, newest last
   notes: {},                     // mediaId -> your private free-text note
+  noteSpoiler: new Set(),        // notes to blur until asked for (Day 24) — parallel to `notes`, never merged into it
+  favs: new Set(),               // ♥ favourites (Day 25) — independent of status and score
+  pins: [],                      // 📌 up to PIN_MAX ids, in the order you pinned them (Day 26)
+  archived: new Set(),           // 🗃 done with, off the board, all data kept (Day 27) — NOT `hidden`
+  showArchived: false,           // the board/lists filter that makes archived shows findable again
+  sort: [],                      // the working multi-key sort (Day 29); empty means the default
+  sorts: [],                     // saved named sorts: [{id, name, keys:[{key,dir}]}]
+  activity: [],                  // append-only [type, id, YYYY-MM-DD, n?] — the only record of WHEN (Day 31)
   collections: [],               // your own lists: [{id, name, ids:[mediaId…]}], in your order
   recent: [],                    // recently viewed show ids (most-recent first)
   progress: {},                  // mediaId -> highest watched episode number
@@ -1518,6 +1705,35 @@ try{ state.ratings = JSON.parse(localStorage.getItem("anical.ratings")||"{}")||{
 try{ state.axes = JSON.parse(localStorage.getItem("anical.axes")||"{}")||{}; }catch(e){}
 try{ state.weights = JSON.parse(localStorage.getItem("anical.weights")||"{}")||{}; }catch(e){}
 try{ state.notes = JSON.parse(localStorage.getItem("anical.notes")||"{}")||{}; }catch(e){}
+try{ state.noteSpoiler = new Set(JSON.parse(localStorage.getItem("anical.notespoiler")||"[]")); }catch(e){}
+try{ state.favs = new Set((JSON.parse(localStorage.getItem("anical.favs")||"[]")||[]).map(String)); }catch(e){}
+// Trimmed on read as well as on write: a sync code from a future build with a
+// larger cap must not quietly raise this one's.
+try{ state.pins = (JSON.parse(localStorage.getItem("anical.pins")||"[]")||[]).map(String).slice(0,5); }catch(e){}
+try{ state.archived = new Set((JSON.parse(localStorage.getItem("anical.archived")||"[]")||[]).map(String)); }catch(e){}
+try{ state.densityBy = JSON.parse(localStorage.getItem("anical.densityBy")||"{}")||{}; }catch(e){}
+// Both are re-validated by cleanSort() on every read as well, so a sort saved by
+// a build that had keys this one doesn't degrades to the rows it understands
+// instead of throwing inside a comparator.
+try{ state.sort = JSON.parse(localStorage.getItem("anical.sort")||"[]")||[]; }catch(e){}
+try{
+  const raw=JSON.parse(localStorage.getItem("anical.activity")||"[]");
+  state.activity=(Array.isArray(raw)?raw:[])
+    .filter(r=>Array.isArray(r)&&r.length>=3&&typeof r[2]==="string"&&/^\d{4}-\d{2}-\d{2}$/.test(r[2]));
+}catch(e){}
+try{
+  const raw=JSON.parse(localStorage.getItem("anical.sorts")||"[]");
+  state.sorts=(Array.isArray(raw)?raw:[]).filter(s=>s&&s.id&&typeof s.name==="string")
+    .map(s=>({id:String(s.id), name:String(s.name).slice(0,40), keys:Array.isArray(s.keys)?s.keys:[]}));
+}catch(e){}
+// Pairs arrive from localStorage or a pasted sync code, so never trust the shape:
+// a malformed row here would throw inside the replay that derives the ordering.
+try{
+  const raw=JSON.parse(localStorage.getItem("anical.pairs")||"[]");
+  state.pairs=(Array.isArray(raw)?raw:[])
+    .filter(p=>Array.isArray(p)&&p[0]&&p[1]&&String(p[0])!==String(p[1]))
+    .map(p=>[String(p[0]), String(p[1]), +p[2]||0]);
+}catch(e){}
 // Collections arrive from localStorage or a pasted sync code, so never trust the shape.
 try{
   const raw=JSON.parse(localStorage.getItem("anical.collections")||"[]");
@@ -1538,6 +1754,32 @@ try{ Object.assign(state.hideRules, JSON.parse(localStorage.getItem("anical.hide
 // loadOverrides() refreshes them right after.
 try{ const c=JSON.parse(localStorage.getItem("anical.overrides")||"null"); if(c&&c.shows) state.overrides=c; }catch(e){}
 state.notifyLead = +(localStorage.getItem("anical.lead")||10);
+
+/* ---------- density, per view (Day 28) ----------
+   Comfortable and Compact shipped long ago as one global switch. Two things were
+   missing: a grid, and the fact that the right answer genuinely differs by view —
+   a month calendar wants to be compact so a week fits on screen, while a board
+   of cover art wants room, and one setting cannot be both.
+
+   `anical.density` STAYS THE GLOBAL DEFAULT rather than being migrated away.
+   Every existing user already has a value in it, and it is what a view falls
+   back to until that view is given one of its own. `anical.densityBy` is the
+   additive half: view -> density, written only when somebody actually chooses.
+   Nothing is dropped and nothing is repurposed, which is the storage invariant.
+
+   These live up here for the same reason the skin constants below do — see that
+   comment. densityFor() is now reached from the first applyAppearance(), which
+   runs before the first paint. */
+const DENSITIES = [
+  ["normal","Comfortable"],
+  ["dense","Compact","More rows on screen at once"],
+  ["grid","Grid","Cover art in a grid — card views only"],
+];
+// Grid is meaningless on a calendar: the month view IS a grid, and a "grid of
+// grids" is not a setting anyone wants. Offering an option that silently does
+// nothing is worse than not offering it, so the picker is built per view.
+const GRID_VIEWS = new Set(["board","lists"]);
+const densityViewOf = v => (v==="week"||v==="agenda") ? "month" : v;   // the calendar shares one
 
 /* Skin constants live here, above the first applyAppearance(), rather than in
    the skin section further down. That call happens before the first paint, and
@@ -1617,7 +1859,170 @@ function toggleWatch(id){
   // someone's AniList entry (and its score and progress with it) because they
   // tidied their Tsuzuki board would be unrecoverable.
   if(state.watch.has(id)) alEnqueue(id);
+  if(state.watch.has(id)) logActivity("add", id);   // Day 31
   renderView();   // reflects "My list" filter + highlight
+}
+/* ---------- favourites, pins and the archive (Days 25–27) ----------
+   Three flags that all mean "treat this show differently in my library", kept in
+   three keys of their own and deliberately independent of everything else. A
+   favourite is not a 10, a pin is not a status, and an archived show is not a
+   hidden one — each of those conflations would have saved a key and lost the
+   distinction that makes the feature worth having.
+
+   THEY COMPOSE IN ONE PLACE. librarySort() is the only thing that reads pins and
+   favourites for ordering, and both card views call it, so the board and 📚 Lists
+   cannot drift into ordering the same cards differently. */
+function saveFavs(){ try{ localStorage.setItem("anical.favs", JSON.stringify([...state.favs])); }catch(e){} }
+function isFav(id){ return state.favs.has(String(id)); }
+function toggleFav(id){
+  id=String(id);
+  const on=!isFav(id);
+  if(on) state.favs.add(id); else state.favs.delete(id);
+  saveFavs();
+  return on;
+}
+/* Pins are ORDERED and capped, so this is an array rather than a Set: "pin up to
+   five to the top" is a statement about sequence, and a Set would put them in
+   whatever order iteration happened to produce. */
+const PIN_MAX = 5;
+function savePins(){ try{ localStorage.setItem("anical.pins", JSON.stringify(state.pins)); }catch(e){} }
+function isPinned(id){ return state.pins.indexOf(String(id))>=0; }
+function pinIndex(id){ return state.pins.indexOf(String(id)); }
+/* Returns true when it pinned, false when it unpinned, and the string "full"
+   when it refused — the caller needs to tell those three apart to say why
+   nothing happened, and a bare false would make a refusal look like an unpin. */
+function togglePin(id){
+  id=String(id);
+  const i=state.pins.indexOf(id);
+  if(i>=0){ state.pins.splice(i,1); savePins(); return false; }
+  if(state.pins.length>=PIN_MAX) return "full";
+  state.pins.push(id); savePins(); return true;
+}
+/* The archive is NOT the hidden set, and keeping them apart is the whole day.
+   `hidden` means "I am not interested in this show" and takes it out of the
+   calendar, the search results and every sidebar. Archiving means "I am finished
+   with this and want my board back" — the show keeps its status, score, notes,
+   dates and progress, and still turns up in the calendar and in search, because
+   a series you finished and loved is not one you want the site to stop
+   mentioning. It only leaves the two views that are meant to show current work. */
+function saveArchived(){ try{ localStorage.setItem("anical.archived", JSON.stringify([...state.archived])); }catch(e){} }
+function isArchived(id){ return state.archived.has(String(id)); }
+function toggleArchived(id){
+  id=String(id);
+  const on=!isArchived(id);
+  if(on) state.archived.add(id); else state.archived.delete(id);
+  saveArchived();
+  return on;
+}
+/* ---------- the sort builder (Day 29) ----------
+   A sort is an ordered list of {key, dir}. Ties fall through to the next key,
+   and anything still tied at the end keeps the order it already had, because
+   Array#sort is stable — so a sort can refine an order without scrambling the
+   part of it you did not ask about.
+
+   MISSING IS NOT SMALL. Every key here nominates what "absent" means and pushes
+   it to the bottom in BOTH directions. Sorting by score descending should put
+   your 10s first and your unrated last; sorting ascending should put your 1s
+   first and STILL put unrated last, because an unrated show is not worse than a
+   1, it is not on the scale at all. Letting absence sort as 0 would bury a
+   hundred unrated shows above your worst rated one the moment you flip the
+   arrow, which reads as the sort being broken. Same for shows with no date, no
+   announced episode count and no community score. */
+const SORT_KEYS = [
+  { key:"fav",       label:"Favourite",        get: md=>isFav(md.id)?1:0 },
+  { key:"status",    label:"Status",           get: md=>{ const i=STATUS_DEFS.findIndex(s=>s.key===boardStatusOf(md.id)); return i<0?null:i; }, asc:true },
+  { key:"score",     label:"Your score",       get: md=>getRating(md.id)||null },
+  { key:"title",     label:"Title",            get: md=>title(md).toLowerCase(), text:true, asc:true },
+  { key:"progress",  label:"Episodes watched", get: md=>getProgress(md.id)||null },
+  { key:"left",      label:"Episodes left",    get: md=>{ const t=epTotal(md); return t?Math.max(0,t-getProgress(md.id)):null; }, asc:true },
+  { key:"length",    label:"Season length",    get: md=>epTotal(md)||null },
+  { key:"started",   label:"Date started",     get: md=>(state.dates[String(md.id)]||{}).start||null, text:true },
+  { key:"finished",  label:"Date finished",    get: md=>(state.dates[String(md.id)]||{}).end||null, text:true },
+  { key:"rewatch",   label:"Rewatches",        get: md=>rewatchCount(md.id)||null },
+  { key:"community", label:"Community score",  get: md=>md.averageScore||null },
+  { key:"popular",   label:"Popularity",       get: md=>md.popularity||null },
+];
+const SORT_BY_KEY = Object.fromEntries(SORT_KEYS.map(s=>[s.key,s]));
+// Favourites-first is what Day 25 shipped, so it is what the app sorts by until
+// somebody builds something else — the default is the old behaviour written down
+// as a rule rather than a second rule competing with the builder.
+const DEFAULT_SORT = [{key:"fav", dir:"desc"}];
+function saveSortState(){
+  try{
+    localStorage.setItem("anical.sort", JSON.stringify(state.sort));
+    localStorage.setItem("anical.sorts", JSON.stringify(state.sorts));
+  }catch(e){}
+}
+function cleanSort(keys){
+  return (Array.isArray(keys)?keys:[])
+    .filter(k=>k&&SORT_BY_KEY[k.key])
+    .map(k=>({key:k.key, dir: k.dir==="asc"?"asc":"desc"}))
+    .filter((k,i,a)=>a.findIndex(x=>x.key===k.key)===i)   // one row per key
+    .slice(0, SORT_KEYS.length);
+}
+const activeSort = () => { const s=cleanSort(state.sort); return s.length?s:DEFAULT_SORT; };
+function compareBy(rule, a, b){
+  const def=SORT_BY_KEY[rule.key]; if(!def) return 0;
+  const va=def.get(a), vb=def.get(b);
+  // Absent sinks, whichever way the arrow points. This is the one rule that is
+  // not reversed by direction, on purpose.
+  if(va==null && vb==null) return 0;
+  if(va==null) return 1;
+  if(vb==null) return -1;
+  const cmp = def.text ? String(va).localeCompare(String(vb)) : (va-vb);
+  return rule.dir==="asc" ? cmp : -cmp;
+}
+/* Pins are outside the sort entirely. A pin means "this one, at the top of every
+   view" — a sort that could bury it would make the feature a suggestion. Pin
+   order is the pin order; everything below it is whatever you built. */
+function librarySort(a,b){
+  const pa=pinIndex(a.id), pb=pinIndex(b.id);
+  if(pa!==pb) return (pa<0?PIN_MAX+1:pa)-(pb<0?PIN_MAX+1:pb);
+  for(const rule of activeSort()){
+    const c=compareBy(rule, a, b);
+    if(c) return c;
+  }
+  return 0;   // stable: an unresolved tie keeps the order the view already had
+}
+const libraryOrder = list => list.slice().sort(librarySort);
+/* Saved sorts. An id rather than the name as the key, so renaming one later
+   doesn't orphan anything pointing at it — the same reasoning collections use. */
+function saveNamedSort(name, keys){
+  const clean=cleanSort(keys||state.sort);
+  const n=cleanCollectionName(name);
+  if(!n || !clean.length) return null;
+  const rec={ id:"s"+Date.now().toString(36)+Math.random().toString(36).slice(2,5), name:n, keys:clean };
+  state.sorts.push(rec); saveSortState();
+  return rec;
+}
+function deleteNamedSort(id){
+  const i=state.sorts.findIndex(s=>s.id===String(id));
+  if(i<0) return null;
+  const [rec]=state.sorts.splice(i,1); saveSortState();
+  return {index:i, rec};
+}
+function applyNamedSort(id){
+  const rec=state.sorts.find(s=>s.id===String(id));
+  if(!rec) return false;
+  state.sort=cleanSort(rec.keys); saveSortState();
+  return true;
+}
+// Does the working sort match a saved one? Used to light the chip you are
+// currently using, so the panel says which of your sorts is on rather than
+// leaving you to compare the rows by eye.
+function currentSortId(){
+  const cur=JSON.stringify(activeSort());
+  const hit=state.sorts.find(s=>JSON.stringify(cleanSort(s.keys))===cur);
+  return hit?hit.id:null;
+}
+function sortSummary(keys){
+  const s=cleanSort(keys);
+  if(!s.length) return "Favourites first";
+  return s.map(k=>{
+    const def=SORT_BY_KEY[k.key];
+    const asc=k.dir==="asc";
+    return def.label+" "+(def.text ? (asc?"A–Z":"Z–A") : (asc?"↑":"↓"));
+  }).join(", then ");
 }
 /* watch statuses (Watching / Plan / On-hold / Dropped / Completed) — the board view.
    A status is always something the user picked: an untracked show has none, so the
@@ -1660,6 +2065,85 @@ function setStatusOf(id, key, opts){
   refreshStatusPickers(id);
   if(key) alEnqueue(id);   // clearing a status is local-only — see toggleWatch
   if(key) tungTask("status");
+  // Logged for the month wrap (Day 31). Undo passes {stamp:false} and is
+  // excluded for the same reason it skips stampDates: putting back the status
+  // you had is not a thing you did this month.
+  if(key && (!opts || opts.stamp!==false)){
+    if(!before && state.watch.has(id)) logActivity("add", id);
+    if(key==="completed") logActivity("finish", id);
+    else if(key==="watching") logActivity("start", id);
+    else if(key==="dropped") logActivity("drop", id);
+  }
+}
+/* ---------- the activity log (Day 31's missing half) ----------
+   Day 31 asks for "what you added, rated and finished this month" and nothing in
+   this app could answer it. Every user key is a *current state* — `ratings` is
+   what you think now, `progress` is where you are now, `watch` is what you follow
+   now — and none of them record WHEN. `anical.dates` was the single exception,
+   and only for two events on two status changes.
+
+   So this is the log those questions need: append-only, `[type, id, day]`, where
+   day is a local YYYY-MM-DD. Local, for the same reason stampDates is: someone
+   finishing a show at 11pm means tonight, not tomorrow in UTC.
+
+   IT IS HONEST ABOUT ITS OWN AGE. The log starts empty for everybody who already
+   uses the site, so a wrap that simply counted rows would report "0 shows added"
+   to somebody who added twenty last week. `activitySince()` is the first day it
+   ever recorded, and the card says so whenever a month began before that.
+   Finished counts are the exception and are read from `anical.dates` instead,
+   which has real history going back to Day 12. */
+const ACT_MAX = 4000;   // ~13 months of heavy use; a guard, not a design limit
+const ACT_TYPES = new Set(["add","rate","finish","start","drop","note","ep"]);
+function saveActivity(){ try{ localStorage.setItem("anical.activity", JSON.stringify(state.activity)); }catch(e){} }
+const localDay = (d) => {
+  const x=d||new Date();
+  return x.getFullYear()+"-"+String(x.getMonth()+1).padStart(2,"0")+"-"+String(x.getDate()).padStart(2,"0");
+};
+function logActivity(type, id, n){
+  if(!ACT_TYPES.has(type)) return;
+  const row=[type, String(id), localDay()];
+  if(n>1) row.push(n);           // episodes marked in one go, so a jump isn't one event
+  state.activity.push(row);
+  if(state.activity.length>ACT_MAX) state.activity.splice(0, state.activity.length-ACT_MAX);
+  saveActivity();
+}
+const activitySince = () => (state.activity.length ? state.activity[0][2] : null);
+/* Everything the wrap reports, for one month. Counted over distinct shows rather
+   than over rows: rating the same show four times while you make your mind up is
+   one show rated, not four, and a wrap that says otherwise is flattering rather
+   than informative. Episodes are the exception and are summed, because watching
+   twelve of something IS twelve. */
+function monthWrap(year, month){
+  const pad=String(month+1).padStart(2,"0"), prefix=`${year}-${pad}`;
+  const sets={add:new Set(), rate:new Set(), start:new Set(), drop:new Set(), note:new Set()};
+  let eps=0;
+  for(const row of state.activity){
+    const [type,id,day,n]=row;
+    if(String(day).slice(0,7)!==prefix) continue;
+    if(type==="ep"){ eps+=(+n||1); continue; }
+    if(sets[type]) sets[type].add(id);
+  }
+  // Finished comes from anical.dates, not from the log: those dates predate the
+  // log by nineteen days and are editable by hand, which makes them the better
+  // record of when a run actually ended.
+  const finished=new Set();
+  for(const [id,rec] of Object.entries(state.dates||{})){
+    if(rec && typeof rec.end==="string" && rec.end.slice(0,7)===prefix) finished.add(id);
+  }
+  const started=new Set(sets.start);
+  for(const [id,rec] of Object.entries(state.dates||{})){
+    if(rec && typeof rec.start==="string" && rec.start.slice(0,7)===prefix) started.add(id);
+  }
+  const since=activitySince();
+  return {
+    year, month, prefix,
+    added:[...sets.add], rated:[...sets.rate], started:[...started], dropped:[...sets.drop],
+    noted:[...sets.note], finished:[...finished], episodes:eps,
+    // The log cannot speak for a month that ended before it began.
+    partial: !since || since.slice(0,7) > prefix || (since.slice(0,7)===prefix && since.slice(8)>"01"),
+    since,
+    empty: !sets.add.size && !sets.rate.size && !started.size && !finished.size && !sets.note.size && !eps,
+  };
 }
 /* ---------- started & finished dates ----------
    Stamped when a show enters Watching or Completed, in *local* time — someone
@@ -1798,6 +2282,16 @@ function axisWeights(){
 function writeWeights(){
   try{ localStorage.setItem("anical.weights", JSON.stringify(state.weights)); }catch(e){}
 }
+/* Every write of anical.ratings goes through here, and the only reason it has
+   to is Day 17: the normalization below is derived from the whole library, so
+   it needs to know when the library moved. A revision counter is cheaper than
+   any signature over the scores themselves — computing one would cost what
+   recomputing the statistics costs. */
+let ratingsRev = 0;
+function saveRatings(){
+  ratingsRev++;
+  try{ localStorage.setItem("anical.ratings", JSON.stringify(state.ratings)); }catch(e){}
+}
 /* Changing one weight changes every score at once — the point of the day, and
    also why this does not loop through setRating(): that would be one
    localStorage write per show and, far worse, one AniList push per show. A
@@ -1812,7 +2306,7 @@ function recomputeAllComposites(){
     if(!n) continue;                       // nothing scored — leave it alone
     if(state.ratings[id]!==n){ state.ratings[id]=n; changed++; }
   }
-  if(changed) localStorage.setItem("anical.ratings", JSON.stringify(state.ratings));
+  if(changed) saveRatings();
   return changed;
 }
 function setAxisWeight(key, v){
@@ -1877,7 +2371,7 @@ function setRating(id, n, opts){
   // carries a decimal now that it can be a mean of five.
   n=Math.max(0, Math.min(RATING_MAX, Math.round((+n||0)*10)/10));
   if(n) state.ratings[id]=n; else delete state.ratings[id];
-  localStorage.setItem("anical.ratings", JSON.stringify(state.ratings));
+  saveRatings();
   // A single number IS all five axes agreeing. That is what the migration does
   // to every score written before axes existed, and what clicking a chip in the
   // 1–10 picker means: "the whole thing is a 7". setAxis passes {axes:false}
@@ -1888,6 +2382,7 @@ function setRating(id, n, opts){
   refreshRatingPickers(id);
   if(n) alEnqueue(id);   // clearing a score is local-only, same reasoning as toggleWatch
   if(n) tungTask("rate");
+  if(n) logActivity("rate", id);   // Day 31
 }
 /* Undo. Putting the number back is not enough once the number is derived: the
    1–10 picker flattens the axes to write a whole score, so an undo that only
@@ -1923,19 +2418,200 @@ function setNote(id, text){
   // The note itself never leaves the browser — only the fact that you wrote one
   // today, and only as "credit this task", with no id and no text attached.
   if(text) tungTask("note");
+  if(text) logActivity("note", id);      // Day 31
+  if(!text) setSpoilerNote(id, false);   // no note, no spoiler flag to leave behind
+}
+/* ---------- note templates (Day 22) ----------
+   Prompts, not boilerplate. Each is the first half of a sentence you finish, so
+   an empty box stops being the thing standing between you and writing anything
+   down. Ordered by how often they are the reason somebody opens a note at all. */
+const NOTE_TEMPLATES = [
+  { label:"Favourite episode", text:"Favourite episode: " },
+  { label:"Best moment",       text:"Best moment: " },
+  { label:"Recommend to",      text:"Recommend to: " },
+  { label:"Where I left off",  text:"Where I left off: " },
+  { label:"Why I dropped it",  text:"Why I dropped it: " },
+];
+/* Inserts at the caret via setRangeText, NOT by rebuilding .value.
+
+   Two reasons, and the second is the one that would have been found later by a
+   user rather than here. setRangeText keeps the browser's own undo stack alive,
+   so ctrl-Z after an accidental insert works the way it does in every other text
+   box; assigning .value wipes that history silently. And it respects a selection
+   — a template dropped while text is selected replaces exactly that selection
+   rather than landing at position 0 and pushing the note sideways. */
+function insertNoteTemplate(box, tpl){
+  if(!box) return;
+  const at=box.selectionStart|0, end=box.selectionEnd|0;
+  const before=box.value.slice(0, at);
+  // Spacing that reads as if it were typed: a new line when there is already a
+  // line above with something on it, nothing at all in an empty box.
+  const lead = (!before || /\n\s*$/.test(before)) ? "" : "\n";
+  const text=lead+tpl;
+  if(before.length+text.length+(box.value.length-end) > NOTE_MAX) return;
+  box.focus();
+  box.setRangeText(text, at, end, "end");
+  box.dispatchEvent(new Event("input", {bubbles:true}));   // the existing autosave + counter
+}
+/* ---------- spoiler notes (Day 24) ----------
+   A parallel key rather than a shape change to anical.notes. That key is
+   `id -> string` and has been since Day 02; turning it into `id -> {text,spoiler}`
+   would mean a migration, and every older client and pasted sync code writing
+   the old shape back would keep undoing it. Additive is the invariant, so a set
+   of ids sits alongside it and an absent id means "not a spoiler". */
+function saveSpoilers(){ try{ localStorage.setItem("anical.notespoiler", JSON.stringify([...state.noteSpoiler])); }catch(e){} }
+function isSpoilerNote(id){ return state.noteSpoiler.has(String(id)); }
+function setSpoilerNote(id, on){
+  id=String(id);
+  if(on) state.noteSpoiler.add(id); else state.noteSpoiler.delete(id);
+  saveSpoilers();
+}
+// Revealed-this-session only, and never stored: "show me" is about the next ten
+// seconds, and a reveal that persisted would silently turn the flag off forever
+// the first time you looked at your own note.
+function noteRevealed(id){ return !!(state._noteShown && state._noteShown.has(String(id))); }
+function revealNote(id){
+  if(!state._noteShown) state._noteShown=new Set();
+  state._noteShown.add(String(id));
+}
+/* The three library flags, in one row of the detail pop-up (Days 25–27). They
+   sit together because they answer one question — how should this show behave in
+   my library — and separating them across the pop-up would make three unrelated
+   controls out of what is really one decision with three answers. */
+function libraryRowHtml(md){
+  const id=String(md.id), sid=esc(id);
+  const pinned=isPinned(id), full=!pinned && state.pins.length>=PIN_MAX;
+  return `<div class="st-row lib-row">
+    <button type="button" class="lib-btn${isFav(id)?" on fav":""}" data-fav="${sid}"
+      aria-pressed="${isFav(id)?"true":"false"}"
+      title="${isFav(id)?"Remove from favourites":"A favourite — separate from your score"}">${isFav(id)?"♥":"♡"} Favourite</button>
+    <button type="button" class="lib-btn${pinned?" on":""}" data-pin="${sid}"
+      aria-pressed="${pinned?"true":"false"}"
+      title="${pinned?"Unpin":full?`You already have ${PIN_MAX} pins`:"Keep this at the top of your board and lists"}">📌 ${pinned?`Pinned #${pinIndex(id)+1}`:"Pin"}</button>
+    <button type="button" class="lib-btn${isArchived(id)?" on":""}" data-arch="${sid}"
+      aria-pressed="${isArchived(id)?"true":"false"}"
+      title="${isArchived(id)?"Put it back on the board":"Take it off the board and keep everything"}">🗃 ${isArchived(id)?"Archived":"Archive"}</button>
+    <span class="st-hint">A favourite is not a score and a pin is not a status — they sort your board without changing
+      anything you have recorded. <b>Archiving</b> takes a show off your board and lists and leaves your rating, notes,
+      dates and progress exactly where they are; it still appears in the calendar and in search.</span>
+  </div>`;
+}
+function refreshLibraryRow(id){
+  const md=findMediaById(id); if(!md) return;
+  document.querySelectorAll(".lib-row").forEach(row=>{
+    if(row.querySelector('[data-fav="'+CSS.escape(String(id))+'"]')) row.outerHTML=libraryRowHtml(md);
+  });
+}
+function noteTemplatesHtml(){
+  return `<div class="nt-tpl">`+NOTE_TEMPLATES.map(t=>
+    `<button type="button" class="nt-chip" data-notetpl="${esc(t.text)}" title="Insert at the cursor">${esc(t.label)}</button>`
+  ).join("")+`</div>`;
 }
 // Score band — colours the chip, the read-out and the pill the same way.
 function ratingBand(n){ return n>=9?"great" : n>=7?"good" : n>=5?"ok" : "bad"; }
+/* ---------- score normalization (Day 17) ----------
+   "Everything I like is an 8" is a real and common way to rate, and it makes a
+   library unreadable: forty shows in one column, and no way to see which of
+   your 8s you actually preferred. This stretches them apart.
+
+   IT MOVES THE SPREAD, NOT THE AVERAGE. The transform is
+   `mean + (score − mean) × k` — your own mean is the fixed point, so a generous
+   rater stays generous and only the distances grow. Rescaling to a fixed centre
+   instead (the obvious "map everything onto 1–10") would tell somebody whose
+   library averages 8.2 that it averages 5.5, which is a statement about them
+   that they did not make.
+
+   AND IT ONLY EVER SPREADS. k is clamped at 1 from below, so a library that
+   already uses the whole range is left exactly as it is rather than squashed
+   toward its mean to hit a target — the toggle is called "spread my scores"
+   and doing the opposite under the same switch would be a lie.
+
+   IT ALSO STOPS AT THE EDGE OF THE SCALE RATHER THAN PILING SCORES UP ON IT.
+   `fit` below is the largest stretch that keeps your highest and lowest scores
+   inside 0.5–10, and it is taken before the clamp is ever needed. Without it a
+   ×2.5 stretch on a library topping out at 9 would push both a 9 and a 9.5 past
+   the ceiling, land them both on a clamped 10, and quietly merge two scores
+   that were never equal — a spread function creating ties is the one thing it
+   must not do. It is also what keeps the average exactly where it was.
+
+   NOTHING STORED CHANGES. `state.ratings` is untouched, which is what makes the
+   toggle reversible by definition rather than by a migration back. It also
+   keeps this out of AniList for free: alPayloadFor() reads `state.ratings`
+   directly, so a stretched number cannot be uploaded to somebody's account. */
+const NORM_MIN_RATED = 5;      // below this the statistics are noise, not a shape
+const NORM_MIN_SD    = 0.25;   // …and below this there is no spread to stretch
+const NORM_TARGET_SD = 1.8;    // roughly what using the full 1–10 range looks like
+const NORM_MAX_K     = 3;      // an all-8s library must not become an all-1s-and-10s one
+let normCache=null;
+function normStats(){
+  if(normCache && normCache.rev===ratingsRev) return normCache;
+  const vals=[];
+  for(const id of Object.keys(state.ratings)){ const v=+state.ratings[id]; if(v>0) vals.push(v); }
+  const n=vals.length;
+  let mean=0, sd=0;
+  if(n){
+    for(const v of vals) mean+=v; mean/=n;
+    // Population, not sample: this describes the library you have, not a sample
+    // drawn from a larger one you don't.
+    for(const v of vals) sd+=(v-mean)*(v-mean); sd=Math.sqrt(sd/n);
+  }
+  const lo = n?Math.min(...vals):0, hi = n?Math.max(...vals):0;
+  const usable = n>=NORM_MIN_RATED && sd>=NORM_MIN_SD;
+  // The largest stretch that still lands both ends inside the scale. Both
+  // denominators are positive whenever there is any spread at all, and both
+  // ratios are ≥1 because every stored score is already inside 0.5–10 — so this
+  // can only ever hold the stretch back, never push it past 1 on its own.
+  const fit = usable
+    ? Math.min(hi>mean ? (RATING_MAX-mean)/(hi-mean) : Infinity,
+               mean>lo  ? (mean-0.5)/(mean-lo)       : Infinity)
+    : 1;
+  const k = usable ? Math.max(1, Math.min(NORM_MAX_K, NORM_TARGET_SD/sd, fit)) : 1;
+  normCache={ rev:ratingsRev, n, mean, sd, k, usable, lo, hi, fit };
+  return normCache;
+}
+// On, and with enough of a library to mean anything. Both halves matter: the
+// setting can be on while the statistics say there is nothing to do.
+function normOn(){ return !!state.normalize && normStats().usable; }
+/* One number in, one number out. Clamped to 0.5–10, never 0 — a 0 means
+   *unrated* everywhere else in this file, and a display transform that could
+   invent one would erase a rated show from the histogram and the card pill. */
+function normApply(v){
+  v=+v||0;
+  if(!v || !normOn()) return v;
+  const s=normStats();
+  const out=s.mean + (v - s.mean) * s.k;
+  return Math.round(Math.max(0.5, Math.min(RATING_MAX, out))*10)/10;
+}
+// What a score LOOKS like. getRating() stays the stored truth and everything
+// that writes, syncs or compares keeps using it.
+function shownRating(id){ return normApply(getRating(id)); }
 /* Marks shown on cards, so a score or a note is visible without opening the show. */
 function myScorePill(id){
-  const n=getRating(id);
-  return n?`<span class="pill myscore ${ratingBand(n)}" title="Your rating: ${n}/10">${n}/10</span>`:"";
+  const n=getRating(id); if(!n) return "";
+  const shown=normApply(n);
+  const tip = shown!==n ? `Your rating: ${n}/10 — shown as ${shown} with your scores spread out`
+                        : `Your rating: ${n}/10`;
+  return `<span class="pill myscore ${ratingBand(shown)}${shown!==n?" norm":""}" title="${tip}">${shown}/10</span>`;
 }
+/* The mark on a card. A spoilered note deliberately puts NOTHING of itself in
+   the tooltip (Day 24) — a `title=` attribute is text on screen the moment a
+   pointer rests on it, so leaving the preview in place would defeat the entire
+   feature at the one spot where a note is most likely to be seen by accident. */
 function notePill(id){
-  const n=getNote(id);
-  return n?`<span class="pill notepill" title="Your notes: ${esc(n.slice(0,140))}${n.length>140?"…":""}">📝</span>`:"";
+  const n=getNote(id); if(!n) return "";
+  if(isSpoilerNote(id)) return `<span class="pill notepill spoil" title="You have a note here, hidden as a spoiler">📝</span>`;
+  return `<span class="pill notepill" title="Your notes: ${esc(n.slice(0,140))}${n.length>140?"…":""}">📝</span>`;
 }
-function myMarks(id){ return myScorePill(id)+notePill(id); }
+function favPill(id){ return isFav(id)?`<span class="pill favpill" title="A favourite">♥</span>`:""; }
+function pinPill(id){
+  const i=pinIndex(id);
+  return i<0?"":`<span class="pill pinpill" title="Pinned to the top (#${i+1})">📌</span>`;
+}
+function archPill(id){ return isArchived(id)?`<span class="pill archpill" title="Archived — off the board, nothing lost">🗃</span>`:""; }
+function myMarks(id){ return pinPill(id)+favPill(id)+myScorePill(id)+notePill(id)+archPill(id); }
+// Anything that puts a mark on a card, so the card knows whether to render the
+// strip at all. One list, so a new mark can never be invisible on the board.
+function hasMarks(id){ return !!(getRating(id)||hasNote(id)||isFav(id)||isPinned(id)||isArchived(id)); }
 /* 1–10 picker; clicking the highlighted number clears the rating.
    The composite can land between two chips once the axes disagree, so the
    nearest chip lights up rather than the picker reading as unrated — but only
@@ -1950,9 +2626,22 @@ function ratingPickerHtml(id){
   }
   return out+`</div>`;
 }
+/* The read-out above the picker shows the STORED number, always — the chips
+   under it are what you click, and a read-out that disagreed with the chip that
+   is lit would make the picker unusable. When the stretch is on it is appended
+   rather than substituted, so the pop-up explains the number the cards are
+   showing instead of contradicting it. Takes a score rather than an id because
+   paintComposite() calls it mid-drag with a value that isn't stored yet. */
+function ratingOutInner(cur){
+  if(!cur) return "Not rated";
+  const shown=normApply(cur);
+  return cur+"/10"+(shown!==cur
+    ? `<i class="rt-norm" title="Your scores are being spread out — see Settings › Ratings">→ ${shown} on cards</i>`
+    : "");
+}
 function ratingOutHtml(id){
   const cur=getRating(id);
-  return `<span class="rt-out${cur?" "+ratingBand(cur):""}" data-rt-out="${esc(String(id))}">${cur?cur+"/10":"Not rated"}</span>`;
+  return `<span class="rt-out${cur?" "+ratingBand(cur):""}" data-rt-out="${esc(String(id))}">${ratingOutInner(cur)}</span>`;
 }
 /* ---------- the axes, as five sliders ----------
    Collapsed by default, and that is the whole design decision. Nearly every
@@ -2010,7 +2699,7 @@ function paintComposite(id, axes){
   const n=compositeOf(axes);
   document.querySelectorAll('[data-rt-out="'+CSS.escape(String(id))+'"]').forEach(el=>{
     el.className="rt-out"+(n?" "+ratingBand(n):"");
-    el.textContent = n ? n+"/10" : "Not rated";
+    el.innerHTML=ratingOutInner(n);
   });
 }
 // The chips and the sliders are two views of one number, so a change to either
@@ -2040,7 +2729,7 @@ function refreshRatingPickers(id){
   });
   document.querySelectorAll('[data-rt-out="'+CSS.escape(id)+'"]').forEach(el=>{
     el.className="rt-out"+(cur?" "+ratingBand(cur):"");
-    el.textContent = cur ? cur+"/10" : "Not rated";
+    el.innerHTML=ratingOutInner(cur);
   });
 }
 /* Notes auto-save shortly after you stop typing; anything still pending is
@@ -2055,6 +2744,250 @@ function saveNoteNow(){
   const label=$("noteState"); if(label && label.isConnected) label.textContent="Saved ✓";
   if(had!==hasNote(id)) renderView();   // the 📝 mark on cards appears / disappears
 }
+/* ---------- head-to-head comparisons (Day 18) ----------
+   "Which of these two did you like more?" is a question people answer well and
+   consistently; "what is this show out of ten?" is one they answer badly and
+   differently on different days. This stores the answers and derives an order
+   from them.
+
+   THE LOG IS THE TRUTH; THE ORDER IS DERIVED. `anical.pairs` holds nothing but
+   verdicts — [winner, loser, when] — and the ranking is recomputed by replaying
+   them. Same split as Day 13's axes and composite: one key is the input, the
+   other is the answer, and no stored number can drift out of agreement with
+   what you actually said. It also makes undo a splice rather than an inverse
+   Elo update, which does not exist.
+
+   ONE VERDICT PER PAIR. Re-answering a pair replaces the earlier record instead
+   of appending next to it, so changing your mind is a change of mind and not a
+   permanent tie. What is left after that rule is the interesting kind of
+   contradiction — A over B, B over C, C over A — and Elo resolves a cycle by
+   landing all three near each other, which is the honest answer and, more to
+   the point, does not crash. A topological sort would; that is why this is a
+   rating system and not a sort. */
+const PAIR_START  = 1500;   // everyone starts level
+const PAIR_EPOCHS = 6;      // passes over the log
+const PAIR_K0     = 32;
+const PAIR_DECAY  = 0.7;    // the step shrinks each pass — see pairRatings()
+const PAIR_MAX    = 2000;   // a guard on the key's size, not a design limit
+let pairsRev=0, pairCache=null;
+function savePairs(){
+  pairsRev++;
+  try{ localStorage.setItem("anical.pairs", JSON.stringify(state.pairs)); }catch(e){}
+}
+// Unordered: the pair {A,B} is one question however it was asked.
+function pairKey(a,b){ a=String(a); b=String(b); return a<b ? a+"|"+b : b+"|"+a; }
+function findPairIndex(a,b){ const k=pairKey(a,b); return state.pairs.findIndex(p=>pairKey(p[0],p[1])===k); }
+function pairDecided(a,b){ return findPairIndex(a,b)>=0; }
+/* Returns whatever it displaced, with the slot it sat in, so the Undo toast can
+   put the previous verdict back exactly where it was — position in the log is
+   not decoration here, it is an input to the replay. */
+function recordPair(winner, loser){
+  winner=String(winner); loser=String(loser);
+  if(!winner || !loser || winner===loser) return null;
+  const i=findPairIndex(winner, loser);
+  const prev = i>=0 ? state.pairs[i] : null;
+  if(i>=0) state.pairs.splice(i,1);
+  state.pairs.push([winner, loser, Math.floor(Date.now()/1000)]);
+  if(state.pairs.length>PAIR_MAX) state.pairs.splice(0, state.pairs.length-PAIR_MAX);
+  savePairs();
+  return prev ? {index:i, rec:prev} : null;
+}
+function undoPair(winner, loser, prev){
+  const i=findPairIndex(winner, loser);
+  if(i>=0) state.pairs.splice(i,1);
+  if(prev && prev.rec) state.pairs.splice(Math.max(0, Math.min(prev.index, state.pairs.length)), 0, prev.rec);
+  savePairs();
+}
+function clearPairs(){ const was=state.pairs; state.pairs=[]; savePairs(); return was; }
+/* Elo, replayed from scratch over the whole log.
+
+   Elo is stochastic gradient descent on the Bradley–Terry likelihood, so a
+   single pass weights late answers far more than early ones — the show you
+   compared first would sit wherever its first two results left it. Passing over
+   the log repeatedly fixes that, and shrinking the step each pass is what makes
+   the passes converge instead of oscillating around the answer. Six passes over
+   a few hundred verdicts is well under a millisecond, and the result is
+   deterministic: the same log always produces the same order.
+
+   Cached on a revision counter because the ranking is read on every paint of
+   the panel and every card in it. */
+function pairRatings(){
+  if(pairCache && pairCache.rev===pairsRev) return pairCache;
+  const r={}, n={};
+  for(const p of state.pairs){
+    if(r[p[0]]===undefined){ r[p[0]]=PAIR_START; n[p[0]]=0; }
+    if(r[p[1]]===undefined){ r[p[1]]=PAIR_START; n[p[1]]=0; }
+    n[p[0]]++; n[p[1]]++;
+  }
+  let k=PAIR_K0;
+  for(let e=0;e<PAIR_EPOCHS;e++){
+    for(const p of state.pairs){
+      const a=r[p[0]], b=r[p[1]];
+      const expected=1/(1+Math.pow(10,(b-a)/400));
+      const move=k*(1-expected);
+      r[p[0]]=a+move; r[p[1]]=b-move;
+    }
+    k*=PAIR_DECAY;
+  }
+  pairCache={rev:pairsRev, r, n};
+  return pairCache;
+}
+function pairElo(id){ const r=pairRatings().r[String(id)]; return r===undefined?PAIR_START:r; }
+function pairCount(id){ return pairRatings().n[String(id)]||0; }
+/* A total order over everything that has been compared at least once. Ties are
+   broken by your own score and then by id, so the list is stable between paints
+   rather than reshuffling equal shows every time it is drawn. */
+function pairOrder(){
+  const {r}=pairRatings();
+  return Object.keys(r).sort((a,b)=>
+    (r[b]-r[a]) || (getRating(b)-getRating(a)) || (a<b?-1:1));
+}
+/* How many of your own verdicts the list you are shown contradicts. Not an
+   error — a cycle (A over B, B over C, C over A) cannot be laid out in a line
+   without overruling at least one of its edges, whatever puts it there. It is
+   measured against pairOrder() rather than against the ratings behind it so
+   that it agrees with what is on screen: two shows the replay left exactly
+   level are ordered by the tie-break, and a verdict the tie-break went against
+   is still a verdict the list contradicts. */
+function pairConflicts(){
+  const order=pairOrder(), rank={};
+  order.forEach((id,i)=>{ rank[id]=i; });
+  let n=0;
+  for(const p of state.pairs) if(rank[p[0]] > rank[p[1]]) n++;   // winner listed below loser
+  return n;
+}
+/* Which shows can be put in front of you. A comparison needs a show you have
+   actually seen and that the app can draw, which is a narrower set than "rated":
+   Plan to Watch is explicitly not it, and a show the loaded seasons don't
+   contain has no cover art to show. Day 10's hydration widens this pool for
+   free as it fills state.extra. */
+const VS_SEEN_STATUS = new Set(["watching","completed","onhold","dropped"]);
+function versusPool(){
+  const seen=new Set();
+  for(const id of Object.keys(state.ratings)) if(getRating(id)) seen.add(String(id));
+  for(const id of Object.keys(state.status)) if(VS_SEEN_STATUS.has(state.status[id])) seen.add(String(id));
+  const pool=[];
+  for(const id of seen){
+    if(isHidden(id)) continue;
+    if(!findMediaById(id)) continue;
+    pool.push(id);
+  }
+  return pool;
+}
+function shuffled(arr){
+  const a=arr.slice();
+  for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); const t=a[i]; a[i]=a[j]; a[j]=t; }
+  return a;
+}
+const VS_FOCUS = 24;   // window size — 276 candidate pairs, not the 80,000 a full sweep costs
+/* The next question worth asking. Two rules, in this order: spread coverage
+   before deepening it (least-compared shows first), then inside that window ask
+   the closest call, because a comparison between two shows already fifty points
+   apart tells you almost nothing you don't have. `skip` is the caller's set of
+   pair keys to refuse — Day 19 fills it with what you skipped this session. */
+function nextPair(skip, pool){
+  pool=pool||versusPool();
+  if(pool.length<2) return null;
+  // Shuffle first, then a stable sort by comparison count: ties come out in
+  // random order, so it isn't the same twenty-four shows every single time.
+  const focus=shuffled(pool).sort((a,b)=>pairCount(a)-pairCount(b)).slice(0, VS_FOCUS);
+  let best=null, bestCost=Infinity;
+  for(let i=0;i<focus.length;i++){
+    for(let j=i+1;j<focus.length;j++){
+      const a=focus[i], b=focus[j];
+      if(skip && skip.has(pairKey(a,b))) continue;
+      let cost=Math.abs(pairElo(a)-pairElo(b));
+      if(pairDecided(a,b)) cost+=4000;                  // only re-ask when nothing new is left
+      cost+=(pairCount(a)+pairCount(b))*20;
+      if(cost<bestCost){ bestCost=cost; best=[a,b]; }
+    }
+  }
+  if(!best) return null;
+  // Which side a show lands on is a coin flip, so the left card is never
+  // reliably the higher-ranked one — that would be a hint, and a hint in a
+  // preference test is a way of collecting your agreement instead of your view.
+  return Math.random()<0.5 ? best : [best[1], best[0]];
+}
+
+/* ---------- the calibration run (Day 20) ----------
+   Ten questions that leave you with an ordering, starting from nothing.
+
+   THE WHOLE DAY IS THE POOL, NOT THE COUNTER. Free play spreads: nextPair()
+   asks about the least-compared shows first, so from an empty history ten
+   answers land on up to twenty different shows with one comparison each — twenty
+   disconnected pairs and no ordering at all, because nothing can be ranked
+   against anything it was never transitively compared to. A run therefore fixes
+   a small working set first and asks only inside it. Eight shows have 28
+   possible pairs; ten answers over them is a connected graph and a genuine total
+   order over all eight. Ten answers over the whole library is ten facts.
+
+   THE SET IS SPREAD ACROSS YOUR SCORE RANGE, not taken off the top. Ranking your
+   eight favourites tells you the order of eight shows you already rate the same;
+   sampling evenly from your best to your worst produces an ordering that spans
+   your taste — and gives Day 21 anchors at both ends to map scores onto. Shows
+   with no score at all go in last, filling the set only if the rated ones can't. */
+const CALIB_SET    = 8;    // working set — 28 possible pairs
+const CALIB_ROUNDS = 10;   // answers that end the run
+function calibrationSet(){
+  const pool=versusPool();
+  if(pool.length<=CALIB_SET) return pool;
+  const rated=pool.filter(id=>getRating(id)).sort((a,b)=>getRating(b)-getRating(a));
+  const rest=shuffled(pool.filter(id=>!getRating(id)));
+  if(rated.length<CALIB_SET) return rated.concat(rest.slice(0, CALIB_SET-rated.length));
+  // Evenly spaced picks through the sorted list, ends included — the highest and
+  // lowest scores you have gave the range, so they have to be in the set that
+  // establishes it.
+  const out=[];
+  for(let i=0;i<CALIB_SET;i++) out.push(rated[Math.round(i*(rated.length-1)/(CALIB_SET-1))]);
+  return [...new Set(out)];
+}
+function calibStart(){
+  state._vsRun={ ids:calibrationSet(), done:0, target:CALIB_ROUNDS, was:state.pairs.length };
+  return state._vsRun;
+}
+function calibStop(){ const r=state._vsRun; state._vsRun=null; return r; }
+const calibRunning = () => !!state._vsRun && state._vsRun.done < state._vsRun.target;
+
+/* ---------- comparisons → suggested scores (Day 21) ----------
+   IT REDEALS YOUR OWN SCORES; IT DOES NOT INVENT NEW ONES. Take the shows that
+   are both rated and compared, take the scores you gave them as a multiset, sort
+   both, and hand the k-th highest score to the k-th ranked show. The suggestion
+   is therefore always a *permutation* of numbers you already chose.
+
+   That one decision kills every problem the obvious versions have. Mapping Elo
+   linearly onto 1–10 forces a 1 and a 10 to exist and lets a single outlier
+   anchor the whole scale. Mapping onto your observed range spreads everyone
+   evenly and quietly flattens the clustering that is genuinely how you rate.
+   Redealing changes nothing about the shape: same mean, same spread, the Day 16
+   histogram is pixel-identical before and after. The only thing that moves is
+   WHICH show holds which number — which is exactly, and only, what a preference
+   ordering is evidence about.
+
+   It also makes the proposal legible. "Frieren 8 → 9, Bocchi 9 → 8" is a swap
+   you can check against your own memory in a second; "Frieren 8 → 8.4" is a
+   number you have no way to agree or disagree with. */
+function suggestedScores(){
+  const ranked=pairOrder().filter(id=>getRating(id));
+  if(ranked.length<2) return [];
+  const pool=ranked.map(id=>getRating(id)).sort((a,b)=>b-a);
+  const out=[];
+  ranked.forEach((id,i)=>{
+    const cur=getRating(id), next=pool[i];
+    if(cur!==next) out.push({id, cur, next});
+  });
+  return out;
+}
+/* Nothing is written until this is called, and it is only called from a click.
+   Returns what it overwrote so the toast can put every score back — including
+   the axes, because setRating flattens them and Day 13's undo rule applies here
+   exactly as it does to a chip click. */
+function applySuggestions(rows){
+  const undo=rows.map(r=>({id:r.id, score:getRating(r.id), axes:getAxes(r.id)}));
+  for(const r of rows) setRating(r.id, r.next);
+  return undo;
+}
+function revertSuggestions(undo){ for(const u of undo) restoreRating(u.id, u.score, u.axes); }
+
 /* ---------- custom collections ("Lists") ----------
    Your own named lists, independent of the five watch statuses: a show can sit
    in any number of them (or none), and the order of both the lists and the
@@ -2173,6 +3106,9 @@ function setProgress(id,ep){
   if(total && ep>=total && before<total) countRun(id);   // a run just reached the end
   if(ep) alEnqueue(id);
   if(ep>before) tungTask("progress");   // a daily task, credited where the thing happens
+  // Day 31: episodes are summed, not counted as events, so typing "12" into the
+  // counter records twelve episodes rather than one thing happening.
+  if(ep>before) logActivity("ep", id, ep-before);
 }
 function maxAiredEp(md){ const now=Date.now()/1000; let m=0; for(const n of (md.airingSchedule&&md.airingSchedule.nodes)||[]) if(n.airingAt<=now && n.episode>m) m=n.episode; return m; }
 // When one specific episode aired, read from the same node maxAiredEp reads —
@@ -2454,7 +3390,7 @@ async function importAniList(name){
   localStorage.setItem("anical.watch", JSON.stringify([...state.watch]));
   localStorage.setItem("anical.status", JSON.stringify(state.status));
   localStorage.setItem("anical.progress", JSON.stringify(state.progress));
-  localStorage.setItem("anical.ratings", JSON.stringify(state.ratings));
+  saveRatings();
   migrateRatingAxes();   // an imported score is a flat five, same as any pre-axes one
   document.querySelectorAll("[data-watch]").forEach(el=>setStar(el, state.watch.has(el.dataset.watch)));
   renderView();
@@ -2581,7 +3517,7 @@ async function alPull(){
     localStorage.setItem("anical.watch", JSON.stringify([...state.watch]));
     localStorage.setItem("anical.status", JSON.stringify(state.status));
     localStorage.setItem("anical.progress", JSON.stringify(state.progress));
-    localStorage.setItem("anical.ratings", JSON.stringify(state.ratings));
+    saveRatings();
     migrateRatingAxes();   // same reasoning as importAniList
     document.querySelectorAll("[data-watch]").forEach(el=>setStar(el, state.watch.has(el.dataset.watch)));
     renderView();
@@ -2903,6 +3839,24 @@ function renderWhatsNew(){
    update. Returning visitors see every entry newer than the one they last
    saw, once, in a modal they close manually. Trim old entries freely. */
 const CHANGELOG=[
+  { id:19, v:"4.0", date:"August 2026", items:[
+    "⚔ Head to head can settle your list for you. Answer ten quick “which of these two did you like more?” rounds and you come out with an ordering — then, if you want it, your own scores dealt back out to match. It only ever reshuffles numbers you already gave, so your average and the shape of your ratings don't move; all that changes is which show holds which score. Nothing is written until you press the button, and one Undo puts it all back.",
+    "📝 Your notes finally have somewhere to live. Settings → Notes searches what you actually wrote, not just titles, so you can find a show by the thing you remember writing about it. Five quick-start prompts sit above every note box — favourite episode, best moment, who to recommend it to — and they insert where your cursor is instead of over what's there.",
+    "🙈 Any note can be marked a spoiler. It blurs everywhere it appears until you tap it, including the little 📝 mark on cards, which used to show the first line of your note on hover.",
+    "♥ Favourites, 📌 pins and 🗃 an archive. A favourite isn't a score and a pin isn't a status — they just sort your board. Pin up to five shows to the top of everything. Archiving takes a finished show off your board and lists and keeps every last thing about it: your rating, notes, dates and progress are untouched, and it still shows up in the calendar and search. One button brings the archive back into view.",
+    "⇅ Build your own sort. Score, then title. Status, then episodes left. Twelve keys, as many levels deep as you like, saved under a name and reapplied in a tap. Shows with nothing to sort on always go to the bottom rather than being treated as a zero.",
+    "Filters you can see. Whatever is currently narrowing your view now shows as a row of chips you can pop off one at a time — no more wondering which of six dropdowns is hiding a show.",
+    "🖼 A grid layout for your board and lists, and density is now remembered per view: a compact month calendar and a roomy board at the same time, instead of one setting fighting both.",
+    "📅 And a month wrap. What you watched, finished, started, rated and wrote, month by month, with the shows named. It's honest about its own age — it only started keeping track today, and it says so rather than claiming you did nothing in July.",
+  ]},
+  { id:18, v:"3.9", date:"August 2026", items:[
+    "📊 Settings → Ratings now shows the shape of your own scoring — ten columns, one per score, with the number you reach for most called out underneath. Change the axis weights above it and you can watch your whole library redistribute.",
+    "New switch next to it: spread my scores. If most of what you rate lands on the same two numbers, this pulls them apart so you can finally see which of your 8s you actually preferred. Your average stays exactly where it is — only the gaps between scores grow.",
+    "Nothing is rewritten. Your stored scores, the picker inside each show, your AniList account and every export are still the numbers you typed; only the cards and the chart change, and switching it off puts them straight back.",
+    "⚔ And a head-to-head mode, because “which of these two did you like more?” is a question people answer well, while “what is this out of ten?” is one they answer differently on different days. Two covers, one question — arrow keys to answer, S to skip. A handful of rounds orders your library better than the scores do.",
+    "It copes with you contradicting yourself, which you will: preferring A to B, B to C and C to A is a real opinion rather than a mistake, so those three end up level instead of breaking the list — and it tells you how many of your answers it had to overrule.",
+    "Your comparisons are stored the way everything else is: in this browser, never uploaded, and they don't touch your scores at all.",
+  ]},
   { id:17, v:"3.8", date:"August 2026", items:[
     "⭐ Ratings go deeper if you want them to. Under the 1–10 row there's now a “Rate in detail” panel with five sliders — story, art, sound, characters and enjoyment — scored in half-points, and your overall score is their average, updating as you drag.",
     "Nothing changed for anyone who doesn't open it. Every score you've already given still reads exactly as it did; picking a number the old way still sets the whole thing in one click, and the panel stays shut until the five actually disagree.",
@@ -3752,6 +4706,9 @@ function renderView(){
   // a selection belongs to the view it was made in — leaving that view drops it
   if(bulkView && bulkView!==state.viewMode) bulkClear();
   sweepAutoProgress();   // before the paint, so the counters below are already current
+  applyDensity();        // density is per view (Day 28), so it moves when the view does
+  paintActiveFilters();  // one hook for every path that can change a filter (Day 30)
+  paintScoreSpread();    // no-op unless Settings is open — see the Day 16 block
   if(state.viewMode==="dashboard"){ hideEvents(); hideBoard(); hideLists(); renderDashboard(); return; }
   if(state.viewMode==="events"){ hideDashboard(); hideBoard(); hideLists(); renderEvents(); return; }
   if(state.viewMode==="board"){ hideDashboard(); hideEvents(); hideLists(); renderBoard(); return; }
@@ -4114,6 +5071,7 @@ function openDetail(md,episode){
         ${streamChipsHTML(md)}
         ${progressRowHtml(md)}
         ${datesRowHtml(md)}
+        ${libraryRowHtml(md)}
         <div class="st-row">
           <span class="st-row-label">⭐ Your rating:</span>
           ${ratingPickerHtml(md.id)}
@@ -4123,11 +5081,18 @@ function openDetail(md,episode){
         </div>
         <div class="nt-row">
           <label class="st-row-label" for="noteBox">📝 Private notes</label>
-          <textarea id="noteBox" class="note-box" data-note="${md.id}" maxlength="${NOTE_MAX}" rows="3"
-            placeholder="Where you left off, who recommended it, why you dropped it…">${esc(getNote(md.id))}</textarea>
+          ${noteTemplatesHtml()}
+          <div class="nt-wrap${isSpoilerNote(md.id)&&!noteRevealed(md.id)?" hid":""}" data-notewrap="${md.id}">
+            <textarea id="noteBox" class="note-box" data-note="${md.id}" maxlength="${NOTE_MAX}" rows="3"
+              placeholder="Where you left off, who recommended it, why you dropped it…">${esc(getNote(md.id))}</textarea>
+            <button type="button" class="nt-reveal" data-notereveal="${md.id}">👁 Spoiler — tap to show</button>
+          </div>
           <div class="nt-foot">
             <span class="tznote" id="noteState"></span>
             <span class="nt-spacer"></span>
+            <button type="button" class="nt-spoil${isSpoilerNote(md.id)?" on":""}" data-notespoil="${md.id}"
+              aria-pressed="${isSpoilerNote(md.id)?"true":"false"}"
+              title="Blur this note everywhere until it's tapped">${isSpoilerNote(md.id)?"🙈 Spoiler":"🙈 Mark spoiler"}</button>
             <span class="tznote" id="noteCount">${getNote(md.id).length} / ${NOTE_MAX}</span>
           </div>
           <div class="tznote">Saved on this device only — never uploaded.</div>
@@ -4475,10 +5440,31 @@ function effectiveTheme(){
   if(state.theme==="auto") return (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) ? "light" : "dark";
   return state.theme;
 }
+function densityFor(view){
+  const key=densityViewOf(view||state.viewMode);
+  const v=state.densityBy[key]||state.density||"normal";
+  if(v==="grid" && !GRID_VIEWS.has(key)) return "dense";   // a stale or pasted value, resolved not honoured
+  return v;
+}
+function setDensityFor(view, val){
+  const key=densityViewOf(view||state.viewMode);
+  state.densityBy[key]=val;
+  try{ localStorage.setItem("anical.densityBy", JSON.stringify(state.densityBy)); }catch(e){}
+  applyDensity();
+}
+/* Split out of applyAppearance so renderView() can call it on every view change
+   without dragging applySkin() and the whole palette along behind it — the
+   density now depends on which view is open, so it has to be re-evaluated far
+   more often than the theme does. */
+function applyDensity(){
+  const d=densityFor();
+  document.body.classList.toggle("dense", d==="dense");
+  document.body.classList.toggle("grid-cards", d==="grid");
+}
 function applyAppearance(){
   const eff=effectiveTheme();
   document.body.classList.toggle("theme-light", eff==="light");
-  document.body.classList.toggle("dense", state.density==="dense");
+  applyDensity();
   document.body.classList.toggle("no-covers", !state.showImages);
   const parts=(state.accent||"#ff4a2e|#22d3ee").split("|");
   document.documentElement.style.setProperty("--accent", parts[0]);
@@ -5207,6 +6193,24 @@ function prefSeg(key, opts){
   return `<div class="seg2">`+opts.map(([val,label,tip])=>
     `<button data-pref="${key}|${esc(String(val))}" class="${String(state[key])===String(val)?"on":""}"${tip?` title="${esc(tip)}"`:""}>${esc(label)}</button>`).join("")+`</div>`;
 }
+/* Density, in Settings (Day 28). The control sets the density of the view you
+   were looking at when you opened Settings, and says which one that is — a
+   per-view setting presented as a global one is a setting nobody can predict. */
+const VIEW_LABEL = {month:"the calendar", week:"the calendar", agenda:"the calendar",
+  board:"your board", lists:"your lists", dashboard:"the dashboard", events:"events"};
+function densitySettingsHTML(){
+  const view=densityViewOf(state.viewMode), cur=densityFor(state.viewMode);
+  const opts=DENSITIES.filter(([v])=>v!=="grid"||GRID_VIEWS.has(view));
+  const set=Object.keys(state.densityBy).length;
+  return `<div class="set-row"><div class="set-label">Density
+      <div class="set-hint">Applies to <b>${esc(VIEW_LABEL[state.viewMode]||"this view")}</b>, which is what you have open.
+        Each view keeps its own — a month grid usually wants to be compact while a board of cover art wants room —
+        and anything you have not set follows the app default.${
+        set?` <b>${set}</b> view${set===1?" has":"s have"} a setting of their own.`:""}</div></div>
+    <div class="seg2">${opts.map(([v,label,tip])=>
+      `<button data-density="${v}" class="${cur===v?"on":""}"${tip?` title="${esc(tip)}"`:""}>${esc(label)}</button>`).join("")}</div>
+    ${set?`<button id="denReset" style="margin-left:8px">↺ One setting again</button>`:""}</div>`;
+}
 /* ---------- axis weights, in Settings (Day 15) ----------
    Global, not per show — "I care more about story than art" is a statement
    about you, not about one anime — which is why this lives here and the axes
@@ -5240,6 +6244,544 @@ function weightsSettingsHTML(){
         (it would be one upload per show); use <b>⬆ Push everything</b> under AniList if you want it to match.</span>
     </div></div>`;
 }
+/* ---------- the shape of your own scoring, in Settings (Day 16) ----------
+   Ten columns, one per whole score. The bucket is Math.round(composite), which
+   is the rounding ratingChipOn() already uses to decide which chip lights — so
+   a 7.4 lands in the column whose number the pop-up is showing it as, rather
+   than in a column that agrees with nothing else on screen.
+
+   It reads `state.ratings`, not the axes, and that is the point: the composite
+   is the score, so re-weighting above redraws this. The chart is the only place
+   the weights sliders show their own effect.
+
+   Day 17 made it the proof of the normalization toggle too, for the same
+   reason: it counts what a score is SHOWN as, so switching the stretch on
+   visibly pulls the columns apart. */
+function scoreSpread(){
+  const counts=new Array(RATING_MAX+1).fill(0);   // index 1..10 — 0 means unrated, never a score
+  let n=0, sum=0;
+  for(const id of Object.keys(state.ratings)){
+    const v=shownRating(id); if(!v) continue;
+    // Clamped because a score that arrived from somewhere else — an AniList
+    // pull off a 100-point scale, a pasted sync code — can be small enough to
+    // round to 0, and a 0 column would file a rated show under "unrated".
+    // Nothing this app writes itself can: the smallest score it stores is 0.5.
+    counts[Math.min(RATING_MAX, Math.max(1, Math.round(v)))]++;
+    n++; sum+=v;
+  }
+  // Strictly greater, so a tie goes to the lower score. Somebody split evenly
+  // between 7s and 8s is a 7 person; calling it either way is arbitrary, and
+  // arbitrary-but-stable beats arbitrary-and-drifting as scores come and go.
+  let peak=0;
+  for(let i=1;i<=RATING_MAX;i++) if(counts[i]>(peak?counts[peak]:0)) peak=i;
+  return { counts, n, peak:n?peak:0, tallest:n?counts[peak]:0,
+           avg: n ? Math.round((sum/n)*10)/10 : 0 };
+}
+const SPREAD_H = 88;   // px of bar, inside a 104px column — the rest is the count above it
+function spreadChartHTML(){
+  const s=scoreSpread();
+  if(!s.n) return `<span class="num-hint" style="margin:0">Nothing rated yet — score a few shows and the shape of how you rate turns up here.</span>`;
+  let cols="", axis="";
+  for(let i=1;i<=RATING_MAX;i++){
+    const c=s.counts[i];
+    // Heights are relative to the tallest column, not to the library size, so
+    // six rated shows and six hundred draw the same shape. An empty score gets
+    // no bar at all rather than a sliver, because a sliver reads as "one".
+    const h=c?Math.max(3,Math.round((c/s.tallest)*SPREAD_H)):0;
+    cols+=`<div class="sp-col${c?" has":""}${i===s.peak?" peak":""}" title="${c} show${c===1?"":"s"} at ${i}/10">
+        <span class="sp-n">${c||""}</span>
+        <div class="sp-bar ${ratingBand(i)}" style="height:${h}px"></div>
+      </div>`;
+    axis+=`<span>${i===s.peak?`<b>${i}</b>`:i}</span>`;
+  }
+  const pct=Math.round((s.tallest/s.n)*100);
+  const shape = s.tallest>1
+    ? `${pct}% of them are ${s.peak}s`
+    : "no score has come up twice yet";
+  return `<div class="sp-grid" role="img" aria-label="Your score distribution: ${
+      Array.from({length:RATING_MAX},(_,i)=>`${s.counts[i+1]} at ${i+1}`).join(", ")}">${cols}</div>
+    <div class="sp-x">${axis}</div>
+    <span class="num-hint" style="display:block;margin-top:7px"><b>${s.n}</b> rated ·
+      average <b>${s.avg}</b> · ${shape}.</span>`;
+}
+function spreadSettingsHTML(){
+  return `<div class="set-row"><div class="set-label">Your scores
+      <div class="set-hint">Where your own ratings actually land. One column per whole score —
+        a 7.4 counts as a 7, the same rounding the picker uses to decide which number lights up.
+        Changing the weights above reshapes this, because it changes the scores it is drawn from.</div></div>
+    <div style="flex-basis:100%" id="spread">${spreadChartHTML()}</div></div>`;
+}
+/* Redrawn from renderView(), which every path that can move a score already
+   calls — a chip click, a slider release, a weight drag, an AniList pull, an
+   undo. Cheaper than teaching each of them about this panel, and the guard
+   makes it nothing at all for the whole time Settings is shut. */
+function paintScoreSpread(){
+  const host=$("spread"); if(!host) return;
+  host.innerHTML=spreadChartHTML();
+}
+/* ---------- "spread my scores", in Settings (Day 17) ----------
+   Sits between the weights and the histogram deliberately: the chart directly
+   under it is drawn from displayed scores, so flipping this pulls the columns
+   apart while you watch — the same trick Day 16 used to give the weight sliders
+   something to show for themselves. */
+function normSettingsHTML(){
+  const s=normStats();
+  let note;
+  if(!s.n) note="Nothing rated yet.";
+  else if(s.n<NORM_MIN_RATED) note=`Only <b>${s.n}</b> rated show${s.n===1?"":"s"} — this needs at least ${NORM_MIN_RATED} before the shape means anything, so it is doing nothing yet.`;
+  else if(s.sd<NORM_MIN_SD) note=`Every score you have given is a <b>${Math.round(s.mean*10)/10}</b> — there is no spread to stretch, so this is doing nothing.`;
+  else note=`Your scores run <b>${s.lo}</b>–<b>${s.hi}</b>, averaging <b>${Math.round(s.mean*10)/10}</b>.
+    Spread out they are stretched <b>×${Math.round(s.k*100)/100}</b> around that average${
+    s.k>=NORM_MAX_K?` — the cap, so a tightly clustered list can't become a list of 1s and 10s`:""}.`;
+  return `<div class="set-row"><div class="set-label">Spread my scores
+      <div class="set-hint">If most of what you rate lands on the same two numbers, this pulls them apart so you can
+        see which of your 8s you actually preferred. <b>Nothing is rewritten</b> — your stored scores, the picker in
+        each show, your AniList account and every export are the numbers you typed. Only cards and the chart below
+        change, and switching this off puts them straight back.</div></div>
+    ${prefSeg("normalize",[[false,"Off"],[true,"Spread out","Stretch the gaps between your scores, on screen only"]])}
+    <span class="num-hint" style="flex-basis:100%;margin:0">${note}</span></div>`;
+}
+/* ---------- head to head, the panel (Day 19) ----------
+   Two cards, one question, one keystroke. Day 18 did the model and the pair
+   selection, so this day adds no arithmetic: it draws what nextPair() hands it
+   and calls recordPair() with the answer.
+
+   The skip set is deliberately session-only and lives nowhere near the log.
+   "Not this one, ask me something else" is a statement about right now; storing
+   it would quietly shrink the pool for good, and a pair you refused on a
+   Tuesday is one you would happily answer a week later. */
+function versusSkipSet(){ if(!state._vsSkip) state._vsSkip=new Set(); return state._vsSkip; }
+const isVersusOpen = () => state._modalKind==="versus" && $("overlay").classList.contains("on");
+function openVersus(){
+  state._modalKind="versus";
+  // Reopening never resumes a finished run — the payoff screen is something you
+  // read once, not a state the panel gets stuck in.
+  if(state._vsRun && state._vsRun.done>=state._vsRun.target) calibStop();
+  versusServe();
+  $("modalTitle").textContent="⚔ Head to head";
+  renderVersus();
+  $("overlay").classList.add("on");
+}
+function versusCardHTML(id, other, side){
+  const md=findMediaById(id);
+  const name=md?title(md):("#"+id);
+  const img=(md&&md.coverImage&&(md.coverImage.large||md.coverImage.medium))||"";
+  const sc=getRating(id), c=pairCount(id);
+  const meta=[ sc?`your ${normApply(sc)}/10`:"unrated",
+               c?`${c} compared`:"never compared" ].join(" · ");
+  return `<button type="button" class="vs-card" data-vs="${esc(id)}|${esc(other)}"
+      aria-label="Pick ${esc(name)} — ${side}">
+    ${img?`<img src="${esc(img)}" alt="" loading="lazy" width="132" height="198">`
+         :`<span class="vs-ph" aria-hidden="true">🎬</span>`}
+    <span class="vs-t">${esc(name)}</span>
+    <span class="vs-meta">${esc(meta)}</span>
+  </button>`;
+}
+// The order so far, kept short. It is here rather than on a page of its own
+// because the only honest answer to "why did it ask me that" is to show what
+// the answers have built — and five rows is enough to recognise it as yours.
+function versusRankHTML(limit){
+  const order=pairOrder();
+  if(!order.length) return "";
+  const rows=order.slice(0, limit||5).map((id,i)=>{
+    const md=findMediaById(id);
+    return `<b>${i+1}</b><span>${esc(md?title(md):"#"+id)}</span><i>${pairCount(id)}×</i>`;
+  }).join("");
+  const conf=pairConflicts();
+  return `<div class="vs-rank">${rows}</div>
+    <span class="num-hint" style="display:block;margin-top:7px">Built from <b>${state.pairs.length}</b>
+      comparison${state.pairs.length===1?"":"s"} across <b>${order.length}</b> show${order.length===1?"":"s"}${
+      conf?` · <b>${conf}</b> of your answers disagree with the rest and were averaged in rather than dropped`:""}.</span>`;
+}
+/* The proposal (Day 21). Rendered wherever it is asked for, and rendering it is
+   the only thing that happens until a button is pressed — suggestedScores() is
+   pure and applySuggestions() is reachable from exactly one click handler. */
+function versusSuggestHTML(){
+  const rows=suggestedScores();
+  if(!rows.length) return "";
+  const list=rows.slice(0,8).map(r=>{
+    const md=findMediaById(r.id);
+    return `<b class="${r.next>r.cur?"up":"down"}">${r.next>r.cur?"▲":"▼"}</b>
+      <span>${esc(md?title(md):"#"+r.id)}</span>
+      <i>${r.cur} → <b>${r.next}</b></i>`;
+  }).join("");
+  return `<div class="vs-sug">
+    <div class="vs-sug-h">Your comparisons disagree with your scores on
+      <b>${rows.length}</b> show${rows.length===1?"":"s"}</div>
+    <div class="vs-rank vs-sug-l">${list}</div>
+    ${rows.length>8?`<span class="num-hint" style="display:block;margin-top:6px">…and ${rows.length-8} more.</span>`:""}
+    <div class="vs-bar" style="margin-top:9px">
+      <button id="vsApply" class="primary">Use these scores</button>
+      <span class="num-hint" style="margin:0">Nothing is changed until you press it, and one Undo puts every
+        score back. These are the same numbers you already gave — dealt out in the order your comparisons put
+        the shows in, so your average and the shape of your ratings don't move at all.</span>
+    </div></div>`;
+}
+function versusHTML(){
+  const pool=versusPool();
+  if(pool.length<2){
+    return `<p style="margin-top:0">This needs at least two shows it can put side by side — ones you have
+        <b>rated</b>, or marked Watching, Completed, On Hold or Dropped. Plan to Watch doesn't count, since
+        the question is which you liked more.</p>
+      <p class="num-hint">It can see ${pool.length} right now. Shows from seasons that aren't loaded join the
+        pool as the app fetches them.</p>${versusRankHTML()}`;
+  }
+  const run=state._vsRun;
+  // A run that has reached its target: the payoff screen. This is the whole
+  // point of Day 20 — ten answers and you are looking at an ordering, rather
+  // than at an eleventh question.
+  if(run && run.done>=run.target){
+    return `<p style="margin-top:0"><b>Done — ${run.done} answers.</b> Here is the order they put those
+        ${run.ids.length} shows in.</p>
+      ${versusRankHTML(run.ids.length)}
+      ${versusSuggestHTML()}
+      <div class="vs-bar" style="margin-top:10px">
+        <button id="vsAgain" class="primary">Another ten</button>
+        <button id="vsFree">Keep going freely</button>
+      </div>`;
+  }
+  const p=state._vsPair;
+  if(!p){
+    return `<p style="margin-top:0">Nothing left to ask this session — you have answered or skipped every pair
+        it wanted to put to you. Skips reset when you reload.</p>${versusRankHTML()}${versusSuggestHTML()}`;
+  }
+  const head = run
+    ? `<div class="vs-prog"><div class="vs-prog-bar"><i style="width:${Math.round(run.done/run.target*100)}%"></i></div>
+        <span>${run.done} of ${run.target}</span></div>`
+    : `<p class="num-hint" style="margin:0 0 10px">Which did you like more? There is no wrong answer and no
+        undoing needed — every verdict can be changed by answering the same pair again.</p>`;
+  return `${head}
+    <div class="vs-grid">
+      ${versusCardHTML(p[0], p[1], "on the left")}
+      <span class="vs-or">vs</span>
+      ${versusCardHTML(p[1], p[0], "on the right")}
+    </div>
+    <div class="vs-bar">
+      <button id="vsSkip">⤳ Skip this pair</button>
+      ${run?`<button id="vsQuit">Stop the run</button>`:""}
+      <span class="num-hint" style="margin:0"><kbd>←</kbd> / <kbd>→</kbd> to pick, <kbd>S</kbd> to skip.</span>
+    </div>
+    ${run?"":`${versusStartHTML()}${versusRankHTML()}${versusSuggestHTML()}`}`;
+}
+// Offered, not forced. Somebody who already has fifty comparisons does not need
+// a guided ten, so the pitch changes to what a run is actually for once there
+// is a history: a fresh working set rather than a first one.
+function versusStartHTML(){
+  const n=state.pairs.length;
+  return `<div class="vs-bar" style="margin-top:11px">
+    <button id="vsRun">▶ Guided run of ${CALIB_ROUNDS}</button>
+    <span class="num-hint" style="margin:0">${n
+      ? `Picks ${CALIB_SET} shows spread across your scores and asks only about those — a small set answered properly beats a large one answered once.`
+      : `Ten questions about ${CALIB_SET} of your shows, and you come out the other side with an ordering. The quickest way to start from nothing.`}</span>
+  </div>`;
+}
+function renderVersus(){
+  $("modalBody").innerHTML=versusHTML();
+  if($("vsSkip"))  $("vsSkip").onclick=versusSkip;
+  if($("vsRun"))   $("vsRun").onclick=()=>{ calibStart(); versusServe(); renderVersus(); };
+  if($("vsAgain")) $("vsAgain").onclick=()=>{ calibStart(); versusServe(); renderVersus(); };
+  if($("vsQuit"))  $("vsQuit").onclick=()=>{ calibStop(); versusServe(); renderVersus(); };
+  if($("vsFree"))  $("vsFree").onclick=()=>{ calibStop(); versusServe(); renderVersus(); };
+  if($("vsApply")) $("vsApply").onclick=versusApply;
+}
+/* One place decides which pool the next question comes from, so a run can never
+   leak a question about a show outside its working set — and ending a run can
+   never leave the previous set's question on screen. */
+function versusServe(){
+  state._vsPair = calibRunning()
+    ? nextPair(versusSkipSet(), state._vsRun.ids)
+    : nextPair(versusSkipSet());
+}
+function versusAnswer(winner, loser){
+  const asked=state._vsPair;   // as it was on screen, so an undo redraws the same two sides
+  const prev=recordPair(winner, loser);
+  const md=findMediaById(winner);
+  const run=state._vsRun;
+  if(calibRunning()) run.done++;
+  versusServe();
+  if(isVersusOpen()) renderVersus();
+  // No toast during a run: it would fire ten times in a row over the progress
+  // bar, and the undo it offers is the one thing a guided run already has —
+  // answer the pair again and the verdict is replaced.
+  if(run) return;
+  toast(`⚔ ${md?title(md):"That one"} wins`, ()=>{
+    undoPair(winner, loser, prev);
+    // Put the question back, not just the log: an undo that only rewound the
+    // record would leave you looking at the next pair with no way to answer the
+    // one you just changed your mind about.
+    state._vsPair=asked||[winner, loser];
+    if(isVersusOpen()) renderVersus();
+  });
+}
+function versusSkip(){
+  const p=state._vsPair; if(!p) return;
+  versusSkipSet().add(pairKey(p[0], p[1]));
+  versusServe();
+  // A run that runs out of unskipped pairs inside its own eight shows is over,
+  // not stuck: without this the panel would sit on "nothing left to ask" with a
+  // progress bar reading 6 of 10 and no way forward.
+  if(calibRunning() && !state._vsPair) state._vsRun.done=state._vsRun.target;
+  renderVersus();
+}
+function versusApply(){
+  const rows=suggestedScores();
+  if(!rows.length) return;
+  const undo=applySuggestions(rows);
+  renderVersus(); renderView();
+  toast(`Rescored ${rows.length} show${rows.length===1?"":"s"}`,
+        ()=>{ revertSuggestions(undo); renderVersus(); renderView(); });
+}
+/* ---------- month wrap (Day 31) ----------
+   A month you can page back through, not just "this month" — the card is worth
+   most on the 1st, when the month it describes has just ended. */
+const MONTH_NAMES=["January","February","March","April","May","June","July","August","September","October","November","December"];
+function wrapStatHtml(n, one, many, ids){
+  if(!n) return "";
+  const names=(ids||[]).slice(0,3).map(id=>{ const md=findMediaById(id); return md?title(md):null; }).filter(Boolean);
+  return `<div class="mw-stat">
+    <b>${n}</b><span>${n===1?one:many}</span>
+    ${names.length?`<i>${esc(names.join(", "))}${(ids.length>names.length)?` +${ids.length-names.length}`:""}</i>`:""}
+  </div>`;
+}
+function monthWrapHTML(y, m){
+  const w=monthWrap(y,m);
+  const label=`${MONTH_NAMES[m]} ${y}`;
+  const now=new Date(), isNow = y===now.getFullYear() && m===now.getMonth();
+  const nav=`<div class="mw-nav">
+      <button data-mwstep="-1" title="Previous month">‹</button>
+      <b>${label}${isNow?" · so far":""}</b>
+      <button data-mwstep="1" title="Next month"${isNow?" disabled":""}>›</button>
+    </div>`;
+  if(w.empty){
+    return `${nav}<p class="num-hint" style="margin:10px 0 0">Nothing recorded in ${label}${
+      w.partial?` — this only started keeping track on ${w.since||"the day you updated"}.`:"."}
+      ${isNow?" Rate something, mark an episode, or finish a show and it turns up here.":""}</p>`;
+  }
+  const stats=[
+    wrapStatHtml(w.episodes, "episode watched", "episodes watched"),
+    wrapStatHtml(w.finished.length, "show finished", "shows finished", w.finished),
+    wrapStatHtml(w.started.length, "show started", "shows started", w.started),
+    wrapStatHtml(w.added.length, "show added", "shows added", w.added),
+    wrapStatHtml(w.rated.length, "show rated", "shows rated", w.rated),
+    wrapStatHtml(w.noted.length, "note written", "notes written", w.noted),
+    wrapStatHtml(w.dropped.length, "show dropped", "shows dropped", w.dropped),
+  ].filter(Boolean).join("");
+  // The one number that is a judgement rather than a count, so it is phrased as
+  // one: the best thing you rated this month, by your own score.
+  const best=w.rated.map(id=>({id, n:getRating(id)})).sort((a,b)=>b.n-a.n)[0];
+  const bestMd=best?findMediaById(best.id):null;
+  return `${nav}
+    <div class="mw-grid">${stats}</div>
+    ${bestMd?`<p class="num-hint" style="margin:10px 0 0">Your highest score of the month went to
+      <b>${esc(title(bestMd))}</b> — ${best.n}/10.</p>`:""}
+    ${w.partial?`<p class="num-hint" style="margin:8px 0 0">Counts of what you <b>added, rated and wrote</b> only go back to
+      ${esc(w.since||"the day you updated")}, when this started keeping track. Shows <b>finished</b> and <b>started</b> are read from
+      the dates on each show, so those go back as far as your library does.</p>`:""}`;
+}
+function openMonthWrap(y, m){
+  const now=new Date();
+  state._mw = { y: y==null?now.getFullYear():y, m: m==null?now.getMonth():m };
+  state._modalKind="wrap";
+  $("modalTitle").textContent="📅 Your month";
+  renderMonthWrap();
+  $("overlay").classList.add("on");
+}
+function renderMonthWrap(){
+  $("modalBody").innerHTML=monthWrapHTML(state._mw.y, state._mw.m);
+}
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-mwstep]"); if(!b || !state._mw) return;
+  e.preventDefault();
+  const d=new Date(state._mw.y, state._mw.m + (+b.dataset.mwstep), 1);
+  const now=new Date();
+  // Never past the current month: a wrap of a month that hasn't happened is an
+  // empty card that looks like a bug.
+  if(d > new Date(now.getFullYear(), now.getMonth(), 1)) return;
+  state._mw={y:d.getFullYear(), m:d.getMonth()};
+  renderMonthWrap();
+});
+function wrapSettingsHTML(){
+  const now=new Date(), w=monthWrap(now.getFullYear(), now.getMonth());
+  return `<div class="set-row"><div class="set-label">Your month
+      <div class="set-hint">What you added, rated, watched and finished, month by month. Built from a log kept
+        in this browser — it records what you did and when, never what a show was.</div></div>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <button id="mwOpen">📅 This month</button>
+      <span class="num-hint" style="margin:0">${w.empty
+        ? "Nothing recorded yet this month."
+        : `${w.episodes?`<b>${w.episodes}</b> episode${w.episodes===1?"":"s"}`:""}${
+            w.episodes&&w.finished.length?" · ":""}${
+            w.finished.length?`<b>${w.finished.length}</b> finished`:""} so far.`}</span>
+    </div></div>`;
+}
+/* ---------- the sort builder, as a panel (Day 29) ----------
+   Rows you add, reorder and remove, because the order of the keys IS the sort —
+   a set of checkboxes could express "status and score" but not "status, then
+   score", which is the whole feature. */
+const isSortOpen = () => state._modalKind==="sort" && $("overlay").classList.contains("on");
+function openSortBuilder(){
+  state._modalKind="sort";
+  $("modalTitle").textContent="⇅ Sort";
+  renderSortBuilder();
+  $("overlay").classList.add("on");
+}
+function sortRowHtml(rule, i, used){
+  const def=SORT_BY_KEY[rule.key];
+  const opts=SORT_KEYS.filter(k=>k.key===rule.key||!used.has(k.key))
+    .map(k=>`<option value="${k.key}"${k.key===rule.key?" selected":""}>${esc(k.label)}</option>`).join("");
+  const asc=rule.dir==="asc";
+  return `<div class="so-row">
+    <span class="so-n">${i===0?"Sort by":"then by"}</span>
+    <select class="so-key" data-sortkey="${i}">${opts}</select>
+    <button type="button" class="so-dir" data-sortdir="${i}" title="Reverse this key">${
+      def.text ? (asc?"A–Z":"Z–A") : (asc?"↑ lowest first":"↓ highest first")}</button>
+    <button type="button" class="so-x" data-sortup="${i}" title="Move up"${i===0?" disabled":""}>↑</button>
+    <button type="button" class="so-x" data-sortdel="${i}" title="Remove this key">✕</button>
+  </div>`;
+}
+function sortBuilderHTML(){
+  const cur=activeSort(), used=new Set(cur.map(r=>r.key));
+  const canAdd=cur.length<SORT_KEYS.length;
+  const curId=currentSortId();
+  const saved=state.sorts.length ? state.sorts.map(s=>`
+    <div class="so-saved${s.id===curId?" on":""}">
+      <button type="button" class="so-apply" data-sortapply="${esc(s.id)}">
+        <b>${esc(s.name)}</b><i>${esc(sortSummary(s.keys))}</i></button>
+      <button type="button" class="so-x" data-sortforget="${esc(s.id)}" title="Delete ${esc(s.name)}">🗑</button>
+    </div>`).join("") : `<p class="num-hint" style="margin:0">Nothing saved yet.</p>`;
+  return `<p class="num-hint" style="margin:0 0 10px">Applies to your board and 📚 Lists. Ties fall through to the next
+      key, and anything still tied keeps the order it already had. Pinned shows stay on top regardless.</p>
+    <div class="so-rows">${cur.map((r,i)=>sortRowHtml(r,i,used)).join("")}</div>
+    <div class="vs-bar" style="margin-top:9px">
+      ${canAdd?`<button id="soAdd">＋ Add a key</button>`:""}
+      <button id="soReset"${JSON.stringify(cur)===JSON.stringify(DEFAULT_SORT)?" disabled":""}>↺ Default</button>
+    </div>
+    <div class="so-save">
+      <input id="soName" type="text" maxlength="40" placeholder="Name this sort…" autocomplete="off"
+        aria-label="Name for this sort">
+      <button id="soSave" class="primary">Save</button>
+    </div>
+    <h4 class="set-head" style="margin-top:14px">Saved sorts</h4>
+    ${saved}
+    <p class="num-hint" style="margin-top:10px">A show with nothing to sort on — no score, no date, no announced
+      episode count — always goes to the bottom, whichever way the arrow points. It is not a zero, it is absent.</p>`;
+}
+function renderSortBuilder(){
+  $("modalBody").innerHTML=sortBuilderHTML();
+  if($("soAdd")) $("soAdd").onclick=()=>{
+    const used=new Set(activeSort().map(r=>r.key));
+    const next=SORT_KEYS.find(k=>!used.has(k.key));
+    if(!next) return;
+    state.sort=activeSort().concat([{key:next.key, dir: next.asc?"asc":"desc"}]);
+    saveSortState(); renderSortBuilder(); renderView();
+  };
+  if($("soReset")) $("soReset").onclick=()=>{
+    state.sort=[]; saveSortState(); renderSortBuilder(); renderView();
+  };
+  if($("soSave")) $("soSave").onclick=()=>{
+    const el=$("soName"), rec=saveNamedSort(el.value);
+    if(!rec){ el.focus(); return; }
+    el.value=""; renderSortBuilder();
+    toast(`Saved “${rec.name}”`, ()=>{ deleteNamedSort(rec.id); renderSortBuilder(); });
+  };
+  const name=$("soName");
+  if(name) name.onkeydown=ev=>{ if(ev.key==="Enter"){ ev.preventDefault(); $("soSave").click(); } };
+}
+/* ---------- your notes, searchable (Day 23) ----------
+   Notes have existed since Day 02 and have never had anywhere to live: the only
+   way to read one was to remember which show it was on and open that show. This
+   is the index — every note in one list, filtered as you type.
+
+   The search is over the BODY, and the acceptance line says so. Titles are what
+   the main search box already does; the whole reason to search notes is to find
+   the show whose name you have forgotten by way of the thing you wrote about it,
+   so a query is matched against note text first and the title is only there to
+   tell you which show you found. */
+function noteMatches(q){
+  q=String(q||"").trim().toLowerCase();
+  const out=[];
+  for(const id of Object.keys(state.notes)){
+    const body=getNote(id); if(!body) continue;
+    const md=findMediaById(id);
+    const name=md?title(md):"";
+    // Case-insensitive, and a blank query lists everything rather than nothing —
+    // an index that starts empty reads as broken.
+    if(q && body.toLowerCase().indexOf(q)<0 && name.toLowerCase().indexOf(q)<0) continue;
+    out.push({id, body, name: name||("#"+id), hit: !q || body.toLowerCase().indexOf(q)>=0});
+  }
+  return out.sort((a,b)=>a.name.localeCompare(b.name));
+}
+// One match highlighted per row, not all of them: the row is a preview, and the
+// job is to show you WHY it matched, which the first occurrence does.
+function noteSnippet(body, q, id){
+  const spoil=isSpoilerNote(id)&&!noteRevealed(id);
+  if(spoil) return `<i class="nt-hidden">Spoiler — tap to show</i>`;
+  q=String(q||"").trim().toLowerCase();
+  const flat=body.replace(/\s+/g," ").trim();
+  if(!q) return esc(flat.slice(0,150))+(flat.length>150?"…":"");
+  const at=flat.toLowerCase().indexOf(q);
+  if(at<0) return esc(flat.slice(0,150))+(flat.length>150?"…":"");
+  const from=Math.max(0, at-40);
+  return (from?"…":"")+esc(flat.slice(from, at))
+    +`<mark>${esc(flat.slice(at, at+q.length))}</mark>`
+    +esc(flat.slice(at+q.length, at+q.length+90))+(flat.length>at+q.length+90?"…":"");
+}
+function notesPanelHTML(q){
+  const rows=noteMatches(q), total=Object.keys(state.notes).filter(id=>getNote(id)).length;
+  if(!total) return `<p class="num-hint" style="margin:0">No notes yet. Open any show and write one — they stay in this browser and are never uploaded.</p>`;
+  const list=rows.length ? rows.map(r=>`<div class="nt-res" role="button" tabindex="0" data-noteopen="${esc(r.id)}">
+      <div class="nt-res-t">${esc(r.name)}${isSpoilerNote(r.id)?` <span class="nt-res-s">🙈</span>`:""}</div>
+      <div class="nt-res-b">${noteSnippet(r.body, q, r.id)}</div>
+    </div>`).join("")
+    : `<p class="num-hint" style="margin:0">Nothing matches “${esc(q)}”.</p>`;
+  return `<div class="nt-count">${rows.length} of ${total} note${total===1?"":"s"}</div>${list}`;
+}
+function openNotes(q){
+  state._modalKind="notes";
+  state._noteQ=q||"";
+  $("modalTitle").textContent="📝 Your notes";
+  $("modalBody").innerHTML=`
+    <input id="noteSearch" type="search" placeholder="Search what you wrote…" autocomplete="off" spellcheck="false"
+      value="${esc(state._noteQ)}" aria-label="Search your notes"
+      style="width:100%;padding:9px 11px;border-radius:9px;border:1px solid var(--line);background:var(--bg);color:var(--txt);font:inherit;font-size:13px">
+    <div id="noteResults" style="margin-top:10px">${notesPanelHTML(state._noteQ)}</div>
+    <p class="num-hint" style="margin-top:12px">Searches the text of your notes, not just titles — so you can find a show by the thing you wrote about it. Everything here is stored in this browser only.</p>`;
+  const inp=$("noteSearch");
+  inp.oninput=()=>{ state._noteQ=inp.value; $("noteResults").innerHTML=notesPanelHTML(state._noteQ); };
+  $("overlay").classList.add("on");
+  // Focus the field rather than the dialog: this panel exists to be typed into.
+  setTimeout(()=>{ if(inp.isConnected) inp.focus(); }, 0);
+}
+function notesSettingsHTML(){
+  const n=Object.keys(state.notes).filter(id=>getNote(id)).length;
+  const s=[...state.noteSpoiler].filter(id=>getNote(id)).length;
+  return `<div class="set-row"><div class="set-label">Your notes
+      <div class="set-hint">Everything you have written, in one place and searchable by what it says.
+        Notes are stored in this browser and are never uploaded — not even when you are signed in.</div></div>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <button id="ntOpen"${n?"":" disabled"}>📝 Search notes</button>
+      <span class="num-hint" style="margin:0">${n
+        ? `<b>${n}</b> note${n===1?"":"s"}${s?` · <b>${s}</b> marked spoiler`:""}.`
+        : "Nothing written yet."}</span>
+    </div></div>`;
+}
+function versusSettingsHTML(){
+  const n=state.pairs.length, order=pairOrder();
+  const topMd=order.length?findMediaById(order[0]):null;
+  const top=order.length?(topMd?title(topMd):"#"+order[0]):"";
+  return `<div class="set-row"><div class="set-label">Head to head
+      <div class="set-hint">Two shows at a time: which did you like more? People answer that consistently and
+        answer "what is this out of ten" badly, so a handful of comparisons orders your library better than the
+        scores do. Your answers are kept, the ordering is worked out from them, and neither touches your scores.</div></div>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <button id="vsOpen" class="primary">⚔ Compare shows</button>
+      ${n?`<button id="vsClear">Clear ${n} comparison${n===1?"":"s"}</button>`:""}
+      <span class="num-hint" style="margin:0">${n
+        ? `<b>${n}</b> recorded, ordering <b>${order.length}</b> show${order.length===1?"":"s"}${
+            top?` — top of your list is <b>${esc(top)}</b>`:""}.`
+        : "Nothing compared yet."}</span>
+    </div></div>`;
+}
 function openSettings(){
   state._modalKind="settings";
   $("modalTitle").textContent="⚙ Settings";
@@ -5257,8 +6799,7 @@ function openSettings(){
     <div class="set-row"><div class="set-label">Theme</div>
       <div class="seg2"><button data-theme="dark" class="${state.theme==="dark"?"on":""}">🌙 Dark</button><button data-theme="light" class="${state.theme==="light"?"on":""}">☀️ Light</button><button data-theme="auto" class="${state.theme==="auto"?"on":""}">🌗 Auto</button></div></div>
     <div class="set-row"><div class="set-label">Accent</div><div class="swatches">${sw}</div></div>
-    <div class="set-row"><div class="set-label">Density</div>
-      <div class="seg2"><button data-density="normal" class="${state.density!=="dense"?"on":""}">Comfortable</button><button data-density="dense" class="${state.density==="dense"?"on":""}">Compact</button></div></div>
+    ${densitySettingsHTML()}
     <div class="set-row"><div class="set-label">Cover art</div>
       ${prefSeg("showImages",[[true,"Show"],[false,"Hide","Text-only rows fit far more on screen"]])}</div>
 
@@ -5287,6 +6828,15 @@ function openSettings(){
 
     <h4 class="set-head">Ratings</h4>
     ${weightsSettingsHTML()}
+    ${normSettingsHTML()}
+    ${spreadSettingsHTML()}
+    ${versusSettingsHTML()}
+
+    <h4 class="set-head">Notes</h4>
+    ${notesSettingsHTML()}
+
+    <h4 class="set-head">Looking back</h4>
+    ${wrapSettingsHTML()}
 
     <h4 class="set-head">Your data</h4>
     <div class="set-row"><div class="set-label">Hidden</div>
@@ -5371,6 +6921,18 @@ function openSettings(){
     else { localStorage.removeItem("anical.region"); rg.value=""; }
     rg.placeholder=userRegion()||"auto";
     renderView();   // times can change immediately: a region rule may now apply
+  };
+  if($("ntOpen")) $("ntOpen").onclick=()=>openNotes();
+  if($("mwOpen")) $("mwOpen").onclick=()=>openMonthWrap();
+  if($("vsOpen")) $("vsOpen").onclick=()=>openVersus();
+  // Throwing away a comparison history built one answer at a time gets the same
+  // treatment "Unhide all" gets: it hands the whole thing back rather than
+  // asking a confirm dialog whether you meant it.
+  if($("vsClear")) $("vsClear").onclick=()=>{
+    const was=clearPairs();
+    openSettings();
+    toast(`Cleared ${was.length} comparison${was.length===1?"":"s"}`,
+          ()=>{ state.pairs=was; savePairs(); openSettings(); });
   };
   if($("setExport")) $("setExport").onclick=exportSettings;
   if($("setImport")) $("setImport").onclick=pickImport;
@@ -5658,12 +7220,28 @@ function boardCardHtml(md){
     ${cardCoverHtml(md)}
     <div class="board-card-info">
       <div class="board-card-title">${esc(title(md))}</div>
-      ${(getRating(md.id)||hasNote(md.id))?`<div class="board-card-marks">${myMarks(md.id)}</div>`:""}
+      ${hasMarks(md.id)?`<div class="board-card-marks">${myMarks(md.id)}</div>`:""}
       ${statusPickerHtml(md.id,"sm")}
     </div>
   </div>`;
 }
 const boardAddBtn = `<button class="primary" data-focus-search title="Search any anime and pick a status">＋ Add anime</button>`;
+/* The one thing that makes archiving reversible in practice rather than only in
+   principle: nothing is findable if there is no control that shows it. Rendered
+   only when there is something archived, so it costs nothing to anyone who has
+   never used the feature. */
+function archiveToggleHtml(n){
+  if(!n) return "";
+  return `<button data-archtoggle class="${state.showArchived?"primary":""}"
+    title="${state.showArchived?"Hide archived shows again":"Show the shows you have archived"}">🗃 ${state.showArchived?"Hiding":"Archived"} · ${n}</button>`;
+}
+// The button carries the sort it will open, so the current order is legible from
+// the view itself rather than only from inside the panel that sets it.
+function sortButtonHtml(){
+  const custom=cleanSort(state.sort).length>0;
+  return `<button data-sortopen class="${custom?"primary":""}" title="${esc(sortSummary(state.sort))}">⇅ ${
+    custom ? esc(SORT_BY_KEY[activeSort()[0].key].label) + (activeSort().length>1?` +${activeSort().length-1}`:"") : "Sort"}</button>`;
+}
 async function renderBoard(){
   const wrap=$("boardWrap");
   wrap.style.display=""; document.querySelector("main").style.display="none"; document.body.classList.add("board-mode");
@@ -5686,11 +7264,15 @@ async function renderBoard(){
   }
   if(state.viewMode!=="board") return;   // user navigated away while fetching
 
-  const shows=ids.map(id=>findMediaById(id)).filter(Boolean);
+  const all=ids.map(id=>findMediaById(id)).filter(Boolean);
+  const archived=all.filter(md=>isArchived(md.id));
+  const shows=libraryOrder(state.showArchived ? all : all.filter(md=>!isArchived(md.id)));
   const cols=STATUS_DEFS.map(sd=>({...sd, shows: shows.filter(md=>boardStatusOf(md.id)===sd.key)}));
 
   wrap.innerHTML=`<div class="board-top">
       <div class="board-head"><h2>🗂️ My Board</h2><div class="ev-sub">${shows.length} tracked show${shows.length===1?"":"s"}. Click a card's status icon to move it between columns — click the highlighted one to take it off the board. Shift-click cards to select a run of them and change the lot at once.</div></div>
+      ${sortButtonHtml()}
+      ${archiveToggleHtml(archived.length)}
       ${boardAddBtn}
     </div>
     <div class="board-cols">
@@ -5725,7 +7307,7 @@ function listCardHtml(md, fromId){
     ${cardCoverHtml(md,true)}
     <div class="board-card-info">
       <div class="board-card-title">${esc(title(md))}</div>
-      ${(getRating(md.id)||hasNote(md.id))?`<div class="board-card-marks">${myMarks(md.id)}</div>`:""}
+      ${hasMarks(md.id)?`<div class="board-card-marks">${myMarks(md.id)}</div>`:""}
       ${opts?`<select class="card-sel" draggable="false" data-lmove="${mid}|${esc(fromId||"")}" title="Move ${esc(title(md))} to another list"><option value="" selected disabled>Move to…</option>${opts}</select>`:""}
     </div>
   </div>`;
@@ -5761,9 +7343,15 @@ async function renderLists(){
   const wrap=$("listsWrap");
   wrap.style.display=""; document.querySelector("main").style.display="none"; document.body.classList.add("lists-mode");
 
+  // Counted from ids alone, before any media is fetched, because the header it
+  // feeds is rendered on the empty-state path too.
+  const filed=new Set(state.collections.flatMap(c=>c.ids));
+  const archCount=[...new Set([...state.watch, ...filed])].filter(id=>isArchived(id)).length;
   const head=`<div class="board-top">
       <div class="board-head"><h2>📚 My Lists</h2><div class="ev-sub">Your own collections — Comfort watches, Rewatch pile, Movie night, anything. A show can live in as many as you like.</div></div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+        ${sortButtonHtml()}
+        ${archiveToggleHtml(archCount)}
         <button class="primary" data-col-new="" title="Make a new list">＋ New list</button>
         <button data-focus-search title="Search any anime">🔍 Add anime</button>
       </div>
@@ -5784,8 +7372,11 @@ async function renderLists(){
   }
   if(state.viewMode!=="lists") return;   // user navigated away while fetching
 
-  const filed=new Set(state.collections.flatMap(c=>c.ids));
-  const unsorted=[...state.watch].filter(id=>!filed.has(String(id))).map(id=>findMediaById(id)).filter(Boolean);
+  // The archive hides a show from its columns, not from its list membership —
+  // unarchiving it later has to put it back exactly where it was filed.
+  const keep = md => state.showArchived || !isArchived(md.id);
+  const unsorted=libraryOrder([...state.watch].filter(id=>!filed.has(String(id)))
+    .map(id=>findMediaById(id)).filter(Boolean).filter(keep));
   const total=state.collections.length;
 
   wrap.innerHTML=head+`<div class="lists-cols">
@@ -5797,7 +7388,7 @@ async function renderLists(){
         </div>
         ${unsorted.length ? unsorted.map(md=>listCardHtml(md,"")).join("") : '<div class="board-empty">Everything is filed</div>'}
       </div>
-      ${state.collections.map((c,i)=>listColumnHtml(c, c.ids.map(id=>findMediaById(id)).filter(Boolean), i, total)).join("")}
+      ${state.collections.map((c,i)=>listColumnHtml(c, libraryOrder(c.ids.map(id=>findMediaById(id)).filter(Boolean).filter(keep)), i, total)).join("")}
     </div>
     <div class="lists-hint">Drag a card between columns, or use its “Move to…” picker. Shift-click cards to select a run of them and file the lot at once. You can also add a show to any list from its detail pop-up.</div>`;
   paintSelection();
@@ -6383,6 +7974,10 @@ function step(dir){
 function setView(mode){
   state.viewMode=mode; localStorage.setItem("anical.view",mode);
   document.querySelectorAll("#viewSeg button").forEach(b=>b.classList.toggle("active",b.dataset.view===mode));
+  // Immediately, not via load(): density is per view (Day 28) and load() is
+  // network-bound, so leaving this to the eventual renderView() lets the old
+  // view's layout sit under the new view's name for as long as a fetch takes.
+  applyDensity();
   syncURL(true); load();
 }
 
@@ -6497,9 +8092,17 @@ document.addEventListener("click",e=>{
   const th=e.target.closest("[data-theme]"), de=e.target.closest("[data-density]"), ac=e.target.closest("[data-accent]");
   if(!th&&!de&&!ac) return;
   if(th){ state.theme=th.dataset.theme; localStorage.setItem("anical.theme",state.theme); }
-  if(de){ state.density=de.dataset.density; localStorage.setItem("anical.density",state.density); }
+  // Density is per view now (Day 28) — the global key is left exactly as it was,
+  // so it goes on serving as the default for views nobody has set.
+  if(de) setDensityFor(state.viewMode, de.dataset.density);
   if(ac){ state.accent=ac.dataset.accent; localStorage.setItem("anical.accent",state.accent); }
-  applyAppearance(); openSettings();   // re-render modal so the active states update
+  applyAppearance(); renderView(); openSettings();   // re-render modal so the active states update
+});
+document.addEventListener("click",e=>{
+  if(!e.target.closest("#denReset")) return;
+  state.densityBy={};
+  try{ localStorage.removeItem("anical.densityBy"); }catch(_){}
+  applyAppearance(); renderView(); openSettings();
 });
 // copy a feed URL
 document.addEventListener("click",e=>{
@@ -6653,6 +8256,27 @@ document.addEventListener("click",e=>{
   const note=$("wtNote"); if(note) note.textContent=`Back to equal — ${n} score${n===1?"":"s"} restored.`;
   renderView();
 });
+/* Head to head (Day 19). One card is the winner and the other is the loser, so
+   the pair travels in the dataset rather than being read back off the DOM —
+   the panel repaints itself the moment this fires. */
+document.addEventListener("click",e=>{
+  const card=e.target.closest("[data-vs]"); if(!card) return;
+  e.preventDefault(); e.stopPropagation();
+  const parts=String(card.dataset.vs).split("|");
+  versusAnswer(parts[0], parts[1]);
+});
+/* Answering with the keyboard is the difference between ten comparisons and a
+   hundred. Bubble phase, and only while the panel is the thing on screen: the
+   arrow keys belong to whatever else is open otherwise. */
+document.addEventListener("keydown",e=>{
+  if(!isVersusOpen() || e.ctrlKey || e.metaKey || e.altKey) return;
+  const tag=(e.target&&e.target.tagName||"").toLowerCase();
+  if(tag==="input"||tag==="textarea"||tag==="select") return;
+  const p=state._vsPair; if(!p) return;
+  if(e.key==="ArrowLeft"){ e.preventDefault(); versusAnswer(p[0], p[1]); }
+  else if(e.key==="ArrowRight"){ e.preventDefault(); versusAnswer(p[1], p[0]); }
+  else if(e.key==="s"||e.key==="S"){ e.preventDefault(); versusSkip(); }
+});
 document.addEventListener("click",e=>{
   const t=e.target.closest("[data-axtoggle]"); if(!t) return;
   e.preventDefault(); e.stopPropagation();
@@ -6660,6 +8284,147 @@ document.addEventListener("click",e=>{
   const open=!wrap.classList.contains("open");
   wrap.classList.toggle("open", open);
   t.setAttribute("aria-expanded", open?"true":"false");
+});
+/* The sort builder (Day 29). Every control edits `state.sort` in place and
+   repaints both the panel and the views behind it, so the effect of a key is
+   visible while you are still building the sort rather than after you close it. */
+function editSort(fn){
+  const rows=activeSort().map(r=>({...r}));
+  const out=fn(rows);
+  state.sort=cleanSort(out||rows);
+  saveSortState();
+  if(isSortOpen()) renderSortBuilder();
+  renderView();
+}
+document.addEventListener("change",e=>{
+  const sel=e.target.closest("[data-sortkey]"); if(!sel) return;
+  const i=+sel.dataset.sortkey, key=sel.value;
+  editSort(rows=>{ if(rows[i]){ rows[i].key=key; rows[i].dir = SORT_BY_KEY[key].asc?"asc":"desc"; } });
+});
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-sortdir]"); if(!b) return;
+  e.preventDefault();
+  const i=+b.dataset.sortdir;
+  editSort(rows=>{ if(rows[i]) rows[i].dir = rows[i].dir==="asc"?"desc":"asc"; });
+});
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-sortup]"); if(!b) return;
+  e.preventDefault();
+  const i=+b.dataset.sortup;
+  editSort(rows=>{ if(i>0){ const t=rows[i-1]; rows[i-1]=rows[i]; rows[i]=t; } });
+});
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-sortdel]"); if(!b) return;
+  e.preventDefault();
+  const i=+b.dataset.sortdel;
+  editSort(rows=>{ rows.splice(i,1); });
+});
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-sortapply]"); if(!b) return;
+  e.preventDefault();
+  if(applyNamedSort(b.dataset.sortapply)){ renderSortBuilder(); renderView(); }
+});
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-sortforget]"); if(!b) return;
+  e.preventDefault();
+  const gone=deleteNamedSort(b.dataset.sortforget);
+  if(!gone) return;
+  renderSortBuilder();
+  toast(`Deleted “${gone.rec.name}”`, ()=>{
+    state.sorts.splice(Math.min(gone.index,state.sorts.length), 0, gone.rec);
+    saveSortState(); renderSortBuilder();
+  });
+});
+document.addEventListener("click",e=>{
+  if(e.target.closest("[data-sortopen]")) openSortBuilder();
+});
+/* Favourites, pins and the archive (Days 25–27). */
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-fav]"); if(!b) return;
+  e.preventDefault(); e.stopPropagation();
+  const id=b.dataset.fav, on=toggleFav(id);
+  const md=findMediaById(id), name=md?title(md):"Show";
+  refreshLibraryRow(id); renderView();
+  toast(on?`♥ ${name}`:`Removed from favourites · ${name}`,
+        ()=>{ toggleFav(id); refreshLibraryRow(id); renderView(); });
+});
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-pin]"); if(!b) return;
+  e.preventDefault(); e.stopPropagation();
+  const id=b.dataset.pin, md=findMediaById(id), name=md?title(md):"Show";
+  const r=togglePin(id);
+  // A refusal has to say why, and say what to do about it. A button that just
+  // fails to do anything reads as broken, which is the specific thing the
+  // acceptance line is asking to be avoided.
+  if(r==="full"){
+    const first=findMediaById(state.pins[0]);
+    toast(`${PIN_MAX} pins is the limit — unpin one first${first?` (oldest: ${title(first)})`:""}`);
+    return;
+  }
+  refreshLibraryRow(id); renderView();
+  toast(r?`📌 Pinned · ${name}`:`Unpinned · ${name}`,
+        ()=>{ togglePin(id); refreshLibraryRow(id); renderView(); });
+});
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-arch]"); if(!b) return;
+  e.preventDefault(); e.stopPropagation();
+  const id=b.dataset.arch, on=toggleArchived(id);
+  const md=findMediaById(id), name=md?title(md):"Show";
+  refreshLibraryRow(id); renderView();
+  toast(on?`🗃 Archived · ${name} — nothing lost`:`Back on the board · ${name}`,
+        ()=>{ toggleArchived(id); refreshLibraryRow(id); renderView(); });
+});
+document.addEventListener("click",e=>{
+  if(!e.target.closest("[data-archtoggle]")) return;
+  state.showArchived=!state.showArchived;
+  renderView();
+});
+/* Note templates (Day 22): insert at the caret, never over the note. */
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-notetpl]"); if(!b) return;
+  e.preventDefault(); e.stopPropagation();
+  insertNoteTemplate($("noteBox"), b.dataset.notetpl);
+});
+/* Spoiler notes (Day 24). Marking is per note and immediate; the card mark and
+   the notes index both read the same flag, so one click hides it everywhere. */
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-notespoil]"); if(!b) return;
+  e.preventDefault(); e.stopPropagation();
+  const id=b.dataset.notespoil, on=!isSpoilerNote(id);
+  setSpoilerNote(id, on);
+  // Marking it while you are looking at it must not blur it under your cursor —
+  // you are plainly allowed to see the note you just chose to hide.
+  if(on) revealNote(id);
+  b.classList.toggle("on", on);
+  b.setAttribute("aria-pressed", on?"true":"false");
+  b.textContent = on ? "🙈 Spoiler" : "🙈 Mark spoiler";
+  renderView();                       // the 📝 mark on every card stops carrying the text
+  toast(on?"Note hidden as a spoiler":"Note no longer hidden");
+});
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-notereveal]"); if(!b) return;
+  e.preventDefault(); e.stopPropagation();
+  const id=b.dataset.notereveal;
+  revealNote(id);
+  const wrap=document.querySelector('[data-notewrap="'+CSS.escape(String(id))+'"]');
+  if(wrap) wrap.classList.remove("hid");
+});
+// …and in the notes index, where a row reveals in place rather than opening.
+document.addEventListener("click",e=>{
+  const row=e.target.closest("[data-noteopen]"); if(!row) return;
+  const id=row.dataset.noteopen;
+  if(isSpoilerNote(id) && !noteRevealed(id)){
+    revealNote(id);
+    $("noteResults").innerHTML=notesPanelHTML(state._noteQ);
+    return;
+  }
+  const md=findMediaById(id);
+  if(md) openDetail(md,1); else toast("That show isn't loaded right now");
+});
+document.addEventListener("keydown",e=>{
+  if(e.key!=="Enter" && e.key!==" ") return;
+  const row=e.target.closest && e.target.closest("[data-noteopen]"); if(!row) return;
+  e.preventDefault(); row.click();
 });
 // private notes: auto-save shortly after typing stops, with a live counter
 document.addEventListener("input",e=>{
@@ -6987,6 +8752,72 @@ document.addEventListener("click",e=>{
   else downloadFile(slugFile(cd.title)+".ics", buildICS(cd), "text/calendar");
 });
 
+/* ---------- active filters, as chips (Day 30) ----------
+   A filter you cannot see is a filter you will blame the data for. The controls
+   that set these live in a wide toolbar and two nested panels, and three of them
+   are checkboxes whose state is a single tick — so "why is this show missing"
+   was a question you had to answer by auditing a row of dropdowns.
+
+   ONE LIST DEFINES WHAT IS ACTIVE, and both rendering and clearing read it. A
+   chip that appears but does not clear, or a filter that clears but leaves its
+   chip, are the two failure modes here, and neither is reachable if the label
+   and the reset live in the same record. */
+const FILTER_CHIPS = [
+  { id:"search",   on:()=>!!state.search,                   label:()=>`🔍 “${state.search}”`,
+    clear:()=>{ state.search=""; const el=$("fSearch"); if(el) el.value=""; hideSearchResults&&hideSearchResults(); } },
+  { id:"mine",     on:()=>!!state.filters.mine,             label:()=>"⭐ My list only",
+    clear:()=>{ state.filters.mine=false; const el=$("fMine"); if(el) el.checked=false; } },
+  { id:"format",   on:()=>!!state.filters.format,           label:()=>FMT_LABEL[state.filters.format]||state.filters.format,
+    clear:()=>{ state.filters.format=""; const el=$("fFormat"); if(el) el.value=""; } },
+  { id:"genre",    on:()=>!!state.filters.genre,            label:()=>state.filters.genre,
+    clear:()=>{ state.filters.genre=""; const el=$("fGenre"); if(el) el.value=""; } },
+  { id:"tag",      on:()=>!!state.filters.tag,              label:()=>state.filters.tag,
+    clear:()=>{ state.filters.tag=""; const el=$("fTag"); if(el) el.value=""; } },
+  { id:"stream",   on:()=>!!state.filters.stream,           label:()=>state.filters.stream,
+    clear:()=>{ state.filters.stream=""; const el=$("fStream"); if(el) el.value=""; } },
+  { id:"minScore", on:()=>+state.filters.minScore>0,        label:()=>`★ ${state.filters.minScore}+`,
+    clear:()=>{ state.filters.minScore=0; const el=$("fScore"); if(el) el.value="0"; } },
+  { id:"prem",     on:()=>!!state.filters.premieresOnly,    label:()=>"Premieres only",
+    clear:()=>{ state.filters.premieresOnly=false; const el=$("fPrem"); if(el) el.checked=false; } },
+  { id:"eps",      on:()=>state.filters.epsMin||state.filters.epsMax,
+    label:()=>`${state.filters.epsMin||"1"}–${state.filters.epsMax||"∞"} episodes`,
+    clear:()=>{ delete state.filters.epsMin; delete state.filters.epsMax; } },
+  { id:"aired",    on:()=>state.filters.airedMin||state.filters.airedMax,
+    label:()=>`Episode ${state.filters.airedMin||"1"}–${state.filters.airedMax||"∞"}`,
+    clear:()=>{ delete state.filters.airedMin; delete state.filters.airedMax; } },
+  // These two are ON by default, so a chip is only honest when they are OFF —
+  // chipping a default would put permanent noise above everybody's calendar.
+  { id:"nsfw",     on:()=>!state.hideNSFW,                  label:()=>"🔞 Showing NSFW",
+    clear:()=>{ state.hideNSFW=true; localStorage.setItem("anical.hideNSFW","1"); const el=$("fNSFW"); if(el) el.checked=true; } },
+  { id:"donghua",  on:()=>!state.showDonghua,               label:()=>"Donghua hidden",
+    clear:()=>{ state.showDonghua=true; localStorage.setItem("anical.showDonghua","1"); } },
+];
+const activeFilters = () => FILTER_CHIPS.filter(f=>f.on());
+function paintActiveFilters(){
+  const host=$("activeFilters"); if(!host) return;
+  const on=activeFilters();
+  host.hidden=!on.length;
+  if(!on.length){ host.innerHTML=""; return; }
+  host.innerHTML=on.map(f=>
+    `<button type="button" class="afx-chip" data-unfilter="${f.id}" title="Remove this filter">
+      ${esc(String(f.label()))}<i aria-hidden="true">✕</i></button>`).join("")
+    +(on.length>1?`<button type="button" class="afx-clear" data-unfilter="*">Clear all</button>`:"");
+}
+function clearFilter(id){
+  const list = id==="*" ? activeFilters() : FILTER_CHIPS.filter(f=>f.id===id);
+  if(!list.length) return;
+  for(const f of list) f.clear();
+  localStorage.setItem("anical.filters", JSON.stringify(state.filters));
+  applyAppearance();
+  syncURL(false);
+  renderView();
+  renderGenreChips();
+}
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-unfilter]"); if(!b) return;
+  e.preventDefault();
+  clearFilter(b.dataset.unfilter);
+});
 // filters
 function onFilter(){
   state.filters.format=$("fFormat").value;
