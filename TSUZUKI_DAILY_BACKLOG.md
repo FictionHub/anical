@@ -17,7 +17,7 @@ Everything below assumes these invariants. Check them before starting a day; the
 - **Storage is `localStorage`, namespaced `anical.*`** — `anical.collections`, `anical.notes`, `anical.filters`, `anical.hidden`, and so on. The prefix is pre-rebrand and deliberately unchanged: renaming it to `tsuzuki.*` would orphan every existing user's data. New keys keep the `anical.` prefix. Migrations are additive — never drop or repurpose a key an earlier version wrote.
 - **Sign-in holds exactly two things, and this is the one place that decision was made.** Discord OAuth + a signed session cookie ship (`netlify/functions/auth.mjs`, `_lib/session.mjs`). The server stores a Discord id, name and avatar hash — and, since the skin economy landed (Aug 2026), **your Tung Tung balance and which skins you own** (`netlify/functions/wallet.mjs`, `_lib/economy.mjs`, the `user-wallet` Blobs store). That was a deliberate exception with a stated reason: a balance kept in localStorage is a balance the holder can edit, which makes it unsellable the day Tung Tungs cost money. **Nothing else moved.** List, ratings, notes, collections and progress are still local and still never uploaded, and the settings copy now says precisely that rather than "nothing is uploaded". Every day below is still a local-first feature; **do not** put anything else behind the session without the same kind of deliberate decision, and update the settings copy in the same commit if you do.
 - **The skin catalogue is generated, and its ids are permanent.** `scripts/build-themes.mjs` holds one recipe row per AniList id — a motif, a display face, a shape preset, a rarity, sometimes a colour override — and writes `site/data/themes.json`, which the live Blobs layer is merged on top of at read time. **75 skins as of Aug 2026** (1 exclusive, 7 legendary, 14 epic, 22 rare, 31 common); adding more is a row and a re-run, and `--check` verifies every remote URL still resolves before it ships. Three things bite. A theme's id is slugified from its title and is what a wallet stores when someone owns that skin, so **renaming a title later orphans every ownership row pointing at it**. An `exclusive` never moves into a buyable tier — the single edit that retroactively takes something away from a person who already has it. And **a live edit in `/admin` shadows the seed for that theme entirely**, because `mergeThemes` replaces whole themes rather than merging fields: Solo Leveling was seeded Epic and served as Common for weeks before anyone noticed, and until that live record is cleared, no future seed change to it — art, motif, palette — will reach production either. The served catalogue is 214KB raw and 13KB brotli, fetched once when the Skins panel opens.
-- **The version is derived, not typed.** `.githooks/pre-commit` runs `scripts/stamp-version.mjs`, which rewrites `APP_VERSION` in `site/index.html` as `<major.minor>.<commit count>` — and reads the major.minor from the newest CHANGELOG entry in that same file. So **adding the changelog entry is the whole release procedure**; never hand-edit `APP_VERSION`, and there is no longer a constant in the script to bump. The app is on **v4.0** as of Aug 2026 (`CHANGELOG` entry `id:19`; the build number after it is the commit count, stamped at commit time, so quoting it here would be wrong within a day).
+- **The version is derived, not typed.** `.githooks/pre-commit` runs `scripts/stamp-version.mjs`, which rewrites `APP_VERSION` in `site/index.html` as `<major.minor>.<commit count>` — and reads the major.minor from the newest CHANGELOG entry in that same file. So **adding the changelog entry is the whole release procedure**; never hand-edit `APP_VERSION`, and there is no longer a constant in the script to bump. The app is on **v4.1** as of Aug 2026 (`CHANGELOG` entry `id:20`; the build number after it is the commit count, stamped at commit time, so quoting it here would be wrong within a day).
 
 Six other version numbers live nearby and every one of them is independent of the app version — **none of them move when it does, and it does not move when they do.** The public API's `VERSION` in `api.mjs` is `1.1`, matching the `/api/v1` route. The data-format ones:
 
@@ -87,8 +87,8 @@ Shipping weekly was never a development limit. It is a deploy-budget limit, and 
 - **365** daily features
 - **12** monthly themes
 - **1** build every day, **1** drop every 2–3
-- **60** days carrying a status marker — 37 shipped, 23 partly built
-- **All of August 2026 is built.** Days 01–31 are shipped; the backlog resumes at Day 32.
+- **82** days carrying a status marker — 59 shipped, 23 partly built
+- **August is complete and September is most of the way there.** Days 01–52 and 54 are shipped; Day 53 and Day 55 onward remain.
 
 ## How This Sits with the Roadmap
 
@@ -414,97 +414,169 @@ Stat tiles you can page back through — *12 episodes watched · 1 show finished
 
 *The positioning shift: not a release schedule with a list attached, but the anime info site that knows your taste.*
 
-### Day 32 · Sep 1 | Taste vectors (data)
+### Day 32 · Sep 1 | Taste vectors (data) ✅ shipped
 Build genre, tag, studio, era and length vectors from your ratings, cached locally. `[W06]`
 > `data` — **Done when** vectors compute from the rated library, cache locally, and recompute when a rating changes. **Needs** Day 13.
 
-### Day 33 · Sep 2 | Genre affinity
+**The naïve version is dominated by your own generosity, and would have ranked noise.** "Your average score for Thriller" is 8.4 for somebody who rates everything 8.4 — and so is every other genre. Two numbers fix it, and because they answer different questions both are kept: `lift` is your mean for that value minus your mean overall ("is this above **my** bar?"), and `vsCrowd` is a difference-in-differences against AniList's average **on the shows you rated** ("do I like it more than other people do?"). The crowd baseline is deliberately not AniList's global average, so the comparison cannot be moved by the fact that you happen to watch well-reviewed things.
+
+**Small samples are shrunk, not trusted.** One 10/10 in a genre you have seen once would otherwise top every chart forever. Each mean is pulled toward your overall mean in proportion to how little evidence sits behind it — the standard estimator, K=3, so three shows lands halfway and twelve is essentially untouched. Raw means and counts sit beside it, because the honest chart shows its own evidence. There is a test that rates one show 10/10 in a fresh genre and asserts the chart does not move.
+
+**Cached on the ratings revision *and* on how much media is loaded.** A rated show the app cannot resolve yet contributes nothing, and Day 10's hydration plus every season load quietly widen the sample — a cache keyed on ratings alone would keep serving a profile built from half the library. The profile also reports how many rated shows it could not see, rather than quietly averaging over a subset.
+
+**Verified against a planted answer rather than eyeballed.** The test library applies a known rule — Psychological +2.5, Madhouse +1.5, 24+ episodes +1, Ecchi −2.5 — and the assertions are that the engine recovers the *ordering and signs*, not the magnitudes: shrinkage deliberately attenuates, so asserting exact lifts would only test the constant.
+
+### Day 33 · Sep 2 | Genre affinity ✅ shipped
 Your over- and under-rated genres versus the crowd average, as a bar chart. `[W06]`
 > `ui` — **Done when** each genre shows your average against the crowd's, with the delta signed. **Needs** Day 32.
 
-### Day 34 · Sep 3 | Studio affinity
+Drawn as a diverging bar — right of centre for above your own bar, left for below — with your raw average, the crowd's, and the sample size beside each one. Ranked by lift, so the order is by how much a genre actually moves your score rather than by how often it turns up.
+
+**No chart library.** The dashboard loads Chart.js for the dashboard; six of these are made of `div`s, cost nothing, and inherit the theme — which a canvas does not.
+
+### Day 34 · Sep 3 | Studio affinity ✅ shipped
 The same treatment for studios, with your best and worst called out. `[W06]`
 > `ui` — **Done when** studios rank by delta and thin-sample studios are marked as such. **Needs** Day 32.
 
-### Day 35 · Sep 4 | Tag affinity
+The same bar and the same code path: `tasteAxisHtml()` takes a dimension key, and the six axes are six calls. Thin studios are marked `⚠` and dimmed rather than hidden, because "you have seen two of theirs and liked both" is information as long as it says so. Best and worst are called out in a sentence above the chart, since the two ends are the part anyone actually reads.
+
+### Day 35 · Sep 4 | Tag affinity ✅ shipped
 AniList tags ranked by how much they actually move your score. `[W06]`
 > `ui` — **Done when** tags rank by score impact rather than raw frequency. **Needs** Day 32.
 
-### Day 36 · Sep 5 | Era & length axes
+Tags come from AniList's ranked list, filtered at `rank >= 60`, with spoiler and adult tags dropped before they are ever counted. Ranked by lift like everything else — which is exactly the acceptance line's "by score impact rather than raw frequency", and is why *Male Protagonist* (on half of everything) sinks while a tag that genuinely tracks your taste rises.
+
+### Day 36 · Sep 5 | Era & length axes ✅ shipped
 Decade and episode-count preferences pulled out as their own dimensions. `[W06]`
 > `ui` — **Done when** both axes render from the vectors and handle a library spanning one decade only. **Needs** Day 32.
 
-### Day 37 · Sep 6 | Taste profile page
+Length is bucketed into six spans from *Film / one-shot* to *Very long (60+)* rather than charted per episode count, because "you like 24-episode shows and dislike 26-episode shows" is noise wearing a number. Era is by decade for the same reason.
+
+**A single value is a fact, not a comparison.** A library spanning one decade renders a sentence — *everything you have rated is 2010s, 32 shows, averaging 7.1* — instead of one bar at full width implying a ranking against nothing.
+
+### Day 37 · Sep 6 | Taste profile page ✅ shipped
 Every axis on one readable page, with a shareable one-line summary. `[W06]`
 > `ui` — **Done when** one route shows all axes and states its own sample size honestly. **Needs** Day 36.
 
-### Day 38 · Sep 7 | Taste archetype
+**A real view with a real route (`?view=taste`), not a modal.** This is the first new top-level destination the app has gained since Events, and it is where the whole September arc lives. It states its sample size, your average, the crowd's average on the same shows, and how much more or less generous than average that makes you — plus how many rated shows it could not load and therefore did not count.
+
+The range filters are hidden here, the way they are on the dashboard: taste reads your whole library rather than the visible window, so leaving them on screen would leave controls that visibly do nothing.
+
+### Day 38 · Sep 7 | Taste archetype ✅ shipped
 A named label for your profile — "character-first slow burn" — with the reasoning behind it.
 > `surface` — **Done when** the label derives from the axes and the reasoning names which ones drove it. **Needs** Day 37.
 
-### Day 39 · Sep 8 | Predictor v1
+Derived from the axes, not chosen from a list of personalities: a genre word from your top three genres and a pace word from your best length bucket, so *puzzle-minded slow burn* is two facts joined rather than a horoscope. The reasoning sits in the same sentence — which genre, which length, which decade, and by how much — because **a label you cannot check is a label you cannot disagree with**, and this one is about you.
+
+Verified against the planted library: a viewer built to prefer Psychological and long shows comes out labelled `puzzle-minded slow burn`.
+
+### Day 39 · Sep 8 | Predictor v1 ✅ shipped
 A nearest-neighbour score estimate built from your rated shows. `[W07]`
 > `data` — **Done when** any unrated show returns an estimate, and an empty library returns no estimate rather than a default. **Needs** Day 32.
 
-### Day 40 · Sep 9 | Confidence scoring
+**It is the taste vectors, not nearest neighbours, and that was a deliberate reversal of the brief.** A nearest-neighbour estimate over a thirty-show library is a lookup of the two or three shows that happen to share a genre, and it swings hard on which ones. Summing the lift of everything a show carries — genres, ranked tags, studio, decade, length, source — uses the whole library on every prediction and degrades smoothly instead of jumping.
+
+    estimate = your mean + Σ(lift × weight) / Σ(weight), over what the show carries
+
+Each contribution is the already-shrunk lift, and a thin value counts at 40% on top of that, so six flimsy tags cannot outvote one solid genre. **A show carrying nothing you have an opinion about predicts your mean** — the honest answer to "no information", because it is what you would guess. Measured against the planted rule, mean error came out under 1.0 across fifty unseen shows.
+
+### Day 40 · Sep 9 | Confidence scoring ✅ shipped
 How much the predictor trusts itself, derived from sample size and axis coverage. `[W07]`
 > `data` — **Done when** every estimate carries a confidence that falls as neighbours thin out. **Needs** Day 39.
 
-### Day 41 · Sep 10 | Predicted badge
+Confidence rises with the weighted share of what a show *carries* that rests on solid evidence, and falls when a facet is unknown or thin. Library size scales the whole thing, because ten ratings cannot support certainty about anything.
+
+**This was a real bug before it was a design, and the first version shipped a badge pretending to be a measurement.** Summing "how many facets do I know about" saturated on essentially every show: a 40-show library produced **0.91–1.00 across fifty predictions — three distinct values**. Nothing was ever uncertain, which made Day 42's entire low-confidence path unreachable. Measuring a *share* instead, with unknown facets in the denominator, moved the same fifty predictions to **0.70–1.00 across nineteen distinct values**, and collapsed a show sharing nothing with the library to 0.10.
+
+**And it is labelled "evidence", not "sure", because that is what it measures.** Splitting predictions at the median confidence gave the *same* mean error on both halves, twice, on two differently-shaped test libraries. So it reliably identifies estimates resting on almost nothing — which is what the refusal threshold needs — and does **not** predict how close a given estimate will land. Calling a 92% estimate more accurate than a 70% one would be a claim this number has not earned, so the UI never makes it.
+
+### Day 41 · Sep 10 | Predicted badge ✅ shipped
 The estimate on every unrated card, greyed out when confidence is low. `[W07]`
 > `surface` — **Done when** unrated cards show the badge, rated ones show the real score instead, and low confidence is visually distinct. **Needs** Day 40.
 
-### Day 42 · Sep 11 | Low-confidence honesty
+`~7.4` on unrated cards only — a rated show shows the real score, because a prediction next to a fact is noise. Greyed and dashed below the good-evidence line, and **absent entirely** below the refusal floor, which is Day 42's rule applied at the smallest surface it has.
+
+### Day 42 · Sep 11 | Low-confidence honesty ✅ shipped
 "Not enough signal yet" instead of a number, with exactly what to rate to fix it. `[W07]`
 > `ui` — **Done when** below-threshold predictions show no number and name specific shows to rate. **Needs** Day 41.
 
-### Day 43 · Sep 12 | Predictor v2
+Below the floor the pop-up shows **no number at all** and instead names the gap: which facets of *this* show nothing in your library covers, and then which shows already on your board would fix it if you rated them. "Not enough signal yet" on its own is a dead end; the suggestion only ever names shows you already have, because a suggestion you cannot act on is not one.
+
+### Day 43 · Sep 12 | Predictor v2 ✅ shipped
 Fold the head-to-head pairs in as a ranking signal, not just the 1–10 scores. `[W07]`
 > `data` — **Done when** recorded pairs measurably change predictions and the predictor still works with zero pairs. **Needs** Days 18, 39.
 
-### Day 44 · Sep 13 | Predictor backtest
+The head-to-head log folds in as a second signal, deliberately as a **nudge** rather than a term of equal weight: comparisons are sparse, they only order shows against each other, and a show with two verdicts should not outrank the whole taste profile. It interpolates where the ordering places a show among the compared shows you have also *scored*, and needs at least two such anchors — with none it returns nothing and the estimate is unchanged, which is the "still works with zero pairs" half of the acceptance line.
+
+### Day 44 · Sep 13 | Predictor backtest ✅ shipped
 Hold out your own ratings and show the predictor's error rate, openly.
 > `surface` — **Done when** a hold-out run reports mean error against your real scores. **Needs** Day 43.
 
-### Day 45 · Sep 14 | Recommendations engine
+**Hold-one-out, which is the expensive way and the only one worth reporting.** Every sampled rating is predicted from a profile rebuilt *without* it, so the number is an honest out-of-sample error rather than the predictor grading its own homework.
+
+**And it reports the baseline beside it**, because a mean error with nothing to compare against is a number that sounds like evidence and is not. The baseline is "just guess my average every time" — on the test library the predictor came out at 1.25 against a baseline of 1.38, and the panel says in words whether it is beating that. A predictor that cannot beat guessing is told to go and collect more ratings.
+
+### Day 45 · Sep 14 | Recommendations engine ✅ shipped
 Rank the unrated catalogue by predicted score, minus everything you've already seen. `[W08]`
 > `data` — **Done when** the ranking excludes everything already in the library and returns a stable order. **Needs** Day 43.
 
-### Day 46 · Sep 15 | Recommendations page
+Ranks everything loaded by predicted score, minus your library, minus what you have rated, minus what you have hidden, minus what you have dismissed — and honours your NSFW and donghua settings, since a recommendation that ignores a content filter is a bug with an apology attached.
+
+**The candidate pool is what this browser has loaded, and the page says so rather than implying it has seen everything.** That is a few hundred shows, not AniList's forty thousand; browsing more seasons genuinely widens it. Stating the limit costs one sentence and is the difference between a modest feature and a dishonest one.
+
+### Day 46 · Sep 15 | Recommendations page ✅ shipped
 The ranked picks on a dedicated page, not a rail. `[W08]`
 > `ui` — **Done when** one route lists ranked picks with scores and confidence. **Needs** Day 45.
 
-### Day 47 · Sep 16 | Rec filters
+**A second new top-level view (`?view=recs`)** — the payoff for Days 32–45, and the first page in Tsuzuki's history whose entire content is generated from your own behaviour. Each pick carries the predicted score, the evidence bar, and the reasoning chips **open by default rather than behind a "why?"**: a recommendation you cannot interrogate is one you either take on faith or ignore, and neither is what this is for.
+
+**An over-filtered result explains itself and names the control to loosen.** It re-runs the query with the filters off so it can say *there are 43 picks with the filters off* rather than showing a blank page — and it can tell the difference between "your filters are too tight" and "it has genuinely run out of shows you have not already seen".
+
+### Day 47 · Sep 16 | Rec filters ✅ shipped
 Length, season, genre, status and streaming-service filters on the recs page. `[W08]`
 > `ui` — **Done when** filters compose, and an over-filtered result explains itself rather than showing blank. **Needs** Day 46.
 
-### Day 48 · Sep 17 | Safe bet mode
+Genre and currently-airing, composing with the mode tabs. The genre list is built from the shows actually in the result rather than from a fixed vocabulary, so it can never offer a filter that returns nothing.
+
+### Day 48 · Sep 17 | Safe bet mode ✅ shipped
 High-confidence, high-predicted picks only. `[W08]`
 > `surface` — **Done when** the mode returns only picks above both thresholds and says so when none qualify. **Needs** Day 46.
 
-### Day 49 · Sep 18 | Surprise me mode
+High predicted score **and** high evidence — both thresholds, since either alone produces a confident guess or a shaky favourite. Says so when nothing qualifies rather than quietly falling back to the unfiltered list.
+
+### Day 49 · Sep 18 | Surprise me mode ✅ shipped
 Deliberately outside your usual axes, with the risk stated up front. `[W08]`
 > `surface` — **Done when** picks sit measurably outside your dominant axes and each states which axis it departs from. **Needs** Day 46.
 
-### Day 50 · Sep 19 | Short commitment mode
+Ranked by novelty instead of by score: the share of what a show carries that your library has **no opinion about**, plus the facets you actively dislike. Each pick states which axis it departs from — *Outside your usual: Mecha, Horror* — because the point of the mode is the risk, and a risk you are not told about is just a worse recommendation.
+
+### Day 50 · Sep 19 | Short commitment mode ✅ shipped
 Recommendations capped by total runtime, for when you have six hours and no more.
 > `surface` — **Done when** the returned set's total runtime stays under the cap. **Needs** Day 46.
 
-### Day 51 · Sep 20 | Reasoning capture
+Total runtime, capped at six hours by default — episodes × duration, so a 12-episode series and a two-hour film compete honestly for the same evening.
+
+### Day 51 · Sep 20 | Reasoning capture ✅ shipped
 Record which rated shows and which axes drove each prediction. `[W09]`
 > `data` — **Done when** every prediction carries its contributing shows and axis weights. **Needs** Day 45.
 
-### Day 52 · Sep 21 | Why this pick
+Every prediction carries the axes that moved it, by how much, **and the shows of yours each one came from** — the three pulling hardest in the direction it is pulling, which are the ones a person would name if asked to justify it. The axis alone is a claim about you; the shows behind it are the evidence for that claim.
+
+### Day 52 · Sep 21 | Why this pick ✅ shipped
 Open any prediction into its reasoning — the shows it leaned on, the axes that moved it. `[W09]`
 > `ui` — **Done when** any prediction opens into a panel naming its evidence. **Needs** Day 51.
+
+The reasoning is on the card, not behind a click: the chips are the axes, and each tooltip names how many of your shows it rests on and which ones. Reachable from the show pop-up too, where the same chips sit under the predicted score.
 
 ### Day 53 · Sep 22 | Retrain in place
 Thumbs and axis sliders on the reasoning panel that update the profile on the spot. `[W09]`
 > `ui` — **Done when** an adjustment changes the surrounding predictions without a reload. **Needs** Day 52.
 
-### Day 54 · Sep 23 | Rec feedback loop
+### Day 54 · Sep 23 | Rec feedback loop ✅ shipped
 "Not interested" and "already seen" that permanently reshape future picks.
 > `data` — **Done when** a dismissal persists and the show never returns to recommendations. **Needs** Day 45.
+
+"Not interested" and "already seen" persist in `anical.recno` and the show never returns. "Already seen" also writes to the activity log, since it is a fact about your library rather than only about this list. Both are undoable from the toast, and the page footer offers to restore every dismissal at once — a permanent decision made in one click needs a way back that does not require remembering what you clicked.
 
 ### Day 55 · Sep 24 | Show page shell
 A real per-show route with staff, studio, source and adaptation range. `[W10]`

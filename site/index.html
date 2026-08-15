@@ -739,6 +739,9 @@
   .dash-loading{text-align:center;padding:60px;color:var(--muted);font-size:16px}
   @media(max-width:520px){.dash-charts{grid-template-columns:1fr}.dash-tiles{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}}
   body.dash-mode .filters,body.dash-mode .legend{display:none}
+  /* Taste reads your whole library, not the visible range, so the range filters
+     would be controls that visibly do nothing. Same reasoning as the dashboard. */
+  body.taste-mode .filters,body.taste-mode .legend{display:none}
 
   /* events */
   .events{max-width:900px;margin:0 auto;padding:18px 22px}
@@ -1043,6 +1046,86 @@
   .mw-stat span{display:block;font-size:11.5px;font-weight:700;color:var(--muted);margin-top:1px}
   .mw-stat i{display:block;font-style:normal;font-size:11px;color:var(--muted);margin-top:5px;
     line-height:1.35;opacity:.85}
+  /* The taste profile (Days 32–38). Diverging bars, no chart library — six of
+     these cost less than pulling Chart.js in, and they inherit the theme. */
+  .tz-sample{display:flex;gap:8px 18px;flex-wrap:wrap;font-size:12px;color:var(--muted);
+    padding:10px 12px;background:var(--bg2);border:1px solid var(--line);border-radius:11px;margin-bottom:12px}
+  .tz-sample b{color:var(--txt);font-weight:800}
+  .tz-warn{color:var(--premiere)}
+  .tz-arch{color:var(--accent)}
+  .tz-legend{max-width:none;margin:0 0 14px}
+  .tz-axes{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:14px;align-items:start}
+  .tz-axis{background:var(--bg2);border:1px solid var(--line);border-radius:var(--radius);
+    padding:13px 14px;box-shadow:var(--shadow)}
+  .tz-axis h3{margin:0 0 7px;font-size:14px;display:flex;align-items:center;gap:7px}
+  .tz-n{background:var(--bg3);color:var(--muted);font-size:11px;font-weight:700;padding:1px 8px;border-radius:20px}
+  .tz-sep{font-size:11px;font-weight:700;color:var(--muted);margin:9px 0 5px}
+  .tb-list{display:flex;flex-direction:column;gap:5px}
+  .tb-row{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(70px,1.3fr) 46px auto;
+    gap:8px;align-items:center;font-size:11.5px}
+  .tb-row.thin{opacity:.62}
+  .tb-name{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .tb-track{position:relative;height:13px;background:var(--bg3);border-radius:3px;overflow:hidden}
+  .tb-axis{position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--line)}
+  .tb-bar{position:absolute;top:2px;bottom:2px;border-radius:2px;min-width:2px}
+  .tb-bar.pos{background:var(--good)}
+  .tb-bar.neg{background:var(--danger)}
+  .tb-num{font-weight:800;text-align:right;font-variant-numeric:tabular-nums}
+  .tb-num.pos{color:var(--good)} .tb-num.neg{color:var(--danger)}
+  .tb-meta{color:var(--muted);font-size:10.5px;white-space:nowrap;font-variant-numeric:tabular-nums}
+  @media(max-width:560px){ .tb-row{grid-template-columns:minmax(0,1fr) 60px 44px} .tb-meta{display:none} }
+  /* Recommendations (Days 45–49). */
+  .rc-bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:10px 0 14px}
+  .rc-check{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--muted)}
+  .rc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:13px}
+  .rc-card{display:flex;gap:11px;background:var(--bg2);border:1px solid var(--line);
+    border-radius:var(--radius);padding:11px;box-shadow:var(--shadow)}
+  .rc-card:hover{border-color:var(--accent)}
+  .rc-cover{position:relative;flex:none;width:86px;cursor:pointer}
+  .rc-cover img,.rc-cover .vs-ph{width:86px;aspect-ratio:2/3;object-fit:cover;border-radius:8px;
+    background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:22px}
+  .rc-pred{position:absolute;left:-5px;top:-5px;background:var(--accent);color:var(--on-accent);
+    font-size:12.5px;font-weight:800;padding:2px 7px;border-radius:20px;box-shadow:var(--shadow)}
+  .rc-pred.low{background:var(--bg3);color:var(--muted);border:1px dashed var(--line)}
+  .rc-body{min-width:0;flex:1;display:flex;flex-direction:column;gap:5px}
+  .rc-body h4{margin:0;font-size:13px;font-weight:800;line-height:1.25;cursor:pointer}
+  .rc-body h4:hover{color:var(--accent)}
+  .rc-meta{font-size:11px;color:var(--muted);font-weight:600}
+  .rc-conf{position:relative;height:4px;background:var(--bg3);border-radius:2px;margin:1px 0 3px}
+  .rc-conf i{display:block;height:100%;background:var(--accent2);border-radius:2px}
+  .rc-conf span{position:absolute;right:0;top:6px;font-size:10px;color:var(--muted);font-weight:700}
+  .rc-depart{font-size:10.5px;color:var(--premiere);font-weight:700;margin-top:9px}
+  .rc-why{display:flex;gap:4px;flex-wrap:wrap;margin-top:3px}
+  .rc-chip{font-size:10px;font-weight:700;padding:2px 6px;border-radius:6px;
+    border:1px solid var(--line);color:var(--muted);background:var(--bg3)}
+  .rc-chip.pos{border-color:rgba(34,197,94,.5);color:#86efac}
+  .rc-chip.neg{border-color:rgba(239,68,68,.45);color:#fca5a5}
+  .rc-chip.thin{opacity:.55}
+  .rc-chip b{font-variant-numeric:tabular-nums}
+  /* Retrain in place (Day 53): the chip is the control. */
+  .rc-chip{display:inline-flex;align-items:center;gap:4px}
+  .rc-chip.adj{border-style:dashed;border-color:var(--accent)}
+  .rc-adj{font-style:normal;font-size:9px;color:var(--accent)}
+  .rc-thumb{background:none;border:0;color:var(--muted);font-size:12px;font-weight:800;
+    line-height:1;padding:0 2px;min-width:11px;cursor:pointer;border-radius:4px}
+  .rc-thumb:hover{color:var(--txt);background:var(--bg);transform:none}
+  .rc-pred.mine{background:var(--good);color:#04220f}
+  .rc-act{display:flex;gap:5px;flex-wrap:wrap;margin-top:auto;padding-top:7px}
+  .rc-act button{font-size:11px;padding:4px 8px;border-radius:7px}
+  /* The prediction row in the pop-up (Days 41–42) and the badge on cards. */
+  .pill.predpill{background:rgba(34,211,238,.12);border-color:var(--accent2);color:#67e8f9;font-weight:800}
+  .pill.predpill.low{background:var(--bg3);border-style:dashed;border-color:var(--line);color:var(--muted)}
+  .pr-row{gap:8px}
+  .pr-score{font-size:17px;font-weight:800;color:var(--accent2);font-variant-numeric:tabular-nums}
+  .pr-score small{font-size:11px;color:var(--muted);font-weight:700}
+  .pr-score.low{color:var(--muted)}
+  .pr-none{font-size:12.5px;font-weight:800;color:var(--muted)}
+  .pr-conf{position:relative;flex:1;min-width:70px;max-width:150px;height:5px;background:var(--bg);border-radius:3px;overflow:hidden}
+  .pr-conf i{display:block;height:100%;background:var(--accent2)}
+  .pr-pct{font-size:11px;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums}
+  .pr-tag{font-size:10.5px;font-weight:700;color:var(--accent);border:1px solid var(--accent);
+    padding:1px 6px;border-radius:20px}
+  .pr-why{flex-basis:100%;display:flex;gap:4px;flex-wrap:wrap;margin-top:3px}
   /* episode progress: the counter row in the detail pop-up, and the fill that
      rides under every card. One bar element, two sizes. */
   .pg-ctl{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
@@ -1364,6 +1447,8 @@
     <button data-view="dashboard">📊 Dashboard</button>
     <button data-view="board">🗂️ Board</button>
     <button data-view="lists">📚 Lists</button>
+    <button data-view="taste">🧭 Taste</button>
+    <button data-view="recs">✨ For you</button>
     <button data-view="events">🎟️ Events</button>
   </div>
   <button id="surpriseBtn" title="Open a random highly-rated show">🎲 Surprise me</button>
@@ -1460,6 +1545,8 @@
 <div class="dashboard" id="dashboardWrap" style="display:none"></div>
 <div class="board" id="boardWrap" style="display:none"></div>
 <div class="board" id="listsWrap" style="display:none"></div>
+<div class="board" id="tasteWrap" style="display:none"></div>
+<div class="board" id="recsWrap" style="display:none"></div>
 <div class="events" id="eventsWrap" style="display:none"></div>
 
 <!-- Static links: a crawlable entry point to the generated SEO pages, and the embed widget. -->
@@ -1541,7 +1628,7 @@
 
 // Build number auto-stamped from the git commit count by scripts/stamp-version.mjs
 // (run via the .githooks/pre-commit hook). Do not edit by hand — it changes every commit.
-const APP_VERSION = "4.0.102";
+const APP_VERSION = "4.1.103";
 
 // Tsuzuki's own read API. It serves the same AniList payload out of a shared
 // server-side catalog (netlify/functions/_lib/catalog.mjs), so the schedule a
@@ -1658,6 +1745,11 @@ const state = {
   sort: [],                      // the working multi-key sort (Day 29); empty means the default
   sorts: [],                     // saved named sorts: [{id, name, keys:[{key,dir}]}]
   activity: [],                  // append-only [type, id, YYYY-MM-DD, n?] — the only record of WHEN (Day 31)
+  recNo: new Set(),              // recommendations you dismissed, permanently (Day 54)
+  recMode: "all",                // which rec lens is showing (not persisted — it is a per-visit question)
+  recGenre: "",                  // rec page genre filter (Day 47)
+  recAiring: false,              // …and its currently-airing filter
+  tasteAdj: {},                  // "dim|value" -> manual lift delta (Day 53) — an input, never an edited output
   collections: [],               // your own lists: [{id, name, ids:[mediaId…]}], in your order
   recent: [],                    // recently viewed show ids (most-recent first)
   progress: {},                  // mediaId -> highest watched episode number
@@ -1716,6 +1808,17 @@ try{ state.densityBy = JSON.parse(localStorage.getItem("anical.densityBy")||"{}"
 // a build that had keys this one doesn't degrades to the rows it understands
 // instead of throwing inside a comparator.
 try{ state.sort = JSON.parse(localStorage.getItem("anical.sort")||"[]")||[]; }catch(e){}
+try{ state.recNo = new Set((JSON.parse(localStorage.getItem("anical.recno")||"[]")||[]).map(String)); }catch(e){}
+try{
+  const raw=JSON.parse(localStorage.getItem("anical.tasteadj")||"{}")||{};
+  // Clamped on read as well as on write: a pasted sync code must not be able to
+  // hand this build a ±40 lift that would swamp every prediction.
+  state.tasteAdj={};
+  for(const k of Object.keys(raw)){
+    const v=Math.max(-2, Math.min(2, +raw[k]||0));
+    if(v && k.indexOf("|")>0) state.tasteAdj[k]=Math.round(v*100)/100;
+  }
+}catch(e){}
 try{
   const raw=JSON.parse(localStorage.getItem("anical.activity")||"[]");
   state.activity=(Array.isArray(raw)?raw:[])
@@ -2502,6 +2605,67 @@ function refreshLibraryRow(id){
     if(row.querySelector('[data-fav="'+CSS.escape(String(id))+'"]')) row.outerHTML=libraryRowHtml(md);
   });
 }
+/* ---------- the prediction, in the show pop-up (Days 41–42, 52) ----------
+   Day 42 is the whole reason this is more than a number: below the confidence
+   floor it shows NO estimate and instead names the specific shows to rate that
+   would fix it. "Not enough signal yet" on its own is a dead end. */
+function predictRowHtml(md){
+  const id=String(md.id);
+  if(getRating(id)) return "";                     // rated: the real score is right below
+  const v=tasteVectors();
+  if(v.rated<TASTE_MIN_RATED){
+    return `<div class="st-row pr-row"><span class="st-row-label">🔮 Prediction</span>
+      <span class="st-hint" style="flex-basis:auto">Rate ${TASTE_MIN_RATED-v.rated} more show${TASTE_MIN_RATED-v.rated===1?"":"s"}
+        and this starts estimating what you'd give things you haven't seen. You have ${v.rated}.</span></div>`;
+  }
+  const p=predictScore(id);
+  if(!p || p.score==null || p.conf<PRED_LOW_CONF){
+    // Name the gap, not the failure: which facets of THIS show you have no
+    // opinion about, and therefore what rating would help.
+    const idx=predIndex(), unknown=[];
+    for(const dim of TASTE_DIMS){
+      const m=idx.byDim[dim.key];
+      for(const val of dim.values(md)) if(!m.get(val)) unknown.push(`${val}`);
+    }
+    const near=nearestRatedSuggestions(md, 3);
+    return `<div class="st-row pr-row"><span class="st-row-label">🔮 Prediction</span>
+      <span class="pr-none">Not enough signal yet</span>
+      <span class="st-hint">Nothing you have rated covers ${unknown.length?`<b>${esc(unknown.slice(0,3).join(", "))}</b>`:"much of this show"}.
+        ${near.length?`Rating ${near.map(m2=>`<b>${esc(title(m2))}</b>`).join(", ")} would give it something to work from.`:
+          `Rate a few more shows in genres like these and it will have something to work from.`}</span></div>`;
+  }
+  const pct=Math.round(p.conf*100);
+  return `<div class="st-row pr-row">
+    <span class="st-row-label">🔮 Prediction</span>
+    <span class="pr-score${p.conf<PRED_GOOD_CONF?" low":""}">${p.score}<small>/10</small></span>
+    <span class="pr-conf"><i style="width:${pct}%"></i></span>
+    <span class="pr-pct">${pct}% evidence</span>
+    ${p.nudged?`<span class="pr-tag" title="Your head-to-head comparisons moved this">⚔ adjusted</span>`:""}
+    <div class="pr-why">${p.why.map(w=>whyChipHtml(w,true)).join("")}</div>
+    <span class="st-hint">Estimated from your own ratings — this is not a score and is never sent anywhere.
+      The chips are what pushed it up or down, and by how much. Disagree with one? <b>−</b> and <b>+</b> teach it,
+      and every prediction on screen moves straight away.</span>
+  </div>`;
+}
+/* Which of your UNRATED shows would most improve this prediction: the ones that
+   share the facets this show has and you have no opinion about. Day 42 asks for
+   "name specific shows to rate", and a suggestion has to be actionable — so it
+   only ever names shows already in your library. */
+function nearestRatedSuggestions(md, n){
+  const idx=predIndex();
+  const want=new Set();
+  for(const dim of TASTE_DIMS) for(const val of dim.values(md)) if(!idx.byDim[dim.key].get(val)) want.add(dim.key+"|"+val);
+  if(!want.size) return [];
+  const out=[];
+  for(const id of state.watch){
+    if(getRating(id)) continue;
+    const m2=findMediaById(id); if(!m2 || String(m2.id)===String(md.id)) continue;
+    let overlap=0;
+    for(const dim of TASTE_DIMS) for(const val of dim.values(m2)) if(want.has(dim.key+"|"+val)) overlap++;
+    if(overlap) out.push({md:m2, overlap});
+  }
+  return out.sort((a,b)=>b.overlap-a.overlap).slice(0,n||3).map(x=>x.md);
+}
 function noteTemplatesHtml(){
   return `<div class="nt-tpl">`+NOTE_TEMPLATES.map(t=>
     `<button type="button" class="nt-chip" data-notetpl="${esc(t.text)}" title="Insert at the cursor">${esc(t.label)}</button>`
@@ -2608,10 +2772,21 @@ function pinPill(id){
   return i<0?"":`<span class="pill pinpill" title="Pinned to the top (#${i+1})">📌</span>`;
 }
 function archPill(id){ return isArchived(id)?`<span class="pill archpill" title="Archived — off the board, nothing lost">🗃</span>`:""; }
-function myMarks(id){ return pinPill(id)+favPill(id)+myScorePill(id)+notePill(id)+archPill(id); }
+/* Day 41: the estimate on an UNRATED card, and only there — a rated show shows
+   the real score, because a prediction next to a fact is noise. Greyed when the
+   predictor is not confident, and absent entirely below the floor, which is Day
+   42's rule applied at the smallest surface it has. */
+function predPill(id){
+  if(getRating(id) || !tasteReady()) return "";
+  const p=predictScore(id);
+  if(!predUsable(p)) return "";
+  const low=p.conf<PRED_GOOD_CONF;
+  return `<span class="pill predpill${low?" low":""}" title="Predicted from your taste — rests on ${Math.round(p.conf*100)}% evidence. Not your score.">~${p.score}</span>`;
+}
+function myMarks(id){ return pinPill(id)+favPill(id)+myScorePill(id)+predPill(id)+notePill(id)+archPill(id); }
 // Anything that puts a mark on a card, so the card knows whether to render the
 // strip at all. One list, so a new mark can never be invisible on the board.
-function hasMarks(id){ return !!(getRating(id)||hasNote(id)||isFav(id)||isPinned(id)||isArchived(id)); }
+function hasMarks(id){ return !!(getRating(id)||hasNote(id)||isFav(id)||isPinned(id)||isArchived(id)||predPill(id)); }
 /* 1–10 picker; clicking the highlighted number clears the rating.
    The composite can land between two chips once the axes disagree, so the
    nearest chip lights up rather than the picker reading as unrated — but only
@@ -2987,6 +3162,473 @@ function applySuggestions(rows){
   return undo;
 }
 function revertSuggestions(undo){ for(const u of undo) restoreRating(u.id, u.score, u.axes); }
+
+/* ---------- taste vectors (Day 32) ----------
+   What your ratings say about what you like, per genre, tag, studio, era, length
+   and source material. Everything from Day 33 to Day 49 is a view of this.
+
+   THE NAIVE VERSION IS DOMINATED BY YOUR GENEROSITY. "Your average score for
+   Thriller" is 8.4 for somebody who rates everything 8.4, and so is every other
+   genre — the chart would rank noise. Two numbers fix it, and they answer
+   different questions, so both are kept:
+
+     lift    = your mean here − your mean overall   ("is this above MY bar?")
+     vsCrowd = your mean here − the crowd's mean here   ("do I like it more than
+               other people do?")
+
+   `lift` is the shape of your taste and is what the predictor reads. `vsCrowd`
+   is the more interesting thing to LOOK at, and is what Day 33's chart draws.
+   The crowd baseline is AniList's average *on the shows you rated*, not its
+   global average, so the comparison is like-for-like: it cannot be moved by the
+   fact that you happen to watch well-reviewed shows.
+
+   SMALL SAMPLES ARE SHRUNK, NOT TRUSTED. One 10/10 in a genre you have seen once
+   would otherwise top every chart forever. Each mean is pulled toward your
+   overall mean in proportion to how little evidence there is — the standard
+   estimator, with K=3 — so a value needs a few shows before it can say much.
+   Raw means and counts are kept alongside, because the honest chart shows both. */
+const TASTE_K = 3;         // shrinkage strength: a value with 3 shows is half-trusted
+const TASTE_MIN_N = 2;     // below this a value is not charted at all
+const TASTE_THIN_N = 4;    // …and below this it is charted but marked thin
+const TAG_MIN_RANK = 60;   // AniList tags below this are noise on most shows
+const LENGTH_BUCKETS = [
+  [1,1,"Film / one-shot"], [2,7,"Short (2–7)"], [8,14,"One cour (8–14)"],
+  [15,28,"Two cour (15–28)"], [29,60,"Long (29–60)"], [61,Infinity,"Very long (60+)"],
+];
+const lengthBucket = n => (LENGTH_BUCKETS.find(b=>n>=b[0]&&n<=b[1])||[,,null])[2];
+const yearOfMedia = md => md.seasonYear || (md.startDate&&md.startDate.year) || 0;
+const decadeOf = y => y ? `${Math.floor(y/10)*10}s` : null;
+const TASTE_DIMS = [
+  { key:"genre",  label:"Genre",   one:"genre",   values: md=>md.genres||[] },
+  { key:"tag",    label:"Tag",     one:"tag",     values: md=>(md.tags||[])
+      .filter(t=>t&&t.name&&(t.rank||0)>=TAG_MIN_RANK&&!t.isMediaSpoiler&&!t.isAdult).map(t=>t.name) },
+  { key:"studio", label:"Studio",  one:"studio",  values: md=>((md.studios&&md.studios.nodes)||[]).map(s=>s&&s.name).filter(Boolean) },
+  { key:"era",    label:"Era",     one:"decade",  values: md=>{ const d=decadeOf(yearOfMedia(md)); return d?[d]:[]; } },
+  { key:"length", label:"Length",  one:"length",  values: md=>{ const b=lengthBucket(epTotal(md)); return b?[b]:[]; } },
+  { key:"source", label:"Source",  one:"source",  values: md=>md.source?[SOURCE_LABEL[md.source]||md.source]:[] },
+];
+const TASTE_BY_KEY = Object.fromEntries(TASTE_DIMS.map(d=>[d.key,d]));
+let tasteCache=null;
+/* Cached on the ratings revision AND on how much media is loaded, because a
+   rated show the app cannot resolve yet contributes nothing — Day 10's
+   hydration and every season load quietly widen the sample, and a cache keyed on
+   ratings alone would keep serving a profile built from half the library. */
+function tasteVectors(){
+  // The adjustment count is in the stamp as well as invalidating the cache
+  // directly, so nothing can serve a profile from before you pushed back on it.
+  const stamp=`${ratingsRev}:${state.media.length}:${state.extra.size}:${tasteAdjCount()}`;
+  if(tasteCache && tasteCache.stamp===stamp) return tasteCache;
+
+  const rows=[];
+  for(const id of Object.keys(state.ratings)){
+    const mine=getRating(id); if(!mine) continue;
+    const md=findMediaById(id); if(!md) continue;
+    rows.push({ id, md, mine, crowd: md.averageScore ? md.averageScore/10 : null });
+  }
+  const n=rows.length;
+  const myMean = n ? rows.reduce((s,r)=>s+r.mine,0)/n : 0;
+  const withCrowd=rows.filter(r=>r.crowd!=null);
+  const crowdMean = withCrowd.length ? withCrowd.reduce((s,r)=>s+r.crowd,0)/withCrowd.length : 0;
+
+  const dims={};
+  for(const dim of TASTE_DIMS){
+    const acc=new Map();
+    for(const r of rows){
+      for(const v of dim.values(r.md)){
+        if(!v) continue;
+        let a=acc.get(v);
+        if(!a){ a={value:v, n:0, sum:0, crowdSum:0, crowdN:0, ids:[]}; acc.set(v,a); }
+        a.n++; a.sum+=r.mine; a.ids.push(r.id);
+        if(r.crowd!=null){ a.crowdN++; a.crowdSum+=r.crowd; }
+      }
+    }
+    const out=[];
+    for(const a of acc.values()){
+      if(a.n<TASTE_MIN_N) continue;
+      const mine=a.sum/a.n;
+      const crowd=a.crowdN?a.crowdSum/a.crowdN:null;
+      // Pulled toward your own overall mean, in proportion to how thin the
+      // evidence is. n=3 lands halfway; n=12 is essentially untouched.
+      const shrunk=(a.n*mine + TASTE_K*myMean)/(a.n+TASTE_K);
+      // Day 53's adjustment is folded in HERE, once, so every reader downstream
+      // — the charts, the predictor, the badges, the recommendations — gets the
+      // adjusted number without any of them knowing the feature exists.
+      // `baseLift` keeps what your ratings alone said, which is what makes the
+      // chart able to show both and the reset able to mean anything.
+      const adj=tasteAdjOf(dim.key, a.value);
+      const baseLift=Math.round((shrunk-myMean)*100)/100;
+      out.push({
+        value:a.value, n:a.n, ids:a.ids, adj, baseLift,
+        mine:Math.round(mine*100)/100,
+        crowd: crowd==null?null:Math.round(crowd*100)/100,
+        lift: Math.round((baseLift+adj)*100)/100,
+        // Difference in differences, so neither side's overall generosity counts:
+        // how far above your bar this sits, minus how far above theirs it sits.
+        vsCrowd: crowd==null?null:Math.round(((shrunk-myMean)-(crowd-crowdMean))*100)/100,
+        thin: a.n<TASTE_THIN_N,
+      });
+      }
+    out.sort((x,y)=>y.lift-x.lift || y.n-x.n || String(x.value).localeCompare(String(y.value)));
+    dims[dim.key]=out;
+  }
+  tasteCache={ stamp, n, rated:rows.length, myMean:Math.round(myMean*100)/100,
+               crowdMean:Math.round(crowdMean*100)/100, dims,
+               // How many rated shows the app could not resolve to media yet —
+               // the profile's own honest footnote about its sample.
+               unresolved: Object.keys(state.ratings).filter(id=>getRating(id)&&!findMediaById(id)).length };
+  return tasteCache;
+}
+/* ---------- retraining in place (Day 53) ----------
+   The charts and the predictor read a lift that is DERIVED from your ratings.
+   This lets you push back on one directly — "no, I like Psychological more than
+   that" — and have every prediction on screen move immediately.
+
+   THE ADJUSTMENT IS A SECOND INPUT, NOT AN EDIT OF THE OUTPUT. `anical.tasteadj`
+   holds `dim|value -> delta` and is layered on at read time. Writing the new lift
+   back into the vectors would have been one line and would have been erased by
+   the next rating you gave, silently, with no way to tell it had happened. Same
+   split as Day 13's axes and composite, and Day 17's stored score and displayed
+   one: the thing you typed and the thing computed from it never share a key.
+
+   It is also why a reset is possible at all — the derived value was never lost. */
+const TASTE_ADJ_STEP = 0.25;
+const TASTE_ADJ_MAX  = 2;      // beyond this you are not adjusting, you are inventing
+const adjKey = (dim,value) => dim+"|"+value;
+function saveTasteAdj(){
+  try{ localStorage.setItem("anical.tasteadj", JSON.stringify(state.tasteAdj)); }catch(e){}
+  tasteCache=null; predCache=null;   // both are derived from the lift this changes
+}
+function tasteAdjOf(dim,value){ return +state.tasteAdj[adjKey(dim,value)] || 0; }
+function nudgeTaste(dim, value, dir){
+  const k=adjKey(dim,value);
+  const next=Math.max(-TASTE_ADJ_MAX, Math.min(TASTE_ADJ_MAX,
+    Math.round((tasteAdjOf(dim,value)+dir*TASTE_ADJ_STEP)*100)/100));
+  if(next) state.tasteAdj[k]=next; else delete state.tasteAdj[k];   // zero is "no opinion", not a stored 0
+  saveTasteAdj();
+  return next;
+}
+function clearTasteAdj(dim,value){
+  if(dim==null){ const was={...state.tasteAdj}; state.tasteAdj={}; saveTasteAdj(); return was; }
+  const was=tasteAdjOf(dim,value);
+  delete state.tasteAdj[adjKey(dim,value)]; saveTasteAdj();
+  return was;
+}
+const tasteAdjCount = () => Object.keys(state.tasteAdj).length;
+const tasteDim = key => (tasteVectors().dims[key]||[]);
+// Enough of a library to say anything at all. Below this every chart says so
+// rather than drawing a shape out of four data points.
+const TASTE_MIN_RATED = 8;
+const tasteReady = () => tasteVectors().rated >= TASTE_MIN_RATED;
+
+/* ---------- the predictor (Days 39–44) ----------
+   What you would probably score a show you have not rated.
+
+   IT IS THE TASTE VECTORS, NOT NEIGHBOURS. A nearest-neighbour estimate over a
+   library of thirty shows is a lookup of two or three shows that happen to share
+   a genre, and it swings wildly on which ones. Adding up the lift of everything a
+   show carries — its genres, its ranked tags, its studio, its decade, its length,
+   its source — uses the whole library on every prediction and degrades smoothly
+   instead of jumping. Each contribution is the SHRUNK lift, so a tag you have
+   seen twice moves the estimate barely at all.
+
+   The estimate is your own mean plus the summed evidence, clamped to the scale.
+   A show carrying nothing you have an opinion about predicts your mean, which is
+   the honest answer to "no information": it is what you would guess.
+
+     estimate = myMean + Σ(lift × weight) / Σ(weight), over what the show carries
+
+   CONFIDENCE IS SEPARATE AND IS ALLOWED TO SAY NO (Day 40). It rises with how
+   much of the show you have evidence about and how thick that evidence is, and
+   below LOW_CONF the app refuses to show a number at all (Day 42) rather than
+   dressing a guess up as a score. */
+const PRED_DIM_WEIGHT = { genre:1, tag:0.55, studio:0.9, era:0.4, length:0.5, source:0.5 };
+const PRED_LOW_CONF = 0.34;      // under this, no number is shown at all
+const PRED_GOOD_CONF = 0.66;     // over this, the badge stops being greyed out
+const PRED_PAIR_WEIGHT = 0.55;   // how far a head-to-head ordering may move an estimate (Day 43)
+let predCache=null;
+function predIndex(){
+  const v=tasteVectors();
+  if(predCache && predCache.stamp===v.stamp+":"+pairsRev) return predCache;
+  const byDim={};
+  for(const dim of TASTE_DIMS){
+    const m=new Map();
+    for(const r of v.dims[dim.key]||[]) m.set(r.value, r);
+    byDim[dim.key]=m;
+  }
+  predCache={ stamp:v.stamp+":"+pairsRev, byDim, myMean:v.myMean, rated:v.rated };
+  return predCache;
+}
+/* Day 43 folds the head-to-head log in as a second signal. It is deliberately a
+   NUDGE, not a term of equal weight: comparisons are sparse, they only ever
+   order shows against each other, and a show with two verdicts should not
+   outrank the entire taste profile. It moves the estimate toward where the
+   ordering puts the show among shows you HAVE scored, and does nothing at all
+   when there are no comparisons — which is the "still works with zero pairs"
+   half of the acceptance line. */
+function pairNudge(id){
+  const r=pairRatings().r, mine=r[String(id)];
+  if(mine===undefined) return null;
+  // Anchor on compared shows that also carry one of your scores. Without at
+  // least two anchors there is nothing to interpolate between.
+  const anchors=Object.keys(r).filter(k=>k!==String(id) && getRating(k)).map(k=>({elo:r[k], score:getRating(k)}));
+  if(anchors.length<2) return null;
+  let above=null, below=null;
+  for(const a of anchors){
+    if(a.elo<=mine && (!above || a.elo>above.elo)) above=a;   // the best show you rank BELOW this one
+    if(a.elo>=mine && (!below || a.elo<below.elo)) below=a;   // the worst you rank above it
+  }
+  if(above && below){
+    const span=below.elo-above.elo;
+    const t=span>1 ? (mine-above.elo)/span : 0.5;
+    return above.score + (below.score-above.score)*t;
+  }
+  // Outside the anchor range at one end: the nearest anchor is the best claim
+  // that can be made, rather than extrapolating off the scale.
+  return (above||below).score;
+}
+function predictScore(id){
+  const md=findMediaById(id);
+  const idx=predIndex();
+  if(!md || idx.rated<TASTE_MIN_RATED) return null;
+  if(getRating(id)) return null;               // it is rated; there is nothing to predict
+  let num=0, den=0, hits=0, covered=0, carried=0;
+  for(const dim of TASTE_DIMS){
+    const w=PRED_DIM_WEIGHT[dim.key]||0.5, m=idx.byDim[dim.key];
+    for(const val of dim.values(md)){
+      // Counted whether or not you have an opinion about it. This denominator
+      // is the whole point of the confidence score below: a facet you have never
+      // rated has to COST certainty, and it can only do that if it is measured.
+      carried+=w;
+      const row=m.get(val); if(!row) continue;
+      // A thin value still counts, but at a fraction — its lift is already
+      // shrunk, and this stops six thin tags from outvoting one solid genre.
+      const trust=row.thin?0.4:1;
+      num+=row.lift*w*trust; den+=w*trust; hits++;
+      // How solid this particular facet is, saturating at eight of your shows.
+      covered+=w*Math.min(1, row.n/8);
+    }
+  }
+  if(!den) return { score:null, conf:0, hits:0, why:[], reason:"nothing in common" };
+  let score=idx.myMean + num/den;
+  const nudge=pairNudge(id);
+  if(nudge!=null) score = score*(1-PRED_PAIR_WEIGHT*0.5) + nudge*(PRED_PAIR_WEIGHT*0.5);
+  score=Math.max(1, Math.min(RATING_MAX, score));
+
+  /* Confidence is a SHARE, not a sum, and that distinction was a real bug before
+     it was a comment. Summing "how many facets do I know about" saturated on
+     essentially every show — a 40-show library produced 0.91–1.00 across fifty
+     predictions, three distinct values, so the number was a badge rather than a
+     measurement and Day 42's low-confidence path was unreachable.
+
+     Measuring the weighted share of what the show CARRIES that rests on solid
+     evidence fixes it in both directions: a facet you have never rated pulls the
+     score down because it is in the denominator, and a facet you have rated
+     twice pulls it down because n/8 is a quarter. Library size then scales the
+     whole thing, since ten ratings cannot support certainty about anything.
+
+     AND IT IS CALLED EVIDENCE, NOT CERTAINTY, BECAUSE THAT IS WHAT IT MEASURES.
+     Tested against a library with a known answer: it correctly collapses to ~0.1
+     for a show sharing nothing with anything rated, which is what the refusal
+     threshold needs. It does NOT predict how close a given estimate will land —
+     splitting fifty predictions at the median confidence gave the same mean
+     error on both halves, twice, on two differently-shaped libraries. So the UI
+     says "evidence", never "sure": claiming a 92% estimate beats a 70% one would
+     be a claim this number has not earned. */
+  const share=carried?covered/carried:0;
+  const library=Math.min(1, idx.rated/25);
+  const conf=Math.round(Math.min(1, share*(0.55+0.45*library))*100)/100;
+
+  /* Day 51: the reasoning is captured, not reconstructed later — each axis that
+     moved the estimate, by how much, AND the shows of yours it came from. The
+     axis alone ("Psychological +1.42") is a claim about you; the shows behind it
+     ("from Monster, Kaiba, Lain") are the evidence for that claim, and Day 52's
+     panel is only worth opening because it can show both. */
+  const why=[];
+  for(const dim of TASTE_DIMS){
+    const m=idx.byDim[dim.key];
+    for(const val of dim.values(md)){
+      const row=m.get(val); if(!row) continue;
+      // The three of yours that pull this value hardest in the direction it is
+      // pulling — the ones a person would name if asked to justify it.
+      const from=(row.ids||[]).slice()
+        .sort((a,b)=> row.lift>=0 ? getRating(b)-getRating(a) : getRating(a)-getRating(b))
+        .slice(0,3);
+      why.push({ dim:dim.key, label:TASTE_BY_KEY[dim.key].label, value:val,
+                 lift:row.lift, n:row.n, thin:row.thin, from });
+    }
+  }
+  why.sort((a,b)=>Math.abs(b.lift)-Math.abs(a.lift));
+  return { score:Math.round(score*10)/10, conf, hits, why:why.slice(0,6), nudged:nudge!=null };
+}
+// Day 42: below the floor there is no number, and the panel says what to rate to
+// fix it rather than leaving "not enough signal" as a dead end.
+const predUsable = p => !!(p && p.score!=null && p.conf>=PRED_LOW_CONF);
+/* Day 44: hold out your own ratings and report the error, openly. Every rated
+   show is predicted from a profile built WITHOUT it, so the number is an honest
+   out-of-sample error rather than the predictor grading its own homework. That
+   is the expensive way to do it and the only one worth reporting. */
+function predictorBacktest(limit){
+  const ids=Object.keys(state.ratings).filter(id=>getRating(id)&&findMediaById(id));
+  if(ids.length<TASTE_MIN_RATED+2) return null;
+  const sample=shuffled(ids).slice(0, limit||40);
+  const saveRatingsRef=state.ratings, results=[];
+  for(const id of sample){
+    const actual=getRating(id);
+    // Rebuild the profile with this one show removed. Slow, and correct.
+    const held={...saveRatingsRef}; delete held[id];
+    state.ratings=held; ratingsRev++; tasteCache=null; predCache=null;
+    const p=predictScore(id);
+    if(p && p.score!=null && p.conf>=PRED_LOW_CONF) results.push({id, actual, predicted:p.score, conf:p.conf});
+  }
+  state.ratings=saveRatingsRef; ratingsRev++; tasteCache=null; predCache=null;
+  if(!results.length) return null;
+  const err=results.map(r=>Math.abs(r.actual-r.predicted));
+  const mean=err.reduce((a,b)=>a+b,0)/err.length;
+  const within1=err.filter(e=>e<=1).length/err.length;
+  // The number that makes the error meaningful: how well "just guess my average
+  // every time" does. A predictor that cannot beat that is not a predictor.
+  const base=results.map(r=>Math.abs(r.actual-tasteVectors().myMean));
+  const baseMean=base.reduce((a,b)=>a+b,0)/base.length;
+  return {
+    n:results.length,
+    mae:Math.round(mean*100)/100,
+    within1:Math.round(within1*100),
+    baseline:Math.round(baseMean*100)/100,
+    beatsBaseline: mean<baseMean,
+  };
+}
+
+/* ---------- recommendations (Days 45–49) ----------
+   Rank everything the app knows about by predicted score, minus everything you
+   have already seen or said no to.
+
+   THE CANDIDATE POOL IS WHAT IS LOADED, and that is a real limit worth stating
+   rather than hiding: state.media is the seasons you have browsed plus whatever
+   hydration has fetched. So this recommends from a few hundred shows, not from
+   AniList's forty thousand. Browsing more seasons genuinely widens it, and the
+   panel says so instead of implying it has seen everything. */
+function saveRecDismiss(){ try{ localStorage.setItem("anical.recno", JSON.stringify([...state.recNo])); }catch(e){} }
+function dismissRec(id, why){
+  state.recNo.add(String(id));
+  saveRecDismiss();
+  logActivity(why==="seen"?"add":"drop", id);   // "already seen" is a library fact worth keeping
+}
+function undismissRec(id){ state.recNo.delete(String(id)); saveRecDismiss(); }
+const REC_MODES = {
+  all:     { label:"Everything",  hint:"Ranked by what you'd probably score it." },
+  safe:    { label:"Safe bets",   hint:"High predicted score AND plenty of evidence — the ones it is least likely to be wrong about." },
+  wild:    { label:"Surprise me", hint:"Deliberately outside the axes you usually watch, with the risk stated." },
+  short:   { label:"Short",       hint:"Capped by total runtime, for when you have an evening and no more." },
+  // Day 88. Deliberately the one lens that does NOT need a taste profile — see
+  // renderRecs, which lets this mode through the gate the others sit behind.
+  season:  { label:"Next season", hint:"Everything announced for next season, with an estimate attached wherever there is enough of your library to make one.", open:true },
+};
+/* ---------- next season's lineup (Day 88) ----------
+   The only page in the app that is worth opening with an empty library: it is a
+   real answer to "what is coming" on its own, and it gains a predicted score per
+   title the moment you have rated enough to support one. Fetched through the
+   same cached fetchSeason() the calendar uses, so a visit costs at most one
+   request and usually none. */
+function nextSeasonOf(d){
+  const now=d||new Date();
+  const order=["WINTER","SPRING","SUMMER","FALL"];
+  let i=order.indexOf(seasonOf(now.getMonth()))+1, year=now.getFullYear();
+  if(i>3){ i=0; year++; }
+  return { season:order[i], year };
+}
+let seasonPreview=null, seasonPreviewKey=null, seasonPreviewErr=null;
+async function loadSeasonPreview(){
+  const {season,year}=nextSeasonOf();
+  const key=season+"-"+year;
+  if(seasonPreviewKey===key && (seasonPreview||seasonPreviewErr)) return seasonPreview;
+  seasonPreviewKey=key; seasonPreviewErr=null;
+  try{
+    const media=await fetchSeason(season,year);
+    seasonPreview=Array.isArray(media)?media:[];
+  }catch(err){ seasonPreview=null; seasonPreviewErr=err&&err.message||"could not load"; }
+  if(state.viewMode==="recs" && state.recMode==="season") renderRecs();
+  return seasonPreview;
+}
+/* Ranked by predicted score when there is a profile, and by popularity when
+   there isn't — so the page is ordered by SOMETHING useful either way rather
+   than falling back to whatever order the API returned. */
+function seasonPreviewRows(){
+  const list=seasonPreview||[];
+  const ready=tasteReady();
+  const rows=[];
+  for(const md of list){
+    if(excluded(md)) continue;
+    const id=String(md.id);
+    const p=ready?predictScore(id):null;
+    rows.push({ id, md, score:p&&p.score!=null?p.score:null, conf:p?p.conf:0,
+                usable:predUsable(p), why:p?p.why:[], mine:getRating(id)||null,
+                ...(ready?recNovelty(md):{novelty:0,departs:[]}) });
+  }
+  rows.sort((a,b)=>{
+    const as=a.usable?a.score:null, bs=b.usable?b.score:null;
+    if(as!=null && bs!=null) return bs-as || b.conf-a.conf;
+    if(as!=null) return -1;
+    if(bs!=null) return 1;
+    return (b.md.popularity||0)-(a.md.popularity||0);
+  });
+  return rows;
+}
+const REC_SHORT_CAP_MIN = 6*60;   // "six hours and no more" — the Day 50 brief, in minutes
+function recRuntime(md){
+  const eps=epTotal(md)||md.episodes||0, dur=md.duration||24;
+  return eps?eps*dur:dur;
+}
+/* How far outside your usual axes a show sits: the share of what it carries that
+   you have NO opinion about, plus how much of what you do recognise you dislike.
+   Day 49's "states which axis it departs from" is the second return value. */
+function recNovelty(md){
+  const idx=predIndex();
+  let known=0, total=0, neg=[];
+  for(const dim of TASTE_DIMS){
+    const m=idx.byDim[dim.key];
+    for(const val of dim.values(md)){
+      total++;
+      const row=m.get(val);
+      if(row){ known++; if(row.lift<-0.15) neg.push({label:TASTE_BY_KEY[dim.key].label, value:val, lift:row.lift}); }
+    }
+  }
+  neg.sort((a,b)=>a.lift-b.lift);
+  return { novelty: total?1-(known/total):1, departs:neg.slice(0,2), total };
+}
+function recommendations(mode, opts){
+  opts=opts||{};
+  if(!tasteReady()) return { ready:false, rows:[], pool:0 };
+  const seen=new Set([...state.watch].map(String));
+  const out=[];
+  const pool=[...state.media, ...state.extra.values()];
+  const dedupe=new Set();
+  for(const md of pool){
+    const id=String(md.id);
+    if(dedupe.has(id)) continue; dedupe.add(id);
+    if(seen.has(id)) continue;                 // already in your library
+    if(getRating(id)) continue;                // …or rated without being tracked
+    if(isHidden(id)) continue;
+    if(state.recNo.has(id)) continue;          // Day 54: dismissed, permanently
+    if(excluded(md)) continue;                 // honours NSFW / donghua settings
+    if(opts.airingOnly && md.status!=="RELEASING") continue;
+    if(opts.genre && !(md.genres||[]).includes(opts.genre)) continue;
+    if(opts.maxRuntime && recRuntime(md)>opts.maxRuntime) continue;
+    const p=predictScore(id);
+    if(!predUsable(p)) continue;
+    const nov=recNovelty(md);
+    out.push({ id, md, ...p, ...nov });
+  }
+  let rows=out;
+  if(mode==="safe")  rows=out.filter(r=>r.conf>=PRED_GOOD_CONF && r.score>=tasteVectors().myMean);
+  if(mode==="wild")  rows=out.filter(r=>r.novelty>=0.35 || r.departs.length);
+  if(mode==="short") rows=out.filter(r=>recRuntime(r.md)<=(opts.maxRuntime||REC_SHORT_CAP_MIN));
+  // Ranked by predicted score, then by confidence — a 8.4 it is sure about beats
+  // an 8.4 it is guessing at, and the order is stable between paints because the
+  // final tie-break is the id.
+  rows=rows.slice().sort((a,b)=> b.score-a.score || b.conf-a.conf || (a.id<b.id?-1:1));
+  if(mode==="wild") rows=rows.slice().sort((a,b)=> b.novelty-a.novelty || b.score-a.score);
+  return { ready:true, rows, pool:dedupe.size, mode };
+}
 
 /* ---------- custom collections ("Lists") ----------
    Your own named lists, independent of the five watch statuses: a show can sit
@@ -3839,6 +4481,17 @@ function renderWhatsNew(){
    update. Returning visitors see every entry newer than the one they last
    saw, once, in a modal they close manually. Trim old entries freely. */
 const CHANGELOG=[
+  { id:20, v:"4.1", date:"August 2026", items:[
+    "🧭 Tsuzuki now knows your taste. A new Taste tab reads the shows you've scored and works out what you actually like — by genre, by AniList tag, by studio, by decade, by how long a series is, and by what it was adapted from. Each one shows how far above or below your own average it sits, after the crowd's opinion of the same shows is subtracted, so neither your generosity nor a genre's general popularity gets counted as taste.",
+    "It gives the shape a name — “puzzle-minded slow burn”, “comedy-led single-cour” — and then tells you exactly which numbers produced it. A label you can't check isn't worth having.",
+    "✨ And a For you page: every show it can see, ranked by what it reckons you'd score it, with your library, your dismissals and anything you've hidden taken out. Four lenses — everything, safe bets, surprise me, and short, which caps the total runtime for when you have one evening.",
+    "Every pick shows its working. The chips under each one are the things that pushed the estimate up or down and by how much, and hovering one names the shows of yours it learned that from. “Not interested” and “already seen” are remembered for good, and both are undoable.",
+    "🔮 Unrated shows now carry an estimated score on their card and in their pop-up. It's marked with a ~ and never dressed up as your own rating.",
+    "When it doesn't know enough, it says so and stops — no number at all — and then tells you which shows already on your board to rate to fix it. Under the hood it tracks how much evidence each estimate rests on, and we're careful to call that evidence rather than confidence: it reliably spots an estimate built on nothing, but it can't promise a 90% one is closer than a 70% one, so it doesn't claim to.",
+    "📉 You can test it against yourself. Settings → Predictions hides each of your scores in turn, predicts it from the rest, and reports how far off it was — next to how badly “just guess your average every time” would have done. If it isn't beating that, it tells you.",
+    "Your comparisons feed it too: the head-to-head answers from the last update nudge the estimates toward the order you actually put shows in.",
+    "All of it is computed in your browser from your own ratings. Nothing is uploaded, no profile is built on our servers, and there is no model anywhere but on your device.",
+  ]},
   { id:19, v:"4.0", date:"August 2026", items:[
     "⚔ Head to head can settle your list for you. Answer ten quick “which of these two did you like more?” rounds and you come out with an ordering — then, if you want it, your own scores dealt back out to match. It only ever reshuffles numbers you already gave, so your average and the shape of your ratings don't move; all that changes is which show holds which score. Nothing is written until you press the button, and one Undo puts it all back.",
     "📝 Your notes finally have somewhere to live. Settings → Notes searches what you actually wrote, not just titles, so you can find a show by the thing you remember writing about it. Five quick-start prompts sit above every note box — favourite episode, best moment, who to recommend it to — and they insert where your cursor is instead of over what's there.",
@@ -4709,11 +5362,13 @@ function renderView(){
   applyDensity();        // density is per view (Day 28), so it moves when the view does
   paintActiveFilters();  // one hook for every path that can change a filter (Day 30)
   paintScoreSpread();    // no-op unless Settings is open — see the Day 16 block
-  if(state.viewMode==="dashboard"){ hideEvents(); hideBoard(); hideLists(); renderDashboard(); return; }
-  if(state.viewMode==="events"){ hideDashboard(); hideBoard(); hideLists(); renderEvents(); return; }
-  if(state.viewMode==="board"){ hideDashboard(); hideEvents(); hideLists(); renderBoard(); return; }
-  if(state.viewMode==="lists"){ hideDashboard(); hideEvents(); hideBoard(); renderLists(); return; }
-  hideDashboard(); hideEvents(); hideBoard(); hideLists();
+  if(state.viewMode==="dashboard"){ hideEvents(); hideBoard(); hideLists(); hideTaste(); renderDashboard(); return; }
+  if(state.viewMode==="events"){ hideDashboard(); hideBoard(); hideLists(); hideTaste(); renderEvents(); return; }
+  if(state.viewMode==="board"){ hideDashboard(); hideEvents(); hideLists(); hideTaste(); renderBoard(); return; }
+  if(state.viewMode==="lists"){ hideDashboard(); hideEvents(); hideBoard(); hideTaste(); renderLists(); return; }
+  if(state.viewMode==="taste"){ hideDashboard(); hideEvents(); hideBoard(); hideLists(); hideRecs(); renderTaste(); return; }
+  if(state.viewMode==="recs"){ hideDashboard(); hideEvents(); hideBoard(); hideLists(); hideTaste(); renderRecs(); return; }
+  hideDashboard(); hideEvents(); hideBoard(); hideLists(); hideTaste(); hideRecs();
   const wrap=$("calWrap"); wrap.innerHTML="";
   wrap.classList.toggle("cal", true);
   if(state.viewMode==="week") renderWeek(wrap);
@@ -5071,6 +5726,7 @@ function openDetail(md,episode){
         ${streamChipsHTML(md)}
         ${progressRowHtml(md)}
         ${datesRowHtml(md)}
+        ${predictRowHtml(md)}
         ${libraryRowHtml(md)}
         <div class="st-row">
           <span class="st-row-label">⭐ Your rating:</span>
@@ -6600,6 +7256,23 @@ document.addEventListener("click",e=>{
   state._mw={y:d.getFullYear(), m:d.getMonth()};
   renderMonthWrap();
 });
+/* Day 44: the predictor's own error rate, run on demand and reported openly —
+   including against the baseline of "just guess my average every time", because
+   a mean error with nothing to compare it to is a number that sounds like
+   evidence and is not. */
+function predictorSettingsHTML(){
+  const v=tasteVectors();
+  return `<div class="set-row"><div class="set-label">Predictions
+      <div class="set-hint">Estimated scores for shows you haven't rated, built from your own ratings and nothing else.
+        They appear on cards, in every show pop-up and on <b>✨ For you</b>. Nothing is uploaded and no model is trained
+        anywhere but in this browser.</div></div>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <button id="btTest"${v.rated<TASTE_MIN_RATED+2?" disabled":""}>📉 Test it on my own ratings</button>
+      <span class="num-hint" id="btOut" style="margin:0">${v.rated<TASTE_MIN_RATED+2
+        ? `Needs ${TASTE_MIN_RATED+2} rated shows to test itself; you have ${v.rated}.`
+        : `Hides each of your scores in turn, predicts it from the rest, and reports how far off it was.`}</span>
+    </div></div>`;
+}
 function wrapSettingsHTML(){
   const now=new Date(), w=monthWrap(now.getFullYear(), now.getMonth());
   return `<div class="set-row"><div class="set-label">Your month
@@ -6835,6 +7508,9 @@ function openSettings(){
     <h4 class="set-head">Notes</h4>
     ${notesSettingsHTML()}
 
+    <h4 class="set-head">Taste &amp; predictions</h4>
+    ${predictorSettingsHTML()}
+
     <h4 class="set-head">Looking back</h4>
     ${wrapSettingsHTML()}
 
@@ -6924,6 +7600,21 @@ function openSettings(){
   };
   if($("ntOpen")) $("ntOpen").onclick=()=>openNotes();
   if($("mwOpen")) $("mwOpen").onclick=()=>openMonthWrap();
+  if($("btTest")) $("btTest").onclick=()=>{
+    const out=$("btOut"), btn=$("btTest");
+    btn.disabled=true; out.textContent="Running…";
+    // Deferred a frame so the button visibly disables — the hold-out rebuilds
+    // the whole profile once per sampled show and does block.
+    setTimeout(()=>{
+      const r=predictorBacktest(40);
+      btn.disabled=false;
+      out.innerHTML = r
+        ? `Over <b>${r.n}</b> of your ratings it was out by <b>${r.mae}</b> on average, and within a point
+           <b>${r.within1}%</b> of the time. Guessing your average every time would be out by ${r.baseline} —
+           so it is ${r.beatsBaseline?`<b>doing better than guessing</b>`:`<b>no better than guessing</b>, which means it needs more ratings`}.`
+        : `Not enough confident predictions to measure yet — rate more shows and try again.`;
+    }, 30);
+  };
   if($("vsOpen")) $("vsOpen").onclick=()=>openVersus();
   // Throwing away a comparison history built one answer at a time gets the same
   // treatment "Unhide all" gets: it hands the whole thing back rather than
@@ -7203,6 +7894,303 @@ function hideDashboard(){
   $("dashboardWrap").style.display="none";
   document.body.classList.remove("dash-mode");
   destroyDashCharts();
+}
+
+/* ---------- the taste profile (Days 33–38) ----------
+   One view, six axes, all drawn by the same diverging bar: right of the centre
+   line means you rate it above your own bar, left means below. The bar is the
+   SHRUNK lift, so a value seen twice cannot out-shout one seen thirty times, but
+   the raw numbers and the count sit next to it — the chart shows its own
+   evidence rather than asking to be trusted.
+
+   No Chart.js. The dashboard loads it for the dashboard; six bar charts made of
+   divs cost nothing and inherit the theme, which a canvas does not. */
+const TASTE_TOP = 8;   // best and worst this many, per axis
+function tasteBarHtml(row, max){
+  const v=row.vsCrowd==null?row.lift:row.vsCrowd;
+  const pct=max?Math.min(100, Math.abs(v)/max*100):0;
+  const pos=v>=0;
+  return `<div class="tb-row${row.thin?" thin":""}">
+    <span class="tb-name" title="${esc(String(row.value))}">${esc(String(row.value))}</span>
+    <span class="tb-track">
+      <i class="tb-bar ${pos?"pos":"neg"}" style="width:${pct/2}%;${pos?"left:50%":"right:50%"}"></i>
+      <b class="tb-axis"></b>
+    </span>
+    <span class="tb-num ${pos?"pos":"neg"}">${pos?"+":""}${v.toFixed(2)}</span>
+    <span class="tb-meta">${row.mine.toFixed(1)}${row.crowd!=null?` vs ${row.crowd.toFixed(1)}`:""} · ${row.n}${row.thin?" ⚠":""}</span>
+  </div>`;
+}
+function tasteAxisHtml(dimKey){
+  const dim=TASTE_BY_KEY[dimKey], rows=tasteDim(dimKey);
+  if(!rows.length){
+    return `<section class="tz-axis"><h3>${esc(dim.label)}</h3>
+      <p class="num-hint" style="margin:0">Not enough rated shows carry a ${esc(dim.one)} yet — a ${esc(dim.one)} needs
+        ${TASTE_MIN_N} before it is counted at all.</p></section>`;
+  }
+  // A single value is a fact, not a comparison — Day 36's "handles a library
+  // spanning one decade only" is this branch, and it says so instead of drawing
+  // a lone bar at full width and implying a ranking.
+  if(rows.length===1){
+    const r=rows[0];
+    return `<section class="tz-axis"><h3>${esc(dim.label)}</h3>
+      <p class="num-hint" style="margin:0">Everything you have rated is <b>${esc(String(r.value))}</b>
+        (${r.n} show${r.n===1?"":"s"}, averaging ${r.mine.toFixed(1)}). There is nothing to compare it against yet.</p></section>`;
+  }
+  const max=Math.max(...rows.map(r=>Math.abs(r.vsCrowd==null?r.lift:r.vsCrowd)), 0.01);
+  const top=rows.slice(0, TASTE_TOP);
+  const bottom=rows.length>TASTE_TOP*2 ? rows.slice(-TASTE_TOP) : rows.slice(top.length);
+  const best=rows[0], worst=rows[rows.length-1];
+  return `<section class="tz-axis">
+    <h3>${esc(dim.label)} <span class="tz-n">${rows.length}</span></h3>
+    <p class="num-hint" style="margin:0 0 8px">Your best ${esc(dim.one)} is <b>${esc(String(best.value))}</b>${
+      best.crowd!=null?` — you give it ${best.mine.toFixed(1)} where the crowd gives ${best.crowd.toFixed(1)}`:""}${
+      rows.length>1?`; your worst is <b>${esc(String(worst.value))}</b>`:""}.</p>
+    <div class="tb-list">${top.map(r=>tasteBarHtml(r,max)).join("")}</div>
+    ${bottom.length?`<div class="tz-sep">…and the bottom ${bottom.length}</div>
+      <div class="tb-list">${bottom.map(r=>tasteBarHtml(r,max)).join("")}</div>`:""}
+  </section>`;
+}
+/* ---------- the archetype (Day 38) ----------
+   A name for the shape, derived from the axes rather than chosen from a list of
+   personalities — and it names the axes that produced it, because a label you
+   cannot check is a horoscope. */
+const ARCHETYPE_RULES = [
+  { test:t=>t.genre.has("Slice of Life")||t.genre.has("Drama"), word:"character-first" },
+  { test:t=>t.genre.has("Action")||t.genre.has("Adventure"),    word:"action-led" },
+  { test:t=>t.genre.has("Comedy"),                              word:"comedy-led" },
+  { test:t=>t.genre.has("Psychological")||t.genre.has("Mystery")||t.genre.has("Thriller"), word:"puzzle-minded" },
+  { test:t=>t.genre.has("Romance"),                             word:"romantic" },
+  { test:t=>t.genre.has("Sci-Fi")||t.genre.has("Fantasy"),      word:"world-building" },
+];
+function tasteArchetype(){
+  const v=tasteVectors();
+  if(v.rated<TASTE_MIN_RATED) return null;
+  const pick=(key,n)=>new Set(tasteDim(key).slice(0,n).map(r=>r.value));
+  const t={ genre:pick("genre",3), length:pick("length",2), era:pick("era",2) };
+  const parts=[], why=[];
+  for(const rule of ARCHETYPE_RULES){
+    if(rule.test(t)){ parts.push(rule.word); break; }
+  }
+  const topGenre=tasteDim("genre")[0], topLen=tasteDim("length")[0], topEra=tasteDim("era")[0];
+  if(topGenre) why.push(`you rate <b>${esc(String(topGenre.value))}</b> ${topGenre.lift>=0?"+":""}${topGenre.lift.toFixed(2)} against your own average`);
+  // Length is what turns a genre word into a sentence: "slow burn" and "binge"
+  // are statements about commitment, not about subject matter.
+  let pace="";
+  if(topLen){
+    const L=String(topLen.value);
+    pace = /Very long|Long/.test(L) ? "slow burn"
+         : /Two cour/.test(L)       ? "long-form"
+         : /Film/.test(L)           ? "one-sitting"
+         : /Short/.test(L)          ? "short-form"
+         : "single-cour";
+    why.push(`your best length is <b>${esc(L)}</b>`);
+  }
+  if(topEra){ why.push(`your strongest decade is <b>${esc(String(topEra.value))}</b>`); }
+  const label=[parts[0]||"broad-taste", pace].filter(Boolean).join(" ");
+  return { label, why, sample:v.rated };
+}
+function tasteHeaderHtml(){
+  const v=tasteVectors(), a=tasteArchetype();
+  const gap = v.myMean - v.crowdMean;
+  return `<div class="board-top">
+      <div class="board-head"><h2>🧭 Your taste</h2>
+        <div class="ev-sub">${a
+          ? `You look like a <b class="tz-arch">${esc(a.label)}</b> viewer — ${a.why.join(", ")}.`
+          : `Rate at least ${TASTE_MIN_RATED} shows and this becomes a profile. You have ${v.rated}.`}</div></div>
+    </div>
+    <div class="tz-sample">
+      <span><b>${v.rated}</b> rated show${v.rated===1?"":"s"} in the sample</span>
+      <span>your average <b>${v.myMean.toFixed(1)}</b>${v.crowdMean?` · the crowd's average on the same shows <b>${v.crowdMean.toFixed(1)}</b>`:""}</span>
+      ${v.crowdMean?`<span>you are <b>${gap>=0?"+":""}${gap.toFixed(1)}</b> ${gap>=0?"more":"less"} generous than average</span>`:""}
+      ${v.unresolved?`<span class="tz-warn">${v.unresolved} rated show${v.unresolved===1?"":"s"} not loaded yet and not counted</span>`:""}
+    </div>`;
+}
+function renderTaste(){
+  const wrap=$("tasteWrap");
+  wrap.style.display=""; document.querySelector("main").style.display="none"; document.body.classList.add("taste-mode");
+  const v=tasteVectors();
+  if(!tasteReady()){
+    wrap.innerHTML=tasteHeaderHtml()+
+      `<div class="ev-loading">Your taste profile is built from the shows you have scored — ${v.rated} so far,
+        and it needs ${TASTE_MIN_RATED}. Rate a few more and every axis below fills in.
+        ${v.unresolved?`<br><br>${v.unresolved} of your rated shows are from seasons that aren't loaded; they will join the sample as the app fetches them.`:""}</div>`;
+    return;
+  }
+  wrap.innerHTML=tasteHeaderHtml()
+    +`<p class="num-hint tz-legend">Bars show how far each one sits above or below <b>your own average</b>, after the
+       crowd's opinion of the same shows is subtracted — so neither your generosity nor a genre's general popularity
+       counts. The numbers beside each bar are your raw average, the crowd's, and how many of your shows it covers.
+       <b>⚠</b> marks a value thin enough to be luck.</p>
+     <div class="tz-axes">${TASTE_DIMS.map(d=>tasteAxisHtml(d.key)).join("")}</div>`;
+}
+function hideTaste(){
+  document.querySelector("main").style.display="";
+  const w=$("tasteWrap"); if(w) w.style.display="none";
+  document.body.classList.remove("taste-mode");
+}
+
+/* ---------- the recommendations page (Days 46–49, 52, 54) ----------
+   The predicted score is the headline, the confidence sits next to it, and the
+   reasoning is open by default rather than hidden behind a "why?" — a
+   recommendation you cannot interrogate is one you either take on faith or
+   ignore, and neither is what this is for. */
+/* Day 52: the reasoning, in the one place it is actually read — a chip's
+   tooltip. It names the axis, how many of your shows it rests on, and which of
+   them; a lift with no shows behind it is an assertion you cannot check. */
+function whyTitle(w){
+  const from=(w.from||[]).map(id=>{ const md=findMediaById(id); return md?title(md):null; }).filter(Boolean);
+  return `${w.label} · from ${w.n} of your rated shows${from.length?`, e.g. ${from.join(", ")}`:""}${
+    w.thin?" · thin evidence":""}${w.adj?` · you adjusted this by ${w.adj>0?"+":""}${w.adj}`:""}`;
+}
+/* Day 53: the chip is the control. Each one carries a thumb either side, and a
+   press rewrites the profile and repaints whatever is on screen — so the effect
+   of saying "I like this more than you think" is the list re-ranking under your
+   hand rather than something you take on trust and check later. */
+function whyChipHtml(w, live){
+  const adj=w.adj||0;
+  return `<span class="rc-chip ${w.lift>=0?"pos":"neg"}${w.thin?" thin":""}${adj?" adj":""}" title="${esc(whyTitle(w))}">
+    ${live?`<button type="button" class="rc-thumb" data-tadj="${esc(w.dim)}|${esc(String(w.value))}|-1" title="Less than that" aria-label="I like ${esc(String(w.value))} less than this">−</button>`:""}
+    ${esc(String(w.value))} <b>${w.lift>=0?"+":""}${w.lift.toFixed(2)}</b>${adj?`<i class="rc-adj" title="Your adjustment">✎</i>`:""}
+    ${live?`<button type="button" class="rc-thumb" data-tadj="${esc(w.dim)}|${esc(String(w.value))}|1" title="More than that" aria-label="I like ${esc(String(w.value))} more than this">+</button>`:""}
+  </span>`;
+}
+function recWhyHtml(r){
+  if(!r.why.length) return "";
+  return `<div class="rc-why">`+r.why.map(w=>whyChipHtml(w,true)).join("")+`</div>`;
+}
+function recCardHtml(r){
+  const md=r.md, img=(md.coverImage&&(md.coverImage.large||md.coverImage.medium))||"";
+  const eps=epTotal(md), mins=recRuntime(md);
+  const hrs=mins>=60?`${Math.round(mins/60)}h`:`${mins}m`;
+  const confPct=Math.round(r.conf*100);
+  const low=r.conf<PRED_GOOD_CONF;
+  return `<article class="rc-card">
+    <div class="rc-cover" role="button" tabindex="0" data-openshow="${esc(r.id)}">
+      ${img?`<img src="${esc(img)}" alt="" loading="lazy">`:`<span class="vs-ph">🎬</span>`}
+      <span class="rc-pred ${low?"low":""}" title="Predicted from your taste profile · rests on ${confPct}% evidence">${r.score}</span>
+    </div>
+    <div class="rc-body">
+      <h4 role="button" tabindex="0" data-openshow="${esc(r.id)}">${esc(title(md))}</h4>
+      <div class="rc-meta">${FMT_LABEL[md.format]||md.format||"?"}${eps?` · ${eps} ep`:""} · ${hrs}${
+        md.averageScore?` · ★ ${md.averageScore}`:""}${md.status==="RELEASING"?` · <b>airing</b>`:""}</div>
+      <div class="rc-conf" title="How much of your library this estimate rests on — not how accurate it is">
+        <i style="width:${confPct}%"></i><span>${confPct}% evidence</span></div>
+      ${r.departs&&r.departs.length?`<div class="rc-depart">Outside your usual: <b>${
+        esc(r.departs.map(d=>d.value).join(", "))}</b></div>`:""}
+      ${recWhyHtml(r)}
+      <div class="rc-act">
+        <button data-recadd="${esc(r.id)}" class="primary">＋ Plan to watch</button>
+        <button data-recno="${esc(r.id)}|seen">Already seen</button>
+        <button data-recno="${esc(r.id)}|no">Not interested</button>
+      </div>
+    </div>
+  </article>`;
+}
+/* The season lineup, rendered with the same card as a recommendation so a
+   predicted score means the same thing in both places. */
+function seasonCardHtml(r){
+  const md=r.md, img=(md.coverImage&&(md.coverImage.large||md.coverImage.medium))||"";
+  const eps=epTotal(md);
+  const confPct=Math.round(r.conf*100);
+  const badge = r.mine ? `<span class="rc-pred mine" title="Your own score">${r.mine}</span>`
+    : r.usable ? `<span class="rc-pred ${r.conf<PRED_GOOD_CONF?"low":""}" title="Predicted from your taste · rests on ${confPct}% evidence">${r.score}</span>`
+    : "";
+  const studio=((md.studios&&md.studios.nodes)||[])[0];
+  return `<article class="rc-card">
+    <div class="rc-cover" role="button" tabindex="0" data-openshow="${esc(r.id)}">
+      ${img?`<img src="${esc(img)}" alt="" loading="lazy">`:`<span class="vs-ph">🎬</span>`}${badge}
+    </div>
+    <div class="rc-body">
+      <h4 role="button" tabindex="0" data-openshow="${esc(r.id)}">${esc(title(md))}</h4>
+      <div class="rc-meta">${FMT_LABEL[md.format]||md.format||"?"}${eps?` · ${eps} ep`:""}${
+        studio&&studio.name?` · ${esc(studio.name)}`:""}${md.averageScore?` · ★ ${md.averageScore}`:""}</div>
+      ${r.usable?`<div class="rc-conf" title="How much of your library this estimate rests on — not how accurate it is">
+        <i style="width:${confPct}%"></i><span>${confPct}% evidence</span></div>`:""}
+      ${r.mine?`<div class="rc-depart" style="color:var(--good)">Already rated ${r.mine}/10</div>`:""}
+      ${!r.mine&&!r.usable?`<div class="rc-meta" style="opacity:.7">No estimate yet — nothing you have rated covers it</div>`:""}
+      ${r.why&&r.why.length?recWhyHtml(r):""}
+      <div class="rc-act">
+        <button data-recadd="${esc(r.id)}" class="primary">＋ Plan to watch</button>
+      </div>
+    </div>
+  </article>`;
+}
+function seasonPreviewHtml(){
+  const {season,year}=nextSeasonOf();
+  const name=season.charAt(0)+season.slice(1).toLowerCase()+" "+year;
+  if(seasonPreviewErr) return `<div class="ev-loading">Couldn't load ${esc(name)} — ${esc(seasonPreviewErr)}.</div>`;
+  if(!seasonPreview){ loadSeasonPreview(); return `<div class="ev-loading"><span class="spin" style="display:inline-block;margin-right:8px"></span> Loading ${esc(name)}…</div>`; }
+  const rows=seasonPreviewRows();
+  if(!rows.length) return `<div class="ev-loading">Nothing announced for ${esc(name)} yet.</div>`;
+  const withPred=rows.filter(r=>r.usable).length;
+  const ready=tasteReady();
+  return `<p class="num-hint" style="margin:0 0 12px"><b>${rows.length}</b> title${rows.length===1?"":"s"} announced for
+      <b>${esc(name)}</b>${ready
+        ? ` · <b>${withPred}</b> with an estimate from your taste, sorted best-first; the rest sit below by popularity.`
+        : ` · sorted by popularity. Rate ${TASTE_MIN_RATED} shows and this page starts predicting what you'd score each one.`}</p>
+    <div class="rc-grid">${rows.slice(0,80).map(seasonCardHtml).join("")}</div>`;
+}
+function recControlsHtml(res){
+  const genres=[...new Set((res.rows||[]).flatMap(r=>r.md.genres||[]))].sort();
+  const tabs=Object.entries(REC_MODES).map(([k,m])=>
+    `<button class="sk-tab${state.recMode===k?" on":""}" data-recmode="${k}">${esc(m.label)}</button>`).join("");
+  // The genre and airing filters belong to the ranked lenses; a season lineup is
+  // already scoped to one season, and "airing now" is a contradiction there.
+  const filters = state.recMode==="season" ? "" :
+    `<select data-recgenre><option value="">Any genre</option>${genres.map(g=>
+        `<option value="${esc(g)}"${state.recGenre===g?" selected":""}>${esc(g)}</option>`).join("")}</select>
+     <label class="rc-check"><input type="checkbox" data-recairing${state.recAiring?" checked":""}> Airing now</label>`;
+  return `<div class="sk-tabs">${tabs}</div>
+    <div class="rc-bar">${filters}
+      <span class="num-hint" style="margin:0">${esc(REC_MODES[state.recMode].hint)}</span>
+    </div>`;
+}
+function renderRecs(){
+  const wrap=$("recsWrap");
+  wrap.style.display=""; document.querySelector("main").style.display="none"; document.body.classList.add("taste-mode");
+  const v=tasteVectors();
+  const head=`<div class="board-top">
+      <div class="board-head"><h2>✨ For you</h2>
+        <div class="ev-sub">Ranked by what this thinks you would score them, built only from the shows you have rated. Nothing here leaves your browser.</div></div>
+    </div>`;
+  // Day 88 is the one lens that works with an empty library, so it is offered
+  // even when the rest of the page cannot say anything yet — a first-time
+  // visitor gets a real page instead of a locked one.
+  if(state.recMode==="season"){ wrap.innerHTML=head+recControlsHtml({rows:[]})+seasonPreviewHtml(); return; }
+  if(!tasteReady()){
+    wrap.innerHTML=head+recControlsHtml({rows:[]})+`<div class="ev-loading">This needs ${TASTE_MIN_RATED} rated shows to say anything —
+      you have ${v.rated}. Score a few and it fills in. <br><br>
+      The fastest way is <b>🧭 Taste → ⚔ Head to head</b>, or just rate the last handful of things you finished.
+      <br><br>In the meantime, <b>Next season</b> above works without any of that.</div>`;
+    return;
+  }
+  const res=recommendations(state.recMode, {
+    genre: state.recGenre||null,
+    airingOnly: state.recAiring,
+    maxRuntime: state.recMode==="short" ? REC_SHORT_CAP_MIN : null,
+  });
+  const rows=res.rows.slice(0,60);
+  // An over-filtered result explains itself rather than showing a blank page —
+  // and names which control to loosen, since it knows which one emptied it.
+  let body;
+  if(!rows.length){
+    const wide=recommendations("all",{});
+    body=`<div class="ev-loading">Nothing matches that combination.
+      ${state.recMode!=="all"?`<b>${esc(REC_MODES[state.recMode].label)}</b> is the strictest part — `:""}
+      ${wide.rows.length?`there are <b>${wide.rows.length}</b> picks with the filters off.`:
+        `there is nothing it can recommend yet: it has ${res.pool} shows loaded and has already seen them all in your library.`}</div>`;
+  } else {
+    body=`<div class="rc-grid">${rows.map(recCardHtml).join("")}</div>`;
+  }
+  wrap.innerHTML=head+recControlsHtml(res)+body+
+    `<p class="num-hint" style="margin-top:14px">Picked from the <b>${res.pool}</b> shows this browser has loaded —
+      browsing more seasons widens the pool. ${state.recNo.size?`<b>${state.recNo.size}</b> dismissed and never shown again
+      (<button class="afx-clear" data-recreset>undo all</button>).`:""}</p>`;
+}
+function hideRecs(){
+  document.querySelector("main").style.display="";
+  const w=$("recsWrap"); if(w) w.style.display="none";
+  if(state.viewMode!=="taste") document.body.classList.remove("taste-mode");
 }
 
 /* ---------- board (watch statuses) ---------- */
@@ -8337,6 +9325,77 @@ document.addEventListener("click",e=>{
 });
 document.addEventListener("click",e=>{
   if(e.target.closest("[data-sortopen]")) openSortBuilder();
+});
+/* Retrain in place (Day 53). One handler, and it repaints whatever surface the
+   chip was on — the acceptance line is "without a reload", so the pop-up, the
+   recommendations behind it and every card badge all have to move together. */
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-tadj]"); if(!b) return;
+  e.preventDefault(); e.stopPropagation();
+  const parts=String(b.dataset.tadj).split("|");
+  const dim=parts[0], dir=+parts[parts.length-1];
+  const value=parts.slice(1,-1).join("|");   // a tag can contain a pipe; the ends are known
+  const before=tasteAdjOf(dim,value);
+  const now=nudgeTaste(dim, value, dir);
+  if(now===before){ toast(`That is as far as it goes`); return; }
+  repaintPredictions();
+  const label=TASTE_BY_KEY[dim] ? TASTE_BY_KEY[dim].label : dim;
+  toast(`${label}: ${value} ${now>0?"+":""}${now||"back to what you rated"}`,
+        ()=>{ if(before) state.tasteAdj[adjKey(dim,value)]=before; else clearTasteAdj(dim,value);
+              saveTasteAdj(); repaintPredictions(); });
+});
+/* Everything that can be showing a prediction, refreshed in one call. The show
+   pop-up is rebuilt only when it is the thing open, and only its prediction row
+   — reopening the whole modal would throw away scroll position and focus, which
+   is the lesson Day 07 already paid for. */
+function repaintPredictions(){
+  const row=document.querySelector(".pr-row");
+  if(row){
+    const idEl=document.querySelector("[data-note]");
+    const md=idEl?findMediaById(idEl.dataset.note):null;
+    if(md){ const tmp=document.createElement("div"); tmp.innerHTML=predictRowHtml(md);
+            if(tmp.firstElementChild) row.replaceWith(tmp.firstElementChild); else row.remove(); }
+  }
+  if(state.viewMode==="recs") renderRecs();
+  else if(state.viewMode==="taste") renderTaste();
+  else renderView();          // card badges everywhere else
+}
+/* Recommendations (Days 45–49, 54). */
+document.addEventListener("click",e=>{
+  const t=e.target.closest("[data-recmode]"); if(!t) return;
+  state.recMode=t.dataset.recmode; renderRecs();
+});
+document.addEventListener("change",e=>{
+  const g=e.target.closest("[data-recgenre]");
+  if(g){ state.recGenre=g.value; renderRecs(); return; }
+  const a=e.target.closest("[data-recairing]");
+  if(a){ state.recAiring=a.checked; renderRecs(); }
+});
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-recadd]"); if(!b) return;
+  e.preventDefault(); e.stopPropagation();
+  const id=b.dataset.recadd, md=findMediaById(id);
+  setStatusOf(id,"plan");
+  renderRecs();
+  toast(`📋 ${md?title(md):"Added"} · Plan to Watch`, ()=>{ setStatusOf(id,null,{stamp:false}); renderRecs(); });
+});
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-recno]"); if(!b) return;
+  e.preventDefault(); e.stopPropagation();
+  const [id,why]=String(b.dataset.recno).split("|");
+  const md=findMediaById(id);
+  dismissRec(id, why);
+  renderRecs();
+  toast(why==="seen"?`Marked as already seen · ${md?title(md):""}`:`Won't suggest that again`,
+        ()=>{ undismissRec(id); renderRecs(); });
+});
+document.addEventListener("click",e=>{
+  if(!e.target.closest("[data-recreset]")) return;
+  e.preventDefault();
+  const was=[...state.recNo];
+  state.recNo=new Set(); saveRecDismiss(); renderRecs();
+  toast(`Restored ${was.length} dismissed pick${was.length===1?"":"s"}`,
+        ()=>{ state.recNo=new Set(was); saveRecDismiss(); renderRecs(); });
 });
 /* Favourites, pins and the archive (Days 25–27). */
 document.addEventListener("click",e=>{

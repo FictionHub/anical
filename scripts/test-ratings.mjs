@@ -115,22 +115,37 @@ const NEEDED = [
   "saveArchived", "isArchived", "toggleArchived",
   "SORT_KEYS", "SORT_BY_KEY", "DEFAULT_SORT", "saveSortState", "cleanSort", "activeSort",
   "compareBy", "librarySort", "libraryOrder", "sortSummary",
+  "TASTE_K", "TASTE_MIN_N", "TASTE_THIN_N", "TAG_MIN_RANK", "LENGTH_BUCKETS", "lengthBucket",
+  "yearOfMedia", "decadeOf", "TASTE_DIMS", "TASTE_BY_KEY", "tasteCache",
+  "TASTE_ADJ_STEP", "TASTE_ADJ_MAX", "adjKey", "saveTasteAdj", "tasteAdjOf",
+  "nudgeTaste", "clearTasteAdj", "tasteAdjCount", "tasteVectors",
+  "tasteDim", "TASTE_MIN_RATED", "tasteReady",
+  "PRED_DIM_WEIGHT", "PRED_LOW_CONF", "PRED_GOOD_CONF", "PRED_PAIR_WEIGHT", "predCache",
+  "predIndex", "pairNudge", "predictScore", "predUsable", "predictorBacktest",
 ];
 
 const state = {
   ratings: {}, axes: {}, weights: {}, pairs: [], normalize: false, status: {}, hidden: new Set(),
-  favs: new Set(), pins: [], archived: new Set(), sort: [], sorts: [], dates: {}, progress: {}, rewatch: {},
+  favs: new Set(), pins: [], archived: new Set(), sort: [], sorts: [], dates: {}, progress: {}, rewatch: {}, tasteAdj: {},
+  media: [], extra: new Map(), watch: new Set(), recNo: new Set(),
 };
 // Two app-level boundaries the extracted code reaches through. Stubbing them is
 // the whole reason this file can test versusPool()/nextPair() at all: the real
 // findMediaById searches three live collections and the real isHidden reads a
 // Set that only the running app fills.
-const drawable = new Set();   // ids the fake catalogue can render
+// The fake catalogue. Tests that only need "does this id resolve" add a bare id;
+// the taste tests put a full media record in, so the vectors have facets to read.
+const drawable = new Set();
+const catalogue = new Map();
+const mediaFor = id => catalogue.get(String(id))
+  || (drawable.has(String(id)) ? { id: String(id), title: { english: "Show " + id } } : null);
 const sandbox = {
   state,
   localStorage: { store: {}, getItem(k) { return this.store[k] ?? null; }, setItem(k, v) { this.store[k] = String(v); }, removeItem(k) { delete this.store[k]; } },
   isHidden: id => state.hidden.has(String(id)),
-  findMediaById: id => (drawable.has(String(id)) ? { id: String(id), title: { english: "Show " + id } } : null),
+  findMediaById: mediaFor,
+  SOURCE_LABEL: { MANGA: "Manga", ORIGINAL: "Original", LIGHT_NOVEL: "Light Novel" },
+  excluded: () => false,
   // The sort keys reach a few more app-level helpers; same boundary, same reason.
   title: md => (md && md.title && md.title.english) || "",
   boardStatusOf: id => state.status[String(id)] || null,
@@ -540,6 +555,132 @@ section("Favourites, pins, sorting");
     sortSummary([{ key: "status", dir: "asc" }, { key: "score", dir: "desc" }]) === "Status ↑, then Your score ↓",
     sortSummary([{ key: "status", dir: "asc" }, { key: "score", dir: "desc" }]));
   ok("…and the empty sort says what it actually does", sortSummary([]) === "Favourites first");
+}
+
+/* ---------- taste vectors and the predictor (Days 32–44) ----------
+   Built on a library with a PLANTED answer, so these assert that the engine
+   recovers a signal that is known rather than that it produces plausible-looking
+   numbers. The rule: Psychological +2.5, studio Madhouse +1.5, 24+ episodes +1,
+   Ecchi −2.5, over a base of 6. */
+section("Taste vectors & the predictor");
+{
+  const {
+    tasteVectors, tasteDim, tasteReady, TASTE_MIN_RATED, TASTE_MIN_N,
+    predictScore, predUsable, PRED_LOW_CONF, lengthBucket, decadeOf,
+  } = sandbox.__api;
+
+  let seed = 12345;
+  const rng = () => ((seed = (seed * 1103515245 + 12345) & 0x7fffffff) / 0x7fffffff);
+  const pick = a => a[Math.floor(rng() * a.length)];
+  const GEN = ["Action", "Comedy", "Drama", "Psychological", "Romance", "Ecchi", "Fantasy", "Sci-Fi"];
+  const STU = ["Madhouse", "Bones", "MAPPA", "Kyoto Animation", "A-1 Pictures", "Shaft"];
+  const truth = md => {
+    let s = 6;
+    if (md.genres.includes("Psychological")) s += 2.5;
+    if (md.studios.nodes[0].name === "Madhouse") s += 1.5;
+    if ((md.episodes || 0) >= 24) s += 1;
+    if (md.genres.includes("Ecchi")) s -= 2.5;
+    return Math.max(1, Math.min(10, Math.round(s * 2) / 2));
+  };
+  function buildLibrary(total, rate) {
+    catalogue.clear(); drawable.clear();
+    state.ratings = {}; state.axes = {}; state.status = {}; state.hidden = new Set();
+    state.watch = new Set(); state.recNo = new Set(); state.media = []; state.extra = new Map();
+    seed = 12345;
+    const all = [];
+    for (let i = 0; i < total; i++) {
+      const md = {
+        id: String(9000 + i), title: { english: "Show " + i }, format: "TV",
+        episodes: [1, 6, 12, 13, 24, 26, 50][Math.floor(rng() * 7)], duration: 24,
+        genres: [...new Set([pick(GEN), pick(GEN)])],
+        tags: [{ name: pick(["Time Skip", "Tragedy", "Iyashikei"]), rank: 80, isMediaSpoiler: false, isAdult: false }],
+        studios: { nodes: [{ name: pick(STU) }] },
+        seasonYear: 2000 + Math.floor(rng() * 25), source: "MANGA",
+        averageScore: 70, status: "FINISHED",
+      };
+      catalogue.set(md.id, md); state.media.push(md); all.push(md);
+    }
+    for (const md of all.slice(0, rate)) {
+      state.ratings[md.id] = truth(md); state.watch.add(md.id);
+    }
+    saveRatings();
+    sandbox.tasteCache = null; sandbox.predCache = null;
+    return all;
+  }
+
+  ok("length buckets name themselves", lengthBucket(1) === "Film / one-shot" && lengthBucket(26) === "Two cour (15–28)");
+  ok("a decade is a decade", decadeOf(2013) === "2010s" && decadeOf(0) === null);
+
+  buildLibrary(90, 40);
+  const v = tasteVectors();
+  ok("the sample is what could be resolved", v.rated === 40);
+  ok("…and the profile is ready", tasteReady());
+
+  const g = tasteDim("genre");
+  ok("no value below the minimum sample is charted", g.every(r => r.n >= TASTE_MIN_N));
+  // THE PLANTED ANSWERS. Signs and ordering, not magnitudes — shrinkage
+  // deliberately attenuates, so asserting exact lifts would test the constant.
+  ok("the liked genre comes top", g[0].value === "Psychological", `${g[0].value} ${g[0].lift}`);
+  ok("…with a positive lift", g[0].lift > 0);
+  ok("the disliked genre comes last", g[g.length - 1].value === "Ecchi", `${g[g.length - 1].value}`);
+  ok("…with a negative lift", g[g.length - 1].lift < 0);
+  const st = tasteDim("studio");
+  ok("the liked studio comes top", st[0].value === "Madhouse", `${st[0].value} ${st[0].lift}`);
+  const len = tasteDim("length");
+  ok("the liked length comes top", /Long|Two cour/.test(String(len[0].value)), `${len[0].value}`);
+
+  // Shrinkage: a one-off 10 must not out-rank a well-evidenced favourite.
+  const before = tasteDim("genre")[0].value;
+  const spike = { id: "7777", title: { english: "Spike" }, format: "TV", episodes: 12, duration: 24,
+    genres: ["Ecchi", "Sports"], tags: [], studios: { nodes: [{ name: "Nobody" }] },
+    seasonYear: 2011, source: "MANGA", averageScore: 70, status: "FINISHED" };
+  catalogue.set("7777", spike); state.media.push(spike);
+  state.ratings["7777"] = 10; saveRatings();
+  sandbox.tasteCache = null; sandbox.predCache = null;
+  ok("one 10/10 cannot take over a chart", tasteDim("genre")[0].value === before,
+    `${tasteDim("genre")[0].value}`);
+  ok("…and a value seen once is still not charted at all",
+    !tasteDim("genre").some(r => r.value === "Sports"));
+
+  buildLibrary(90, 40);
+  // Prediction over the 50 unrated shows against the ground truth.
+  const preds = [];
+  for (let i = 40; i < 90; i++) {
+    const md = catalogue.get(String(9000 + i));
+    const p = predictScore(md.id);
+    if (p && p.score != null) preds.push({ p: p.score, t: truth(md), c: p.conf });
+  }
+  ok("every unrated show gets an estimate", preds.length === 50, `${preds.length}`);
+  const mae = preds.reduce((s, r) => s + Math.abs(r.p - r.t), 0) / preds.length;
+  ok("…and the estimates track the planted truth", mae < 1.6, `mean error ${mae.toFixed(2)}`);
+  ok("a rated show gets no estimate", predictScore("9000") === null);
+
+  // Day 40 / 42: evidence collapses for a show sharing nothing, and the app
+  // refuses to show a number rather than dressing a guess up as one.
+  const alien = { id: "6666", title: { english: "Alien" }, format: "TV", episodes: 12, duration: 24,
+    genres: ["Mecha", "Horror"], tags: [{ name: "Nope", rank: 80, isMediaSpoiler: false, isAdult: false }],
+    studios: { nodes: [{ name: "Unknown Co" }] }, seasonYear: 1969, source: "OTHER",
+    averageScore: 70, status: "FINISHED" };
+  catalogue.set("6666", alien); state.media.push(alien);
+  sandbox.tasteCache = null; sandbox.predCache = null;
+  const ap = predictScore("6666");
+  ok("a show with nothing in common has almost no evidence", ap.conf < PRED_LOW_CONF, `conf ${ap.conf}`);
+  ok("…so it is refused rather than guessed at", !predUsable(ap));
+  const known = predictScore("9041");
+  ok("…where a well-covered show is not refused", predUsable(known), `conf ${known.conf}`);
+  ok("evidence is a real scale, not a flag", known.conf - ap.conf > 0.4,
+    `${ap.conf} vs ${known.conf}`);
+
+  // Below the library floor nothing is predicted at all.
+  buildLibrary(90, TASTE_MIN_RATED - 1);
+  ok("under the floor there is no profile and no prediction",
+    !tasteReady() && predictScore("9050") === null);
+
+  ok("every estimate carries its reasons", (() => {
+    buildLibrary(90, 40);
+    const p = predictScore("9050");
+    return p.why.length > 0 && p.why.every(w => w.value && typeof w.lift === "number");
+  })());
 }
 
 console.log(`\n${fail ? "✗" : "✓"} ${pass} passed, ${fail} failed\n`);
