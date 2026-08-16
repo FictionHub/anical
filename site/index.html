@@ -1669,7 +1669,7 @@
 
 // Build number auto-stamped from the git commit count by scripts/stamp-version.mjs
 // (run via the .githooks/pre-commit hook). Do not edit by hand — it changes every commit.
-const APP_VERSION = "4.1.104";
+const APP_VERSION = "4.1.105";
 
 // Tsuzuki's own read API. It serves the same AniList payload out of a shared
 // server-side catalog (netlify/functions/_lib/catalog.mjs), so the schedule a
@@ -3681,37 +3681,53 @@ function feedPool(){
    compress a very long tail) makes the early feed recognisable; once there is a
    profile, a predicted score above your average tilts it toward things you would
    plausibly want. Recognisable first, personal later. */
-function feedWeight(md){
+/* `mean` is passed in rather than read here because this runs once per pool
+   entry — a few thousand times per served card — and tasteVectors() rebuilds
+   its cache stamp on every call. */
+function feedWeight(md, mean){
   const pop=Math.sqrt(Math.max(1, md.popularity||1));
-  if(!tasteReady()) return pop;
+  if(mean==null) return pop;
   const p=predictScore(String(md.id));
   if(!predUsable(p)) return pop;
-  const over=Math.max(0, p.score - tasteVectors().myMean);
+  const over=Math.max(0, p.score - mean);
   return pop * (1 + over*FEED_TILT);
 }
-function feedPick(){
-  const pool=feedPool();
+function feedPick(pool){
+  pool=pool||feedPool();
   if(!pool.length) return null;
-  let total=0; const w=pool.map(md=>{ const x=feedWeight(md); total+=x; return x; });
+  const mean=tasteReady()?tasteVectors().myMean:null;
+  let total=0; const w=pool.map(md=>{ const x=feedWeight(md, mean); total+=x; return x; });
   let r=Math.random()*total;
   for(let i=0;i<pool.length;i++){ r-=w[i]; if(r<=0) return pool[i]; }
   return pool[pool.length-1];
 }
 /* Serve the next card, and widen the pool before it runs dry rather than after.
    fetchSeasonless() is the app's existing "everything without a season" set, so
-   this costs one cached request and no new plumbing. */
-let feedWidening=false;
+   this costs one cached request and no new plumbing.
+
+   The two guards below are what keep "the pool is empty" from becoming an
+   infinite loop. fetchSeasonless() memoises into state.seasonCache, so from the
+   second call on it resolves immediately and adds nothing: with a pool that
+   stays under 25 (everything loaded is already watched, rated, dismissed or
+   skipped) the re-render below called straight back into feedServe, which
+   widened again, which re-rendered — a busy loop rebuilding the whole feed
+   panel every ~25ms until the tab ran out of memory. `feedWidened` makes the
+   widening a once-per-session thing, which is all a memoised fetch can ever be
+   worth, and `added` means a re-render only happens when the pool actually
+   grew. Either alone closes the loop; they say different things, so both stay. */
+let feedWidening=false, feedWidened=false;
 function feedServe(){
   const pool=feedPool();
-  if(pool.length<25 && !feedWidening){
+  if(pool.length<25 && !feedWidening && !feedWidened){
     feedWidening=true;
     fetchSeasonless().then(list=>{
-      for(const md of (list||[])) if(!state.extra.has(String(md.id))) state.extra.set(String(md.id), md);
-      feedWidening=false;
-      if(state.viewMode==="recs" && state.recMode==="feed" && !state.feedCard) renderRecs();
-    }).catch(()=>{ feedWidening=false; });
+      let added=0;
+      for(const md of (list||[])) if(!state.extra.has(String(md.id))){ state.extra.set(String(md.id), md); added++; }
+      feedWidening=false; feedWidened=true;
+      if(added && state.viewMode==="recs" && state.recMode==="feed" && !state.feedCard) renderRecs();
+    }).catch(()=>{ feedWidening=false; feedWidened=true; });
   }
-  state.feedCard=feedPick();
+  state.feedCard=feedPick(pool);   // the pool we already walked, not a second sweep of the library
   state.feedAsk=null;   // a new card is never mid-question
   return state.feedCard;
 }
