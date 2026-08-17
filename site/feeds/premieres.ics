@@ -9,6 +9,15 @@ NAME:Tsuzuki — Anime Premieres
 REFRESH-INTERVAL;VALUE=DURATION:PT12H
 X-PUBLISHED-TTL:PT12H
 BEGIN:VEVENT
+UID:tsuzuki-195516-1@tsuzuki.netlify.app
+DTSTAMP:20261002T140000Z
+DTSTART:20261002T140000Z
+DTEND:20261002T143000Z
+SUMMARY:The Apothecary Diaries Season 3 — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/the-apothecary-diaries-season-3-195516/
+URL:https://tsuzuki.top/anime/the-apothecary-diaries-season-3-195516/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-133007-1@tsuzuki.netlify.app
 DTSTAMP:20260827T150000Z
 DTSTART:20260827T150000Z
@@ -25,6 +34,15 @@ DTEND:20261022T153000Z
 SUMMARY:Made in Abyss: Mezameru Shinpi — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/made-in-abyss-mezameru-shinpi-160275/
 URL:https://tsuzuki.top/anime/made-in-abyss-mezameru-shinpi-160275/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-159042-1@tsuzuki.netlify.app
+DTSTAMP:20260930T153000Z
+DTSTART:20260930T153000Z
+DTEND:20260930T160000Z
+SUMMARY:Reincarnated as a Sword Season 2 — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/reincarnated-as-a-sword-season-2-159042/
+URL:https://tsuzuki.top/anime/reincarnated-as-a-sword-season-2-159042/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-143103-1@tsuzuki.netlify.app

@@ -91,9 +91,9 @@ URL:https://tsuzuki.top/anime/clevatess-season-2-198946/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-184492-f24@tsuzuki.netlify.app
-DTSTAMP:20260919T092600Z
-DTSTART:20260919T092600Z
-DTEND:20260919T095600Z
+DTSTAMP:20260926T092600Z
+DTSTART:20260926T092600Z
+DTEND:20260926T095600Z
 SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Finale (Ep 24)
 DESCRIPTION:Season finale. https://tsuzuki.top/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
 URL:https://tsuzuki.top/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
@@ -108,15 +108,6 @@ DESCRIPTION:Season finale. https://tsuzuki.top/anime/from-old-country-bumpkin-to
 URL:https://tsuzuki.top/anime/from-old-country-bumpkin-to-master-swordsman-ii-194829/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-171110-f24@tsuzuki.netlify.app
-DTSTAMP:20260926T083000Z
-DTSTART:20260926T083000Z
-DTEND:20260926T090000Z
-SUMMARY:Ascendance of a Bookworm: Adopted Daughter of an Archduke — Finale (Ep 24)
-DESCRIPTION:Season finale. https://tsuzuki.top/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
-URL:https://tsuzuki.top/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-199111-f12@tsuzuki.netlify.app
 DTSTAMP:20260921T150000Z
 DTSTART:20260921T150000Z
@@ -124,6 +115,15 @@ DTEND:20260921T153000Z
 SUMMARY:Grand Blue Dreaming Season 3 — Finale (Ep 12)
 DESCRIPTION:Season finale. https://tsuzuki.top/anime/grand-blue-dreaming-season-3-199111/
 URL:https://tsuzuki.top/anime/grand-blue-dreaming-season-3-199111/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-171110-f24@tsuzuki.netlify.app
+DTSTAMP:20260926T083000Z
+DTSTART:20260926T083000Z
+DTEND:20260926T090000Z
+SUMMARY:Ascendance of a Bookworm: Adopted Daughter of an Archduke — Finale (Ep 24)
+DESCRIPTION:Season finale. https://tsuzuki.top/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
+URL:https://tsuzuki.top/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-201514-f12@tsuzuki.netlify.app
@@ -162,15 +162,6 @@ DESCRIPTION:Season finale. https://tsuzuki.top/anime/i-became-a-legend-after-my-
 URL:https://tsuzuki.top/anime/i-became-a-legend-after-my-10-year-long-last-stand-199748/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-169583-f12@tsuzuki.netlify.app
-DTSTAMP:20260921T143000Z
-DTSTART:20260921T143000Z
-DTEND:20260921T150000Z
-SUMMARY:Oh Boy\, Was I Wrong About Her — Finale (Ep 12)
-DESCRIPTION:Season finale. https://tsuzuki.top/anime/oh-boy-was-i-wrong-about-her-169583/
-URL:https://tsuzuki.top/anime/oh-boy-was-i-wrong-about-her-169583/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-204466-f12@tsuzuki.netlify.app
 DTSTAMP:20260917T162800Z
 DTSTART:20260917T162800Z
@@ -178,6 +169,15 @@ DTEND:20260917T165800Z
 SUMMARY:KAIJU GIRL CARAMELISE — Finale (Ep 12)
 DESCRIPTION:Season finale. https://tsuzuki.top/anime/kaiju-girl-caramelise-204466/
 URL:https://tsuzuki.top/anime/kaiju-girl-caramelise-204466/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-169583-f12@tsuzuki.netlify.app
+DTSTAMP:20260921T143000Z
+DTSTART:20260921T143000Z
+DTEND:20260921T150000Z
+SUMMARY:Oh Boy\, Was I Wrong About Her — Finale (Ep 12)
+DESCRIPTION:Season finale. https://tsuzuki.top/anime/oh-boy-was-i-wrong-about-her-169583/
+URL:https://tsuzuki.top/anime/oh-boy-was-i-wrong-about-her-169583/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-197715-f12@tsuzuki.netlify.app

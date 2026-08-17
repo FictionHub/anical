@@ -6,7 +6,7 @@
     <atom:link href="https://tsuzuki.top/feed.xml" rel="self" type="application/rss+xml" />
     <description>Upcoming and recent anime premieres and season finales, updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 13 Aug 2026 16:47:20 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 17 Aug 2026 09:08:38 GMT</lastBuildDate>
     <ttl>720</ttl>
     <item>
       <title>Please Excuse My Younger Brothers — Finale (Ep 24)</title>
@@ -184,11 +184,25 @@
       <description>Finale: The second season of Nige Jouzu no Wakagimi .</description>
     </item>
     <item>
+      <title>The Apothecary Diaries Season 3 — Premiere (Ep 1)</title>
+      <link>https://tsuzuki.top/anime/the-apothecary-diaries-season-3-195516/</link>
+      <guid isPermaLink="false">tsuzuki-rss-195516-p1</guid>
+      <pubDate>Fri, 02 Oct 2026 14:00:00 GMT</pubDate>
+      <description>Premiere: The third season of Kusuriya no Hitorigoto . In the aftermath of the Shi Clan’s rebellion, things have finally settled down, and Maomao has returned to her old life as a pharmacist in the pleasure district. One day, triggered by a breakfast served at the Verdigris House, Maomao…</description>
+    </item>
+    <item>
       <title>The Ramparts of Ice Season 2 — Premiere (Ep 1)</title>
       <link>https://tsuzuki.top/anime/the-ramparts-of-ice-season-2-213805/</link>
       <guid isPermaLink="false">tsuzuki-rss-213805-p1</guid>
       <pubDate>Thu, 01 Oct 2026 02:56:00 GMT</pubDate>
       <description>Premiere: The second season of Koori no Jouheki .</description>
+    </item>
+    <item>
+      <title>Reincarnated as a Sword Season 2 — Premiere (Ep 1)</title>
+      <link>https://tsuzuki.top/anime/reincarnated-as-a-sword-season-2-159042/</link>
+      <guid isPermaLink="false">tsuzuki-rss-159042-p1</guid>
+      <pubDate>Wed, 30 Sep 2026 15:30:00 GMT</pubDate>
+      <description>Premiere: The second season of Tensei Shitara Ken Deshita . Note: Each episode was streamed one week in advance of the TV broadcast starting on October 1, 2026 on Abema. Regular broadcasting began on October 8, 2026.</description>
     </item>
     <item>
       <title>Re:ZERO -Starting Life in Another World- Season 4 — Finale (Ep 19)</title>
@@ -231,6 +245,13 @@
       <guid isPermaLink="false">tsuzuki-rss-204431-f4</guid>
       <pubDate>Sat, 26 Sep 2026 11:00:00 GMT</pubDate>
       <description>Finale: Original anime shorts about Narumi's daily life at work.</description>
+    </item>
+    <item>
+      <title>Welcome to Demon School! Iruma-kun Season 4 — Finale (Ep 24)</title>
+      <link>https://tsuzuki.top/anime/welcome-to-demon-school-iruma-kun-season-4-184492/</link>
+      <guid isPermaLink="false">tsuzuki-rss-184492-f24</guid>
+      <pubDate>Sat, 26 Sep 2026 09:26:00 GMT</pubDate>
+      <description>Finale: The fourth season of Mairimashita! Iruma-kun. Suzuki Iruma and all thirteen students of the Misfit Class must perform to reach Rank 4 at the Music Festival. (Source: Crunchyroll News)</description>
     </item>
     <item>
       <title>Ascendance of a Bookworm: Adopted Daughter of an Archduke — Finale (Ep 24)</title>
@@ -336,27 +357,6 @@
       <guid isPermaLink="false">tsuzuki-rss-169583-f12</guid>
       <pubDate>Mon, 21 Sep 2026 14:30:00 GMT</pubDate>
       <description>Finale: Seven years after making a childhood promise to always be friends, Hayato is reunited with his formerly tomboyish pal Haruki at a city high school–only now, Haruki has transformed into the girl every guy dreams about! While Haruki’s looks may have changed, with Hayato, she’s…</description>
-    </item>
-    <item>
-      <title>The Forsaken Saintess and Her Foodie Roadtrip in Another World — Finale (Ep 12)</title>
-      <link>https://tsuzuki.top/anime/the-forsaken-saintess-and-her-foodie-roadtrip-in-another-wor-209504/</link>
-      <guid isPermaLink="false">tsuzuki-rss-209504-f12</guid>
-      <pubDate>Mon, 21 Sep 2026 14:00:00 GMT</pubDate>
-      <description>Finale: Rin Takanashi, a caregiver in her thirties, was unceremoniously discarded as &quot;trash&quot; despite being summoned as a saint. However, as a lover of the great outdoors and all things camping, she was blessed with a special skill, &quot;Survival,&quot; as well as another unique skill! Thus, a…</description>
-    </item>
-    <item>
-      <title>Flaming Dodgeball Girl Danko — Finale (Ep 12)</title>
-      <link>https://tsuzuki.top/anime/flaming-dodgeball-girl-danko-195833/</link>
-      <guid isPermaLink="false">tsuzuki-rss-195833-f12</guid>
-      <pubDate>Mon, 21 Sep 2026 14:00:00 GMT</pubDate>
-      <description>Finale: The sequel to the legendary dodgeball manga Honou no Toukyuuji Dodge Danpei ! In this modern version of the hot-blooded dodgeball story, Danpei's daughter, Danko, follows in his footsteps, struggling to build a dodgeball team with the strongest fighting spirit in the modern age…</description>
-    </item>
-    <item>
-      <title>A Livid Lady’s Guide to Getting Even: How I Crushed My Homeland with My Mighty Grimoires — Finale (Ep 12)</title>
-      <link>https://tsuzuki.top/anime/a-livid-ladys-guide-to-getting-even-how-i-crushed-my-homelan-199408/</link>
-      <guid isPermaLink="false">tsuzuki-rss-199408-f12</guid>
-      <pubDate>Mon, 21 Sep 2026 13:30:00 GMT</pubDate>
-      <description>Finale: Elizabeth Leiston, daughter of the influential prime minister, is a picture-perfect lady on the path to becoming the future queen of the Kingdom of Haldoria. But her life takes a sudden turn for the worst when her fiancé makes a show of publicly calling off their engagement.…</description>
     </item>
   </channel>
 </rss>
