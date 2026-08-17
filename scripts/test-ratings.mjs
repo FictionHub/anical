@@ -1,11 +1,11 @@
 #!/usr/bin/env node
-/* Pure-logic checks over the rating maths in site/index.html — the axis
+/* Pure-logic checks over the rating maths in site/app.js — the axis
    composite and its all-off guard (Day 15), score normalization (Day 17) and
    the head-to-head ordering (Day 18).
    No DOM, no network, no clock.
 
    THE FUNCTIONS ARE EXTRACTED, NOT COPIED. The client is one file with no build
-   step, so there is nothing to import: this reads site/index.html, lifts the
+   step, so there is nothing to import: this reads site/app.js, lifts the
    named declarations out of the inline script by brace-matching, and evaluates
    them against a mock `state`. A copy would pass forever while the real code
    drifted underneath it, which is the one thing a test of a single-file app must
@@ -19,19 +19,11 @@ import { dirname, join } from "node:path";
 import vm from "node:vm";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
-const HTML = readFileSync(join(ROOT, "site", "index.html"), "utf8");
-
-// The app's inline script is the one <script> with no src and no type.
-const SCRIPT = (() => {
-  const re = /<script(?![^>]*src=)([^>]*)>([\s\S]*?)<\/script>/g;
-  let m, best = "";
-  while ((m = re.exec(HTML))) {
-    if (/ld\+json/.test(m[1])) continue;
-    if (m[2].length > best.length) best = m[2];
-  }
-  if (!best) throw new Error("could not find the app script in site/index.html");
-  return best;
-})();
+// The app moved out of index.html into site/app.js in Aug 2026, so there is no
+// longer a <script> block to dig out of the markup. The contract these tests
+// were written for is unchanged: they run the real source, so a rename fails the
+// run instead of leaving the test to pass against a fossil.
+const SCRIPT = readFileSync(join(ROOT, "site", "app.js"), "utf8");
 
 /* ---------- extraction ---------- */
 // Balanced-brace scan from the opening { of a declaration. Strings, template
@@ -94,7 +86,7 @@ function grab(name) {
   // more names it declares alongside this one.
   m = new RegExp(`^(?:const|let)\\s+${name}\\s*=`, "m").exec(SCRIPT);
   if (m) return SCRIPT.slice(m.index, endOfStatement(SCRIPT, m.index) + 1);
-  throw new Error(`site/index.html no longer declares \`${name}\` — this test needs updating`);
+  throw new Error(`site/app.js no longer declares \`${name}\` — this test needs updating`);
 }
 
 const NEEDED = [
@@ -167,7 +159,7 @@ vm.createContext(sandbox);
 // index.html fails at extraction rather than silently testing `undefined`.
 vm.runInContext(
   NEEDED.map(grab).join("\n") + `\n;globalThis.__api = { ${NEEDED.join(", ")} };`,
-  sandbox, { filename: "extracted-from-index.html" });
+  sandbox, { filename: "extracted-from-app.js" });
 const {
   compositeOf, axisWeights, storedWeights, normStats, normApply, normOn, shownRating,
   saveRatings, savePairs, recordPair, undoPair, pairOrder, pairElo, pairConflicts, pairCount,
@@ -737,6 +729,41 @@ section("Taste vectors & the predictor");
   for (let i = 0; i < 10; i++) state.status["9" + String(i).padStart(3, "0")] = "plan";
   sandbox.bumpWeak();
   ok("statuses with zero ratings build no profile", tasteVectors().swipes === 0 && !tasteReady());
+
+  /* ---------- the count must not depend on what is loaded (Day 91) ----------
+     The bug this locks out: state.media is replaced wholesale on every range
+     load, so the same eleven ratings resolved to eleven rows on the board and to
+     two on the calendar. `rated` (the sample) is allowed to move with that.
+     `total` and the unlock gate are not — they are statements about what you
+     did, and a gate that switches itself back off when you change view is the
+     thing the user actually saw. */
+  const RATED = TASTE_MIN_RATED + 3;
+  buildLibrary(90, RATED);
+  const full = tasteVectors();
+  ok("every rating counts when the app can draw them all",
+    full.total === RATED && full.rated === RATED && full.unresolved === 0,
+    `total ${full.total} / rated ${full.rated} / unresolved ${full.unresolved}`);
+  ok("…and the profile is unlocked", tasteReady());
+
+  // Now do exactly what changing the view does: leave all but two of the rated
+  // shows unresolvable, the way a date range that predates them does. (The
+  // stubbed findMediaById reads `catalogue`, so that is where "not loaded"
+  // lives here.) Nothing about your ratings changed, so nothing you are told
+  // about them may change either.
+  const ratedIds = Object.keys(state.ratings);
+  for (const id of ratedIds.slice(2)) catalogue.delete(id);
+  state.media = state.media.filter(md => catalogue.has(String(md.id)));
+  state.extra = new Map();
+  sandbox.tasteCache = null; sandbox.predCache = null;
+  const narrow = tasteVectors();
+  ok("changing view cannot change how many shows you rated",
+    narrow.total === RATED, `${narrow.total}`);
+  ok("…and cannot lock the profile back up", tasteReady());
+  ok("the sample honestly shrinks with what is loaded",
+    narrow.rated === 2 && narrow.unresolved === RATED - 2,
+    `rated ${narrow.rated} / unresolved ${narrow.unresolved}`);
+  ok("…and unresolved always accounts for the difference",
+    narrow.rated + narrow.unresolved === narrow.total);
 }
 
 console.log(`\n${fail ? "✗" : "✓"} ${pass} passed, ${fail} failed\n`);

@@ -35,6 +35,10 @@
 
 import crypto from "node:crypto";
 import { collectSeasonless } from "../netlify/functions/_lib/seasonless.mjs";
+// The SAME slug function the page generator uses. Deep links are built from it
+// rather than rolled by hand here, because a slug that drifts by one character
+// posts a public 404 — and there would be no way to tell from this side.
+import { animeSlug } from "../netlify/functions/_lib/seo-shell.mjs";
 
 const SITE = "https://tsuzuki.top";
 const DAYS = +(process.env.DAYS || 7);
@@ -123,32 +127,47 @@ function nameList(names, max, budget){
 
 /* Build platform-specific text. limit = hard char cap for that platform.
    The link is counted generously (Bluesky/Mastodon count raw length;
-   X counts every URL as 23 via t.co, so we leave headroom).            */
+   X counts every URL as 23 via t.co, so we leave headroom).
+
+   Returns { text, link } rather than a bare string because the link is no longer
+   always the homepage — see below, and because Bluesky needs the exact URL again
+   to build its clickable facet.                                        */
 function buildText({events, now}, {limit, tags}){
   const today = dayKey(now);
   const todays   = events.filter(e=>dayKey(e.ts)===today);
   const premToday= todays.filter(e=>e.ep===1);
   const finToday = todays.filter(e=>isFinale(e.md,e.ep));
 
-  const link = SITE;
-  const tagLine = tags;
-  // reserve room for "\n\n" + link + "\n" + tags
-  const reserved = 2 + 24 /*url worst-case*/ + 1 + tagLine.length + 4;
-  const budget = Math.max(40, limit - reserved);
+  /* Every post used to point at the homepage. That is the one URL on this site
+     that was never the problem: Google has it indexed, and it needs no help.
+     The 600-odd /anime/ pages sitting in "Discovered - currently not indexed"
+     are the ones with no inbound links at all, so when the post is ABOUT one
+     show, it links that show's page — and the generic daily post links /today/.
+     Same post, same reach, aimed where it does something. */
+  let link = SITE, head;
+  const deep = md => `${SITE}/anime/${animeSlug(md)}/`;
 
-  let head;
   if(premToday.length){
-    head = `🆕 Premiering today: ${nameList(uniqTitles(premToday), 4, budget-22)}`;
+    head = `🆕 Premiering today: ${nameList(uniqTitles(premToday), 4, limit-90)}`;
+    if(premToday.length===1) link = deep(premToday[0].md);
   } else if(finToday.length){
-    head = `🏁 Season finale today: ${nameList(uniqTitles(finToday), 4, budget-24)}`;
+    head = `🏁 Season finale today: ${nameList(uniqTitles(finToday), 4, limit-92)}`;
+    if(finToday.length===1) link = deep(finToday[0].md);
   } else if(todays.length){
-    head = `🗓️ Airing today (${todays.length} eps): ${nameList(uniqTitles(todays), 4, budget-26)}`;
+    head = `🗓️ Airing today (${todays.length} eps): ${nameList(uniqTitles(todays), 4, limit-94)}`;
+    link = `${SITE}/today/`;
   } else {
     head = `🗓️ This week in anime: ${events.length} episodes on the calendar`;
+    link = `${SITE}/today/`;
   }
-  // trim head to budget just in case
+
+  const tagLine = tags;
+  // reserve room for "\n\n" + the real link + "\n" + tags. A deep link is longer
+  // than the bare domain, so this has to measure the one actually being used.
+  const reserved = 2 + Math.max(24, link.length) + 1 + tagLine.length + 4;
+  const budget = Math.max(40, limit - reserved);
   if(head.length>budget) head = head.slice(0,budget-1)+"…";
-  return `${head}\n\n${link}\n${tagLine}`;
+  return { text:`${head}\n\n${link}\n${tagLine}`, link };
 }
 
 /* ============================================================
@@ -159,7 +178,7 @@ async function postBluesky(data){
   if(!handle || !pw) return { platform:"Bluesky", skipped:true };
   const base = "https://bsky.social/xrpc";
 
-  const text = buildText(data,{ limit:300, tags:"#anime #anitwt" });
+  const { text, link } = buildText(data,{ limit:300, tags:"#anime #anitwt" });
   if(DRY){ console.log("[DRY] Bluesky:\n"+text); return { platform:"Bluesky", dry:true }; }
 
   const ses = await fetch(`${base}/com.atproto.server.createSession`,{
@@ -172,11 +191,11 @@ async function postBluesky(data){
   // detect the URL as a clickable facet (byte offsets, UTF-8)
   const enc = new TextEncoder();
   const bytes = enc.encode(text);
-  const urlByte = enc.encode(SITE);
+  const urlByte = enc.encode(link);
   const start = indexOfBytes(bytes, urlByte);
   const facets = start>=0 ? [{
     index:{ byteStart:start, byteEnd:start+urlByte.length },
-    features:[{ $type:"app.bsky.richtext.facet#link", uri:SITE }]
+    features:[{ $type:"app.bsky.richtext.facet#link", uri:link }]
   }] : undefined;
 
   const rec = await fetch(`${base}/com.atproto.repo.createRecord`,{
@@ -212,7 +231,7 @@ async function postMastodon(data){
   } catch {
     throw new Error(`Mastodon: MASTODON_BASE is not a valid URL: "${baseRaw}". Use just the instance origin, e.g. https://mastodon.social`);
   }
-  const text = buildText(data,{ limit:500, tags:"#anime #animecalendar #seasonalanime" });
+  const { text } = buildText(data,{ limit:500, tags:"#anime #animecalendar #seasonalanime" });
   if(DRY){ console.log(`[DRY] Mastodon (-> ${base}):\n`+text); return { platform:"Mastodon", dry:true }; }
 
   // Preflight: verify_credentials disambiguates a bad base (404) from a bad
@@ -276,7 +295,7 @@ async function postTwitter(data){
         tk=process.env.X_ACCESS_TOKEN, ts=process.env.X_ACCESS_SECRET;
   if(!ck||!cs||!tk||!ts) return { platform:"Twitter/X", skipped:true };
   const url = "https://api.twitter.com/2/tweets";
-  const text = buildText(data,{ limit:280, tags:"#anime #anitwt" });
+  const { text } = buildText(data,{ limit:280, tags:"#anime #anitwt" });
   if(DRY){ console.log("[DRY] Twitter/X:\n"+text); return { platform:"Twitter/X", dry:true }; }
   const res = await fetch(url,{
     method:"POST",

@@ -82,6 +82,20 @@ h2:first-of-type{margin-top:24px}
 .plat-nav a{background:#161b22;border:1px solid #2a3140;border-radius:20px;padding:6px 13px;font-size:13px;font-weight:600;color:#e6edf3}
 .plat-nav a:hover{border-color:#ff4a2e;text-decoration:none}
 .plat{scroll-margin-top:14px}
+/* The release-date answer box. Deliberately the loudest thing under the fold:
+   it is the fact most visitors arrived for. */
+.airbox{display:flex;gap:14px;align-items:baseline;flex-wrap:wrap;margin:20px 0 4px;padding:14px 16px;
+  background:linear-gradient(135deg,rgba(255,74,46,.12),rgba(255,74,46,.03));border:1px solid rgba(255,74,46,.35);border-radius:12px}
+.airbox-k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;color:#ff8a6e;flex:none}
+.airbox-v{font-size:17px;color:#e6edf3;min-width:200px;flex:1}
+.airbox-v strong{color:#fff;font-weight:800}
+.airbox-aside{font-size:12.5px;color:#8b97a7;margin-left:8px}
+.stats{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 2px}
+.stat{background:#161b22;border:1px solid #2a3140;border-radius:11px;padding:10px 14px;min-width:104px}
+.stat b{display:block;font-size:19px;font-weight:800;color:#fff;line-height:1.15}
+.stat span{font-size:11px;color:#8b97a7;letter-spacing:.03em}
+.prose{color:#c4cdd9;max-width:760px;margin:14px 0;font-size:15px}
+.prose li{margin:4px 0}
 </style>
 </head>
 <body>
@@ -91,7 +105,7 @@ h2:first-of-type{margin-top:24px}
   <h1>Anime Genres</h1>
   <p class="lede">Browse every anime genre Tsuzuki tracks. Pick a genre to see its shows, air dates and streaming links.</p>
   <a class="cta" href="/">Open the live calendar →</a>
-  <nav class="seasons"><a class="" href="/spring-2026/">Spring 2026</a><a class="" href="/summer-2026/">Summer 2026</a><a class="" href="/fall-2026/">Fall 2026</a><a class="" href="/winter-2027/">Winter 2027</a><a href="/today/">Airing today</a></nav><div class="hub"><a class="hub-link" href="/genre/action/">Action<span class="hub-n">134</span></a><a class="hub-link" href="/genre/adventure/">Adventure<span class="hub-n">90</span></a><a class="hub-link" href="/genre/comedy/">Comedy<span class="hub-n">125</span></a><a class="hub-link" href="/genre/drama/">Drama<span class="hub-n">76</span></a><a class="hub-link" href="/genre/ecchi/">Ecchi<span class="hub-n">19</span></a><a class="hub-link" href="/genre/fantasy/">Fantasy<span class="hub-n">133</span></a><a class="hub-link" href="/genre/horror/">Horror<span class="hub-n">9</span></a><a class="hub-link" href="/genre/mahou-shoujo/">Mahou Shoujo<span class="hub-n">14</span></a><a class="hub-link" href="/genre/mecha/">Mecha<span class="hub-n">12</span></a><a class="hub-link" href="/genre/music/">Music<span class="hub-n">14</span></a><a class="hub-link" href="/genre/mystery/">Mystery<span class="hub-n">22</span></a><a class="hub-link" href="/genre/psychological/">Psychological<span class="hub-n">12</span></a><a class="hub-link" href="/genre/romance/">Romance<span class="hub-n">88</span></a><a class="hub-link" href="/genre/sci-fi/">Sci-Fi<span class="hub-n">30</span></a><a class="hub-link" href="/genre/slice-of-life/">Slice of Life<span class="hub-n">60</span></a><a class="hub-link" href="/genre/sports/">Sports<span class="hub-n">10</span></a><a class="hub-link" href="/genre/supernatural/">Supernatural<span class="hub-n">43</span></a><a class="hub-link" href="/genre/thriller/">Thriller<span class="hub-n">6</span></a></div>
+  <nav class="seasons"><a class="" href="/spring-2026/">Spring 2026</a><a class="" href="/summer-2026/">Summer 2026</a><a class="" href="/fall-2026/">Fall 2026</a><a class="" href="/winter-2027/">Winter 2027</a><a href="/today/">Airing today</a></nav><div class="hub"><a class="hub-link" href="/genre/action/">Action<span class="hub-n">134</span></a><a class="hub-link" href="/genre/adventure/">Adventure<span class="hub-n">91</span></a><a class="hub-link" href="/genre/comedy/">Comedy<span class="hub-n">125</span></a><a class="hub-link" href="/genre/drama/">Drama<span class="hub-n">77</span></a><a class="hub-link" href="/genre/ecchi/">Ecchi<span class="hub-n">19</span></a><a class="hub-link" href="/genre/fantasy/">Fantasy<span class="hub-n">134</span></a><a class="hub-link" href="/genre/horror/">Horror<span class="hub-n">9</span></a><a class="hub-link" href="/genre/mahou-shoujo/">Mahou Shoujo<span class="hub-n">14</span></a><a class="hub-link" href="/genre/mecha/">Mecha<span class="hub-n">12</span></a><a class="hub-link" href="/genre/music/">Music<span class="hub-n">14</span></a><a class="hub-link" href="/genre/mystery/">Mystery<span class="hub-n">22</span></a><a class="hub-link" href="/genre/psychological/">Psychological<span class="hub-n">12</span></a><a class="hub-link" href="/genre/romance/">Romance<span class="hub-n">88</span></a><a class="hub-link" href="/genre/sci-fi/">Sci-Fi<span class="hub-n">30</span></a><a class="hub-link" href="/genre/slice-of-life/">Slice of Life<span class="hub-n">60</span></a><a class="hub-link" href="/genre/sports/">Sports<span class="hub-n">10</span></a><a class="hub-link" href="/genre/supernatural/">Supernatural<span class="hub-n">42</span></a><a class="hub-link" href="/genre/thriller/">Thriller<span class="hub-n">6</span></a></div>
   <footer>
     Browse: <a href="/best/">top anime</a> · <a href="/genres/">all genres</a> · <a href="/studios/">all studios</a> · <a href="/where-to-watch/">where to watch</a> · <a href="/today/">airing today</a><br>
     Data from <a href="https://anilist.co" target="_blank" rel="noopener">AniList</a>.

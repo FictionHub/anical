@@ -108,6 +108,15 @@ DESCRIPTION:Season finale. https://tsuzuki.top/anime/from-old-country-bumpkin-to
 URL:https://tsuzuki.top/anime/from-old-country-bumpkin-to-master-swordsman-ii-194829/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-201514-f12@tsuzuki.netlify.app
+DTSTAMP:20260919T173800Z
+DTSTART:20260919T173800Z
+DTEND:20260919T180800Z
+SUMMARY:Rich Girl Caretaker: I'm Secretly the Caregiver of the Most Popular Girl in This Rich Kid School — Finale (Ep 12)
+DESCRIPTION:Season finale. https://tsuzuki.top/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
+URL:https://tsuzuki.top/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-199111-f12@tsuzuki.netlify.app
 DTSTAMP:20260921T150000Z
 DTSTART:20260921T150000Z
@@ -124,15 +133,6 @@ DTEND:20260926T090000Z
 SUMMARY:Ascendance of a Bookworm: Adopted Daughter of an Archduke — Finale (Ep 24)
 DESCRIPTION:Season finale. https://tsuzuki.top/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
 URL:https://tsuzuki.top/anime/ascendance-of-a-bookworm-adopted-daughter-of-an-archduke-171110/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-201514-f12@tsuzuki.netlify.app
-DTSTAMP:20260919T173800Z
-DTSTART:20260919T173800Z
-DTEND:20260919T180800Z
-SUMMARY:Rich Girl Caretaker: I'm Secretly the Caregiver of the Most Popular Girl in This Rich Kid School — Finale (Ep 12)
-DESCRIPTION:Season finale. https://tsuzuki.top/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
-URL:https://tsuzuki.top/anime/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-po-201514/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-202269-f12@tsuzuki.netlify.app
@@ -234,15 +234,6 @@ DESCRIPTION:Season finale. https://tsuzuki.top/anime/young-ladies-dont-play-figh
 URL:https://tsuzuki.top/anime/young-ladies-dont-play-fighting-games-128757/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-182616-f12@tsuzuki.netlify.app
-DTSTAMP:20261002T143000Z
-DTSTART:20261002T143000Z
-DTEND:20261002T150000Z
-SUMMARY:The Elusive Samurai Season 2 — Finale (Ep 12)
-DESCRIPTION:Season finale. https://tsuzuki.top/anime/the-elusive-samurai-season-2-182616/
-URL:https://tsuzuki.top/anime/the-elusive-samurai-season-2-182616/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-198409-f12@tsuzuki.netlify.app
 DTSTAMP:20260920T130000Z
 DTSTART:20260920T130000Z
@@ -250,6 +241,15 @@ DTEND:20260920T133000Z
 SUMMARY:The World's Strongest Rearguard — Finale (Ep 12)
 DESCRIPTION:Season finale. https://tsuzuki.top/anime/the-worlds-strongest-rearguard-198409/
 URL:https://tsuzuki.top/anime/the-worlds-strongest-rearguard-198409/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-182616-f12@tsuzuki.netlify.app
+DTSTAMP:20261002T143000Z
+DTSTART:20261002T143000Z
+DTEND:20261002T150000Z
+SUMMARY:The Elusive Samurai Season 2 — Finale (Ep 12)
+DESCRIPTION:Season finale. https://tsuzuki.top/anime/the-elusive-samurai-season-2-182616/
+URL:https://tsuzuki.top/anime/the-elusive-samurai-season-2-182616/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-196974-f24@tsuzuki.netlify.app
@@ -279,15 +279,6 @@ DESCRIPTION:Season finale. https://tsuzuki.top/anime/the-cat-and-the-dragon-1868
 URL:https://tsuzuki.top/anime/the-cat-and-the-dragon-186863/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-210482-f11@tsuzuki.netlify.app
-DTSTAMP:20261203T150000Z
-DTSTART:20261203T150000Z
-DTEND:20261203T153000Z
-SUMMARY:STEEL BALL RUN JoJo's Bizarre Adventure 2nd - 3rd STAGE — Finale (Ep 11)
-DESCRIPTION:Season finale. https://tsuzuki.top/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
-URL:https://tsuzuki.top/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-199066-f12@tsuzuki.netlify.app
 DTSTAMP:20260926T170000Z
 DTSTART:20260926T170000Z
@@ -295,6 +286,15 @@ DTEND:20260926T173000Z
 SUMMARY:Hanaori-san Still Wants to Fight in the Next Life — Finale (Ep 12)
 DESCRIPTION:Season finale. https://tsuzuki.top/anime/hanaori-san-still-wants-to-fight-in-the-next-life-199066/
 URL:https://tsuzuki.top/anime/hanaori-san-still-wants-to-fight-in-the-next-life-199066/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-210482-f11@tsuzuki.netlify.app
+DTSTAMP:20261203T150000Z
+DTSTART:20261203T150000Z
+DTEND:20261203T153000Z
+SUMMARY:STEEL BALL RUN JoJo's Bizarre Adventure 2nd - 3rd STAGE — Finale (Ep 11)
+DESCRIPTION:Season finale. https://tsuzuki.top/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
+URL:https://tsuzuki.top/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-192800-f12@tsuzuki.netlify.app
@@ -378,15 +378,6 @@ DESCRIPTION:Season finale. https://tsuzuki.top/anime/the-dukes-son-claims-he-won
 URL:https://tsuzuki.top/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-188525-f12@tsuzuki.netlify.app
-DTSTAMP:20260925T143000Z
-DTSTART:20260925T143000Z
-DTEND:20260925T150000Z
-SUMMARY:Draw This\, Then Die! — Finale (Ep 12)
-DESCRIPTION:Season finale. https://tsuzuki.top/anime/draw-this-then-die-188525/
-URL:https://tsuzuki.top/anime/draw-this-then-die-188525/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-141953-f7@tsuzuki.netlify.app
 DTSTAMP:20260830T040000Z
 DTSTART:20260830T040000Z
@@ -394,6 +385,15 @@ DTEND:20260830T043000Z
 SUMMARY:False Memory (2026) — Finale (Ep 7)
 DESCRIPTION:Season finale. https://tsuzuki.top/anime/false-memory-2026-141953/
 URL:https://tsuzuki.top/anime/false-memory-2026-141953/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-188525-f12@tsuzuki.netlify.app
+DTSTAMP:20260925T143000Z
+DTSTART:20260925T143000Z
+DTEND:20260925T150000Z
+SUMMARY:Draw This\, Then Die! — Finale (Ep 12)
+DESCRIPTION:Season finale. https://tsuzuki.top/anime/draw-this-then-die-188525/
+URL:https://tsuzuki.top/anime/draw-this-then-die-188525/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-185875-f12@tsuzuki.netlify.app

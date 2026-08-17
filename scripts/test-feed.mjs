@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* Pure-logic checks over the swipe feed in site/index.html — which titles the
+/* Pure-logic checks over the swipe feed in site/app.js — which titles the
    pool offers, how the weighted sampler picks from it, and the guards that stop
    the "widen the pool" path from re-rendering itself forever.
    No DOM, no network, no clock.
@@ -24,19 +24,11 @@ import { dirname, join } from "node:path";
 import vm from "node:vm";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
-const HTML = readFileSync(join(ROOT, "site", "index.html"), "utf8");
-
-// The app's inline script is the one <script> with no src and no type.
-const SCRIPT = (() => {
-  const re = /<script(?![^>]*src=)([^>]*)>([\s\S]*?)<\/script>/g;
-  let m, best = "";
-  while ((m = re.exec(HTML))) {
-    if (/ld\+json/.test(m[1])) continue;
-    if (m[2].length > best.length) best = m[2];
-  }
-  if (!best) throw new Error("could not find the app script in site/index.html");
-  return best;
-})();
+// The app moved out of index.html into site/app.js in Aug 2026, so there is no
+// longer a <script> block to dig out of the markup. The contract these tests
+// were written for is unchanged: they run the real source, so a rename fails the
+// run instead of leaving the test to pass against a fossil.
+const SCRIPT = readFileSync(join(ROOT, "site", "app.js"), "utf8");
 
 /* ---------- extraction ---------- */
 // Balanced-brace scan from the opening { of a declaration. Strings, template
@@ -91,7 +83,7 @@ function grab(name) {
   if (m) return SCRIPT.slice(m.index, endOfBlock(SCRIPT, m.index + m[0].length) + 1);
   m = new RegExp(`^(?:const|let)\\s+${name}\\s*=`, "m").exec(SCRIPT);
   if (m) return SCRIPT.slice(m.index, endOfStatement(SCRIPT, m.index) + 1);
-  throw new Error(`site/index.html no longer declares \`${name}\` — this test needs updating`);
+  throw new Error(`site/app.js no longer declares \`${name}\` — this test needs updating`);
 }
 
 // `feedWidening`'s declaration carries `feedWidened` alongside it, and both are
@@ -143,7 +135,7 @@ function build(opts = {}) {
     renderRecs: () => { calls.renderRecs++; if (!state.feedCard) sandbox.__api.feedServe(); },
   };
   vm.createContext(sandbox);
-  vm.runInContext(SOURCE, sandbox, { filename: "extracted-from-index.html" });
+  vm.runInContext(SOURCE, sandbox, { filename: "extracted-from-app.js" });
   return { state, calls, api: sandbox.__api, localStorage: sandbox.localStorage };
 }
 

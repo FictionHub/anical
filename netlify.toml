@@ -31,7 +31,31 @@
   # the functions would have to fetch the site's own /data/overrides.json over
   # HTTP to read a file that is already part of the same deploy — a needless
   # round trip that silently drops every correction if the CDN is cold.
-  included_files = ["site/data/**"]
+  #
+  # site/today/** is here for the same reason: today.mjs falls back to the last
+  # generated copy of the page when AniList is unreachable, and reads it off
+  # disk rather than over HTTP.
+  included_files = ["site/data/**", "site/today/**"]
+
+# "What anime is airing today" — rendered per request, not per deploy.
+#
+# force = true is load-bearing. Netlify serves a matching static file in
+# preference to a redirect, and site/today/index.html exists (it is the
+# function's offline fallback, shipped via included_files above), so without
+# force the static copy wins and the page goes stale again — which is the exact
+# bug this route exists to fix. See the header of netlify/functions/today.mjs
+# for why a daily rebuild was not an option.
+[[redirects]]
+  from = "/today"
+  to = "/.netlify/functions/today"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/today/"
+  to = "/.netlify/functions/today"
+  status = 200
+  force = true
 
 # Friendly aliases for the Web Push API used by site/index.html.
 [[redirects]]
@@ -126,6 +150,17 @@
   [headers.values]
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+# The application, split out of index.html in Aug 2026 (529KB of it). It carries
+# no version in its URL, so it cannot be cached immutably — but it also no longer
+# changes when the version stamp does, which is the point: a commit that only
+# bumps APP_VERSION rewrites index.html alone, and every returning visitor
+# revalidates app.js to a 304 instead of re-downloading half a megabyte. The
+# service worker is network-first for .js, so a deploy still reaches installs.
+[[headers]]
+  for = "/app.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 # The committed override seed is a correction layer — it must not sit in a CDN
 # cache for a day after a fix ships.

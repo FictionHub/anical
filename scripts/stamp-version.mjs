@@ -12,8 +12,14 @@ import { dirname, join } from "node:path";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const INDEX = join(__dirname, "..", "site", "index.html");
+// The CHANGELOG travelled with the application when it was split out of the
+// document in Aug 2026; the stamp deliberately did not. Keeping the version in
+// index.html is what lets app.js keep its ETag across a version-only commit —
+// see the banner in site/app.js.
+const APP = join(__dirname, "..", "site", "app.js");
 
 const html = await readFile(INDEX, "utf8");
+const app = await readFile(APP, "utf8");
 
 // MAJOR_MINOR is derived, not typed.
 //
@@ -25,7 +31,7 @@ const html = await readFile(INDEX, "utf8");
 // entry you write when shipping the single source of truth and deletes the
 // manual step that drifted.
 //
-// To release: add the CHANGELOG entry in site/index.html with the new `v:`.
+// To release: add the CHANGELOG entry in site/app.js with the new `v:`.
 // That is the entire procedure — nothing in this file needs editing.
 function majorMinor(src) {
   const re = /\{\s*id:\s*(\d+)\s*,\s*v:\s*"([^"]+)"/g;
@@ -34,12 +40,12 @@ function majorMinor(src) {
   return best && best.v;
 }
 
-const MAJOR_MINOR = majorMinor(html);
+const MAJOR_MINOR = majorMinor(app);
 // Fail loud rather than fall back to a guess. A blocked commit costs seconds; a
 // silently wrong version number ships to every user, which is the exact failure
 // this script exists to prevent.
 if (!MAJOR_MINOR) {
-  console.error('stamp-version: no CHANGELOG entry found in site/index.html — expected `{ id:N, v:"X.Y", … }`');
+  console.error('stamp-version: no CHANGELOG entry found in site/app.js — expected `{ id:N, v:"X.Y", … }`');
   process.exit(1);
 }
 
@@ -51,9 +57,9 @@ try { count = parseInt(execSync("git rev-list --count HEAD").toString().trim(), 
 catch { count = 1; }
 const version = `${MAJOR_MINOR}.${count}`;
 
-const re = /const APP_VERSION = "[^"]*";/;
+const re = /window\.APP_VERSION = "[^"]*";/;
 if (!re.test(html)) { console.error("stamp-version: APP_VERSION marker not found in site/index.html"); process.exit(1); }
 
-const next = html.replace(re, `const APP_VERSION = "${version}";`);
+const next = html.replace(re, `window.APP_VERSION = "${version}";`);
 if (next !== html) { await writeFile(INDEX, next, "utf8"); console.log("stamp-version: " + version); }
 else { console.log("stamp-version: already " + version); }

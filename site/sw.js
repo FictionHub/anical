@@ -2,7 +2,7 @@
    Strategy:
      • navigations  -> network-first, fall back to the cached app shell
      • /api/*       -> never cached (schedule corrections must land immediately)
-     • *.json data  -> network-first, fall back to last cached copy
+     • *.js, *.json -> network-first, fall back to last cached copy
      • other same-origin static -> cache-first (then network + cache)
      • cross-origin (AniList, ANN, Open-Meteo, images) -> untouched (network)
    Live anime data is always fetched fresh; the cache only guarantees the app
@@ -10,8 +10,12 @@
 /* v3: rebrand. Static assets are served cache-first, so the icon and share card
    only reach existing installs when the cache name changes and activate drops
    the old one. */
-const CACHE = "tsuzuki-v4";
-const SHELL = ["/", "/index.html", "/favicon.svg?v=3", "/manifest.webmanifest", "/og-image-v2.png", "/icon-192.png"];
+/* v5: the app moved out of index.html into /app.js. It has to be in SHELL — the
+   document alone no longer boots anything, so an install that cached only the
+   HTML would open offline to an empty page. Bumping the cache name is what
+   evicts the v4 entry holding the old all-in-one document. */
+const CACHE = "tsuzuki-v5";
+const SHELL = ["/", "/index.html", "/app.js", "/favicon.svg?v=3", "/manifest.webmanifest", "/og-image-v2.png", "/icon-192.png"];
 
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()).catch(() => {}));
@@ -46,8 +50,15 @@ self.addEventListener("fetch", e => {
   // cache. The app already fails soft when these are unreachable.
   if (url.pathname.startsWith("/api/")) return;
 
-  // JSON data (events.json, etc.): network-first so it stays current, cache as backup.
-  if (url.pathname.endsWith(".json")) {
+  // The app itself, and JSON data (events.json, etc.): network-first so they stay
+  // current, cached as the offline backup.
+  //
+  // /app.js MUST NOT fall into the cache-first rule below. Inline in index.html
+  // it inherited the navigate handler's network-first behaviour; as its own file
+  // under cache-first it would pin whatever version a visitor installed and no
+  // deploy would ever reach them again — the cache name only bumps when this
+  // file is edited by hand, which is not every ship.
+  if (url.pathname.endsWith(".json") || url.pathname.endsWith(".js")) {
     e.respondWith(
       fetch(req)
         .then(r => { const cp = r.clone(); caches.open(CACHE).then(c => c.put(req, cp)).catch(() => {}); return r; })

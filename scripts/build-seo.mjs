@@ -22,19 +22,25 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-// Dependency-free by design, so importing it here keeps this generator's
-// "zero npm deps" promise intact even though it lives under netlify/.
+// Dependency-free by design, so importing these here keeps this generator's
+// "zero npm deps" promise intact even though they live under netlify/.
 import { collectSeasonless } from "../netlify/functions/_lib/seasonless.mjs";
+// The page shell, the brand CSS, the card markup and the date formatters. They
+// live under netlify/ rather than here because netlify/functions/today.mjs
+// renders /today/ live from the same kit — see that file for why /today/ can no
+// longer be a build-time artefact.
+import {
+  SITE, DEFAULT_OG, CF_BEACON,
+  ORDER, FMT_LABEL, SOURCE_LABEL,
+  seasonOf, shiftSeason, slugOf, labelOf, title, isFinale, isAdultMedia,
+  esc, plain, slugify, animeSlug, ogFor,
+  BRAND_CSS, shell, cardHTML, seasonNav,
+  fmtDateTime, fmtDateSafe, fmtDateLong, isoDate,
+} from "../netlify/functions/_lib/seo-shell.mjs";
 
-const SITE = "https://tsuzuki.top";
 const APP_DIR = dirname(fileURLToPath(import.meta.url));
 const SITE_DIR = join(APP_DIR, "..", "site");
-const DEFAULT_OG = `${SITE}/og-image-v2.png`;
 const MAX_ANIME_PAGES = 600;   // safety bound on per-show pages
-// Cloudflare Web Analytics token (privacy-friendly, no cookies, nothing to host).
-// Paste your token from dash.cloudflare.com → Web Analytics to enable it on all generated pages.
-const CF_TOKEN = "";
-const CF_BEACON = CF_TOKEN ? `<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"${CF_TOKEN}"}'></script>` : "";
 
 /* ---------------- AniList ---------------- */
 const ANILIST = "https://graphql.anilist.co";
@@ -58,37 +64,6 @@ query ($season: MediaSeason, $seasonYear: Int, $page: Int) {
   }
 }`;
 
-const ORDER = ["WINTER", "SPRING", "SUMMER", "FALL"];
-const FMT_LABEL = { TV: "TV", TV_SHORT: "TV Short", MOVIE: "Movie", ONA: "ONA", OVA: "OVA", SPECIAL: "Special", MUSIC: "Music" };
-const SOURCE_LABEL = { ORIGINAL: "Original", MANGA: "Manga", LIGHT_NOVEL: "Light Novel", VISUAL_NOVEL: "Visual Novel", VIDEO_GAME: "Video Game", NOVEL: "Novel", WEB_NOVEL: "Web Novel", OTHER: "Other", DOUJINSHI: "Doujinshi", ANIME: "Anime", LIVE_ACTION: "Live Action", GAME: "Game", COMIC: "Comic", MULTIMEDIA_PROJECT: "Multimedia Project", PICTURE_BOOK: "Picture Book" };
-
-const seasonOf = m => (m <= 2 ? "WINTER" : m <= 5 ? "SPRING" : m <= 8 ? "SUMMER" : "FALL");
-function shiftSeason(season, year, delta) {
-  let i = ORDER.indexOf(season) + delta;
-  year += Math.floor(i / 4);
-  i = ((i % 4) + 4) % 4;
-  return { season: ORDER[i], year };
-}
-const slugOf = (season, year) => `${season.toLowerCase()}-${year}`;
-const labelOf = (season, year) => `${season[0]}${season.slice(1).toLowerCase()} ${year}`;
-const title = md => md.title.english || md.title.romaji || "Untitled";
-const isFinale = (md, ep) => !!md.episodes && md.episodes > 1 && ep === md.episodes;
-// Keep these public, Google-indexed pages SFW: drop adult/hentai entirely.
-const isAdultMedia = md => !!(md && (md.isAdult || (md.genres || []).includes("Hentai")));
-
-function esc(s) {
-  return String(s == null ? "" : s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-}
-function plain(s, max) {
-  let t = String(s == null ? "" : s).replace(/<br\s*\/?>/gi, " ").replace(/<[^>]+>/g, " ")
-    .replace(/&\w+;/g, " ").replace(/\s+/g, " ").trim();
-  if (max && t.length > max) t = t.slice(0, max - 1).replace(/\s+\S*$/, "") + "…";
-  return t;
-}
-const slugify = s => String(s || "anime").toLowerCase().normalize("NFKD")
-  .replace(/[^\w\s-]/g, "").trim().replace(/\s+/g, "-").replace(/-+/g, "-").slice(0, 60) || "anime";
-const animeSlug = md => `${slugify(md.title.english || md.title.romaji)}-${md.id}`;
-const ogFor = md => (md && md.bannerImage) || (md && md.coverImage && md.coverImage.large) || DEFAULT_OG;
 
 async function fetchSeason(season, year, maxPages = 2) {
   let all = [], page = 1, more = true;
@@ -133,140 +108,86 @@ async function fetchSeasonlessMedia() {
   }
 }
 
-/* ---------------- shared HTML shell ---------------- */
-const BRAND_CSS = `
-*{box-sizing:border-box}body{margin:0;background:#0d1117;color:#e6edf3;
-font:15px/1.5 "Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
-background-image:radial-gradient(1200px 600px at 80% -10%,#26100a 0,transparent 60%),radial-gradient(900px 500px at -10% 110%,#08262e 0,transparent 55%)}
-a{color:#22d3ee;text-decoration:none}a:hover{text-decoration:underline}
-.wrap{max-width:1100px;margin:0 auto;padding:26px 20px 60px}
-header.top{display:flex;align-items:center;gap:9px;font-weight:800;font-size:22px;margin-bottom:6px}
-header.top a{color:inherit}
-header.top .mark{width:30px;height:30px;flex:none;border-radius:7px}
-.crumbs{font-size:13px;color:#8b97a7;margin:6px 0 2px}.crumbs a{color:#8b97a7}
-h1{font-size:27px;margin:14px 0 8px;line-height:1.2}
-.lede{color:#aeb9c7;max-width:760px;font-size:15.5px}
-.cta{display:inline-block;margin:16px 8px 6px 0;background:linear-gradient(135deg,#ff4a2e,#c2331b);color:#fff;font-weight:700;padding:11px 18px;border-radius:10px}
-.cta:hover{text-decoration:none;filter:brightness(1.08)}
-.cta.alt{background:#1c2230;border:1px solid #2a3140}
-nav.seasons{display:flex;flex-wrap:wrap;gap:9px;margin:18px 0 4px}
-nav.seasons a{background:#1c2230;border:1px solid #2a3140;border-radius:9px;padding:7px 12px;font-size:13.5px;font-weight:600;color:#e6edf3}
-nav.seasons a.cur{background:linear-gradient(135deg,#ff4a2e,#c2331b);border-color:transparent}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:20px}
-.card{display:flex;gap:11px;background:#161b22;border:1px solid #2a3140;border-radius:12px;padding:10px;overflow:hidden}
-.card img{width:56px;height:78px;object-fit:cover;border-radius:7px;flex:none;background:#000}
-.card .info{min-width:0}
-.card .ct{font-weight:700;font-size:14px;line-height:1.25;margin-bottom:5px}
-.card .meta{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
-.pill{font-size:10.5px;padding:1px 7px;border-radius:20px;background:#1c2230;border:1px solid #2a3140;color:#8b97a7}
-a.pill:hover{border-color:#ff4a2e;color:#e6edf3;text-decoration:none}
-.pill.prem{background:rgba(245,158,11,.15);border-color:#f59e0b;color:#f59e0b}
-.pill.fin{background:rgba(167,139,250,.15);border-color:#a78bfa;color:#c4b5fd}
-.pill.score{color:#22c55e}
-.when{font-size:11.5px;color:#8b97a7;margin-top:6px}
-.hero{display:flex;gap:18px;flex-wrap:wrap;margin-top:18px}
-.hero img.cover{width:170px;border-radius:12px;flex:none;background:#000}
-.hero .hinfo{flex:1;min-width:260px}
-.hero .meta{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin:4px 0 10px}
-.desc{color:#c4cdd9;max-width:760px;margin:14px 0}
-.sched{margin-top:10px;max-width:560px}
-.sched .row{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid #2a3140}
-.sched .row.past{opacity:.55}
-.sched .when2{color:#8b97a7}
-.watch{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-.watch a{display:inline-flex;align-items:center;font-size:13px;font-weight:600;padding:6px 12px;border:1px solid #2a3140;border-radius:20px;color:#e6edf3;background:#161b22}
-.watch a:hover{text-decoration:none;filter:brightness(1.15)}
-.banner{width:100%;max-height:230px;object-fit:cover;border-radius:14px;margin-top:14px;border:1px solid #2a3140}
-footer{margin-top:34px;color:#8b97a7;font-size:12.5px;border-top:1px solid #2a3140;padding-top:16px}
-.hub{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
-.hub-link{background:#161b22;border:1px solid #2a3140;border-radius:10px;padding:9px 14px;font-weight:600;color:#e6edf3}
-.hub-link:hover{border-color:#ff4a2e;text-decoration:none}
-.hub-n{color:#8b97a7;font-weight:400;font-size:12px;margin-left:5px}
-h2{font-size:20px;margin:32px 0 2px}
-h2:first-of-type{margin-top:24px}
-.sub{color:#8b97a7;font-size:13.5px;margin:4px 0 0}
-.rank{counter-reset:r;margin-top:18px}
-.rank .card{position:relative;padding-left:44px}
-.rank .card::before{counter-increment:r;content:counter(r);position:absolute;left:12px;top:12px;
-  font-weight:800;font-size:15px;color:#ff4a2e;font-variant-numeric:tabular-nums}
-.plat-nav{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
-.plat-nav a{background:#161b22;border:1px solid #2a3140;border-radius:20px;padding:6px 13px;font-size:13px;font-weight:600;color:#e6edf3}
-.plat-nav a:hover{border-color:#ff4a2e;text-decoration:none}
-.plat{scroll-margin-top:14px}
-`;
 
-function shell({ titleTag, desc, canonical, h1, lede, body, jsonld, ogImage, ogLarge, crumbs }) {
-  const og = ogImage || DEFAULT_OG;
-  const card = ogLarge ? "summary_large_image" : "summary";
-  return `<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>${esc(titleTag)}</title>
-<meta name="description" content="${esc(desc)}" />
-<meta name="robots" content="index, follow, max-image-preview:large" />
-<meta name="theme-color" content="#0d1117" />
-<link rel="canonical" href="${esc(canonical)}" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3" />
-<link rel="alternate" type="application/rss+xml" title="Tsuzuki — Premieres &amp; Finales" href="/feed.xml" />
-<link rel="preconnect" href="https://s4.anilist.co" crossorigin />
-<link rel="dns-prefetch" href="https://s4.anilist.co" />
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="Tsuzuki" />
-<meta property="og:url" content="${esc(canonical)}" />
-<meta property="og:title" content="${esc(titleTag)}" />
-<meta property="og:description" content="${esc(desc)}" />
-<meta property="og:image" content="${esc(og)}" />
-<meta name="twitter:card" content="${card}" />
-<meta name="twitter:title" content="${esc(titleTag)}" />
-<meta name="twitter:description" content="${esc(desc)}" />
-<meta name="twitter:image" content="${esc(og)}" />
-${jsonld ? `<script type="application/ld+json">${jsonld}</script>` : ""}
-<style>${BRAND_CSS}</style>
-</head>
-<body>
-<div class="wrap">
-  <header class="top"><svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="15" fill="#ff4a2e"/><g transform="translate(32.4 30) scale(.84) translate(-32 -32)"><path d="M11 23 C26 18.5 42 19.5 48 24 C54.5 29 53 38 45 44 C37 49.5 25 50.5 15 45.5" fill="none" stroke="#12060a" stroke-width="8" stroke-linecap="round"/></g></svg> <a href="/">Tsuzuki</a></header>
-  ${crumbs || ""}
-  <h1>${esc(h1)}</h1>
-  <p class="lede">${lede}</p>
-  <a class="cta" href="/">Open the live calendar →</a>
-  ${body}
-  <footer>
-    Browse: <a href="/best/">top anime</a> · <a href="/genres/">all genres</a> · <a href="/studios/">all studios</a> · <a href="/where-to-watch/">where to watch</a> · <a href="/today/">airing today</a><br>
-    Data from <a href="https://anilist.co" target="_blank" rel="noopener">AniList</a>.
-    Air times listed in UTC; the <a href="/">live calendar</a> converts to your local timezone,
-    shows live countdowns, and lets you add episodes to your calendar.
-  </footer>
-</div>
-${CF_BEACON}
-</body>
-</html>`;
+/* The single most-searched fact about an unaired show is its release date, and
+   until Aug 2026 these pages never printed one: the date sat in the JSON-LD and
+   in `startDate` while the visible HTML said only "not yet released". Search
+   Console showed the result — "<title> season 2 release date" queries ranking
+   around position 12 with a 0% CTR, because the snippet Google could build
+   answered nothing. This returns the date as text, in the title tag, and in the
+   meta description.
+
+   Returns null when AniList genuinely has no date, which is the only case where
+   "not yet released" is the honest answer. */
+function releaseInfo(md, nextEp) {
+  const sd = md.startDate || {}, ed = md.endDate || {};
+  const status = (md.status || "").toUpperCase();
+  const exact = !!(sd.year && sd.month && sd.day);
+  const known = !!(sd.year && sd.month);
+  const startLong = fmtDateLong(sd.year, sd.month, sd.day);
+  const startShort = fmtDateSafe(sd.year, sd.month, sd.day);
+  const verb = md.format === "MOVIE" ? "Releases" : "Premieres";
+
+  // `line` is the sentence in the lede; `label`/`value`/`aside` are the answer
+  // box under the hero. They must not be the same words — the box exists to be
+  // scannable, and repeating the lede verbatim two paragraphs later is padding.
+  if (status === "NOT_YET_RELEASED" || (!nextEp && known && new Date(Date.UTC(sd.year, sd.month - 1, sd.day || 1)).getTime() > Date.now())) {
+    if (!known) {
+      // A year with no month is still more than "not yet released" — say so, but
+      // don't dress an estimate up as a date.
+      if (!sd.year) return null;
+      return {
+        pill: String(sd.year),
+        line: `Scheduled for <strong>${sd.year}</strong>. AniList has not confirmed a month yet — this page updates when it does.`,
+        label: "Release window", value: String(sd.year), aside: "month not yet announced",
+        short: `Expected ${sd.year}`, titleBit: `${sd.year} Release Date`,
+        descBit: `Scheduled for ${sd.year}; exact date not yet announced.`, iso: undefined,
+      };
+    }
+    const days = Math.ceil((Date.UTC(sd.year, sd.month - 1, sd.day || 1) - Date.now()) / 86400000);
+    return {
+      pill: startShort,
+      line: `${verb} <strong>${esc(startLong)}</strong>${exact ? "" : " (day not yet confirmed)"}${days > 0 ? `, ${days} day${days === 1 ? "" : "s"} from now` : ""}.`,
+      label: "Release date", value: startShort,
+      aside: [exact ? "" : "day TBC", days > 0 ? `in ${days} day${days === 1 ? "" : "s"}` : ""].filter(Boolean).join(" · "),
+      short: `${verb} ${startShort}`, titleBit: `Release Date: ${startShort}`,
+      descBit: `${verb} ${startLong}${exact ? "" : " (day TBC)"}.`, iso: isoDate(sd),
+    };
+  }
+
+  if (status === "RELEASING" || nextEp) {
+    return {
+      pill: known ? `Since ${startShort}` : "",
+      line: `${known ? `Airing since <strong>${esc(startLong)}</strong>. ` : ""}${nextEp ? `Episode <strong>${nextEp.episode}</strong> airs ${esc(fmtDateTime(nextEp.airingAt))}.` : "Currently airing."}`,
+      label: nextEp ? "Next episode" : "Status",
+      value: nextEp ? `Episode ${nextEp.episode} · ${fmtDateTime(nextEp.airingAt)}` : "Currently airing",
+      aside: known ? `airing since ${startShort}` : "",
+      short: nextEp ? `Ep ${nextEp.episode} · ${fmtDateTime(nextEp.airingAt)}` : "Currently airing",
+      titleBit: "Episode Schedule & Air Dates",
+      descBit: nextEp ? `Episode ${nextEp.episode} airs ${fmtDateTime(nextEp.airingAt)}.` : "Currently airing.",
+      iso: isoDate(sd),
+    };
+  }
+
+  if (known) {
+    const endShort = ed.year && ed.month ? fmtDateSafe(ed.year, ed.month, ed.day) : "";
+    const ranged = endShort && endShort !== startShort;
+    return {
+      pill: ranged ? `${startShort} – ${endShort}` : startShort,
+      line: ranged
+        ? `Aired <strong>${esc(startLong)}</strong> to <strong>${esc(fmtDateLong(ed.year, ed.month, ed.day))}</strong>.`
+        : `Released <strong>${esc(startLong)}</strong>.`,
+      label: ranged ? "Aired" : "Released",
+      value: ranged ? `${startShort} – ${endShort}` : startShort,
+      aside: md.episodes ? `${md.episodes} episode${md.episodes === 1 ? "" : "s"}` : "",
+      short: ranged ? `${startShort} – ${endShort}` : startShort,
+      titleBit: "Air Dates & Episode List",
+      descBit: ranged ? `Aired ${startLong} to ${fmtDateLong(ed.year, ed.month, ed.day)}.` : `Released ${startLong}.`,
+      iso: isoDate(sd),
+    };
+  }
+  return null;
 }
-
-function cardHTML(md, whenText, opts = {}) {
-  const fmt = FMT_LABEL[md.format] || md.format || "?";
-  const score = md.averageScore ? `<span class="pill score">★ ${md.averageScore}</span>` : "";
-  const img = md.coverImage && md.coverImage.medium
-    ? `<img src="${esc(md.coverImage.medium)}" alt="${esc(title(md))} cover" loading="lazy" width="56" height="78">` : "";
-  const tag = opts.premiere ? '<span class="pill prem">PREMIERE</span>' : opts.finale ? '<span class="pill fin">🏁 FINALE</span>' : "";
-  const link = `/anime/${animeSlug(md)}/`;   // internal page → strengthens crawl + indexing
-  return `<div class="card">${img}<div class="info">
-    <div class="ct"><a href="${esc(link)}">${esc(title(md))}</a></div>
-    <div class="meta">${tag}<span class="pill">${esc(fmt)}</span>${md.episodes ? `<span class="pill">${md.episodes} eps</span>` : ""}${score}</div>
-    ${whenText ? `<div class="when">${esc(whenText)}</div>` : ""}
-  </div></div>`;
-}
-
-function seasonNav(allSlugs, curSlug) {
-  return `<nav class="seasons">` +
-    allSlugs.map(s => `<a class="${s.slug === curSlug ? "cur" : ""}" href="/${s.slug}/">${esc(s.label)}</a>`).join("") +
-    `<a href="/today/">Airing today</a></nav>`;
-}
-
-const fmtDate = (y, m, d) => (y && m ? new Date(Date.UTC(y, m - 1, d || 1)).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }) : "");
-const fmtDateTime = ts => new Date(ts * 1000).toLocaleString("en-US", { weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZone: "UTC" }) + " UTC";
 
 async function writePage(relDir, html) {
   const dir = join(SITE_DIR, ...relDir.split("/"));
@@ -368,7 +289,58 @@ ${xmlItems}
 }
 
 /* ---------------- per-anime page ---------------- */
-async function buildAnimePage(md, seasonSlugs, studioSlugSet) {
+/* Sibling links, so a show is not a dead end.
+   Every /anime/ page used to link only "upward" — to its season, its genres, its
+   studio — and never sideways to another show. Google reported 0 internal links
+   for the whole property and left 629 of 654 URLs in "Discovered - currently not
+   indexed": found in the sitemap, never crawled, because nothing on a crawled
+   page pointed at them. These blocks are the crawl path. `index` is the maps
+   already built in the runner, so this costs no extra fetching. */
+function relatedBlocks(md, index) {
+  if (!index) return "";
+  const out = [];
+  const self = md.id;
+  // Only ever link to a page this run actually writes. The maps are built from
+  // the whole union, but only the first MAX_ANIME_PAGES of it get pages — without
+  // this filter a busy season would publish internal links straight into 404s,
+  // which is worse for crawling than no link at all.
+  const cardsFrom = (list, n) => list.filter(x => x.id !== self && index.builtIds.has(x.id)).slice(0, n);
+  const section = (heading, sub, list) => list.length
+    ? `<h2 style="font-size:18px;margin-top:28px">${heading}</h2>${sub ? `<p class="sub">${sub}</p>` : ""}<div class="grid">${list.map(x => {
+        const sd = x.startDate || {};
+        return cardHTML(x, sd.year && sd.month ? `Premieres ${fmtDateSafe(sd.year, sd.month, sd.day)}` : "");
+      }).join("")}</div>`
+    : "";
+
+  const studio = md.studios && md.studios.nodes && md.studios.nodes[0] && md.studios.nodes[0].name;
+  if (studio && index.byStudio.has(studio)) {
+    const sibs = cardsFrom(index.byStudio.get(studio).slice().sort((a, b) => (b.popularity || 0) - (a.popularity || 0)), 6);
+    if (sibs.length) out.push(section(`More from ${esc(studio)}`,
+      `Other anime animated by ${esc(studio)}.${index.studioSlugSet.has(slugify(studio)) ? ` <a href="/studio/${slugify(studio)}/">See all →</a>` : ""}`, sibs));
+  }
+
+  // The strongest "people who searched this also want that" signal we hold: the
+  // same season. Someone reading a Fall 2026 page is shopping the Fall lineup.
+  const seasonKey = md.season && md.seasonYear ? `${md.season}-${md.seasonYear}` : null;
+  if (seasonKey && index.bySeason.has(seasonKey)) {
+    const label = labelOf(md.season, md.seasonYear), sslug = slugOf(md.season, md.seasonYear);
+    const sibs = cardsFrom(index.bySeason.get(seasonKey).slice().sort((a, b) => (b.popularity || 0) - (a.popularity || 0)), 8);
+    if (sibs.length) out.push(section(`Also premiering in ${esc(label)}`,
+      `The rest of the season, most popular first. <a href="/${sslug}/">Full ${esc(label)} schedule →</a>`, sibs));
+  }
+
+  // Genre neighbours are the widest net, so they go last and are capped hardest:
+  // the point is a handful of crawlable, relevant links, not a link farm.
+  const g = (md.genres || [])[0];
+  if (g && index.byGenre.has(g)) {
+    const sibs = cardsFrom(index.byGenre.get(g).slice().sort((a, b) => (b.averageScore || 0) - (a.averageScore || 0)), 6);
+    if (sibs.length) out.push(section(`Top ${esc(g)} anime`,
+      `Highest-rated ${esc(g)} titles Tsuzuki tracks. <a href="/genre/${slugify(g)}/">All ${esc(g)} anime →</a>`, sibs));
+  }
+  return out.join("");
+}
+
+async function buildAnimePage(md, seasonSlugs, studioSlugSet, index) {
   const slug = animeSlug(md);
   const t = title(md);
   const fmt = FMT_LABEL[md.format] || md.format || "Anime";
@@ -383,8 +355,11 @@ async function buildAnimePage(md, seasonSlugs, studioSlugSet) {
   const nodes = ((md.airingSchedule && md.airingSchedule.nodes) || []).slice().sort((a, b) => a.airingAt - b.airingAt);
   const next = nodes.find(n => n.airingAt > now);
 
+  const rel = releaseInfo(md, next);
+
   const metaPills = [
     `<span class="pill">${esc(fmt)}</span>`,
+    rel && rel.pill ? `<span class="pill prem">${esc(rel.pill)}</span>` : "",
     md.episodes ? `<span class="pill">${md.episodes} episodes</span>` : "",
     md.duration ? `<span class="pill">${md.duration} min/ep</span>` : "",
     md.averageScore ? `<span class="pill score">★ ${md.averageScore}</span>` : "",
@@ -413,14 +388,13 @@ async function buildAnimePage(md, seasonSlugs, studioSlugSet) {
       `<p class="when" style="margin-top:8px"><a href="/where-to-watch/${slug}/">More on where to watch ${esc(t)} →</a></p>`
     : "";
 
-  const nextLine = next
-    ? `<strong>Episode ${next.episode}</strong> airs ${esc(fmtDateTime(next.airingAt))}. `
-    : (statusTxt === "finished" ? "This title has finished airing. " : "");
-
-  const lede = `${nextLine}${seasonLabel ? `Part of the <a href="/${seasonSlug}/">${esc(seasonLabel)} anime season</a>. ` : ""}` +
+  const lede = `${rel ? rel.line + " " : (statusTxt === "not yet released" ? "No release date has been announced yet. " : "")}` +
+    `${seasonLabel ? `Part of the <a href="/${seasonSlug}/">${esc(seasonLabel)} anime season</a>. ` : ""}` +
     `See full air dates, episode count and score below, or open the live calendar for local times, countdowns and reminders.`;
 
-  const desc = plain(body0 || `${t} (${fmt}) — air dates, episode schedule, score and studio. ${seasonLabel ? seasonLabel + " anime." : ""}`, 300);
+  // The date leads the description because that is the question the query asked.
+  // Google truncates around 155-160 chars, so anything after it is a bonus.
+  const desc = plain([rel ? rel.descBit : "", body0 || `${t} (${fmt}) — air dates, episode schedule, score and studio.`, seasonLabel ? `${seasonLabel} anime.` : ""].filter(Boolean).join(" "), 300);
 
   const crumbs = `<div class="crumbs"><a href="/">Home</a> › ${seasonLabel ? `<a href="/${seasonSlug}/">${esc(seasonLabel)}</a> › ` : ""}${esc(t)}</div>`;
 
@@ -439,9 +413,17 @@ async function buildAnimePage(md, seasonSlugs, studioSlugSet) {
         </div>
       </div>
     </div>
+    ${rel ? `<div class="airbox"><div class="airbox-k">${esc(rel.label)}</div><div class="airbox-v"><strong>${esc(rel.value)}</strong>${rel.aside ? ` <span class="airbox-aside">${esc(rel.aside)}</span>` : ""}</div></div>` : ""}
     ${body0 ? `<p class="desc">${esc(plain(body0, 700))}</p>` : ""}
     ${watchHTML}
-    ${schedRows ? `<h2 style="font-size:18px;margin-top:24px">Episode air dates</h2><div class="sched">${schedRows}</div>` : ""}
+    ${schedRows
+      ? `<h2 style="font-size:18px;margin-top:24px">Episode air dates</h2><div class="sched">${schedRows}</div>`
+      : rel && rel.iso
+        // No per-episode schedule from AniList yet — but a dated heading still
+        // answers the query, where an omitted section answered nothing.
+        ? `<h2 style="font-size:18px;margin-top:24px">${esc(t)} air date</h2><div class="sched"><div class="row"><span>Episode 1${md.episodes ? ` of ${md.episodes}` : ""}</span><span class="when2">${esc(rel.short)}</span></div></div><p class="when">Per-episode times appear here as soon as AniList publishes the broadcast schedule.</p>`
+        : ""}
+    ${relatedBlocks(md, index)}
     ${seasonSlugs ? seasonNav(seasonSlugs, seasonSlug) : ""}`;
 
   const ratingLd = md.averageScore ? {
@@ -454,7 +436,12 @@ async function buildAnimePage(md, seasonSlugs, studioSlugSet) {
       "@type": "VideoObject", name: `${t} — Trailer`, description: desc,
       thumbnailUrl: yt ? `https://i.ytimg.com/vi/${md.trailer.id}/hqdefault.jpg` : (cover || ogFor(md)),
       embedUrl: yt ? `https://www.youtube.com/embed/${md.trailer.id}` : `https://www.dailymotion.com/embed/video/${md.trailer.id}`,
-      uploadDate: (md.startDate && md.startDate.year) ? `${md.startDate.year}-${String(md.startDate.month || 1).padStart(2, "0")}-${String(md.startDate.day || 1).padStart(2, "0")}` : undefined,
+      // NOT the show's startDate. That was the old value, and for an unaired
+      // title it declared a trailer uploaded in the future — which is both false
+      // and enough for Google to drop the video rich result. AniList exposes no
+      // upload date for the trailer, so the honest move is to omit the property:
+      // VideoObject treats it as recommended, not required.
+      uploadDate: undefined,
     };
   }
   const jsonld = JSON.stringify({
@@ -486,8 +473,11 @@ async function buildAnimePage(md, seasonSlugs, studioSlugSet) {
     ],
   });
 
+  // Put the date in the title tag itself when there is one. "Release Date: Oct 1,
+  // 2026" is a literal match for the query these pages already rank for, and the
+  // title is the half of the snippet Google rewrites least.
   const html = shell({
-    titleTag: `${t} — Air Dates, Episodes & Schedule | Tsuzuki`,
+    titleTag: `${t} — ${rel ? rel.titleBit : "Air Dates, Episodes & Schedule"} | Tsuzuki`,
     desc, canonical: `${SITE}/anime/${slug}/`, h1: t, lede, body, jsonld, crumbs,
     ogImage: ogFor(md), ogLarge: !!md.bannerImage,
   });
@@ -537,30 +527,138 @@ async function buildWatchPage(md, seasonSlugs) {
 }
 
 /* ---------------- genre / studio collection pages ---------------- */
+/* Derived facts about a set of shows.
+   The studio pages shipped at ~127 words of which ~110 were the same boilerplate
+   on all 100 of them, and Google indexed almost none: near-duplicate templates
+   with a title list are exactly what "Discovered - currently not indexed" is for.
+   Everything below is computed from data already in hand — no extra requests —
+   and it is what makes one studio page differ from the next in substance rather
+   than in the list of names. */
+function collectionStats(list) {
+  const scored = list.filter(m => m.averageScore);
+  const avg = scored.length ? Math.round(scored.reduce((a, m) => a + m.averageScore, 0) / scored.length) : null;
+  const eps = list.reduce((a, m) => a + (m.episodes || 0), 0);
+  const seasons = new Map();
+  for (const m of list) if (m.season && m.seasonYear) {
+    const k = slugOf(m.season, m.seasonYear);
+    seasons.set(k, (seasons.get(k) || 0) + 1);
+  }
+  const genres = new Map();
+  for (const m of list) for (const g of m.genres || []) genres.set(g, (genres.get(g) || 0) + 1);
+  const fmts = new Map();
+  for (const m of list) { const f = FMT_LABEL[m.format] || m.format; if (f) fmts.set(f, (fmts.get(f) || 0) + 1); }
+  const sources = new Map();
+  for (const m of list) if (m.source) { const s = SOURCE_LABEL[m.source] || m.source; sources.set(s, (sources.get(s) || 0) + 1); }
+  const upcoming = list.filter(m => (m.status || "").toUpperCase() === "NOT_YET_RELEASED" && m.startDate && m.startDate.year)
+    .sort((a, b) => (isoDate(a.startDate) || "").localeCompare(isoDate(b.startDate) || ""));
+  const airing = list.filter(m => (m.status || "").toUpperCase() === "RELEASING");
+  const rank = m => [...m.entries()].sort((a, b) => b[1] - a[1]);
+  return { avg, eps, seasons: rank(seasons), genres: rank(genres), fmts: rank(fmts), sources: rank(sources), upcoming, airing, scoredCount: scored.length };
+}
+
+function statTiles(tiles) {
+  const cells = tiles.filter(t => t && t[1] != null && t[1] !== "").map(([label, v]) => `<div class="stat"><b>${esc(String(v))}</b><span>${esc(label)}</span></div>`).join("");
+  return cells ? `<div class="stats">${cells}</div>` : "";
+}
+
 async function buildCollectionPage(kind, name, items, allSlugs) {
   const slug = slugify(name);
   const sorted = items.slice().sort((a, b) => (b.popularity || 0) - (a.popularity || 0));
   const top = sorted[0];
   const names = sorted.slice(0, 6).map(title);
   const human = `${name} Anime`;
-  const desc = (kind === "genre"
-    ? `${sorted.length} ${name} anime — including ${names.slice(0, 3).join(", ")}. Air dates, scores, episode counts and where to watch, updated automatically.`
-    : `Anime from ${name}: ${sorted.length} titles including ${names.slice(0, 3).join(", ")}. Air dates, scores and episodes — updated automatically.`).slice(0, 300);
-  const lede = kind === "genre"
-    ? `Every <strong>${esc(name)}</strong> anime Tsuzuki is tracking, sorted by popularity. Open any title for air dates, streaming links and reminders.`
-    : `All anime by <strong>${esc(name)}</strong> currently tracked, sorted by popularity. Open any title for air dates, streaming links and reminders.`;
-  const crumbs = `<div class="crumbs"><a href="/">Home</a> › ${kind === "genre" ? "Genre" : "Studio"} › ${esc(name)}</div>`;
+  const st = collectionStats(sorted);
+  const isStudio = kind === "studio";
+  const topRated = sorted.filter(m => m.averageScore).sort((a, b) => b.averageScore - a.averageScore)[0];
+
+  // Lead the description with what this page holds that no other page does.
+  const desc = (isStudio
+    ? `${name} has ${sorted.length} anime in Tsuzuki's schedule${st.airing.length ? `, ${st.airing.length} airing now` : ""}${st.upcoming.length ? ` and ${st.upcoming.length} upcoming` : ""} — ${names.slice(0, 3).join(", ")}. Air dates, scores and where to watch.`
+    : `${sorted.length} ${name} anime${st.avg ? `, averaging ★${st.avg}` : ""} — including ${names.slice(0, 3).join(", ")}. Air dates, scores, episode counts and where to watch.`).slice(0, 300);
+
+  const lede = isStudio
+    ? `Every anime animated by <strong>${esc(name)}</strong> that Tsuzuki tracks — ${sorted.length} title${sorted.length === 1 ? "" : "s"}${st.avg ? `, averaging <strong>★${st.avg}</strong> on AniList` : ""}. Open any title for air dates, streaming links and reminders.`
+    : `Every <strong>${esc(name)}</strong> anime Tsuzuki is tracking — ${sorted.length} title${sorted.length === 1 ? "" : "s"}${st.avg ? `, averaging <strong>★${st.avg}</strong>` : ""}. Open any title for air dates, streaming links and reminders.`;
+
+  const crumbs = `<div class="crumbs"><a href="/">Home</a> › <a href="/${isStudio ? "studios" : "genres"}/">${isStudio ? "Studios" : "Genres"}</a> › ${esc(name)}</div>`;
+
+  const tiles = statTiles([
+    ["titles tracked", sorted.length],
+    st.airing.length ? ["airing now", st.airing.length] : null,
+    st.upcoming.length ? ["upcoming", st.upcoming.length] : null,
+    st.avg ? ["average score", "★" + st.avg] : null,
+    st.eps ? ["episodes", st.eps.toLocaleString("en-US")] : null,
+    st.seasons.length ? ["seasons covered", st.seasons.length] : null,
+  ]);
+
+  // A short written summary. Every clause is a fact this set actually has, so a
+  // studio with one format and one genre gets a shorter paragraph rather than a
+  // padded one.
+  const fmtBit = st.fmts.length ? `mostly ${st.fmts[0][0]}${st.fmts.length > 1 ? ` (${st.fmts[0][1]} of ${sorted.length}), alongside ${st.fmts.slice(1, 3).map(f => `${f[1]} ${f[0]}`).join(" and ")}` : ""}` : "";
+  const genreBit = !isStudio ? "" : (st.genres.length ? `Their work leans ${st.genres.slice(0, 3).map(g => `<a href="/genre/${slugify(g[0])}/">${esc(g[0])}</a>`).join(", ")}.` : "");
+  const srcBit = st.sources.length ? `${st.sources[0][1]} of them adapt ${st.sources[0][0].toLowerCase()} source material.` : "";
+  const nextBit = st.upcoming.length
+    ? `Next up: <a href="/anime/${animeSlug(st.upcoming[0])}/">${esc(title(st.upcoming[0]))}</a>, ${fmtDateLong(st.upcoming[0].startDate.year, st.upcoming[0].startDate.month, st.upcoming[0].startDate.day) ? `premiering ${esc(fmtDateLong(st.upcoming[0].startDate.year, st.upcoming[0].startDate.month, st.upcoming[0].startDate.day))}` : `expected ${st.upcoming[0].startDate.year}`}.`
+    : "";
+  const bestBit = topRated && topRated.averageScore
+    ? `The highest-rated is <a href="/anime/${animeSlug(topRated)}/">${esc(title(topRated))}</a> at ★${topRated.averageScore}.`
+    : "";
+  const prose = [
+    isStudio
+      ? `<strong>${esc(name)}</strong> accounts for ${sorted.length} title${sorted.length === 1 ? "" : "s"} across the seasons Tsuzuki covers${fmtBit ? `, ${fmtBit}` : ""}. ${genreBit} ${srcBit}`
+      : `Tsuzuki tracks ${sorted.length} <strong>${esc(name)}</strong> title${sorted.length === 1 ? "" : "s"}${fmtBit ? `, ${fmtBit}` : ""}. ${srcBit}`,
+    [bestBit, nextBit].filter(Boolean).join(" "),
+  ].filter(s => s.replace(/<[^>]+>/g, "").trim().length > 10).map(p => `<p class="prose">${p.replace(/\s+/g, " ").trim()}</p>`).join("");
+
+  const seasonBreakdown = st.seasons.length > 1
+    ? `<h2>By season</h2><p class="sub">Where ${esc(name)}'s titles fall across the seasons Tsuzuki covers.</p><div class="hub">${
+        st.seasons.map(([s, n]) => {
+          const label = (allSlugs.find(a => a.slug === s) || {}).label || s;
+          return `<a class="hub-link" href="/${s}/">${esc(label)}<span class="hub-n">${n}</span></a>`;
+        }).join("")}</div>`
+    : "";
+
+  // Sideways links out of this page and into the neighbouring ones, so the hub
+  // is not the only route between collections.
+  const alsoBrowse = (isStudio ? st.genres.slice(0, 8).map(([g, n]) => `<a class="hub-link" href="/genre/${slugify(g)}/">${esc(g)}<span class="hub-n">${n}</span></a>`) : [])
+    .join("");
+  const alsoBlock = alsoBrowse ? `<h2>Genres ${esc(name)} works in</h2><div class="hub">${alsoBrowse}</div>` : "";
+
   const cards = sorted.map(md => {
     const sd = md.startDate || {};
-    return cardHTML(md, sd.year ? `Premieres ${fmtDate(sd.year, sd.month, sd.day)}` : "", { premiere: !!(sd.year && sd.month) });
+    return cardHTML(md, sd.year ? `Premieres ${fmtDateSafe(sd.year, sd.month, sd.day)}` : "", { premiere: !!(sd.year && sd.month) });
   }).join("");
+
   const jsonld = JSON.stringify({
-    "@context": "https://schema.org", "@type": "ItemList", name: human, numberOfItems: sorted.length,
-    itemListElement: sorted.slice(0, 50).map((md, i) => ({ "@type": "ListItem", position: i + 1, name: title(md), url: `${SITE}/anime/${animeSlug(md)}/` })),
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage", name: human, url: `${SITE}/${kind}/${slug}/`, description: desc,
+        ...(isStudio ? { about: { "@type": "Organization", name, description: `Japanese animation studio with ${sorted.length} titles in Tsuzuki's schedule.` } } : {}),
+      },
+      {
+        "@type": "ItemList", name: human, numberOfItems: sorted.length,
+        itemListElement: sorted.slice(0, 50).map((md, i) => ({ "@type": "ListItem", position: i + 1, name: title(md), url: `${SITE}/anime/${animeSlug(md)}/` })),
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Tsuzuki", item: SITE + "/" },
+          { "@type": "ListItem", position: 2, name: isStudio ? "Studios" : "Genres", item: `${SITE}/${isStudio ? "studios" : "genres"}/` },
+          { "@type": "ListItem", position: 3, name, item: `${SITE}/${kind}/${slug}/` },
+        ],
+      },
+    ],
   });
-  const body = seasonNav(allSlugs, null) + `<div class="grid">${cards}</div>`;
+
+  const body = tiles + prose + seasonNav(allSlugs, null) +
+    `<h2>All ${esc(name)} anime</h2><p class="sub">${sorted.length} title${sorted.length === 1 ? "" : "s"}, most popular first.</p><div class="grid">${cards}</div>` +
+    seasonBreakdown + alsoBlock;
+
   const html = shell({
-    titleTag: `${human} — Schedule, Scores & Where to Watch | Tsuzuki`,
+    titleTag: isStudio
+      ? `${name} Anime — All ${sorted.length} Titles, Schedule & Scores | Tsuzuki`
+      : `${human} — ${sorted.length} Titles, Schedule & Where to Watch | Tsuzuki`,
     desc, canonical: `${SITE}/${kind}/${slug}/`, h1: human, lede, body, jsonld, crumbs,
     ogImage: ogFor(top), ogLarge: !!(top && top.bannerImage),
   });
@@ -703,7 +801,7 @@ async function buildWatchHubPage(union, allSlugs) {
       return `<div class="card">${img}<div class="info">
         <div class="ct"><a href="${esc(link)}">${esc(title(md))}</a></div>
         <div class="meta"><span class="pill">${esc(FMT_LABEL[md.format] || md.format || "?")}</span>${md.episodes ? `<span class="pill">${md.episodes} eps</span>` : ""}${score}</div>
-        ${sd.year ? `<div class="when">${esc(fmtDate(sd.year, sd.month, sd.day))}</div>` : ""}
+        ${sd.year ? `<div class="when">${esc(fmtDateSafe(sd.year, sd.month, sd.day))}</div>` : ""}
       </div></div>`;
     }).join("");
     const more = sorted.length > shown.length
@@ -740,7 +838,7 @@ async function buildSeasonPage(media, season, year, allSlugs, bestSet) {
 
   const cards = sorted.map(md => {
     const sd = md.startDate || {};
-    const premiere = sd.year ? `Premieres ${fmtDate(sd.year, sd.month, sd.day)}` : "";
+    const premiere = sd.year ? `Premieres ${fmtDateSafe(sd.year, sd.month, sd.day)}` : "";
     return cardHTML(md, premiere, { premiere: !!(sd.year && sd.month) });
   }).join("");
 
@@ -893,20 +991,28 @@ ${children.map(c => `  <sitemap>\n    <loc>${SITE}/${c}</loc>\n    <lastmod>${to
 
   // Group by genre and by main studio. Only build studio pages with >=2 titles
   // (avoids thin one-off pages); every genre gets a page.
-  const byGenre = new Map(), byStudio = new Map();
+  const byGenre = new Map(), byStudio = new Map(), bySeason = new Map();
   for (const md of union) {
     for (const g of md.genres || []) { if (!byGenre.has(g)) byGenre.set(g, []); byGenre.get(g).push(md); }
     const st = md.studios && md.studios.nodes && md.studios.nodes[0] && md.studios.nodes[0].name;
     if (st) { if (!byStudio.has(st)) byStudio.set(st, []); byStudio.get(st).push(md); }
+    if (md.season && md.seasonYear) {
+      const k = `${md.season}-${md.seasonYear}`;
+      if (!bySeason.has(k)) bySeason.set(k, []);
+      bySeason.get(k).push(md);
+    }
   }
   const studiosToBuild = [...byStudio.entries()].filter(([, list]) => list.length >= 2);
   const studioSlugSet = new Set(studiosToBuild.map(([name]) => slugify(name)));
 
-  // Per-anime pages (genre pills + studio link into the collection pages)
+  // Per-anime pages. `index` is what turns each one from a leaf into a node with
+  // sideways edges — see relatedBlocks() for why that decides whether the other
+  // 600 ever get crawled.
   const pick = union.slice(0, MAX_ANIME_PAGES);
+  const index = { byGenre, byStudio, bySeason, studioSlugSet, builtIds: new Set(pick.map(md => md.id)) };
   const animeSlugs = [];
   for (const md of pick) {
-    try { animeSlugs.push(await buildAnimePage(md, allSlugs, studioSlugSet)); }
+    try { animeSlugs.push(await buildAnimePage(md, allSlugs, studioSlugSet, index)); }
     catch (e) { console.warn(`⚠ anime page failed (${md.id}): ${e.message}`); }
   }
   console.log(`✅ ${animeSlugs.length} /anime/<slug>/ pages`);
