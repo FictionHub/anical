@@ -14,7 +14,7 @@ A month-by-month plan to take Tsuzuki from a calendar built on someone else's da
 
 ## Where this actually stands · Aug 2026
 
-Month one of Year 1 shipped, and then some. Twelve slots below are already partly or wholly built — the public API landed five months early, the theming engine two years early, a grounded tool-calling assistant eight years early. Those slots are **rescoped, not deleted**.
+Month one of Year 1 shipped, and then some. Fourteen slots below are already partly or wholly built — the public API landed five months early, the theming engine two years early, a client-side taste-and-recommendation engine two years early, a grounded tool-calling assistant eight years early. Those slots are **rescoped, not deleted**.
 
 | Marker | Means |
 |---|---|
@@ -138,8 +138,10 @@ Re-architect hot paths, add caching tiers and autoscaling, and drive down per-us
 ### 2028 · 08 | Event & feature pipeline
 An events pipeline capturing implicit and explicit signals into a feature store — the data foundation every model this year trains on.
 
-### 2028 · 09 | Taste embeddings + on-device inference 🚀
-Train show and user embeddings and ship a privacy-preserving on-device recommender, with cold-start handling and an offline evaluation harness.
+### 2028 · 09 | Taste embeddings + on-device inference 🚀 · ◐ partly built
+A privacy-preserving on-device recommender shipped in Aug 2026, entirely client-side: genre, tag, studio, era and length vectors built from your own ratings, each dimension shrunk toward your overall mean in proportion to how little evidence backs it, so one outlier rating can't dominate a whole axis. Cold-start is solved by design rather than left as a gap — a swipeable feed sits outside every other lens's gate, one show at a time, writing a real score on "loved / liked / not for me" and a weaker status-derived signal on everything else, because a brand-new visitor's profile has to come from somewhere. And the offline evaluation harness this slot names exists too: a hold-one-out backtest predicts each of your own ratings from a profile rebuilt without it and reports the error against "just guess your average," openly, in the product.
+
+**What's left is the gap between "recommender" and "embeddings."** This is a linear lift model over hand-picked dimensions, not a learned embedding space — there is no vector a show and a user share a distance in, only a weighted sum of how much each attribute has moved your score before. It has no cross-user signal at all: every profile is built from one person's ratings, in one browser, so it can learn "you, personally, liked things tagged X" and nothing resembling "people who liked X also liked Y." A manual retraining path exists — thumbs and sliders that nudge a dimension's lift directly — but there is no server, no shared feature store, and no path to a model that generalizes across users, which is what turns a personal heuristic into the platform this slot was written for.
 
 ### 2028 · 10 | Ranking & experimentation platform
 A server-side ranking service plus an A/B experimentation framework — assignment, metrics, guardrails — so recommendations improve by evidence, not taste.
@@ -147,8 +149,10 @@ A server-side ranking service plus an A/B experimentation framework — assignme
 ### 2028 · 11 | Semantic search
 A vector index over the catalog with a natural-language query layer, hybrid lexical-plus-semantic ranking and typo tolerance.
 
-### 2028 · 12 | Personalized season model 🚀
-A ranked-for-you season model blending hype signals, taste and social proof — with trailers and one-tap follow — retrained each season.
+### 2028 · 12 | Personalized season model 🚀 · ◐ partly built
+The taste half shipped in Aug 2026, on the same page as the slot above: a "Next season" lens ranks the whole upcoming lineup by predicted score, and — because "what's coming" is a question worth answering even at zero ratings — it's one of the two lenses let through the gate the rest of the page locks behind an empty profile, rendering the shows it can't yet predict unpredicted rather than refusing to open.
+
+**What's left is everything the slot's title puts second.** It blends nothing but taste — no hype signal, no social proof, nothing about what anyone else is watching or excited for. No trailers, no one-tap follow. And "retrained each season" overstates what runs today: there is no training step, just the same live client-side lift computation the rest of the taste engine runs, updating continuously rather than on a seasonal cadence — closer to "always current" than "retrained," but neither word describes a client with no server-side model to retrain in the first place.
 
 ### 2029 · 01 | Similarity graph
 A content-plus-behavior similarity graph — "more like this," staff and studio lineages — with tunable dials, served at low latency.
@@ -479,7 +483,7 @@ Ten years in: a public roadmap check, what landed vs what changed, and the next 
 
 A roadmap is a hypothesis, not a contract — scope and dates flex with reality. What holds is the **shape**: ten hard programs, each built one monthly milestone at a time, the flagships timed to the seasons, and every notable change announced in the app.
 
-**On the twelve overtaken slots.** The first revision of this document was written before a month of building moved twelve milestones — one of them by eight years. The response was not to congratulate the calendar and delete them. Every one of those slots described a *system*, and what shipped was a working *instance*: an API with no versioning contract, an identity service that holds no data, an assistant with no evaluation. The month stays; it now buys the difference. If a future revision finds another slot overtaken, do the same thing — rewrite what the month is for, and resist the temptation to declare a year finished because its demo works.
+**On the fourteen overtaken slots.** The first revision of this document was written before a month of building moved twelve milestones — one of them by eight years. A second pass, later the same August, found two more in Year 3: a taste-and-recommendation engine, built entirely client-side, that answered most of the discovery-ML slot two years early, plus the personalized-season lens riding on the same page. The response was not to congratulate the calendar and delete them. Every one of those slots described a *system*, and what shipped was a working *instance*: an API with no versioning contract, an identity service that holds no data, an assistant with no evaluation. The month stays; it now buys the difference. If a future revision finds another slot overtaken, do the same thing — rewrite what the month is for, and resist the temptation to declare a year finished because its demo works.
 
 **On what shipping early actually proved.** The rescoped entries share a pattern worth naming: the easy 80% of a platform milestone is now a weekend, and the remaining 20% — provenance, evaluation, revocation, SLAs, the behaviour when a source contradicts another — is still the year it always was. Plan the later years on that assumption.
 
