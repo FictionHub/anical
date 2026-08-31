@@ -9,6 +9,15 @@ NAME:Tsuzuki — Season Finales
 REFRESH-INTERVAL;VALUE=DURATION:PT12H
 X-PUBLISHED-TTL:PT12H
 BEGIN:VEVENT
+UID:tsuzuki-178789-f14@tsuzuki.netlify.app
+DTSTAMP:20260927T110000Z
+DTSTART:20260927T110000Z
+DTEND:20260927T113000Z
+SUMMARY:Mushoku Tensei: Jobless Reincarnation Season 3 — Finale (Ep 14)
+DESCRIPTION:Season finale. https://tsuzuki.top/anime/mushoku-tensei-jobless-reincarnation-season-3-178789/
+URL:https://tsuzuki.top/anime/mushoku-tensei-jobless-reincarnation-season-3-178789/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-189046-f19@tsuzuki.netlify.app
 DTSTAMP:20260930T130000Z
 DTSTART:20260930T130000Z
@@ -117,15 +126,6 @@ DESCRIPTION:Season finale. https://tsuzuki.top/anime/from-old-country-bumpkin-to
 URL:https://tsuzuki.top/anime/from-old-country-bumpkin-to-master-swordsman-ii-194829/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-184492-f24@tsuzuki.netlify.app
-DTSTAMP:20260926T092600Z
-DTSTART:20260926T092600Z
-DTEND:20260926T095600Z
-SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Finale (Ep 24)
-DESCRIPTION:Season finale. https://tsuzuki.top/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-URL:https://tsuzuki.top/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-202269-f12@tsuzuki.netlify.app
 DTSTAMP:20260921T120000Z
 DTSTART:20260921T120000Z
@@ -133,6 +133,15 @@ DTEND:20260921T123000Z
 SUMMARY:Love Unseen Beneath the Clear Night Sky — Finale (Ep 12)
 DESCRIPTION:Season finale. https://tsuzuki.top/anime/love-unseen-beneath-the-clear-night-sky-202269/
 URL:https://tsuzuki.top/anime/love-unseen-beneath-the-clear-night-sky-202269/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-184492-f24@tsuzuki.netlify.app
+DTSTAMP:20260926T092600Z
+DTSTART:20260926T092600Z
+DTEND:20260926T095600Z
+SUMMARY:Welcome to Demon School! Iruma-kun Season 4 — Finale (Ep 24)
+DESCRIPTION:Season finale. https://tsuzuki.top/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
+URL:https://tsuzuki.top/anime/welcome-to-demon-school-iruma-kun-season-4-184492/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-201514-f12@tsuzuki.netlify.app
@@ -189,6 +198,15 @@ DESCRIPTION:Season finale. https://tsuzuki.top/anime/oh-boy-was-i-wrong-about-he
 URL:https://tsuzuki.top/anime/oh-boy-was-i-wrong-about-her-169583/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-188139-f11@tsuzuki.netlify.app
+DTSTAMP:20260920T144600Z
+DTSTART:20260920T144600Z
+DTEND:20260920T151600Z
+SUMMARY:Though I Am an Inept Villainess — Finale (Ep 11)
+DESCRIPTION:Season finale. https://tsuzuki.top/anime/though-i-am-an-inept-villainess-188139/
+URL:https://tsuzuki.top/anime/though-i-am-an-inept-villainess-188139/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-204466-f12@tsuzuki.netlify.app
 DTSTAMP:20260917T162800Z
 DTSTART:20260917T162800Z
@@ -205,15 +223,6 @@ DTEND:20260909T153000Z
 SUMMARY:The Villager of Level 999 — Finale (Ep 12)
 DESCRIPTION:Season finale. https://tsuzuki.top/anime/the-villager-of-level-999-197715/
 URL:https://tsuzuki.top/anime/the-villager-of-level-999-197715/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-188139-f11@tsuzuki.netlify.app
-DTSTAMP:20260920T144600Z
-DTSTART:20260920T144600Z
-DTEND:20260920T151600Z
-SUMMARY:Though I Am an Inept Villainess — Finale (Ep 11)
-DESCRIPTION:Season finale. https://tsuzuki.top/anime/though-i-am-an-inept-villainess-188139/
-URL:https://tsuzuki.top/anime/though-i-am-an-inept-villainess-188139/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-184356-f12@tsuzuki.netlify.app
@@ -270,15 +279,6 @@ DESCRIPTION:Season finale. https://tsuzuki.top/anime/the-elusive-samurai-season-
 URL:https://tsuzuki.top/anime/the-elusive-samurai-season-2-182616/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-196974-f24@tsuzuki.netlify.app
-DTSTAMP:20260920T143000Z
-DTSTART:20260920T143000Z
-DTEND:20260920T150000Z
-SUMMARY:The Classroom of the Black Cat and a Witch — Finale (Ep 24)
-DESCRIPTION:Season finale. https://tsuzuki.top/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
-URL:https://tsuzuki.top/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-169582-f12@tsuzuki.netlify.app
 DTSTAMP:20260921T115700Z
 DTSTART:20260921T115700Z
@@ -286,6 +286,15 @@ DTEND:20260921T122700Z
 SUMMARY:The Insipid Prince's Furtive Grab for the Throne — Finale (Ep 12)
 DESCRIPTION:Season finale. https://tsuzuki.top/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
 URL:https://tsuzuki.top/anime/the-insipid-princes-furtive-grab-for-the-throne-169582/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-196974-f24@tsuzuki.netlify.app
+DTSTAMP:20260920T143000Z
+DTSTART:20260920T143000Z
+DTEND:20260920T150000Z
+SUMMARY:The Classroom of the Black Cat and a Witch — Finale (Ep 24)
+DESCRIPTION:Season finale. https://tsuzuki.top/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
+URL:https://tsuzuki.top/anime/the-classroom-of-the-black-cat-and-a-witch-196974/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-199066-f12@tsuzuki.netlify.app
@@ -306,15 +315,6 @@ DESCRIPTION:Season finale. https://tsuzuki.top/anime/the-cat-and-the-dragon-1868
 URL:https://tsuzuki.top/anime/the-cat-and-the-dragon-186863/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-210482-f11@tsuzuki.netlify.app
-DTSTAMP:20261203T150000Z
-DTSTART:20261203T150000Z
-DTEND:20261203T153000Z
-SUMMARY:STEEL BALL RUN JoJo's Bizarre Adventure 2nd - 3rd STAGE — Finale (Ep 11)
-DESCRIPTION:Season finale. https://tsuzuki.top/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
-URL:https://tsuzuki.top/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-199408-f12@tsuzuki.netlify.app
 DTSTAMP:20260921T133000Z
 DTSTART:20260921T133000Z
@@ -322,6 +322,15 @@ DTEND:20260921T140000Z
 SUMMARY:A Livid Lady’s Guide to Getting Even: How I Crushed My Homeland with My Mighty Grimoires — Finale (Ep 12)
 DESCRIPTION:Season finale. https://tsuzuki.top/anime/a-livid-ladys-guide-to-getting-even-how-i-crushed-my-homelan-199408/
 URL:https://tsuzuki.top/anime/a-livid-ladys-guide-to-getting-even-how-i-crushed-my-homelan-199408/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-210482-f11@tsuzuki.netlify.app
+DTSTAMP:20261203T150000Z
+DTSTART:20261203T150000Z
+DTEND:20261203T153000Z
+SUMMARY:STEEL BALL RUN JoJo's Bizarre Adventure 2nd - 3rd STAGE — Finale (Ep 11)
+DESCRIPTION:Season finale. https://tsuzuki.top/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
+URL:https://tsuzuki.top/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-192800-f12@tsuzuki.netlify.app
@@ -360,15 +369,6 @@ DESCRIPTION:Season finale. https://tsuzuki.top/anime/kamui-hes-behind-you-207674
 URL:https://tsuzuki.top/anime/kamui-hes-behind-you-207674/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-191832-f24@tsuzuki.netlify.app
-DTSTAMP:20270115T030000Z
-DTSTART:20270115T030000Z
-DTEND:20270115T033000Z
-SUMMARY:Link Click Season 3 — Finale (Ep 24)
-DESCRIPTION:Season finale. https://tsuzuki.top/anime/link-click-season-3-191832/
-URL:https://tsuzuki.top/anime/link-click-season-3-191832/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-198709-f9@tsuzuki.netlify.app
 DTSTAMP:20260901T150000Z
 DTSTART:20260901T150000Z
@@ -405,15 +405,6 @@ DESCRIPTION:Season finale. https://tsuzuki.top/anime/the-dukes-son-claims-he-won
 URL:https://tsuzuki.top/anime/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-ado-208225/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-141953-f7@tsuzuki.netlify.app
-DTSTAMP:20260830T040000Z
-DTSTART:20260830T040000Z
-DTEND:20260830T043000Z
-SUMMARY:False Memory (2026) — Finale (Ep 7)
-DESCRIPTION:Season finale. https://tsuzuki.top/anime/false-memory-2026-141953/
-URL:https://tsuzuki.top/anime/false-memory-2026-141953/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-188525-f12@tsuzuki.netlify.app
 DTSTAMP:20260925T143000Z
 DTSTART:20260925T143000Z
@@ -421,6 +412,15 @@ DTEND:20260925T150000Z
 SUMMARY:Draw This\, Then Die! — Finale (Ep 12)
 DESCRIPTION:Season finale. https://tsuzuki.top/anime/draw-this-then-die-188525/
 URL:https://tsuzuki.top/anime/draw-this-then-die-188525/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-207809-f24@tsuzuki.netlify.app
+DTSTAMP:20261215T163500Z
+DTSTART:20261215T163500Z
+DTEND:20261215T170500Z
+SUMMARY:Red River — Finale (Ep 24)
+DESCRIPTION:Season finale. https://tsuzuki.top/anime/red-river-207809/
+URL:https://tsuzuki.top/anime/red-river-207809/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-185875-f12@tsuzuki.netlify.app
@@ -448,6 +448,15 @@ DTEND:20260910T143000Z
 SUMMARY:BanG Dream! YUME∞MITA — Finale (Ep 13)
 DESCRIPTION:Season finale. https://tsuzuki.top/anime/bang-dream-yumemita-198376/
 URL:https://tsuzuki.top/anime/bang-dream-yumemita-198376/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-190054-f3@tsuzuki.netlify.app
+DTSTAMP:20261025T110000Z
+DTSTART:20261025T110000Z
+DTEND:20261025T113000Z
+SUMMARY:Watashi no Shiawase na Kekkon Tokubetsu-hen — Finale (Ep 3)
+DESCRIPTION:Season finale. https://tsuzuki.top/anime/watashi-no-shiawase-na-kekkon-tokubetsu-hen-190054/
+URL:https://tsuzuki.top/anime/watashi-no-shiawase-na-kekkon-tokubetsu-hen-190054/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-209669-f13@tsuzuki.netlify.app
@@ -513,6 +522,15 @@ DESCRIPTION:Season finale. https://tsuzuki.top/anime/crowned-in-a-hundred-days-2
 URL:https://tsuzuki.top/anime/crowned-in-a-hundred-days-213484/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-205068-f7@tsuzuki.netlify.app
+DTSTAMP:20260910T150000Z
+DTSTART:20260910T150000Z
+DTEND:20260910T153000Z
+SUMMARY:One-Room TA — Finale (Ep 7)
+DESCRIPTION:Season finale. https://tsuzuki.top/anime/one-room-ta-205068/
+URL:https://tsuzuki.top/anime/one-room-ta-205068/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-195833-f12@tsuzuki.netlify.app
 DTSTAMP:20260921T140000Z
 DTSTART:20260921T140000Z
@@ -565,14 +583,5 @@ DTEND:20261014T023000Z
 SUMMARY:Fabulous Beasts 6 — Finale (Ep 12)
 DESCRIPTION:Season finale. https://tsuzuki.top/anime/fabulous-beasts-6-213486/
 URL:https://tsuzuki.top/anime/fabulous-beasts-6-213486/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-213703-f8@tsuzuki.netlify.app
-DTSTAMP:20260826T030000Z
-DTSTART:20260826T030000Z
-DTEND:20260826T033000Z
-SUMMARY:Jiaonang Jihua: Qiji — Finale (Ep 8)
-DESCRIPTION:Season finale. https://tsuzuki.top/anime/jiaonang-jihua-qiji-213703/
-URL:https://tsuzuki.top/anime/jiaonang-jihua-qiji-213703/
 END:VEVENT
 END:VCALENDAR

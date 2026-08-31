@@ -18,15 +18,6 @@ DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/the-apothecary-diaries
 URL:https://tsuzuki.top/anime/the-apothecary-diaries-season-3-195516/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-133007-1@tsuzuki.netlify.app
-DTSTAMP:20260827T150000Z
-DTSTART:20260827T150000Z
-DTEND:20260827T153000Z
-SUMMARY:Puella Magi Madoka Magica the Movie -Walpurgisnacht: Rising- — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/puella-magi-madoka-magica-the-movie-walpurgisnacht-rising--133007/
-URL:https://tsuzuki.top/anime/puella-magi-madoka-magica-the-movie-walpurgisnacht-rising--133007/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-160275-1@tsuzuki.netlify.app
 DTSTAMP:20261022T150000Z
 DTSTART:20261022T150000Z
@@ -72,15 +63,6 @@ DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/rascal-does-not-dream-
 URL:https://tsuzuki.top/anime/rascal-does-not-dream-of-a-dear-friend-199340/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-178083-1@tsuzuki.netlify.app
-DTSTAMP:20261002T165300Z
-DTSTART:20261002T165300Z
-DTEND:20261002T172300Z
-SUMMARY:Tokyo Revengers: Santen Sensou-hen — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/tokyo-revengers-santen-sensou-hen-178083/
-URL:https://tsuzuki.top/anime/tokyo-revengers-santen-sensou-hen-178083/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-210482-1@tsuzuki.netlify.app
 DTSTAMP:20260924T150000Z
 DTSTART:20260924T150000Z
@@ -88,6 +70,15 @@ DTEND:20260924T153000Z
 SUMMARY:STEEL BALL RUN JoJo's Bizarre Adventure 2nd - 3rd STAGE — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
 URL:https://tsuzuki.top/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-178083-1@tsuzuki.netlify.app
+DTSTAMP:20261002T165300Z
+DTSTART:20261002T165300Z
+DTEND:20261002T172300Z
+SUMMARY:Tokyo Revengers: Santen Sensou-hen — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/tokyo-revengers-santen-sensou-hen-178083/
+URL:https://tsuzuki.top/anime/tokyo-revengers-santen-sensou-hen-178083/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-200929-1@tsuzuki.netlify.app
@@ -117,15 +108,6 @@ DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/firefly-wedding-205909
 URL:https://tsuzuki.top/anime/firefly-wedding-205909/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-209872-1@tsuzuki.netlify.app
-DTSTAMP:20261003T155600Z
-DTSTART:20261003T155600Z
-DTEND:20261003T162600Z
-SUMMARY:Ranma1/2 (2024) Season 3 — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/ranma12-2024-season-3-209872/
-URL:https://tsuzuki.top/anime/ranma12-2024-season-3-209872/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-191656-1@tsuzuki.netlify.app
 DTSTAMP:20261003T153000Z
 DTSTART:20261003T153000Z
@@ -133,6 +115,15 @@ DTEND:20261003T160000Z
 SUMMARY:Seitokai ni mo Ana wa Aru! — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/seitokai-ni-mo-ana-wa-aru-191656/
 URL:https://tsuzuki.top/anime/seitokai-ni-mo-ana-wa-aru-191656/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-209872-1@tsuzuki.netlify.app
+DTSTAMP:20261003T155600Z
+DTSTART:20261003T155600Z
+DTEND:20261003T162600Z
+SUMMARY:Ranma1/2 (2024) Season 3 — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/ranma12-2024-season-3-209872/
+URL:https://tsuzuki.top/anime/ranma12-2024-season-3-209872/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-207327-1@tsuzuki.netlify.app
@@ -151,6 +142,15 @@ DTEND:20261008T165800Z
 SUMMARY:The Iceblade Sorcerer Shall Rule the World II — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/the-iceblade-sorcerer-shall-rule-the-world-ii-212503/
 URL:https://tsuzuki.top/anime/the-iceblade-sorcerer-shall-rule-the-world-ii-212503/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-190054-1@tsuzuki.netlify.app
+DTSTAMP:20261025T100000Z
+DTSTART:20261025T100000Z
+DTEND:20261025T103000Z
+SUMMARY:Watashi no Shiawase na Kekkon Tokubetsu-hen — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/watashi-no-shiawase-na-kekkon-tokubetsu-hen-190054/
+URL:https://tsuzuki.top/anime/watashi-no-shiawase-na-kekkon-tokubetsu-hen-190054/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-178972-1@tsuzuki.netlify.app
@@ -207,6 +207,15 @@ DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/narumis-week-at-work-2
 URL:https://tsuzuki.top/anime/narumis-week-at-work-204431/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-206401-1@tsuzuki.netlify.app
+DTSTAMP:20261001T123000Z
+DTSTART:20261001T123000Z
+DTEND:20261001T130000Z
+SUMMARY:FX Fighter Kurumi-chan — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/fx-fighter-kurumi-chan-206401/
+URL:https://tsuzuki.top/anime/fx-fighter-kurumi-chan-206401/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-202390-1@tsuzuki.netlify.app
 DTSTAMP:20261008T150000Z
 DTSTART:20261008T150000Z
@@ -261,6 +270,33 @@ DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/uncles-obsession-with-
 URL:https://tsuzuki.top/anime/uncles-obsession-with-cute-things-202079/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-209132-1@tsuzuki.netlify.app
+DTSTAMP:20261005T150000Z
+DTSTART:20261005T150000Z
+DTEND:20261005T153000Z
+SUMMARY:Junket Bank — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/junket-bank-209132/
+URL:https://tsuzuki.top/anime/junket-bank-209132/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-199594-1@tsuzuki.netlify.app
+DTSTAMP:20261008T150000Z
+DTSTART:20261008T150000Z
+DTEND:20261008T153000Z
+SUMMARY:TETSURYO! Meet With Tetsudou Musume — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/tetsuryo-meet-with-tetsudou-musume-199594/
+URL:https://tsuzuki.top/anime/tetsuryo-meet-with-tetsudou-musume-199594/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-206774-1@tsuzuki.netlify.app
+DTSTAMP:20261004T160000Z
+DTSTART:20261004T160000Z
+DTEND:20261004T163000Z
+SUMMARY:Now That I Can Control Reality With A Mouse Cursor\, I'm Gonna Click Away On The Girls! — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/now-that-i-can-control-reality-with-a-mouse-cursor-im-gonna--206774/
+URL:https://tsuzuki.top/anime/now-that-i-can-control-reality-with-a-mouse-cursor-im-gonna--206774/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-198654-1@tsuzuki.netlify.app
 DTSTAMP:20260917T150000Z
 DTSTART:20260917T150000Z
@@ -268,6 +304,15 @@ DTEND:20260917T153000Z
 SUMMARY:Meitantei Precure! Fushigi na Niwa to Futari no Himitsu — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/meitantei-precure-fushigi-na-niwa-to-futari-no-himitsu-198654/
 URL:https://tsuzuki.top/anime/meitantei-precure-fushigi-na-niwa-to-futari-no-himitsu-198654/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-187990-1@tsuzuki.netlify.app
+DTSTAMP:20261006T140000Z
+DTSTART:20261006T140000Z
+DTEND:20261006T143000Z
+SUMMARY:Battle Spirits [Re] Zekkai No Ku — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/battle-spirits-re-zekkai-no-ku-187990/
+URL:https://tsuzuki.top/anime/battle-spirits-re-zekkai-no-ku-187990/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-204561-1@tsuzuki.netlify.app
