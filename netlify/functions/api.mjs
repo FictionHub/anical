@@ -18,6 +18,7 @@
 //   GET /api/v1/seasons/<season>/<yr>  a season's lineup (?full=1 for raw media)
 //   GET /api/v1/search?q=              title search
 //   GET /api/v1/overrides              the raw correction document
+//   GET /api/v1/show/<id> … /filter    discovery reads for the app (see _lib/discovery.mjs)
 //
 // Docs live at /api/ (site/api/index.html) and are the canonical reference.
 import { getStore } from "@netlify/blobs";
@@ -27,12 +28,20 @@ import {
   getExtras, getStudio, getOnThisDay,
   catalogHealth, seasonOf, shiftSeason, SEASONS,
 } from "./_lib/catalog.mjs";
+import {
+  getShow, getSimilarPool, getGems, getUnderseen, getTags, getTagPage,
+  getStudioCatalog, getStudios, getStaffPage, getStaffList, getFilter, GEM_CEILINGS,
+} from "./_lib/discovery.mjs";
 
 const SITE = "https://tsuzuki.top";
 const VERSION = "1.1";
 
 const MAX_DAYS = 31;
-const RATE_LIMIT = 60;            // requests per window, per client
+// Raised from 60 when the discovery pages moved onto this API (v5.0). One busy
+// visitor — a show page, its similar list, a few search keystrokes, a studio
+// page loading more — could pass 60 in a minute, and a 429 here sends the app
+// to AniList directly, which is the exact traffic this API exists to absorb.
+const RATE_LIMIT = 120;           // requests per window, per client
 const RATE_WINDOW_MS = 60_000;
 
 const SEARCH_QUERY = `query($search:String){
@@ -59,6 +68,7 @@ function json(body, { status = 200, maxAge = 300, headers = {}, pretty = true } 
   });
 }
 const fail = (status, error, hint) => json({ ok: false, error, hint }, { status, maxAge: 0 });
+const disco = (data, maxAge) => json({ ok: true, data, attribution: "Data from AniList, via Tsuzuki." }, { maxAge, pretty: false });
 
 // Per-instance, in-memory, best-effort. A serverless platform gives every cold
 // start a fresh counter, so this is a spike damper rather than a quota — the
@@ -159,6 +169,19 @@ async function describe() {
       { path: "/api/v1/on-this-day", params: { d: "MMDD, e.g. 0805" }, describes: "Anime that premiered on this month/day in past years." },
       { path: "/api/v1/search", params: { q: "title fragment", limit: "1-25 (default 12)" } },
       { path: "/api/v1/overrides", describes: "The raw correction document layered over AniList." },
+      // Discovery reads. Each returns { ok, data } where data is AniList's own
+      // response shape for that query — cached and shared, not reshaped.
+      { path: "/api/v1/show/{anilistId}", describes: "Everything the show page draws: staff, all studios, relations with source lengths, score and status distributions, rankings, links and the schedule." },
+      { path: "/api/v1/similar/{anilistId}", describes: "Candidate pool for content similarity: shows sharing its top tags, its genres, and its genres among what is airing now. Direct relations are already excluded." },
+      { path: "/api/v1/gems", params: { genres: "up to 4 AniList genres, comma-separated (Ecchi and Hentai are not accepted)", ceil: GEM_CEILINGS.join("|") }, describes: "Scored 75+ with fewer members than the ceiling." },
+      { path: "/api/v1/underseen", params: { ceil: GEM_CEILINGS.join("|") }, describes: "The best-scored shows under the ceiling for each of the last 16 years." },
+      { path: "/api/v1/tags", describes: "Every AniList tag with its category and description." },
+      { path: "/api/v1/tag", params: { name: "exact tag name", sort: "popular|score|newest|trending", page: "1-25", adult: "1 to include adult titles" } },
+      { path: "/api/v1/studios", params: { q: "optional name search (2-60 chars); omit for the most-favourited" } },
+      { path: "/api/v1/studio/{anilistStudioId}/catalog", params: { page: "1-25" }, describes: "A studio's main-studio catalogue, ranked by score." },
+      { path: "/api/v1/staff", params: { q: "optional name search (2-60 chars); omit for the most-favourited" } },
+      { path: "/api/v1/staff/{anilistStaffId}", params: { page: "1-25" }, describes: "A person's production credits and voice roles." },
+      { path: "/api/v1/filter", params: { genres: "comma-separated", formats: "comma-separated", status: "RELEASING|FINISHED|NOT_YET_RELEASED|CANCELLED|HIATUS", from: "YYYYMMDD, exclusive", to: "YYYYMMDD, exclusive", minScore: "0-100, exclusive", adult: "1 to include" }, describes: "Popular titles matching every given filter." },
     ],
   }, { maxAge: 300 });
 }
@@ -464,11 +487,29 @@ export default async (req) => {
     if (route[0] === "franchise" && route.length === 2) return await franchise(route[1]);
     if (route[0] === "search" && route.length === 1) return await search(url);
     if (route[0] === "overrides" && route.length === 1) return json({ ok: true, ...(await loadOverrides()) });
+    // Discovery. The upstream data is identical for every caller, so the CDN
+    // may hold it — longer where the catalog keeps it longer.
+    const p = url.searchParams;
+    if (route[0] === "show" && route.length === 2) return disco(await getShow(route[1]), 1800);
+    if (route[0] === "similar" && route.length === 2) return disco(await getSimilarPool(route[1]), 6 * 3600);
+    if (route[0] === "gems" && route.length === 1) return disco(await getGems(p.get("genres"), p.get("ceil")), 6 * 3600);
+    if (route[0] === "underseen" && route.length === 1) return disco(await getUnderseen(p.get("ceil")), 6 * 3600);
+    if (route[0] === "tags" && route.length === 1) return disco(await getTags(), 24 * 3600);
+    if (route[0] === "tag" && route.length === 1) return disco(await getTagPage(p.get("name"), p.get("sort"), p.get("page"), p.get("adult")), 6 * 3600);
+    if (route[0] === "studios" && route.length === 1) return disco(await getStudios(p.get("q")), p.get("q") ? 600 : 24 * 3600);
+    if (route[0] === "studio" && route.length === 3 && route[2] === "catalog") return disco(await getStudioCatalog(route[1], p.get("page")), 6 * 3600);
+    if (route[0] === "staff" && route.length === 1) return disco(await getStaffList(p.get("q")), p.get("q") ? 600 : 24 * 3600);
+    if (route[0] === "staff" && route.length === 2) return disco(await getStaffPage(route[1], p.get("page")), 6 * 3600);
+    if (route[0] === "filter" && route.length === 1) return disco(await getFilter(p), 600);
     return fail(404, `Unknown endpoint /${route.join("/")}`, `See ${SITE}/api/ for the endpoint list.`);
   } catch (err) {
     const status = err && err.status ? err.status : 500;
-    console.error("api error", url.pathname, err);
-    return fail(status, String((err && err.message) || err),
+    // A 400 or 404 is the caller's mistake, not ours; logging each with a stack
+    // buried the real upstream failures once the discovery routes validated input.
+    if (status >= 500) console.error("api error", url.pathname, err);
+    const res = fail(status, String((err && err.message) || err),
       status === 503 ? "Upstream AniList rate limit — retry shortly." : undefined);
+    if (err && err.retryAfter) res.headers.set("Retry-After", String(err.retryAfter));
+    return res;
   }
 };

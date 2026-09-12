@@ -109,18 +109,40 @@ async function blobPut(name, key, value) {
 
 /* ---------- AniList (tier 3) ---------- */
 
+/* After a 429, stop asking for a while. Every request that arrived during the
+   limit used to go straight upstream and collect its own 429 — each one resetting
+   AniList's window — so a burst of cold misses kept the whole instance locked
+   out far longer than the limit itself. Now the first 429 opens a cooldown and
+   everything inside it fails fast with the same 503, which every cached reader
+   above already turns into a stale copy when it has one. Per instance, like the
+   rest of tier 1. */
+const COOLDOWN_MIN_S = 10, COOLDOWN_MAX_S = 60, COOLDOWN_DEFAULT_S = 30;
+let upstreamCooldownUntil = 0;
+const rateLimitError = () => {
+  const e = new Error("Upstream rate limit"); e.status = 503;
+  e.retryAfter = Math.max(1, Math.ceil((upstreamCooldownUntil - Date.now()) / 1000));
+  return e;
+};
+function openCooldown(retryAfterHeader) {
+  const s = Math.min(COOLDOWN_MAX_S, Math.max(COOLDOWN_MIN_S, +retryAfterHeader || COOLDOWN_DEFAULT_S));
+  upstreamCooldownUntil = Math.max(upstreamCooldownUntil, Date.now() + s * 1000);
+}
+export const upstreamCoolingDown = () => Date.now() < upstreamCooldownUntil;
+
 export async function anilist(query, variables) {
+  if (upstreamCoolingDown()) throw rateLimitError();
   const res = await fetch(ANILIST, {
     method: "POST",
     headers: { "Content-Type": "application/json", Accept: "application/json" },
     body: JSON.stringify({ query, variables }),
   });
-  if (res.status === 429) { const e = new Error("Upstream rate limit"); e.status = 503; throw e; }
+  if (res.status === 429) { openCooldown(res.headers.get("retry-after")); throw rateLimitError(); }
   if (res.status === 404) { const e = new Error("Not found"); e.status = 404; e.notFound = true; throw e; }
   if (!res.ok) { const e = new Error("AniList HTTP " + res.status); e.status = 502; throw e; }
   const j = await res.json();
   // A GraphQL error can arrive alongside a 200 and a null data block — treating
   // `data` as present would turn that into a TypeError further down.
+  if (j.errors && j.errors.length && j.errors[0].status === 429) { openCooldown(); throw rateLimitError(); }
   if (j.errors && j.errors.length) { const e = new Error(j.errors[0].message); e.status = 502; e.notFound = j.errors[0].status === 404; throw e; }
   if (!j.data) { const e = new Error("AniList returned no data"); e.status = 502; throw e; }
   return j.data;
@@ -350,25 +372,36 @@ const OTD_QUERY = `query($d:String){ Page(perPage:25){ media(type:ANIME,startDat
   id title{ romaji english native } coverImage{ medium } startDate{ year month day } isAdult format
 } } }`;
 
-// Cache-through for a fixed query: memory, blob, upstream — and a stale copy
-// rather than an error if upstream is unreachable.
-async function cachedQuery(name, key, query, variables, pick, ttlMs = DETAIL_TTL_MS) {
+// Cache-through for any upstream read: memory, blob, upstream — and a stale
+// copy rather than an error if upstream is unreachable.
+//
+// `persist: false` keeps a result in memory only. It is for reads keyed on
+// free text (a studio or staff name search): those keys are unbounded, and
+// writing each one to Blobs would let anyone grow the store by typing.
+export async function cached(name, key, fetcher, { ttlMs = DETAIL_TTL_MS, persist = true } = {}) {
   const memoKey = `${name}:${key}`;
-  const memo = memGet(memoKey, ttlMs);
+  const memo = memGet(memoKey, Math.min(ttlMs, persist ? ttlMs : MEM_TTL_MS));
   if (memo !== null) return memo;
 
   return once(memoKey, async () => {
-    const rec = await blobGet(name, key);
+    const rec = persist ? await blobGet(name, key) : null;
     if (rec && rec.data !== undefined && Date.now() - (rec.fetchedAt || 0) < ttlMs) return memSet(memoKey, rec.data);
     try {
-      const data = pick(await anilist(query, variables));
-      await blobPut(name, key, { fetchedAt: Date.now(), data });
+      const data = await fetcher();
+      if (persist) await blobPut(name, key, { fetchedAt: Date.now(), data });
       return memSet(memoKey, data);
     } catch (err) {
       if (rec && rec.data !== undefined) { console.warn(`catalog: serving stale ${name}/${key} — ${err.message}`); return memSet(memoKey, rec.data); }
+      // Expired in memory is still better than an error — the only stale copy a
+      // memory-only read has, and the last one left when Blobs is unreachable.
+      const old = mem.get(memoKey);
+      if (old) { console.warn(`catalog: serving expired ${name}/${key} from memory — ${err.message}`); return old.value; }
       throw err;
     }
   });
+}
+function cachedQuery(name, key, query, variables, pick, ttlMs = DETAIL_TTL_MS) {
+  return cached(name, key, async () => pick(await anilist(query, variables)), { ttlMs });
 }
 
 // Characters + voice cast, recommendations and the main studio, for one title.

@@ -14,12 +14,12 @@ A shippable feature every single day — the hands-on companion to the strategic
 
 Everything below assumes these invariants. Check them before starting a day; they are the things that are expensive to rediscover.
 
-- **The client is two files now.** `site/index.html` (~1,700 lines) holds the markup and the inline `<style>`; `site/app.js` (~9,200 lines) holds everything that used to be its inline `<script>`, split out in mid-August 2026 once the combined document hit 643KB — every byte of the script re-parsed on every load, none of it cacheable apart from the markup, and a one-line markup edit re-fetching the whole application with it. `app.js` loads as a single classic (non-module) script at the end of `<body>`, in the same position and load order the inline block used to occupy, so nothing about how a day's code reads or executes changed — only which file it lives in. Almost every day from here lands in `app.js`, not `index.html`. Find the neighbouring feature and match its idiom rather than introducing a new pattern.
+- **The client is two files now.** `site/index.html` (~2,200 lines) holds the markup and the inline `<style>`; `site/app.js` (~11,600 lines) holds everything that used to be its inline `<script>`, split out in mid-August 2026 once the combined document hit 643KB — every byte of the script re-parsed on every load, none of it cacheable apart from the markup, and a one-line markup edit re-fetching the whole application with it. `app.js` loads as a single classic (non-module) script at the end of `<body>`, in the same position and load order the inline block used to occupy, so nothing about how a day's code reads or executes changed — only which file it lives in. Almost every day from here lands in `app.js`, not `index.html`. Find the neighbouring feature and match its idiom rather than introducing a new pattern.
 - **There is no build step.** `site/` is uploaded as-is (`netlify.toml` sets `publish = "site"` with no build command). The SEO pages are generated and committed by GitHub Actions, not built on Netlify. Do not add a bundler, framework or npm dependency to the client without a deliberate decision — it changes the deploy story for every day after it.
 - **Storage is `localStorage`, namespaced `anical.*`** — `anical.collections`, `anical.notes`, `anical.filters`, `anical.hidden`, and so on. The prefix is pre-rebrand and deliberately unchanged: renaming it to `tsuzuki.*` would orphan every existing user's data. New keys keep the `anical.` prefix. Migrations are additive — never drop or repurpose a key an earlier version wrote.
 - **Sign-in holds exactly two things, and this is the one place that decision was made.** Discord OAuth + a signed session cookie ship (`netlify/functions/auth.mjs`, `_lib/session.mjs`). The server stores a Discord id, name and avatar hash — and, since the skin economy landed (Aug 2026), **your Tung Tung balance and which skins you own** (`netlify/functions/wallet.mjs`, `_lib/economy.mjs`, the `user-wallet` Blobs store). That was a deliberate exception with a stated reason: a balance kept in localStorage is a balance the holder can edit, which makes it unsellable the day Tung Tungs cost money. **Nothing else moved.** List, ratings, notes, collections and progress are still local and still never uploaded, and the settings copy now says precisely that rather than "nothing is uploaded". Every day below is still a local-first feature; **do not** put anything else behind the session without the same kind of deliberate decision, and update the settings copy in the same commit if you do.
 - **The skin catalogue is generated, and its ids are permanent.** `scripts/build-themes.mjs` holds one recipe row per AniList id — a motif, a display face, a shape preset, a rarity, sometimes a colour override — and writes `site/data/themes.json`, which the live Blobs layer is merged on top of at read time. **75 skins as of Aug 2026** (1 exclusive, 7 legendary, 14 epic, 22 rare, 31 common); adding more is a row and a re-run, and `--check` verifies every remote URL still resolves before it ships. Three things bite. A theme's id is slugified from its title and is what a wallet stores when someone owns that skin, so **renaming a title later orphans every ownership row pointing at it**. An `exclusive` never moves into a buyable tier — the single edit that retroactively takes something away from a person who already has it. And **a live edit in `/admin` shadows the seed for that theme entirely**, because `mergeThemes` replaces whole themes rather than merging fields: Solo Leveling was seeded Epic and served as Common for weeks before anyone noticed, and until that live record is cleared, no future seed change to it — art, motif, palette — will reach production either. The served catalogue is 214KB raw and 13KB brotli, fetched once when the Skins panel opens.
-- **The version is derived, not typed — and split across the two files now.** `.githooks/pre-commit` runs `scripts/stamp-version.mjs`, which rewrites `APP_VERSION` in `site/index.html` as `<major.minor>.<commit count>`, reading the major.minor from the newest CHANGELOG entry in `site/app.js`. The CHANGELOG travelled with the application when it split out in Aug 2026; the stamp deliberately did not — keeping the version marker in `index.html` and out of `app.js` is what lets `app.js` keep its ETag across a version-only commit. So **adding the changelog entry in `site/app.js` is the whole release procedure**; never hand-edit `APP_VERSION`, and there is no longer a constant in the script to bump. The app is on **v4.1** as of Aug 2026 (`CHANGELOG` entry `id:20`; the build number after it is the commit count, stamped at commit time, so quoting it here would be wrong within a day).
+- **The version is derived, not typed — and split across the two files now.** `.githooks/pre-commit` runs `scripts/stamp-version.mjs`, which rewrites `APP_VERSION` in `site/index.html` as `<major.minor>.<commit count>`, reading the major.minor from the newest CHANGELOG entry in `site/app.js`. The CHANGELOG travelled with the application when it split out in Aug 2026; the stamp deliberately did not — keeping the version marker in `index.html` and out of `app.js` is what lets `app.js` keep its ETag across a version-only commit. So **adding the changelog entry in `site/app.js` is the whole release procedure**; never hand-edit `APP_VERSION`, and there is no longer a constant in the script to bump. The app is on **v5.0** as of Sep 2026 (`CHANGELOG` entry `id:21`; the build number after it is the commit count, stamped at commit time, so quoting it here would be wrong within a day).
 
 Six other version numbers live nearby and every one of them is independent of the app version — **none of them move when it does, and it does not move when they do.** The public API's `VERSION` in `api.mjs` is `1.1`, matching the `/api/v1` route. The data-format ones:
 
@@ -32,6 +32,9 @@ Six other version numbers live nearby and every one of them is independent of th
 | `OVERRIDES_VERSION` | `_lib/schedule-overrides.mjs` | **`2`** | correction documents |
 
 Two traps in that table. **`SCHEMA_VERSION` is two unrelated constants with the same name** — grepping it finds both, and the one that versions the skin seed file has nothing to do with the one that versions ingest records. The theme seed's version and the served catalogue's version are likewise written by *different* constants (`build-themes.mjs` and `_lib/themes.mjs`); they read `1` and `1` today, which is agreement by coincidence rather than by construction, so bumping one does not bump the other. And `OVERRIDES_VERSION` is the only number here that has ever moved: v2 added the `regions` dimension, and v1 documents stay valid and resolve identically — which is the bar any future bump has to clear.
+- **Two kinds of media record, and only one of them resolves by id.** Days 55–85 fetch a lot of shows the calendar never loads — fifty covers a page on browse and gems, candidate pools for similarity. Those are *card weight* (`CARD_FIELDS` in `app.js`: no schedule, synopsis or relations) and live in `state.light`, which `findMediaById()` deliberately does **not** read, so a board card or a pop-up can never be handed half a record. Anything opened from one goes through `peekShow()`, which fetches the full record first; full records fetched by the show page or the palette go into `state.full`, which `findMediaById()` does read. A new list of shows picks one of the two on purpose. `predictScore(id, md)` takes the record directly for the same reason.
+- **Discovery reads go through `/api/v1`, not AniList.** The show page, similar pools, gems, underseen, tags, studio and staff pages and operator search each have a route (`_lib/discovery.mjs`) served through `cached()` in `_lib/catalog.mjs` — memory, then Blobs, then AniList, with a stale copy on failure. The browser calls `viaApi(path, query, vars)`, which only reaches AniList directly when our API can not answer; that fallback is spaced 900ms apart and stops entirely for a minute after a 429. Every route validates its inputs against closed sets before they become cache keys, and free-text name searches are never written to Blobs. `catalog.mjs`'s `anilist()` also opens a per-instance cooldown on the first 429, so a burst of cold misses fails fast instead of extending the limit. A new discovery read gets a route here too — calling AniList from the browser was the v5.0 mistake this undid.
+- **Routes with a subject.** `?view=show&id=<AniList id>` and `?view=browse&kind=tag|studio|staff&id=|name=` are allowlisted in `applyParamsToState()` like every other view, and are never written to `anical.view` — relaunching into a show page with no id would be a blank screen. `?show=<id>` still opens the pop-up; it predates the page and links to it are in the wild.
 - **Schedule data comes from our own API first.** The client calls `/api/v1/seasons/...?full=1`, `/api/v1/anime/<id>?full=1` and `/api/v1/search` before touching AniList, and falls back to AniList directly whenever our API can't answer — so the site is never *dependent* on its own backend. Data is still never stale for deploy reasons; it is now also corrected before it arrives. Only the SEO pages, `.ics` feeds and app code are deploy-bound.
 - **The correction layer is mirrored by hand.** `site/app.js` resolves release variants (`raw`/`sub`/`dub`) client-side; `netlify/functions/_lib/schedule-overrides.mjs` is the same logic again for `push-send.mjs`, because the client can't import it without a build step. **Change one, change the other** — the shapes and resolution order are the contract. Any day that touches air times touches both.
 - **Where non-client work lives.** `netlify/functions/` for server and scheduled work — `api.mjs` (public read API), `ingest.mjs` (scheduled, every 2h), `ingest-status.mjs`, `push-send.mjs` (scheduled, every 15m), `push-subscribe.mjs` / `push-unsubscribe.mjs`, `auth.mjs`, `themes.mjs`, `grants.mjs`, `wallet.mjs`, `chat.mjs`, `overrides.mjs`, `report.mjs`, and `today.mjs` (a live-rendered `/today/` page, added because the static SEO generator only runs weekly and a page whose entire premise is the current date can't wait a week to be right — see "What is already fresh without a deploy" below), with shared code in `_lib/` (`catalog.mjs` is the read path everything goes through; `seo-shell.mjs` is the template `today.mjs` and the static SEO generator now both render through). `scripts/` for static generation and tooling (`build-seo.mjs`, `build-events.mjs`, `build-themes.mjs`, `ingest-crunchyroll.mjs`); `bot/` for Discord and social posts; `.github/workflows/` for the schedules that drive them.
@@ -91,8 +94,9 @@ Shipping weekly was never a development limit. It is a deploy-budget limit, and 
 - **365** daily features
 - **12** monthly themes
 - **1** build every day, **1** drop every 2–3
-- **84** days carrying a status marker — 61 shipped, 23 partly built
-- **August is complete; September gets to Day 54 before the arc changes shape.** Days 01–54 are shipped outright — Day 53 included, closing the gap the first revision left open — plus Day 88 out of order, whose lens shipped alongside the rest of the recs page rather than waiting for its own calendar slot. Day 55 onward remains, aside from the scattered `◐` days further down where a later month's ask was already answered by something built for an earlier one.
+- **115** days carrying a status marker — 92 shipped, 23 partly built
+- **August and September are complete, and October is shipped through Day 85.** Days 55–85 landed together in one September push (v5.0): the show page arc, the profile diff, the reason rails, the command palette, the whole search month, similarity, hidden gems, the discovery card and the three browse routes. Day 86 — browse by year — is next.
+- **Previously: September got to Day 54 before the arc changed shape.** Days 01–54 are shipped outright — Day 53 included, closing the gap the first revision left open — plus Day 88 out of order, whose lens shipped alongside the rest of the recs page rather than waiting for its own calendar slot. Day 55 onward remains, aside from the scattered `◐` days further down where a later month's ask was already answered by something built for an earlier one.
 
 ## How This Sits with the Roadmap
 
@@ -590,133 +594,195 @@ Thumbs and axis sliders on the reasoning panel that update the profile on the sp
 
 "Not interested" and "already seen" persist in `anical.recno` and the show never returns. "Already seen" also writes to the activity log, since it is a fact about your library rather than only about this list. Both are undoable from the toast, and the page footer offers to restore every dismissal at once — a permanent decision made in one click needs a way back that does not require remembering what you clicked.
 
-### Day 55 · Sep 24 | Show page shell
+### Day 55 · Sep 24 | Show page shell ✅ shipped
 A real per-show route with staff, studio, source and adaptation range. `[W10]`
 > `ui` — **Done when** a per-show route renders from AniList data and deep-links correctly.
 
-### Day 56 · Sep 25 | Show page — related entries
+`renderShowPage()` in the Discovery block. One `SHOW_QUERY` fills the page — staff, all studios, relations with chapter/volume counts, stats, rankings — and when AniList is rate-limiting it is rebuilt from our catalogue record instead, says which sections that costs, and isn't cached, so Retry means something. "Adaptation range" is stated as the source and its length: AniList does not record which chapters a season covers, and inventing a range was worse than the honest row.
+
+### Day 56 · Sep 25 | Show page — related entries ✅ shipped
 Prequels, sequels, side stories and adaptations, all linked. `[W10]`
 > `surface` — **Done when** relations render as links and a show with none degrades cleanly. **Needs** Day 55.
 
-### Day 57 · Sep 26 | Show page — airing history
+Grouped in a fixed order (prequel → sequel → side stories → source → adaptations). Anime link to their own page; manga and novels open AniList, marked ↗. A show with no relations says it stands alone.
+
+### Day 57 · Sep 26 | Show page — airing history ✅ shipped
 The full episode list with air dates and your progress against it. `[W10]`
 > `surface` — **Done when** every aired and scheduled episode lists with its date and watched state. **Needs** Days 07, 55.
 
-### Day 58 · Sep 27 | Show page — score panel
+Every episode from 1 to the total, dated through the same `variantsFor` → `visibleVariants` → `preferredVariant` path as the calendar and the pop-up schedule, with the existing `data-mark` ticks. Shows that finished before AniList kept schedules still list every episode and say the date isn't on record.
+
+### Day 58 · Sep 27 | Show page — score panel ✅ shipped
 The crowd's rating distribution next to your predicted or actual score. `[W10]`
 > `surface` — **Done when** the panel shows your score when rated and the prediction when not. **Needs** Days 41, 55.
 
-### Day 59 · Sep 28 | Show page — streaming & links
+Ten buckets from `stats.scoreDistribution`; your bucket glows, and the line says what share of AniList you scored above. With no score it places the Day 41 prediction instead, and with neither it says what would fix that.
+
+### Day 59 · Sep 28 | Show page — streaming & links ✅ shipped
 Where to watch, official site and trailer, in one block. `[W10]`
 > `surface` — **Done when** available links render and missing ones are omitted rather than shown dead. **Needs** Day 55.
 
-### Day 60 · Sep 29 | Show page — themes & tags
+Streaming chips, official, social and database links, trailer — each block omitted when empty. AniList (and MyAnimeList when there's an `idMal`) is always there, so the section never renders dead.
+
+### Day 60 · Sep 29 | Show page — themes & tags ✅ shipped
 The tag cloud, colour-coded by your own affinity for each tag. `[W10]`
 > `surface` — **Done when** tags colour by affinity and stay legible with no ratings yet. **Needs** Days 35, 55.
 
-### Day 61 · Sep 30 | Profile diff
+Sized by AniList rank, coloured with `color-mix` from the Day 35 tag lift, spoiler tags folded. Every tag links to its Day 83 page.
+
+### Day 61 · Sep 30 | Profile diff ✅ shipped
 How your taste shifted this month versus last.
 > `surface` — **Done when** the diff reports real axis movement and handles a first month with no prior. **Needs** Day 37.
+
+`profileDiff()` rebuilds the end-of-last-month profile by swapping `state.ratings`/`state.status` down to what the activity log says existed on the 1st and running the one `tasteVectors()` — the Day 44 backtest's swap-and-restore, not a second implementation. Uses current scores (the log records that you rated, not what), and says so. A log that began after the 1st is a first month, not an empty diff.
 
 ---
 
 ## Month 03: October 2026 · Discovery & search
 
-### Day 62 · Oct 1 | Because-you-follow engine
+### Day 62 · Oct 1 | Because-you-follow engine ✅ shipped
 Group recommendations by the followed show that triggered them. `[W11]`
 > `data` — **Done when** every pick attributes to a specific followed show. **Needs** Day 51.
 
-### Day 63 · Oct 2 | Reason rails
+`becauseRails()`: each of the top 160 picks is attributed to the library show with the highest `simScore × trigger weight`, where the weight comes from the score you gave, a Watching status or a favourite.
+
+### Day 63 · Oct 2 | Reason rails ✅ shipped
 Reason-tagged rows on the home page — "because you rated Frieren a 9". `[W11]`
 > `ui` — **Done when** the home page renders reason-titled rows naming the trigger show. **Needs** Day 62.
 
-### Day 64 · Oct 3 | Rail ordering
+A `because` lens on ✨ For you, and the two strongest rows above the calendar (`#homeRails`), hideable in one click (`anical.homerails`).
+
+### Day 64 · Oct 3 | Rail ordering ✅ shipped
 Rails sorted by how strong each reason is, with the weak ones hidden entirely.
 > `surface` — **Done when** rails order by reason strength and below-threshold rails do not render. **Needs** Day 63.
 
-### Day 65 · Oct 4 | Command palette shell
+Strength is the mean attributed similarity of a rail's best three picks; below `RAIL_MIN_STRENGTH` or two picks it isn't rendered, and the footnote counts how many were held back.
+
+### Day 65 · Oct 4 | Command palette shell ✅ shipped
 ⌘/Ctrl-K opens a fuzzy launcher over everything. `[W12]`
 > `ui` — **Done when** the shortcut opens and closes the palette, focus traps inside it, and Escape returns focus.
 
-### Day 66 · Oct 5 | Palette — show jump
+Ctrl/⌘-K, caught in the capture phase so it works inside inputs. The input is the only focusable element (`aria-activedescendant` for the list), Tab is taken rather than leaving, and closing restores focus.
+
+### Day 66 · Oct 5 | Palette — show jump ✅ shipped
 Type a title, land on its page or modal. `[W12]`
 > `surface` — **Done when** a title query navigates to the show on Enter. **Needs** Day 65.
 
-### Day 67 · Oct 6 | Palette — actions
+Shows ranked by the Day 74 search, plus a debounced `searchAniList` for anything not loaded. Enter opens the pop-up, Shift-Enter the show page.
+
+### Day 67 · Oct 6 | Palette — actions ✅ shipped
 Set status, add to collection, rate — all without leaving the keyboard. `[W12]`
 > `surface` — **Done when** each action completes from the keyboard alone and reports its result. **Needs** Day 65.
 
-### Day 68 · Oct 7 | Palette — recent & frequent
+→ or Tab on a show turns the list into its actions: statuses, rate (type a number), favourite, pin, alerts, every collection, similar, hide. Each reports in the footer and a toast, and the ✓ marks move.
+
+### Day 68 · Oct 7 | Palette — recent & frequent ✅ shipped
 Your last actions and most-visited shows ranked to the top.
 > `surface` — **Done when** an empty query shows recents, and usage reorders them. **Needs** Day 65.
 
-### Day 69 · Oct 8 | Search operators
+`anical.palette` keeps counts and the last twenty picks; the empty palette leads with them (plus Recently Viewed), and counts add a log-scaled bonus to typed rankings.
+
+### Day 69 · Oct 8 | Search operators ✅ shipped
 `genre:`, `studio:`, `year:` and `score:>8` in the main search box.
 > `ui` — **Done when** operators parse and compose, and an unknown operator falls back to plain text search.
 
-### Day 70 · Oct 9 | Saved searches
+`parseSearch()`: `genre: tag: studio: year: score: eps: format: status: season: source: mine: is:` with `> >= < <= = a..b`. Unknown keys and unparseable values fall back to text, which is what keeps *Re:Zero* a title. Operator-only searches send the arguments AniList understands (`OPS_QUERY`) and filter the rest client-side.
+
+### Day 70 · Oct 9 | Saved searches ✅ shipped
 Save a complex filter combo as a named one-tap search. `[W13]`
 > `ui` — **Done when** a filter set saves under a name, reapplies exactly, and can be deleted. **Needs** Day 29.
 
-### Day 71 · Oct 10 | Search presets on the home page
+`anical.savedsearch`: the search text plus a cleaned copy of `state.filters`, and applying one *replaces* the filters rather than merging, so a filter you had on can't leak in.
+
+### Day 71 · Oct 10 | Search presets on the home page ✅ shipped
 Pin saved searches as chips you can reach in one tap. `[W13]`
 > `surface` — **Done when** pinned searches render as chips and run on tap. **Needs** Day 70.
 
-### Day 72 · Oct 11 | Search history
+Pinned saved searches render as chips in `#searchPresets`; tapping the one already applied clears it.
+
+### Day 72 · Oct 11 | Search history ✅ shipped
 Your recent queries, one tap to rerun.
 > `ui` — **Done when** recent queries persist, rerun on tap, and can be cleared.
 
-### Day 73 · Oct 12 | Fuzzy title matching
+`anical.searchhist`, fifteen deep, recorded on Enter, on a picked result, or after a 2.6s pause with results on screen — never per keystroke. Shown when an empty box is focused, clearable with Undo.
+
+### Day 73 · Oct 12 | Fuzzy title matching ✅ shipped
 Typo-tolerant search across romaji, english and native titles.
 > `data` — **Done when** a one-character typo still finds the show across all three title forms.
 
-### Day 74 · Oct 13 | Search-as-you-type ranking
+`titleMatch()` over English, rōmaji, native and synonyms, NFKD-folded then NFKC-recomposed so kana keep their dakuten. Optimal-string-alignment distance, budget 0/1/2 by word length, words matched in any order.
+
+### Day 74 · Oct 13 | Search-as-you-type ranking ✅ shipped
 Popularity, your affinity and exact-prefix weighting blended into one ranking.
 > `data` — **Done when** an exact prefix outranks a fuzzy match and results feel stable while typing. **Needs** Day 73.
 
-### Day 75 · Oct 14 | Similar shows engine
+`MATCH_BAND` gives exact / prefix / word / contains / fuzzy ranges 120 apart; popularity, predicted affinity and library membership top out below that, so a typo can't outrank a prefix. Ties break on id.
+
+### Day 75 · Oct 14 | Similar shows engine ✅ shipped
 A content-similarity score from tags, genres, staff and studio. `[W14]`
 > `data` — **Done when** any show returns ranked neighbours, excluding itself.
 
-### Day 76 · Oct 15 | Similar in the modal
+`simScore()`: cosine over weighted genres, ranked tags, studio, source, decade and format, plus a capped bonus for shared key staff when both records carry it. The same franchise is excluded twice over — direct relations, and `sameFranchise()` on title cores, because relations only reach one hop.
+
+### Day 76 · Oct 15 | Similar in the modal ✅ shipped
 The closest five shows, each with a line on why it's close. `[W14]`
 > `surface` — **Done when** the modal lists five neighbours with a stated reason each. **Needs** Day 75.
 
-### Day 77 · Oct 16 | Airing-now filter on similar
+Lazy: the candidate pool (one aliased request — shared tags, shared genres, airing in those genres) loads when *More like this* is opened, not with every pop-up. Each row carries its `simReason()` line.
+
+### Day 77 · Oct 16 | Airing-now filter on similar ✅ shipped
 Related shows currently broadcasting, right in the show modal. `[W14]`
 > `surface` — **Done when** the filter narrows neighbours to currently-airing and says so when none are. **Needs** Day 76.
 
-### Day 78 · Oct 17 | Hidden gems query
+`📡 Airing now` filters the same pool (the aliased `airing` list exists so there is something to filter) and says so when nothing close is broadcasting.
+
+### Day 78 · Oct 17 | Hidden gems query ✅ shipped
 High score, low popularity, inside the genres you already follow. `[W15]`
 > `data` — **Done when** results clear a score floor and a popularity ceiling and intersect your genres. **Needs** Day 33.
 
-### Day 79 · Oct 18 | Hidden gems page
+`GEMS_QUERY`: score 75+, under the dial's popularity ceiling, in your positive-lift genres (or your board's, or all). **Ecchi is excluded from `genre_in`**: AniList returns an empty page for it once `isAdult:false` is set, which blanked the whole list on a real library.
+
+### Day 79 · Oct 18 | Hidden gems page ✅ shipped
 The full list, with a "how obscure" dial you control. `[W15]`
 > `ui` — **Done when** the dial moves the popularity ceiling and results update live. **Needs** Day 78.
 
-### Day 80 · Oct 19 | Underseen by year
+A lower ceiling is a subset of a higher one, so the dial filters what's fetched and only requests when fewer than 18 remain (debounced). The slider isn't rebuilt while it has focus.
+
+### Day 80 · Oct 19 | Underseen by year ✅ shipped
 The best-rated thing you've never heard of, one per year.
 > `surface` — **Done when** each year returns one pick absent from your library. **Needs** Day 78.
 
-### Day 81 · Oct 20 | Random show
+Sixteen aliased per-year pages in two requests, under the same ceiling, any genre; the first entry not already yours wins, and a year with nothing says so.
+
+### Day 81 · Oct 20 | Random show ✅ shipped
 A dice button that respects whatever filters are currently active.
 > `ui` — **Done when** the pick always satisfies the active filters and never repeats twice running.
 
-### Day 82 · Oct 21 | Discovery streak
+`surpriseMe()` draws from `rangeEvents()` on the calendar and from `passFilter` per show elsewhere, prefers 70+ only when there are five of them, and remembers `anical.lastrandom`.
+
+### Day 82 · Oct 21 | Discovery streak ✅ shipped
 A daily "one new show" card you can accept or skip.
 > `surface` — **Done when** the card changes once per day and both choices persist. **Needs** Day 45.
 
-### Day 83 · Oct 22 | Browse by tag
+`anical.discovery`: today's pick is chosen once by a date hash over your top recommendations (or recognisable unseen shows) and *stored*, so a pool change can't swap it mid-day. Accept → Plan to Watch; either answer extends the streak.
+
+### Day 83 · Oct 22 | Browse by tag ✅ shipped
 A real tag index page, not just a search shortcut.
 > `ui` — **Done when** tags list on their own route and each opens a filtered result set.
 
-### Day 84 · Oct 23 | Browse by studio
+`MediaTagCollection`, cached a week in `anical.cache.tags` (excluded from the settings backup), grouped by category — with "Sci-Fi" kept whole — and filtered client-side. Tag pages sort four ways and load more.
+
+### Day 84 · Oct 23 | Browse by studio ✅ shipped
 Studio pages listing everything they've made, ranked.
 > `ui` — **Done when** a studio route lists its catalogue ranked by score.
 
-### Day 85 · Oct 24 | Browse by staff
+By id, or by name when the record came from a season load that never asked for studio ids. Ranked by score with unscored at the bottom; your rated count, average and lift in the header.
+
+### Day 85 · Oct 24 | Browse by staff ✅ shipped
 Director and writer pages, given the same treatment.
 > `ui` — **Done when** a staff route lists credits grouped by role. **Needs** Day 84.
+
+`staffMedia` grouped by `roleGroup()` (episode-level credits collapse to one card per show) plus `characterMedia` as Voice acting. Staff met on show pages are offered on the index.
 
 ### Day 86 · Oct 25 | Browse by year
 A year index with the season breakdown underneath.

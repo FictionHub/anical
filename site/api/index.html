@@ -91,7 +91,7 @@ footer{margin-top:44px;color:#8b97a7;font-size:12.5px;border-top:1px solid #2a31
     <tr><td>Times</td><td>Unix seconds in <code>airingAt</code>, plus an ISO-8601 UTC string in <code>airingAtIso</code>. Convert to your own timezone.</td></tr>
     <tr><td>CORS</td><td>Open to any origin — call it straight from a browser.</td></tr>
     <tr><td>Caching</td><td>Responses are CDN-cached for 5 minutes. Cache on your side too; do not poll faster than the data changes.</td></tr>
-    <tr><td>Rate limit</td><td>Roughly 60 requests/minute per client. Over it you get <code>429</code> with <code>Retry-After</code>.</td></tr>
+    <tr><td>Rate limit</td><td>Roughly 120 requests/minute per client. Over it you get <code>429</code> with <code>Retry-After</code>.</td></tr>
     <tr><td>Adult titles</td><td>Excluded by default. Pass <code>includeAdult=1</code> on <code>/schedule</code> if you need them.</td></tr>
     <tr><td>Freshness</td><td>Answers come from a server-side catalog refreshed every few hours, not from a live upstream call per request. <code>GET /api/v1</code> reports each cached season's age under <code>catalog</code>.</td></tr>
   </table>
@@ -220,6 +220,31 @@ footer{margin-top:44px;color:#8b97a7;font-size:12.5px;border-top:1px solid #2a31
     already have. The schema is documented inside
     <a href="/data/overrides.json">/data/overrides.json</a>.
   </p>
+
+  <h3>Discovery endpoints</h3>
+  <p>
+    The reads behind Tsuzuki's show pages, similar shows, hidden gems and browse pages. They are
+    public for the same reason the rest is: the data is identical for everyone, so it is fetched
+    once and cached for every caller. Each returns <code>{ ok, data }</code>, where <code>data</code>
+    is AniList's own response shape for that query — not reshaped, and without release variants.
+    Inputs are checked against fixed sets (real genres, real tag names, fixed popularity ceilings),
+    and pages run 1–25.
+  </p>
+  <table>
+    <tr><th>Path</th><th>Returns</th></tr>
+    <tr><td><code>/api/v1/show/{anilistId}</code></td><td>Staff, all studios, relations with source lengths, score and status distributions, rankings, links, schedule.</td></tr>
+    <tr><td><code>/api/v1/similar/{anilistId}</code></td><td>Candidates sharing its top tags, its genres, and its genres among what is airing (<code>byTag</code>, <code>byGenre</code>, <code>airing</code>).</td></tr>
+    <tr><td><code>/api/v1/gems?genres=&amp;ceil=</code></td><td>Scored 75+ with fewer members than <code>ceil</code> (1500, 4000, 10000, 25000 or 60000), in up to four genres.</td></tr>
+    <tr><td><code>/api/v1/underseen?ceil=</code></td><td>The best-scored shows under the ceiling for each of the last 16 years, as <code>y2026</code>, <code>y2025</code>…</td></tr>
+    <tr><td><code>/api/v1/tags</code></td><td>Every tag with its category and description.</td></tr>
+    <tr><td><code>/api/v1/tag?name=&amp;sort=&amp;page=</code></td><td>Anime carrying a tag; <code>sort</code> is popular, score, newest or trending.</td></tr>
+    <tr><td><code>/api/v1/studios?q=</code></td><td>Studio name search, or the most-favourited studios without <code>q</code>.</td></tr>
+    <tr><td><code>/api/v1/studio/{id}/catalog?page=</code></td><td>A studio's main-studio catalogue, ranked by score.</td></tr>
+    <tr><td><code>/api/v1/staff?q=</code></td><td>Staff name search, or the most-favourited people without <code>q</code>.</td></tr>
+    <tr><td><code>/api/v1/staff/{id}?page=</code></td><td>A person's production credits and voice roles.</td></tr>
+    <tr><td><code>/api/v1/filter</code></td><td>Popular titles matching every given filter: <code>genres</code>, <code>formats</code>, <code>status</code>, <code>from</code>/<code>to</code> (YYYYMMDD), <code>minScore</code>.</td></tr>
+  </table>
+<pre><code>curl "https://tsuzuki.top/api/v1/gems?genres=Mystery,Psychological&amp;ceil=10000"</code></pre>
 
   <h2>Errors</h2>
   <table>
