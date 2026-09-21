@@ -63,6 +63,15 @@ DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/blue-box-season-2-1891
 URL:https://tsuzuki.top/anime/blue-box-season-2-189123/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-189323-1@tsuzuki.netlify.app
+DTSTAMP:20270117T080000Z
+DTSTART:20270117T080000Z
+DTEND:20270117T083000Z
+SUMMARY:Shangri-La Frontier Season 3 — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/shangri-la-frontier-season-3-189323/
+URL:https://tsuzuki.top/anime/shangri-la-frontier-season-3-189323/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-199340-1@tsuzuki.netlify.app
 DTSTAMP:20261015T150000Z
 DTSTART:20261015T150000Z
@@ -103,9 +112,9 @@ UID:tsuzuki-152677-1@tsuzuki.netlify.app
 DTSTAMP:20261007T123000Z
 DTSTART:20261007T123000Z
 DTEND:20261007T130000Z
-SUMMARY:Tantei wa mou\, Shindeiru. Season 2 — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/tantei-wa-mou-shindeiru-season-2-152677/
-URL:https://tsuzuki.top/anime/tantei-wa-mou-shindeiru-season-2-152677/
+SUMMARY:The Detective Is Already Dead Season 2 — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/the-detective-is-already-dead-season-2-152677/
+URL:https://tsuzuki.top/anime/the-detective-is-already-dead-season-2-152677/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-213805-1@tsuzuki.netlify.app
@@ -115,6 +124,15 @@ DTEND:20261001T032600Z
 SUMMARY:The Ramparts of Ice Season 2 — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/the-ramparts-of-ice-season-2-213805/
 URL:https://tsuzuki.top/anime/the-ramparts-of-ice-season-2-213805/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-172192-1@tsuzuki.netlify.app
+DTSTAMP:20261007T154500Z
+DTSTART:20261007T154500Z
+DTEND:20261007T161500Z
+SUMMARY:A Returner's Magic Should be Special Season 2 — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/a-returners-magic-should-be-special-season-2-172192/
+URL:https://tsuzuki.top/anime/a-returners-magic-should-be-special-season-2-172192/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-205909-1@tsuzuki.netlify.app
@@ -130,18 +148,18 @@ UID:tsuzuki-191788-1@tsuzuki.netlify.app
 DTSTAMP:20261004T140000Z
 DTSTART:20261004T140000Z
 DTEND:20261004T143000Z
-SUMMARY:Aoashi 2nd Season — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/aoashi-2nd-season-191788/
-URL:https://tsuzuki.top/anime/aoashi-2nd-season-191788/
+SUMMARY:Aoashi Season 2 — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/aoashi-season-2-191788/
+URL:https://tsuzuki.top/anime/aoashi-season-2-191788/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-185756-1@tsuzuki.netlify.app
 DTSTAMP:20260927T150000Z
 DTSTART:20260927T150000Z
 DTEND:20260927T153000Z
-SUMMARY:Tensei Kizoku\, Kantei Skill de Nariagaru 3rd Season — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/tensei-kizoku-kantei-skill-de-nariagaru-3rd-season-185756/
-URL:https://tsuzuki.top/anime/tensei-kizoku-kantei-skill-de-nariagaru-3rd-season-185756/
+SUMMARY:As a Reincarnated Aristocrat\, I'll Use My Appraisal Skill to Rise in the World Season 3 — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/as-a-reincarnated-aristocrat-ill-use-my-appraisal-skill-to-r-185756/
+URL:https://tsuzuki.top/anime/as-a-reincarnated-aristocrat-ill-use-my-appraisal-skill-to-r-185756/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-191656-1@tsuzuki.netlify.app
@@ -162,6 +180,15 @@ DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/dragon-ball-super-beer
 URL:https://tsuzuki.top/anime/dragon-ball-super-beerus-206814/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-204650-1@tsuzuki.netlify.app
+DTSTAMP:20261002T143000Z
+DTSTART:20261002T143000Z
+DTEND:20261002T150000Z
+SUMMARY:TOUGEN ANKI: Nikko Kegon Falls Arc — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/tougen-anki-nikko-kegon-falls-arc-204650/
+URL:https://tsuzuki.top/anime/tougen-anki-nikko-kegon-falls-arc-204650/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-209872-1@tsuzuki.netlify.app
 DTSTAMP:20261003T155600Z
 DTSTART:20261003T155600Z
@@ -169,6 +196,24 @@ DTEND:20261003T162600Z
 SUMMARY:Ranma1/2 (2024) Season 3 — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/ranma12-2024-season-3-209872/
 URL:https://tsuzuki.top/anime/ranma12-2024-season-3-209872/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-212888-1@tsuzuki.netlify.app
+DTSTAMP:20260927T143000Z
+DTSTART:20260927T143000Z
+DTEND:20260927T150000Z
+SUMMARY:Overgeared — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/overgeared-212888/
+URL:https://tsuzuki.top/anime/overgeared-212888/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-204389-1@tsuzuki.netlify.app
+DTSTAMP:20260926T133000Z
+DTSTART:20260926T133000Z
+DTEND:20260926T140000Z
+SUMMARY:A Wild Last Boss Appeared! Season 2 — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/a-wild-last-boss-appeared-season-2-204389/
+URL:https://tsuzuki.top/anime/a-wild-last-boss-appeared-season-2-204389/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-207327-1@tsuzuki.netlify.app
@@ -189,22 +234,13 @@ DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/sasaki-and-peeps-seaso
 URL:https://tsuzuki.top/anime/sasaki-and-peeps-season-2-176314/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-212888-1@tsuzuki.netlify.app
-DTSTAMP:20260927T143000Z
-DTSTART:20260927T143000Z
-DTEND:20260927T150000Z
-SUMMARY:Overgeared — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/overgeared-212888/
-URL:https://tsuzuki.top/anime/overgeared-212888/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-198727-1@tsuzuki.netlify.app
 DTSTAMP:20261013T140000Z
 DTSTART:20261013T140000Z
 DTEND:20261013T143000Z
-SUMMARY:Chitose-kun wa Ramune Bin no Naka Part 2 — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/chitose-kun-wa-ramune-bin-no-naka-part-2-198727/
-URL:https://tsuzuki.top/anime/chitose-kun-wa-ramune-bin-no-naka-part-2-198727/
+SUMMARY:Chitose Is in the Ramune Bottle 2nd Cour — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/chitose-is-in-the-ramune-bottle-2nd-cour-198727/
+URL:https://tsuzuki.top/anime/chitose-is-in-the-ramune-bottle-2nd-cour-198727/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-212503-1@tsuzuki.netlify.app
@@ -243,6 +279,15 @@ DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/psyren-204011/
 URL:https://tsuzuki.top/anime/psyren-204011/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-207191-1@tsuzuki.netlify.app
+DTSTAMP:20261005T123000Z
+DTSTART:20261005T123000Z
+DTEND:20261005T130000Z
+SUMMARY:Hello\, I am a Witch and my Crush Wants me to Make a Love Potion! — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/hello-i-am-a-witch-and-my-crush-wants-me-to-make-a-love-poti-207191/
+URL:https://tsuzuki.top/anime/hello-i-am-a-witch-and-my-crush-wants-me-to-make-a-love-poti-207191/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-186541-1@tsuzuki.netlify.app
 DTSTAMP:20261004T123000Z
 DTSTART:20261004T123000Z
@@ -250,15 +295,6 @@ DTEND:20261004T130000Z
 SUMMARY:Reborn as a Space Mercenary: I Woke Up Piloting the Strongest Starship! — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/reborn-as-a-space-mercenary-i-woke-up-piloting-the-strongest-186541/
 URL:https://tsuzuki.top/anime/reborn-as-a-space-mercenary-i-woke-up-piloting-the-strongest-186541/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-187402-1@tsuzuki.netlify.app
-DTSTAMP:20261003T130000Z
-DTSTART:20261003T130000Z
-DTEND:20261003T133000Z
-SUMMARY:Tensei shita Dai Seijo wa\, Seijo de Aru Koto wo Hita Kakusu — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/tensei-shita-dai-seijo-wa-seijo-de-aru-koto-wo-hita-kakusu-187402/
-URL:https://tsuzuki.top/anime/tensei-shita-dai-seijo-wa-seijo-de-aru-koto-wo-hita-kakusu-187402/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-206949-1@tsuzuki.netlify.app
@@ -270,6 +306,15 @@ DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/nia-liston-the-mercile
 URL:https://tsuzuki.top/anime/nia-liston-the-merciless-maiden-206949/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-187402-1@tsuzuki.netlify.app
+DTSTAMP:20261003T130000Z
+DTSTART:20261003T130000Z
+DTEND:20261003T133000Z
+SUMMARY:A Tale of the Secret Saint — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/a-tale-of-the-secret-saint-187402/
+URL:https://tsuzuki.top/anime/a-tale-of-the-secret-saint-187402/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-178868-1@tsuzuki.netlify.app
 DTSTAMP:20261007T144600Z
 DTSTART:20261007T144600Z
@@ -279,13 +324,13 @@ DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/magic-knight-rayearth-
 URL:https://tsuzuki.top/anime/magic-knight-rayearth-2026-178868/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-194213-1@tsuzuki.netlify.app
-DTSTAMP:20270210T150000Z
-DTSTART:20270210T150000Z
-DTEND:20270210T153000Z
-SUMMARY:ghost – end of night — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/ghost-end-of-night-194213/
-URL:https://tsuzuki.top/anime/ghost-end-of-night-194213/
+UID:tsuzuki-209502-1@tsuzuki.netlify.app
+DTSTAMP:20261006T130000Z
+DTSTART:20261006T130000Z
+DTEND:20261006T133000Z
+SUMMARY:Shiotaiou no Satou-san ga Ore ni dake Amai — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/shiotaiou-no-satou-san-ga-ore-ni-dake-amai-209502/
+URL:https://tsuzuki.top/anime/shiotaiou-no-satou-san-ga-ore-ni-dake-amai-209502/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-208025-1@tsuzuki.netlify.app
@@ -301,9 +346,18 @@ UID:tsuzuki-169581-1@tsuzuki.netlify.app
 DTSTAMP:20261003T150000Z
 DTSTART:20261003T150000Z
 DTEND:20261003T153000Z
-SUMMARY:Magical★Explorer: Eroge no Yuujin Chara ni Tensei Shitakedo\, Game Chishiki Tsukatte Jiyuu ni Ikiru — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/magicalexplorer-eroge-no-yuujin-chara-ni-tensei-shitakedo-ga-169581/
-URL:https://tsuzuki.top/anime/magicalexplorer-eroge-no-yuujin-chara-ni-tensei-shitakedo-ga-169581/
+SUMMARY:Magical Explorer — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/magical-explorer-169581/
+URL:https://tsuzuki.top/anime/magical-explorer-169581/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-194213-1@tsuzuki.netlify.app
+DTSTAMP:20270210T150000Z
+DTSTART:20270210T150000Z
+DTEND:20270210T153000Z
+SUMMARY:ghost – end of night — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/ghost-end-of-night-194213/
+URL:https://tsuzuki.top/anime/ghost-end-of-night-194213/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-186742-1@tsuzuki.netlify.app
@@ -313,6 +367,15 @@ DTEND:20261009T140000Z
 SUMMARY:Toaru Anbu no ITEM — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/toaru-anbu-no-item-186742/
 URL:https://tsuzuki.top/anime/toaru-anbu-no-item-186742/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-206298-1@tsuzuki.netlify.app
+DTSTAMP:20270218T150000Z
+DTSTART:20270218T150000Z
+DTEND:20270218T153000Z
+SUMMARY:Medalist Movie — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/medalist-movie-206298/
+URL:https://tsuzuki.top/anime/medalist-movie-206298/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-160803-1@tsuzuki.netlify.app
@@ -333,6 +396,15 @@ DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/kanojo-no-tomodachi-21
 URL:https://tsuzuki.top/anime/kanojo-no-tomodachi-211877/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-207329-1@tsuzuki.netlify.app
+DTSTAMP:20261006T150000Z
+DTSTART:20261006T150000Z
+DTEND:20261006T153000Z
+SUMMARY:The Laid-Off Cheat-Granting Mage Enjoys a Second Lease on Life — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/the-laid-off-cheat-granting-mage-enjoys-a-second-lease-on-li-207329/
+URL:https://tsuzuki.top/anime/the-laid-off-cheat-granting-mage-enjoys-a-second-lease-on-li-207329/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-206401-1@tsuzuki.netlify.app
 DTSTAMP:20261001T123000Z
 DTSTART:20261001T123000Z
@@ -342,13 +414,13 @@ DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/fx-fighter-kurumi-chan
 URL:https://tsuzuki.top/anime/fx-fighter-kurumi-chan-206401/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-157330-1@tsuzuki.netlify.app
-DTSTAMP:20261112T150000Z
-DTSTART:20261112T150000Z
-DTEND:20261112T153000Z
-SUMMARY:Rakuen Tsuihou: Kokoro no Resonance — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/rakuen-tsuihou-kokoro-no-resonance-157330/
-URL:https://tsuzuki.top/anime/rakuen-tsuihou-kokoro-no-resonance-157330/
+UID:tsuzuki-211778-1@tsuzuki.netlify.app
+DTSTAMP:20261007T130000Z
+DTSTART:20261007T130000Z
+DTEND:20261007T133000Z
+SUMMARY:The World's Strongest Witch — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/the-worlds-strongest-witch-211778/
+URL:https://tsuzuki.top/anime/the-worlds-strongest-witch-211778/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-202250-1@tsuzuki.netlify.app
@@ -360,6 +432,33 @@ DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/kashita-maryoku-wa-rev
 URL:https://tsuzuki.top/anime/kashita-maryoku-wa-revo-barai-de-kyousei-choushuu-202250/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-157330-1@tsuzuki.netlify.app
+DTSTAMP:20261112T150000Z
+DTSTART:20261112T150000Z
+DTEND:20261112T153000Z
+SUMMARY:Rakuen Tsuihou: Kokoro no Resonance — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/rakuen-tsuihou-kokoro-no-resonance-157330/
+URL:https://tsuzuki.top/anime/rakuen-tsuihou-kokoro-no-resonance-157330/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-200455-1@tsuzuki.netlify.app
+DTSTAMP:20261004T143000Z
+DTSTART:20261004T143000Z
+DTEND:20261004T150000Z
+SUMMARY:Even Though I'm a Super Timid Noble Girl\, I Accepted the Bet From My Cunning Fiancé — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/even-though-im-a-super-timid-noble-girl-i-accepted-the-bet-f-200455/
+URL:https://tsuzuki.top/anime/even-though-im-a-super-timid-noble-girl-i-accepted-the-bet-f-200455/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-199007-1@tsuzuki.netlify.app
+DTSTAMP:20261003T143000Z
+DTSTART:20261003T143000Z
+DTEND:20261003T150000Z
+SUMMARY:#I'm Looking For a Zombie — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/im-looking-for-a-zombie-199007/
+URL:https://tsuzuki.top/anime/im-looking-for-a-zombie-199007/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-202390-1@tsuzuki.netlify.app
 DTSTAMP:20261008T150000Z
 DTSTART:20261008T150000Z
@@ -367,15 +466,6 @@ DTEND:20261008T153000Z
 SUMMARY:Girls und Panzer: Saishuushou 5 — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/girls-und-panzer-saishuushou-5-202390/
 URL:https://tsuzuki.top/anime/girls-und-panzer-saishuushou-5-202390/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-200455-1@tsuzuki.netlify.app
-DTSTAMP:20261004T143000Z
-DTSTART:20261004T143000Z
-DTEND:20261004T150000Z
-SUMMARY:Yowaki MAX Reijou Nano ni\, Ratsuwan Konyakusha-sama no Kake ni Notte Shimatta — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/yowaki-max-reijou-nano-ni-ratsuwan-konyakusha-sama-no-kake-n-200455/
-URL:https://tsuzuki.top/anime/yowaki-max-reijou-nano-ni-ratsuwan-konyakusha-sama-no-kake-n-200455/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-202429-1@tsuzuki.netlify.app
@@ -405,13 +495,22 @@ DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/shinja-zero-no-megami-
 URL:https://tsuzuki.top/anime/shinja-zero-no-megami-sama-to-hajimeru-isekai-kouryaku-205896/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-213658-1@tsuzuki.netlify.app
-DTSTAMP:20261011T083000Z
-DTSTART:20261011T083000Z
-DTEND:20261011T090000Z
-SUMMARY:Diamond no Ace act II: Second Season Part 2 — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/diamond-no-ace-act-ii-second-season-part-2-213658/
-URL:https://tsuzuki.top/anime/diamond-no-ace-act-ii-second-season-part-2-213658/
+UID:tsuzuki-203473-1@tsuzuki.netlify.app
+DTSTAMP:20261010T144500Z
+DTSTART:20261010T144500Z
+DTEND:20261010T151500Z
+SUMMARY:Kyoufu Collector — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/kyoufu-collector-203473/
+URL:https://tsuzuki.top/anime/kyoufu-collector-203473/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-187316-1@tsuzuki.netlify.app
+DTSTAMP:20261003T110000Z
+DTSTART:20261003T110000Z
+DTEND:20261003T113000Z
+SUMMARY:Gensou Suikoden — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/gensou-suikoden-187316/
+URL:https://tsuzuki.top/anime/gensou-suikoden-187316/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-209463-1@tsuzuki.netlify.app
@@ -423,13 +522,22 @@ DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/kanata-kara-209463/
 URL:https://tsuzuki.top/anime/kanata-kara-209463/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-199426-1@tsuzuki.netlify.app
-DTSTAMP:20261004T144500Z
-DTSTART:20261004T144500Z
-DTEND:20261004T151500Z
-SUMMARY:Hotel Inhumans 2nd Season — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/hotel-inhumans-2nd-season-199426/
-URL:https://tsuzuki.top/anime/hotel-inhumans-2nd-season-199426/
+UID:tsuzuki-213658-1@tsuzuki.netlify.app
+DTSTAMP:20261011T083000Z
+DTSTART:20261011T083000Z
+DTEND:20261011T090000Z
+SUMMARY:Ace of the Diamond act II -Second Season- — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/ace-of-the-diamond-act-ii-second-season--213658/
+URL:https://tsuzuki.top/anime/ace-of-the-diamond-act-ii-second-season--213658/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-199337-1@tsuzuki.netlify.app
+DTSTAMP:20270109T083000Z
+DTSTART:20270109T083000Z
+DTEND:20270109T090000Z
+SUMMARY:Shin Samurai-den YAIBA 2 — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/shin-samurai-den-yaiba-2-199337/
+URL:https://tsuzuki.top/anime/shin-samurai-den-yaiba-2-199337/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-200294-1@tsuzuki.netlify.app
@@ -441,13 +549,22 @@ DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/choujun-choujou-senpai
 URL:https://tsuzuki.top/anime/choujun-choujou-senpai-200294/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-209562-1@tsuzuki.netlify.app
-DTSTAMP:20261003T143000Z
-DTSTART:20261003T143000Z
-DTEND:20261003T150000Z
-SUMMARY:Vertex Force — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/vertex-force-209562/
-URL:https://tsuzuki.top/anime/vertex-force-209562/
+UID:tsuzuki-206774-1@tsuzuki.netlify.app
+DTSTAMP:20261004T160000Z
+DTSTART:20261004T160000Z
+DTEND:20261004T163000Z
+SUMMARY:Now That I Can Control Reality With A Mouse Cursor\, I'm Gonna Click Away On The Girls! — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/now-that-i-can-control-reality-with-a-mouse-cursor-im-gonna--206774/
+URL:https://tsuzuki.top/anime/now-that-i-can-control-reality-with-a-mouse-cursor-im-gonna--206774/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-199426-1@tsuzuki.netlify.app
+DTSTAMP:20261004T144500Z
+DTSTART:20261004T144500Z
+DTEND:20261004T151500Z
+SUMMARY:HOTEL INHUMANS Season 2 — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/hotel-inhumans-season-2-199426/
+URL:https://tsuzuki.top/anime/hotel-inhumans-season-2-199426/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-202079-1@tsuzuki.netlify.app
@@ -459,13 +576,13 @@ DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/uncles-obsession-with-
 URL:https://tsuzuki.top/anime/uncles-obsession-with-cute-things-202079/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-206774-1@tsuzuki.netlify.app
-DTSTAMP:20261004T160000Z
-DTSTART:20261004T160000Z
-DTEND:20261004T163000Z
-SUMMARY:Now That I Can Control Reality With A Mouse Cursor\, I'm Gonna Click Away On The Girls! — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/now-that-i-can-control-reality-with-a-mouse-cursor-im-gonna--206774/
-URL:https://tsuzuki.top/anime/now-that-i-can-control-reality-with-a-mouse-cursor-im-gonna--206774/
+UID:tsuzuki-209562-1@tsuzuki.netlify.app
+DTSTAMP:20261003T143000Z
+DTSTART:20261003T143000Z
+DTEND:20261003T150000Z
+SUMMARY:VERTEX FORCE — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/vertex-force-209562/
+URL:https://tsuzuki.top/anime/vertex-force-209562/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-199594-1@tsuzuki.netlify.app
@@ -477,6 +594,15 @@ DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/tetsuryo-meet-with-tet
 URL:https://tsuzuki.top/anime/tetsuryo-meet-with-tetsudou-musume-199594/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-179876-1@tsuzuki.netlify.app
+DTSTAMP:20261013T164500Z
+DTSTART:20261013T164500Z
+DTEND:20261013T171500Z
+SUMMARY:DARK MACHINE THE ANIMATION — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/dark-machine-the-animation-179876/
+URL:https://tsuzuki.top/anime/dark-machine-the-animation-179876/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-209032-1@tsuzuki.netlify.app
 DTSTAMP:20261004T133000Z
 DTSTART:20261004T133000Z
@@ -486,40 +612,13 @@ DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/mahou-no-shimai-lulutt
 URL:https://tsuzuki.top/anime/mahou-no-shimai-luluttolilly-part-2-209032/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-179876-1@tsuzuki.netlify.app
-DTSTAMP:20261013T164500Z
-DTSTART:20261013T164500Z
-DTEND:20261013T171500Z
-SUMMARY:DARK MACHINE: The Animation — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/dark-machine-the-animation-179876/
-URL:https://tsuzuki.top/anime/dark-machine-the-animation-179876/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-199068-1@tsuzuki.netlify.app
 DTSTAMP:20260930T150000Z
 DTSTART:20260930T150000Z
 DTEND:20260930T153000Z
-SUMMARY:Shin Tennis no Ouji-sama: U-17 WORLD CUP Kesshou Member Ketteisen — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/shin-tennis-no-ouji-sama-u-17-world-cup-kesshou-member-kette-199068/
-URL:https://tsuzuki.top/anime/shin-tennis-no-ouji-sama-u-17-world-cup-kesshou-member-kette-199068/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-198654-1@tsuzuki.netlify.app
-DTSTAMP:20260917T150000Z
-DTSTART:20260917T150000Z
-DTEND:20260917T153000Z
-SUMMARY:Meitantei Precure! Fushigi na Niwa to Futari no Himitsu — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/meitantei-precure-fushigi-na-niwa-to-futari-no-himitsu-198654/
-URL:https://tsuzuki.top/anime/meitantei-precure-fushigi-na-niwa-to-futari-no-himitsu-198654/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-187990-1@tsuzuki.netlify.app
-DTSTAMP:20261006T140000Z
-DTSTART:20261006T140000Z
-DTEND:20261006T143000Z
-SUMMARY:Battle Spirits [Re] Zekkai No Ku — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/battle-spirits-re-zekkai-no-ku-187990/
-URL:https://tsuzuki.top/anime/battle-spirits-re-zekkai-no-ku-187990/
+SUMMARY:The Prince of Tennis II U-17 WORLD CUP: Final Member Selection Match — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/the-prince-of-tennis-ii-u-17-world-cup-final-member-selectio-199068/
+URL:https://tsuzuki.top/anime/the-prince-of-tennis-ii-u-17-world-cup-final-member-selectio-199068/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-213068-1@tsuzuki.netlify.app
@@ -529,6 +628,15 @@ DTEND:20261007T160000Z
 SUMMARY:Jyuоu Mujin Dandivine — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/jyuu-mujin-dandivine-213068/
 URL:https://tsuzuki.top/anime/jyuu-mujin-dandivine-213068/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-187990-1@tsuzuki.netlify.app
+DTSTAMP:20261006T140000Z
+DTSTART:20261006T140000Z
+DTEND:20261006T143000Z
+SUMMARY:Battle Spirits [Re] Zekkai No Ku — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/battle-spirits-re-zekkai-no-ku-187990/
+URL:https://tsuzuki.top/anime/battle-spirits-re-zekkai-no-ku-187990/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-216557-1@tsuzuki.netlify.app
@@ -558,6 +666,24 @@ DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/cardfight-vanguard-div
 URL:https://tsuzuki.top/anime/cardfight-vanguard-divinez-parallactic-fate-214536/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-216895-1@tsuzuki.netlify.app
+DTSTAMP:20261002T122600Z
+DTSTART:20261002T122600Z
+DTEND:20261002T125600Z
+SUMMARY:Aoki Denshou: Welsh & Shedar — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/aoki-denshou-welsh-shedar-216895/
+URL:https://tsuzuki.top/anime/aoki-denshou-welsh-shedar-216895/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-194207-1@tsuzuki.netlify.app
+DTSTAMP:20261002T094000Z
+DTSTART:20261002T094000Z
+DTEND:20261002T101000Z
+SUMMARY:Pan Dorobou — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/pan-dorobou-194207/
+URL:https://tsuzuki.top/anime/pan-dorobou-194207/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-208367-1@tsuzuki.netlify.app
 DTSTAMP:20261009T120000Z
 DTSTART:20261009T120000Z
@@ -583,5 +709,14 @@ DTEND:20261003T010000Z
 SUMMARY:Nezumi-kun no Chokki (TV) 2nd Season — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/nezumi-kun-no-chokki-tv-2nd-season-214968/
 URL:https://tsuzuki.top/anime/nezumi-kun-no-chokki-tv-2nd-season-214968/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-216860-1@tsuzuki.netlify.app
+DTSTAMP:20261004T001600Z
+DTSTART:20261004T001600Z
+DTEND:20261004T004600Z
+SUMMARY:Punirunes Puni 4 — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/punirunes-puni-4-216860/
+URL:https://tsuzuki.top/anime/punirunes-puni-4-216860/
 END:VEVENT
 END:VCALENDAR
