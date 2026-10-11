@@ -1,7 +1,7 @@
 // "This time is wrong" reports from the app.
 //
 // POST /api/report          -> file a report (public, unauthenticated)
-// GET  /api/report?secret=  -> maintainer queue, newest first
+// GET  /api/report             -> maintainer queue, secret in x-tsuzuki-secret header
 //
 // This is the intake side of the correction layer: a reader who notices that an
 // episode actually dropped an hour later than listed can say so from the show
@@ -51,7 +51,7 @@ const STATUSES = ["open", "applied", "rejected", "duplicate"];
 function isAdmin(req) {
   const secret = process.env.ADMIN_SECRET || process.env.CRON_SECRET;
   if (!secret) return false;
-  const given = new URL(req.url).searchParams.get("secret") || req.headers.get("x-tsuzuki-secret");
+  const given = req.headers.get("x-tsuzuki-secret");
   return given === secret;
 }
 

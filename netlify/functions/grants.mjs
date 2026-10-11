@@ -26,7 +26,7 @@ const json = (body, status = 200) =>
 function authorized(req) {
   const secret = process.env.ADMIN_SECRET || process.env.CRON_SECRET;
   if (!secret) return false;
-  const given = new URL(req.url).searchParams.get("secret") || req.headers.get("x-tsuzuki-secret");
+  const given = req.headers.get("x-tsuzuki-secret");
   return given === secret;
 }
 

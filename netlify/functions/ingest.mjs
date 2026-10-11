@@ -26,8 +26,8 @@
 //   ingest-runs      "run-<runId>" + "latest" — run log for the status endpoint
 //
 // Manual test (requires CRON_SECRET — same env var push-send.mjs uses):
-//   curl "https://<site>/.netlify/functions/ingest?secret=$CRON_SECRET"
-//   curl "https://<site>/.netlify/functions/ingest?secret=$CRON_SECRET&season=SUMMER&year=2026"
+//   curl -H "x-tsuzuki-secret: $CRON_SECRET" "https://<site>/.netlify/functions/ingest"
+//   curl -H "x-tsuzuki-secret: $CRON_SECRET" "https://<site>/.netlify/functions/ingest?season=SUMMER&year=2026"
 import { getStore } from "@netlify/blobs";
 import { ingestAniList } from "./_lib/ingest-sources/anilist.mjs";
 import { ingestANN } from "./_lib/ingest-sources/ann.mjs";
@@ -82,7 +82,7 @@ export default async (req) => {
   const isScheduled = req.headers.get("x-netlify-event") === "schedule";
   const url = new URL(req.url);
   if (!isScheduled) {
-    const secret = url.searchParams.get("secret");
+    const secret = req.headers.get("x-tsuzuki-secret");
     if (!process.env.CRON_SECRET || secret !== process.env.CRON_SECRET) {
       return new Response("Forbidden", { status: 403 });
     }

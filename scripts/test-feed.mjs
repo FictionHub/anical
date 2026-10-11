@@ -1,11 +1,11 @@
 #!/usr/bin/env node
-/* Pure-logic checks over the swipe feed in site/app.js — which titles the
+/* Pure-logic checks over the swipe feed in the split client — which titles the
    pool offers, how the weighted sampler picks from it, and the guards that stop
    the "widen the pool" path from re-rendering itself forever.
    No DOM, no network, no clock.
 
    THE FUNCTIONS ARE EXTRACTED, NOT COPIED — same reason and same brace-matching
-   lift as scripts/test-ratings.mjs: the client is one file with no build step,
+   lift as scripts/test-ratings.mjs: the client has no build step,
    so a rename or a deletion has to fail here loudly rather than leave this
    passing against a fossil.
 
@@ -24,11 +24,12 @@ import { dirname, join } from "node:path";
 import vm from "node:vm";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
-// The app moved out of index.html into site/app.js in Aug 2026, so there is no
-// longer a <script> block to dig out of the markup. The contract these tests
-// were written for is unchanged: they run the real source, so a rename fails the
-// run instead of leaving the test to pass against a fossil.
-const SCRIPT = readFileSync(join(ROOT, "site", "app.js"), "utf8");
+// Load the same ordered classic scripts as index.html. Together they expose
+// the real declarations while preserving the app's shared global scope.
+const SCRIPT = [
+  "app.js", "app/ratings.js", "app/data.js", "app/views.js",
+  "app/settings.js", "app/discovery.js", "app/boot.js",
+].map(file => readFileSync(join(ROOT, "site", file), "utf8")).join(String.fromCharCode(10));
 
 /* ---------- extraction ---------- */
 // Balanced-brace scan from the opening { of a declaration. Strings, template
@@ -83,7 +84,7 @@ function grab(name) {
   if (m) return SCRIPT.slice(m.index, endOfBlock(SCRIPT, m.index + m[0].length) + 1);
   m = new RegExp(`^(?:const|let)\\s+${name}\\s*=`, "m").exec(SCRIPT);
   if (m) return SCRIPT.slice(m.index, endOfStatement(SCRIPT, m.index) + 1);
-  throw new Error(`site/app.js no longer declares \`${name}\` — this test needs updating`);
+  throw new Error(`the split client no longer declares \`${name}\` — this test needs updating`);
 }
 
 // `feedWidening`'s declaration carries `feedWidened` alongside it, and both are

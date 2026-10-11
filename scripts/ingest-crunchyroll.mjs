@@ -464,7 +464,7 @@ async function main() {
         `  The site compares against ADMIN_SECRET, or CRON_SECRET if ADMIN_SECRET is unset — so\n` +
         `  check both in Netlify → Site configuration → Environment variables. A value set only\n` +
         `  in one place, or one with a trailing newline or quote, fails exactly like this.\n` +
-        `  Verify without writing:  curl -o /dev/null -w '%{http_code}\\n' "${SITE}/api/report?secret=$ADMIN_SECRET"`,
+        `  Verify without writing:  curl -o /dev/null -w '%{http_code}\\n' "${SITE}/api/report" -H "x-tsuzuki-secret: $ADMIN_SECRET"`,
       );
     }
     if (!r.ok) {

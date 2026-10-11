@@ -5,7 +5,7 @@
   "private": true,
   "description": "Tsuzuki — anime release calendar. This root manifest exists so Netlify installs the serverless functions' dependencies; the site itself is static and has no build step.",
   "engines": {
-    "node": ">=20"
+    "node": ">=24"
   },
   "scripts": {
     "//dev": "Local stack: static site + the /api/* functions + a sandboxed Netlify Blobs store. --offline skips looking up a linked Netlify site, so env comes from .env only. Reads .env at startup — restart after editing it.",
@@ -14,7 +14,7 @@
     "themes:check": "node scripts/build-themes.mjs --check",
     "//economy:test": "Pure-logic checks over the Tung Tung wheel, prices, day boundaries and the wallet's tolerance for a hostile stored record. No network, no Blobs, no clock.",
     "economy:test": "node scripts/test-economy.mjs",
-    "//ratings:test": "Pure-logic checks over the rating maths in site/index.html — the axis composite and its all-off guard, score normalization, and the head-to-head ordering. Extracts the real functions out of the single-file client rather than copying them, so a rename fails the run instead of testing a fossil.",
+    "//ratings:test": "Pure-logic checks over the rating maths in the split client — the axis composite and its all-off guard, score normalization, and the head-to-head ordering. Extracts the real functions from the client scripts rather than copying them, so a rename fails the run instead of testing a fossil.",
     "ratings:test": "node scripts/test-ratings.mjs",
     "//today:test": "Pure-logic checks over the /today/ renderer in netlify/functions/today.mjs — which episodes fall inside the UTC day, their order, the adult filter, and above all that the date on the page is the date it was rendered for. No network, no Blobs, no real clock.",
     "today:test": "node scripts/test-today.mjs",

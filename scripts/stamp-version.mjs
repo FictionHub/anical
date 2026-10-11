@@ -15,8 +15,8 @@ const INDEX = join(__dirname, "..", "site", "index.html");
 // The CHANGELOG travelled with the application when it was split out of the
 // document in Aug 2026; the stamp deliberately did not. Keeping the version in
 // index.html is what lets app.js keep its ETag across a version-only commit —
-// see the banner in site/app.js.
-const APP = join(__dirname, "..", "site", "app.js");
+// see the banner in site/app/data.js.
+const APP = join(__dirname, "..", "site", "app", "data.js");
 
 const html = await readFile(INDEX, "utf8");
 const app = await readFile(APP, "utf8");
@@ -31,7 +31,7 @@ const app = await readFile(APP, "utf8");
 // entry you write when shipping the single source of truth and deletes the
 // manual step that drifted.
 //
-// To release: add the CHANGELOG entry in site/app.js with the new `v:`.
+// To release: add the CHANGELOG entry in site/app/data.js with the new `v:`.
 // That is the entire procedure — nothing in this file needs editing.
 function majorMinor(src) {
   const re = /\{\s*id:\s*(\d+)\s*,\s*v:\s*"([^"]+)"/g;
@@ -45,7 +45,7 @@ const MAJOR_MINOR = majorMinor(app);
 // silently wrong version number ships to every user, which is the exact failure
 // this script exists to prevent.
 if (!MAJOR_MINOR) {
-  console.error('stamp-version: no CHANGELOG entry found in site/app.js — expected `{ id:N, v:"X.Y", … }`');
+  console.error('stamp-version: no CHANGELOG entry found in site/app/data.js — expected `{ id:N, v:"X.Y", … }`');
   process.exit(1);
 }
 

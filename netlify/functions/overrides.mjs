@@ -2,7 +2,7 @@
 //
 // GET  /api/overrides         -> the correction document the app layers on top
 //                                of AniList (see _lib/schedule-overrides.mjs).
-// POST /api/overrides?secret= -> maintainer write path.
+// POST /api/overrides -> maintainer write path (secret in x-tsuzuki-secret header).
 //
 // Why a function and not just the committed seed: a wrong air time has to be
 // fixable in minutes, and a deploy costs ~15 of the 300 monthly Netlify credits
@@ -11,10 +11,10 @@
 // stays the durable, reviewable seed; this store is the fast lane on top.
 //
 // Write examples (merge is the default — it only touches the shows you send):
-//   curl -X POST "https://<site>/api/overrides?secret=$ADMIN_SECRET" \
-//        -H 'Content-Type: application/json' \
+//   curl -X POST "https://<site>/api/overrides" \
+//        -H "x-tsuzuki-secret: $ADMIN_SECRET" -H 'Content-Type: application/json' \
 //        -d '{"shows":{"170942":{"episodes":{"5":{"status":{"kind":"delay","shiftMin":10080,"reason":"Pre-empted"}}}}}}'
-//   curl -X POST "https://<site>/api/overrides?secret=$ADMIN_SECRET&mode=replace" -d @overrides.json
+//   curl -X POST "https://<site>/api/overrides?mode=replace" -H "x-tsuzuki-secret: $ADMIN_SECRET" -d @overrides.json
 import { getStore } from "@netlify/blobs";
 import { mergeOverrides, validateOverrides, OVERRIDES_VERSION } from "./_lib/schedule-overrides.mjs";
 
@@ -27,7 +27,7 @@ const json = (body, status = 200, headers = {}) =>
 function authorized(req) {
   const secret = process.env.ADMIN_SECRET || process.env.CRON_SECRET;
   if (!secret) return false;
-  const given = new URL(req.url).searchParams.get("secret") || req.headers.get("x-tsuzuki-secret");
+  const given = req.headers.get("x-tsuzuki-secret");
   return given === secret;
 }
 

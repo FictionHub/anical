@@ -10,12 +10,10 @@
 /* v3: rebrand. Static assets are served cache-first, so the icon and share card
    only reach existing installs when the cache name changes and activate drops
    the old one. */
-/* v5: the app moved out of index.html into /app.js. It has to be in SHELL — the
-   document alone no longer boots anything, so an install that cached only the
-   HTML would open offline to an empty page. Bumping the cache name is what
-   evicts the v4 entry holding the old all-in-one document. */
-const CACHE = "tsuzuki-v5";
-const SHELL = ["/", "/index.html", "/app.js", "/favicon.svg?v=3", "/manifest.webmanifest", "/og-image-v2.png", "/icon-192.png"];
+/* v6: the app is split into ordered classic scripts. Every piece is in SHELL so
+   a fresh install can open the complete application offline. */
+const CACHE = "tsuzuki-v6";
+const SHELL = ["/", "/index.html", "/app.js", "/app/ratings.js", "/app/data.js", "/app/views.js", "/app/settings.js", "/app/discovery.js", "/app/boot.js", "/favicon.svg?v=3", "/manifest.webmanifest", "/og-image-v2.png", "/icon-192.png"];
 
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()).catch(() => {}));
@@ -53,11 +51,8 @@ self.addEventListener("fetch", e => {
   // The app itself, and JSON data (events.json, etc.): network-first so they stay
   // current, cached as the offline backup.
   //
-  // /app.js MUST NOT fall into the cache-first rule below. Inline in index.html
-  // it inherited the navigate handler's network-first behaviour; as its own file
-  // under cache-first it would pin whatever version a visitor installed and no
-  // deploy would ever reach them again — the cache name only bumps when this
-  // file is edited by hand, which is not every ship.
+  // Application scripts and JSON stay network-first with a cached fallback, so
+  // deployments reach returning installs while offline launches still work.
   if (url.pathname.endsWith(".json") || url.pathname.endsWith(".js")) {
     e.respondWith(
       fetch(req)

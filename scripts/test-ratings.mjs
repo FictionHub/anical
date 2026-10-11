@@ -1,14 +1,14 @@
 #!/usr/bin/env node
-/* Pure-logic checks over the rating maths in site/app.js — the axis
+/* Pure-logic checks over the rating maths in the split client — the axis
    composite and its all-off guard (Day 15), score normalization (Day 17) and
    the head-to-head ordering (Day 18).
    No DOM, no network, no clock.
 
-   THE FUNCTIONS ARE EXTRACTED, NOT COPIED. The client is one file with no build
-   step, so there is nothing to import: this reads site/app.js, lifts the
-   named declarations out of the inline script by brace-matching, and evaluates
+   THE FUNCTIONS ARE EXTRACTED, NOT COPIED. The client scripts have no build
+   step, so there is nothing to import: this reads the ordered client scripts, lifts the
+   named declarations out of the client scripts by brace-matching, and evaluates
    them against a mock `state`. A copy would pass forever while the real code
-   drifted underneath it, which is the one thing a test of a single-file app must
+   drifted underneath it, which is the one thing a test of a split client must
    not do — if a function is renamed or deleted, this fails loudly at extraction
    rather than quietly testing a fossil.
 
@@ -19,11 +19,12 @@ import { dirname, join } from "node:path";
 import vm from "node:vm";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
-// The app moved out of index.html into site/app.js in Aug 2026, so there is no
-// longer a <script> block to dig out of the markup. The contract these tests
-// were written for is unchanged: they run the real source, so a rename fails the
-// run instead of leaving the test to pass against a fossil.
-const SCRIPT = readFileSync(join(ROOT, "site", "app.js"), "utf8");
+// Load the same ordered classic scripts as index.html. Together they expose
+// the real declarations while preserving the app's shared global scope.
+const SCRIPT = [
+  "app.js", "app/ratings.js", "app/data.js", "app/views.js",
+  "app/settings.js", "app/discovery.js", "app/boot.js",
+].map(file => readFileSync(join(ROOT, "site", file), "utf8")).join(String.fromCharCode(10));
 
 /* ---------- extraction ---------- */
 // Balanced-brace scan from the opening { of a declaration. Strings, template
@@ -86,7 +87,7 @@ function grab(name) {
   // more names it declares alongside this one.
   m = new RegExp(`^(?:const|let)\\s+${name}\\s*=`, "m").exec(SCRIPT);
   if (m) return SCRIPT.slice(m.index, endOfStatement(SCRIPT, m.index) + 1);
-  throw new Error(`site/app.js no longer declares \`${name}\` — this test needs updating`);
+  throw new Error(`the split client no longer declares \`${name}\` — this test needs updating`);
 }
 
 const NEEDED = [

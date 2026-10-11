@@ -33,4 +33,4 @@ console.log("     that only half-lands means every notification is silently reje
 console.log("  2. Set VAPID_PRIVATE_KEY (and optionally VAPID_SUBJECT, CRON_SECRET) as");
 console.log("     Netlify environment variables (Site configuration -> Environment variables).");
 console.log("  3. Verify without sending anything:");
-console.log("     curl \"https://<site>/.netlify/functions/push-send?secret=$CRON_SECRET&dry=1\"");
+console.log("     curl -H \"x-tsuzuki-secret: $CRON_SECRET\" \"https://<site>/.netlify/functions/push-send?dry=1\"");

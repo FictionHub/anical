@@ -11,8 +11,8 @@
 //
 // Write examples:
 //   curl "https://<site>/api/themes"
-//   curl -X POST "https://<site>/api/themes?secret=$ADMIN_SECRET" \
-//        -H 'Content-Type: application/json' -d @theme.json
+//   curl -X POST "https://<site>/api/themes" \
+//        -H "x-tsuzuki-secret: $ADMIN_SECRET" -H 'Content-Type: application/json' -d @theme.json
 import { getStore } from "@netlify/blobs";
 import {
   loadThemeSeed, mergeThemes, validateThemes, publicTheme,
@@ -28,7 +28,7 @@ const json = (body, status = 200, headers = {}) =>
 function authorized(req) {
   const secret = process.env.ADMIN_SECRET || process.env.CRON_SECRET;
   if (!secret) return false;
-  const given = new URL(req.url).searchParams.get("secret") || req.headers.get("x-tsuzuki-secret");
+  const given = req.headers.get("x-tsuzuki-secret");
   return given === secret;
 }
 

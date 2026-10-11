@@ -16,8 +16,8 @@
 // body, which is what the run log actually shows you.
 //
 // Manual test (requires CRON_SECRET env var to be set):
-//   curl "https://<site>/.netlify/functions/push-send?secret=$CRON_SECRET"
-//   curl "https://<site>/.netlify/functions/push-send?secret=$CRON_SECRET&dry=1"
+//   curl -H "x-tsuzuki-secret: $CRON_SECRET" "https://<site>/.netlify/functions/push-send"
+//   curl -H "x-tsuzuki-secret: $CRON_SECRET" "https://<site>/.netlify/functions/push-send?dry=1"
 import { getStore } from "@netlify/blobs";
 import webpush from "web-push";
 import { variantsFor, preferredVariant, showOverride, mergeOverrides, loadSeed } from "./_lib/schedule-overrides.mjs";
@@ -181,7 +181,7 @@ export default async (req) => {
   const isScheduled = req.headers.get("x-netlify-event") === "schedule";
   const url = new URL(req.url);
   if (!isScheduled) {
-    const secret = url.searchParams.get("secret");
+    const secret = req.headers.get("x-tsuzuki-secret");
     if (!process.env.CRON_SECRET || secret !== process.env.CRON_SECRET) {
       return new Response("Forbidden", { status: 403 });
     }

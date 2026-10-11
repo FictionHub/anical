@@ -22,7 +22,7 @@ import { anilist, cached, getMediaById } from "./catalog.mjs";
 
 const DAY = 24 * 3600_000;
 
-// Card weight, matching CARD_FIELDS in site/app.js — tags and studios stay in
+// Card weight, matching CARD_FIELDS in the split frontend client — tags and studios stay in
 // because the client ranks and predicts from them.
 export const CARD_FIELDS = `id type title { romaji english native } synonyms format episodes duration genres status popularity averageScore source isAdult countryOfOrigin
   tags { name rank isMediaSpoiler isAdult } coverImage { medium large color } startDate { year month day } seasonYear
@@ -40,7 +40,7 @@ const FULL_FIELDS = `id title { romaji english native } synonyms format episodes
 export const GENRES = ["Action","Adventure","Comedy","Drama","Ecchi","Fantasy","Hentai","Horror","Mahou Shoujo","Mecha","Music",
   "Mystery","Psychological","Romance","Sci-Fi","Slice of Life","Sports","Supernatural","Thriller"];
 // AniList answers an empty page for genre_in containing Ecchi once isAdult:false
-// is set, so gems never send it (see GEM_SKIP_GENRES in site/app.js).
+// is set, so gems never send it (see GEM_SKIP_GENRES in the split frontend client).
 const GEM_GENRES = new Set(GENRES.filter(g => g !== "Ecchi" && g !== "Hentai"));
 export const GEM_CEILINGS = [1500, 4000, 10000, 25000, 60000];
 const FORMATS = new Set(["TV","TV_SHORT","MOVIE","SPECIAL","OVA","ONA","MUSIC"]);

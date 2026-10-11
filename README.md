@@ -11,13 +11,13 @@ This repo does two things, entirely in the cloud (no dependency on your PC):
 ```
 site/                 the Tsuzuki website (index.html, sitemap.xml, robots.txt, og-image.png, favicon.svg, 404.html)
 site/embed/           embeddable "what's airing" widget (iframe) for other sites — generates backlinks
-scripts/build-seo.mjs generates static SEO landing pages (/today/, /<season>-<year>/) from AniList at deploy time
+scripts/build-seo.mjs generates static SEO landing pages (/today/, /<season>-<year>/) from AniList
 bot/post-updates.mjs  pulls AniList + ANN and posts embeds to Discord
 bot/post-social.mjs   pulls AniList and posts a daily blurb to Bluesky / Mastodon / Twitter-X
-netlify.toml          tells Netlify to publish /site (and run the SEO build step)
+netlify.toml          tells Netlify to publish /site without a build step
 .github/workflows/daily-discord.yml   daily Discord cron job
 .github/workflows/daily-social.yml    daily social-media cron job
-.github/workflows/refresh-pages.yml   daily Netlify rebuild so /today/ stays fresh (optional)
+.github/workflows/refresh-pages.yml   weekly generation and commit of SEO pages and events
 ```
 
 ## One-time setup
@@ -89,15 +89,9 @@ pages that target real searches:
 
 Each page has real titles + dates in the HTML, a canonical URL, Open Graph tags, and
 `ItemList` JSON-LD, and is listed in the regenerated `sitemap.xml`. The generator has **zero
-npm deps** and **always exits 0**, so a transient AniList outage can never fail a deploy.
-The pages are git-ignored (rebuilt on deploy); run `node scripts/build-seo.mjs` to preview locally.
+npm deps** and commits its output from GitHub Actions; it does not run during Netlify deploys. Run node scripts/build-seo.mjs to preview or regenerate locally.
 
-**Keep `/today/` fresh:** seasons rarely change, but the "airing today" page should rebuild
-daily. `.github/workflows/refresh-pages.yml` does this by pinging a **Netlify build hook**:
-1. Netlify → *Site configuration → Build & deploy → Build hooks → Add build hook*, copy the URL.
-2. GitHub → repo *Settings → Secrets and variables → Actions* → add secret `NETLIFY_BUILD_HOOK` = that URL.
-
-Without the secret the workflow simply no-ops.
+**Refresh SEO pages and events:** the refresh-pages workflow runs weekly on GitHub Actions. It regenerates the pages and event data, commits changes, and those commits trigger the Netlify deploy. The workflow needs contents: write permission; no Netlify build hook is involved.
 
 ## Push notifications (Web Push / VAPID)
 Episode alerts work two ways:
@@ -114,8 +108,8 @@ Setup (one-time):
 3. In Netlify → *Site configuration → Environment variables*, add:
    - `VAPID_PRIVATE_KEY` — the private key from step 1 (secret, never commit)
    - `VAPID_SUBJECT` — optional, e.g. `mailto:you@example.com`
-   - `CRON_SECRET` — optional random string, lets you manually trigger
-     `/.netlify/functions/push-send?secret=...` for testing
+   - `CRON_SECRET` — optional random string; send it in the x-tsuzuki-secret header
+     when manually calling protected functions such as `/.netlify/functions/push-send`
 4. Deploy. `@netlify/blobs` and `web-push` (declared in `netlify/functions/package.json`)
    are installed automatically by Netlify — no local `npm install` needed.
 
@@ -128,7 +122,7 @@ told you to set it.)
 
 If push alerts go quiet, ask the function itself rather than reading the run log:
 
-    curl "https://<site>/.netlify/functions/push-send?secret=$CRON_SECRET&dry=1"
+    curl -H "x-tsuzuki-secret: $CRON_SECRET" "https://<site>/.netlify/functions/push-send?dry=1"
 
 `dry=1` resolves and counts the notifications that are due without sending any. A scheduled run
 never answers 500 any more — a configuration or upstream problem comes back as `ok:false` with a
@@ -282,9 +276,9 @@ canonical records this worker writes.
 
 - Check the latest run: `curl https://<site>/api/ingest/status`
 - Manually trigger a run (uses the same `CRON_SECRET` as push-send.mjs):
-  `curl "https://<site>/.netlify/functions/ingest?secret=$CRON_SECRET"`
+  `curl -H "x-tsuzuki-secret: $CRON_SECRET" "https://<site>/.netlify/functions/ingest"`
 - Force a specific season (fastest way to warm the catalog after an outage):
-  `curl "https://<site>/.netlify/functions/ingest?secret=$CRON_SECRET&season=SUMMER&year=2026"`
+  `curl -H "x-tsuzuki-secret: $CRON_SECRET" "https://<site>/.netlify/functions/ingest?season=SUMMER&year=2026"`
 - See what the catalog can answer without going upstream: `curl https://<site>/api/v1`
   and read the `catalog` block.
 
@@ -485,15 +479,16 @@ the estimated simulcast row, and a cached copy covers an offline launch.
 
 ```bash
 # a one-week delay, merged into whatever is already live
-curl -X POST "https://<site>/api/overrides?secret=$ADMIN_SECRET" \
+curl -X POST "https://<site>/api/overrides" \
+     -H "x-tsuzuki-secret: $ADMIN_SECRET" \
      -H 'Content-Type: application/json' \
      -d '{"shows":{"170942":{"episodes":{"5":{"status":{"kind":"delay","shiftMin":10080,"reason":"Pre-empted"}}}}}}'
 
 # replace the whole document
-curl -X POST "https://<site>/api/overrides?secret=$ADMIN_SECRET&mode=replace" -d @overrides.json
+curl -X POST "https://<site>/api/overrides?mode=replace" -H "x-tsuzuki-secret: $ADMIN_SECRET" -d @overrides.json
 
 # read the reader-report queue
-curl "https://<site>/api/report?secret=$ADMIN_SECRET"
+curl -H "x-tsuzuki-secret: $ADMIN_SECRET" "https://<site>/api/report"
 ```
 
 Set `ADMIN_SECRET` in **Netlify → Site configuration → Environment variables**

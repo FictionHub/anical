@@ -17,13 +17,11 @@
   # shouldn't cost a deploy. Netlify cancels the build when this command exits
   # 0, and `git diff --quiet` exits 0 precisely when both paths are unchanged.
   #
-  # /netlify is in the list because the functions ship in the same deploy: with
-  # /site alone, a functions-only fix would be silently skipped and the old code
-  # would stay live. package.json and its lockfile are here for the same reason
-  # — they are what makes Netlify install the functions' dependencies, so a
-  # change to them that didn't deploy would be the one change guaranteed to
-  # matter.
-  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- site netlify package.json package-lock.json"
+  # /netlify is in the list because the functions ship in the same deploy; a
+  # functions-only fix must not be skipped. package.json and its lockfile make
+  # Netlify install the function dependencies, and .nvmrc sets the Node runtime,
+  # so a change to any of these paths must deploy.
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- site netlify package.json package-lock.json .nvmrc"
 
 [functions]
   directory = "netlify/functions"
@@ -126,7 +124,7 @@
 
 # Grounded anime chat (SSE). Answers from the corrected schedule via tool calls,
 # and falls back to Google Search for anything the calendar doesn't hold — see
-# netlify/functions/chat.mjs. Needs GEMINI_API_KEY in the site environment.
+# netlify/functions/chat.mjs. Needs GROQ_API_KEY in the site environment.
 [[redirects]]
   from = "/api/chat"
   to = "/.netlify/functions/chat"
@@ -155,10 +153,16 @@
 # no version in its URL, so it cannot be cached immutably — but it also no longer
 # changes when the version stamp does, which is the point: a commit that only
 # bumps APP_VERSION rewrites index.html alone, and every returning visitor
-# revalidates app.js to a 304 instead of re-downloading half a megabyte. The
-# service worker is network-first for .js, so a deploy still reaches installs.
+# revalidates each app script to a 304 instead of re-downloading unchanged
+# code. The service worker is network-first for .js, so a deploy still reaches
+# installs.
 [[headers]]
   for = "/app.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/app/*"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
 
