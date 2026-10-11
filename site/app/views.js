@@ -776,7 +776,7 @@ function openDay(d,evs){
   });
   $("overlay").classList.add("on");
 }
-function closeModal(){ saveNoteNow(); state._modalKind=null; $("overlay").classList.remove("on"); }
+function closeModal(){ saveNoteNow(); state._modalKind=null; $("overlay").classList.remove("on"); const after=changelogAfterClose; changelogAfterClose=null; if(after) setTimeout(after,0); }
 
 /* ---------- embed widget snippet ---------- */
 function embedSnippet(days){

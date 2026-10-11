@@ -12,8 +12,8 @@
    the old one. */
 /* v6: the app is split into ordered classic scripts. Every piece is in SHELL so
    a fresh install can open the complete application offline. */
-const CACHE = "tsuzuki-v6";
-const SHELL = ["/", "/index.html", "/app.js", "/app/ratings.js", "/app/data.js", "/app/views.js", "/app/settings.js", "/app/discovery.js", "/app/boot.js", "/favicon.svg?v=3", "/manifest.webmanifest", "/og-image-v2.png", "/icon-192.png"];
+const CACHE = "tsuzuki-v7";
+const SHELL = ["/", "/index.html", "/app.js", "/app/ratings.js", "/app/data.js", "/app/views.js", "/app/settings.js", "/app/discovery.js", "/app/boot.js", "/app/experience.js", "/favicon.svg?v=3", "/manifest.webmanifest", "/og-image-v2.png", "/icon-192.png"];
 
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()).catch(() => {}));

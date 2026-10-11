@@ -960,6 +960,19 @@ function renderWhatsNew(){
    update. Returning visitors see every entry newer than the one they last
    saw, once, in a modal they close manually. Trim old entries freely. */
 const CHANGELOG=[
+  { id:22, v:"5.1", date:"October 2026", items:[
+    "A new Today and Tonight panel puts followed episodes, watch progress, and a one-tap watched action together.",
+    "My Week plans upcoming releases, estimates the time you will need, compares broadcast/sub/dub times, and prints cleanly.",
+    "Catch-up now groups ready episodes, shows finale countdowns, and makes a realistic episodes-per-day plan.",
+    "Continue Watching, pause controls, a Decide later shelf, weekly goals, bulk cleanup, and progress reminders make your library easier to manage.",
+    "Mood browsing, a guided surprise pick, explainable recommendations, a four-title comparison, and franchise start guidance make discovery easier.",
+    "Per-show spoiler choices, runtime estimates, AniList streaming links with clear region caveats, and a private dated journal enrich show details.",
+    "Per-show alert lead times and release types, plus quiet hours and a clearer permission explanation, give you control over reminders.",
+    "Share only the shows you choose as a read-only seasonal list or watch-together shortlist; private progress and notes stay out of shared links.",
+    "Downloadable title cards, seasonal summaries, and a year-in-anime recap turn your saved activity into something you can keep or share.",
+    "A first-run walkthrough, sample preview, contextual tips, keyboard help, mobile bottom navigation, larger text, stronger contrast, and a low-bandwidth mode help more people use the site.",
+    "A compact public agenda link can be added to a phone’s home screen; offline status and cached tracking are easier to see.",
+  ]},
   { id:21, v:"5.0", date:"September 2026", items:[
     "📄 Every anime now has a real page of its own. Staff and studio, what it was adapted from, every episode with its air date and a tick for the ones you've seen, the community's score distribution with your own score — or your predicted one — marked on it, where to watch, the official links and trailer, its tags, everything that comes before and after it, and the five shows most like it. Open one from any pop-up with 📄 Full page, or share the link.",
     "🏷 The tags on that page are coloured by your own taste: green where you rate that theme above your average, red where you rate it below, grey where you haven't rated anything that carries it yet.",
@@ -1103,7 +1116,9 @@ const CHANGELOG=[
     "This “What’s new” window — you’ll see it once after each major update.",
   ]},
 ];
-function openChangelog(entries){
+let changelogAfterClose=null;
+function openChangelog(entries,onClose){
+  changelogAfterClose=typeof onClose==="function"?onClose:null;
   const latestId=CHANGELOG.length?CHANGELOG[0].id:0;
   localStorage.setItem("anical.changelogSeen", String(latestId));   // mark seen the moment it opens
   $("modalTitle").textContent="✨ What’s new in Tsuzuki";
@@ -1114,17 +1129,17 @@ function openChangelog(entries){
     </div>`).join("")+`</div>`;
   $("overlay").classList.add("on");
 }
-// Show release notes if this visitor is behind the latest entry. Brand-new
-// visitors (no prior visit) are silently baselined so they aren't greeted with
-// a changelog on their very first load.
-function maybeShowChangelog(){
+// Show the newest release notes once to each browser. Fresh and returning
+// visitors both start just behind the latest entry.
+function maybeShowChangelog(onClose){
   if(!CHANGELOG.length) return;
   const latestId=CHANGELOG[0].id;
   let seen=localStorage.getItem("anical.changelogSeen");
-  seen = seen==null ? (LAST_VISIT ? 0 : latestId) : (+seen||0);
+  seen = seen==null ? Math.max(0, latestId-1) : (+seen||0);
   const fresh=CHANGELOG.filter(c=>c.id>seen);
-  if(fresh.length) openChangelog(fresh);
-  else localStorage.setItem("anical.changelogSeen", String(latestId));
+  if(fresh.length){ openChangelog(fresh,onClose); return true; }
+  localStorage.setItem("anical.changelogSeen", String(latestId));
+  return false;
 }
 
 /* ---------- instant-load cache (stale-while-revalidate) ---------- */
@@ -1595,7 +1610,7 @@ function noteOptionsFor(md,n){
   // the alert says which one it is rather than just a bare time.
   const where=n.air ? " · "+(n.air.estimated?"~":"")+AIR_LABEL[n.air.type]+(n.air.platform?" on "+n.air.platform:"") : "";
   return {
-    body:"Episode "+n.episode+" airs at "+fmtTime(n.airingAt)+where,
+    body:n.afterQuiet ? "Episode "+n.episode+" is available now." : "Episode "+n.episode+" airs at "+fmtTime(n.airingAt)+where,
     icon: (md.coverImage&&md.coverImage.medium)||"/icon-192.png",
     badge:"/favicon.svg",
     tag:"anical-"+md.id+"-"+n.episode,
@@ -1635,25 +1650,47 @@ async function syncPushSubscription(){
   if(Notification.permission!=="granted") return;
   try{
     let sub=await swReg.pushManager.getSubscription();
-    if(!state.notify.size){
+    let leadBy={}, airBy={}, quiet={};
+    try{ leadBy=JSON.parse(localStorage.getItem("anical.notifyLeadBy")||"{}")||{}; }catch(_){ leadBy={}; }
+    try{ airBy=JSON.parse(localStorage.getItem("anical.notifyAirBy")||"{}")||{}; }catch(_){ airBy={}; }
+    try{ quiet=JSON.parse(localStorage.getItem("anical.experience.quiet")||"{}")||{}; }catch(_){ quiet={}; }
+    const serverIds=[...state.notify].filter(id=>!quiet.enabled&&leadBy[String(id)]==null&&!airBy[String(id)]);
+    if(!serverIds.length){
       if(sub){ await fetch("/api/push/unsubscribe",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({endpoint:sub.endpoint})}).catch(()=>{}); await sub.unsubscribe().catch(()=>{}); }
       return;
     }
     if(!sub) sub=await swReg.pushManager.subscribe({userVisibleOnly:true, applicationServerKey:urlBase64ToUint8Array(VAPID_PUBLIC_KEY)});
     await fetch("/api/push/subscribe",{method:"POST",headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({subscription:sub.toJSON(), mediaIds:[...state.notify], lead:state.notifyLead, airType:primaryAirType()})});
+      body:JSON.stringify({subscription:sub.toJSON(), mediaIds:serverIds, lead:state.notifyLead, airType:primaryAirType()})});
   }catch(e){ console.error("push subscription sync failed",e); }
 }
 async function scheduleNotifications(){
   if(!("Notification" in window) || Notification.permission!=="granted") return;
   const now=Date.now();
+  let leadPrefs={}, quietPref={};
+  try{ leadPrefs=JSON.parse(localStorage.getItem("anical.notifyLeadBy")||"{}")||{}; }catch(_){ leadPrefs={}; }
+  try{ quietPref=JSON.parse(localStorage.getItem("anical.experience.quiet")||"{}")||{}; }catch(_){ quietPref={}; }
+  const quietFireAt=(airingAt, lead)=>{
+    const fireAt=airingAt*1000-Math.max(1,Math.min(120,+lead||state.notifyLead))*60000;
+    if(!quietPref.enabled) return fireAt;
+    const parse=s=>{ const m=String(s||"").match(/^(\d{1,2}):(\d{2})$/); return m?+m[1]*60+(+m[2]):null; };
+    const start=parse(quietPref.start||"22:00"), end=parse(quietPref.end||"08:00");
+    if(start==null||end==null||start===end) return fireAt;
+    const date=new Date(fireAt), minute=date.getHours()*60+date.getMinutes();
+    const quiet=start<end ? minute>=start&&minute<end : minute>=start||minute<end;
+    if(!quiet) return fireAt;
+    const next=new Date(date);
+    if(start>=end&&minute>=start) next.setDate(next.getDate()+1);
+    next.setHours(Math.floor(end/60),end%60,0,0);
+    return next.getTime();
+  };
   // Alert on the release the viewer tracks, not the JP broadcast — and never
   // on an episode marked as a break, which resolves to no variant at all.
   const alertNodes=md=>{
     const out=[];
     for(const n of (md.airingSchedule&&md.airingSchedule.nodes)||[]){
       const v=trackedVariant(md,n);
-      if(v) out.push({episode:n.episode, airingAt:v.ts, air:v});
+      if(v) out.push({episode:n.episode, airingAt:v.ts, air:v, afterQuiet:quietFireAt(v.ts,leadPrefs[String(md.id)])>v.ts*1000});
     }
     return out;
   };
@@ -1663,7 +1700,7 @@ async function scheduleNotifications(){
     for(const md of state.media){
       if(!isFollowed(md.id)) continue;
       for(const n of alertNodes(md)){
-        const fireAt=n.airingAt*1000-state.notifyLead*60000;
+        const fireAt=quietFireAt(n.airingAt,leadPrefs[String(md.id)]);
         if(fireAt<=now) continue;                       // moment already passed
         if(fireAt-now>30*24*3600*1000) continue;        // >30d out; roll in later
         const o=noteOptionsFor(md,n); o.showTrigger=new TimestampTrigger(fireAt);
@@ -1677,8 +1714,8 @@ async function scheduleNotifications(){
     if(!isFollowed(md.id)) continue;
     for(const n of alertNodes(md)){
       const air=n.airingAt*1000;
-      if(air<=now) continue;
-      const fireAt=air-state.notifyLead*60000, delay=fireAt-now;
+      const fireAt=quietFireAt(n.airingAt,leadPrefs[String(md.id)]), delay=fireAt-now;
+      if(air<=now&&fireAt<=now) continue;
       if(delay>24*3600*1000) continue;
       const key=md.id+"-"+n.episode;
       if(state.scheduled.has(key)) continue;

@@ -1576,14 +1576,14 @@ async function applySkinPreview(){
   if(alTokenValid()){
     try{
       if(!alState.user) await alFetchViewer();
-      if(_alFresh){ await alPull(); toast("AniList list imported."); openSettings(); }
+      if(_alFresh){ await alPull(); toast("AniList list imported."); }
       else if(alState.queue.length) alRunQueue();
     }catch(e){ console.warn("AniList sync on boot failed", e); }
   }
 
   const qs=_params.get("show");
-  if(qs) openShowById(qs);
-  else if(!_alFresh) maybeShowChangelog();   // greet returning visitors with release notes (once)
+  const continueStartup=()=>{ if(qs) openShowById(qs); else if(_alFresh||state.loginProblem) openSettings(); };
+  if(!maybeShowChangelog(continueStartup)) continueStartup();
 })();
 
 /* ============================================================
