@@ -30,7 +30,7 @@ import {
 } from "./_lib/catalog.mjs";
 import {
   getShow, getSimilarPool, getGems, getUnderseen, getTags, getTagPage,
-  getStudioCatalog, getStudios, getStaffPage, getStaffList, getFilter, GEM_CEILINGS,
+  getStudioCatalog, getStudios, getStaffPage, getStaffList, getFilter, getYearPage, getTrending, GEM_CEILINGS,
 } from "./_lib/discovery.mjs";
 
 const SITE = "https://tsuzuki.top";
@@ -501,9 +501,10 @@ export default async (req) => {
     if (route[0] === "staff" && route.length === 1) return disco(await getStaffList(p.get("q")), p.get("q") ? 600 : 24 * 3600);
     if (route[0] === "staff" && route.length === 2) return disco(await getStaffPage(route[1], p.get("page")), 6 * 3600);
     if (route[0] === "filter" && route.length === 1) return disco(await getFilter(p), 600);
+    if (route[0] === "year" && route.length === 1) return disco(await getYearPage(p.get("y"), p.get("sort"), p.get("page"), p.get("adult")), 6 * 3600);
+    if (route[0] === "trending" && route.length === 1) return disco(await getTrending(p.get("page"), p.get("adult")), 1800);
     return fail(404, `Unknown endpoint /${route.join("/")}`, `See ${SITE}/api/ for the endpoint list.`);
   } catch (err) {
-    const status = err && err.status ? err.status : 500;
     // A 400 or 404 is the caller's mistake, not ours; logging each with a stack
     // buried the real upstream failures once the discovery routes validated input.
     if (status >= 500) console.error("api error", url.pathname, err);

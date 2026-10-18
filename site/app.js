@@ -111,6 +111,7 @@ const state = {
   daySort: localStorage.getItem("anical.daySort")||"popularity",    // popularity | time | alpha | score
   showImages: localStorage.getItem("anical.showImages")!=="0",      // cover art in rows and cells
   showDonghua: localStorage.getItem("anical.showDonghua")!=="0",    // Chinese productions (countryOfOrigin CN)
+  radius: +(localStorage.getItem("anical.radius")||12),             // card corner radius, px (Day 210)
   eventsData: null,              // cached events.json (real-life events view)
   eventsItems: null,             // parsed+sorted events (with ts)
   eventsFilter: "",              // events view text filter (not persisted)

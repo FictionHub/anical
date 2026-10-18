@@ -220,8 +220,9 @@ function applyParamsToState(params, reset){
   }
   if(state.viewMode==="browse"){
     const k=params.get("kind");
-    state.browse={ kind:["tag","studio","staff"].includes(k)?k:"tag",
-      id:String(params.get("id")||"").replace(/\D/g,"")||null, name:(params.get("name")||"").slice(0,120)||null };
+    state.browse={ kind:["tag","studio","staff","year"].includes(k)?k:"tag",
+      id:k==="year"?String(params.get("y")||"").replace(/\D/g,"")||null:String(params.get("id")||"").replace(/\D/g,"")||null,
+      name:(params.get("name")||"").slice(0,120)||null };
   }
   const qd=params.get("date");
   if(qd && /^\d{4}-\d{2}-\d{2}$/.test(qd)){ const d=new Date(qd+"T12:00:00"); if(!isNaN(d)) state.anchor=d; }

@@ -115,13 +115,15 @@ function openShowPage(id){
   window.scrollTo({top:0});
 }
 function openBrowse(kind, id, name){
-  state.browse={ kind:["tag","studio","staff"].includes(kind)?kind:"tag", id:id?String(id):null, name:name||null };
+  state.browse={ kind:["tag","studio","staff","year"].includes(kind)?kind:"tag", id:id?String(id):null, name:name||null };
   setView("browse");
   window.scrollTo({top:0});
 }
 function browseHref(kind, id, name){
   const p=new URLSearchParams({view:"browse", kind});
-  if(id) p.set("id", id); if(name) p.set("name", name);
+  if(kind==="year" && id) p.set("y", id);
+  else if(id) p.set("id", id);
+  if(name) p.set("name", name);
   return "?"+p.toString();
 }
 const showHref = id => "?view=show&id="+encodeURIComponent(id);
@@ -2047,7 +2049,7 @@ function browseCardHtml(md, extra){
 const browseVisible = md => md && (!md.type||md.type==="ANIME") && !excluded(md);
 function browseTabsHtml(){
   const k=state.browse.kind;
-  return `<div class="sk-tabs" role="tablist">${[["tag","🏷 Tags"],["studio","🎬 Studios"],["staff","🎙 Staff"]].map(([key,label])=>
+  return `<div class="sk-tabs" role="tablist">${[["tag","🏷 Tags"],["studio","🎬 Studios"],["staff","🎙 Staff"],["year","📅 Years"]].map(([key,label])=>
     `<a class="sk-tab${k===key?" on":""}" role="tab" aria-selected="${k===key}" href="${browseHref(key)}" data-browse="${key}||">${label}</a>`).join("")}</div>`;
 }
 function renderBrowse(){
@@ -2060,6 +2062,7 @@ function renderBrowse(){
   let body, heading;
   if(b.kind==="studio"){ [heading,body]=(b.id||b.name)?studioPageHtml(b):studioIndexHtml(); }
   else if(b.kind==="staff"){ [heading,body]=b.id?staffPageHtml(b):staffIndexHtml(); }
+  else if(b.kind==="year"){ [heading,body]=b.id?yearPageHtml(b):yearIndexHtml(); }
   else { [heading,body]=b.name?tagPageHtml(b):tagIndexHtml(); }
   $("monthTitle").textContent=heading;
   if(heading && heading!=="Browse") document.title=`${heading} — Tsuzuki`;
@@ -2222,6 +2225,42 @@ function studioPageHtml(b){
   return [s.name, head+sorts+(items.length?`<div class="bgrid ranked">${items.map((md,i)=>`<div class="bgrid-r"><span class="bgrid-n">${sort==="score"&&md.averageScore?i+1:""}</span>${browseCardHtml(md)}</div>`).join("")}</div>${moreBtn(rec)}`
     :`<div class="ev-loading">AniList lists no anime for this studio as a main studio.</div>`)];
 }
+
+// --- year ---
+function yearIndexHtml(){
+  const head=`<div class="board-head"><h2>📅 Browse by year</h2><div class="ev-sub">Every year with anime on record — four seasons apiece, each linking to its season page.</div></div>`;
+  const years=[];
+  for(let y=new Date().getUTCFullYear(); y>=1917; y--) years.push(y);
+  const chips=years.map(y=>`<a class="br-tag" href="${browseHref("year",y)}" data-browse="year|${y}">${y}</a>`).join("");
+  return ["Browse years", head+`<section class="br-group"><h3>Jump to a year</h3><div class="br-list">${chunks(chips,18).map(r=>`<div class="br-row">${r.join("")}</div>`).join("")}</div></section>`];
+}
+function chunks(items,n){ const out=[]; for(let i=0;i<items.length;i+=n) out.push(items.slice(i,i+n)); return out; }
+function yearPageHtml(b){
+  const year=+b.id;
+  const key=`year|${year}`;
+  const rec=browseLoad(key, async()=>{
+    const data=await viaApi(`/year?y=${year}&sort=score&page=1`, null);
+    return { year, items: data.Page ? data.Page.media : [], hasNext: data.Page ? data.Page.pageInfo.hasNextPage : false };
+  });
+  const head=`<div class="board-head"><h2>${year}</h2><div class="ev-sub">Everything released in ${year}, four seasons underneath.</div></div>`;
+  if(!rec.data) return [String(year), head+browseStatus(rec,"that year")];
+  const sort=["score","newest","popular"].includes(state.browseSort)?state.browseSort:"score";
+  const items=rec.data.items.filter(browseVisible).slice();
+  const cmp={ score:(x,y)=>(y.averageScore||-1)-(x.averageScore||-1)||(y.popularity||0)-(x.popularity||0),
+    newest:(x,y)=>(y.seasonYear||0)-(x.seasonYear||0) || (seasonIdx(y.season)-seasonIdx(x.season)),
+    popular:(x,y)=>(y.popularity||0)-(x.popularity||0) }[sort];
+  items.sort(cmp);
+  const seasons={ WINTER:[], SPRING:[], SUMMER:[], FALL:[] };
+  for(const md of items){
+    const s=(md.season||"WINTER").toUpperCase();
+    if(seasons[s]) seasons[s].push(md);
+  }
+  const seasonHtml=s=>`<section class="br-group"><h3>${s} ${year}</h3><div class="bgrid">${seasons[s].map(md=>`<span class="bgrid-r">${browseCardHtml(md)}</span>`).join("")||`<p class="shw-muted">No ${s.toLowerCase()} shows on record.</p>`}</div></section>`;
+  return [String(year), head+`
+    <div class="br-bar"><span class="num-hint" style="margin:0">Sort: ${[["score","By score"],["newest","Newest"],["popular","Most popular"]].map(([k,l])=>`<button type="button" class="chip${k===sort?" on":""}" data-browsesort="${k}" aria-pressed="${k===sort}">${l}</button>`).join("")}</span></div>
+    ${seasonHtml("WINTER")}${seasonHtml("SPRING")}${seasonHtml("SUMMER")}${seasonHtml("FALL")}${moreBtn(rec)}`];
+}
+function seasonIdx(s){ return {WINTER:0,SPRING:1,SUMMER:2,FALL:3}[String(s).toUpperCase()]||0; }
 
 // --- staff ---
 function roleGroup(role){

@@ -615,6 +615,11 @@ function openSettings(){
       <div class="seg2"><button data-theme="dark" class="${state.theme==="dark"?"on":""}">🌙 Dark</button><button data-theme="light" class="${state.theme==="light"?"on":""}">☀️ Light</button><button data-theme="auto" class="${state.theme==="auto"?"on":""}">🌗 Auto</button></div></div>
     <div class="set-row"><div class="set-label">Accent</div><div class="swatches">${sw}</div></div>
     ${densitySettingsHTML()}
+    <div class="set-row"><div class="set-label">Corner radius</div>
+      <input type="range" id="setRadius" min="0" max="28" step="2" value="${state.radius||12}"
+        style="flex:1" aria-label="Card corner radius in px">
+      <span class="num-hint" style="margin-left:8px">${state.radius||12}px</span>
+      <div class="set-hint" style="font-size:12px;margin:0">Applied to every card. A skin's own corners win while that skin is worn — clear the skin to see yours again.</div></div>
     <div class="set-row"><div class="set-label">Cover art</div>
       ${prefSeg("showImages",[[true,"Show"],[false,"Hide","Text-only rows fit far more on screen"]])}</div>
 
@@ -740,6 +745,17 @@ function openSettings(){
     rg.placeholder=userRegion()||"auto";
     renderView();   // times can change immediately: a region rule may now apply
   };
+  // Corner radius: a user-set value that applies app-wide until a skin overrides it.
+  const rr=$("setRadius");
+  if(rr){
+    rr.oninput=()=>{
+      const n=Math.max(0,Math.min(28,parseInt(rr.value,10)||0));
+      state.radius=n;
+      localStorage.setItem("anical.radius",String(n));
+      document.documentElement.style.setProperty("--radius", n+"px");
+      renderView();
+    };
+  }
   if($("ntOpen")) $("ntOpen").onclick=()=>openNotes();
   if($("mwOpen")) $("mwOpen").onclick=()=>openMonthWrap();
   if($("btTest")) $("btTest").onclick=()=>{

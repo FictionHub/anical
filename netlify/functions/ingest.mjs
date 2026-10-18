@@ -225,7 +225,7 @@ export default async (req) => {
     console.error("ingest: observations failed", err);
   }
 
-  // Stub sources: run each, record whatever they return, never fail the whole
+  // Secondary sources: run each, record whatever they return, never fail the whole
   // run over a source that isn't live yet. They return immediately today, so
   // they cost nothing against the budget.
   for (const [name, fn] of STUB_SOURCES) {

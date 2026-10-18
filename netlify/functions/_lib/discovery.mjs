@@ -22,6 +22,14 @@ import { anilist, cached, getMediaById } from "./catalog.mjs";
 
 const DAY = 24 * 3600_000;
 
+// Client-side sort labels mirrored here so the server validates the same set.
+const BROWSE_SORTS = {
+  popular: ["POPULARITY_DESC"],
+  score: ["SCORE_DESC", "POPULARITY_DESC"],
+  newest: ["START_DATE_DESC"],
+  trending: ["TRENDING_DESC"],
+};
+
 // Card weight, matching CARD_FIELDS in the split frontend client — tags and studios stay in
 // because the client ranks and predicts from them.
 export const CARD_FIELDS = `id type title { romaji english native } synonyms format episodes duration genres status popularity averageScore source isAdult countryOfOrigin
@@ -45,7 +53,6 @@ const GEM_GENRES = new Set(GENRES.filter(g => g !== "Ecchi" && g !== "Hentai"));
 export const GEM_CEILINGS = [1500, 4000, 10000, 25000, 60000];
 const FORMATS = new Set(["TV","TV_SHORT","MOVIE","SPECIAL","OVA","ONA","MUSIC"]);
 const STATUSES = new Set(["RELEASING","FINISHED","NOT_YET_RELEASED","CANCELLED","HIATUS"]);
-const BROWSE_SORTS = { popular:["POPULARITY_DESC"], score:["SCORE_DESC","POPULARITY_DESC"], newest:["START_DATE_DESC"], trending:["TRENDING_DESC"] };
 const MAX_PAGE = 25;
 
 const bad = msg => { const e = new Error(msg); e.status = 400; return e; };
@@ -191,6 +198,29 @@ export function getStaffList(q) {
   if (q == null || q === "") return cached("disco-staff-list", "top", () => anilist(STAFF_TOP_QUERY), { ttlMs: 7 * DAY });
   const s = nameQuery(q);
   return cached("disco-staff-list", s.toLowerCase(), () => anilist(STAFF_LIST_QUERY, { search: s }), { persist: false });
+}
+
+/* ---------- browse: year ---------- */
+const YEAR_MEDIA_QUERY = `query($year:Int,$page:Int,$sort:[MediaSort],$adult:Boolean){ Page(page:$page, perPage:40){ pageInfo{ hasNextPage total }
+  media(type:ANIME, seasonYear:$year, isAdult:$adult, sort:$sort){ ${CARD_FIELDS} } } }`;
+export async function getYearPage(yearParam, sortParam, pageParam, adultParam) {
+  const year = parseInt(yearParam, 10);
+  if (!year || year < 1900 || year > 2100) throw bad("year must be 1900-2100");
+  const page = pageOf(pageParam);
+  const sort = BROWSE_SORTS[sortParam] ? sortParam : "popular";
+  const adult = adultParam === "1";
+  return cached("disco-year", `${year}|${sort}|${page}|${adult ? 1 : 0}`,
+    () => anilist(YEAR_MEDIA_QUERY, { year, page, sort: BROWSE_SORTS[sort], adult: adult ? null : false }), { ttlMs: DAY });
+}
+
+/* ---------- trending now ---------- */
+const TRENDING_QUERY = `query($page:Int,$adult:Boolean){ Page(page:$page, perPage:24){ pageInfo{ hasNextPage }
+  media(type:ANIME, isAdult:$adult, sort:[TRENDING_DESC, POPULARITY_DESC]){ ${CARD_FIELDS} } } }`;
+export async function getTrending(pageParam, adultParam) {
+  const page = pageOf(pageParam);
+  const adult = adultParam === "1";
+  return cached("disco-trending", `${page}|${adult ? 1 : 0}`,
+    () => anilist(TRENDING_QUERY, { page, adult: adult ? null : false }), { ttlMs: 1800_000 });
 }
 
 /* ---------- operator search ---------- */

@@ -994,6 +994,7 @@ function applyAppearance(){
   const parts=(state.accent||"#ff4a2e|#22d3ee").split("|");
   document.documentElement.style.setProperty("--accent", parts[0]);
   document.documentElement.style.setProperty("--accent2", parts[1]||"#22d3ee");
+  document.documentElement.style.setProperty("--radius", (state.radius||12)+"px");
   const m=document.querySelector('meta[name=theme-color]'); if(m) m.setAttribute("content", eff==="light"?"#faf6f4":"#0e0908");
   applySkin();   // last: a skin owns the whole palette, including light/dark
 }
