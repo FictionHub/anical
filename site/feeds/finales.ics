@@ -19,18 +19,18 @@ URL:https://tsuzuki.top/anime/the-apothecary-diaries-season-3-195516/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-185874-f10@tsuzuki.netlify.app
-DTSTAMP:20261026T140000Z
-DTSTART:20261026T140000Z
-DTEND:20261026T143000Z
+DTSTAMP:20261026T150000Z
+DTSTART:20261026T150000Z
+DTEND:20261026T153000Z
 SUMMARY:BLEACH: Thousand-Year Blood War - The Calamity — Finale (Ep 10)
 DESCRIPTION:Season finale. https://tsuzuki.top/anime/bleach-thousand-year-blood-war-the-calamity-185874/
 URL:https://tsuzuki.top/anime/bleach-thousand-year-blood-war-the-calamity-185874/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-195539-f10@tsuzuki.netlify.app
-DTSTAMP:20261020T070000Z
-DTSTART:20261020T070000Z
-DTEND:20261020T073000Z
+DTSTAMP:20261020T070500Z
+DTSTART:20261020T070500Z
+DTEND:20261020T073500Z
 SUMMARY:Cyberpunk: Edgerunners 2 — Finale (Ep 10)
 DESCRIPTION:Season finale. https://tsuzuki.top/anime/cyberpunk-edgerunners-2-195539/
 URL:https://tsuzuki.top/anime/cyberpunk-edgerunners-2-195539/
@@ -72,15 +72,6 @@ DESCRIPTION:Season finale. https://tsuzuki.top/anime/overgeared-212888/
 URL:https://tsuzuki.top/anime/overgeared-212888/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-191656-f12@tsuzuki.netlify.app
-DTSTAMP:20261219T153000Z
-DTSTART:20261219T153000Z
-DTEND:20261219T160000Z
-SUMMARY:Even the Student Council Has Its Holes! — Finale (Ep 12)
-DESCRIPTION:Season finale. https://tsuzuki.top/anime/even-the-student-council-has-its-holes-191656/
-URL:https://tsuzuki.top/anime/even-the-student-council-has-its-holes-191656/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-205909-f12@tsuzuki.netlify.app
 DTSTAMP:20261225T143000Z
 DTSTART:20261225T143000Z
@@ -88,6 +79,15 @@ DTEND:20261225T150000Z
 SUMMARY:Firefly Wedding — Finale (Ep 12)
 DESCRIPTION:Season finale. https://tsuzuki.top/anime/firefly-wedding-205909/
 URL:https://tsuzuki.top/anime/firefly-wedding-205909/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-191656-f12@tsuzuki.netlify.app
+DTSTAMP:20261219T153000Z
+DTSTART:20261219T153000Z
+DTEND:20261219T160000Z
+SUMMARY:Even the Student Council Has Its Holes! — Finale (Ep 12)
+DESCRIPTION:Season finale. https://tsuzuki.top/anime/even-the-student-council-has-its-holes-191656/
+URL:https://tsuzuki.top/anime/even-the-student-council-has-its-holes-191656/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-152677-f13@tsuzuki.netlify.app
@@ -99,13 +99,13 @@ DESCRIPTION:Season finale. https://tsuzuki.top/anime/the-detective-is-already-de
 URL:https://tsuzuki.top/anime/the-detective-is-already-dead-season-2-152677/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-208025-f12@tsuzuki.netlify.app
-DTSTAMP:20261220T162000Z
-DTSTART:20261220T162000Z
-DTEND:20261220T165000Z
-SUMMARY:I'm Dating a Dark Summoner — Finale (Ep 12)
-DESCRIPTION:Season finale. https://tsuzuki.top/anime/im-dating-a-dark-summoner-208025/
-URL:https://tsuzuki.top/anime/im-dating-a-dark-summoner-208025/
+UID:tsuzuki-191788-f24@tsuzuki.netlify.app
+DTSTAMP:20270314T080000Z
+DTSTART:20270314T080000Z
+DTEND:20270314T083000Z
+SUMMARY:Aoashi Season 2 — Finale (Ep 24)
+DESCRIPTION:Season finale. https://tsuzuki.top/anime/aoashi-season-2-191788/
+URL:https://tsuzuki.top/anime/aoashi-season-2-191788/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-207191-f12@tsuzuki.netlify.app
@@ -117,6 +117,15 @@ DESCRIPTION:Season finale. https://tsuzuki.top/anime/hello-i-am-a-witch-and-my-c
 URL:https://tsuzuki.top/anime/hello-i-am-a-witch-and-my-crush-wants-me-to-make-a-love-poti-207191/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-208025-f12@tsuzuki.netlify.app
+DTSTAMP:20261220T162000Z
+DTSTART:20261220T162000Z
+DTEND:20261220T165000Z
+SUMMARY:I'm Dating a Dark Summoner — Finale (Ep 12)
+DESCRIPTION:Season finale. https://tsuzuki.top/anime/im-dating-a-dark-summoner-208025/
+URL:https://tsuzuki.top/anime/im-dating-a-dark-summoner-208025/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-169581-f13@tsuzuki.netlify.app
 DTSTAMP:20261219T150000Z
 DTSTART:20261219T150000Z
@@ -126,15 +135,6 @@ DESCRIPTION:Season finale. https://tsuzuki.top/anime/magical-explorer-169581/
 URL:https://tsuzuki.top/anime/magical-explorer-169581/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-204650-f12@tsuzuki.netlify.app
-DTSTAMP:20261218T143000Z
-DTSTART:20261218T143000Z
-DTEND:20261218T150000Z
-SUMMARY:TOUGEN ANKI: Nikko Kegon Falls Arc — Finale (Ep 12)
-DESCRIPTION:Season finale. https://tsuzuki.top/anime/tougen-anki-nikko-kegon-falls-arc-204650/
-URL:https://tsuzuki.top/anime/tougen-anki-nikko-kegon-falls-arc-204650/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-209502-f12@tsuzuki.netlify.app
 DTSTAMP:20261222T130000Z
 DTSTART:20261222T130000Z
@@ -142,6 +142,15 @@ DTEND:20261222T133000Z
 SUMMARY:The Cold Sato-san is Only Sweet to Me — Finale (Ep 12)
 DESCRIPTION:Season finale. https://tsuzuki.top/anime/the-cold-sato-san-is-only-sweet-to-me-209502/
 URL:https://tsuzuki.top/anime/the-cold-sato-san-is-only-sweet-to-me-209502/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-204650-f12@tsuzuki.netlify.app
+DTSTAMP:20261218T143000Z
+DTSTART:20261218T143000Z
+DTEND:20261218T150000Z
+SUMMARY:TOUGEN ANKI: Nikko Kegon Falls Arc — Finale (Ep 12)
+DESCRIPTION:Season finale. https://tsuzuki.top/anime/tougen-anki-nikko-kegon-falls-arc-204650/
+URL:https://tsuzuki.top/anime/tougen-anki-nikko-kegon-falls-arc-204650/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-206401-f12@tsuzuki.netlify.app
@@ -162,6 +171,15 @@ DESCRIPTION:Season finale. https://tsuzuki.top/anime/sasaki-and-peeps-season-2-1
 URL:https://tsuzuki.top/anime/sasaki-and-peeps-season-2-176314/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-198727-f11@tsuzuki.netlify.app
+DTSTAMP:20261222T140000Z
+DTSTART:20261222T140000Z
+DTEND:20261222T143000Z
+SUMMARY:Chitose Is in the Ramune Bottle 2nd Cour — Finale (Ep 11)
+DESCRIPTION:Season finale. https://tsuzuki.top/anime/chitose-is-in-the-ramune-bottle-2nd-cour-198727/
+URL:https://tsuzuki.top/anime/chitose-is-in-the-ramune-bottle-2nd-cour-198727/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-203490-f24@tsuzuki.netlify.app
 DTSTAMP:20261218T150000Z
 DTSTART:20261218T150000Z
@@ -171,15 +189,6 @@ DESCRIPTION:Season finale. https://tsuzuki.top/anime/please-excuse-my-younger-br
 URL:https://tsuzuki.top/anime/please-excuse-my-younger-brothers-203490/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-207809-f24@tsuzuki.netlify.app
-DTSTAMP:20261215T163500Z
-DTSTART:20261215T163500Z
-DTEND:20261215T170500Z
-SUMMARY:Red River — Finale (Ep 24)
-DESCRIPTION:Season finale. https://tsuzuki.top/anime/red-river-207809/
-URL:https://tsuzuki.top/anime/red-river-207809/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-211877-f12@tsuzuki.netlify.app
 DTSTAMP:20261220T160500Z
 DTSTART:20261220T160500Z
@@ -187,6 +196,15 @@ DTEND:20261220T163500Z
 SUMMARY:My Girlfriend's Friend — Finale (Ep 12)
 DESCRIPTION:Season finale. https://tsuzuki.top/anime/my-girlfriends-friend-211877/
 URL:https://tsuzuki.top/anime/my-girlfriends-friend-211877/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-207809-f24@tsuzuki.netlify.app
+DTSTAMP:20261215T163500Z
+DTSTART:20261215T163500Z
+DTEND:20261215T170500Z
+SUMMARY:Red River — Finale (Ep 24)
+DESCRIPTION:Season finale. https://tsuzuki.top/anime/red-river-207809/
+URL:https://tsuzuki.top/anime/red-river-207809/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-200455-f12@tsuzuki.netlify.app
@@ -243,6 +261,15 @@ DESCRIPTION:Season finale. https://tsuzuki.top/anime/the-seven-knights-of-the-ma
 URL:https://tsuzuki.top/anime/the-seven-knights-of-the-marronnier-kingdom-212799/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-200294-f12@tsuzuki.netlify.app
+DTSTAMP:20261222T140000Z
+DTSTART:20261222T140000Z
+DTEND:20261222T143000Z
+SUMMARY:Super Psychic Policeman Chojo — Finale (Ep 12)
+DESCRIPTION:Season finale. https://tsuzuki.top/anime/super-psychic-policeman-chojo-200294/
+URL:https://tsuzuki.top/anime/super-psychic-policeman-chojo-200294/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-203473-f12@tsuzuki.netlify.app
 DTSTAMP:20261226T144500Z
 DTSTART:20261226T144500Z
@@ -297,6 +324,15 @@ DESCRIPTION:Season finale. https://tsuzuki.top/anime/dawang-raoming-3-199353/
 URL:https://tsuzuki.top/anime/dawang-raoming-3-199353/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-179876-f11@tsuzuki.netlify.app
+DTSTAMP:20261222T164500Z
+DTSTART:20261222T164500Z
+DTEND:20261222T171500Z
+SUMMARY:DARK MACHINE THE ANIMATION — Finale (Ep 11)
+DESCRIPTION:Season finale. https://tsuzuki.top/anime/dark-machine-the-animation-179876/
+URL:https://tsuzuki.top/anime/dark-machine-the-animation-179876/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-216895-f12@tsuzuki.netlify.app
 DTSTAMP:20261218T122600Z
 DTSTART:20261218T122600Z
@@ -306,13 +342,13 @@ DESCRIPTION:Season finale. https://tsuzuki.top/anime/welsh-shedar-216895/
 URL:https://tsuzuki.top/anime/welsh-shedar-216895/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-179876-f11@tsuzuki.netlify.app
-DTSTAMP:20261222T164500Z
-DTSTART:20261222T164500Z
-DTEND:20261222T171500Z
-SUMMARY:DARK MACHINE THE ANIMATION — Finale (Ep 11)
-DESCRIPTION:Season finale. https://tsuzuki.top/anime/dark-machine-the-animation-179876/
-URL:https://tsuzuki.top/anime/dark-machine-the-animation-179876/
+UID:tsuzuki-210157-f7@tsuzuki.netlify.app
+DTSTAMP:20270221T133000Z
+DTSTART:20270221T133000Z
+DTEND:20270221T140000Z
+SUMMARY:Love Live! Hasunosora Jogakuin School Idol Club — Finale (Ep 7)
+DESCRIPTION:Season finale. https://tsuzuki.top/anime/love-live-hasunosora-jogakuin-school-idol-club-210157/
+URL:https://tsuzuki.top/anime/love-live-hasunosora-jogakuin-school-idol-club-210157/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-214536-f3@tsuzuki.netlify.app
@@ -342,12 +378,12 @@ DESCRIPTION:Season finale. https://tsuzuki.top/anime/my-girlfriends-friend-mini-
 URL:https://tsuzuki.top/anime/my-girlfriends-friend-mini-anime-217782/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-213486-f12@tsuzuki.netlify.app
-DTSTAMP:20261014T020000Z
-DTSTART:20261014T020000Z
-DTEND:20261014T023000Z
-SUMMARY:Fabulous Beasts 6 — Finale (Ep 12)
-DESCRIPTION:Season finale. https://tsuzuki.top/anime/fabulous-beasts-6-213486/
-URL:https://tsuzuki.top/anime/fabulous-beasts-6-213486/
+UID:tsuzuki-218217-f12@tsuzuki.netlify.app
+DTSTAMP:20261220T180000Z
+DTSTART:20261220T180000Z
+DTEND:20261220T183000Z
+SUMMARY:JK Dark Summoner to Deki......Dei Nai!? — Finale (Ep 12)
+DESCRIPTION:Season finale. https://tsuzuki.top/anime/jk-dark-summoner-to-dekidei-nai-218217/
+URL:https://tsuzuki.top/anime/jk-dark-summoner-to-dekidei-nai-218217/
 END:VEVENT
 END:VCALENDAR
