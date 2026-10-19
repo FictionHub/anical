@@ -622,6 +622,10 @@ function openSettings(){
       <div class="set-hint" style="font-size:12px;margin:0">Applied to every card. A skin's own corners win while that skin is worn — clear the skin to see yours again.</div></div>
     <div class="set-row"><div class="set-label">Cover art</div>
       ${prefSeg("showImages",[[true,"Show"],[false,"Hide","Text-only rows fit far more on screen"]])}</div>
+    <div class="set-row"><div class="set-label">${t("settings.language")}</div>
+      <div class="seg2">${["en","ja","ko","zh"].map(l=>
+        `<button data-lang="${l}" class="${getLocale()===l?"on":""}" title="${LOCALE_NAMES[l]}">${LOCALE_NAMES[l]}</button>`
+      ).join("")}</div></div>
 
     <div class="set-row"><div class="set-label">Region
       <div class="set-hint">Where you watch. Release times differ by country, so this picks which measured time you get — it is not your timezone, which is detected separately. Blank means we guess from your timezone and fall back to the shared time when we have not measured yours.</div></div>
@@ -689,6 +693,15 @@ function openSettings(){
       const val = raw==="true" ? true : raw==="false" ? false : raw;
       state[key]=val;
       localStorage.setItem("anical."+key, val===true?"1":val===false?"0":String(val));
+      applyAppearance();
+      renderView();
+      openSettings();
+    };
+  });
+  $("modalBody").querySelectorAll("[data-lang]").forEach(el=>{
+    el.onclick=()=>{
+      const l=el.dataset.lang;
+      setLocale(l);
       applyAppearance();
       renderView();
       openSettings();

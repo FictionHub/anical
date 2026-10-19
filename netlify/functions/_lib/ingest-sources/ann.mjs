@@ -48,11 +48,12 @@ function parseAnnXml(xml) {
   const eps = Number(infos["Number of episodes"] || "0") || null;
 
   return {
-    sourceId: `ann:${id}`,
+    id: `ann:${id}`,
     title: { romaji: titleEl ? titleEl.textContent.trim() : "", english: null, native: null },
     format: null,
     episodes: eps || null,
     status: infos["Running"] ? "RELEASING" : "FINISHED",
+    source: "ann",
     season: month ? ["WINTER","SPRING","SUMMER","FALL"][Math.ceil(month/3)-1] : null,
     seasonYear: year,
     startDate: year ? { year, month, day: 1 } : null,
@@ -65,7 +66,9 @@ function parseAnnXml(xml) {
     tags: [],
     averageScore: null,
     popularity: null,
-    raw: { xml: xml.slice(0, 5000) }, // keep a bounded snapshot
+    externalIds: { ann: id },
+    raw: { xml: xml.slice(0, 5000) },
+    provenance: { ann: { fetchedAt: Date.now(), fields: ["*"], confidence: "medium" } },
   };
 }
 

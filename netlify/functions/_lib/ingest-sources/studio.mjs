@@ -77,13 +77,13 @@ export async function ingestStudios() {
       // here as a candidate for entity resolution to pick up.
       for (const item of parsed) {
         media.push({
-          sourceId: `studio:${feed.name}:${Date.now()}`,
+          id: `studio:${feed.name}:${Date.now()}`,
           title: { romaji: item.title, english: null, native: null },
           format: null,
           episodes: null,
           duration: null,
           status: "NOT_YET_RELEASED",
-          source: null,
+          source: "studios",
           isAdult: false,
           season: null,
           seasonYear: null,
@@ -99,8 +99,9 @@ export async function ingestStudios() {
           siteUrl: item.link || null,
           synopsis: item.description || null,
           tags: [],
+          externalIds: {},
           raw: { feedItem: item },
-          provenance: { studios: { fetchedAt: Date.now(), fields: ["*"] } },
+          provenance: { studios: { fetchedAt: Date.now(), fields: ["*"], confidence: "low" } },
         });
       }
     } catch (err) {

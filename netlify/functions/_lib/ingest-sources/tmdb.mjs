@@ -30,13 +30,13 @@ function seasonOf(iso) {
 function normalizeShow(show) {
   const { season, seasonYear, startDate } = seasonOf(show.first_air_date);
   return {
-    sourceId: `tmdb:${show.id}`,
+    id: `tmdb:${show.id}`,
     title: { romaji: show.name || null, english: null, native: null },
     format: show.episode_run_time && show.episode_run_time[0] <= 24 ? "TV_SHORT" : "TV",
     episodes: show.number_of_episodes || null,
     duration: show.episode_run_time && show.episode_run_time[0] || null,
     status: show.status === "Returning Series" ? "RELEASING" : show.status === "Ended" ? "FINISHED" : "NOT_YET_RELEASED",
-    source: null,
+    source: "tmdb",
     isAdult: false,
     season,
     seasonYear,
@@ -54,7 +54,7 @@ function normalizeShow(show) {
     tags: [],
     externalIds: { tmdb: show.id },
     raw: { show },
-    provenance: { tmdb: { fetchedAt: Date.now(), fields: ["*"] } },
+    provenance: { tmdb: { fetchedAt: Date.now(), fields: ["*"], confidence: "medium" } },
   };
 }
 

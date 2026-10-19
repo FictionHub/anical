@@ -210,7 +210,7 @@ function applyParamsToState(params, reset){
   // put the app in a state it has no renderer for — which means every new view
   // has to be added here as well as to renderView(). `taste` and `recs` were
   // linkable-looking and silently ignored until this line caught up with them.
-  if(qv && ["month","week","agenda","dashboard","events","board","lists","taste","recs","gems","browse","show"].includes(qv)) state.viewMode=qv;
+  if(qv && ["month","week","agenda","dashboard","events","board","lists","taste","recs","gems","browse","show","franchise"].includes(qv)) state.viewMode=qv;
   else if(reset) state.viewMode="month";
   // The two routes that carry a subject. A show page without a usable id has
   // nothing to render, so it falls back to the calendar rather than a blank page.

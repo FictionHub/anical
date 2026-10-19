@@ -1370,8 +1370,10 @@ function spRelatedHtml(md){
       ? `<a class="shw-rel" href="${showHref(n.id)}" data-showpage="${esc(String(n.id))}">${inner}</a>`
       : `<a class="shw-rel ext" href="${esc(n.siteUrl||`https://anilist.co/${String(n.type||"manga").toLowerCase()}/${n.id}`)}" target="_blank" rel="noopener">${inner}<span class="shw-ext" aria-label="opens AniList">↗</span></a>`;
   };
-  return `<h3>Related</h3>${REL_ORDER.filter(k=>groups.has(k)).map(k=>`
-    <div class="shw-relg"><div class="shw-sub">${esc(REL_LABEL_FULL[k]||k)}</div><div class="shw-rels">${groups.get(k).sort(ftlCompare).map(card).join("")}</div></div>`).join("")}`;
+  const groupHtml=REL_ORDER.filter(k=>groups.has(k)).map(k=>`
+    <div class="shw-relg"><div class="shw-sub">${esc(REL_LABEL_FULL[k]||k)}</div><div class="shw-rels">${groups.get(k).sort(ftlCompare).map(card).join("")}</div></div>`).join("");
+  const franchiseLink=edges.length?`<div class="shw-relg"><div class="shw-sub">Full franchise</div><a class="shw-rel" href="?view=franchise&fid=${md.id}" data-franchise="${esc(String(md.id))}">View franchise hub ↗</a></div>`:"";
+  return `<h3>Related</h3>${groupHtml}${franchiseLink}`;
 }
 function spStaffHtml(md, partial){
   const edges=(md.staff&&md.staff.edges)||[];
@@ -1439,6 +1441,79 @@ function renderShowPage(){
     const target=$("shw-"+state.showJump); state.showJump=null;
     if(target) setTimeout(()=>target.scrollIntoView({behavior:"smooth", block:"start"}), 60);
   }
+}
+
+/* ---------- franchise hub page (Days 276-278) ----------
+   Shows every entry of a franchise in release order, with watch progress,
+   where-to-start guidance, and skip/recap flags. */
+async function renderFranchisePage(){
+  const wrap=enterDisco("franchise");
+  const params=new URLSearchParams(location.search);
+  const fid=params.get("fid")||params.get("id");
+  if(!fid){
+    wrap.innerHTML=`<div class="ev-loading">No franchise picked. <button type="button" onclick="setView('month')">Back to calendar</button></div>`;
+    return;
+  }
+  wrap.innerHTML=`<div class="sp shw-loading"><div class="skel shw-skel-hero"></div>${skeletonCards(8)}</div>`;
+  let graph;
+  try{
+    const r=await apiGet(`/franchise/${encodeURIComponent(fid)}`,{timeout:15000});
+    if(!r||!r.ok) throw new Error("franchise not found");
+    graph=r;
+  }catch(e){
+    wrap.innerHTML=`<div class="ev-loading">Couldn't load this franchise — <button type="button" data-showretry>↻ Try again</button></div>`;
+    return;
+  }
+  const entries=graph.entries||[];
+  const root=entries.find(e=>e.isRoot)||entries[0];
+  $("monthTitle").textContent=root?.title?.romaji||root?.title?.english||"Franchise";
+  document.title=`${root?.title?.romaji||root?.title?.english||"Franchise"} — Tsuzuki`;
+  const statusById=new Map();
+  for(const e of entries) statusById.set(e.id,getStatusOf(e.id));
+  const ratedById=new Map();
+  for(const e of entries){ const r=getRating(e.id); if(r) ratedById.set(e.id,+r); }
+  const watched=entries.filter(e=>statusById.get(e.id)==="completed"||statusById.get(e.id)==="watching").length;
+  const total=entries.length;
+  const pct=total?Math.round(watched/total*100):0;
+  const cards=entries.map(e=>{ const st=statusById.get(e.id); const rt=ratedById.get(e.id);
+    return `<div class="ftl-item${st?` st-${st}`:""}${e.isRoot?" ftl-root":""}">
+      <img src="${e.coverImage?e.coverImage.medium:""}" alt="" loading="lazy">
+      <div class="ftl-n">${e.relationLabel?e.relationLabel.charAt(0):"#"}</div>
+      <div class="ftl-t">${esc(e.title?.romaji||e.title?.english||"Unknown")}</div>
+      <div class="ftl-y">${e.startDate?.year||"TBA"}</div>
+      <div class="ftl-k">${e.format||""}</div>
+      ${st?`<span class="pill air-raw">${STATUS_WORD[st]||st}</span>`:""}
+      ${rt?`<span class="pill score">★ ${rt}</span>`:""}
+    </div>`;
+  }).join("");
+  wrap.innerHTML=`
+    <article class="sp">
+      <header class="shw-hero">
+        <h1>${esc(root?.title?.romaji||root?.title?.english||"Franchise")}</h1>
+        <div class="shw-sub">${total} entr${total===1?"y":"ies"} · ${pct}% watched · ${root?.startDate?.year||"TBA"}</div>
+      </header>
+      <div class="shw-grid">
+        <div class="shw-main">
+          <section class="shw-sec">
+            <h3>Release order</h3>
+            <p class="num-hint">${graph.truncated?"Note: relation walk hit its bound — list is in order but may not be exhaustive.":"Every entry of the franchise, ordered by release date."}</p>
+            <div class="ftl">${cards}</div>
+          </section>
+        </div>
+        <aside class="shw-side">
+          <section class="shw-sec">
+            <h3>Franchise progress</h3>
+            <div class="shw-prog"><div class="shw-prog-bar" style="width:${pct}%"></div></div>
+            <div class="num-hint">${watched} of ${total} entries watched${ratedById.size?` · ${ratedById.size} rated`:""}</div>
+          </section>
+          <section class="shw-sec">
+            <h3>Where to start</h3>
+            <p class="num-hint">Start with <strong>${esc(root?.title?.romaji||root?.title?.english||"the first entry")}</strong> — the franchise root.</p>
+          </section>
+        </aside>
+      </div>
+    </article>`;
+  wrap.dataset.shown=String(fid);
 }
 document.addEventListener("click",e=>{
   const jump=e.target.closest("[data-spjump]");

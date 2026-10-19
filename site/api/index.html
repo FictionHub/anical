@@ -190,19 +190,26 @@ footer{margin-top:44px;color:#8b97a7;font-size:12.5px;border-top:1px solid #2a31
 <pre><code>curl "https://tsuzuki.top/api/v1/airing"</code></pre>
 
   <h3>GET /api/v1/franchise/{anilistId}</h3>
-  <p>
-    Every anime in the same franchise, in release order. Upstream only ever gives a title its
-    <em>direct</em> relations, so asking season 3 what it belongs to gets you seasons 2 and 4 and
-    nothing else. This walks the whole relation graph and returns the lot — seasons, movies, OVAs,
-    specials, spin-offs — each with the <code>relationLabel</code> that placed it there and
-    <code>isRoot</code> on the title you asked about.
-  </p>
-  <p>
-    Entries are sorted by start date. One known only to the year sorts after everything precisely
-    dated in that year, and one with no date at all sorts last. Very large franchises are capped;
-    <code>truncated</code> tells you when that happened.
-  </p>
+<p>
+Every anime in the same franchise, in release order. Upstream only ever gives a title its
+<em>direct</em> relations, so asking season 3 what it belongs to gets you seasons 2 and 4 and
+nothing else. This walks the whole relation graph and returns the lot — seasons, movies, OVAs,
+specials, spin-offs — each with the <code>relationLabel</code> that placed it there and
+<code>isRoot</code> on the title you asked about.
+</p>
+<p>
+Entries are sorted by start date. One known only to the year sorts after everything precisely
+dated in that year, and one with no date at all sorts last. Very large franchises are capped;
+<code>truncated</code> tells you when that happened.
+</p>
 <pre><code>curl "https://tsuzuki.top/api/v1/franchise/16498"</code></pre>
+
+<h3>GET /api/v1/franchises</h3>
+<p>
+List every detected franchise — used by the franchise hub page. Each entry carries its root id,
+name, show count, seasons covered, and member list. Sorted by most recently updated.
+</p>
+<pre><code>curl "https://tsuzuki.top/api/v1/franchises?limit=50"</code></pre>
 
   <h3>GET /api/v1/search</h3>
   <p>

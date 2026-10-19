@@ -28,6 +28,7 @@ import {
   getExtras, getStudio, getOnThisDay,
   catalogHealth, seasonOf, shiftSeason, SEASONS,
 } from "./_lib/catalog.mjs";
+import { listFranchises } from "./_lib/franchise-registry.mjs";
 import {
   getShow, getSimilarPool, getGems, getUnderseen, getTags, getTagPage,
   getStudioCatalog, getStudios, getStaffPage, getStaffList, getFilter, getYearPage, getTrending, GEM_CEILINGS,
@@ -84,6 +85,20 @@ function rateLimited(req) {
   if (hits.size > 5000) hits.clear();   // unbounded growth is the only real leak here
   return null;
 }
+
+// Attach standard rate-limit headers to every JSON response.
+const rateLimitHeaders = (req, remaining = null) => {
+  const ip = (req.headers.get("x-nf-client-connection-ip") || req.headers.get("x-forwarded-for") || "anon").split(",")[0].trim();
+  const rec = hits.get(ip);
+  const now = Date.now();
+  const reset = rec ? rec.reset : now + RATE_WINDOW_MS;
+  const rem = remaining !== null ? remaining : Math.max(0, RATE_LIMIT - ((rec && rec.n) || 0));
+  return {
+    "X-RateLimit-Limit": String(RATE_LIMIT),
+    "X-RateLimit-Remaining": String(rem),
+    "X-RateLimit-Reset": String(Math.floor(reset / 1000)),
+  };
+};
 
 let overridesCache = null, overridesAt = 0;
 async function loadOverrides() {
@@ -391,6 +406,25 @@ async function franchise(id) {
   }, { maxAge: 3600 });
 }
 
+/* List all detected franchises — used by the franchise hub page. */
+async function franchises(url) {
+  const p = url.searchParams;
+  const limit = Math.min(Math.max(parseInt(p.get("limit"), 10) || 50, 1), 200);
+  const list = await listFranchises(limit);
+  return json({
+    ok: true, count: list.length,
+    franchises: list.map(f => ({
+      franchiseId: f.franchiseId,
+      rootId: f.rootId,
+      name: f.name,
+      showCount: f.showCount,
+      seasons: f.seasons,
+      members: f.members.map(m => ({ id: m.id, title: m.title, relationType: m.relationType })),
+    })),
+    attribution: "Data from AniList, corrected by Tsuzuki.",
+  }, { maxAge: 3600 });
+}
+
 /* The detail pane's lazily-loaded blocks. These exist so the app doesn't have
    to query AniList from the browser for data that is identical for every
    visitor — see the caching note in _lib/catalog.mjs. They are documented as
@@ -469,41 +503,48 @@ export default async (req) => {
 
   const retry = rateLimited(req);
   if (retry) return json({ ok: false, error: "Rate limit exceeded", retryAfterSeconds: retry },
-    { status: 429, maxAge: 0, headers: { "Retry-After": String(retry) } });
+    { status: 429, maxAge: 0, headers: { "Retry-After": String(retry), ...rateLimitHeaders(req, 0) } });
 
   const url = new URL(req.url);
   const parts = url.pathname.replace(/^\/+|\/+$/g, "").split("/");   // ["api","v1", ...]
   const route = parts.slice(2);
 
+  const withRateLimit = (res) => {
+    const h = rateLimitHeaders(req);
+    for (const [k, v] of Object.entries(h)) res.headers.set(k, v);
+    return res;
+  };
+
   try {
-    if (!route.length) return await describe();
-    if (route[0] === "schedule" && route.length === 1) return await schedule(url);
-    if (route[0] === "anime" && route.length === 2) return await anime(route[1], url);
-    if (route[0] === "anime" && route.length === 3 && route[2] === "extras") return await extras(route[1]);
-    if (route[0] === "studio" && route.length === 2) return await studio(route[1]);
-    if (route[0] === "on-this-day" && route.length === 1) return await onThisDay(url);
-    if (route[0] === "seasons" && route.length === 3) return await season(route[1], route[2], url);
-    if (route[0] === "airing" && route.length === 1) return await airing(url);
-    if (route[0] === "franchise" && route.length === 2) return await franchise(route[1]);
-    if (route[0] === "search" && route.length === 1) return await search(url);
-    if (route[0] === "overrides" && route.length === 1) return json({ ok: true, ...(await loadOverrides()) });
+    if (!route.length) return withRateLimit(await describe());
+    if (route[0] === "schedule" && route.length === 1) return withRateLimit(await schedule(url));
+    if (route[0] === "anime" && route.length === 2) return withRateLimit(await anime(route[1], url));
+    if (route[0] === "anime" && route.length === 3 && route[2] === "extras") return withRateLimit(await extras(route[1]));
+    if (route[0] === "studio" && route.length === 2) return withRateLimit(await studio(route[1]));
+    if (route[0] === "on-this-day" && route.length === 1) return withRateLimit(await onThisDay(url));
+    if (route[0] === "seasons" && route.length === 3) return withRateLimit(await season(route[1], route[2], url));
+    if (route[0] === "airing" && route.length === 1) return withRateLimit(await airing(url));
+    if (route[0] === "franchise" && route.length === 2) return withRateLimit(await franchise(route[1]));
+    if (route[0] === "franchises" && route.length === 1) return withRateLimit(await franchises(url));
+    if (route[0] === "search" && route.length === 1) return withRateLimit(await search(url));
+    if (route[0] === "overrides" && route.length === 1) return withRateLimit(json({ ok: true, ...(await loadOverrides()) }));
     // Discovery. The upstream data is identical for every caller, so the CDN
     // may hold it — longer where the catalog keeps it longer.
     const p = url.searchParams;
-    if (route[0] === "show" && route.length === 2) return disco(await getShow(route[1]), 1800);
-    if (route[0] === "similar" && route.length === 2) return disco(await getSimilarPool(route[1]), 6 * 3600);
-    if (route[0] === "gems" && route.length === 1) return disco(await getGems(p.get("genres"), p.get("ceil")), 6 * 3600);
-    if (route[0] === "underseen" && route.length === 1) return disco(await getUnderseen(p.get("ceil")), 6 * 3600);
-    if (route[0] === "tags" && route.length === 1) return disco(await getTags(), 24 * 3600);
-    if (route[0] === "tag" && route.length === 1) return disco(await getTagPage(p.get("name"), p.get("sort"), p.get("page"), p.get("adult")), 6 * 3600);
-    if (route[0] === "studios" && route.length === 1) return disco(await getStudios(p.get("q")), p.get("q") ? 600 : 24 * 3600);
-    if (route[0] === "studio" && route.length === 3 && route[2] === "catalog") return disco(await getStudioCatalog(route[1], p.get("page")), 6 * 3600);
-    if (route[0] === "staff" && route.length === 1) return disco(await getStaffList(p.get("q")), p.get("q") ? 600 : 24 * 3600);
-    if (route[0] === "staff" && route.length === 2) return disco(await getStaffPage(route[1], p.get("page")), 6 * 3600);
-    if (route[0] === "filter" && route.length === 1) return disco(await getFilter(p), 600);
-    if (route[0] === "year" && route.length === 1) return disco(await getYearPage(p.get("y"), p.get("sort"), p.get("page"), p.get("adult")), 6 * 3600);
-    if (route[0] === "trending" && route.length === 1) return disco(await getTrending(p.get("page"), p.get("adult")), 1800);
-    return fail(404, `Unknown endpoint /${route.join("/")}`, `See ${SITE}/api/ for the endpoint list.`);
+    if (route[0] === "show" && route.length === 2) return withRateLimit(disco(await getShow(route[1]), 1800));
+    if (route[0] === "similar" && route.length === 2) return withRateLimit(disco(await getSimilarPool(route[1]), 6 * 3600));
+    if (route[0] === "gems" && route.length === 1) return withRateLimit(disco(await getGems(p.get("genres"), p.get("ceil")), 6 * 3600));
+    if (route[0] === "underseen" && route.length === 1) return withRateLimit(disco(await getUnderseen(p.get("ceil")), 6 * 3600));
+    if (route[0] === "tags" && route.length === 1) return withRateLimit(disco(await getTags(), 24 * 3600));
+    if (route[0] === "tag" && route.length === 1) return withRateLimit(disco(await getTagPage(p.get("name"), p.get("sort"), p.get("page"), p.get("adult")), 6 * 3600));
+    if (route[0] === "studios" && route.length === 1) return withRateLimit(disco(await getStudios(p.get("q")), p.get("q") ? 600 : 24 * 3600));
+    if (route[0] === "studio" && route.length === 3 && route[2] === "catalog") return withRateLimit(disco(await getStudioCatalog(route[1], p.get("page")), 6 * 3600));
+    if (route[0] === "staff" && route.length === 1) return withRateLimit(disco(await getStaffList(p.get("q")), p.get("q") ? 600 : 24 * 3600));
+    if (route[0] === "staff" && route.length === 2) return withRateLimit(disco(await getStaffPage(route[1], p.get("page")), 6 * 3600));
+    if (route[0] === "filter" && route.length === 1) return withRateLimit(disco(await getFilter(p), 600));
+    if (route[0] === "year" && route.length === 1) return withRateLimit(disco(await getYearPage(p.get("y"), p.get("sort"), p.get("page"), p.get("adult")), 6 * 3600));
+    if (route[0] === "trending" && route.length === 1) return withRateLimit(disco(await getTrending(p.get("page"), p.get("adult")), 1800));
+    return withRateLimit(fail(404, `Unknown endpoint /${route.join("/")}`, `See ${SITE}/api/ for the endpoint list.`));
   } catch (err) {
     // A 400 or 404 is the caller's mistake, not ours; logging each with a stack
     // buried the real upstream failures once the discovery routes validated input.
@@ -511,6 +552,6 @@ export default async (req) => {
     const res = fail(status, String((err && err.message) || err),
       status === 503 ? "Upstream AniList rate limit — retry shortly." : undefined);
     if (err && err.retryAfter) res.headers.set("Retry-After", String(err.retryAfter));
-    return res;
+    return withRateLimit(res);
   }
 };

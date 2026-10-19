@@ -182,6 +182,7 @@ function renderView(){
   if(state.viewMode==="show"||state.viewMode==="browse"||state.viewMode==="gems"){
     hideDashboard(); hideEvents(); hideBoard(); hideLists(); hideTaste(); hideRecs();
     if(state.viewMode==="show") renderShowPage();
+    else if(state.viewMode==="franchise") renderFranchisePage();
     else if(state.viewMode==="gems") renderGems();
     else renderBrowse();
     return;

@@ -33,7 +33,9 @@ import { ingestAniList } from "./_lib/ingest-sources/anilist.mjs";
 import { ingestANN } from "./_lib/ingest-sources/ann.mjs";
 import { ingestTMDB } from "./_lib/ingest-sources/tmdb.mjs";
 import { ingestStudios } from "./_lib/ingest-sources/studio.mjs";
-import { normalizeAniList, mergeRecord, SCHEMA_VERSION } from "./_lib/ingest-schema.mjs";
+import { normalizeAniList, mergeRecord, mergeWithConfidence, SCHEMA_VERSION } from "./_lib/ingest-schema.mjs";
+import { resolveMedia, mergeIntoCanonical, normalizeSourceRecord } from "./_lib/entity-resolution.mjs";
+import { detectFranchises } from "./_lib/franchise-registry.mjs";
 import {
   putSeason, putSeasonless, getSeasonless, fetchSeasonlessFromAniList,
   catalogHealth, seasonOf, shiftSeason, SEASONS,
@@ -124,7 +126,28 @@ export default async (req) => {
       const existing = await canonicalStore.get(key, { type: "json" }).catch(() => null);
       await canonicalStore.setJSON(key, mergeRecord(existing, normalizeAniList(md)));
       upserts++;
+
+      // Entity resolution (2026·09): register every AniList record as a canonical
+      // identity so TMDB/ANN/studio feeds can merge onto it later.
+      try {
+        const normalized = normalizeSourceRecord(md, "anilist");
+        const resolved = await resolveMedia(normalized);
+        if (!resolved.matched || resolved.canonicalId !== key) {
+          await mergeIntoCanonical(normalized, resolved);
+        }
+      } catch (err) {
+        console.error(`ingest: entity resolution failed for anilist:${md.id} —`, err.message);
+      }
     }
+
+    // Franchise detection (2026·05 Day 275): cluster related entries into franchises.
+    let franchiseStats = { detected: 0, merged: 0, skipped: 0 };
+    try {
+      franchiseStats = await detectFranchises(media);
+    } catch (err) {
+      console.error("ingest: franchise detection failed —", err.message);
+    }
+    log.sources.franchise = franchiseStats;
     log.sources.anilist = {
       ok: true, season: target.season, year: target.year,
       pages: raw.length, shows: media.length, upserts,
@@ -232,6 +255,29 @@ export default async (req) => {
     try {
       const result = await fn();
       log.sources[name] = { ok: true, skipped: !!result.skipped, reason: result.reason, shows: result.media.length };
+
+      // Entity resolution for secondary sources — merge onto canonical identities.
+      if (result.media && result.media.length) {
+        const canonicalStore = getStore("ingest-canonical");
+        for (const md of result.media) {
+          try {
+            const normalized = normalizeSourceRecord(md, name);
+            const resolved = await resolveMedia(normalized);
+
+            // Store in ingest-canonical with conflict tracking.
+            const key = `${name}:${md.externalIds?.[name] || md.id}`;
+            const existing = await canonicalStore.get(key, { type: "json" }).catch(() => null);
+            const { merged, conflicts } = mergeWithConfidence(existing, normalized);
+            merged.provenance = { ...merged.provenance, [name]: { fetchedAt: Date.now(), fields: ["*"], confidence: "medium" } };
+            if (Object.keys(conflicts).length) merged.unresolvedConflicts = Object.keys(conflicts).filter(f => conflicts[f].existing !== conflicts[f].incoming);
+            await canonicalStore.setJSON(key, merged);
+
+            await mergeIntoCanonical(normalized, resolved);
+          } catch (err) {
+            console.error(`ingest: entity resolution failed for ${name}:${md.id} —`, err.message);
+          }
+        }
+      }
     } catch (err) {
       log.sources[name] = { ok: false, error: String((err && err.message) || err) };
       console.error(`ingest: ${name} failed`, err);

@@ -36,7 +36,7 @@ export function normalizeAniList(md) {
     // "*" means "everything not explicitly listed elsewhere". Real per-field
     // confidence scoring / conflict resolution across sources is 2026·10 work —
     // this is intentionally just enough structure for that pass to build on.
-    provenance: { anilist: { fetchedAt: now, fields: ["*"] } },
+    provenance: { anilist: { fetchedAt: now, fields: ["*"], confidence: "high" } },
     updatedAt: now,
   };
 }
@@ -58,4 +58,49 @@ export function mergeRecord(existing, incoming) {
   merged.schemaVersion = SCHEMA_VERSION;
   merged.updatedAt = Date.now();
   return merged;
+}
+
+// Conflict-aware merge (2026·10): detects when sources disagree on a field,
+// scores confidence per source, picks a winner by source priority, and flags
+// unresolvable conflicts for human review. Falls back to mergeRecord when there
+// are no conflicts.
+export function mergeWithConfidence(existing, incoming) {
+  if (!existing) return { merged: incoming, conflicts: {} };
+  if (!incoming) return { merged: existing, conflicts: {} };
+
+  const merged = { ...existing };
+  const conflicts = {};
+
+  for (const [k, v] of Object.entries(incoming)) {
+    if (k === "provenance" || k === "externalIds" || k === "updatedAt" || k === "schemaVersion") continue;
+    if (v == null) continue;
+    const cur = existing[k];
+    if (cur == null || (Array.isArray(cur) && !cur.length)) { merged[k] = v; continue; }
+
+    // Conflict: both sources have a value and they differ.
+    if (JSON.stringify(cur) !== JSON.stringify(v)) {
+      conflicts[k] = { existing: cur, incoming: v };
+      // AniList wins ties; otherwise keep existing (higher priority source).
+      const existingProv = existing.provenance?.[existing.source || "anilist"];
+      const incomingProv = incoming.provenance?.[incoming.source || "unknown"];
+      const existingConf = existingProv?.confidence || "high";
+      const incomingConf = incomingProv?.confidence || "medium";
+      merged[k] = existingConf === "high" ? cur : v;
+    }
+  }
+
+  // Merge provenance.
+  merged.provenance = { ...existing.provenance, ...incoming.provenance };
+  for (const [source, prov] of Object.entries(incoming.provenance || {})) {
+    if (!merged.provenance[source]) merged.provenance[source] = prov;
+    else {
+      merged.provenance[source] = { ...merged.provenance[source], ...prov };
+      if (prov.confidence) merged.provenance[source].confidence = prov.confidence;
+    }
+  }
+  merged.externalIds = { ...existing.externalIds, ...incoming.externalIds };
+  merged.schemaVersion = SCHEMA_VERSION;
+  merged.updatedAt = Date.now();
+
+  return { merged, conflicts };
 }

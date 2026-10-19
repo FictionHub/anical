@@ -208,6 +208,7 @@ const state = {
   browseQuery: { studio:"", staff:"" },
   browseKey: null,
 };
+initI18n();
 // The show and browse routes need an id to mean anything, so they are never
 // what a fresh launch opens into.
 if(state.viewMode==="show"||state.viewMode==="browse") state.viewMode="month";
