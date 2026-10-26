@@ -22,6 +22,7 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { pruneSeoPages, writeRedirects } from "./lib/seo-prune.mjs";
 // Dependency-free by design, so importing these here keeps this generator's
 // "zero npm deps" promise intact even though they live under netlify/.
 import { collectSeasonless } from "../netlify/functions/_lib/seasonless.mjs";
@@ -87,7 +88,9 @@ async function fetchSeason(season, year, maxPages = 2) {
 // They belong on /today/, the union pages and the feeds (they are airing), but
 // NOT on a /<season>-<year>/ page, which is a season listing by definition.
 // Never fatal: this generator must always exit 0, so a failure here costs the
-// extra titles and nothing else.
+// extra titles and nothing else. `ok` tells the caller whether an empty list
+// means "AniList says there are none" or "the lookup failed" — pruning stale
+// pages later needs to tell those apart.
 async function fetchSeasonlessMedia() {
   try {
     const media = await collectSeasonless(async (query, variables) => {
@@ -101,10 +104,10 @@ async function fetchSeasonlessMedia() {
       if (j.errors) throw new Error(j.errors[0].message);
       return j;
     }, SEO_MEDIA_FIELDS);
-    return media.filter(md => !isAdultMedia(md));
+    return { media: media.filter(md => !isAdultMedia(md)), ok: true };
   } catch (e) {
     console.warn("⚠ seasonless fetch failed: " + e.message);
-    return [];
+    return { media: [], ok: false };
   }
 }
 
@@ -945,10 +948,14 @@ ${children.map(c => `  <sitemap>\n    <loc>${SITE}/${c}</loc>\n    <lastmod>${to
   const allSlugs = targets.map(t => ({ slug: slugOf(t.season, t.year), label: labelOf(t.season, t.year) }));
 
   // Fetch each target season once; reuse for season pages, the union, and /today/.
+  // `complete` records whether every fetch succeeded. It decides whether stale
+  // pages may be pruned at the end: a failed season is a shorter page list, not
+  // evidence that those shows went away.
   const seasonMedia = [];
+  let complete = true;
   for (const t of targets) {
-    try { seasonMedia.push({ ...t, media: await fetchSeason(t.season, t.year) }); }
-    catch (e) { console.warn(`⚠ fetch failed ${slugOf(t.season, t.year)}: ${e.message}`); seasonMedia.push({ ...t, media: [] }); }
+    try { seasonMedia.push({ ...t, media: await fetchSeason(t.season, t.year), ok: true }); }
+    catch (e) { complete = false; console.warn(`⚠ fetch failed ${slugOf(t.season, t.year)}: ${e.message}`); seasonMedia.push({ ...t, media: [], ok: false }); }
   }
 
   // "Best of <season>" pages first, so season pages can link to the ones that exist
@@ -969,7 +976,9 @@ ${children.map(c => `  <sitemap>\n    <loc>${SITE}/${c}</loc>\n    <lastmod>${to
   }
 
   // Airing now, but with no season for a season page to have caught them.
-  const seasonlessMedia = await fetchSeasonlessMedia();
+  const seasonless = await fetchSeasonlessMedia();
+  const seasonlessMedia = seasonless.media;
+  if (!seasonless.ok) complete = false;
   if (seasonlessMedia.length) console.log(`✅ ${seasonlessMedia.length} seasonless airing titles`);
 
   // /today/ from current + previous season (carry-over shows still airing),
@@ -1055,6 +1064,31 @@ ${children.map(c => `  <sitemap>\n    <loc>${SITE}/${c}</loc>\n    <lastmod>${to
   catch (e) { console.warn("⚠ /best/ hub: " + e.message); }
   try { const p = await buildWatchHubPage(union, allSlugs); if (p) { hubPaths.push(p); console.log("✅ /where-to-watch/ (streaming hub)"); } }
   catch (e) { console.warn("⚠ /where-to-watch/ hub: " + e.message); }
+
+  // Retitled shows leave yesterday's directory behind under the old slug. Both
+  // pages then claim to be canonical for the same show. Delete the one this run
+  // did not write and 301 it to the one it did — but only on a complete run,
+  // because a failed fetch makes the page list look smaller than the site is.
+  // See scripts/lib/seo-prune.mjs for why only unambiguous duplicates are touched.
+  if (complete) {
+    try {
+      const pruned = await pruneSeoPages({
+        siteDir: SITE_DIR,
+        groups: { anime: new Set(animeSlugs), "where-to-watch": new Set(watchSlugs) },
+      });
+      // A page that exists again (a retitle that was reverted) must own its URL:
+      // otherwise last week's 301 keeps shadowing it. Passing the live paths lets
+      // writeRedirects cancel those rules while keeping every other redirect.
+      const live = new Set([
+        ...animeSlugs.map(s => `/anime/${s}/`),
+        ...watchSlugs.map(s => `/where-to-watch/${s}/`),
+      ]);
+      const written = await writeRedirects(join(SITE_DIR, "_redirects"), pruned.redirects, { live });
+      console.log(`✅ stale pages: ${pruned.removed.length} removed${pruned.skipped.length ? `, ${pruned.skipped.length} ambiguous left alone` : ""} · _redirects ${written.count} rule${written.count === 1 ? "" : "s"}`);
+    } catch (e) { console.warn("⚠ stale-page prune: " + e.message); }
+  } else {
+    console.warn("⚠ stale-page prune skipped: a fetch failed this run, so the page list is incomplete");
+  }
 
   try { const f = await buildFeeds(union); console.log(`✅ /feeds/ premieres(${f.prem}) finales(${f.fin}) all(${f.all})`); }
   catch (e) { console.warn("⚠ feeds: " + e.message); }
