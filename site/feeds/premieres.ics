@@ -9,24 +9,6 @@ NAME:Tsuzuki — Anime Premieres
 REFRESH-INTERVAL;VALUE=DURATION:PT12H
 X-PUBLISHED-TTL:PT12H
 BEGIN:VEVENT
-UID:tsuzuki-195539-1@tsuzuki.netlify.app
-DTSTAMP:20261020T070500Z
-DTSTART:20261020T070500Z
-DTEND:20261020T073500Z
-SUMMARY:Cyberpunk: Edgerunners 2 — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/cyberpunk-edgerunners-2-195539/
-URL:https://tsuzuki.top/anime/cyberpunk-edgerunners-2-195539/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-160275-1@tsuzuki.netlify.app
-DTSTAMP:20261022T150000Z
-DTSTART:20261022T150000Z
-DTEND:20261022T153000Z
-SUMMARY:Made in Abyss: Mezameru Shinpi — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/made-in-abyss-mezameru-shinpi-160275/
-URL:https://tsuzuki.top/anime/made-in-abyss-mezameru-shinpi-160275/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-143103-1@tsuzuki.netlify.app
 DTSTAMP:20261119T150000Z
 DTSTART:20261119T150000Z
@@ -45,15 +27,6 @@ DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/shangri-la-frontier-se
 URL:https://tsuzuki.top/anime/shangri-la-frontier-season-3-189323/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-200929-1@tsuzuki.netlify.app
-DTSTAMP:20261210T150000Z
-DTSTART:20261210T150000Z
-DTEND:20261210T153000Z
-SUMMARY:The Apothecary Diaries: The Late Lady’s Treasure — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/the-apothecary-diaries-the-late-ladys-treasure-200929/
-URL:https://tsuzuki.top/anime/the-apothecary-diaries-the-late-ladys-treasure-200929/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-186822-1@tsuzuki.netlify.app
 DTSTAMP:20270108T140000Z
 DTSTART:20270108T140000Z
@@ -61,6 +34,15 @@ DTEND:20270108T143000Z
 SUMMARY:The Guy She Was Interested In Wasn't a Guy At All — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/the-guy-she-was-interested-in-wasnt-a-guy-at-all-186822/
 URL:https://tsuzuki.top/anime/the-guy-she-was-interested-in-wasnt-a-guy-at-all-186822/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-200929-1@tsuzuki.netlify.app
+DTSTAMP:20261210T150000Z
+DTSTART:20261210T150000Z
+DTEND:20261210T153000Z
+SUMMARY:The Apothecary Diaries: The Late Lady’s Treasure — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/the-apothecary-diaries-the-late-ladys-treasure-200929/
+URL:https://tsuzuki.top/anime/the-apothecary-diaries-the-late-ladys-treasure-200929/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-213457-1@tsuzuki.netlify.app
@@ -99,6 +81,15 @@ DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/my-happy-marriage-spec
 URL:https://tsuzuki.top/anime/my-happy-marriage-special-episodes-190054/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-190244-1@tsuzuki.netlify.app
+DTSTAMP:20270325T150000Z
+DTSTART:20270325T150000Z
+DTEND:20270325T153000Z
+SUMMARY:Date A Live F Last Date — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/date-a-live-f-last-date-190244/
+URL:https://tsuzuki.top/anime/date-a-live-f-last-date-190244/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-194213-1@tsuzuki.netlify.app
 DTSTAMP:20270210T150000Z
 DTSTART:20270210T150000Z
@@ -126,6 +117,15 @@ DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/devils-crest-203275/
 URL:https://tsuzuki.top/anime/devils-crest-203275/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-212539-1@tsuzuki.netlify.app
+DTSTAMP:20261126T150000Z
+DTSTART:20261126T150000Z
+DTEND:20261126T153000Z
+SUMMARY:Takopii no Genzai: Arigatou\, Mata Ashita — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/takopii-no-genzai-arigatou-mata-ashita-212539/
+URL:https://tsuzuki.top/anime/takopii-no-genzai-arigatou-mata-ashita-212539/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-210199-1@tsuzuki.netlify.app
 DTSTAMP:20270109T155600Z
 DTSTART:20270109T155600Z
@@ -151,6 +151,15 @@ DTEND:20270109T090000Z
 SUMMARY:Shin Samurai-den YAIBA 2 — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/shin-samurai-den-yaiba-2-199337/
 URL:https://tsuzuki.top/anime/shin-samurai-den-yaiba-2-199337/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-206163-1@tsuzuki.netlify.app
+DTSTAMP:20261119T150000Z
+DTSTART:20261119T150000Z
+DTEND:20261119T153000Z
+SUMMARY:Soukou Kihei Votoms: Haiiro no Hexe — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/soukou-kihei-votoms-haiiro-no-hexe-206163/
+URL:https://tsuzuki.top/anime/soukou-kihei-votoms-haiiro-no-hexe-206163/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-214049-1@tsuzuki.netlify.app
@@ -205,5 +214,14 @@ DTEND:20270304T153000Z
 SUMMARY:Doraemon: Nobita no Jouki Jikansha — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/doraemon-nobita-no-jouki-jikansha-216623/
 URL:https://tsuzuki.top/anime/doraemon-nobita-no-jouki-jikansha-216623/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-216858-1@tsuzuki.netlify.app
+DTSTAMP:20270104T125600Z
+DTSTART:20270104T125600Z
+DTEND:20270104T132600Z
+SUMMARY:Haru to Gen: 70-sai\, Hajimete Kosodate — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/haru-to-gen-70-sai-hajimete-kosodate-216858/
+URL:https://tsuzuki.top/anime/haru-to-gen-70-sai-hajimete-kosodate-216858/
 END:VEVENT
 END:VCALENDAR
