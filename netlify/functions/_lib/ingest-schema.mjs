@@ -4,7 +4,7 @@
 // and re-keyed onto a resolved canonical id once entity resolution (2026·09)
 // lands. Bump SCHEMA_VERSION on any breaking shape change so a future migration
 // pass can find every record still on an old version.
-export const SCHEMA_VERSION = 1;
+export const SCHEMA_VERSION = 2;
 
 export function normalizeAniList(md) {
   const now = Date.now();

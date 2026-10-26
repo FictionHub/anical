@@ -180,6 +180,15 @@ DESCRIPTION:https://tsuzuki.top/anime/the-exiled-heavy-knight-knows-how-to-game-
 URL:https://tsuzuki.top/anime/the-exiled-heavy-knight-knows-how-to-game-the-system-180136/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-180136-24@tsuzuki.netlify.app
+DTSTAMP:20261210T152600Z
+DTSTART:20261210T152600Z
+DTEND:20261210T155600Z
+SUMMARY:The Exiled Heavy Knight Knows How to Game the System — Ep 24
+DESCRIPTION:https://tsuzuki.top/anime/the-exiled-heavy-knight-knows-how-to-game-the-system-180136/
+URL:https://tsuzuki.top/anime/the-exiled-heavy-knight-knows-how-to-game-the-system-180136/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-159042-5@tsuzuki.netlify.app
 DTSTAMP:20261028T153000Z
 DTSTART:20261028T153000Z
@@ -466,15 +475,6 @@ DTEND:20261204T150000Z
 SUMMARY:Firefly Wedding — Ep 9
 DESCRIPTION:https://tsuzuki.top/anime/firefly-wedding-205909/
 URL:https://tsuzuki.top/anime/firefly-wedding-205909/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-191656-4@tsuzuki.netlify.app
-DTSTAMP:20261024T153000Z
-DTSTART:20261024T153000Z
-DTEND:20261024T160000Z
-SUMMARY:Even the Student Council Has Its Holes! — Ep 4
-DESCRIPTION:https://tsuzuki.top/anime/even-the-student-council-has-its-holes-191656/
-URL:https://tsuzuki.top/anime/even-the-student-council-has-its-holes-191656/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-191656-5@tsuzuki.netlify.app
@@ -1969,15 +1969,6 @@ DTEND:20261206T150000Z
 SUMMARY:Full Clearing Another World under a Goddess with Zero Believers — Ep 9
 DESCRIPTION:https://tsuzuki.top/anime/full-clearing-another-world-under-a-goddess-with-zero-believ-205896/
 URL:https://tsuzuki.top/anime/full-clearing-another-world-under-a-goddess-with-zero-believ-205896/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-209872-4@tsuzuki.netlify.app
-DTSTAMP:20261024T155600Z
-DTSTART:20261024T155600Z
-DTEND:20261024T162600Z
-SUMMARY:Ranma1/2 (2024) Season 3 — Ep 4
-DESCRIPTION:https://tsuzuki.top/anime/ranma12-2024-season-3-209872/
-URL:https://tsuzuki.top/anime/ranma12-2024-season-3-209872/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-209872-5@tsuzuki.netlify.app

@@ -3,11 +3,14 @@
 // { source, raw, media, skipped, reason } shape as every other adapter so the
 // orchestrator in ingest.mjs never has to special-case an unimplemented source.
 //
-// The feed list is deliberately short and hand-curated: each entry pairs a
-// studio name with an RSS or JSON endpoint that publishes announcements about
-// new shows, release dates, or delays. Every entry is one HTTP request per run,
-// so the list stays small to respect each studio's courtesy budget.
+// Feed items carry no season, no AniList id and no airing schedule: they're
+// candidates, not records. They land here only as evidence for entity
+// resolution to match against canonical identities, which is why each record's
+// id is a stable slug of the studio + title — never a timestamp — so two runs
+// seeing the same announcement merge onto one canonical record instead of
+// minting a duplicate every two hours.
 import { fetchWithRetry, makeLimiter } from "../ingest-http.mjs";
+import { extractElements, textOf } from "../xml-lite.mjs";
 
 const limiter = makeLimiter(10);
 
@@ -22,27 +25,39 @@ const STUDIO_FEEDS = [
   { name: "Madhouse", kind: "none", url: null },
 ];
 
-// Parse an RSS feed into a lightweight record.
-function parseRss(xml) {
-  const dom = new DOMParser().parseFromString(xml, "application/xml");
-  const items = [];
-  for (const item of dom.querySelectorAll("item")) {
-    items.push({
-      title: item.querySelector("title")?.textContent || "",
-      link: item.querySelector("link")?.textContent || "",
-      pubDate: item.querySelector("pubDate")?.textContent || "",
-      description: item.querySelector("description")?.textContent || "",
-    });
-  }
-  return items;
+// Stable id (and canonical-store key) for a feed item: studio + slugified
+// title. Deterministic across runs, unlike Date.now(), so entity resolution
+// sees the same identity twice and merges instead of duplicating.
+export function studioItemKey(feedName, titles) {
+  const slug = String(titles || "")
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")
+    .slice(0, 80) || "untitled";
+  return { id: `studio:${feedName}:${slug}`, slug };
 }
 
-// Parse a JSON feed into a lightweight record.
-function parseJson(json) {
-  const items = Array.isArray(json.items || json.entries || json) ? (json.items || json.entries || json) : [];
-  return items.map(it => ({
+// Parse an RSS feed into lightweight items. RSS titles and descriptions are
+// routinely CDATA-wrapped; textOf handles both escapes and markup.
+export function parseRss(xml) {
+  return extractElements(xml, "item").map(item => ({
+    title: textOf(extractElements(item.inner, "title")[0]?.inner || ""),
+    link: textOf(extractElements(item.inner, "link")[0]?.inner || ""),
+    pubDate: textOf(extractElements(item.inner, "pubDate")[0]?.inner || ""),
+    description: textOf(extractElements(item.inner, "description")[0]?.inner || ""),
+  }));
+}
+
+// Parse a JSON feed into lightweight items. Accepts the three shapes feeds
+// actually use: { items: [...] }, { entries: [...] } or a bare array.
+export function parseJson(json) {
+  const list = Array.isArray(json) ? json : json?.items || json?.entries;
+  if (!Array.isArray(list)) return [];
+  return list.map(it => ({
     title: it.title || it.name || "",
-    link: it.url || it.link || it.url || "",
+    link: it.url || it.link || "",   // (was: url || link || url — duplicated url, link never tried)
     pubDate: it.pubDate || it.published || it.date || "",
     description: it.description || it.summary || it.body || "",
   }));
@@ -51,12 +66,14 @@ function parseJson(json) {
 export async function ingestStudios() {
   const media = [];
   const raw = [];
+  let live = 0;
 
   for (const feed of STUDIO_FEEDS) {
     if (!feed.url || feed.kind === "none") {
       raw.push({ studio: feed.name, fetchedAt: Date.now(), reason: "no endpoint configured yet" });
       continue;
     }
+    live++;
 
     try {
       await limiter();
@@ -66,18 +83,21 @@ export async function ingestStudios() {
         continue;
       }
       const text = await res.text();
-      let parsed;
+      let parsed = [];
       if (feed.kind === "rss") parsed = parseRss(text);
-      else if (feed.kind === "json") { try { parsed = parseJson(JSON.parse(text)); } catch (_) { parsed = []; } }
-      else parsed = [];
+      else if (feed.kind === "json") {
+        try { parsed = parseJson(JSON.parse(text)); } catch (_) { parsed = []; }
+      }
 
       raw.push({ studio: feed.name, fetchedAt: Date.now(), items: parsed.length });
-      // Convert feed items into placeholder media records — a feed item without
+      // Convert feed items into candidate media records — a feed item without
       // an AniList id cannot be merged into the canonical store yet; it lands
-      // here as a candidate for entity resolution to pick up.
+      // here as a candidate for entity resolution to pick up. The record id is
+      // stable (see studioItemKey), so re-runs merge rather than duplicate.
       for (const item of parsed) {
+        const { id } = studioItemKey(feed.name, item.title);
         media.push({
-          id: `studio:${feed.name}:${Date.now()}`,
+          id,
           title: { romaji: item.title, english: null, native: null },
           format: null,
           episodes: null,
@@ -99,7 +119,7 @@ export async function ingestStudios() {
           siteUrl: item.link || null,
           synopsis: item.description || null,
           tags: [],
-          externalIds: {},
+          externalIds: { studios: id },
           raw: { feedItem: item },
           provenance: { studios: { fetchedAt: Date.now(), fields: ["*"], confidence: "low" } },
         });
@@ -108,6 +128,12 @@ export async function ingestStudios() {
       console.error(`ingest: studio ${feed.name} failed`, err);
       raw.push({ studio: feed.name, fetchedAt: Date.now(), error: String((err && err.message) || err) });
     }
+  }
+
+  // With no endpoint configured there is nothing to fetch, and "ok, 0 shows"
+  // reads like a healthy empty result. Mark it skipped so the run log says why.
+  if (!live) {
+    return { source: "studios", raw, media, skipped: true, reason: "no studio feed endpoint configured yet" };
   }
 
   return { source: "studios", raw, media, skipped: false, reason: null };

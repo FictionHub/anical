@@ -62,7 +62,14 @@ export function readCookie(req, name) {
   for (const part of raw.split(";")) {
     const eq = part.indexOf("=");
     if (eq < 0) continue;
-    if (part.slice(0, eq).trim() === name) return decodeURIComponent(part.slice(eq + 1).trim());
+    if (part.slice(0, eq).trim() === name) {
+      const value = part.slice(eq + 1).trim();
+      // A malformed percent-escape used to throw out of here, turning "the
+      // browser sent us junk" into a 500 on every signed-in route — including
+      // the ones that would have simply treated the caller as signed out.
+      try { return decodeURIComponent(value); }
+      catch { return value; }
+    }
   }
   return null;
 }

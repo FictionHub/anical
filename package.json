@@ -19,10 +19,28 @@
     "//today:test": "Pure-logic checks over the /today/ renderer in netlify/functions/today.mjs — which episodes fall inside the UTC day, their order, the adult filter, and above all that the date on the page is the date it was rendered for. No network, no Blobs, no real clock.",
     "today:test": "node scripts/test-today.mjs",
     "//feed:test": "Pure-logic checks over the swipe feed — which titles the pool offers, how the weighted sampler draws from it, and the guards that stop a dry pool from re-rendering itself forever. Same extraction as ratings:test.",
-    "feed:test": "node scripts/test-feed.mjs"
+    "feed:test": "node scripts/test-feed.mjs",
+    "//ingest:test": "Pure-logic checks over the ANN && studio-feed ingest adapters and the xml-lite reader they share (the function runtime has no DOMParser). The ANN fixture is trimmed from a real batch response, so a source format change fails the run.",
+    "ingest:test": "node scripts/test-ingest-sources.mjs",
+    "//prune:test": "Checks over the duplicate-page prune: which stale slug is deleted, which ambiguous pair is left alone, and that generated redirects merge across runs (a later empty run must not erase last week's 301), collapse chains, cancel when the old slug is live again, and keep hand-written rules intact.",
+    "prune:test": "node scripts/test-seo-prune.mjs",
+    "//shell:test": "Checks the script shell in site/index.html: every <script src> exists, none carries module syntax (the browser discards the whole file otherwise, and there is no build step to rewrite it), app.js's top-level calls are defined by a script loaded before it, and the service worker precaches all of them. This is the guard the i18n break shipped past.",
+    "shell:test": "node scripts/test-shell.mjs",
+    "//site:test": "Checks the committed site tree itself: every site/_redirects target exists and no rule shadows a live page or chains, each generated group holds one directory per AniList id whose canonical URL is its own, and every sitemap <loc> resolves to a file. These are invariants a broken build leaves behind that no pure-logic suite can see, because they are about files on disk.",
+    "site:test": "node scripts/test-site.mjs",
+    "//prune:seo": "Applies the duplicate-page prune to what is on disk, using the sitemap as the last build's page list. Dry run by default; pass --apply to delete and write site/_redirects.",
+    "prune:seo": "node scripts/prune-seo.mjs",
+    "//test": "Every pure-logic suite in one command: no network, no Blobs, no real clock. site:test reads the committed site tree rather than a fixture, so it is last — it only says anything once the rest has passed. Keep this list in sync with the workflow in .github/workflows/tests.yml.",
+    "test": "npm run economy:test && npm run ratings:test && npm run today:test && npm run feed:test && npm run ingest:test && npm run prune:test && npm run shell:test && npm run site:test",
+    "//lint": "no-undef is the rule that matters: it is the class of bug that broke the API error handler and the push worker. See eslint.config.mjs for why style rules are not enforced.",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@netlify/blobs": "^8.1.0",
     "web-push": "^3.6.7"
+  },
+  "devDependencies": {
+    "eslint": "^10.13.0",
+    "globals": "^16.5.0"
   }
 }

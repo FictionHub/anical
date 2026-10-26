@@ -9,14 +9,19 @@
 //
 // Setup once implemented: set TMDB_API_KEY in Netlify env vars.
 import { fetchWithRetry, makeLimiter } from "../ingest-http.mjs";
+import { configuredIds } from "../ingest-ids.mjs";
 
 const TMDB_API = "https://api.themoviedb.org/3";
 
 const limiter = makeLimiter(35); // TMDB's default budget is ~40 req/10s; stay under it
 
 // Curated TMDB TV show ids worth tracking. Kept small so a run stays inside the
-// function budget until entity resolution maps AniList ids to TMDB ids.
-const TMDB_IDS = [93405, 130631, 94608, 129914, 203749];
+// function budget until entity resolution maps AniList ids to TMDB ids. Override
+// from the Netlify UI with TMDB_IDS=93405/130631 (see ingest-ids.mjs); an empty
+// value skips the source instead of spending the key's quota on nothing.
+const DEFAULT_TMDB_IDS = [93405, 130631, 94608, 129914, 203749];
+
+const TMDB_IDS = configuredIds(process.env.TMDB_IDS, DEFAULT_TMDB_IDS);
 
 // Map TMDB's first_air_date into AniList-style season/year.
 function seasonOf(iso) {
@@ -61,6 +66,9 @@ function normalizeShow(show) {
 export async function ingestTMDB() {
   if (!process.env.TMDB_API_KEY) {
     return { source: "tmdb", raw: [], media: [], skipped: true, reason: "TMDB_API_KEY not configured" };
+  }
+  if (!TMDB_IDS.length) {
+    return { source: "tmdb", raw: [], media: [], skipped: true, reason: "TMDB_IDS is set but contains no valid ids" };
   }
 
   const media = [];

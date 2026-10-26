@@ -114,108 +114,116 @@ async function run({ dry }) {
     const sentSet = new Set(data.sent || []);
     const lead = data.lead || 10;
     const airType = data.airType || "sub";
+    // Resolved times carried over from the previous run, keyed by show + episode
+    // + variant. The show id is part of the key on purpose: two followed shows
+    // that both have an "episode 5" used to read each other's timestamp and
+    // manufacture a "time moved" alert out of nothing.
+    const knownAirs = new Map((data.airedTimes || []).map(e => [e.key, e.ts]));
+    const breaks = new Set(data.breaks || []);
+    const timesBefore = JSON.stringify(data.airedTimes || []);
+    const breaksBefore = JSON.stringify(data.breaks || []);
     let gone = false, touched = false;
 
-      for (const id of data.mediaIds || []) {
-        const md = schedules.get(+id);
-        if (!md || !md.title) continue;
-        const ov = showOverride(overrides, md.id);
-        const aired = new Map((data.airedTimes || []).map(e => [e.key, e.ts])); // last known times per episode
-        const knownAirs = new Map();
-        for (const n of (md.airingSchedule && md.airingSchedule.nodes) || []) {
-          // Resolve the release this subscriber is waiting for. A break yields no
-          // variants at all, so it silently produces no alert.
-          const { status, variants } = variantsFor(md, n, ov);
-          const v = preferredVariant(variants, airType);
-          if (!v) continue;
+    for (const id of data.mediaIds || []) {
+      const md = schedules.get(+id);
+      if (!md || !md.title) continue;
+      const ov = showOverride(overrides, md.id);
 
-          knownAirs.set(n.episode, v.ts);
+      for (const n of (md.airingSchedule && md.airingSchedule.nodes) || []) {
+        // Resolve the release this subscriber is waiting for. A break yields no
+        // variants at all, so it silently produces no alert.
+        const { status, variants } = variantsFor(md, n, ov);
+        const v = preferredVariant(variants, airType);
+        if (!v) continue;
 
-          // Delayed-episode handling (Day 139): an episode moved past its window
-          // is still missed unless we fire on the resolved time rather than the
-          // stored one. Also — a time change after an alert went out sends a
-          // correction instead of leaving the wrong time standing.
-          const tag = id + "-" + n.episode + "-" + v.type;
-          const fireAt = v.ts * 1000 - lead * 60000;
-          const correctionTag = id + "-" + n.episode + "-" + v.type + "-corr";
-          const previously = aired.get(n.episode + "-" + v.type);
+        const airedKey = md.id + "-" + n.episode + "-" + v.type;
+        const previously = knownAirs.get(airedKey);
+        // Record this run's resolved time. `previously` is read first, so the
+        // comparison below is genuinely against the last run, not against the
+        // value we just wrote.
+        knownAirs.set(airedKey, v.ts);
 
-          // If this episode's time changed since we last alerted, send a
-          // correction (once per change), even if we already fired the original.
-          if (previously != null && previously !== v.ts && !sentSet.has(correctionTag)) {
-            const t = md.title.english || md.title.romaji || "Anime";
-            const where = v.platform ? " on " + v.platform : "";
-            const label = v.type === "sub" && v.estimated ? "Simulcast (approx.)" : AIR_LABEL[v.type];
-            const bodyText = "Time moved · " + label + where +
-              " — now " + new Date(v.ts * 1000).toUTCString().slice(0, -4) + " UTC";
-            const payload = JSON.stringify({
-              title: t + " — Episode " + n.episode + " · new time",
-              body: bodyText,
-              icon: (md.coverImage && md.coverImage.medium) || SITE + "/icon-192.png",
-              image: (md.coverImage && md.coverImage.large) || (md.coverImage && md.coverImage.medium) || undefined,
-              tag: "anical-corr-" + md.id + "-" + n.episode,
-              url: SITE + "/?show=" + md.id,
-            });
+        // Delayed-episode handling (Day 139): an episode moved past its window
+        // is still missed unless we fire on the resolved time rather than the
+        // stored one. Also — a time change after an alert went out sends a
+        // correction instead of leaving the wrong time standing.
+        const tag = id + "-" + n.episode + "-" + v.type;
+        const fireAt = v.ts * 1000 - lead * 60000;
+        const correctionTag = id + "-" + n.episode + "-" + v.type + "-corr";
 
-            if (dry) { sent++; continue; }
-            try {
-              await webpush.sendNotification(data.subscription, payload);
-              sentSet.add(correctionTag);
-              touched = true;
-              sent++;
-              continue; // correction replaces the regular alert for this run
-            } catch (err) {
-              if (err.statusCode === 404 || err.statusCode === 410) { gone = true; break; }
-              failed++;
-              console.error("push correction failed", err.statusCode, err.body || err.message);
-            }
-          }
-
-          if (sentSet.has(tag)) continue;
-          if (fireAt > now || fireAt <= now - RUN_WINDOW_MS) continue; // not due this run
-
+        // If this episode's time changed since we last alerted, send a
+        // correction (once per change), even if we already fired the original.
+        if (previously != null && previously !== v.ts && !sentSet.has(correctionTag)) {
           const t = md.title.english || md.title.romaji || "Anime";
           const where = v.platform ? " on " + v.platform : "";
           const label = v.type === "sub" && v.estimated ? "Simulcast (approx.)" : AIR_LABEL[v.type];
-          const bodyText = "Airs in ~" + lead + " min · " + label + where +
-            " (" + new Date(v.ts * 1000).toUTCString().slice(0, -4) + " UTC)" +
-            (status && status.reason ? " · " + status.reason : "");
+          const bodyText = "Time moved · " + label + where +
+            " — now " + new Date(v.ts * 1000).toUTCString().slice(0, -4) + " UTC";
           const payload = JSON.stringify({
-            title: t + " — Episode " + n.episode,
+            title: t + " — Episode " + n.episode + " · new time",
             body: bodyText,
             icon: (md.coverImage && md.coverImage.medium) || SITE + "/icon-192.png",
             image: (md.coverImage && md.coverImage.large) || (md.coverImage && md.coverImage.medium) || undefined,
-            tag: "anical-" + md.id + "-" + n.episode,
+            tag: "anical-corr-" + md.id + "-" + n.episode,
             url: SITE + "/?show=" + md.id,
           });
 
           if (dry) { sent++; continue; }
           try {
             await webpush.sendNotification(data.subscription, payload);
-            sentSet.add(tag);
+            sentSet.add(correctionTag);
             touched = true;
             sent++;
+            continue; // correction replaces the regular alert for this run
           } catch (err) {
-            // 404/410 means the browser threw the subscription away — stop
-            // pushing to a dead endpoint and forget it.
             if (err.statusCode === 404 || err.statusCode === 410) { gone = true; break; }
             failed++;
-            console.error("push failed", err.statusCode, err.body || err.message);
+            console.error("push correction failed", err.statusCode, err.body || err.message);
           }
         }
-        if (gone) break;
-      }
 
-      // Record the resolved times so the next run can detect changes.
-      data.airedTimes = [...knownAirs.entries()].map(([key, ts]) => ({ key, ts }));
+        if (sentSet.has(tag)) continue;
+        if (fireAt > now || fireAt <= now - RUN_WINDOW_MS) continue; // not due this run
+
+        const t = md.title.english || md.title.romaji || "Anime";
+        const where = v.platform ? " on " + v.platform : "";
+        const label = v.type === "sub" && v.estimated ? "Simulcast (approx.)" : AIR_LABEL[v.type];
+        const bodyText = "Airs in ~" + lead + " min · " + label + where +
+          " (" + new Date(v.ts * 1000).toUTCString().slice(0, -4) + " UTC)" +
+          (status && status.reason ? " · " + status.reason : "");
+        const payload = JSON.stringify({
+          title: t + " — Episode " + n.episode,
+          body: bodyText,
+          icon: (md.coverImage && md.coverImage.medium) || SITE + "/icon-192.png",
+          image: (md.coverImage && md.coverImage.large) || (md.coverImage && md.coverImage.medium) || undefined,
+          tag: "anical-" + md.id + "-" + n.episode,
+          url: SITE + "/?show=" + md.id,
+        });
+
+        if (dry) { sent++; continue; }
+        try {
+          await webpush.sendNotification(data.subscription, payload);
+          sentSet.add(tag);
+          touched = true;
+          sent++;
+        } catch (err) {
+          // 404/410 means the browser threw the subscription away — stop
+          // pushing to a dead endpoint and forget it.
+          if (err.statusCode === 404 || err.statusCode === 410) { gone = true; break; }
+          failed++;
+          console.error("push failed", err.statusCode, err.body || err.message);
+        }
+      }
+      if (gone) break;
 
       // Break & hiatus alerts (Day 140): notify once when an episode becomes a
-      // break, never weekly, and announce resumption too.
-      const breakKey = id + "-break";
-      const breaks = new Set(data.breaks || []);
+      // break, never weekly. A break from long before this subscription existed
+      // is skipped — it would be a useless late notification, and the once-only
+      // set would then keep it quiet forever anyway.
       for (const n of (md.airingSchedule && md.airingSchedule.nodes) || []) {
         const { status } = variantsFor(md, n, ov);
         if (!status || status.kind !== "break") continue;
+        if (n.airingAt * 1000 < now - 3 * 86400_000) continue;
         const epTag = id + "-" + n.episode;
         if (breaks.has(epTag)) continue;
         const t = md.title.english || md.title.romaji || "Anime";
@@ -239,11 +247,23 @@ async function run({ dry }) {
         }
       }
       if (gone) break;
-      data.breaks = [...breaks];
+    }
 
     if (dry) continue;
     if (gone) { await store.delete(key).catch(() => {}); removed++; continue; }
-    if (!touched) continue;   // nothing changed — don't rewrite the blob
+
+    // Persist the resolved times even when nothing was notified: the change
+    // detection above needs a baseline. Storing them only when an alert fired
+    // meant a show whose first alert had not gone out yet could never report a
+    // moved episode.
+    data.airedTimes = [...knownAirs.entries()]
+      .sort((a, b) => a[0].localeCompare(b[0]))
+      .slice(-500)
+      .map(([key, ts]) => ({ key, ts }));
+    data.breaks = [...breaks].slice(-200);
+    const timesChanged = JSON.stringify(data.airedTimes) !== timesBefore;
+    const breaksChanged = JSON.stringify(data.breaks) !== breaksBefore;
+    if (!touched && !timesChanged && !breaksChanged) continue;   // nothing changed — don't rewrite the blob
 
     const sentArr = [...sentSet];
     data.sent = sentArr.length > 500 ? sentArr.slice(-500) : sentArr;

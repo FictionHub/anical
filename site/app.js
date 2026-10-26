@@ -358,8 +358,15 @@ const title = md => {
   return t.english||t.romaji||t.native||"Untitled";
 };
 const fmtTime = ts => new Date(ts*1000).toLocaleTimeString([], timeOpts({hour:"numeric", minute:"2-digit"}));
-const dayKeyTs = ts => { const d=new Date(ts*1000); return d.getFullYear()+"-"+d.getMonth()+"-"+d.getDate(); };
-const keyOf = d => d.getFullYear()+"-"+d.getMonth()+"-"+d.getDate();
+/* Local-day keys. One shape for the whole client: zero-padded YYYY-M-D, built
+   from the viewer's own calendar day — never UTC, because someone marking an
+   episode at 11pm means tonight, not tomorrow. Padding matters even though
+   every current use is a Map lookup or an equality test: an unpadded key
+   ("2026-9-4") sorts after a later padded one ("2026-10-15") and reads wrong
+   next to the padded keys logActivity()/todayISO()/experience.js already write,
+   so the two could never be compared safely. */
+const keyOf = d => d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+const dayKeyTs = ts => keyOf(new Date(ts*1000));
 function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
 function decodeEntities(s){ const t=document.createElement("textarea"); t.innerHTML=String(s==null?"":s); return t.value; }
 // A confirmed season finale: the show has a known total episode count (>1) and this is it.

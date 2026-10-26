@@ -145,8 +145,10 @@ function compositeOf(axes){
   }
   return wt ? Math.round((sum/wt)*10)/10 : 0;
 }
-/* The axes-first write path. Day 14's sliders land here; today nothing calls it
-   from the UI, which is what makes this a `data` day. */
+/* The axes-first write path. Reached from the axis sliders in the show detail
+   modal: ratings.js renders them in axesRowHtml(), and boot.js binds [data-ax]
+   to this, so dragging one writes the axis and lets the composite follow rather
+   than the composite being the input. */
 function setAxis(id, key, val){
   if(!AXIS_KEYS.includes(key)) return;
   const axes=getAxes(id);

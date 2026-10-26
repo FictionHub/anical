@@ -30,10 +30,16 @@
 //   • The result must land inside the same plausibility band the scraper uses.
 //   • The median is taken, not the mean, so one wild value cannot drag it.
 
-// Mirrors BAND in scripts/ingest-crunchyroll.mjs. A simulcast lands within
+// Mirrors sub/dub in BAND in scripts/ingest-crunchyroll.mjs — those two are kept
+// identical on purpose and must be changed together. A simulcast lands within
 // hours of broadcast; a dub within months. Outside these it is far likelier to
 // be a mis-tap than a real value, and a confidently wrong time is worse than
 // none.
+//
+// `raw` has no counterpart in the scraper and that is deliberate, not drift:
+// Crunchyroll lists subtitled and dubbed releases only, so the scraper can
+// never derive a broadcast offset, while a reader CAN report one. The shape
+// differs for that reason alone; the shared sub/dub numbers are the contract.
 export const BAND = {
   sub: { min: -10, max: 12 * 60 },
   dub: { min: 0, max: 120 * 24 * 60 },

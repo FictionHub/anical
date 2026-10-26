@@ -9,7 +9,7 @@ This repo does two things, entirely in the cloud (no dependency on your PC):
    `bot/post-social.mjs` and posts a short "today in anime" blurb to Bluesky, Mastodon, and Twitter/X.
 
 ```
-site/                 the Tsuzuki website (index.html, sitemap.xml, robots.txt, og-image.png, favicon.svg, 404.html)
+site/                 the Tsuzuki website (index.html, sitemap.xml, robots.txt, og-image-v2.png, favicon.svg, 404.html)
 site/embed/           embeddable "what's airing" widget (iframe) for other sites — generates backlinks
 scripts/build-seo.mjs generates static SEO landing pages (/today/, /<season>-<year>/) from AniList
 bot/post-updates.mjs  pulls AniList + ANN and posts embeds to Discord
@@ -18,13 +18,14 @@ netlify.toml          tells Netlify to publish /site without a build step
 .github/workflows/daily-discord.yml   daily Discord cron job
 .github/workflows/daily-social.yml    daily social-media cron job
 .github/workflows/refresh-pages.yml   weekly generation and commit of SEO pages and events
+.github/workflows/tests.yml           every push and pull request: npm ci, npm test, npm run lint
 ```
 
 ## One-time setup
 
 ### A. Push this repo to GitHub
 ```bash
-cd "C:\Users\krays\Desktop\stuff for anical\anical"
+cd <this-repo-folder>
 git add .
 git commit -m "Add site + Discord automation"
 git remote add origin https://github.com/<you>/<repo>.git   # if not already set
@@ -75,7 +76,7 @@ can also run `DRY_RUN=1 node bot/post-social.mjs`.
 
 ## SEO
 The site ships with `sitemap.xml`, a `Sitemap:` line in `robots.txt`, Open Graph + Twitter
-card tags (with `og-image.png`), and JSON-LD structured data (`WebSite` + `WebApplication`).
+card tags (with `og-image-v2.png`), and JSON-LD structured data (`WebSite` + `WebApplication`).
 After deploy, submit the site once in [Google Search Console](https://search.google.com/search-console)
 (add the property, then **Sitemaps → submit `https://tsuzuki.top/sitemap.xml`**)
 to start getting indexed.
@@ -90,6 +91,15 @@ pages that target real searches:
 Each page has real titles + dates in the HTML, a canonical URL, Open Graph tags, and
 `ItemList` JSON-LD, and is listed in the regenerated `sitemap.xml`. The generator has **zero
 npm deps** and commits its output from GitHub Actions; it does not run during Netlify deploys. Run node scripts/build-seo.mjs to preview or regenerate locally.
+
+A show that gets retitled leaves yesterday's page behind under the old slug, and two pages
+then claim the same AniList id. After a run whose fetches all succeeded, the generator deletes
+the copy it did not just write and appends a 301 to `site/_redirects`, so the ranking and any
+inbound link move to the current URL. Rules are merged with what is already there (the next run
+has no duplicate left to find, and must not erase the 301), and a slug that gets built again
+cancels its own redirect. Ambiguous cases — two stale pages, no current one — are left alone.
+`npm run prune:seo` reports those against the last sitemap; `npm run prune:seo -- --apply`
+performs the same cleanup by hand.
 
 **Refresh SEO pages and events:** the refresh-pages workflow runs weekly on GitHub Actions. It regenerates the pages and event data, commits changes, and those commits trigger the Netlify deploy. The workflow needs contents: write permission; no Netlify build hook is involved.
 
@@ -538,7 +548,8 @@ Two separate things, both in `site/index.html`:
   needs a client secret, a secret needs a server, and this app doesn't have one.
   The token lives in the browser and reaches nothing but AniList.
 
-**Already configured** — `ANILIST_CLIENT_ID = "47767"` in `site/index.html`. The
+**Already configured** — `ANILIST_CLIENT_ID = "47767"` in `site/app/data.js` (it used to live in
+`site/index.html`, before the client split into app modules). The
 client id is public by design (it travels in the authorize URL on every sign-in),
 so it is committed like the VAPID public key; the implicit flow has no secret to
 protect. Left empty, the settings panel says so instead of half-working.
@@ -584,3 +595,9 @@ Query params: `days` (1–31, default 7) and `limit` (max rows, default 25).
 - Editing the site? Just commit & push — Netlify redeploys. Editing the Discord post format?
   Change `bot/post-updates.mjs` and push; the next scheduled run uses it.
 - This replaces both the manual Netlify drag-and-drop and the local Windows Task Scheduler job.
+- `npm test` runs the check suites for the economy, ratings, `/today/`, the feed, ingestion
+  sources, the SEO prune, the script shell in `index.html` and the committed `site/` tree
+  (redirect targets, one page per AniList id, canonical URLs, sitemap entries that resolve);
+  `npm run lint` runs ESLint. CI runs both on every push and pull request, so a typo like an
+  undefined variable — or a stray `export` in a classic script — fails before it can reach
+  the site.

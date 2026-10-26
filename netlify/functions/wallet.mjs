@@ -133,7 +133,12 @@ export default async (req) => {
         const t = index.get(out.prize.themeId);
         out.prize.name = (t && t.name) || out.prize.themeId;
       }
-      dirty = true;
+      // Same shape as claim/buy/wear below: only persist a wallet that actually
+      // changed. The guard at the top of this case already rules out the one
+      // failure applySpin has today (already-spun, same condition as canSpin),
+      // so this is currently always true — it is here so a future failure mode
+      // in applySpin cannot write an unmodified wallet back to the store.
+      dirty = out.ok;
       break;
     }
     case "claim": {

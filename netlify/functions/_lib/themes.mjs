@@ -18,7 +18,7 @@
 // deploy. The cost is that a theme is only as available as its host, which is
 // why validateThemes() insists on https and why build-themes.mjs --check exists.
 
-export const THEMES_VERSION = 1;
+export const THEMES_VERSION = 2;
 export const THEME_STORE = "site-themes";
 
 // How a skin is obtained, and therefore what it costs. The table that gives

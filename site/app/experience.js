@@ -86,8 +86,12 @@
   function episodeRow(row){
     const md=row.md, watched=watchedEps(md), isDone=watched>=row.ep;
     const conf=row.air&&row.air.estimated?"Estimated":"Listed release time";
-    const leads=JSON.parse(localStorage.getItem("anical.notifyLeadBy")||"{}");
-    const airPrefs=JSON.parse(localStorage.getItem("anical.notifyAirBy")||"{}");
+    // Guarded reads, not bare JSON.parse: this runs on every My Plan render and
+    // a corrupt value in either key would throw mid-render. These two live in
+    // the SHARED namespace (data.js writes them), so they are read directly
+    // rather than through get(), which prefixes this file's own store.
+    const leads=(()=>{try{return JSON.parse(localStorage.getItem("anical.notifyLeadBy")||"{}")||{};}catch(_){return {};}})();
+    const airPrefs=(()=>{try{return JSON.parse(localStorage.getItem("anical.notifyAirBy")||"{}")||{};}catch(_){return {};}})();
     return `<article class="mx-row mx-episode" data-mid="${escText(md.id)}">${art(md)}<div class="mx-row-main">${showLink(md)}<div class="mx-meta">Ep ${row.ep} · ${dayLabel(new Date(row.ts*1000))} at ${timeLabel(row.ts)} · ${escText(typeLabel(row.air))} · ${conf}${get("spoilerSafe",true)?" · details are spoiler-safe":""}</div><div class="mx-actions">${action("watched",isDone?`✓ Watched through ${watched}`:`Mark episode ${row.ep} watched`,`data-id="${escText(md.id)}" data-ep="${row.ep}" ${isDone?"disabled":""}`)}${action("alert",isFollowed(md.id)?"🔔 Alerts on":"🔕 Follow alerts",`data-id="${escText(md.id)}"`)}<label class="mx-quick-pref">Alert <select aria-label="Alert lead time for ${escText(safeTitle(md))}" data-xlead="${escText(md.id)}"><option value="5" ${+(leads[md.id]||state.notifyLead)===5?"selected":""}>5m</option><option value="10" ${+(leads[md.id]||state.notifyLead)===10?"selected":""}>10m</option><option value="15" ${+(leads[md.id]||state.notifyLead)===15?"selected":""}>15m</option><option value="30" ${+(leads[md.id]||state.notifyLead)===30?"selected":""}>30m</option></select></label><label class="mx-quick-pref">Release <select aria-label="Release type for ${escText(safeTitle(md))}" data-xair="${escText(md.id)}"><option value="auto" ${!airPrefs[md.id]?"selected":""}>Auto</option><option value="raw" ${airPrefs[md.id]==="raw"?"selected":""}>Broadcast</option><option value="sub" ${airPrefs[md.id]==="sub"?"selected":""}>Sub</option><option value="dub" ${airPrefs[md.id]==="dub"?"selected":""}>Dub</option></select></label>${action("rate","⭐ Rate",`data-id="${escText(md.id)}"`)}${action("pause","Pause show",`data-id="${escText(md.id)}"`)}</div></div></article>`;
   }
   function emptyWithFilters(titleText,body){

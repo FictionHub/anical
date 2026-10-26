@@ -301,9 +301,14 @@ async function groundedSearch(apiKey, query) {
 
 /* ---------- one streamed round ----------
    Sends the running message list, forwards answer text to the browser as it
-   arrives, and collects any tool calls the model wants run. */
+   arrives, and collects any tool calls the model wants run.
 
-async function streamRound({ apiKey, messages, emit }) {
+   `final` switches the tools off. The last round of a turn must never ask for
+   one: if it did, the loop would spend its budget on a tool batch nobody
+   answers and the reader would get sources and a `done` frame with no answer
+   text in between. With tools unavailable the model can only reply in prose. */
+
+async function streamRound({ apiKey, messages, emit, final = false }) {
   const res = await groqFetch(apiKey, {
     model: MODEL,
     ...(REASONING_EFFORT ? { reasoning_effort: REASONING_EFFORT } : {}),
@@ -311,8 +316,7 @@ async function streamRound({ apiKey, messages, emit }) {
     temperature: 0.5,
     max_tokens: MAX_OUTPUT_TOKENS,
     messages,
-    tools: ALL_TOOLS,
-    tool_choice: "auto",
+    ...(final ? {} : { tools: ALL_TOOLS, tool_choice: "auto" }),
   }, emit);
 
   if (!res.ok) {
@@ -423,9 +427,15 @@ export default async (req) => {
         emit("status", { text: "Thinking" });
         const allSources = new Map();
 
+        // Set when a round comes back with no tool calls, which is the only way
+        // the model has actually *answered*. If the loop burns out with this
+        // still false, the last thing it produced was a tool batch — so the
+        // answer has to be fetched in one more, tool-free round.
+        let answered = false;
+
         for (let round = 0; round < MAX_ROUNDS; round++) {
           const { content, toolCalls } = await streamRound({ apiKey, messages, emit });
-          if (!toolCalls.length) break;
+          if (!toolCalls.length) { answered = true; break; }
 
           emit("status", {
             text: toolCalls.length > 1
@@ -465,6 +475,11 @@ export default async (req) => {
 
           if (round === MAX_ROUNDS - 1) emit("status", { text: "Wrapping up" });
         }
+
+        // Budget spent on tool calls: the model never produced an answer, so ask
+        // once more with the tools taken away. It cannot call anything now, so
+        // this round is guaranteed to come back as prose.
+        if (!answered) await streamRound({ apiKey, messages, emit, final: true });
 
         if (allSources.size) emit("sources", { items: [...allSources.values()].slice(0, 6) });
         emit("done", {});

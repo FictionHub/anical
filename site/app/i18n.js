@@ -5,9 +5,17 @@
 //
 // Languages: en (default), ja (Japanese), ko (Korean), zh (Simplified Chinese).
 // The HTML `lang` attribute and `og:locale` are updated on language change.
+//
+// THIS IS A CLASSIC SCRIPT, NOT A MODULE — same as every other file under /app.
+// index.html loads the nine scripts in order into one shared global scope, and
+// there is no build step that could rewrite `export`. Declaring `export` here
+// made the browser reject the whole file as a SyntaxError, so `initI18n()` was
+// undefined when app.js called it at top level — which halted app.js at that
+// line and took the localStorage hydration, the skin constants and `$` down
+// with it. Keep the declarations plain and global.
 
-export const LOCALES = ["en", "ja", "ko", "zh"];
-export const LOCALE_NAMES = { en: "English", ja: "日本語", ko: "한국어", zh: "中文（简体）" };
+const LOCALES = ["en", "ja", "ko", "zh"];
+const LOCALE_NAMES = { en: "English", ja: "日本語", ko: "한국어", zh: "中文（简体）" };
 
 const T = {
   en: {
@@ -283,7 +291,7 @@ const T = {
 
 let currentLocale = "en";
 
-export function setLocale(locale){
+function setLocale(locale){
   if(!LOCALES.includes(locale)) locale = "en";
   currentLocale = locale;
   try{ localStorage.setItem("anical.locale", locale); }catch(e){}
@@ -294,17 +302,17 @@ export function setLocale(locale){
   return locale;
 }
 
-export function getLocale(){ return currentLocale; }
+function getLocale(){ return currentLocale; }
 
 // t(key, params) — replace {param} placeholders.
-export function t(key, params={}){
+function t(key, params={}){
   let s = T[currentLocale]?.[key] || T.en[key] || key;
   for(const [k,v] of Object.entries(params)) s = s.replace(new RegExp(`\\{${k}\\}`,"g"), String(v));
   return s;
 }
 
 // Initialize from stored preference or browser language.
-export function initI18n(){
+function initI18n(){
   try{ const stored = localStorage.getItem("anical.locale"); if(stored && LOCALES.includes(stored)){ currentLocale = stored; } }
   catch(e){}
   if(currentLocale === "en"){

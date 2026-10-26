@@ -127,8 +127,9 @@ function renderAgenda(wrap){
     const dk=dayKeyTs(e.ts);
     const newDay=dk!==lastDay;
     // "Still has something unaired" is the whole test — a day in the past can't
-    // satisfy it, so no separate date comparison is needed (and a string
-    // compare on keyOf's "YYYY-M-D" would be wrong anyway: "2026-7-4" > "2026-7-15").
+    // satisfy it, so no separate date comparison is needed. (keyOf's keys are
+    // zero-padded, so a string compare would work now, but the timestamps are
+    // already here and are the direct answer.)
     if(!nowInserted && byDayMarker && newDay && (byDay.get(dk)||[e]).some(x=>x.ts>now)) insertNow();
     if(!nowInserted && !byDayMarker && e.ts>now) insertNow();
     if(newDay){
@@ -1619,7 +1620,7 @@ function alSettingsHTML(){
   if(!alConfigured()){
     return `<span class="num-hint" style="flex-basis:100%">Two-way sync isn't switched on for this deployment. It needs an AniList
       application id — register one at <a href="https://anilist.co/settings/developer" target="_blank" rel="noopener">anilist.co/settings/developer</a>
-      with this site's URL as the redirect, then set <code>ANILIST_CLIENT_ID</code> in <code>site/index.html</code>.
+      with this site's URL as the redirect, then set <code>ANILIST_CLIENT_ID</code> in <code>site/app/data.js</code>.
       Until then the public-list import below still works.</span>`;
   }
   if(!alConnected()){

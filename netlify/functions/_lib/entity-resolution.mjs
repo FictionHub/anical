@@ -174,7 +174,16 @@ export async function resolveMedia(md, allCanonicals = null) {
 }
 
 // List all canonical records (bounded). Used for matching candidates.
-async function listCanonicals() {
+const canonicalCache = new Map();
+const CACHE_TTL_MS = 24 * 3600_000; // 24h
+
+export async function listCanonicals(maybeForceRefresh) {
+  const now = Date.now();
+  if (!maybeForceRefresh && canonicalCache.has("all")) {
+    const cached = canonicalCache.get("all");
+    if (now - cached.at < CACHE_TTL_MS) return cached.records;
+  }
+
   const store = getStore(RESOLUTION_STORE);
   const { blobs } = await store.list().catch(() => ({ blobs: [] }));
   const out = [];
@@ -182,6 +191,7 @@ async function listCanonicals() {
     const rec = await store.get(b.key, { type: "json" }).catch(() => null);
     if (rec) out.push(rec);
   }
+  canonicalCache.set("all", { at: now, records: out });
   return out;
 }
 

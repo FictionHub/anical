@@ -814,12 +814,32 @@ function importSettingsText(text){
   const n=applySettings(data); alert("Imported "+n+" setting"+(n===1?"":"s")+". Reloading…"); location.reload();
 }
 function pickImport(){ const inp=document.createElement("input"); inp.type="file"; inp.accept="application/json,.json"; inp.onchange=()=>{ const f=inp.files&&inp.files[0]; if(!f) return; const r=new FileReader(); r.onload=()=>importSettingsText(String(r.result)); r.readAsText(f); }; inp.click(); }
+/* Sync codes are base64 of UTF-8 JSON. btoa/atob only accept binary strings, so
+   the bytes have to be flattened on the way out and rebuilt on the way in. This
+   replaces the old `unescape(encodeURIComponent(...))` pair — escape() and
+   unescape() are deprecated and have been since ES3 — and is byte-identical to
+   it for every input, so a code copied by an older build still pastes here and
+   one copied by this build still pastes in an older one. */
+function b64EncodeUtf8(str){
+  const bytes=new TextEncoder().encode(str);
+  let bin=""; for(let i=0;i<bytes.length;i++) bin+=String.fromCharCode(bytes[i]);
+  return btoa(bin);
+}
+function b64DecodeUtf8(s){
+  // fatal:true matters. The old decodeURIComponent(escape(...)) pair THREW on
+  // bytes that were not valid UTF-8, which is how a truncated or corrupt code
+  // reached the "invalid sync code" message. The default decoder instead swaps
+  // in U+FFFD and returns garbage, so a bad code would have silently imported
+  // mojibake. fatal restores the throw the caller already handles.
+  try{ return new TextDecoder("utf-8",{fatal:true}).decode(Uint8Array.from(atob(s),c=>c.charCodeAt(0))); }
+  catch(e){ return null; }   // not base64, padded wrong, or not UTF-8 — the caller reports it
+}
 function copySyncCode(){
-  let code=""; try{ code=btoa(unescape(encodeURIComponent(JSON.stringify(collectSettings())))); }catch(e){ return; }
+  let code=""; try{ code=b64EncodeUtf8(JSON.stringify(collectSettings())); }catch(e){ return; }
   const b=$("setCopyCode"), done=()=>{ if(b){ b.textContent="✓ Copied"; setTimeout(()=>{ if(b.isConnected) b.textContent="📋 Copy sync code"; },1500); } };
   if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(code).then(done).catch(()=>window.prompt("Copy your sync code:",code)); else window.prompt("Copy your sync code:",code);
 }
-function pasteSyncCode(){ const t=window.prompt("Paste your Tsuzuki sync code:"); if(!t) return; let json; try{ json=decodeURIComponent(escape(atob(t.trim()))); }catch(e){ alert("That sync code is invalid."); return; } importSettingsText(json); }
+function pasteSyncCode(){ const t=window.prompt("Paste your Tsuzuki sync code:"); if(!t) return; const json=b64DecodeUtf8(t.trim()); if(json==null){ alert("That sync code is invalid."); return; } importSettingsText(json); }
 
 /* ---------- subscribable calendar feeds ---------- */
 function subRow(name,label,desc){

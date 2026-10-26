@@ -1,0 +1,45 @@
+name: Tests & lint
+
+# Runs the pure-logic suites and ESLint on every change.
+#
+# Why this exists: the suites already covered the economy, ratings, the swipe
+# feed, /today/ and the ingest parsers, but nothing ran them on a pull request —
+# and nothing at all looked for an identifier that does not exist. That gap is
+# how netlify/functions/api.mjs shipped an error handler reading an undefined
+# `status`, and push-send.mjs shipped with four out-of-scope variables: both
+# only executed when production traffic or the scheduler reached them.
+#
+# No network, no Blobs, no secrets: every suite is pure logic, so this is cheap
+# and safe on a fork's pull request. Actions run on GitHub's free minutes for a
+# public repo; unlike refresh-pages.yml, this job commits nothing and therefore
+# triggers no Netlify deploy. themes:check is deliberately not here: it does 172
+# live remote checks and belongs in its scheduled slot, not on every push.
+#
+# This is the only test workflow — an earlier second file ran the same suites
+# individually (and without the lint step), so every push ran both twice.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      # Pinned to the same commit SHAs as refresh-pages.yml, so both workflows
+      # move together when the actions are updated.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version-file: ".nvmrc"
+          cache: "npm"
+      - name: Install
+        run: npm ci
+      - name: Tests
+        run: npm test
+      - name: Lint
+        run: npm run lint

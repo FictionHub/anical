@@ -1529,8 +1529,10 @@ async function applySkinPreview(){
   // Identity + skin. Not awaited in the normal case — the calendar must not
   // wait on a cosmetic lookup, and the cached skin has already painted.
   const arriving=_params.get("login");
+  // refreshIdentity() already carries its own .catch above, so there is nothing
+  // left to attach here — the old `if(!arriving) identity.then(()=>{})` was a
+  // no-op that read like it was gating the refresh on `arriving`.
   const identity=refreshIdentity().catch(()=>null);
-  if(!arriving) identity.then(()=>{});
   applySkinPreview().catch(()=>{});
 
   // Coming back from Discord. `ok` is the success case and has to *say* so:

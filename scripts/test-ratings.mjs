@@ -21,7 +21,11 @@ import vm from "node:vm";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 // Load the same ordered classic scripts as index.html. Together they expose
 // the real declarations while preserving the app's shared global scope.
+// /app/experience.js is the one exclusion: it is a self-contained IIFE that
+// injects CSS and binds document-level handlers on load, so it is left out on
+// purpose rather than by oversight.
 const SCRIPT = [
+  "app/i18n.js",
   "app.js", "app/ratings.js", "app/data.js", "app/views.js",
   "app/settings.js", "app/discovery.js", "app/boot.js",
 ].map(file => readFileSync(join(ROOT, "site", file), "utf8")).join(String.fromCharCode(10));

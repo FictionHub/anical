@@ -546,6 +546,10 @@ export default async (req) => {
     if (route[0] === "trending" && route.length === 1) return withRateLimit(disco(await getTrending(p.get("page"), p.get("adult")), 1800));
     return withRateLimit(fail(404, `Unknown endpoint /${route.join("/")}`, `See ${SITE}/api/ for the endpoint list.`));
   } catch (err) {
+    // `err.status` is the contract the helpers below throw with (catalog.mjs sets
+    // 404/502/503, discovery.mjs sets 400/404). Falling back to 500 is what makes
+    // an unexpected failure still answer JSON instead of escaping the handler.
+    const status = Number(err && err.status) || 500;
     // A 400 or 404 is the caller's mistake, not ours; logging each with a stack
     // buried the real upstream failures once the discovery routes validated input.
     if (status >= 500) console.error("api error", url.pathname, err);

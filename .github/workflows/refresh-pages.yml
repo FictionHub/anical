@@ -43,7 +43,17 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes — nothing to deploy."
           else
-            git commit -m "chore: refresh SEO pages [skip ci]"
+            # NO [skip ci] HERE, on purpose. Netlify's default "ignore builds"
+            # setting skips any build whose commit message contains that string,
+            # so stamping it would leave the freshly generated pages committed
+            # but never published — which is the whole job of this workflow. The
+            # push is meant to deploy; the cost is already budgeted above.
+            #
+            # It also does not loop: this workflow runs on a schedule and on
+            # workflow_dispatch only, never on push, and the CI workflow it
+            # re-triggers (tests.yml) is a pure-logic test job that commits
+            # nothing back.
+            git commit -m "chore: refresh SEO pages and events"
             git push
             echo "Committed refreshed pages; Netlify will deploy them."
           fi

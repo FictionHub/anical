@@ -56,11 +56,14 @@ const SEASONLESS_MAX_AGE_S = 4 * 3600;
 const SEASONLESS_BUDGET_MS = 14_000;
 
 // Previous + current + next season: covers shows still airing late, this
-// season's full lineup, and next season's early announcements.
+// season's full lineup, and next season's early announcements. Read in UTC, not
+// local time: the function runs on UTC and every stored snapshot is keyed by
+// season, so a local-time month near a boundary would pick the wrong season for
+// a few hours and overwrite the wrong snapshot.
 function targetSeasons() {
   const now = new Date();
-  const season = seasonOf(now.getMonth());
-  const year = now.getFullYear();
+  const season = seasonOf(now.getUTCMonth());
+  const year = now.getUTCFullYear();
   return [shiftSeason(season, year, -1), { season, year }, shiftSeason(season, year, 1)];
 }
 

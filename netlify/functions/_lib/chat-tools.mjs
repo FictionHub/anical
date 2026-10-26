@@ -260,7 +260,10 @@ async function getAnime({ anilistId, airType }) {
 
   const overrides = await loadOverrides();
   const ov = showOverride(overrides, md.id);
-  const nodes = ((md.airingSchedule && md.airingSchedule.nodes) || []).sort((a, b) => a.airingAt - b.airingAt);
+  // .slice() first: this array belongs to the module-level catalog cache and is
+  // shared across every request and instance. Sorting it in place would mutate
+  // that cache — api.mjs already slices for exactly this reason.
+  const nodes = ((md.airingSchedule && md.airingSchedule.nodes) || []).slice().sort((a, b) => a.airingAt - b.airingAt);
 
   const rows = [];
   for (const n of nodes) {

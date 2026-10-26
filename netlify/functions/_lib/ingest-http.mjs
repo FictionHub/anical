@@ -39,8 +39,14 @@ export async function fetchWithRetry(url, opts = {}, { retries = 3, limiter = nu
     }
     if (res.status === 429 || res.status >= 500) {
       if (attempt >= retries) return res;
-      const retryAfterHeader = +(res.headers.get("retry-after") || 0) * 1000;
-      await sleep(retryAfterHeader || backoffMs(attempt++));
+      // `attempt` has to advance on every retry, including the Retry-After
+      // branch. It used to advance only in the fallback, so a source that always
+      // sent Retry-After kept attempt at 0 and this loop retried forever — each
+      // iteration sleeping, never returning, until the function was killed.
+      const retryAfterMs = +(res.headers.get("retry-after") || 0) * 1000;
+      const wait = retryAfterMs > 0 ? Math.min(retryAfterMs, 60_000) : backoffMs(attempt);
+      attempt++;
+      await sleep(wait);
       continue;
     }
     return res;

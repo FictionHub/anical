@@ -76,7 +76,13 @@ function shiftSeason(season, year, d) {
 /* ---------------- plausibility bands ----------------
    A simulcast lands within hours of broadcast; a dub within months. Anything
    outside these is far more likely to be a title mismatch than a real value,
-   and a wrong time published confidently is worse than no time at all. */
+   and a wrong time published confidently is worse than no time at all.
+
+   sub/dub mirror BAND in netlify/functions/_lib/observations.mjs and the two
+   must be changed together. observations.mjs also carries a `raw` band with no
+   counterpart here: Crunchyroll lists subtitled and dubbed releases only, so
+   this scraper can never derive a broadcast offset, while a reader can report
+   one. */
 const BAND = {
   sub: { min: -10, max: 12 * 60 },            // −10 min tolerates clock skew
   dub: { min: 0, max: 120 * 24 * 60 },        // up to ~4 months behind
@@ -265,6 +271,10 @@ export function buildPatch(findings, existingShows = {}) {
    is therefore matched against a word list, with a positional fallback, rather
    than assuming English. Language SUFFIXES stay untouched — parseLang already
    knows "(Englisch)" as well as "(English Dub)". */
+/* global document -- this function is serialized into page.evaluate(), where the
+   DOM exists and this Node process's globals do not. ESLint sees the file, not
+   the call site, so the browser global is declared for the one function that
+   runs in a browser. */
 export function extractRows() {
   const EP_WORDS = /\b(?:episode|episodio|épisode|episódio|folge|odcinek|エピソード|第)\s*#?\s*(\d+)/i;
   const out = new Set();

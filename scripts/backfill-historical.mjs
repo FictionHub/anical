@@ -10,25 +10,21 @@
 //
 // The ingest worker handles one season per run and writes to the catalog, so
 // this is just a driver that loops through seasons sequentially.
-
-import { createHmac } from "node:crypto";
+//
+// Auth is the plain `x-tsuzuki-secret` header, the same one the scheduled
+// worker's manual trigger uses. There is no HMAC signature scheme here: an
+// earlier draft carried a sign() helper that nothing ever called, which is
+// worse than no helper because it implied a scheme the server does not verify.
 
 const BASE = "https://tsuzuki.top/.netlify/functions/ingest";
 const SEASONS = ["WINTER","SPRING","SUMMER","FALL"];
-const startYear = process.argv[2] ? parseInt(process.argv[2]) : 2000;
-const endYear = process.argv[3] ? parseInt(process.argv[3]) : new Date().getUTCFullYear();
+const startYear = process.argv[2] ? parseInt(process.argv[2], 10) : 2000;
+const endYear = process.argv[3] ? parseInt(process.argv[3], 10) : new Date().getUTCFullYear();
 const secret = process.env.CRON_SECRET;
 
 if (!secret) {
   console.error("Set CRON_SECRET environment variable.");
   process.exit(1);
-}
-
-function sign(path) {
-  const body = "";
-  const timestamp = Math.floor(Date.now() / 1000).toString();
-  const signature = createHmac("sha256", secret).update(timestamp + "." + path).digest("hex");
-  return { timestamp, signature };
 }
 
 async function ingestSeason(season, year) {

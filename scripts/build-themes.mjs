@@ -48,7 +48,7 @@ import { fileURLToPath } from "node:url";
 
 const OUT = join(dirname(fileURLToPath(import.meta.url)), "..", "site", "data", "themes.json");
 const ANILIST = "https://graphql.anilist.co";
-const SCHEMA_VERSION = 1;
+const SCHEMA_VERSION = 2;
 
 /* ---------------- the shipped set ----------------
    Each entry pairs a title with the treatment that suits it. `motif` picks a

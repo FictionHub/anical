@@ -55,6 +55,13 @@
   status = 200
   force = true
 
+# Old og-image name still hotlinked from anywhere (the file itself is gone;
+# everything on site and in functions uses og-image-v2.png).
+[[redirects]]
+  from = "/og-image.png"
+  to = "/og-image-v2.png"
+  status = 301
+
 # Friendly aliases for the Web Push API used by site/index.html.
 [[redirects]]
   from = "/api/push/subscribe"
