@@ -46,9 +46,9 @@ URL:https://tsuzuki.top/anime/the-apothecary-diaries-the-late-ladys-treasure-200
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-213457-1@tsuzuki.netlify.app
-DTSTAMP:20261126T070000Z
-DTSTART:20261126T070000Z
-DTEND:20261126T073000Z
+DTSTAMP:20261126T080000Z
+DTSTART:20261126T080000Z
+DTEND:20261126T083000Z
 SUMMARY:Fool Night — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/fool-night-213457/
 URL:https://tsuzuki.top/anime/fool-night-213457/
@@ -70,15 +70,6 @@ DTEND:20270107T155600Z
 SUMMARY:Jirai nan desu ka? Chihara-san — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/jirai-nan-desu-ka-chihara-san-204579/
 URL:https://tsuzuki.top/anime/jirai-nan-desu-ka-chihara-san-204579/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-190054-1@tsuzuki.netlify.app
-DTSTAMP:20261025T100000Z
-DTSTART:20261025T100000Z
-DTEND:20261025T103000Z
-SUMMARY:My Happy Marriage Special Episodes — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/my-happy-marriage-special-episodes-190054/
-URL:https://tsuzuki.top/anime/my-happy-marriage-special-episodes-190054/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-190244-1@tsuzuki.netlify.app
@@ -126,6 +117,15 @@ DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/takopii-no-genzai-arig
 URL:https://tsuzuki.top/anime/takopii-no-genzai-arigatou-mata-ashita-212539/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-207251-1@tsuzuki.netlify.app
+DTSTAMP:20270104T140000Z
+DTSTART:20270104T140000Z
+DTEND:20270104T143000Z
+SUMMARY:Mairimashita! Iruma-kun: If Episode of Mafia — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/mairimashita-iruma-kun-if-episode-of-mafia-207251/
+URL:https://tsuzuki.top/anime/mairimashita-iruma-kun-if-episode-of-mafia-207251/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-210199-1@tsuzuki.netlify.app
 DTSTAMP:20270109T155600Z
 DTSTART:20270109T155600Z
@@ -144,15 +144,6 @@ DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/rakuen-tsuihou-kokoro-
 URL:https://tsuzuki.top/anime/rakuen-tsuihou-kokoro-no-resonance-157330/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-199337-1@tsuzuki.netlify.app
-DTSTAMP:20270109T083000Z
-DTSTART:20270109T083000Z
-DTEND:20270109T090000Z
-SUMMARY:Shin Samurai-den YAIBA 2 — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/shin-samurai-den-yaiba-2-199337/
-URL:https://tsuzuki.top/anime/shin-samurai-den-yaiba-2-199337/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-206163-1@tsuzuki.netlify.app
 DTSTAMP:20261119T150000Z
 DTSTART:20261119T150000Z
@@ -160,6 +151,15 @@ DTEND:20261119T153000Z
 SUMMARY:Soukou Kihei Votoms: Haiiro no Hexe — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/soukou-kihei-votoms-haiiro-no-hexe-206163/
 URL:https://tsuzuki.top/anime/soukou-kihei-votoms-haiiro-no-hexe-206163/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-199337-1@tsuzuki.netlify.app
+DTSTAMP:20270109T083000Z
+DTSTART:20270109T083000Z
+DTEND:20270109T090000Z
+SUMMARY:Shin Samurai-den YAIBA 2 — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/shin-samurai-den-yaiba-2-199337/
+URL:https://tsuzuki.top/anime/shin-samurai-den-yaiba-2-199337/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-214049-1@tsuzuki.netlify.app
@@ -189,6 +189,15 @@ DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/mobile-suit-gundam-see
 URL:https://tsuzuki.top/anime/mobile-suit-gundam-seed-freedom-zero-183692/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-203116-1@tsuzuki.netlify.app
+DTSTAMP:20270107T145600Z
+DTSTART:20270107T145600Z
+DTEND:20270107T152600Z
+SUMMARY:Charisma — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/charisma-203116/
+URL:https://tsuzuki.top/anime/charisma-203116/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-214536-1@tsuzuki.netlify.app
 DTSTAMP:20261107T143000Z
 DTSTART:20261107T143000Z
@@ -214,6 +223,15 @@ DTEND:20270304T153000Z
 SUMMARY:Doraemon: Nobita no Jouki Jikansha — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/doraemon-nobita-no-jouki-jikansha-216623/
 URL:https://tsuzuki.top/anime/doraemon-nobita-no-jouki-jikansha-216623/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-219237-1@tsuzuki.netlify.app
+DTSTAMP:20270128T150000Z
+DTSTART:20270128T150000Z
+DTEND:20270128T153000Z
+SUMMARY:Pole Princess!!: Croix du Nord — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/pole-princess-croix-du-nord-219237/
+URL:https://tsuzuki.top/anime/pole-princess-croix-du-nord-219237/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-216858-1@tsuzuki.netlify.app
