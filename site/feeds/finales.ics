@@ -36,15 +36,6 @@ DESCRIPTION:Season finale. https://tsuzuki.top/anime/reincarnated-as-a-sword-sea
 URL:https://tsuzuki.top/anime/reincarnated-as-a-sword-season-2-159042/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-189123-f12@tsuzuki.netlify.app
-DTSTAMP:20261227T073000Z
-DTSTART:20261227T073000Z
-DTEND:20261227T080000Z
-SUMMARY:Blue Box Season 2 — Finale (Ep 12)
-DESCRIPTION:Season finale. https://tsuzuki.top/anime/blue-box-season-2-189123/
-URL:https://tsuzuki.top/anime/blue-box-season-2-189123/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-205909-f12@tsuzuki.netlify.app
 DTSTAMP:20261225T143000Z
 DTSTART:20261225T143000Z
@@ -52,6 +43,15 @@ DTEND:20261225T150000Z
 SUMMARY:Firefly Wedding — Finale (Ep 12)
 DESCRIPTION:Season finale. https://tsuzuki.top/anime/firefly-wedding-205909/
 URL:https://tsuzuki.top/anime/firefly-wedding-205909/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-189123-f12@tsuzuki.netlify.app
+DTSTAMP:20261227T073000Z
+DTSTART:20261227T073000Z
+DTEND:20261227T080000Z
+SUMMARY:Blue Box Season 2 — Finale (Ep 12)
+DESCRIPTION:Season finale. https://tsuzuki.top/anime/blue-box-season-2-189123/
+URL:https://tsuzuki.top/anime/blue-box-season-2-189123/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-210482-f11@tsuzuki.netlify.app
@@ -216,15 +216,6 @@ DESCRIPTION:Season finale. https://tsuzuki.top/anime/im-looking-for-a-zombie-199
 URL:https://tsuzuki.top/anime/im-looking-for-a-zombie-199007/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-187316-f23@tsuzuki.netlify.app
-DTSTAMP:20270309T143000Z
-DTSTART:20270309T143000Z
-DTEND:20270309T150000Z
-SUMMARY:Gensou Suikoden — Finale (Ep 23)
-DESCRIPTION:Season finale. https://tsuzuki.top/anime/gensou-suikoden-187316/
-URL:https://tsuzuki.top/anime/gensou-suikoden-187316/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-206774-f8@tsuzuki.netlify.app
 DTSTAMP:20261206T150000Z
 DTSTART:20261206T150000Z
@@ -232,6 +223,15 @@ DTEND:20261206T153000Z
 SUMMARY:Now That I Can Control Reality With A Mouse Cursor\, I'm Gonna Click Away On The Girls! — Finale (Ep 8)
 DESCRIPTION:Season finale. https://tsuzuki.top/anime/now-that-i-can-control-reality-with-a-mouse-cursor-im-gonna--206774/
 URL:https://tsuzuki.top/anime/now-that-i-can-control-reality-with-a-mouse-cursor-im-gonna--206774/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-187316-f23@tsuzuki.netlify.app
+DTSTAMP:20270309T143000Z
+DTSTART:20270309T143000Z
+DTEND:20270309T150000Z
+SUMMARY:Gensou Suikoden — Finale (Ep 23)
+DESCRIPTION:Season finale. https://tsuzuki.top/anime/gensou-suikoden-187316/
+URL:https://tsuzuki.top/anime/gensou-suikoden-187316/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-212799-f20@tsuzuki.netlify.app
@@ -297,6 +297,15 @@ DESCRIPTION:Season finale. https://tsuzuki.top/anime/girls-und-panzer-motto-love
 URL:https://tsuzuki.top/anime/girls-und-panzer-motto-love-love-sakusen-desu-188034/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-216895-f12@tsuzuki.netlify.app
+DTSTAMP:20261218T122600Z
+DTSTART:20261218T122600Z
+DTEND:20261218T125600Z
+SUMMARY:Welsh & Shedar — Finale (Ep 12)
+DESCRIPTION:Season finale. https://tsuzuki.top/anime/welsh-shedar-216895/
+URL:https://tsuzuki.top/anime/welsh-shedar-216895/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-199426-f13@tsuzuki.netlify.app
 DTSTAMP:20261227T144500Z
 DTSTART:20261227T144500Z
@@ -322,15 +331,6 @@ DTEND:20261222T171500Z
 SUMMARY:DARK MACHINE THE ANIMATION — Finale (Ep 11)
 DESCRIPTION:Season finale. https://tsuzuki.top/anime/dark-machine-the-animation-179876/
 URL:https://tsuzuki.top/anime/dark-machine-the-animation-179876/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-216895-f12@tsuzuki.netlify.app
-DTSTAMP:20261218T122600Z
-DTSTART:20261218T122600Z
-DTEND:20261218T125600Z
-SUMMARY:Welsh & Shedar — Finale (Ep 12)
-DESCRIPTION:Season finale. https://tsuzuki.top/anime/welsh-shedar-216895/
-URL:https://tsuzuki.top/anime/welsh-shedar-216895/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-210157-f7@tsuzuki.netlify.app
@@ -364,9 +364,9 @@ UID:tsuzuki-218217-f12@tsuzuki.netlify.app
 DTSTAMP:20261220T180000Z
 DTSTART:20261220T180000Z
 DTEND:20261220T183000Z
-SUMMARY:JK Dark Summoner to Deki......Dei Nai!? — Finale (Ep 12)
-DESCRIPTION:Season finale. https://tsuzuki.top/anime/jk-dark-summoner-to-dekidei-nai-218217/
-URL:https://tsuzuki.top/anime/jk-dark-summoner-to-dekidei-nai-218217/
+SUMMARY:I’m Dating a Dark Summoner Omake Shorts — Finale (Ep 12)
+DESCRIPTION:Season finale. https://tsuzuki.top/anime/im-dating-a-dark-summoner-omake-shorts-218217/
+URL:https://tsuzuki.top/anime/im-dating-a-dark-summoner-omake-shorts-218217/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-206244-f6@tsuzuki.netlify.app
