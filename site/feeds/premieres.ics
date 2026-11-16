@@ -117,15 +117,6 @@ DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/the-fable-2nd-season-2
 URL:https://tsuzuki.top/anime/the-fable-2nd-season-210199/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-157330-1@tsuzuki.netlify.app
-DTSTAMP:20261112T150000Z
-DTSTART:20261112T150000Z
-DTEND:20261112T153000Z
-SUMMARY:Rakuen Tsuihou: Kokoro no Resonance — Premiere (Ep 1)
-DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/rakuen-tsuihou-kokoro-no-resonance-157330/
-URL:https://tsuzuki.top/anime/rakuen-tsuihou-kokoro-no-resonance-157330/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-206163-1@tsuzuki.netlify.app
 DTSTAMP:20261119T150000Z
 DTSTART:20261119T150000Z
@@ -189,6 +180,15 @@ DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/aikatsu-stars-hoshibos
 URL:https://tsuzuki.top/anime/aikatsu-stars-hoshiboshi-no-progress-213814/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-173334-1@tsuzuki.netlify.app
+DTSTAMP:20270106T005400Z
+DTSTART:20270106T005400Z
+DTEND:20270106T012400Z
+SUMMARY:Wanpaku! Touken Ranbu — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/wanpaku-touken-ranbu-173334/
+URL:https://tsuzuki.top/anime/wanpaku-touken-ranbu-173334/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-216623-1@tsuzuki.netlify.app
 DTSTAMP:20270304T150000Z
 DTSTART:20270304T150000Z
@@ -214,5 +214,14 @@ DTEND:20270104T132600Z
 SUMMARY:Haru to Gen: 70-sai\, Hajimete Kosodate — Premiere (Ep 1)
 DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/haru-to-gen-70-sai-hajimete-kosodate-216858/
 URL:https://tsuzuki.top/anime/haru-to-gen-70-sai-hajimete-kosodate-216858/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-219924-1@tsuzuki.netlify.app
+DTSTAMP:20270101T090000Z
+DTSTART:20270101T090000Z
+DTEND:20270101T093000Z
+SUMMARY:Atashin’chi NEXT 3 — Premiere (Ep 1)
+DESCRIPTION:New anime premiere. https://tsuzuki.top/anime/atashinchi-next-3-219924/
+URL:https://tsuzuki.top/anime/atashinchi-next-3-219924/
 END:VEVENT
 END:VCALENDAR

@@ -45,6 +45,15 @@ DESCRIPTION:Season finale. https://tsuzuki.top/anime/firefly-wedding-205909/
 URL:https://tsuzuki.top/anime/firefly-wedding-205909/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-191656-f12@tsuzuki.netlify.app
+DTSTAMP:20261219T153000Z
+DTSTART:20261219T153000Z
+DTEND:20261219T160000Z
+SUMMARY:Even the Student Council Has Its Holes! — Finale (Ep 12)
+DESCRIPTION:Season finale. https://tsuzuki.top/anime/even-the-student-council-has-its-holes-191656/
+URL:https://tsuzuki.top/anime/even-the-student-council-has-its-holes-191656/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-189123-f12@tsuzuki.netlify.app
 DTSTAMP:20261227T073000Z
 DTSTART:20261227T073000Z
@@ -61,15 +70,6 @@ DTEND:20261204T083000Z
 SUMMARY:STEEL BALL RUN JoJo's Bizarre Adventure 2nd - 3rd STAGE — Finale (Ep 11)
 DESCRIPTION:Season finale. https://tsuzuki.top/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
 URL:https://tsuzuki.top/anime/steel-ball-run-jojos-bizarre-adventure-2nd-3rd-stage-210482/
-END:VEVENT
-BEGIN:VEVENT
-UID:tsuzuki-191656-f12@tsuzuki.netlify.app
-DTSTAMP:20261219T153000Z
-DTSTART:20261219T153000Z
-DTEND:20261219T160000Z
-SUMMARY:Even the Student Council Has Its Holes! — Finale (Ep 12)
-DESCRIPTION:Season finale. https://tsuzuki.top/anime/even-the-student-council-has-its-holes-191656/
-URL:https://tsuzuki.top/anime/even-the-student-council-has-its-holes-191656/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-207191-f12@tsuzuki.netlify.app
@@ -99,6 +99,15 @@ DESCRIPTION:Season finale. https://tsuzuki.top/anime/aoashi-season-2-191788/
 URL:https://tsuzuki.top/anime/aoashi-season-2-191788/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-169581-f13@tsuzuki.netlify.app
+DTSTAMP:20261219T150000Z
+DTSTART:20261219T150000Z
+DTEND:20261219T153000Z
+SUMMARY:Magical Explorer — Finale (Ep 13)
+DESCRIPTION:Season finale. https://tsuzuki.top/anime/magical-explorer-169581/
+URL:https://tsuzuki.top/anime/magical-explorer-169581/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-152677-f13@tsuzuki.netlify.app
 DTSTAMP:20261230T123000Z
 DTSTART:20261230T123000Z
@@ -108,13 +117,13 @@ DESCRIPTION:Season finale. https://tsuzuki.top/anime/the-detective-is-already-de
 URL:https://tsuzuki.top/anime/the-detective-is-already-dead-season-2-152677/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-169581-f13@tsuzuki.netlify.app
-DTSTAMP:20261219T150000Z
-DTSTART:20261219T150000Z
-DTEND:20261219T153000Z
-SUMMARY:Magical Explorer — Finale (Ep 13)
-DESCRIPTION:Season finale. https://tsuzuki.top/anime/magical-explorer-169581/
-URL:https://tsuzuki.top/anime/magical-explorer-169581/
+UID:tsuzuki-213457-f12@tsuzuki.netlify.app
+DTSTAMP:20261126T080000Z
+DTSTART:20261126T080000Z
+DTEND:20261126T083000Z
+SUMMARY:Fool Night — Finale (Ep 12)
+DESCRIPTION:Season finale. https://tsuzuki.top/anime/fool-night-213457/
+URL:https://tsuzuki.top/anime/fool-night-213457/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-209502-f12@tsuzuki.netlify.app
@@ -279,6 +288,15 @@ DESCRIPTION:Season finale. https://tsuzuki.top/anime/mairimashita-iruma-kun-if-e
 URL:https://tsuzuki.top/anime/mairimashita-iruma-kun-if-episode-of-mafia-207251/
 END:VEVENT
 BEGIN:VEVENT
+UID:tsuzuki-216895-f12@tsuzuki.netlify.app
+DTSTAMP:20261218T122600Z
+DTSTART:20261218T122600Z
+DTEND:20261218T125600Z
+SUMMARY:Welsh & Shedar — Finale (Ep 12)
+DESCRIPTION:Season finale. https://tsuzuki.top/anime/welsh-shedar-216895/
+URL:https://tsuzuki.top/anime/welsh-shedar-216895/
+END:VEVENT
+BEGIN:VEVENT
 UID:tsuzuki-199594-f12@tsuzuki.netlify.app
 DTSTAMP:20261224T150000Z
 DTSTART:20261224T150000Z
@@ -297,15 +315,6 @@ DESCRIPTION:Season finale. https://tsuzuki.top/anime/girls-und-panzer-motto-love
 URL:https://tsuzuki.top/anime/girls-und-panzer-motto-love-love-sakusen-desu-188034/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-216895-f12@tsuzuki.netlify.app
-DTSTAMP:20261218T122600Z
-DTSTART:20261218T122600Z
-DTEND:20261218T125600Z
-SUMMARY:Welsh & Shedar — Finale (Ep 12)
-DESCRIPTION:Season finale. https://tsuzuki.top/anime/welsh-shedar-216895/
-URL:https://tsuzuki.top/anime/welsh-shedar-216895/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-199426-f13@tsuzuki.netlify.app
 DTSTAMP:20261227T144500Z
 DTSTART:20261227T144500Z
@@ -315,11 +324,11 @@ DESCRIPTION:Season finale. https://tsuzuki.top/anime/hotel-inhumans-season-2-199
 URL:https://tsuzuki.top/anime/hotel-inhumans-season-2-199426/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-199353-f12@tsuzuki.netlify.app
-DTSTAMP:20261205T020000Z
-DTSTART:20261205T020000Z
-DTEND:20261205T023000Z
-SUMMARY:Dawang Raoming 3 — Finale (Ep 12)
+UID:tsuzuki-199353-f16@tsuzuki.netlify.app
+DTSTAMP:20270102T020000Z
+DTSTART:20270102T020000Z
+DTEND:20270102T023000Z
+SUMMARY:Dawang Raoming 3 — Finale (Ep 16)
 DESCRIPTION:Season finale. https://tsuzuki.top/anime/dawang-raoming-3-199353/
 URL:https://tsuzuki.top/anime/dawang-raoming-3-199353/
 END:VEVENT
@@ -351,15 +360,6 @@ DESCRIPTION:Season finale. https://tsuzuki.top/anime/cardfight-vanguard-divinez-
 URL:https://tsuzuki.top/anime/cardfight-vanguard-divinez-parallactic-fate-214536/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-217782-f12@tsuzuki.netlify.app
-DTSTAMP:20261220T161700Z
-DTSTART:20261220T161700Z
-DTEND:20261220T164700Z
-SUMMARY:My Girlfriend's Friend Mini Anime — Finale (Ep 12)
-DESCRIPTION:Season finale. https://tsuzuki.top/anime/my-girlfriends-friend-mini-anime-217782/
-URL:https://tsuzuki.top/anime/my-girlfriends-friend-mini-anime-217782/
-END:VEVENT
-BEGIN:VEVENT
 UID:tsuzuki-218217-f12@tsuzuki.netlify.app
 DTSTAMP:20261220T180000Z
 DTSTART:20261220T180000Z
@@ -369,13 +369,13 @@ DESCRIPTION:Season finale. https://tsuzuki.top/anime/im-dating-a-dark-summoner-o
 URL:https://tsuzuki.top/anime/im-dating-a-dark-summoner-omake-shorts-218217/
 END:VEVENT
 BEGIN:VEVENT
-UID:tsuzuki-206244-f6@tsuzuki.netlify.app
-DTSTAMP:20261204T040000Z
-DTSTART:20261204T040000Z
-DTEND:20261204T043000Z
-SUMMARY:Luo Xiaohei Zhan Ji: Xue Qian Pian — Finale (Ep 6)
-DESCRIPTION:Season finale. https://tsuzuki.top/anime/luo-xiaohei-zhan-ji-xue-qian-pian-206244/
-URL:https://tsuzuki.top/anime/luo-xiaohei-zhan-ji-xue-qian-pian-206244/
+UID:tsuzuki-217782-f12@tsuzuki.netlify.app
+DTSTAMP:20261220T161700Z
+DTSTART:20261220T161700Z
+DTEND:20261220T164700Z
+SUMMARY:My Girlfriend's Friend Mini Anime — Finale (Ep 12)
+DESCRIPTION:Season finale. https://tsuzuki.top/anime/my-girlfriends-friend-mini-anime-217782/
+URL:https://tsuzuki.top/anime/my-girlfriends-friend-mini-anime-217782/
 END:VEVENT
 BEGIN:VEVENT
 UID:tsuzuki-219063-f3@tsuzuki.netlify.app
@@ -385,5 +385,14 @@ DTEND:20270126T153000Z
 SUMMARY:Girls und Panzer: Motto Love Love Sakusen desu! Mini Anime — Finale (Ep 3)
 DESCRIPTION:Season finale. https://tsuzuki.top/anime/girls-und-panzer-motto-love-love-sakusen-desu-mini-anime-219063/
 URL:https://tsuzuki.top/anime/girls-und-panzer-motto-love-love-sakusen-desu-mini-anime-219063/
+END:VEVENT
+BEGIN:VEVENT
+UID:tsuzuki-206244-f6@tsuzuki.netlify.app
+DTSTAMP:20261204T040000Z
+DTSTART:20261204T040000Z
+DTEND:20261204T043000Z
+SUMMARY:Luo Xiaohei Zhan Ji: Xue Qian Pian — Finale (Ep 6)
+DESCRIPTION:Season finale. https://tsuzuki.top/anime/luo-xiaohei-zhan-ji-xue-qian-pian-206244/
+URL:https://tsuzuki.top/anime/luo-xiaohei-zhan-ji-xue-qian-pian-206244/
 END:VEVENT
 END:VCALENDAR

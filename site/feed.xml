@@ -6,7 +6,7 @@
     <atom:link href="https://tsuzuki.top/feed.xml" rel="self" type="application/rss+xml" />
     <description>Upcoming and recent anime premieres and season finales, updated daily.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 09 Nov 2026 18:59:48 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 16 Nov 2026 18:47:00 GMT</lastBuildDate>
     <ttl>720</ttl>
     <item>
       <title>Date A Live F Last Date — Premiere (Ep 1)</title>
@@ -156,6 +156,13 @@
       <description>Premiere: The Charisma are riding the airwaves and coming straight into your living room Is this okay? Really okay? Yes. It’s absolutely okay (Source: Official Twitter)</description>
     </item>
     <item>
+      <title>Wanpaku! Touken Ranbu — Premiere (Ep 1)</title>
+      <link>https://tsuzuki.top/anime/wanpaku-touken-ranbu-173334/</link>
+      <guid isPermaLink="false">tsuzuki-rss-173334-p1</guid>
+      <pubDate>Wed, 06 Jan 2027 00:54:00 GMT</pubDate>
+      <description>Premiere: Announced at Touken Ranbu Online Ninth Anniversary's Eve! Nine Big Announcements Starting at Nine .</description>
+    </item>
+    <item>
       <title>Mairimashita! Iruma-kun: If Episode of Mafia — Premiere (Ep 1)</title>
       <link>https://tsuzuki.top/anime/mairimashita-iruma-kun-if-episode-of-mafia-207251/</link>
       <guid isPermaLink="false">tsuzuki-rss-207251-p1</guid>
@@ -168,6 +175,20 @@
       <guid isPermaLink="false">tsuzuki-rss-216858-p1</guid>
       <pubDate>Mon, 04 Jan 2027 12:56:00 GMT</pubDate>
       <description>Premiere: Gen, a 70-year-old man who was estranged by his wife and daughter after a divorce many years ago. After his daughter's death, he has been entrusted to take care of his three-year-old granddaughter Haru. Having neglected his family in the past, Gen now faces the challenge of…</description>
+    </item>
+    <item>
+      <title>Dawang Raoming 3 — Finale (Ep 16)</title>
+      <link>https://tsuzuki.top/anime/dawang-raoming-3-199353/</link>
+      <guid isPermaLink="false">tsuzuki-rss-199353-f16</guid>
+      <pubDate>Sat, 02 Jan 2027 02:00:00 GMT</pubDate>
+      <description>Finale: The third season of Dawang Raoming .</description>
+    </item>
+    <item>
+      <title>Atashin’chi NEXT 3 — Premiere (Ep 1)</title>
+      <link>https://tsuzuki.top/anime/atashinchi-next-3-219924/</link>
+      <guid isPermaLink="false">tsuzuki-rss-219924-p1</guid>
+      <pubDate>Fri, 01 Jan 2027 09:00:00 GMT</pubDate>
+      <description>Premiere: Third season of Atashin'chi NEXT .</description>
     </item>
     <item>
       <title>The Detective Is Already Dead Season 2 — Finale (Ep 13)</title>
@@ -336,27 +357,6 @@
       <guid isPermaLink="false">tsuzuki-rss-203490-f24</guid>
       <pubDate>Fri, 18 Dec 2026 15:00:00 GMT</pubDate>
       <description>Finale: The manga centers on high school student Ito Hazui. During her spring break at the end of her first year of high school, Ito's mother remarries, and Ito moves to live with her new family, becoming Ito Narita. Upon arriving at her new house, Ito is shocked to learn she now has…</description>
-    </item>
-    <item>
-      <title>TOUGEN ANKI: Nikko Kegon Falls Arc — Finale (Ep 12)</title>
-      <link>https://tsuzuki.top/anime/tougen-anki-nikko-kegon-falls-arc-204650/</link>
-      <guid isPermaLink="false">tsuzuki-rss-204650-f12</guid>
-      <pubDate>Fri, 18 Dec 2026 14:30:00 GMT</pubDate>
-      <description>Finale: After battling in Kyoto and Nerima, the Rasetsu Academy students have grown stronger. But Yaoroshi leaves the academy to join the Oni Brigade for their &quot;the total eradication of the Momotaro.&quot; When Shiki realizes that they also target noncombatants, he sets out after Yaoroshi…</description>
-    </item>
-    <item>
-      <title>The Apothecary Diaries Season 3 — Finale (Ep 12)</title>
-      <link>https://tsuzuki.top/anime/the-apothecary-diaries-season-3-195516/</link>
-      <guid isPermaLink="false">tsuzuki-rss-195516-f12</guid>
-      <pubDate>Fri, 18 Dec 2026 14:00:00 GMT</pubDate>
-      <description>Finale: In the aftermath of the Shi Clan’s rebellion, things have finally settled down, and Maomao has returned to her old life as a pharmacist in the pleasure district. One day, triggered by a breakfast served at the Verdigris House, Maomao senses an anomaly and begins investigating…</description>
-    </item>
-    <item>
-      <title>Welsh &amp; Shedar — Finale (Ep 12)</title>
-      <link>https://tsuzuki.top/anime/welsh-shedar-216895/</link>
-      <guid isPermaLink="false">tsuzuki-rss-216895-f12</guid>
-      <pubDate>Fri, 18 Dec 2026 12:26:00 GMT</pubDate>
-      <description>Finale: The story of Aoki Denshou Welsh &amp; Shedar follows Welsh, a teenage boy from the country who loves to cook, and Shedar, a young prince who is destined to become king one day. When the two young men with very different lives are thrown together by a chance encounter, the wheels of…</description>
     </item>
   </channel>
 </rss>
